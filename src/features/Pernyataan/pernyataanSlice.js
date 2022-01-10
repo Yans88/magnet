@@ -9,16 +9,16 @@ const tokenLogin = process.env.REACT_APP_TOKEN_LOGIN;
 export const getDataPernyataan = createAsyncThunk(
     'pernyataan/getDataPernyataan',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
-            url: API_URL + '/get-data-pernyataan',
+            url: API_URL + '/get-data-pernyataan?data_tipe_akun_id=' + param,
             headers: {
                 'x-app-origin': 'cabinet-app',
                 'Authorization': token,
             }
         };
-        
+
         axios(config)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
@@ -44,7 +44,7 @@ export const getDataPernyataan = createAsyncThunk(
                                 wakil_pialang: '',
                                 badan_abritase: '',
                                 pengadilan: '',
-                                agree: '',								
+                                agree: '',
                             }
                         }
                         return payload;
@@ -65,7 +65,7 @@ export const getDataPernyataan = createAsyncThunk(
 export const simpanDataPernyataan = createAsyncThunk(
     'pernyataan/simpanDataPernyataan',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         const config = {
             headers: {
                 'Authorization': token,
@@ -147,7 +147,7 @@ export const pernyataanSlice = createSlice({
         },
         [getDataPernyataan.pending]: (state) => {
             state.isFetching = true;
-            
+
         },
     }
 })

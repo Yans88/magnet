@@ -25,18 +25,22 @@ class Pernyataan extends Component {
             defaultActiveKey: 1,
             show: false,
             errMsg1: this.initData,
-			data_tipe_akun_id:''
+            data_tipe_akun_id: ''
         }
     }
 
     componentDidMount = async () => {
-		const dt = {};
-		const selectedId = sessionStorage.getItem('data_tipe_akun_id');
-	
-        const location = window.location.href;
-        const BaseName = location.substring(location.lastIndexOf("/") + 1);
-        this.props.onLoad();
-        await this.setState({ lastSegmentUrl: BaseName, data_tipe_akun_id:selectedId })
+        const dt = {};
+        const selectedId = sessionStorage.getItem('data_tipe_akun_id');
+        if (selectedId) {
+            const location = window.location.href;
+            const BaseName = location.substring(location.lastIndexOf("/") + 1);
+            this.props.onLoad(selectedId);
+            await this.setState({ lastSegmentUrl: BaseName, data_tipe_akun_id: selectedId })
+        } else {
+			alert("Silahkan pilih tipe akun terlebih dulu");
+            this.props.history.push("/account-type");
+        }
     }
 
     handleBack() {
@@ -75,7 +79,7 @@ class Pernyataan extends Component {
             errors.pernyataan3 = this.props.dataPernyataan.pernyataan3 !== 'Y' ? "Pilihan ini harus disetujui" : '';
             //errors.wakil_pialang = !this.props.dataPernyataan.wakil_pialang ? "Silakan Pilih Wakil Pialang" : '';
             errors.badan_abritase = this.props.dataPernyataan.badan_abritase === '' ? "Silakan Pilih Pilihan Resolusi Konflik" : '';
-			if(!errors.badan_abritase) errors.badan_abritase = this.props.dataPernyataan.badan_abritase === 'N' && !this.props.dataPernyataan.pengadilan ? "Silakan Pilih Pengadilan Negeri" : '';
+            if (!errors.badan_abritase) errors.badan_abritase = this.props.dataPernyataan.badan_abritase === 'N' && !this.props.dataPernyataan.pengadilan ? "Silakan Pilih Pengadilan Negeri" : '';
             this.setState({ errors });
             if (!this.validateForm(this.state.errMsg1)) {
                 console.error('Invalid Form')
@@ -96,10 +100,10 @@ class Pernyataan extends Component {
             if (!this.validateForm(this.state.errMsg1)) {
                 console.error('Invalid Form')
             } else {
-				 const saveData = {
-					...this.props.dataPernyataan,
-					data_tipe_akun_id: this.state.data_tipe_akun_id
-				}				
+                const saveData = {
+                    ...this.props.dataPernyataan,
+                    data_tipe_akun_id: this.state.data_tipe_akun_id
+                }
                 this.props.onSave(saveData);
                 if (action) this.props.history.push("/trading_rules");
             }
@@ -904,8 +908,8 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToPros = (dispatch) => {
     return {
-        onLoad: () => {
-            dispatch(getDataPernyataan());
+        onLoad: (param) => {
+            dispatch(getDataPernyataan(param));
         },
         changeProps: (param) => {
             dispatch(chgProps(param));

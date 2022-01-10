@@ -134,7 +134,7 @@ const initialState = {
     isSuccess: false,
     isError: false,
     errorMessage: '',
-    dataSelect: { data_tipe_akun_id: '' },
+    dataSelect: { data_tipe_akun_id: '', act : 'pendaftaran' },
     dataRate: [],
     dataTypeAccount: [],
     showFormDelete: false,

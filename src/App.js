@@ -25,6 +25,7 @@ const Penarikan = React.lazy(() => import('./features/Penarikan'));
 const Autochartist = React.lazy(() => import('./features/Autochartist'));
 const AkunBank = React.lazy(() => import('./features/AkunBank'));
 const Transfer = React.lazy(() => import('./features/Transfer'));
+const YukBelajar = React.lazy(() => import('./features/YukBelajar'));
 
 const getBasename = path => path.substr(0, path.lastIndexOf('/'));
 
@@ -61,6 +62,7 @@ function App({ main }) {
                 <Route exact path="/autochartist" component={Autochartist} />
                 <Route exact path="/bank-accounts" component={AkunBank} />
                 <Route exact path="/internal-transfer" component={Transfer} />
+                <Route exact path="/education" component={YukBelajar} />
               </React.Suspense>
             </Main>
           </ProtectedRoute>

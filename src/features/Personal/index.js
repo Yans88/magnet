@@ -49,7 +49,7 @@ class Personal extends Component {
         this.initDPP = {
             agree: '',
         }
-		
+
         this.state = {
             validSd: valid_startDate,
             validEd: valid_startDate,
@@ -63,13 +63,15 @@ class Personal extends Component {
             errMsg5: this.initPekerjaan,
             errMsg6: this.initAkunBank,
             errMsg7: this.initDPP,
-			
+
         }
         this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount = async () => {
+        sessionStorage.removeItem("data_tipe_akun_id");
+        await sessionStorage.setItem('act_tipe_akun_id', 'pendaftaran');
         this.props.onLoad();
         const location = window.location.href;
         const BaseName = location.substring(location.lastIndexOf("/") + 1);
@@ -77,10 +79,10 @@ class Personal extends Component {
     }
 
     handleSelect(activeKey) {
-        this.setState({ active_tab: activeKey });		
+        this.setState({ active_tab: activeKey });
     }
-	
-	
+
+
 
     handleChangeStartDate(date) {
         const dt = {};
@@ -210,8 +212,8 @@ class Personal extends Component {
     handleChangePhoto = async (evt) => {
         const name = evt.target.name;
         const value = evt.target.files[0];
-        
-        if (value) {			
+
+        if (value) {
             const dt = {
                 file: value,
                 tipe: name
@@ -236,9 +238,9 @@ class Personal extends Component {
         });
         this.props.showConfirmDel(true);
     }
-    handleDelete=async()=> {
+    handleDelete = async () => {
         this.props.onDelete(this.state.dokumen_id);
-		await this.sleep(300);
+        await this.sleep(300);
         this.props.getDPP();
     }
     handleClose() {
@@ -256,9 +258,9 @@ class Personal extends Component {
         return valid;
     }
 
-    handleSubmit1=async (action)=> {
+    handleSubmit1 = async (action) => {
         var errors = this.state.errMsg1;
-		
+
         errors.nama_depan = !this.props.user.nama_depan ? "Kolom ini harus diisi" : '';
         errors.tempat_lahir = !this.props.user.tempat_lahir ? "Kolom ini harus diisi" : '';
         errors.kota_lahir = !this.props.user.kota_lahir ? "Kolom ini harus diisi" : '';
@@ -268,7 +270,7 @@ class Personal extends Component {
         errors.npwp = !this.props.user.npwp ? "Kolom ini harus diisi" : '';
         errors.jenis_kelamin = !this.props.user.jenis_kelamin ? "Kolom ini harus diisi" : '';
         errors.status_pernikahan = !this.props.user.status_pernikahan ? "Kolom ini harus diisi" : '';
-        errors.nama_pasangan = !this.props.user.nama_pasangan && this.props.user.status_pernikahan === 'Kawin'? "Kolom ini harus diisi" : '';
+        errors.nama_pasangan = !this.props.user.nama_pasangan && this.props.user.status_pernikahan === 'Kawin' ? "Kolom ini harus diisi" : '';
         errors.nama_ibu_kandung = !this.props.user.nama_ibu_kandung ? "Kolom ini harus diisi" : '';
         errors.alamat = !this.props.user.alamat ? "Kolom ini harus diisi" : '';
         errors.rt = !this.props.user.rt ? "Kolom ini harus diisi" : '';
@@ -279,12 +281,12 @@ class Personal extends Component {
         errors.handphone = !this.props.user.handphone ? "Kolom ini harus diisi" : '';
         errors.status_kepemilikan = !this.props.user.status_kepemilikan ? "Kolom ini harus diisi" : '';
         errors.agreement1 = !this.props.user.agreement1 || !this.props.user.no_identitas ? "Kolom ini harus diisi" : '';
-		
+
         this.setState({ errors });
         if (this.validateForm(this.state.errMsg1)) {
             this.props.onSaveDataPribadi(this.props.user);
-			await this.sleep(150);
-			this.props.getDataPribadi();
+            await this.sleep(150);
+            this.props.getDataPribadi();
             if (action === 'detil_pribadi') this.setState({ active_tab: 'exp_trading' });
         } else {
             console.error('Invalid Form')
@@ -322,8 +324,8 @@ class Personal extends Component {
 
     handleSubmit3(action) {
         var errors = this.state.errMsg3;
-		errors.pendapatan_pertahun = !this.props.dataKekayaan.pendapatan_pertahun ? "Kolom ini harus diisi" : '';
-		errors.lokasi = !this.props.dataKekayaan.lokasi ? "Kolom ini harus diisi" : '';
+        errors.pendapatan_pertahun = !this.props.dataKekayaan.pendapatan_pertahun ? "Kolom ini harus diisi" : '';
+        errors.lokasi = !this.props.dataKekayaan.lokasi ? "Kolom ini harus diisi" : '';
         errors.agreement3 = !this.props.dataKekayaan.agreement3 ? "Kolom ini harus diisi" : '';
         errors.njop = !this.props.dataKekayaan.njop ? "Kolom ini harus diisi" : '';
         errors.deposit_bank = !this.props.dataKekayaan.njop ? "Kolom ini harus diisi" : '';
@@ -399,8 +401,8 @@ class Personal extends Component {
 
     handleSubmit6 = async (action) => {
         var errors = this.state.errMsg6;
-		var nama_pemilik = this.props.user.nama_depan + ' ' + this.props.user.nama_belakang;
-        errors.nama_pemilik = !this.props.dataAkunBank.nama_pemilik && nama_pemilik === ''? "Kolom ini harus diisi" : '';
+        var nama_pemilik = this.props.user.nama_depan + ' ' + this.props.user.nama_belakang;
+        errors.nama_pemilik = !this.props.dataAkunBank.nama_pemilik && nama_pemilik === '' ? "Kolom ini harus diisi" : '';
         errors.bank = !this.props.dataAkunBank.bank_id ? "Kolom ini harus diisi" : '';
         errors.cabang = !this.props.dataAkunBank.cabang ? "Kolom ini harus diisi" : '';
         errors.no_rek = !this.props.dataAkunBank.no_rek ? "Kolom ini harus diisi" : '';
@@ -442,8 +444,8 @@ class Personal extends Component {
         }
 
     }
-	
-	
+
+
 
     render() {
         const { Paragraph } = Placeholder;
@@ -455,10 +457,10 @@ class Personal extends Component {
         const deposit_bank = dataKekayaan.deposit_bank ? parseInt(dataKekayaan.deposit_bank.replace(/,/g, '')) : 0;
 
         const contentDelete = <div dangerouslySetInnerHTML={{ __html: '<div id="caption" style=padding-bottom:20px;">Apakah anda yakin <br/>akan menghapus file ini ?</div>' }} />;
-		console.log(unggahFileName);
-		
+        console.log(unggahFileName);
+
         return (
-		
+
             <div className="content-wrapper">
 
                 <div className="content-area__edge">
@@ -549,7 +551,7 @@ class Personal extends Component {
                                                                 type="text"
                                                                 required
                                                                 placeholder="Nama Depan" />
-																{errMsg1.nama_depan ? (<span className="text-error badge badge-danger">{errMsg1.nama_depan}</span>) : ''}
+                                                            {errMsg1.nama_depan ? (<span className="text-error badge badge-danger">{errMsg1.nama_depan}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} controlId="nama_belakang">
                                                             <Form.Label>Nama Belakang</Form.Label>
@@ -585,7 +587,7 @@ class Personal extends Component {
                                                                 ) : ''}
                                                                 <option value="Lainnya(Others)">Lainnya(Others)</option>
                                                             </Form.Control>
-															{errMsg1.tempat_lahir ? (<span className="text-error badge badge-danger">{errMsg1.tempat_lahir}</span>) : ''}
+                                                            {errMsg1.tempat_lahir ? (<span className="text-error badge badge-danger">{errMsg1.tempat_lahir}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} controlId="kota_lahir">
                                                             <Form.Label>Kota Kelahiran Sesuai Dengan Identitas</Form.Label>
@@ -598,9 +600,9 @@ class Personal extends Component {
                                                                 type="text"
                                                                 required
                                                                 placeholder="Kota Kelahiran Sesuai Dengan Identitas" />
-																{errMsg1.kota_lahir ? (<span className="text-error badge badge-danger">{errMsg1.kota_lahir}</span>) : ''}
+                                                            {errMsg1.kota_lahir ? (<span className="text-error badge badge-danger">{errMsg1.kota_lahir}</span>) : ''}
                                                         </Form.Group>
-														
+
                                                     </Form.Row>
                                                     <Form.Row>
                                                         <Form.Group as={Col} xs={3} controlId="tanggal_lahir">
@@ -623,7 +625,7 @@ class Personal extends Component {
                                                                 }
                                                                 locale="id" isValidDate={this.state.validSd}
                                                             />
-															{errMsg1.tanggal_lahir ? (<span className="text-error badge badge-danger">{errMsg1.tanggal_lahir}</span>) : ''}
+                                                            {errMsg1.tanggal_lahir ? (<span className="text-error badge badge-danger">{errMsg1.tanggal_lahir}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} xs={3} controlId="jenis_identitas">
                                                             <Form.Label>Nomor identifikasi</Form.Label>
@@ -638,7 +640,7 @@ class Personal extends Component {
                                                                 <option value="SIM">SIM</option>
                                                                 <option value="Passpor">Passport</option>
                                                             </Form.Control>
-															{errMsg1.jenis_identitas ? (<span className="text-error badge badge-danger">{errMsg1.jenis_identitas}</span>) : ''}
+                                                            {errMsg1.jenis_identitas ? (<span className="text-error badge badge-danger">{errMsg1.jenis_identitas}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} controlId="no_identitas">
 
@@ -652,7 +654,7 @@ class Personal extends Component {
                                                                 type="text"
                                                                 required
                                                             />
-															{errMsg1.no_identitas ? (<span className="text-error badge badge-danger">{errMsg1.no_identitas}</span>) : ''}
+                                                            {errMsg1.no_identitas ? (<span className="text-error badge badge-danger">{errMsg1.no_identitas}</span>) : ''}
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
@@ -667,9 +669,9 @@ class Personal extends Component {
                                                                 type="text"
                                                                 required
                                                                 placeholder="NPWP" />
-																{errMsg1.npwp ? (<span className="text-error badge badge-danger">{errMsg1.npwp}</span>) : ''}
+                                                            {errMsg1.npwp ? (<span className="text-error badge badge-danger">{errMsg1.npwp}</span>) : ''}
                                                         </Form.Group>
-														
+
                                                     </Form.Row>
                                                     <Form.Row>
                                                         <Form.Group as={Col} xs={3} controlId="jenis_kelamin">
@@ -692,7 +694,7 @@ class Personal extends Component {
                                                                 name='jenis_kelamin'
                                                                 label='Perempuan'
                                                             />
-															{errMsg1.jenis_kelamin ? (<span className="text-error badge badge-danger">{errMsg1.jenis_kelamin}</span>) : ''}
+                                                            {errMsg1.jenis_kelamin ? (<span className="text-error badge badge-danger">{errMsg1.jenis_kelamin}</span>) : ''}
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
@@ -710,7 +712,7 @@ class Personal extends Component {
                                                                 <option value="Cerai">Cerai</option>
                                                                 <option value="Janda/Duda">Janda/Duda</option>
                                                             </Form.Control>
-															{errMsg1.status_pernikahan ? (<span className="text-error badge badge-danger">{errMsg1.status_pernikahan}</span>) : ''}
+                                                            {errMsg1.status_pernikahan ? (<span className="text-error badge badge-danger">{errMsg1.status_pernikahan}</span>) : ''}
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
@@ -727,7 +729,7 @@ class Personal extends Component {
                                                                         type="text"
                                                                         required
                                                                         placeholder="Nama Pasangan" />
-																		{errMsg1.nama_pasangan ? (<span className="text-error badge badge-danger">{errMsg1.nama_pasangan}</span>) : ''}
+                                                                    {errMsg1.nama_pasangan ? (<span className="text-error badge badge-danger">{errMsg1.nama_pasangan}</span>) : ''}
                                                                 </Form.Group>
                                                             </Fragment>
                                                         )}
@@ -742,7 +744,7 @@ class Personal extends Component {
                                                                 type="text"
                                                                 required
                                                                 placeholder="Nama Gadis Ibu Kandung" />
-																{errMsg1.nama_ibu_kandung ? (<span className="text-error badge badge-danger">{errMsg1.nama_ibu_kandung}</span>) : ''}
+                                                            {errMsg1.nama_ibu_kandung ? (<span className="text-error badge badge-danger">{errMsg1.nama_ibu_kandung}</span>) : ''}
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
@@ -757,7 +759,7 @@ class Personal extends Component {
                                                                 type="text"
                                                                 required
                                                                 placeholder="Alamat" />
-																{errMsg1.alamat ? (<span className="text-error badge badge-danger">{errMsg1.alamat}</span>) : ''}
+                                                            {errMsg1.alamat ? (<span className="text-error badge badge-danger">{errMsg1.alamat}</span>) : ''}
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
@@ -772,7 +774,7 @@ class Personal extends Component {
                                                                 type="text"
                                                                 required
                                                                 placeholder="RT" />
-																{errMsg1.rt ? (<span className="text-error badge badge-danger">{errMsg1.rt}</span>) : ''}
+                                                            {errMsg1.rt ? (<span className="text-error badge badge-danger">{errMsg1.rt}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} xs={2} controlId="rw">
                                                             <Form.Label>RW</Form.Label>
@@ -785,7 +787,7 @@ class Personal extends Component {
                                                                 type="text"
                                                                 required
                                                                 placeholder="RW" />
-																 {errMsg1.rw ? (<span className="text-error badge badge-danger">{errMsg1.rw}</span>) : ''}
+                                                            {errMsg1.rw ? (<span className="text-error badge badge-danger">{errMsg1.rw}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} xs={3} controlId="provinsi">
 
@@ -808,7 +810,7 @@ class Personal extends Component {
                                                                 ) : ''}
                                                                 <option value="Lainnya(Others)">Lainnya(Others)</option>
                                                             </Form.Control>
-															 {errMsg1.provinsi ? (<span className="text-error badge badge-danger">{errMsg1.provinsi}</span>) : ''}
+                                                            {errMsg1.provinsi ? (<span className="text-error badge badge-danger">{errMsg1.provinsi}</span>) : ''}
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
@@ -832,7 +834,7 @@ class Personal extends Component {
                                                                 ) : ''}
                                                                 <option value="Lainnya(Others)">Lainnya(Others)</option>
                                                             </Form.Control>
-															 {errMsg1.warga_negara ? (<span className="text-error badge badge-danger">{errMsg1.warga_negara}</span>) : ''}
+                                                            {errMsg1.warga_negara ? (<span className="text-error badge badge-danger">{errMsg1.warga_negara}</span>) : ''}
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
@@ -847,7 +849,7 @@ class Personal extends Component {
                                                                 type="text"
                                                                 required
                                                                 placeholder="Telepon Rumah" />
-																{errMsg1.telp ? (<span className="text-error badge badge-danger">{errMsg1.telp}</span>) : ''}
+                                                            {errMsg1.telp ? (<span className="text-error badge badge-danger">{errMsg1.telp}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} controlId="fax">
                                                             <Form.Label>FAX</Form.Label>
@@ -874,9 +876,9 @@ class Personal extends Component {
                                                                 type="text"
                                                                 required
                                                                 placeholder="No Handphone" />
-																 {errMsg1.handphone ? (<span className="text-error badge badge-danger">{errMsg1.handphone}</span>) : ''}
+                                                            {errMsg1.handphone ? (<span className="text-error badge badge-danger">{errMsg1.handphone}</span>) : ''}
                                                         </Form.Group>
-														
+
                                                     </Form.Row>
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="status_kepemilikan">
@@ -893,7 +895,7 @@ class Personal extends Component {
                                                                 <option value="Sewa/Kontrak">Sewa/Kontrak</option>
 
                                                             </Form.Control>
-															 {errMsg1.status_kepemilikan ? (<span className="text-error badge badge-danger">{errMsg1.status_kepemilikan}</span>) : ''}
+                                                            {errMsg1.status_kepemilikan ? (<span className="text-error badge badge-danger">{errMsg1.status_kepemilikan}</span>) : ''}
                                                         </Form.Group>
                                                     </Form.Row>
 
@@ -1130,7 +1132,7 @@ class Personal extends Component {
                                                                 <option value="Antara 250-500 juta">Antara 250-500 juta</option>
                                                                 <option value="Di atas 500 juta">Di atas 500 juta</option>
                                                             </Form.Control>
-															{errMsg3.pendapatan_pertahun ? (<span className="text-error badge badge-danger">{errMsg3.pendapatan_pertahun}</span>) : ''}
+                                                            {errMsg3.pendapatan_pertahun ? (<span className="text-error badge badge-danger">{errMsg3.pendapatan_pertahun}</span>) : ''}
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
@@ -1145,7 +1147,7 @@ class Personal extends Component {
                                                                 type="text"
                                                                 required
                                                                 placeholder="Lokasi" />
-																{errMsg3.lokasi ? (<span className="text-error badge badge-danger">{errMsg3.lokasi}</span>) : ''}
+                                                            {errMsg3.lokasi ? (<span className="text-error badge badge-danger">{errMsg3.lokasi}</span>) : ''}
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
@@ -1273,7 +1275,7 @@ class Personal extends Component {
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="alamatt">
                                                             <Form.Label>Alamat</Form.Label>
-															{errMsg4.alamat ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.alamat}</span>) : ''}
+                                                            {errMsg4.alamat ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.alamat}</span>) : ''}
                                                             <Form.Control
                                                                 value={dataKontakDarurat.alamat ? dataKontakDarurat.alamat : ''}
                                                                 autoComplete="off"
@@ -1288,7 +1290,7 @@ class Personal extends Component {
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="kode_pos">
                                                             <Form.Label>Kode Pos</Form.Label>
-															{errMsg4.kode_pos ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.kode_pos}</span>) : ''}
+                                                            {errMsg4.kode_pos ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.kode_pos}</span>) : ''}
                                                             <Form.Control
                                                                 value={dataKontakDarurat.kode_pos ? dataKontakDarurat.kode_pos : ''}
                                                                 autoComplete="off"
@@ -1318,7 +1320,7 @@ class Personal extends Component {
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="handphone">
                                                             <Form.Label>No. Handphone</Form.Label>
-															{errMsg4.handphone ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.handphone}</span>) : ''}
+                                                            {errMsg4.handphone ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.handphone}</span>) : ''}
                                                             <Form.Control
                                                                 value={dataKontakDarurat.handphone ? dataKontakDarurat.handphone : ''}
                                                                 autoComplete="off"
@@ -1333,7 +1335,7 @@ class Personal extends Component {
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="hubungan">
                                                             <Form.Label>Hubungan</Form.Label>
-															{errMsg4.hubungan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.hubungan}</span>) : ''}
+                                                            {errMsg4.hubungan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.hubungan}</span>) : ''}
                                                             <Form.Control
                                                                 name="hubungan"
                                                                 size="lg"
@@ -1587,7 +1589,7 @@ class Personal extends Component {
                                                                 type="text"
                                                                 required
                                                                 placeholder="Nama Pemilik Rekening" />
-																{errMsg6.nama_pemilik ? (<span className="text-error badge badge-danger">{errMsg6.nama_pemilik}</span>) : ''}
+                                                            {errMsg6.nama_pemilik ? (<span className="text-error badge badge-danger">{errMsg6.nama_pemilik}</span>) : ''}
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
@@ -1610,7 +1612,7 @@ class Personal extends Component {
 
                                                                 ) : ''}
                                                             </Form.Control>
-															{errMsg6.bank ? (<span className="text-error badge badge-danger">{errMsg6.bank}</span>) : ''}
+                                                            {errMsg6.bank ? (<span className="text-error badge badge-danger">{errMsg6.bank}</span>) : ''}
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
@@ -1627,7 +1629,7 @@ class Personal extends Component {
                                                                 decimalScale={0}
                                                                 inputMode="numeric"
                                                                 placeholder="Nomor Rekening Bank" />
-																{errMsg6.no_rek ? (<span className="text-error badge badge-danger">{errMsg6.no_rek}</span>) : ''}
+                                                            {errMsg6.no_rek ? (<span className="text-error badge badge-danger">{errMsg6.no_rek}</span>) : ''}
                                                         </Form.Group>
                                                     </Form.Row>
 
@@ -1643,9 +1645,9 @@ class Personal extends Component {
                                                                 type="text"
                                                                 required
                                                                 placeholder="Cabang" />
-																{errMsg6.cabang ? (<span className="text-error badge badge-danger">{errMsg6.cabang}</span>) : ''}
+                                                            {errMsg6.cabang ? (<span className="text-error badge badge-danger">{errMsg6.cabang}</span>) : ''}
                                                         </Form.Group>
-														
+
                                                     </Form.Row>
 
                                                     {/*  <Form.Row>
@@ -1693,7 +1695,7 @@ class Personal extends Component {
                                                                 name='jenis_akun_bank'
                                                                 label='Lainnya'
                                                             />
-															{errMsg6.jenis_akun_bank ? (<span className="text-error badge badge-danger">{errMsg6.jenis_akun_bank}</span>) : ''}
+                                                            {errMsg6.jenis_akun_bank ? (<span className="text-error badge badge-danger">{errMsg6.jenis_akun_bank}</span>) : ''}
                                                         </Form.Group>
                                                     </Form.Row>
 
@@ -1773,7 +1775,7 @@ class Personal extends Component {
                                                                         </Form.Group>
                                                                     </Form>
                                                                 </div>
-																
+
                                                             </div>
 
                                                             <div className="row">
@@ -1848,9 +1850,9 @@ class Personal extends Component {
                                                                         <tbody>
                                                                             {docPribadi ? (
                                                                                 docPribadi.map((dp, index) => {
-																															
+
                                                                                     return (
-																					
+
                                                                                         <tr key={dp.dokumen_id}>
                                                                                             <td>
                                                                                                 <Figure>
@@ -1881,19 +1883,19 @@ class Personal extends Component {
                                                                 )}
 
                                                             </table>
-															
+
                                                         </div>
 
 
                                                     </div>
-													{!unggahFileName ? (
-                                                                <div className="alert alert-danger alert-sm">
-                                                                   
-                                                                    <span className="fw-semi-bold">Silahkan upload semua photo dengan lengkap</span>
-                                                                </div>
-                                                            ) : ''}
+                                                    {!unggahFileName ? (
+                                                        <div className="alert alert-danger alert-sm">
+
+                                                            <span className="fw-semi-bold">Silahkan upload semua photo dengan lengkap</span>
+                                                        </div>
+                                                    ) : ''}
                                                 </div>
-												
+
                                             </div>
                                             <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
                                                 <div className="form-group">
@@ -1948,7 +1950,7 @@ class Personal extends Component {
                                                         </div>
 
                                                         <AppButton
-														disabled={!unggahFileName}
+                                                            disabled={!unggahFileName}
                                                             style={{ color: '#ffffff', marginRight: 5 }}
                                                             onClick={this.handleSubmit7.bind(this, 'detil_pribadi')}
                                                             type="button"
@@ -2061,15 +2063,15 @@ const mapDispatchToPros = (dispatch) => {
         },
         onDelete: (param) => {
             dispatch(delDocPribadi(param));
-           
+
         },
         onSaveDataPribadi: (param) => {
             dispatch(simpanDataPribadi(param));
-            
+
         },
-		getDataPribadi:(param)=>{
-			dispatch(fetchUserBytoken());
-		},
+        getDataPribadi: (param) => {
+            dispatch(fetchUserBytoken());
+        },
         onSaveDataTrading: async (param) => {
             await dispatch(simpanDataExpTrading(param));
         },

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import { getAkunTrading, getAkunTradingDemo } from '../Setoran/setoranSlice'
 import NumberFormat from 'react-number-format';
+import { Link } from 'react-router-dom';
 
 class Beranda extends Component {
     constructor(props) {
@@ -19,12 +20,19 @@ class Beranda extends Component {
     }
 
     componentDidMount() {
-		//await this.sleep(300);
+        //await this.sleep(300);
+        sessionStorage.removeItem("data_tipe_akun_id");
+        sessionStorage.removeItem("act_tipe_akun_id");
         this.props.onLoad();
     }
-	
-	sleep(ms) {
+
+    sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    to_at = async () => {
+        await sessionStorage.setItem('act_tipe_akun_id', 'create_new_akun');
+        this.props.history.push('/account-type');
     }
 
     render() {
@@ -47,7 +55,11 @@ class Beranda extends Component {
 
                                     <div className="card-body">
                                         <div style={{ paddingLeft: 30, paddingRight: 30, paddingTop: 25 }}>
-                                            <h4>Akun Trading MT5 <a href="account-type" className="btn btn-lgreen btn-sm">Buat Akun Trading Baru</a></h4>
+                                            <h4>Akun Trading MT5
+                                                <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
+                                                    Buat Akun Trading Baru
+                                                </Link>
+                                            </h4>
                                             <hr />
                                             <div className="row">
 

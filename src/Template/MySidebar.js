@@ -121,14 +121,13 @@ class MySidebar extends Component {
                                     icon={<Icon icon="tty" />}>
                                     Autochartist
                                 </Nav.Item>
-                                <Nav.Item
-                                    disabled
-                                    onSelect={e => this.handleMenu('members')}
+                                <Nav.Item                                    
+                                    onSelect={e => this.handleMenu('education')}
                                     componentClass={Link}
-                                    to='/'
-                                    exact='/'
-                                    eventKey='/'
-                                    className={lastSegmentUrl === "members" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
+                                    to='/education'
+                                    exact='/education'
+                                    eventKey='/education'
+                                    className={lastSegmentUrl === "education" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
                                     icon={<Icon icon="mortar-board" />}>
                                     Yuk Belajar!
                                 </Nav.Item>

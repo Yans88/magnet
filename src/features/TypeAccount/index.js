@@ -15,6 +15,13 @@ class TypeAccount extends Component {
 
     componentDidMount = async () => {
 		sessionStorage.removeItem("data_tipe_akun_id");
+		const act = sessionStorage.getItem('act_tipe_akun_id');
+		if(act){
+			const dt = {};
+			dt['key'] = 'act';
+			dt['value'] = act;
+			this.props.changeProps(dt);
+		}
         this.props.onLoad();
         const location = window.location.href;
         const BaseName = location.substring(location.lastIndexOf("/") + 1);
