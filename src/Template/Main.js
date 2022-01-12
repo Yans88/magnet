@@ -17,7 +17,7 @@ class Main extends Component {
     fetchProfileAdmin = () => {
         const token = localStorage.getItem(tokenLogin);
         if (token !== '') {
-            this.props.fetchDataAdmin();
+            this.props.fetchDataAdmin();			
         } else {
             this.props.logOut();
             // eslint-disable-next-line

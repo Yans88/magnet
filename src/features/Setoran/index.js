@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
-import { getBankCompany, getAkunTrading, actionSetor, closeForm, getHistorySetor } from '../Setoran/setoranSlice'
+import { getBankCompany, getAkunTrading, actionSetor, closeForm, getHistorySetor } from '../Setoran/setoranSlice';
+import { profileUser } from '../main/mainSlice';
 import AppModal from '../../components/modal/MyModal';
 import NumberFormat from 'react-number-format';
 import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
@@ -765,6 +766,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+			dispatch(profileUser());
             dispatch(getBankCompany());
             dispatch(getAkunTrading());
         },
@@ -772,6 +774,7 @@ const mapDispatchToPros = (dispatch) => {
             dispatch(getHistorySetor(param));
         },
         onSetor: (param) => {
+			dispatch(profileUser());
             dispatch(actionSetor(param));
         },
         closeSwalError: () => {

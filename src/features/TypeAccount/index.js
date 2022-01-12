@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { getRate, getTA, chgPropsTA, closeForm, confirmDel, simpanDataTA } from './taSlice'
+import { getRate, getTA, chgPropsTA, closeForm, confirmDel, simpanDataTA } from './taSlice';
+import { profileUser } from '../main/mainSlice';
 import { Button, Col, Row, Form, Card, ListGroup } from 'react-bootstrap'
 import AppModal from '../../components/modal/MyModal';
 
@@ -183,10 +184,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+			dispatch(profileUser());
             dispatch(getRate());
             dispatch(getTA());
         },
         onSave: (param) => {
+			dispatch(profileUser());
             dispatch(simpanDataTA(param));
         },
         changeProps: (param) => {

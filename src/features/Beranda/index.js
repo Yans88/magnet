@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
-import { getAkunTrading, getAkunTradingDemo } from '../Setoran/setoranSlice'
+import { getAkunTrading, getAkunTradingDemo } from '../Setoran/setoranSlice';
+import { profileUser } from '../main/mainSlice'
 import NumberFormat from 'react-number-format';
 import { Link } from 'react-router-dom';
 
@@ -23,7 +24,7 @@ class Beranda extends Component {
         //await this.sleep(300);
         sessionStorage.removeItem("data_tipe_akun_id");
         sessionStorage.removeItem("act_tipe_akun_id");
-        this.props.onLoad();
+        this.props.onLoad();		
     }
 
     sleep(ms) {
@@ -185,6 +186,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+			dispatch(profileUser());
             dispatch(getAkunTrading());
             dispatch(getAkunTradingDemo());
         },

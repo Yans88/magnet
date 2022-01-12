@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
 import { getDataPP,action_contact_us,closeForm } from '../ProfilePerusahaan/ppSlice'
 import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
+import { profileUser } from '../main/mainSlice'
 
 class HubungiKami extends Component {
     constructor(props) {
@@ -192,9 +193,11 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+			dispatch(profileUser());
             dispatch(getDataPP());
         },
 		onSubmit: (param) => {
+			dispatch(profileUser());
             dispatch(action_contact_us(param));
         },
 		closeSwal: () => {

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import "moment/locale/id";
-import { getRejDoc, chgProps, simpanRejDoc, closeSwal } from './rejectDocSlice'
+import { getRejDoc, chgProps, simpanRejDoc, closeSwal } from './rejectDocSlice';
+import { profileUser } from '../main/mainSlice';
 import AppButton from '../../components/button/Button';
 import { Form } from 'react-bootstrap';
 import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
@@ -277,12 +278,14 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+			dispatch(profileUser());
             dispatch(getRejDoc());
         },
         changeProps: (param) => {
             dispatch(chgProps(param));
         },
         onSave: (param) => {
+			dispatch(profileUser());
             dispatch(simpanRejDoc(param));
         },
         closeSwal: () => {       

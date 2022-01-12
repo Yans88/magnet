@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
-import { getAkunTrading, closeForm, getHistorySetor } from '../Transfer/transferSlice'
+import { getAkunTrading, closeForm, getHistorySetor } from '../Transfer/transferSlice';
+import { profileUser } from '../main/mainSlice';
 import NumberFormat from 'react-number-format';
 import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
 import moment from 'moment';
@@ -514,12 +515,14 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+			dispatch(profileUser());
             dispatch(getAkunTrading());
         },
         onLoadHistory: (param) => {
             dispatch(getHistorySetor(param));
         },
         onSetor: (param) => {
+			dispatch(profileUser());
             console.log(param);
         },
         closeSwalError: () => {

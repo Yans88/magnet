@@ -100,6 +100,7 @@ export const profileUser = createAsyncThunk(
 
                         return data.payload;
                     } else {
+						
                         return thunkAPI.rejectWithValue(data);
                     }
                 } else {
@@ -464,7 +465,10 @@ export const mainSlice = createSlice({
             state.dtProfileUser = payload;
         },
         [profileUser.rejected]: (state, { payload }) => {
-            state.errFetchUserByToken = '';
+			localStorage.removeItem(tokenLogin);
+            state.errFetchUserByToken = payload.message;
+			state.isLoggedIn = false;
+            state.token = null;
         },
         [regUser.fulfilled]: (state, { payload }) => {
             state.isFetching = false;

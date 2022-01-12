@@ -5,7 +5,8 @@ import AppButton from '../../components/button/Button';
 import moment from 'moment';
 import "moment/locale/id";
 import { Form } from 'react-bootstrap'
-import { getDataPernyataan, chgProps, simpanDataPernyataan } from './pernyataanSlice'
+import { getDataPernyataan, chgProps, simpanDataPernyataan } from './pernyataanSlice';
+import { profileUser } from '../main/mainSlice';
 
 class Pernyataan extends Component {
     constructor(props) {
@@ -909,12 +910,14 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: (param) => {
+			dispatch(profileUser());
             dispatch(getDataPernyataan(param));
         },
         changeProps: (param) => {
             dispatch(chgProps(param));
         },
         onSave: (param) => {
+			dispatch(profileUser());
             dispatch(simpanDataPernyataan(param));
         }
     }

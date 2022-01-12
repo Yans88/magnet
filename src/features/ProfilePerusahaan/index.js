@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
-import { getDataPP, chgProps, simpanDataPP } from './ppSlice'
+import { getDataPP, chgProps, simpanDataPP } from './ppSlice';
+import { profileUser } from '../main/mainSlice';
 
 class ProfilePerusahaan extends Component {
     constructor(props) {
@@ -321,9 +322,11 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+			dispatch(profileUser());
             dispatch(getDataPP());
         },
         onSave: (param) => {
+			dispatch(profileUser());
             dispatch(simpanDataPP(param));
         },
         changeProps: (param) => {

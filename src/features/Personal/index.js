@@ -10,7 +10,7 @@ import {
     uplDocPribadi, delDocPribadi, simpanDataPribadi, simpanDataExpTrading,
     simpanDataKekayaan, simpanKontakDarurat, simpanDataPekerjaan, simpanAkunBank, simpanDPP
 } from './personalSlice'
-import { fetchUserBytoken, chgProps, onLogout } from '../main/mainSlice'
+import { fetchUserBytoken, chgProps, onLogout, profileUser } from '../main/mainSlice'
 import moment from 'moment';
 import "moment/locale/id";
 import Datetime from 'react-datetime';
@@ -2014,6 +2014,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+			dispatch(profileUser());
             dispatch(fetchUserBytoken());
             dispatch(getExpTrading());
             dispatch(getKekayaan());
@@ -2066,44 +2067,56 @@ const mapDispatchToPros = (dispatch) => {
 
         },
         onSaveDataPribadi: (param) => {
+			dispatch(profileUser());
             dispatch(simpanDataPribadi(param));
-
         },
         getDataPribadi: (param) => {
+			dispatch(profileUser());
             dispatch(fetchUserBytoken());
         },
         onSaveDataTrading: async (param) => {
+			dispatch(profileUser());
             await dispatch(simpanDataExpTrading(param));
         },
         getDataTrading: async () => {
+			dispatch(profileUser());
             await dispatch(getExpTrading());
         },
         onSaveDataKekayaan: (param) => {
+			dispatch(profileUser());
             dispatch(simpanDataKekayaan(param));
             dispatch(getKekayaan());
         },
         onSaveKontakDarurat: (param) => {
+			dispatch(profileUser());
             dispatch(simpanKontakDarurat(param));
         },
         getDataKontakDarurat: async () => {
+			dispatch(profileUser());
             await dispatch(getKontakDarurat());
         },
         onSaveDataPekerjaan: async (param) => {
+			dispatch(profileUser());
             await dispatch(simpanDataPekerjaan(param));
         },
         getDataPekerjaan: async () => {
+			dispatch(profileUser());
             await dispatch(getPekerjaan());
         },
         onSaveAkunBank: async (param) => {
+			dispatch(profileUser());
             await dispatch(simpanAkunBank(param));
         },
         getDataAKunBank: async () => {
+			dispatch(profileUser());
             await dispatch(getAkunBank());
         },
         onSaveDPP: (param) => {
+			dispatch(profileUser());
             dispatch(simpanDPP(param));
         },
         getDPP: async () => {
+			dispatch(profileUser());
             await dispatch(getDocPribadi());
         }
     }

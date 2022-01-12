@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import AppButton from '../../components/button/Button';
 import { connect } from 'react-redux';
-import { getSetting, getKT, chgProps, simpanDataKT } from './ktSlice'
+import { getSetting, getKT, chgProps, simpanDataKT } from './ktSlice';
+import { profileUser } from '../main/mainSlice'
 
 class KetentuanTrading extends Component {
     constructor(props) {
@@ -146,13 +147,15 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+			dispatch(profileUser());
             dispatch(getSetting());
             dispatch(getKT());
         },
-        changeProps: (param) => {
+        changeProps: (param) => {			
             dispatch(chgProps(param));
         },
         saveDataKT: (param) => {
+			dispatch(profileUser());
             dispatch(simpanDataKT(param));
             dispatch(getKT());
         }
