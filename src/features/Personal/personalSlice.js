@@ -264,8 +264,7 @@ export const uplDocPribadi = createAsyncThunk(
                 'Content-Type': 'application/json',
             }
         };
-        console.log('uplDocPribadi');
-        console.log(config);
+        
         try {
             const response = await axios.post(API_URL + '/action-dokumen_pribadi', form, config);
             let data = '';
@@ -548,26 +547,27 @@ export const getDocPribadi = createAsyncThunk(
                 const _data = JSON.stringify(response);
                 if (response.status === 200) {
                     let data = response.data;
-                    let unggahFileName = [];
+                    let unggahFileNames = [];
                     if (data.error_message === 0) {
                         let payload = {
                             ...data.payload,
                             dokumen_pribadi_pernyataan: {
                                 data_pribadi_pernyataan_id: '',
                                 agree: data.payload.dokumen_pribadi_pernyataan ? data.payload.dokumen_pribadi_pernyataan.agree : 'N',
-                                unggahFileName: unggahFileName
+                                unggahFileName: unggahFileNames
                             }
                         }
                         let dokumen_pribadi_pernyataan = data.payload.dokumen_pribadi_pernyataan;
-                        if (dokumen_pribadi_pernyataan && dokumen_pribadi_pernyataan !== "") {
+						
+                        if (data.payload.arr_dokumen.total_data > 0) {
                             const arr_dokumen = data.payload.arr_dokumen.data;
                             for (var i = 0; i < arr_dokumen.length; i++) {
-                                unggahFileName.push(arr_dokumen[i].tipe);
+                                unggahFileNames.push(arr_dokumen[i].tipe);
                             }
 
                             payload = {
                                 ...data.payload,
-                                unggahFileName: unggahFileName.includes('KTP') && unggahFileName.includes('OTHER') && unggahFileName.includes('PHOTO')
+                                unggahFileName: unggahFileNames.includes('KTP') && unggahFileNames.includes('OTHER') && unggahFileNames.includes('PHOTO')
                             }
                         }
                         return payload;
@@ -905,7 +905,7 @@ export const personalSlice = createSlice({
             state.dataAkunBank = {};
         },
         [getDocPribadi.fulfilled]: (state, { payload }) => {
-            console.log(payload);
+            
             state.isFetchingUpl = false;
             state.docPribadi = payload.arr_dokumen.data;
             state.unggahFileName = payload.unggahFileName;

@@ -37,7 +37,7 @@ class Beranda extends Component {
     }
 
     render() {
-        const { akun_trading, akun_trading_demo } = this.props;
+        const { akun_trading, akun_trading_demo, profile } = this.props;
 
         return (
 
@@ -57,9 +57,11 @@ class Beranda extends Component {
                                     <div className="card-body">
                                         <div style={{ paddingLeft: 30, paddingRight: 30, paddingTop: 25 }}>
                                             <h4>Akun Trading MT5
+											{profile.status_dokumen === 'Approve' &&
                                                 <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
                                                     Buat Akun Trading Baru
                                                 </Link>
+											}
                                             </h4>
                                             <hr />
                                             <div className="row">
@@ -181,6 +183,7 @@ const mapStateToProps = (state) => ({
     akun_trading: state.setoran.akunTrading || [],
     akun_trading_demo: state.setoran.akunTradingDemo || [],
     user: state.main.currentUser,
+	profile: state.main.dtProfileUser
 })
 
 const mapDispatchToPros = (dispatch) => {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Content } from 'rsuite'
 import { MyHeader, MySidebar } from '../Template';
-
 import { connect } from 'react-redux';
 import { onLogout, fetchUserBytoken, profileUser } from '../features/main/mainSlice'
 import { Redirect } from 'react-router';

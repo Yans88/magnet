@@ -187,7 +187,7 @@ const mapStateToProps = (state) => ({
 	contentMsg: state.companyProfile.contentMsg || null,
     showFormSuccess: state.companyProfile.showFormSuccess,
     tipeSWAL: state.companyProfile.tipeSWAL,
-	 profile: state.main.dtProfileUser,
+	profile: state.main.dtProfileUser,
     user: state.main.currentUser
 });
 const mapDispatchToPros = (dispatch) => {

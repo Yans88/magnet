@@ -23,7 +23,9 @@ class MySidebar extends Component {
 
     render() {
         const { expandMenu } = this.props.main;
+        const { profile } = this.props;
         const { lastSegmentUrl } = this.state;
+		
         return (
             <div>
                 <Sidebar
@@ -38,8 +40,7 @@ class MySidebar extends Component {
                         appearance="subtle">
 
                         <Sidenav.Body>
-                            {expandMenu ? (<h5 style={{ fontWeight: 600, fontSize: 14, marginLeft: 8 }}>STATUS<br /><span style={{ color: '#dc3545' }}>Belum Lengkap -</span> <a style={{ color: '#269647' }} href="personal">Daftar disini</a></h5>) :
-                                ''}
+                            {expandMenu && (<h5 style={{ fontWeight: 600, fontSize: 14, marginLeft: 8 }}>STATUS<br /><span style={{ color: '#dc3545' }}>{profile.status_dokumen} </span>{profile.status_dokumen !== 'Approve' &&( - <a style={{ color: '#269647' }} href="personal">Daftar disini</a>)}</h5>)}
                             <Nav>
                                 <Nav.Item
                                     onSelect={e => this.handleMenu("/")}
@@ -163,8 +164,10 @@ class MySidebar extends Component {
 }
 
 const mapStateToProps = (state) => {
+	
     return {
-        main: state.main
+        main: state.main,
+		profile: state.main.dtProfileUser
     }
 }
 

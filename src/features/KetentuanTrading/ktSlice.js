@@ -61,6 +61,7 @@ export const getKT = createAsyncThunk(
                     if (data.error_message === 0) {
                         let payload = {
                             ...data.payload,
+                            data_ketentuan_trading_id: data.payload.data_ketentuan_trading_id ? data.payload.data_ketentuan_trading_id : '',
                             agreement1: data.payload.data_ketentuan_trading_id ? 1 : '',
                         }
 

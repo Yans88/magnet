@@ -405,7 +405,7 @@ class Setoran extends Component {
                         <div className="col-sm-6">
                             <div className="form-group">
                                 <div className="form-group">
-                                    <label className="frm_lbl">Jumlah Setor</label>
+                                    <label className="frm_lbl">Jumlah Ditransfer</label>
                                     {errMsg.setor ?
                                         (<span className="float-right text-error badge badge-danger">{errMsg.setor}</span>) : null}
                                     <div>
@@ -567,7 +567,7 @@ class Setoran extends Component {
                 sortable: true
             },
             {
-                key: "#",
+                key: "keterangan",
                 text: "Keterangan",
                 align: "center",
                 sortable: true

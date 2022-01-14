@@ -129,7 +129,7 @@ class Pernyataan extends Component {
         const { user, dataPernyataan } = this.props;
         const { arr_wakil_pialang } = dataPernyataan;
         const tgl_lhir = user && user.tanggal_lahir ? moment(new Date(user.tanggal_lahir)).format('DD/MM/YYYY') : '';
-
+		
         return (
 
             <div className="content-wrapper">
@@ -414,29 +414,18 @@ class Pernyataan extends Component {
                                                         </li>
                                                         <li tabIndex={1}>
 
-                                                            <Form.Group controlId="wakil_pialang">
-                                                                <Form.Label style={{ fontWeight: 480, color: "#505f79" }}>Nama: </Form.Label>
-                                                                <Form.Control
-                                                                    style={{ marginLeft: 60, marginTop: -35, width: "30%" }}
-                                                                    name="wakil_pialang"
-                                                                    size="lg"
-                                                                    value={dataPernyataan.wakil_pialang ? dataPernyataan.wakil_pialang : ''}
-                                                                    onChange={this.handleChange.bind(this)}
-                                                                    as="select">
-                                                                    <option value="">Pilih</option>
-                                                                    {arr_wakil_pialang ? (
-                                                                        arr_wakil_pialang.map(function (arw) {
-                                                                            return <option
-                                                                                value={arw.user_id}
-                                                                                key={arw.user_id}>{arw.nama_depan + ' ' + arw.nama_belakang}
-                                                                            </option>
-                                                                        })
-
-                                                                    ) : ''}
-
-                                                                </Form.Control>
-                                                                {errMsg1.wakil_pialang ? (<span style={{ marginLeft: 65 }} className="text-error badge badge-danger">{errMsg1.wakil_pialang}</span>) : ''}
-                                                            </Form.Group>
+                                                            <p>Nama: <b className="declaration_name_html">{arr_wakil_pialang &&
+															(arr_wakil_pialang.map((awp, index)=>{
+																if(index > 0){
+																	return (
+																		', '+awp.nama_depan + ' ' + awp.nama_belakang						
+																	)
+																}else{
+																	return (
+																		awp.nama_depan + ' ' + awp.nama_belakang					
+																	)
+																}
+															}))}</b></p>
                                                             <p>Pekerjaan/Jabatan: <b className="declaration_employment_status_html">Wakil Pialang</b>
                                                                 <br clear="all" />
                                                             </p><p>Alamat: <b>Pakuwon Center - Superblok Tunjungan City, Office Building Lt.15 Unit 5, 6, 7, Jl.Embong Malang 1, 3, 5 Surabaya 60261</b></p>

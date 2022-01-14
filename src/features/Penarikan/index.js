@@ -459,7 +459,7 @@ class Penarikan extends Component {
                 sortable: true
             },
             {
-                key: "#",
+                key: "keterangan",
                 text: "Keterangan",
                 align: "center",
                 sortable: true

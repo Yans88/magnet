@@ -13,15 +13,19 @@ class ProfilePerusahaan extends Component {
         }
         this.state = {
             lastSegmentUrl: "",
+			data_tipe_akun_id:"",
+			act :"",
             errMsg1: this.initData,
         }
     }
 
     componentDidMount = async () => {
+		const act = sessionStorage.getItem('act_tipe_akun_id');
+		const selectedId = sessionStorage.getItem('data_tipe_akun_id');
         this.props.onLoad();
         const location = window.location.href;
         const BaseName = location.substring(location.lastIndexOf("/") + 1);
-        await this.setState({ lastSegmentUrl: BaseName })
+        await this.setState({ lastSegmentUrl: BaseName, act : act, data_tipe_akun_id:selectedId })
     }
 
     handleChange(evt) {
@@ -44,13 +48,17 @@ class ProfilePerusahaan extends Component {
     }
 
     handleSubmit(action) {
-
+		
         var errors = this.state.errMsg1;
         errors.agree1 = this.props.persetujuan.agree1 === 'N' || !this.props.persetujuan.agree1 ? "Kolom ini harus diisi" : '';
         errors.agree2 = this.props.persetujuan.agree2 === 'N' || !this.props.persetujuan.agree2 ? "Kolom ini harus diisi" : '';
         this.setState({ errors });
         if (this.validateForm(this.state.errMsg1)) {
-            this.props.onSave(this.props.persetujuan);
+			const qs = {
+				...this.state,
+				...this.props.persetujuan,
+			}
+            this.props.onSave(qs);
             this.props.history.push('/');
         } else {
             console.error('Invalid Form')
