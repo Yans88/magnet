@@ -236,7 +236,7 @@ class RejecctDocument extends Component {
 		this.setState({ errors });
 		if (this.validateForm(this.state.errMsg)) {
             if (saveData.length > 0) {
-				//this.props.onSave(saveData);
+				this.props.onSave(saveData);
 			}
         } else {
             console.error('Invalid Form')

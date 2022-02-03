@@ -95,7 +95,7 @@ export const profileUser = createAsyncThunk(
                 const _data = JSON.stringify(response);
                 if (response.status === 200) {
                     let data = response.data;
-                    let isMenuTransfer = false;
+                    let isMenuTransfer = true;
                     if (data.error_message === 0) {
                         var day_server = data.payload.day;
                         var jam_server = data.payload.jam.split(":");
@@ -108,9 +108,10 @@ export const profileUser = createAsyncThunk(
                         if (day_server === "Senin" && jam_server < 5) {
                             isMenuTransfer = false;
                         }
+						console.log(isMenuTransfer);
                         const res = {
                             ...data.payload,
-                            isMenuTransfer: !isMenuTransfer ? false : true,
+                            isMenuTransfer: isMenuTransfer ? true : false,
                         }
                         return res;
                     } else {
