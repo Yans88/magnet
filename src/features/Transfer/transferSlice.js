@@ -3,10 +3,6 @@ import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_URL_API;
 const tokenLogin = process.env.REACT_APP_TOKEN_LOGIN;
-// const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
-
-
-
 
 export const getHistorySetor = createAsyncThunk(
     'transfer/getHistory',
@@ -14,7 +10,7 @@ export const getHistorySetor = createAsyncThunk(
 		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
-            url: API_URL + '/penarikan-dana' + param,
+            url: API_URL + '/transfer' + param,
             headers: {
                 'x-app-origin': 'cabinet-app',
                 'Authorization': token,
@@ -82,13 +78,13 @@ export const getAkunTrading = createAsyncThunk(
     }
 );
 
-export const getAkunTradingDemo = createAsyncThunk(
-    'transfer/getAkunTradingDemo',
+export const getAkunTradingTo = createAsyncThunk(
+    'transfer/getAkunTradingTo',
     async (param, thunkAPI) => {
 		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
-            url: API_URL + '/general-option/get-akun-trading?tipe=demo',
+            url: API_URL + '/get-akun-to?from='+param,
             headers: {
                 'x-app-origin': 'cabinet-app',
                 'Authorization': token,
@@ -119,7 +115,44 @@ export const getAkunTradingDemo = createAsyncThunk(
     }
 );
 
-
+export const actionTransfer = createAsyncThunk(
+    'setoran/actionTransfer',
+    async (param, thunkAPI) => {
+		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const form = Object.keys(param).reduce((f, k) => {
+            f.append(k, param[k]);
+            return f;
+        }, new FormData());
+        const config = {
+            headers: {
+                'Authorization': token,
+                'x-app-origin': 'cabinet-app',
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+        };
+        try {
+            const response = await axios.post(API_URL + '/action-transfer', form, config);
+            let data = '';
+            let _data = await response;
+			
+            if (response.status === 200) {
+                data = _data.data;
+				
+                if (data.error_message === 0) {
+                    return data;
+                } else {
+                    return thunkAPI.rejectWithValue(data);
+                }
+            } else {
+                return thunkAPI.rejectWithValue(_data);
+            }
+        } catch (e) {
+            console.log('Error', e.response.data);
+            thunkAPI.rejectWithValue(e.response.data);
+        }
+    }
+);
 
 
 const initialState = {
@@ -128,9 +161,8 @@ const initialState = {
     isError: false,
     showFormSuccess: false,
     errorMessage: '',
-    dataBank: [],
     akunTrading: [],
-    akunTradingDemo: [],
+    akunTradingTo: [],
     dataHistory: [],
     totalData: 0,
 };
@@ -148,6 +180,8 @@ export const transferSlice = createSlice({
         },
         closeForm: (state) => {
             state.showFormSuccess = false;
+            state.errorMessage = '';
+            state.akunTradingTo = [];
         },
         chgProps: (state, { payload }) => {
             console.log(payload);
@@ -171,22 +205,40 @@ export const transferSlice = createSlice({
             state.isFetching = true;
             state.akunTrading = [];
         },
-        [getAkunTradingDemo.fulfilled]: (state, { payload }) => {
+       [getAkunTradingTo.fulfilled]: (state, { payload }) => {
             state.isFetching = false;
-            state.akunTradingDemo = payload;
+            state.akunTradingTo = payload;
             return state;
         },
-        [getAkunTradingDemo.rejected]: (state, { payload }) => {
+        [getAkunTradingTo.rejected]: (state, { payload }) => {
             //console.log('payload', payload);
             state.isFetching = false;
             state.isError = true;
             state.errorMessage = payload.message;
         },
-        [getAkunTradingDemo.pending]: (state) => {
+        [getAkunTradingTo.pending]: (state) => {
             state.isFetching = true;
-            state.akunTradingDemo = [];
+            state.akunTradingTo = [];
+			state.errorMessage = '';
         },
-       
+       [actionTransfer.fulfilled]: (state, { payload }) => {
+            state.showFormSuccess = true;
+            state.contentMsg = "<div style='font-size:20px; text-align:center; line-height:23px;'><strong>Terima kasih</strong><br/> Permintaan anda telah terkirim, tim kami akan segera memproses permintaan anda</div>";
+            state.tipeSWAL = "success";
+            state.isFetching = false;
+            state.errorMessage = payload.message;
+            return state;
+        },
+        [actionTransfer.rejected]: (state, { payload }) => {
+            
+            state.isFetching = false;
+            state.isError = true;
+            state.errorMessage = payload.message;
+        },
+        [actionTransfer.pending]: (state) => {
+            state.isFetching = true;
+			state.errorMessage = '';
+        },
         [getHistorySetor.fulfilled]: (state, { payload }) => {
             state.isFetching = false;
             state.dataHistory = payload.data;

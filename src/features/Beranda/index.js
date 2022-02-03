@@ -4,6 +4,7 @@ import { getAkunTrading, getAkunTradingDemo } from '../Setoran/setoranSlice';
 import { profileUser } from '../main/mainSlice'
 import NumberFormat from 'react-number-format';
 import { Link } from 'react-router-dom';
+import { Dropdown } from 'react-bootstrap';
 
 class Beranda extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class Beranda extends Component {
         //await this.sleep(300);
         sessionStorage.removeItem("data_tipe_akun_id");
         sessionStorage.removeItem("act_tipe_akun_id");
-        this.props.onLoad();		
+        this.props.onLoad();
     }
 
     sleep(ms) {
@@ -57,11 +58,11 @@ class Beranda extends Component {
                                     <div className="card-body">
                                         <div style={{ paddingLeft: 30, paddingRight: 30, paddingTop: 25 }}>
                                             <h4>Akun Trading MT5
-											{profile.status_dokumen === 'Approve' &&
-                                                <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
-                                                    Buat Akun Trading Baru
-                                                </Link>
-											}
+                                                {profile.status_dokumen === 'Approve' &&
+                                                    <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
+                                                        Buat Akun Trading Baru
+                                                    </Link>
+                                                }
                                             </h4>
                                             <hr />
                                             <div className="row">
@@ -72,7 +73,25 @@ class Beranda extends Component {
                                                             <Fragment key={index}>
                                                                 <div className="col-sm-4" style={{ marginBottom: 25 }}>
                                                                     <div className="box-account" style={{ background: '#cadaff' }}>
-                                                                        <div className="box-account__id">#{at.login}</div>
+                                                                        <div className="box-account__id">#{at.login}
+
+                                                                            <div className="box-bank__actions">
+
+                                                                                <Dropdown>
+                                                                                    <Dropdown.Toggle size="sm" variant="secondary"
+                                                                                        style={{ backgroundColor: 'transparent', borderColor: 'transparent' }} id="dropdown-basic">
+                                                                                        <i className="fa fa-ellipsis-h"></i>
+                                                                                    </Dropdown.Toggle>
+
+                                                                                    <Dropdown.Menu className="my-dropdown-menu">
+                                                                                        <Dropdown.Item as="button">RESET PASSWORD</Dropdown.Item>
+                                                                                        <Dropdown.Item as="button">RESET PHONE PASSWORD</Dropdown.Item>
+
+                                                                                    </Dropdown.Menu>
+                                                                                </Dropdown>
+
+                                                                            </div>
+                                                                        </div>
 
                                                                         <div className="box-account__meta">
                                                                             <div className="row">
@@ -183,13 +202,13 @@ const mapStateToProps = (state) => ({
     akun_trading: state.setoran.akunTrading || [],
     akun_trading_demo: state.setoran.akunTradingDemo || [],
     user: state.main.currentUser,
-	profile: state.main.dtProfileUser
+    profile: state.main.dtProfileUser
 })
 
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
-			dispatch(profileUser());
+            dispatch(profileUser());
             dispatch(getAkunTrading());
             dispatch(getAkunTradingDemo());
         },

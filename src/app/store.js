@@ -9,6 +9,7 @@ import { setoranSlice } from '../features/Setoran/setoranSlice';
 import { rejectDocSlice } from '../features/RejectDocument/rejectDocSlice';
 import { penarikanSlice } from '../features/Penarikan/penarikanSlice';
 import { transferSlice } from '../features/Transfer/transferSlice';
+import { ybSlice } from '../features/YukBelajar/ybSlice';
 
 export const store = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ export const store = configureStore({
     setoran: setoranSlice.reducer,
     rejDoc: rejectDocSlice.reducer,
     penarikan: penarikanSlice.reducer,
-    transfer: transferSlice.reducer
+    transfer: transferSlice.reducer,
+    yukBelajar: ybSlice.reducer
   },
 });

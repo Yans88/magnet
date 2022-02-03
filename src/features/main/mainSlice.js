@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import "moment/locale/id";
 import axios from 'axios';
 
 const tokenLogin = process.env.REACT_APP_TOKEN_LOGIN;
@@ -22,8 +21,8 @@ export const loginUser = createAsyncThunk(
             if (response.status === 200) {
                 data = _data.data;
                 if (data.error_message === 0) {
-                    let payload = data.payload;                    
-                    await localStorage.setItem(tokenLogin, payload.accessToken);					
+                    let payload = data.payload;
+                    await localStorage.setItem(tokenLogin, payload.accessToken);
                     return data;
                 } else {
                     return thunkAPI.rejectWithValue(data);
@@ -80,7 +79,7 @@ export const fetchUserBytoken = createAsyncThunk(
 export const profileUser = createAsyncThunk(
     'users/profileUser',
     async (param, thunkAPI) => {
-        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";  
 
         var config = {
             method: 'get',
@@ -96,11 +95,26 @@ export const profileUser = createAsyncThunk(
                 const _data = JSON.stringify(response);
                 if (response.status === 200) {
                     let data = response.data;
+                    let isMenuTransfer = false;
                     if (data.error_message === 0) {
-
-                        return data.payload;
+                        var day_server = data.payload.day;
+                        var jam_server = data.payload.jam.split(":");
+                        if (day_server === "Minggu") {
+                            isMenuTransfer = false;
+                        }
+                        if (day_server === "Sabtu" && jam_server >= 4) {
+                            isMenuTransfer = false;
+                        }
+                        if (day_server === "Senin" && jam_server < 5) {
+                            isMenuTransfer = false;
+                        }
+                        const res = {
+                            ...data.payload,
+                            isMenuTransfer: !isMenuTransfer ? false : true,
+                        }
+                        return res;
                     } else {
-						
+
                         return thunkAPI.rejectWithValue(data);
                     }
                 } else {
@@ -378,13 +392,14 @@ const initialState = {
     succesCompleteProfile: false,
     errorMessage: '',
     errFetchUserByToken: '',
+    isMenuTransfer: true,
     user_id: '',
     defaultOpenKeys: '/',
-    currentUser: {},    
+    currentUser: {},
     dtProfileUser: {},
     dataCabang: [],
     dataMarketing: [],
-	showFormSuccess: false,
+    showFormSuccess: false,
 };
 
 export const mainSlice = createSlice({
@@ -464,9 +479,9 @@ export const mainSlice = createSlice({
             state.dtProfileUser = payload;
         },
         [profileUser.rejected]: (state, { payload }) => {
-			localStorage.removeItem(tokenLogin);
+            localStorage.removeItem(tokenLogin);
             state.errFetchUserByToken = payload.message;
-			state.isLoggedIn = false;
+            state.isLoggedIn = false;
             state.token = null;
         },
         [regUser.fulfilled]: (state, { payload }) => {
@@ -543,8 +558,8 @@ export const mainSlice = createSlice({
             state.dataMarketing = [];
         },
         [changePass.fulfilled]: (state, { payload }) => {
-            state.isFetching = false;      
-            state.isError = false;      
+            state.isFetching = false;
+            state.isError = false;
             state.errorMessage = payload.message;
             return state;
         },
@@ -558,8 +573,8 @@ export const mainSlice = createSlice({
             state.errorMessage = '';
         },
         [updProfile.fulfilled]: (state, { payload }) => {
-            state.isFetching = false;      
-            state.isError = false;      
+            state.isFetching = false;
+            state.isError = false;
             state.errorMessage = payload.message;
             return state;
         },
@@ -572,7 +587,7 @@ export const mainSlice = createSlice({
         [updProfile.pending]: (state) => {
             state.errorMessage = '';
         },
-		
+
     }
 })
 

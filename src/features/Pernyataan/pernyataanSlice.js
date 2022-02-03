@@ -18,14 +18,7 @@ export const getDataPernyataan = createAsyncThunk(
                 'Authorization': token,
             }
         };
-
-        axios(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+       
         return axios(config)
             .then(function (response) {
                 const _data = JSON.stringify(response);
@@ -47,6 +40,55 @@ export const getDataPernyataan = createAsyncThunk(
                                 agree: '',
                             }
                         }
+                        return payload;
+                    } else {
+                        return thunkAPI.rejectWithValue(data);
+                    }
+                } else {
+                    return thunkAPI.rejectWithValue(_data);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+                return thunkAPI.rejectWithValue(error);
+            });
+    }
+);
+
+
+
+export const getSelectAkun = createAsyncThunk(
+    'pernyataan/getSelectAkun',
+    async (param, thunkAPI) => {
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const act_tipe_akun_id = sessionStorage.getItem('act_tipe_akun_id') ? sessionStorage.getItem('act_tipe_akun_id') : "";
+		
+        var config = {
+            method: 'get',
+            url: API_URL + '/get-data-tipe-akun?act=' + act_tipe_akun_id,
+            headers: {
+                'x-app-origin': 'cabinet-app',
+                'Authorization': token,
+            }
+        };
+        
+        return axios(config)
+            .then(function (response) {
+                const _data = JSON.stringify(response);
+                if (response.status === 200) {
+                    let data = response.data;
+                    if (data.error_message === 0) {
+                        let payload = data.payload;
+
+                        if (payload === '') {
+                            payload = {
+                                data_tipe_akun_id: '',                                
+                            }
+                        }else{
+							payload = {
+                                data_tipe_akun_id: payload.data_tipe_akun_id,                                
+                            }
+						}
                         return payload;
                     } else {
                         return thunkAPI.rejectWithValue(data);
@@ -112,7 +154,8 @@ const initialState = {
         wakil_pialang: '-',
         badan_abritase: 'Y',
         pengadilan: '',
-        agree: 'Y'
+        agree: 'Y',
+        data_tipe_akun_id: ''
     }
 };
 
@@ -146,6 +189,20 @@ export const pernyataanSlice = createSlice({
             state.errorMessage = payload.message;
         },
         [getDataPernyataan.pending]: (state) => {
+            state.isFetching = true;
+        },
+		[getSelectAkun.fulfilled]: (state, { payload }) => {
+            state.isFetching = false;
+            state.dataPernyataan.data_tipe_akun_id = payload.data_tipe_akun_id;
+            return state;
+        },
+        [getSelectAkun.rejected]: (state, { payload }) => {
+            //console.log('payload', payload);
+            state.isFetching = false;
+            state.isError = true;
+            state.errorMessage = payload.message;
+        },
+        [getSelectAkun.pending]: (state) => {
             state.isFetching = true;
 
         },

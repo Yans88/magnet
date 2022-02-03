@@ -171,8 +171,8 @@ class ProfilePerusahaan extends Component {
                                                         <h3 className="h6 mb-4">NAMA-NAMA WAKIL PIALANG PERUSAHAAN DITUNJUK KHUSUS UNTUK VERIFIKASI</h3>
                                                         <ol className="mb-0">
                                                             {wakil_pialang ? (
-                                                                wakil_pialang.map(function (wp) {
-                                                                    return <li key={wp.nama_depan}>{wp.nama_depan + ' ' + wp.nama_belakang}</li>
+                                                                wakil_pialang.map(function (wp, index) {
+                                                                    return <li key={index}>{wp.nama_depan + ' ' + wp.nama_belakang}</li>
                                                                 })
 
                                                             ) : ''}
@@ -243,8 +243,8 @@ class ProfilePerusahaan extends Component {
                                                         <h3 className="h6 mb-4">Akun Terpisah</h3>
                                                         <ul>
                                                             {akun_terpisah ? (
-                                                                akun_terpisah.map(function (ap) {
-                                                                    return <li key={ap.akun_terpisah_id}>
+                                                                akun_terpisah.map(function (ap, index) {
+                                                                    return <li key={index}>
                                                                         <dl className="--style-data">
                                                                             <dt>{ap.nama_akun_terpisah}</dt>
                                                                             <dd>No. Acc. : {ap.no_akun_terpisah}</dd>

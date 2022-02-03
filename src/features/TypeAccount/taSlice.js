@@ -18,15 +18,7 @@ export const getRate = createAsyncThunk(
                 'Authorization': token,
             }
         };
-        console.log('getKT');
-        console.log(config);
-        axios(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        
         return axios(config)
             .then(function (response) {
                 const _data = JSON.stringify(response);
@@ -63,15 +55,7 @@ export const getTA = createAsyncThunk(
                 'Authorization': token,
             }
         };
-        console.log('getKT');
-        console.log(config);
-        axios(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        
         return axios(config)
             .then(function (response) {
                 const _data = JSON.stringify(response);

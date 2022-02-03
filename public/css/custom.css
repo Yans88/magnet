@@ -742,3 +742,44 @@ dt {
   font-weight: 600 !important;
   font-size: 20px !important;
 }
+
+.box-bank__actions {
+    position: absolute;
+    top: 20px;
+    right:10px;
+}
+
+.show>.btn-secondary.dropdown-toggle:focus {
+    box-shadow: none !important;
+}
+
+.btn-secondary {
+    color: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.btn-secondary:focus {
+    color: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.box-bank__actions i {
+    position: relative;
+    font-size: 18px;
+    width: 24px;
+    height: 24px;
+    color: #bac2d0;
+    text-align: center;
+    padding-top: 3px;
+}
+
+.fa, .fas {
+    font-weight: 900;
+}
+.fa, .far, .fas {
+    font-family: "Font Awesome 5 Free";
+}

@@ -23,8 +23,8 @@ class Penarikan extends Component {
         this.initSelected = {
             nominal: '',
             akun_trading: '',
-            akun_bank:'',
-            penarikan_dana_id:''
+            akun_bank: '',
+            penarikan_dana_id: ''
         }
         this.state = {
             validSd: valid_startDate,
@@ -231,7 +231,7 @@ class Penarikan extends Component {
 
             return true;
         });
-        
+
         const Qs = "?search=" + this.state.search + "&limit=" + this.state.limit + "&start=" + (this.state.start - 1) + "&start_date=" + this.state.start_date + "&end_date=" + this.state.end_date;
         this.props.onLoadHistory(Qs);
     }
@@ -325,7 +325,7 @@ class Penarikan extends Component {
                             <div className="form-group">
                                 <div className="form-group">
                                     <label className="frm_lbl">Jumlah Penarikan</label>
-                                    
+
                                     <div>
                                         <input name="nominal" value={selected.nominal} onChange={this.handleChange.bind(this)} type="number" className="form-control" />
                                     </div>
@@ -644,7 +644,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
-			dispatch(profileUser());
+            dispatch(profileUser());
             dispatch(getBankAkun());
             dispatch(getAkunTrading());
         },
@@ -652,7 +652,7 @@ const mapDispatchToPros = (dispatch) => {
             dispatch(getHistorySetor(param));
         },
         onSetor: (param) => {
-			dispatch(profileUser());
+            dispatch(profileUser());
             dispatch(actionPenarikan(param));
         },
         closeSwalError: () => {

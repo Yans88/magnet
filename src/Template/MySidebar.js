@@ -25,7 +25,7 @@ class MySidebar extends Component {
         const { expandMenu } = this.props.main;
         const { profile } = this.props;
         const { lastSegmentUrl } = this.state;
-		
+
         return (
             <div>
                 <Sidebar
@@ -40,7 +40,7 @@ class MySidebar extends Component {
                         appearance="subtle">
 
                         <Sidenav.Body>
-                            {expandMenu && (<h5 style={{ fontWeight: 600, fontSize: 14, marginLeft: 8 }}>STATUS<br /><span style={{ color: '#dc3545' }}>{profile.status_dokumen} </span>{profile.status_dokumen !== 'Approve' &&( - <a style={{ color: '#269647' }} href="personal">Daftar disini</a>)}</h5>)}
+                            {expandMenu && (<h5 style={{ fontWeight: 600, fontSize: 14, marginLeft: 8 }}>STATUS<br /><span style={{ color: '#dc3545' }}>{profile.status_dokumen} </span>{profile.status_dokumen !== 'Approve' && (<a style={{ color: '#269647' }} href="personal">- Daftar disini</a>)}</h5>)}
                             <Nav>
                                 <Nav.Item
                                     onSelect={e => this.handleMenu("/")}
@@ -52,7 +52,7 @@ class MySidebar extends Component {
                                     icon={<Icon icon="user" />}>
                                     Akun Saya
                                 </Nav.Item>
-                                <Nav.Item                                    
+                                <Nav.Item
                                     onSelect={e => this.handleMenu('deposit')}
                                     componentClass={Link}
                                     to='/deposit'
@@ -62,7 +62,7 @@ class MySidebar extends Component {
                                     icon={<Icon icon="credit-card" />}>
                                     Setoran
                                 </Nav.Item>
-								 <Nav.Item                                    
+                                <Nav.Item
                                     onSelect={e => this.handleMenu('bank-accounts')}
                                     componentClass={Link}
                                     to='/bank-accounts'
@@ -72,7 +72,7 @@ class MySidebar extends Component {
                                     icon={<Icon icon="credit-card" />}>
                                     Akun Bank
                                 </Nav.Item>
-								<Nav.Item                                    
+                                <Nav.Item
                                     onSelect={e => this.handleMenu('withdrawal')}
                                     componentClass={Link}
                                     to='/withdrawal'
@@ -82,7 +82,7 @@ class MySidebar extends Component {
                                     icon={<Icon icon="credit-card" />}>
                                     Penarikan
                                 </Nav.Item>
-								<Nav.Item                                    
+                                <Nav.Item
                                     onSelect={e => this.handleMenu('internal-transfer')}
                                     componentClass={Link}
                                     to='/internal-transfer'
@@ -92,7 +92,7 @@ class MySidebar extends Component {
                                     icon={<Icon icon="credit-card" />}>
                                     Transfer Internal
                                 </Nav.Item>
-                                <Nav.Item                                    
+                                <Nav.Item
                                     onSelect={e => this.handleMenu('downloads')}
                                     componentClass={Link}
                                     to='/downloads'
@@ -102,7 +102,7 @@ class MySidebar extends Component {
                                     icon={<Icon icon="download2" />}>
                                     Unduh
                                 </Nav.Item>
-                                <Nav.Item                                    
+                                <Nav.Item
                                     onSelect={e => this.handleMenu('contact')}
                                     componentClass={Link}
                                     to='/contact'
@@ -112,7 +112,7 @@ class MySidebar extends Component {
                                     icon={<Icon icon="tty" />}>
                                     Hubungi Kami
                                 </Nav.Item>
-								 <Nav.Item                                    
+                                <Nav.Item
                                     onSelect={e => this.handleMenu('autochartist')}
                                     componentClass={Link}
                                     to='/autochartist'
@@ -122,7 +122,7 @@ class MySidebar extends Component {
                                     icon={<Icon icon="tty" />}>
                                     Autochartist
                                 </Nav.Item>
-                                <Nav.Item                                    
+                                <Nav.Item
                                     onSelect={e => this.handleMenu('education')}
                                     componentClass={Link}
                                     to='/education'
@@ -132,7 +132,7 @@ class MySidebar extends Component {
                                     icon={<Icon icon="mortar-board" />}>
                                     Yuk Belajar!
                                 </Nav.Item>
-                                <Nav.Item                                    
+                                <Nav.Item
                                     onSelect={e => this.handleMenu('setting')}
                                     componentClass={Link}
                                     to='/setting'
@@ -142,7 +142,7 @@ class MySidebar extends Component {
                                     icon={<Icon icon="gear" />}>
                                     Pengaturan
                                 </Nav.Item>
-                                <Nav.Item                                    
+                                <Nav.Item
                                     onSelect={e => this.handleMenu('rej-doc')}
                                     componentClass={Link}
                                     to='/rej-doc'
@@ -164,10 +164,10 @@ class MySidebar extends Component {
 }
 
 const mapStateToProps = (state) => {
-	
+
     return {
         main: state.main,
-		profile: state.main.dtProfileUser
+        profile: state.main.dtProfileUser
     }
 }
 

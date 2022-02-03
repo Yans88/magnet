@@ -8,7 +8,7 @@ const tokenLogin = process.env.REACT_APP_TOKEN_LOGIN;
 export const getBankCompany = createAsyncThunk(
     'setoran/getBankCompany',
     async (param, thunkAPI) => {
-		 const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/general-option/get-bank-perusahaan',
@@ -45,7 +45,7 @@ export const getBankCompany = createAsyncThunk(
 export const getHistorySetor = createAsyncThunk(
     'setoran/getHistorySetor',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/setor' + param,
@@ -82,7 +82,7 @@ export const getHistorySetor = createAsyncThunk(
 export const getAkunTrading = createAsyncThunk(
     'setoran/getAkunTrading',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/general-option/get-akun-trading?tipe=real',
@@ -119,7 +119,7 @@ export const getAkunTrading = createAsyncThunk(
 export const getAkunTradingDemo = createAsyncThunk(
     'setoran/getAkunTradingDemo',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/general-option/get-akun-trading?tipe=demo',
@@ -156,7 +156,7 @@ export const getAkunTradingDemo = createAsyncThunk(
 export const actionSetor = createAsyncThunk(
     'setoran/actionSetor',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         const form = Object.keys(param).reduce((f, k) => {
             f.append(k, param[k]);
             return f;

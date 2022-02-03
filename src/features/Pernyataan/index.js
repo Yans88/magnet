@@ -5,7 +5,7 @@ import AppButton from '../../components/button/Button';
 import moment from 'moment';
 import "moment/locale/id";
 import { Form } from 'react-bootstrap'
-import { getDataPernyataan, chgProps, simpanDataPernyataan } from './pernyataanSlice';
+import { getDataPernyataan, chgProps, simpanDataPernyataan,getSelectAkun } from './pernyataanSlice';
 import { profileUser } from '../main/mainSlice';
 
 class Pernyataan extends Component {
@@ -32,12 +32,12 @@ class Pernyataan extends Component {
 
     componentDidMount = async () => {
         const dt = {};
-        const selectedId = sessionStorage.getItem('data_tipe_akun_id');
+        const selectedId = sessionStorage.getItem('tipe_akun');
         if (selectedId) {
             const location = window.location.href;
             const BaseName = location.substring(location.lastIndexOf("/") + 1);
             this.props.onLoad(selectedId);
-            await this.setState({ lastSegmentUrl: BaseName, data_tipe_akun_id: selectedId })
+            await this.setState({ lastSegmentUrl: BaseName })
         } else {
 			alert("Silahkan pilih tipe akun terlebih dulu");
             this.props.history.push("/account-type");
@@ -101,11 +101,10 @@ class Pernyataan extends Component {
             if (!this.validateForm(this.state.errMsg1)) {
                 console.error('Invalid Form')
             } else {
-                const saveData = {
-                    ...this.props.dataPernyataan,
-                    data_tipe_akun_id: this.state.data_tipe_akun_id
-                }
-                this.props.onSave(saveData);
+                // const saveData = {
+                    // ...this.props.dataPernyataan,                   
+                // }
+                this.props.onSave(this.props.dataPernyataan);
                 if (action) this.props.history.push("/trading_rules");
             }
 
@@ -899,11 +898,13 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: (param) => {
-			dispatch(profileUser());
-            dispatch(getDataPernyataan(param));
+			dispatch(profileUser());			
+            dispatch(getDataPernyataan(param));	
+			dispatch(getSelectAkun(param));			
         },
         changeProps: (param) => {
             dispatch(chgProps(param));
+			
         },
         onSave: (param) => {
 			dispatch(profileUser());

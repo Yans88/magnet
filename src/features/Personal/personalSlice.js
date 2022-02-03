@@ -553,11 +553,10 @@ export const getDocPribadi = createAsyncThunk(
                             ...data.payload,
                             dokumen_pribadi_pernyataan: {
                                 data_pribadi_pernyataan_id: '',
-                                agree: data.payload.dokumen_pribadi_pernyataan ? data.payload.dokumen_pribadi_pernyataan.agree : 'N',
+                                agree: data.payload.dokumen_pribadi_pernyataan && data.payload.dokumen_pribadi_pernyataan.agree ? data.payload.dokumen_pribadi_pernyataan.agree : 'N',
                                 unggahFileName: unggahFileNames
                             }
-                        }
-                        let dokumen_pribadi_pernyataan = data.payload.dokumen_pribadi_pernyataan;
+                        }                       
 						
                         if (data.payload.arr_dokumen.total_data > 0) {
                             const arr_dokumen = data.payload.arr_dokumen.data;
@@ -566,7 +565,7 @@ export const getDocPribadi = createAsyncThunk(
                             }
 
                             payload = {
-                                ...data.payload,
+                                ...payload,
                                 unggahFileName: unggahFileNames.includes('KTP') && unggahFileNames.includes('OTHER') && unggahFileNames.includes('PHOTO')
                             }
                         }
@@ -597,8 +596,7 @@ export const delDocPribadi = createAsyncThunk(
                 'Authorization': token,
             }
         };
-        console.log('delDocPribadi');
-        console.log(config);
+        
         return axios(config)
             .then(function (response) {
                 const _data = JSON.stringify(response);
@@ -726,10 +724,6 @@ export const getBank = createAsyncThunk(
             });
     }
 );
-
-
-
-
 
 const initialState = {
     isFetching: false,

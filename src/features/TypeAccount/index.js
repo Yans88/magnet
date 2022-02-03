@@ -16,6 +16,7 @@ class TypeAccount extends Component {
 
     componentDidMount = async () => {
 		sessionStorage.removeItem("data_tipe_akun_id");
+		sessionStorage.removeItem("tipe_akun");
 		const act = sessionStorage.getItem('act_tipe_akun_id');
 		if(act){
 			const dt = {};
@@ -48,7 +49,7 @@ class TypeAccount extends Component {
 
     handleNext= async () => {		
 		console.log(this.props.dataSelect);
-        await sessionStorage.setItem('data_tipe_akun_id', this.props.dataSelect.tipe_akun);
+        await sessionStorage.setItem('tipe_akun', this.props.dataSelect.tipe_akun);
         this.props.onSave(this.props.dataSelect);
         this.props.history.push("/decleration");
         this.props.closeModal();
