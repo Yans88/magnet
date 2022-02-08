@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import { getAkunTrading, getAkunTradingDemo } from '../Setoran/setoranSlice';
-import { profileUser } from '../main/mainSlice'
+import { profileUser,chgPass,chgPhonePass } from '../main/mainSlice'
 import NumberFormat from 'react-number-format';
 import { Link } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
+import AppModal from '../../components/modal/MyModal';
+import { Button, Form } from 'react-bootstrap';
 
 class Beranda extends Component {
     constructor(props) {
@@ -14,10 +16,19 @@ class Beranda extends Component {
             phonepass: '',
             setor: '',
             akun_trading: '',
-            img: ''
+            img: '',
+			konf_password:'',			
+			password:'',
+			password2:'',
+			password3:'',
+			phonepwd:'',
         }
         this.state = {
-
+            
+            selected: this.initSelected,
+            errMsg: this.initSelected,
+			showFormResPass : false,
+			showFormResPhonePass : false,
         }
     }
 
@@ -36,10 +47,190 @@ class Beranda extends Component {
         await sessionStorage.setItem('act_tipe_akun_id', 'create_new_akun');
         this.props.history.push('/account-type');
     }
+	
+	handleChange(event) {
+        const { name, value } = event.target
+        var val = value;        
+        this.setState({
+            loadingForm: false,
+            errMsg: { ...this.state.errMsg, [name]: "" },
+            selected: {
+                ...this.state.selected,
+                [name]: val
+            }
+        });
+    }
+	
+	handleSubmit = async () => {
+        var errors = this.state.errMsg;
+        this.setState({
+            ...this.state,
+            loadingForm: true,
+        });
+        errors.password = !this.state.selected.password ? "Password required" : '';
+		if(this.state.selected.password) {
+			var reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
+			var test = reg.test(this.state.selected.password);			
+			errors.password = !test ? "password must be 8 characters" : '';
+			errors.password2 = !test ? "least one uppercase letter" : '';
+			errors.password3 = !test ? "one lowercase letter and one number" : '';
+		}
+        errors.konf_password = !this.state.selected.konf_password ? "Konfirmasi password required" : '';
+		if(errors.konf_password === '') errors.konf_password = this.state.selected.konf_password !==  this.state.selected.password ? "Password not match" : '';	
+	    
+        this.setState({ errors});
+        if (this.validateForm(this.state.errMsg)) {
+			const param = {
+				login : this.state.selected.login,
+				password : this.state.selected.password,
+			}
+            this.props.onChangePass(param);
+        } else {
+            console.error('Invalid Form')
+            this.setState({
+                loadingForm: false,
+            });
+        }
+
+    }
+	
+	handleSubmit2 = async () => {
+        var errors = this.state.errMsg;
+        this.setState({
+            ...this.state,
+            loadingForm: true,
+        });
+        errors.phonepwd = !this.state.selected.phonepwd ? "Password required" : '';
+		if(this.state.selected.phonepwd) {
+			var reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
+			var test = reg.test(this.state.selected.phonepwd);			
+			errors.phonepwd = !test ? "password must be 8 characters" : '';
+			errors.phonepwd2 = !test ? "least one uppercase letter" : '';
+			errors.phonepwd3 = !test ? "one lowercase letter and one number" : '';
+		}
+        errors.konf_password = !this.state.selected.konf_password ? "Konfirmasi password required" : '';
+		if(errors.konf_password === '') errors.konf_password = this.state.selected.konf_password !==  this.state.selected.phonepwd ? "Password not match" : '';	
+	    
+        this.setState({ errors});
+        if (this.validateForm(this.state.errMsg)) {   
+			const param = {
+				login : this.state.selected.login,
+				phonepwd : this.state.selected.phonepwd,
+			}
+            this.props.onChangePhonePass(param);
+        } else {
+            console.error('Invalid Form')
+            this.setState({
+                loadingForm: false,
+            });
+        }
+
+    }
+
+    validateForm(errors) {
+        let valid = true;
+        Object.values(errors).forEach(
+            (val) => val.length > 0 && (valid = false)
+        );
+        return valid;
+    }
+	
+	chg_pass(record) {
+		this.setState({
+			showFormResPass : true,
+            selected: { ...record, konf_password:'',password:'',errMsg:this.initSelected }
+        });
+        
+    }
+	
+	chg_pass2(record) {
+		this.setState({
+			showFormResPhonePass : true,
+            selected: { ...record, konf_password:'',phonepwd:'',errMsg:this.initSelected }
+        });
+        
+    }
+	
+	handleClose() {
+        this.setState({
+			showFormResPass : false,
+			showFormResPhonePass : false,
+            selected: this.initSelected,
+            errMsg: this.initSelected,
+        });
+    }
 
     render() {
         const { akun_trading, akun_trading_demo, profile } = this.props;
+		const { selected, errMsg } = this.state;
+		const frmUser = <Form id="myForm">
 
+            <Form.Group controlId="password">
+                <Form.Label>Password Baru</Form.Label>
+                {errMsg.password ?
+                    (<span className="float-right text-error badge badge-danger">{errMsg.password}<br/>{errMsg.password2}<br/>{errMsg.password3}
+                    </span>) : ''}
+				
+                <Form.Control
+                    size="sm"
+                    autoComplete="off"
+                    name="password"
+                    type="text"
+                    value={selected.password}
+                    onChange={this.handleChange.bind(this)}
+                    placeholder="Password" />
+			</Form.Group>
+			<Form.Group controlId="konf_password">
+               <Form.Label>Konfirmasi Password</Form.Label>
+                {errMsg.konf_password ?
+                    (<span className="float-right text-error badge badge-danger">{errMsg.konf_password}
+                    </span>) : ''}
+                <Form.Control
+                    size="sm"
+                    autoComplete="off"
+                    name="konf_password"
+                    type="text"
+                    value={selected.konf_password}
+                    onChange={this.handleChange.bind(this)}
+                    placeholder="Konfirmasi Password" />
+					<br/>
+				<span style={{color:'red', fontWeight:'bold',fontStyle:'italic'}}>Password ini akan di gunakan untuk login dan trading di MT5</span>
+            </Form.Group>
+        </Form>;
+		const frmUser2 = <Form id="myForm">
+
+            <Form.Group controlId="password">
+                <Form.Label>Password Baru</Form.Label>
+                {errMsg.phonepwd ?
+                    (<span className="float-right text-error badge badge-danger">{errMsg.phonepwd}<br/>{errMsg.phonepwd2}<br/>{errMsg.phonepwd3}
+                    </span>) : ''}
+				
+                <Form.Control
+                    size="sm"
+                    autoComplete="off"
+                    name="phonepwd"
+                    type="text"
+                    value={selected.phonepwd}
+                    onChange={this.handleChange.bind(this)}
+                    placeholder="Password" />
+			</Form.Group>
+			<Form.Group controlId="konf_password">
+               <Form.Label>Konfirmasi Password</Form.Label>
+                {errMsg.konf_password ?
+                    (<span className="float-right text-error badge badge-danger">{errMsg.konf_password}
+                    </span>) : ''}
+                <Form.Control
+                    size="sm"
+                    autoComplete="off"
+                    name="konf_password"
+                    type="text"
+                    value={selected.konf_password}
+                    onChange={this.handleChange.bind(this)}
+                    placeholder="Konfirmasi Password" />
+            </Form.Group>
+			<br/>
+			<span style={{color:'red', fontWeight:'bold',fontStyle:'italic'}}>Password ini akan di gunakan untuk menelpon dealing kamu</span>
+        </Form>;
         return (
 
             <div className="content-wrapper">
@@ -84,8 +275,8 @@ class Beranda extends Component {
                                                                                     </Dropdown.Toggle>
 
                                                                                     <Dropdown.Menu className="my-dropdown-menu">
-                                                                                        <Dropdown.Item as="button">RESET PASSWORD</Dropdown.Item>
-                                                                                        <Dropdown.Item as="button">RESET PHONE PASSWORD</Dropdown.Item>
+                                                                                        <Dropdown.Item as="button" onClick={() => this.chg_pass(at)}>RESET PASSWORD</Dropdown.Item>
+                                                                                        <Dropdown.Item as="button" onClick={() => this.chg_pass2(at)}>RESET PHONE PASSWORD</Dropdown.Item>
 
                                                                                     </Dropdown.Menu>
                                                                                 </Dropdown>
@@ -191,6 +382,30 @@ class Beranda extends Component {
                         </div>
                     </div>
                 </section>
+				<AppModal
+                    size="xs"
+                    show={this.state.showFormResPass}
+                    form={frmUser}
+                    backdrop="static"
+                    keyboard={false}
+                    title={"RESET PASSWORD #"+this.state.selected.login}
+                    titleButton="Save change"
+                    themeButton="success"
+                    handleClose={this.handleClose.bind(this)}
+                    isLoading={this.props.isAddLoading ? this.props.isAddLoading : this.state.loadingForm}
+                    formSubmit={this.handleSubmit.bind(this)} />
+				<AppModal
+                    size="xs"
+                    show={this.state.showFormResPhonePass}
+                    form={frmUser2}
+                    backdrop="static"
+                    keyboard={false}
+                    title={"RESET PHONE PASSWORD #"+this.state.selected.login}
+                    titleButton="Save change"
+                    themeButton="success"
+                    handleClose={this.handleClose.bind(this)}
+                    isLoading={this.props.isAddLoading ? this.props.isAddLoading : this.state.loadingForm}
+                    formSubmit={this.handleSubmit2.bind(this)} />
             </div>
 
 
@@ -212,7 +427,12 @@ const mapDispatchToPros = (dispatch) => {
             dispatch(getAkunTrading());
             dispatch(getAkunTradingDemo());
         },
-
+		onChangePass:(param)=>{
+			dispatch(chgPass(param));
+		},
+		onChangePhonePass:(param)=>{
+			dispatch(chgPhonePass(param));
+		}
     }
 }
 export default connect(mapStateToProps, mapDispatchToPros)(Beranda);

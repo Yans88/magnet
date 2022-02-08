@@ -311,7 +311,14 @@ class Penarikan extends Component {
                                 <div className="form-group">
                                     <label className="frm_lbl">Rate</label>
                                     <div>
-                                        <strong className="font-weight-bold text-black">{selected.rate}</strong>
+                                        <strong className="font-weight-bold text-black">
+											<NumberFormat
+                                                value={selected.rate > 0 ? selected.rate : '0.00'}
+                                                thousandSeparator={true}
+                                                decimalScale={2}
+                                                displayType={'text'}
+                                            />
+										</strong>
                                     </div>
 
                                 </div>

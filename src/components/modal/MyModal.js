@@ -15,6 +15,7 @@ const AppModal = ({
     titleButton,
     themeButton,
     noBtnAction,
+	myCloseButton,
     ...otherProps
 }) => {
     return (
@@ -24,7 +25,7 @@ const AppModal = ({
             {...otherProps}
             onHide={handleClose}
         >
-            <Modal.Header closeButton>
+            <Modal.Header closeButton={myCloseButton && myCloseButton}>
                 <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{ maxHeight: 400 }}>{form}</Modal.Body>

@@ -311,7 +311,7 @@ class Setoran extends Component {
                                     <label>Jumlah Setor</label>
                                     <div>
                                         <strong className="font-weight-bold text-black" data-binder="rate">
-                                            {selected.rate === 'USD' ? 'USD' : 'IDR'}
+                                            {selected.rate > '0' ? 'IDR' : 'USD'}
                                         </strong>
                                     </div>
                                 </div>
@@ -412,7 +412,12 @@ class Setoran extends Component {
                                 <div className="form-group">
                                     <label className="frm_lbl">Rate</label>
                                     <div>
-                                        <strong className="font-weight-bold text-black">{selected.rate}</strong>
+                                        <strong className="font-weight-bold text-black"><NumberFormat
+                                                value={selected.rate > 0 ? selected.rate : '0.00'}
+                                                thousandSeparator={true}
+                                                decimalScale={2}
+                                                displayType={'text'}
+                                            /></strong>
                                     </div>
 
                                 </div>
@@ -430,15 +435,36 @@ class Setoran extends Component {
                                         (<span className="float-right text-error badge badge-danger">{errMsg.setor}</span>) : null}
                                     <div>
                                         <input name="setor" value={selected.setor} onChange={this.handleChange.bind(this)} type="number" className="form-control" />
-                                        {selected.jml_setor ? (
-                                            <em>
-                                                <NumberFormat
-                                                    value={selected.jml_setor}
-                                                    thousandSeparator={true}
-                                                    decimalScale={2}
-                                                    displayType={'text'} />
-                                            </em>
-                                        ) : ''}
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+					
+					 <div className="row">
+					 <div className="col-sm-6">
+                            <div className="form-group">
+                                <div className="form-group">
+                                    
+                                    <div>
+									
+										<NumberFormat
+                                                                disabled={true}
+                                                                
+                                                                name="jml_setor"
+                                                                className="form-control form-control-sm"
+                                                                value={selected.jml_setor ? selected.jml_setor : '0,00'}
+                                                                thousandSeparator={true}
+                                                                decimalScale={2}
+                                                                inputMode="numeric"
+                                                                autoComplete="off"
+                                                                placeholder="Jumlah Setor" />
+									
+                                        
+                                        
                                     </div>
 
                                 </div>

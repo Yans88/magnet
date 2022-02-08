@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser, userSelector, clearState } from '../features/main/mainSlice'
 import Button from '../components/button/Button';
+import AppModal from '../components/modal/MyModal';
 
 const Login = () => {
-    const { isFetching, isSuccess, errorMessage } = useSelector(
+	const [showModalDialog, setShowModalDialog] = useState(false);
+    const { isFetching, isSuccess, errorMessage, myStatus } = useSelector(
         userSelector
     );
     const history = useHistory();
@@ -19,11 +21,14 @@ const Login = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        if (isSuccess) {
+		if(myStatus){
+			setShowModalDialog(true);
+		}
+        if (isSuccess && !myStatus) {
             dispatch(clearState());
             history.push('/');
         }
-    }, [isSuccess, dispatch, history]);
+    }, [isSuccess, myStatus, dispatch, history]);
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -43,7 +48,7 @@ const Login = () => {
 
     const hideAlert = () => { dispatch(clearState()) }
     document.getElementById('root').classList = 'hold-transition login-page';
-
+	const contentDelete = <div dangerouslySetInnerHTML={{ __html: '<div id="caption" style=padding-bottom:20px;">Akun Anda sudah tidak dapat digunakan Untuk bantuan lebih lanjut Anda bisa menghubungi kami di <a href=" https://www.magnetfx.co.id/contact">sini</a></div>' }} />;
     return (
         <div className="login-box">
             <div className="card card-outline card-primary">
@@ -113,6 +118,20 @@ const Login = () => {
 
                 </div>
             </div>
+			<AppModal
+                        show={showModalDialog}
+                        size="sm"
+                        form={contentDelete}
+                        // handleClose={}
+                        backdrop="static"
+                        keyboard={false}
+                        noBtnAction={true}
+                        myCloseButton={false}
+                        title="Info"
+                        titleButton="Delete"
+                        themeButton="danger"                    
+                        
+                    ></AppModal>
         </div>
 
     )
