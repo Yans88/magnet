@@ -73,7 +73,7 @@ class TypeAccount extends Component {
                         <div className="row">
                             <div className="col-12">
                                 {/* card start */}
-                                <div className="card card-success shadow-lg" style={{ "minHeight": "600px" }}>
+                                <div className="card card-success shadow-lg" style={{ "minHeight": "600px",borderRadius:"2rem"  }}>
                                     <div className="card-body">
                                         <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 20 }}>
                                             <Form.Group as={Row} controlId="rate">
@@ -121,7 +121,7 @@ class TypeAccount extends Component {
                                                                     <Button
                                                                         onClick={this.handleClickBtn.bind(this, dta)}
                                                                         disabled={dataSelect.rate ? false : true}
-                                                                        size="lg" variant="success">Daftar Akun</Button>
+                                                                        size="lg" variant="" style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}>Daftar Akun</Button>
                                                                 </Card.Body>
                                                             </Card>
                                                         </Col>
@@ -146,7 +146,8 @@ class TypeAccount extends Component {
                                     keyboard={false}
                                     title="Confirm"
                                     titleButton="Selanjutanya"
-                                    themeButton="success"
+                                    themeButton=""
+                                    style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
                                     isLoading={false}
                                     formSubmit={this.handleNext.bind(this)}
                                 ></AppModal>

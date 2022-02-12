@@ -10,6 +10,9 @@ import "moment/locale/id";
 import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 import ReactDatatable from '@ashvin27/react-datatable';
+import icon from '../../assets/setoran_ijo.svg';
+
+
 
 var yesterday = moment();
 var valid_startDate = function (current) {
@@ -593,43 +596,52 @@ class Setoran extends Component {
             <div className="content-wrapper">
 
                 <section className="content">
-                    <div className="container-fluid">
-                        <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>Setor Dana</h1>
-                        <div className="row">
+                    <div className="container-fluid mt-3">
+                        <img src={icon} width="35px" className="float-left mt-3" />
+                        <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Setor Dana</h1>
+
+                        <div className="row mt-4">
                             <div className="col-12">
                                 {/* card start */}
-                                <div className="card card-success shadow-lg" style={{ "minHeight": "500px" }}>
+                                <div className="card card-success shadow-lg" style={{ "minHeight": "500px",borderRadius:"20px" }}>
                                     <div className="card-body">
 
-                                        <div style={{ paddingLeft: 30, paddingRight: 30, paddingTop: 5 }}>
-                                            <h3 className="mb-5">Pilih Metode Setor </h3>
-                                            <div className="box-bank">
+                                        <div style={{ paddingTop: 5 }} className="px-3">
+                                            <h3 className="label_ijo">Pilih Metode Setor</h3>
 
-                                                <h3 className="box-bank__title">Transfer Bank</h3>
-                                                <hr />
+                                            <div className="my-4 mx-1">
+
                                                 {data_bank ? (
 
                                                     data_bank.map((dp, index, arr) => {
                                                         return (
                                                             <Fragment key={dp.data_bank_perusahaan_id}>
-                                                                <div className="row" >
-                                                                    <div className="col-sm-4 col-md-4 mb-4" >
+                                                                <div className="grid grid-cols-1 lg:grid-cols-3 place-items-center mt-0  py-4 px-4 rounded-2xl border-gray-700 mt-4" style={{ border:"2px solid #ddd"}} onClick={e => this.editRecord(dp)} >
+                                                                    
+                                                                    <div className="px-2">
                                                                         <img alt={dp.nama_bank} style={{ maxWidth: "100%", verticalAlign: "middle" }} src={dp.file} />
                                                                     </div>
-                                                                    <div className="col-sm-4 col-md-4 mb-4"  >
+                                                                    
+                                                                    <div className="px-2 mt-4 mb-3">
                                                                         <AppButton
                                                                             onClick={e => this.editRecord(dp)}
                                                                             style={{ color: '#ffffff', marginTop: 25, minHeight: 50 }}
                                                                             type="button"
                                                                             size="lg"
-                                                                            theme="warning">Setor Melalui {dp.nama_bank}</AppButton>
+                                                                            theme=""
+                                                                            style={{ backgroundColor:"#C3262A",color:"#fff"}}
+
+                                                                            >Setor Melalui Bank {dp.nama_bank}</AppButton>
                                                                     </div>
-                                                                    <div className="col-sm-4 col-md-4 mb-4" style={{ textAlign: 'left', fontSize: '1rem', marginTop: 15 }}>
+
+                                                                    <div style={{ fontSize: 30 }} className="px-2" style={{ textAlign: 'left', fontSize: '1rem', marginTop: 15,color:"#2E2E2F" }}>
                                                                         <div>{dp.nama_bank} CAB. {dp.cabang}, A/N. {dp.atas_nama}</div>
                                                                         <div>No. Acc. : <strong>{dp.no_rek}</strong></div>
                                                                     </div>
                                                                 </div>
-                                                                {index === arr.length - 1 ? '' : <hr />}
+
+                                                                
+                                                                {index === arr.length - 1 ? '' : ''}
 
                                                             </Fragment>
                                                         )
@@ -642,13 +654,13 @@ class Setoran extends Component {
                                             </div>
 
 
-                                            <h3>Daftar Setoran</h3>
+                                            <h3 style={{ color:"#2E2E2F" }}>Daftar Setoran</h3>
 
-                                            <div className="row">
+                                            <div className="row mt-3 mb-4">
                                                 <div className="col-md-12">
-                                                    <div className="mb-3 pull-right">
-                                                        <div className="pull-left margin-left-10 max-w-250">
-                                                            <label>Tanggal: Awal</label>
+                                                    <div className="mb-3">
+                                                        <div className="pull-left margin-left-1 max-w-250">
+                                                            <label style={{ color:"#2E2E2F" }}>Tanggal: Awal</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
                                                                 timeFormat={false}
@@ -667,7 +679,7 @@ class Setoran extends Component {
                                                             />
                                                         </div>
                                                         <div className="pull-left margin-left-10 max-w-250">
-                                                            <label>Tanggal: Akhir</label>
+                                                            <label style={{ color:"#2E2E2F" }}>Tanggal: Akhir</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
                                                                 timeFormat={false}
@@ -686,7 +698,7 @@ class Setoran extends Component {
                                                             />
                                                         </div>
                                                         <div className="pull-left margin-left-10 max-w-250">
-                                                            <label>Cari</label>
+                                                            <label style={{ color:"#2E2E2F" }}>Cari</label>
                                                             <input name="search" value={this.state.search} onChange={this.handleSearch.bind(this)} type="text" placeholder="cari nomor akun atau jumlah setor" className="form-control form-control-lg" />
 
                                                         </div>

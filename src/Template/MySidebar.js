@@ -27,7 +27,7 @@ class MySidebar extends Component {
         return (
             <div>
                 <Sidebar
-                    style={{ display: 'flex', flexDirection: 'column', backgroundColor: 'rgb(31, 30, 30)' }}
+                    style={{ display: 'flex', flexDirection: 'column' }}
                     width={expandMenu ? 230 : 56}
                     collapsible
                 >
@@ -38,19 +38,22 @@ class MySidebar extends Component {
                         appearance="subtle">
 
                         <Sidenav.Body>
-                            {expandMenu ? (<h5 style={{ fontWeight: 600, fontSize: 14, marginLeft: 8 }}>STATUS<br /><span style={{ color: '#dc3545' }}>Belum Lengkap -</span> <a style={{ color: '#269647' }} href="personal">Daftar disini</a></h5>) :
-                                ''}
                             <Nav>
+                                <div className="menu_side mx-2 my-2 rounded-xl">
                                 <Nav.Item
                                     onSelect={e => this.handleMenu("/")}
                                     componentClass={Link}
                                     to='/'
                                     eventKey='/'
                                     exact='/'
-                                    className={lastSegmentUrl === "/" || lastSegmentUrl === "" || lastSegmentUrl === "cooljek" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="user" />}>
+                                    className={lastSegmentUrl === "/" || lastSegmentUrl === "" || lastSegmentUrl === "personal" || lastSegmentUrl === "account-type" || lastSegmentUrl === "decleration" || lastSegmentUrl === "trading_rules" || lastSegmentUrl === "company_profile" || lastSegmentUrl === "cooljek" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
+                                    
+                                    icon={<Icon icon="user" style={{left:"14px"}} />}>
+
                                     Akun Saya
                                 </Nav.Item>
+                                </div>
+                                <div className="menu_side mx-2 my-2 rounded-xl">
                                 <Nav.Item                                    
                                     onSelect={e => this.handleMenu('deposit')}
                                     componentClass={Link}
@@ -58,9 +61,13 @@ class MySidebar extends Component {
                                     exact='/deposit'
                                     eventKey='/deposit'
                                     className={lastSegmentUrl === "deposit" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="credit-card" />}>
-                                    Setoran
+                                    icon={<Icon icon="credit-card" style={{left:"9px"}} />}>
+                                        
+                                        Setoran
+                                   
                                 </Nav.Item>
+                                </div>
+                                <div className="menu_side mx-2 my-2 rounded-xl">
 								 <Nav.Item                                    
                                     onSelect={e => this.handleMenu('bank-accounts')}
                                     componentClass={Link}
@@ -68,9 +75,11 @@ class MySidebar extends Component {
                                     exact='/bank-accounts'
                                     eventKey='/bank-accounts'
                                     className={lastSegmentUrl === "bank-accounts" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="credit-card" />}>
+                                    icon={<Icon icon="credit-card" style={{left:"9px"}} />}>
                                     Akun Bank
                                 </Nav.Item>
+                                </div>
+                                <div className="menu_side mx-2 my-2 rounded-xl">
 								<Nav.Item                                    
                                     onSelect={e => this.handleMenu('withdrawal')}
                                     componentClass={Link}
@@ -78,9 +87,11 @@ class MySidebar extends Component {
                                     exact='/withdrawal'
                                     eventKey='/withdrawal'
                                     className={lastSegmentUrl === "withdrawal" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="credit-card" />}>
+                                    icon={<Icon icon="credit-card" style={{left:"9px"}} />}>
                                     Penarikan
                                 </Nav.Item>
+                                </div>
+                                <div className="menu_side mx-2 my-2 rounded-xl">
 								<Nav.Item                                    
                                     onSelect={e => this.handleMenu('internal-transfer')}
                                     componentClass={Link}
@@ -88,9 +99,11 @@ class MySidebar extends Component {
                                     exact='/internal-transfer'
                                     eventKey='/internal-transfer'
                                     className={lastSegmentUrl === "internal-transfer" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="credit-card" />}>
+                                    icon={<Icon icon="credit-card" style={{left:"9px"}} />}>
                                     Transfer Internal
                                 </Nav.Item>
+                                </div>
+                                <div className="menu_side mx-2 my-2 rounded-xl">
                                 <Nav.Item                                    
                                     onSelect={e => this.handleMenu('downloads')}
                                     componentClass={Link}
@@ -98,9 +111,11 @@ class MySidebar extends Component {
                                     exact='/downloads'
                                     eventKey='/downloads'
                                     className={lastSegmentUrl === "downloads" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="download2" />}>
+                                    icon={<Icon icon="download2" style={{left:"9px"}} />}>
                                     Unduh
                                 </Nav.Item>
+                                </div>
+                                <div className="menu_side mx-2 my-2 rounded-xl">
                                 <Nav.Item                                    
                                     onSelect={e => this.handleMenu('contact')}
                                     componentClass={Link}
@@ -108,9 +123,11 @@ class MySidebar extends Component {
                                     exact='/contact'
                                     eventKey='/contact'
                                     className={lastSegmentUrl === "contact" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="tty" />}>
+                                    icon={<Icon icon="tty" style={{left:"9px"}} />}>
                                     Hubungi Kami
                                 </Nav.Item>
+                                </div>
+                                <div className="menu_side mx-2 my-2 rounded-xl">
 								 <Nav.Item                                    
                                     onSelect={e => this.handleMenu('autochartist')}
                                     componentClass={Link}
@@ -118,9 +135,11 @@ class MySidebar extends Component {
                                     exact='/autochartist'
                                     eventKey='/autochartist'
                                     className={lastSegmentUrl === "autochartist" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="tty" />}>
+                                    icon={<Icon icon="tty" style={{left:"9px"}} />}>
                                     Autochartist
                                 </Nav.Item>
+                                </div>
+                                <div className="menu_side mx-2 my-2 rounded-xl">
                                 <Nav.Item
                                     disabled
                                     onSelect={e => this.handleMenu('members')}
@@ -129,9 +148,11 @@ class MySidebar extends Component {
                                     exact='/'
                                     eventKey='/'
                                     className={lastSegmentUrl === "members" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="mortar-board" />}>
+                                    icon={<Icon icon="mortar-board" style={{left:"9px"}} />}>
                                     Yuk Belajar!
                                 </Nav.Item>
+                                </div>
+                                <div className="menu_side mx-2 my-2 rounded-xl">
                                 <Nav.Item                                    
                                     onSelect={e => this.handleMenu('setting')}
                                     componentClass={Link}
@@ -139,9 +160,11 @@ class MySidebar extends Component {
                                     exact='/setting'
                                     eventKey='/setting'
                                     className={lastSegmentUrl === "setting" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="gear" />}>
+                                    icon={<Icon icon="gear" style={{left:"9px"}} />}>
                                     Pengaturan
                                 </Nav.Item>
+                                </div>
+                                <div className="menu_side mx-2 my-2 rounded-xl">
                                 <Nav.Item                                    
                                     onSelect={e => this.handleMenu('rej-doc')}
                                     componentClass={Link}
@@ -149,9 +172,11 @@ class MySidebar extends Component {
                                     exact='/rej-doc'
                                     eventKey='/rej-doc'
                                     className={lastSegmentUrl === "rej-doc" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="gear" />}>
+                                    icon={<Icon icon="gear" style={{left:"9px"}} />}>
                                     Reject Document
                                 </Nav.Item>
+                                </div>
+                                
                             </Nav>
                         </Sidenav.Body>
                     </Sidenav>

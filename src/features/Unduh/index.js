@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Panel } from 'rsuite';
+import icon from '../../assets/unduh_ijo.svg';
 
 
 export default class Unduh extends Component {
@@ -24,68 +25,146 @@ export default class Unduh extends Component {
 
                 <section className="content">
                     <div className="container-fluid">
-                        <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>Unduh</h1>
+                        <img src={icon} width="35px" className="float-left mt-3" />
+                        <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Unduh</h1>
+
                         <div className="row">
                             <div className="col-12">
                                 {/* card start */}
                                 <div className="card card-success shadow-lg" style={{ "minHeight": "800px" }}>
                                     <div className="card-body">
-                                        <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 10 }}>
+                                       <div className="mobile-hide">
 
-                                            <h3>MT5 For Dekstop</h3>
-                                            <br />
-                                            <div className="row">
-                                                <div className="col-sm-6">
-                                                    <a href="https://download.mql5.com/cdn/web/pt.victory.international/mt5/victoryinternational5setup.exe">
-                                                        <Panel bordered style={{ padding: 15, textAlign: "center" }}>
-                                                            <img alt="Windows" height="200" src="https://new.vifx.co/assets/cabinet/_ui/media/windows_r.png" />
+                                       <div className="grid grid-cols-2 place-items-center mt-0" >
+                                                
+                                                <div className="w-full px-3 py-3">
 
-                                                        </Panel>
-                                                    </a>
+                                                    <div className="border px-5 py-4 rounded-2xl shadow-lg">
+                                                        <h3 style={{ color:'#2DB147' }} className="text-lg">MT5 For Dekstop</h3>
+                                                        <div className="grid grid-cols-1 place-items-center mt-3 w-full" >
+
+                                                            <div className="w-full">
+                                                                <a href="https://download.mql5.com/cdn/web/pt.victory.international/mt5/victoryinternational5setup.exe">
+                                                                    <img alt="Windows" width="80px" src="https://new.vifx.co/assets/cabinet/_ui/media/windows_r.png" className="float-left" />
+                                                                </a>
+                                                                <h1 style={{ marginBottom: 10, fontSize: 28, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }} className="mt-3">&nbsp;Windows</h1>
+                                                            </div>
+
+                                                            <div className="w-full mt-1 mt-5">
+                                                                <a href="https://www.metatrader5.com/en/terminal/help/start_advanced/install_mac" target="_new">
+                                                                        <img alt="MAC" width="80px" src="https://new.vifx.co/assets/cabinet/_ui/media/mac_r.png" className="float-left" />
+                                                                </a>
+                                                                <h1 style={{ marginBottom: 10, fontSize: 28, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }} className="mt-3">&nbsp;Mac OS</h1>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                
                                                 </div>
 
-                                                <div className="col-sm-6">
-                                                    <a href="https://www.metatrader5.com/en/terminal/help/start_advanced/install_mac" target="_new">
-                                                        <Panel bordered style={{ padding: 15, textAlign: "center" }}>
-                                                            <img alt="MAC" height="200" src="https://new.vifx.co/assets/cabinet/_ui/media/mac_r.png" />
-                                                        </Panel>
-                                                    </a>
+                                                
+                                                <div className="w-full px-3 py-3">
+
+                                                    <div className="border px-5  py-4 rounded-2xl shadow-lg">
+                                                        <h3 style={{ color:'#2DB147' }} className="text-lg">MT5 For Mobile</h3>
+                                                        <div className="grid grid-cols-1 place-items-center mt-3 w-full" >
+
+                                                            <div className="w-full">
+                                                                <a href="https://download.mql5.com/cdn/mobile/mt5/android?server=VictoryInternational-DEMO,VictoryInternational-REAL&amp;utm_source=vifxpro.com&amp;utm_campaign=VIFXPRO" target="_new">
+                                                                    <img alt="Android" width="80px" src="https://new.vifx.co/assets/cabinet/_ui/media/android_r.png" className="float-left" />
+                                                                </a>
+                                                                <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }} className="mt-3">&nbsp;Android</h1>
+                                                            </div>
+
+                                                            <div className="w-full mt-5">
+                                                                <a href="https://download.mql5.com/cdn/mobile/mt5/ios?server=VictoryInternational-DEMO,VictoryInternational-REAL&amp;utm_source=vifxpro.com&amp;utm_campaign=VIFXPRO" target="_new">
+                                                                        <img alt="IOS" width="80x" src="https://new.vifx.co/assets/cabinet/_ui/media/mac_r.png" className="float-left" />
+                                                                </a>
+                                                                <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }} className="mt-3">&nbsp;iOS</h1>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
                                                 </div>
 
                                             </div>
 
-                                            <br />
-                                            <br />
-                                            <br />
-                                            <h3>MT5 For Mobile</h3>
-                                            <br />
-                                            <div className="row">
-                                                <div className="col-sm-6">
-                                                    <a href="https://download.mql5.com/cdn/mobile/mt5/android?server=VictoryInternational-DEMO,VictoryInternational-REAL&amp;utm_source=vifxpro.com&amp;utm_campaign=VIFXPRO" target="_new">
-                                                        <Panel bordered style={{ padding: 15, textAlign: "center" }}>
-                                                            <img alt="Android" height="200" src="https://new.vifx.co/assets/cabinet/_ui/media/android_r.png" />
+                                       </div>
+                                       
+                                       <div className="mobile-view">
 
-                                                        </Panel>
-                                                    </a>
-                                                </div>
-                                                <div className="col-sm-6">
-                                                    <a href="https://download.mql5.com/cdn/mobile/mt5/ios?server=VictoryInternational-DEMO,VictoryInternational-REAL&amp;utm_source=vifxpro.com&amp;utm_campaign=VIFXPRO" target="_new">
-                                                        <Panel bordered style={{ padding: 15, textAlign: "center" }}>
-                                                            <img alt="IOS" height="200" src="https://new.vifx.co/assets/cabinet/_ui/media/mac_r.png" />
+                                            <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center mt-0" >
+                                                
+                                                <div className="w-full px-3 py-3">
 
-                                                        </Panel>
-                                                    </a>
+                                                    <div className="border px-2 lg:px-5 py-4 rounded-2xl shadow-lg">
+                                                        <h3 style={{ color:'#2DB147' }} className="text-lg">MT5 For Dekstop</h3>
+                                                        <div className="grid grid-cols-1 place-items-center mt-3 w-full" >
+
+                                                            <div className="w-full">
+                                                                <a href="https://download.mql5.com/cdn/web/pt.victory.international/mt5/victoryinternational5setup.exe">
+                                                                    <img alt="Windows" width="80px" src="https://new.vifx.co/assets/cabinet/_ui/media/windows_r.png" className="float-left" />
+                                                                </a>
+                                                                <h1 style={{ marginBottom: 10, fontSize: 28, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }} className="mt-3">&nbsp;Windows</h1>
+                                                            </div>
+
+                                                            <div className="w-full mt-1 lg:mt-5">
+                                                                <a href="https://www.metatrader5.com/en/terminal/help/start_advanced/install_mac" target="_new">
+                                                                        <img alt="MAC" width="80px" src="https://new.vifx.co/assets/cabinet/_ui/media/mac_r.png" className="float-left" />
+                                                                </a>
+                                                                <h1 style={{ marginBottom: 10, fontSize: 28, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }} className="mt-3">&nbsp;Mac OS</h1>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                
                                                 </div>
+
+                                                
+                                                <div className="w-full px-3 py-3">
+
+                                                    <div className="border px-2 lg:px-5  py-4 rounded-2xl shadow-lg">
+                                                        <h3 style={{ color:'#2DB147' }} className="text-lg">MT5 For Mobile</h3>
+                                                        <div className="grid grid-cols-1 place-items-center mt-3 w-full" >
+
+                                                            <div className="w-full">
+                                                                <a href="https://download.mql5.com/cdn/mobile/mt5/android?server=VictoryInternational-DEMO,VictoryInternational-REAL&amp;utm_source=vifxpro.com&amp;utm_campaign=VIFXPRO" target="_new">
+                                                                    <img alt="Android" width="80px" src="https://new.vifx.co/assets/cabinet/_ui/media/android_r.png" className="float-left" />
+                                                                </a>
+                                                                <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }} className="mt-3">&nbsp;Android</h1>
+                                                            </div>
+
+                                                            <div className="w-full mt-5">
+                                                                <a href="https://download.mql5.com/cdn/mobile/mt5/ios?server=VictoryInternational-DEMO,VictoryInternational-REAL&amp;utm_source=vifxpro.com&amp;utm_campaign=VIFXPRO" target="_new">
+                                                                        <img alt="IOS" width="80x" src="https://new.vifx.co/assets/cabinet/_ui/media/mac_r.png" className="float-left" />
+                                                                </a>
+                                                                <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }} className="mt-3">&nbsp;iOS</h1>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
                                             </div>
 
+
+                                        </div>
+                                        
+                                        <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 10,color:'#222' }}>
+
+                                            
                                             <br />
                                             <br />
                                             <br />
-                                            <h3>Installation Guide for Windows</h3>
+                                            <h3 style={{color:"#222"}}>Installation Guide for Windows</h3>
                                             <br />
 
                                             <ol>
-                                                <li>
+                                                <li >
                                                     If you haven't download from the link above, <a href="https://download.mql5.com/cdn/web/pt.victory.international/mt5/victoryinternational5setup.exe">download here</a>.<br />
                                                     Open the downloaded file, and if you see this screen, click RUN<br />
                                                     <img alt="" src="https://new.vifx.co/assets/cabinet/_ui/media/winguide1.png" />

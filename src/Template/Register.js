@@ -7,6 +7,11 @@ import { regUser, verifUser, userSelector, clearState, getCabang, getMarketing, 
 import Button from '../components/button/Button';
 import { Col, Form } from 'react-bootstrap';
 import ReCAPTCHA from "react-google-recaptcha";
+import banner from '../assets/image_1.svg';
+import logoa from '../assets/logo.svg';
+import email_icon from '../assets/email.svg';
+import password_icon from '../assets/password.svg';
+
 
 import { SelectTgl, SelectBln, SelectThn } from '../components/modal/SelectTgl';
 
@@ -136,11 +141,14 @@ const Register = () => {
     const recaptchaRef = React.createRef();
 
     const hideAlert = () => { dispatch(clearState()) }
-    document.getElementById('root').classList = 'hold-transition login-page';
+    document.getElementById('root').classList = 'hold-transition';
 
     const frmUser = <Form id="myForm">
         <Form.Group controlId="kode_verifikasi">
-            <Form.Label>Silakan masukkan kode aktivasi yang dikirim ke email Anda </Form.Label>
+            <Form.Label>
+            <span className="text-red-500 text-left text-lg">Verifikasi</span><br/>
+                Silakan masukkan kode aktivasi yang dikirim ke email ? Anda
+            </Form.Label>
             {errMsg.kode_verifikasi ?
                 (<span className="float-right text-error badge badge-danger">{errMsg.kode_verifikasi}</span>) : ''}
             <Form.Control
@@ -155,20 +163,27 @@ const Register = () => {
         </Form.Group>
 
         <div className="social-auth-links text-center mt-2 mb-3">
-            <Button
-                block
-                onClick={handleSubmit}
-                isLoading={isFetching}
-                theme="success"
-            >
-                Lanjut Registrasi
-            </Button>
+            <div className="grid grid-cols-1 gap-0 place-items-center">
+            <div className="w-full mb-2">
+                <div className="text-black text-sm font-semibold">Belum menerima kode verifikasi?<a href="login" className="text-center font-bold text-hijau-forex"> Kirim ulang kode aktivasi</a></div>
+            </div>    
+            <div className="w-2/4">
+                <Button
+                    block
+                    onClick={handleSubmit}
+                    isLoading={isFetching}
+                    theme="danger"
+                >
+                    Lanjut Registrasi
+                </Button>
+            </div>
+            </div>
         </div>
     </Form>;
 
     const frmUser2 = <Form id="myForm2">
-        <Form.Group controlId="nama_depan">
-            <Form.Label>Nama Depan </Form.Label>
+        <Form.Row>
+        <Form.Group as={Col} controlId="nama_depan">
             {errMsg.nama_depan ?
                 (<span className="float-right text-error badge badge-danger">{errMsg.nama_depan}</span>) : ''}
             <Form.Control
@@ -181,8 +196,7 @@ const Register = () => {
                 placeholder="Nama Depan" />
 
         </Form.Group>
-        <Form.Group controlId="nama_belakng">
-            <Form.Label>Nama Belakang </Form.Label>
+        <Form.Group as={Col} controlId="nama_belakng">
             {errMsg.nama_belakng ?
                 (<span className="float-right text-error badge badge-danger">{errMsg.nama_belakng}</span>) : ''}
             <Form.Control
@@ -194,10 +208,11 @@ const Register = () => {
                 onChange={handleChange}
                 placeholder="Nama Belakang" />
         </Form.Group>
+        </Form.Row>
 
         <Form.Row>
             <Form.Group as={Col} controlId="tgl">
-                <Form.Label>Tgl.Lahir</Form.Label>
+                <Form.Label><span className="text-merah-button">Tanggal Lahir</span></Form.Label>
                 {errMsg.tgl ?
                     (<span className="float-right text-error badge badge-danger">{errMsg.tgl}
                     </span>) : ''}
@@ -212,7 +227,7 @@ const Register = () => {
                 </Form.Control>
             </Form.Group>
             <Form.Group as={Col} controlId="bln">
-                <Form.Label>Bulan</Form.Label>
+                <Form.Label>&nbsp;</Form.Label>
                 {errMsg.bln ?
                     (<span className="float-right text-error badge badge-danger">{errMsg.bln}
                     </span>) : ''}
@@ -227,7 +242,7 @@ const Register = () => {
                 </Form.Control>
             </Form.Group>
             <Form.Group as={Col} controlId="thn">
-                <Form.Label>Tahun</Form.Label>
+                <Form.Label>&nbsp;</Form.Label>
                 {errMsg.thn ?
                     (<span className="float-right text-error badge badge-danger">{errMsg.thn}
                     </span>) : ''}
@@ -296,7 +311,7 @@ const Register = () => {
 
         </Form.Row>  */}
         <Form.Group controlId="ref_code">
-            <Form.Label>Kode Referensi </Form.Label>
+            <Form.Label><span className="text-merah-button">Kode Referensi</span> </Form.Label>
             {errMsg.ref_code ?
                 (<span className="float-right text-error badge badge-danger">{errMsg.ref_code}</span>) : ''}
             <Form.Control
@@ -306,120 +321,155 @@ const Register = () => {
                 type="text"
                 value={selected.ref_code}
                 onChange={handleChange}
-                placeholder="Kode Referensi" />
+                placeholder="000" />
         </Form.Group>
         <div className="social-auth-links text-center mt-2 mb-3">
-            <Button
-                block
-                onClick={handleSubmit2}
-                isLoading={isFetching}
-                theme="success"
-            >
-                Daftar
-            </Button>
+            <div className="grid grid-cols-1 gap-0 place-items-center">
+                <div className="w-3/5">
+                <Button
+                    block
+                    onClick={handleSubmit2}
+                    isLoading={isFetching}
+                    theme="danger"
+                >
+                    Daftar
+                </Button>
+                </div>
+            </div>
         </div>
     </Form>;
 
     return (
 
-        <div className="login-box">
-            <div className="card card-outline card-success">
-                <div className="card-header text-center h1">
-                    <b>Magnet</b>
-                </div>
-                <div className="card-body">
-                    {
+        <div class="">
+            <div class="w-full grid grid-cols-2 gap-4 bg-white">
 
-                        errorMessage ? (
-                            <div className="alert alert-danger alert-sm" >
-                                <button onClick={hideAlert} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <span className="fw-semi-bold text-error-login">Error: {errorMessage}</span>
-                            </div>
-                        ) : (<p className='login-box-msg'></p>)}
+                <div className="grid grid-cols-1 gap-0 place-items-center h-screen">
+                    <div className="login-box ">
 
-                    {!isCompleteProfile && !isVerifikasi && !succesCompleteProfile ? (<form onSubmit={formik.handleSubmit}>
-                        {formik.touched.email && formik.errors.email ? (
-                            <span className="float-right text-error badge badge-danger">{formik.errors.email}</span>
-                        ) : null}
-                        <div className="input-group mb-3">
-                            <input
-                                autoFocus
-                                autoComplete="off"
-                                type="text"
-                                className="form-control"
-                                placeholder="Email"
-                                {...formik.getFieldProps('email')} />
-                            <div className="input-group-append">
-                                <div className="input-group-text">
-                                    <span className="fas fa-user" />
+                <div className="login-box">
+                    <div className="card border-white">
+                        <div className="card-header text-center h1 text-red-500 text-lg bg-white border-white grid grid-cols-1 place-items-center mt-4">
+                            <div style={{width:"75%"}}><img src={logoa}/></div>
+                            <div><b><span className="text-merah-button font-bold text-lg">Daftar</span></b></div>
+                        </div>
+                        <div className="card-body">
+                            {
+
+                                errorMessage ? (
+                                    <div className="alert alert-danger alert-sm" >
+                                        <button onClick={hideAlert} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <span className="fw-semi-bold text-error-login">Error: {errorMessage}</span>
+                                    </div>
+                                ) : (<p className='login-box-msg'></p>)}
+
+                            {!isCompleteProfile && !isVerifikasi && !succesCompleteProfile ? (<form onSubmit={formik.handleSubmit}>
+                                {formik.touched.email && formik.errors.email ? (
+                                    <span className="float-right text-error badge badge-danger">{formik.errors.email}</span>
+                                ) : null}
+                                <div className="input-group mb-3" style={{border:"1px solid #B7B7B7",padding:"5px",borderRadius:"5px"}}>
+                                    <div className="input-group-append">
+                                        <div className="input-group-text bg-white border-white">
+                                            <img src={email_icon} width="22px" />
+                                        </div>
+                                    </div>
+                                    <input
+                                        autoFocus
+                                        autoComplete="off"
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Email"
+                                        style={{backgroundColor:"#fff",border:"0"}}
+                                        {...formik.getFieldProps('email')} />
+                                    
+
                                 </div>
-                            </div>
 
-                        </div>
-
-                        {formik.touched.password &&
-                            formik.errors.password ? (
-                            <span className="float-right text-error badge badge-danger">{formik.errors.password}</span>
-                        ) : null}
-                        <div className="input-group mb-3">
-                            <input
-                                autoComplete="off"
-                                type="password"
-                                className="form-control"
-                                placeholder="Password"
-                                {...formik.getFieldProps('password')} />
-                            <div className="input-group-append">
-                                <div className="input-group-text">
-                                    <span className="fas fa-lock" />
+                                {formik.touched.password &&
+                                    formik.errors.password ? (
+                                    <span className="float-right text-error badge badge-danger">{formik.errors.password}</span>
+                                ) : null}
+                                <div className="input-group mb-3" style={{border:"1px solid #B7B7B7",padding:"5px",borderRadius:"5px"}}>
+                                    <div className="input-group-append">
+                                        <div className="input-group-text bg-white border-white">
+                                            <img src={password_icon} width="22px" />
+                                        </div>
+                                    </div>
+                                    <input
+                                        autoComplete="off"
+                                        type="password"
+                                        className="form-control"
+                                        placeholder="Password"
+                                        style={{backgroundColor:"#fff",border:"0"}}
+                                        {...formik.getFieldProps('password')} />
+                                    
                                 </div>
-                            </div>
-                        </div>
 
-                        {formik.touched.konfirmasi_password &&
-                            formik.errors.konfirmasi_password ? (
-                            <span className="float-right text-error badge badge-danger">{formik.errors.konfirmasi_password}</span>
-                        ) : null}
-                        <div className="input-group mb-3">
-                            <input
-                                autoComplete="off"
-                                type="password"
-                                className="form-control"
-                                placeholder="Password"
-                                {...formik.getFieldProps('konfirmasi_password')} />
-                            <div className="input-group-append">
-                                <div className="input-group-text">
-                                    <span className="fas fa-lock" />
+                                {formik.touched.konfirmasi_password &&
+                                    formik.errors.konfirmasi_password ? (
+                                    <span className="float-right text-error badge badge-danger">{formik.errors.konfirmasi_password}</span>
+                                ) : null}
+                                <div className="input-group mb-3" style={{border:"1px solid #B7B7B7",padding:"5px",borderRadius:"5px"}}>
+                                <div className="input-group-append">
+                                        
+                                        <div className="input-group-text bg-white border-white">
+                                            <img src={password_icon} width="22px" />
+                                        </div>
+
+                                    </div>
+                                    <input
+                                        autoComplete="off"
+                                        type="password"
+                                        className="form-control"
+                                        placeholder="Password"
+                                        style={{backgroundColor:"#fff",border:"0"}}
+                                        {...formik.getFieldProps('konfirmasi_password')} />
+                                    
                                 </div>
+                                <ReCAPTCHA
+                                    hl="id"
+                                    ref={recaptchaRef}
+                                    sitekey="6LfEKfEcAAAAAGH6QCdvmj3wSSzFSyw0dbIoSmpK"
+                                    onChange={handleChangeCaptcha}
+                                    onExpired={handleExpired}
+                                />
+                                <div className="social-auth-links text-center mt-2 mb-3">
+                                    <div className="grid grid-cols-1 gap-0 place-items-center">
+                                        <div className="w-2/4">
+                                            <Button
+                                                disabled={selected.myCaptcha ? false : true}
+                                                block
+                                                type="submit"
+                                                isLoading={isFetching}
+                                                theme="danger"
+                                                
+                                            >
+                                                Lanjut Registrasi
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>) : ''}
+                            <div className="text-left">            
+                            {isVerifikasi ? frmUser : ''}
+                            {isCompleteProfile ? frmUser2 : ''}
+                            {succesCompleteProfile ? (<h4><p className='login-box-msg'>Pendaftaran berhasil, <a href="login" className="text-center">Silahkan login</a></p></h4>) : ''}
+                            {!succesCompleteProfile ? (<div className="font-bold text-black text-center">Sudah punya akun ? <a href="login" className="text-center font-bold text-hijau-forex">Login</a></div>) : ''}
                             </div>
-                        </div>
-                        <ReCAPTCHA
-                            hl="id"
-                            ref={recaptchaRef}
-                            sitekey="6LfEKfEcAAAAAGH6QCdvmj3wSSzFSyw0dbIoSmpK"
-                            onChange={handleChangeCaptcha}
-                            onExpired={handleExpired}
-                        />
-                        <div className="social-auth-links text-center mt-2 mb-3">
-                            <Button
-                                disabled={selected.myCaptcha ? false : true}
-                                block
-                                type="submit"
-                                isLoading={isFetching}
-                                theme="success"
-                            >
-                                Lanjut Registrasi
-                            </Button>
-                        </div>
-                    </form>) : ''}
 
-                    {isVerifikasi ? frmUser : ''}
-                    {isCompleteProfile ? frmUser2 : ''}
-                    {succesCompleteProfile ? (<h4><p className='login-box-msg'>Pendaftaran berhasil, <a href="login" className="text-center">Silahkan login</a></p></h4>) : ''}
-                    {!succesCompleteProfile ? (<a href="login" className="text-center">I already have a membership</a>) : ''}
-
-                </div>
+                        </div>
+                    </div>
+                </div >
             </div>
-        </div >
+            </div>
+
+            <div className="h-auto overflow-hidden">
+                <img src={banner} className="scale-100" />
+            </div>
+
+
+            </div>
+        </div>
 
     )
 };

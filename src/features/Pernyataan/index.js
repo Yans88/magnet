@@ -142,115 +142,130 @@ class Pernyataan extends Component {
                         <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>Registrasi Akun Online</h1>
                         <div className="row">
                             <div className="col-12">
-                                <div className="card card-success shadow-lg" style={{ "minHeight": "800px" }}>
-                                    <div className="card-body">
-                                        <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 20 }}>
+                                <div className="card card-success shadow-lg" style={{ "minHeight": "800px",borderRadius:"2rem" }}>
+                                    <div className="card-body ">
+                                        <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 0 }}>
+                                                    <h3 className="label_ijo">Pernyataan</h3>
+                                            <br />
+
                                             <PanelGroup accordion activeKey={defaultActiveKey} defaultActiveKey={1} onSelect={this.handleSelect.bind(this)}>
-                                                <Panel eventKey={1} className="w-accordion__header__title" header="Pernyataan Telah Melakukan Simulasi Perdagangan Berjangka Komoditi">
-                                                    <hr style={{ marginTop: 3 }} />
-                                                    <strong>Yang mengisi formulir di bawah ini: </strong>
-                                                    <br />
-                                                    <Row>
-                                                        <Col xs={6}><label style={{ color: '#6b798f', marginTop: 8 }}>Nama Lengkap</label></Col>
-                                                        <Col xs={18}>
-                                                            <Input readOnly size="lg" value={user ? user.nama_depan + ' ' + user.nama_belakang : ''} />
-                                                        </Col>
-                                                    </Row>
-                                                    <br />
-                                                    <Row>
-                                                        <Col xs={6}>
-                                                            <label style={{ color: '#6b798f', marginTop: 8 }}>Tempat Lahir</label></Col>
-                                                        <Col xs={9}>
-                                                            <Input readOnly size="lg" value={user && user.tempat_lahir ? user.tempat_lahir : ''} />
-                                                        </Col>
-                                                        <Col xs={9}>
-                                                            <Input readOnly size="lg" value={user && user.kota_lahir ? user.kota_lahir : ''} />
-                                                        </Col>
-                                                    </Row>
-                                                    <br />
-                                                    <Row>
-                                                        <Col xs={6}>
-                                                            <label style={{ color: '#6b798f', marginTop: 8 }}>Tanggal Lahir</label></Col>
-                                                        <Col xs={18}>
-                                                            <Input readOnly size="lg" value={user ? tgl_lhir : ''} />
-                                                        </Col>
+                                                <Panel eventKey={1} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="Pernyataan Telah Melakukan Simulasi Perdagangan Berjangka Komoditi">
+                                                        <br/>
+                                                        <strong><span className="label_hitam">Yang mengisi formulir di bawah ini: </span></strong>
+                                                        <br /><br/>
+                                                        <Row>
+                                                            <Col xs={9}><label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Nama Lengkap</span></label></Col>
+                                                        </Row>
+                                                        <Row>
+                                                            <Col xs={9}>
+                                                                <Input readOnly size="lg" value={user ? user.nama_depan + ' ' + user.nama_belakang : ''} />
+                                                            </Col>
+                                                        </Row>
+        
 
-                                                    </Row>
-                                                    <br />
-                                                    <Row>
-                                                        <Col xs={6}>
-                                                            <label style={{ color: '#6b798f', marginTop: 8 }}>Alamat Rumah</label></Col>
-                                                        <Col xs={18}>
-                                                            <Input readOnly size="lg" value={user && user.alamat ? user.alamat : ''} />
-                                                        </Col>
-                                                    </Row>
-                                                    <br />
-                                                    <Row>
-                                                        <Col xs={6}>
-                                                            <label style={{ color: '#6b798f', marginTop: 8 }}>No.Identitas</label></Col>
-                                                        <Col xs={18}>
-                                                            <Input readOnly size="lg" value={user && user.no_identitas ? user.no_identitas : ''} />
-                                                        </Col>
-                                                    </Row>
-                                                    <br />
-                                                    <Row>
-                                                        <Col xs={6}>
-                                                            <label style={{ color: '#6b798f', marginTop: 8 }}>No.Demo Acc.</label></Col>
-                                                        <Col xs={18}>
-                                                            <Input readOnly size="lg" />
-                                                        </Col>
-                                                    </Row>
-                                                    <br />
-                                                    <strong>
-                                                        Dengan mengisi kolom "YA" di bawah ini, saya menyatakan bahwa saya telah melakukan simulasi bertransaksi di bidang Perdagangan Berjangka Komoditi pada PT.Victory International Futures, dan telah memahami tentang tata cara bertransaksi di bidang Perdagangan Berjangka Komoditi.
+                                                        <br />
+                                                        <Row>
+                                                            <Col xs={6}>
+                                                                <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Tempat Lahir</span></label></Col>
+                                                            <Col xs={6}>
+                                                                <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Tanggal Lahir</span></label></Col> 
+                                                            <Col xs={6}>
+                                                                <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Kota Lahir</span></label></Col>        
+                                                        </Row>
+                                                        <Row>
+                                                            <Col xs={6}>
+                                                                <Input readOnly size="lg" value={user && user.tempat_lahir ? user.tempat_lahir : ''} />
+                                                            </Col>
+                                                            <Col xs={6}>
+                                                                <Input readOnly size="lg" value={user ? tgl_lhir : ''} />
+                                                            </Col>
+                                                            <Col xs={6}>
+                                                                <Input readOnly size="lg" value={user && user.kota_lahir ? user.kota_lahir : ''} />
+                                                            </Col>
+                                                        </Row>
+                                                        <br />
+                                                        
+                                                        <Row>
+                                                            <Col xs={6}>
+                                                                <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Alamat Rumah</span></label></Col>
+                                                        </Row>
+                                                        <Row>
+                                                            <Col xs={18}>
+                                                                <Input readOnly size="lg" value={user && user.alamat ? user.alamat : ''} />
+                                                            </Col>
+                                                        </Row>
+                                                        
+                                                        <br />
+                                                        <Row>
+                                                            <Col xs={9}>
+                                                                <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">No.Identitas</span></label></Col>
+                                                            <Col xs={9}>
+                                                                <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">No.Demo Acc.</span></label></Col>
+
+                                                            
+                                                        </Row>
+                                                        <Row>
+                                                            <Col xs={9}>
+                                                                <Input readOnly size="lg" value={user && user.no_identitas ? user.no_identitas : ''} />
+                                                            </Col>
+                                                            <Col xs={9}>
+                                                                <Input readOnly size="lg" />
+                                                            </Col>
+                                                        </Row>
+                                                        <br />
+                                                        <strong>
+                                                            <span className="label_hitam">
+                                                            Dengan mengisi kolom "YA" di bawah ini, saya menyatakan bahwa saya telah melakukan simulasi bertransaksi di bidang Perdagangan Berjangka Komoditi pada PT.Victory International Futures, dan telah memahami tentang tata cara bertransaksi di bidang Perdagangan Berjangka Komoditi.
+                                                            <br />
+                                                            <br />
+                                                            Demikian Pernyataan ini dibuat dengan sebenarnya dalam keadaan sadar, sehat jasmani dan rohani serta tanpa paksaan apapun dari pihak manapun
+                                                            </span>
+                                                        </strong>
                                                         <br />
                                                         <br />
-                                                        Demikian Pernyataan ini dibuat dengan sebenarnya dalam keadaan sadar, sehat jasmani dan rohani serta tanpa paksaan apapun dari pihak manapun
-                                                    </strong>
-                                                    <br />
-                                                    <br />
-                                                    <div className="form-group row align-items-center">
-                                                        <div className="col">
-                                                            Pernyataan Menerima / Tidak
-                                                            {errMsg1.pernyataan1 ? (<span className="text-error badge badge-danger">{errMsg1.pernyataan1}</span>) : ''}
+                                                        <div className="form-group row align-items-center">
+                                                            <div className="col">
+                                                                Pernyataan Menerima / Tidak
+                                                                {errMsg1.pernyataan1 ? (<span className="text-error badge badge-danger">{errMsg1.pernyataan1}</span>) : ''}
+                                                            </div>
+                                                            <div className="col-sm-6 col-md-9">
+                                                                <Form.Group controlId="pernyataan1">
+                                                                    <Form.Check
+                                                                        inline
+                                                                        onChange={this.handleChange.bind(this)}
+                                                                        checked={dataPernyataan.pernyataan1 === 'Y' ? true : false}
+                                                                        value='Y'
+                                                                        type='radio'
+                                                                        name='pernyataan1'
+                                                                        label='Ya'
+                                                                    />
+                                                                    <Form.Check
+                                                                        inline
+                                                                        onChange={this.handleChange.bind(this)}
+                                                                        checked={dataPernyataan.pernyataan1 === 'N' ? true : false}
+                                                                        value='N'
+                                                                        type='radio'
+                                                                        name='pernyataan1'
+                                                                        label='Tidak'
+                                                                    />
+                                                                </Form.Group>
+                                                            </div>
                                                         </div>
-                                                        <div className="col-sm-6 col-md-9">
-                                                            <Form.Group controlId="pernyataan1">
-                                                                <Form.Check
-                                                                    inline
-                                                                    onChange={this.handleChange.bind(this)}
-                                                                    checked={dataPernyataan.pernyataan1 === 'Y' ? true : false}
-                                                                    value='Y'
-                                                                    type='radio'
-                                                                    name='pernyataan1'
-                                                                    label='Ya'
-                                                                />
-                                                                <Form.Check
-                                                                    inline
-                                                                    onChange={this.handleChange.bind(this)}
-                                                                    checked={dataPernyataan.pernyataan1 === 'N' ? true : false}
-                                                                    value='N'
-                                                                    type='radio'
-                                                                    name='pernyataan1'
-                                                                    label='Tidak'
-                                                                />
-                                                            </Form.Group>
-                                                        </div>
-                                                    </div>
 
-                                                    <div className="form-group row align-items-center">
-                                                        <div className="col">
-                                                            Pernyataan Pada Tanggal
+                                                        <div className="form-group row align-items-center">
+                                                            <div className="col">
+                                                                Pernyataan Pada Tanggal
+                                                            </div>
+                                                            <div className="col-sm-6 col-md-9">
+                                                                {moment(new Date()).format('YYYY-MM-DD')}
+                                                            </div>
                                                         </div>
-                                                        <div className="col-sm-6 col-md-9">
-                                                            {moment(new Date()).format('YYYY-MM-DD')}
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </Panel>
-                                                <Panel eventKey={2} className="w-accordion__header__title" header="Dokumen Pemberitahuan Adanya Risiko yang harus disampaikan oleh Pialang Berjangka untuk Transaksi Kontrak Derivatif dalam Sistem Perdagangan Alternatif">
-                                                    <hr />
-                                                    <p style={{ textAlign: "justify", color: "#505f79", fontSize: "1rem", fontWeight: 300 }}>Dokumen Pemberitahuan Adanya Risiko ini disampaikan kepada Anda sesuai dengan Pasal 50 ayat (2) Undang-Undang Nomor 32 Tahun 1997 tentang Perdagangan Berjangka Komoditi sebagaimana telah diubah dengan Undang-Undang Nomor 10 Tahun 2011 tentang Perubahan Atas Undang-Undang Nomor 32 Tahun 1997 Tentang Perdagangan Berjangka Komoditi.</p>
-                                                    <p style={{ textAlign: "justify", color: "#505f79", fontSize: "1rem", fontWeight: 300 }}>Maksud dokumen ini adalah memberitahukan bahwa kemungkinan kerugian atau keuntungan dalam perdagangan Kontrak Derivatif dalam Sistem Perdagangan Alternatif bisa mencapai jumlah yang sangat besar.Oleh karena itu, Anda harus berhati-hati dalam memutuskan untuk melakukan transaksi, apakah kondisi keuangan Anda mencukupi.</p>
+                                                <Panel eventKey={2} className="w-accordion__header__title label_hitam shadow-lg px-2 py-1 my-2 mx-2" header="Dokumen Pemberitahuan Adanya Risiko yang harus disampaikan oleh Pialang Berjangka untuk Transaksi Kontrak Derivatif dalam Sistem Perdagangan Alternatif">
+                                                    <br/>
+                                                    <p style={{ textAlign: "justify", color: "#000", fontSize: "1rem", fontWeight: 300 }}>Dokumen Pemberitahuan Adanya Risiko ini disampaikan kepada Anda sesuai dengan Pasal 50 ayat (2) Undang-Undang Nomor 32 Tahun 1997 tentang Perdagangan Berjangka Komoditi sebagaimana telah diubah dengan Undang-Undang Nomor 10 Tahun 2011 tentang Perubahan Atas Undang-Undang Nomor 32 Tahun 1997 Tentang Perdagangan Berjangka Komoditi.</p>
+                                                    <p style={{ textAlign: "justify", color: "#000", fontSize: "1rem", fontWeight: 300 }}>Maksud dokumen ini adalah memberitahukan bahwa kemungkinan kerugian atau keuntungan dalam perdagangan Kontrak Derivatif dalam Sistem Perdagangan Alternatif bisa mencapai jumlah yang sangat besar.Oleh karena itu, Anda harus berhati-hati dalam memutuskan untuk melakukan transaksi, apakah kondisi keuangan Anda mencukupi.</p>
                                                     <ol>
                                                         <li tabIndex="1">
                                                             <p>
@@ -394,12 +409,18 @@ class Pernyataan extends Component {
 
                                                 </Panel>
 
-                                                <Panel eventKey={3} className="w-accordion__header__title" header="Perjanjian Pemberian Amanat secara Elektronik On-line untuk Transaksi Kontrak Derivatif dalam Sistem Perdagangan Alternatif">
-                                                    <hr style={{ marginTop: 3 }} />
-                                                    <p style={{ border: 'solid red medium', background: '#CF3', color: '#900', textAlign: 'center' }}><strong>PERHATIAN !</strong><br />PERJANJIAN INI MERUPAKAN KONTRAK HUKUM.HARAP DIBACA DENGAN SEKSAMA.</p>
+                                                <Panel eventKey={3} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="Perjanjian Pemberian Amanat secara Elektronik On-line untuk Transaksi Kontrak Derivatif dalam Sistem Perdagangan Alternatif">
+                                                    <br/>
+                                                    <div className="form-group text-center">
+                                                        <div className="alert alert-danger kolom_merah" style={{ background: '#C2252C',color:'#fff',borderRadius:'10px'}}>
+                                                            <div className="alert-heading">PERHATIAN !!!</div>
+                                                            PERJANJIAN INI MERUPAKAN KONTRAK HUKUM.HARAP DIBACA DENGAN SEKSAMA.
+                                                        </div>
+                                                    </div>
+
                                                     <p>Pada hari ini<strong> {moment(new Date()).format('dddd')}</strong>, tanggal <strong>{moment(new Date()).format('DD')} </strong> bulan <strong>{moment(new Date()).format('MMMM')}</strong> <strong>{moment(new Date()).format('YYYY')}</strong>, kami yang mengisi perjanjian di bawah ini: </p>
 
-                                                    <ol>
+                                                    <ol className="list_aja">
                                                         <li tabIndex={1}>
                                                             <p>Nama: <b className="declaration_name_html">{user ? user.nama_depan + ' ' + user.nama_belakang : ''}</b></p>
                                                             <p>Pekerjaan/Jabatan: <b className="declaration_employment_status_html">Wiraswasta</b>
@@ -440,7 +461,7 @@ class Pernyataan extends Component {
                                                         </li>
                                                     </ol>
                                                     <p>Para Pihak sepakat untuk mengadakan Perjanjian Pemberian Amanat untuk melakukan transaksi penjualan maupun pembelian Kontrak Derivatif dalam Sistem Perdagangan Alternatif dengan ketentuan sebagai berikut: </p>
-                                                    <ol>
+                                                    <ol className="list_aja">
 
                                                         <li tabIndex={1}>
                                                             <p><b>Margin dan Pembayaran Lainnya</b></p>
@@ -743,57 +764,73 @@ class Pernyataan extends Component {
                                                     </ol>
                                                 </Panel>
 
-                                                <Panel eventKey={4} className="w-accordion__header__title" header="Pernyataan Bertanggung Jawab atas Kode Akses Transaksi Nasabah (Personal Access Password)">
-                                                    <hr style={{ marginTop: 3 }} />
+                                                <Panel eventKey={4} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="Pernyataan Bertanggung Jawab atas Kode Akses Transaksi Nasabah (Personal Access Password)">
+                                                    <br/>
                                                     <strong>Yang mengisi formulir di bawah ini: </strong>
                                                     <br />
                                                     <Row>
-                                                        <Col xs={6}><label style={{ color: '#6b798f', marginTop: 8 }}>Nama Lengkap</label></Col>
-                                                        <Col xs={18}>
+                                                        <Col xs={6}><label style={{ color: '#D77175', marginTop: 8 }}>Nama Lengkap</label></Col>
+                                                    </Row>
+                                                    <Row>
+                                                        <Col xs={9}>
                                                             <Input readOnly size="lg" value={user ? user.nama_depan + ' ' + user.nama_belakang : ''} />
                                                         </Col>
                                                     </Row>
+                                                    
                                                     <br />
                                                     <Row>
                                                         <Col xs={6}>
-                                                            <label style={{ color: '#6b798f', marginTop: 8 }}>Tempat Lahir</label></Col>
-                                                        <Col xs={9}>
+                                                            <label style={{ color: '#D77175', marginTop: 8 }}>Tempat Lahir</label></Col>
+                                                        
+                                                        <Col xs={6}>
+                                                            <label style={{ color: '#D77175', marginTop: 8 }}>Tanggal Lahir</label></Col>
+                                                        
+                                                        <Col xs={6}>
+                                                            <label style={{ color: '#D77175', marginTop: 8 }}>Kota Lahir</label></Col>
+
+
+                                                        
+                                                    </Row>
+                                                    
+                                                    <Row>
+                                                        <Col xs={6}>
                                                             <Input readOnly size="lg" value={user && user.tempat_lahir ? user.tempat_lahir : ''} />
                                                         </Col>
-                                                        <Col xs={9}>
-                                                            <Input readOnly size="lg" value={user && user.kota_lahir ? user.kota_lahir : ''} />
-                                                        </Col>
-                                                    </Row>
-                                                    <br />
-                                                    <Row>
+                                                        
                                                         <Col xs={6}>
-                                                            <label style={{ color: '#6b798f', marginTop: 8 }}>Tanggal Lahir</label></Col>
-                                                        <Col xs={18}>
                                                             <Input readOnly size="lg" value={user ? tgl_lhir : ''} />
                                                         </Col>
-
+                                                        <Col xs={6}>
+                                                            <Input readOnly size="lg" value={user && user.kota_lahir ? user.kota_lahir : ''} />
+                                                        </Col>
+                
                                                     </Row>
                                                     <br />
                                                     <Row>
                                                         <Col xs={6}>
-                                                            <label style={{ color: '#6b798f', marginTop: 8 }}>Alamat Rumah</label></Col>
+                                                            <label style={{ color: '#D77175', marginTop: 8 }}>Alamat Rumah</label></Col>
+                                                    </Row>
+                                                    <Row>
                                                         <Col xs={18}>
                                                             <Input readOnly size="lg" value={user && user.alamat ? user.alamat : ''} />
                                                         </Col>
                                                     </Row>
                                                     <br />
                                                     <Row>
-                                                        <Col xs={6}>
-                                                            <label style={{ color: '#6b798f', marginTop: 8 }}>No.Identitas</label></Col>
-                                                        <Col xs={18}>
+                                                        <Col xs={9}>
+                                                            <label style={{ color: '#D77175', marginTop: 8 }}>No.Identitas</label></Col>
+                                                        
+                                                        <Col xs={9}>
+                                                            <label style={{ color: '#D77175', marginTop: 8 }}>No.Demo Acc.</label></Col>
+
+                                                        
+                                                    </Row>
+                                                    <Row>
+                                                    <Col xs={9}>
                                                             <Input readOnly size="lg" value={user && user.no_identitas ? user.no_identitas : ''} />
                                                         </Col>
-                                                    </Row>
-                                                    <br />
-                                                    <Row>
-                                                        <Col xs={6}>
-                                                            <label style={{ color: '#6b798f', marginTop: 8 }}>No.Demo Acc.</label></Col>
-                                                        <Col xs={18}>
+
+                                                        <Col xs={9}>
                                                             <Input readOnly size="lg" />
                                                         </Col>
                                                     </Row>
@@ -801,7 +838,7 @@ class Pernyataan extends Component {
                                                     <p>Dengan mengisi kolom "YA" di bawah ini, saya menyatakan bahwa saya bertanggungjawab sepenuhnya terhadap kode akses transaksi Nasabah (Personal Access Password) dan tidak menyerahkan kode akses transaksi Nasabah (Personal Access Password) ke pihak lain, terutama kepada pegawai Pialang Berjangka atau pihak yang memiliki kepentingan dengan Pialang Berjangka.</p>
 
                                                     <div className="form-group text-center">
-                                                        <div className="alert alert-danger">
+                                                        <div className="alert alert-danger kolom_merah" style={{ background: '#C2252C',color:'#fff',borderRadius:'10px'}}>
                                                             <div className="alert-heading">PERHATIAN !!!</div>
                                                             Pialang Berjangka, Wakil Pialang, Tenaga Pemasar Perusahaan, atau pihak apapun yang berhubungan dengan Pialang Berjangka tidak diperkenankan untuk menerima atau meminta kode akses transaksi nasabah (Password)
                                                         </div>
@@ -851,8 +888,11 @@ class Pernyataan extends Component {
 
                                             </PanelGroup>
                                         </div>
+
                                         <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
-                                            <div className="form-group">
+                                        <div className="grid grid-cols-1 place-items-center"> 
+                                          
+                                            <div className="form-group w-3/4">
                                                 <div className="form-check">
                                                     {errMsg1.agree ? (<span className="text-error badge badge-danger">{errMsg1.agree}</span>) : ''}
                                                     <label>
@@ -864,26 +904,44 @@ class Pernyataan extends Component {
 
                                                     </label>
                                                 </div>
+                                            </div>
+
+                                                <div className="form-group w-[40%] text-center">
+                                                    <label>
+                                                        Dengan mendaftar, saya menyetujui Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                    </label>
+                                                </div>
+
+                                                <div className="form-group w-1/4">
                                                 <AppButton
                                                     style={{ color: '#ffffff', marginRight: 5 }}
                                                     onClick={this.handleBack.bind(this)}
                                                     type="button"
                                                     size="lg"
-                                                    theme="warning">Back</AppButton>
+                                                    theme=""
+                                                    style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}>Back</AppButton>
                                                 <AppButton
                                                     style={{ color: '#ffffff', marginRight: 5 }}
                                                     onClick={this.handlesubmit.bind(this, 'act')}
                                                     type="button"
                                                     size="lg"
-                                                    theme="warning">Selanjutnya</AppButton>
+                                                    theme=""
+                                                                style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}>Selanjutnya</AppButton>
                                                 <AppButton
                                                     onClick={this.handlesubmit.bind(this)}
                                                     type="button"
                                                     size="lg"
-                                                    theme="success">
+                                                    theme=""
+                                                                style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
                                                     Simpan</AppButton>
-                                            </div>
+                                                </div>
+
+                                            
+
+                                           </div> 
+
                                         </div>
+
                                     </div>
 
                                 </div>

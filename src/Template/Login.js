@@ -5,6 +5,10 @@ import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser, userSelector, clearState } from '../features/main/mainSlice'
 import Button from '../components/button/Button';
+import logoa from '../assets/logo.svg';
+import banner from '../assets/image_1.svg';
+import email_icon from '../assets/email.svg';
+import password_icon from '../assets/password.svg';
 
 const Login = () => {
     const { isFetching, isSuccess, errorMessage } = useSelector(
@@ -42,74 +46,207 @@ const Login = () => {
     });
 
     const hideAlert = () => { dispatch(clearState()) }
-    document.getElementById('root').classList = 'hold-transition login-page';
+    document.getElementById('root').classList = 'hold-transition';
 
     return (
-        <div className="login-box">
-            <div className="card card-outline card-primary">
-                <div className="card-header text-center h1">
-                    <b>Magnet</b>
+        <div class="">
+            <div className="mobile-hide">
+                
+                <div class="w-full grid grid-cols-2 gap-4 bg-white">
+
+                        <div className="grid grid-cols-1 gap-0 place-items-center h-screen ">
+                            <div className="login-box ">
+                                <div className="card  border-white">
+                                    <div className="card-header text-center h1 text-red-500 text-lg bg-white border-white grid grid-cols-1 place-items-center">
+                                        <div style={{width:"75%"}}><img src={logoa}/></div>
+                                        <div><b><span className="text-merah-button font-bold text-lg">Login</span></b></div>
+                                    </div>
+                                    <div className="card-body">
+
+                                        {errorMessage ? (
+                                            <div className="alert alert-danger alert-sm">
+                                                <button onClick={hideAlert} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                <span className="fw-semi-bold text-error-login">Error: {errorMessage}</span>
+                                            </div>
+                                        ) : (<p className='login-box-msg'></p>)}
+
+                                        <form onSubmit={formik.handleSubmit}>
+                                            {formik.touched.email && formik.errors.email ? (
+                                                <span className="float-right text-error badge badge-danger">{formik.errors.email}</span>
+                                            ) : null}
+                                            <div className="input-group mb-3" style={{border:"1px solid #B7B7B7",padding:"5px",borderRadius:"5px"}}>
+                                                <div className="input-group-append ">
+                                                    <div className="input-group-text bg-white border-white">
+                                                        <img src={email_icon} width="22px" />
+                                                    </div>
+                                                </div>
+                                                <input
+                                                    autoFocus
+                                                    autoComplete="off"
+                                                    type="text"
+                                                    className="form-control border-white"
+                                                    placeholder="Email"
+                                                    style={{backgroundColor:"#fff"}}
+                                                    {...formik.getFieldProps('email')} />
+                                                
+
+                                            </div>
+
+                                            {formik.touched.password &&
+                                                formik.errors.password ? (
+                                                <span className="float-right text-error badge badge-danger">{formik.errors.password}</span>
+                                            ) : null}
+                                            <div className="input-group mb-3" style={{border:"1px solid #B7B7B7",padding:"5px",borderRadius:"5px"}}>
+                                            <div className="input-group-append">
+                                                    <div className="input-group-text bg-white border-white">
+                                                    <img src={password_icon} width="22px" />
+                                                    </div>
+                                                </div>
+                                                <input
+                                                    autoComplete="off"
+                                                    type="password"
+                                                    className="form-control border-white bg-white"
+                                                    placeholder="Password"
+                                                    {...formik.getFieldProps('password')} />
+                                                
+                                            </div>
+
+                                            <div className="social-auth-links text-center mt-2 mb-3">
+                                                <div className="grid grid-cols-4">
+                                                    <div className="col-span-2 text-left pt-1">
+                                                        <span className="text-black font-bold">Lupa Password</span>
+                                                    </div>
+                                                    <div className="col-span-1 align-middle pt-1">
+                                                        <a href="register" className="text-center "><span className="text-hijau-forex font-bold">Daftar</span></a>
+                                                    </div>
+                                                    <div className="col-span-1">
+                                                        <Button
+                                                            block
+                                                            type="submit"
+                                                            isLoading={isFetching}
+                                                            className="bg_color_merah"
+                                                            theme=""
+                                                            style={{ backgroundColor:"#C3262A",color:"#fff"}}
+
+                                                        >
+                                                            Login
+                                                        </Button>
+                                                    </div>
+
+                                                </div>
+                                                
+                                            </div>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+
+                    <div className="show_hide h-auto overflow-hidden">
+                        <img src={banner} className="scale-100" />
+                    </div>
+
                 </div>
-                <div className="card-body">
+            </div>
 
-                    {errorMessage ? (
-                        <div className="alert alert-danger alert-sm">
-                            <button onClick={hideAlert} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <span className="fw-semi-bold text-error-login">Error: {errorMessage}</span>
-                        </div>
-                    ) : (<p className='login-box-msg'>Sign in to start your session</p>)}
+            <div className="mobile-view">
+                
+                <div class="w-full grid grid-cols-2 gap-4">
 
-                    <form onSubmit={formik.handleSubmit}>
-                        {formik.touched.email && formik.errors.email ? (
-                            <span className="float-right text-error badge badge-danger">{formik.errors.email}</span>
-                        ) : null}
-                        <div className="input-group mb-3">
-                            <input
-                                autoFocus
-                                autoComplete="off"
-                                type="text"
-                                className="form-control"
-                                placeholder="Email"
-                                {...formik.getFieldProps('email')} />
-                            <div className="input-group-append">
-                                <div className="input-group-text">
-                                    <span className="fas fa-user" />
+                        <div className="col-span-2 lg:col-span-0 grid grid-cols-1 gap-0 place-items-center h-screen">
+                            <div className="login-box ">
+                                <div className="card  border-white">
+                                    <div className="card-header text-center h1 text-red-500 text-lg bg-white border-white">
+                                        <img src={logoa} />
+                                        <b><span className="text-merah-button font-bold text-lg">Login</span></b>
+                                    </div>
+                                    <div className="card-body">
+
+                                        {errorMessage ? (
+                                            <div className="alert alert-danger alert-sm">
+                                                <button onClick={hideAlert} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                <span className="fw-semi-bold text-error-login">Error: {errorMessage}</span>
+                                            </div>
+                                        ) : (<p className='login-box-msg'></p>)}
+
+                                        <form onSubmit={formik.handleSubmit}>
+                                            {formik.touched.email && formik.errors.email ? (
+                                                <span className="float-right text-error badge badge-danger">{formik.errors.email}</span>
+                                            ) : null}
+                                            <div className="input-group mb-3 border-black">
+                                                <div className="input-group-append ">
+                                                    <div className="input-group-text bg-white border-white">
+                                                        <img src={email_icon} width="22px" />
+                                                    </div>
+                                                </div>
+                                                <input
+                                                    autoFocus
+                                                    autoComplete="off"
+                                                    type="text"
+                                                    className="form-control border-white bg-white"
+                                                    placeholder="Email"
+                                                    {...formik.getFieldProps('email')} />
+                                                
+
+                                            </div>
+
+                                            {formik.touched.password &&
+                                                formik.errors.password ? (
+                                                <span className="float-right text-error badge badge-danger">{formik.errors.password}</span>
+                                            ) : null}
+                                            <div className="input-group mb-3 border-black">
+                                            <div className="input-group-append">
+                                                    <div className="input-group-text bg-white border-white">
+                                                    <img src={password_icon} width="22px" />
+                                                    </div>
+                                                </div>
+                                                <input
+                                                    autoComplete="off"
+                                                    type="password"
+                                                    className="form-control border-white bg-white"
+                                                    placeholder="Password"
+                                                    {...formik.getFieldProps('password')} />
+                                                
+                                            </div>
+
+                                            <div className="social-auth-links text-center mt-2 mb-3">
+                                                <div className="grid grid-cols-4">
+                                                    <div className="col-span-2 text-left pt-1">
+                                                        <span className="text-black font-bold">Lupa Password</span>
+                                                    </div>
+                                                    <div className="col-span-1 align-middle pt-1">
+                                                        <a href="register" className="text-center "><span className="text-hijau-forex font-bold">Daftar</span></a>
+                                                    </div>
+                                                    <div className="col-span-1">
+                                                        <Button
+                                                            block
+                                                            type="submit"
+                                                            isLoading={isFetching}
+                                                            className="bg_color_merah"
+                                                            theme=""
+                                                            style={{ backgroundColor:"#C3262A",color:"#fff"}}
+
+                                                        >
+                                                            Login
+                                                        </Button>
+                                                    </div>
+
+                                                </div>
+                                                
+                                            </div>
+                                        </form>
+                                        
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
+                    
 
-                        {formik.touched.password &&
-                            formik.errors.password ? (
-                            <span className="float-right text-error badge badge-danger">{formik.errors.password}</span>
-                        ) : null}
-                        <div className="input-group mb-3">
-                            <input
-                                autoComplete="off"
-                                type="password"
-                                className="form-control"
-                                placeholder="Password"
-                                {...formik.getFieldProps('password')} />
-                            <div className="input-group-append">
-                                <div className="input-group-text">
-                                    <span className="fas fa-lock" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="social-auth-links text-center mt-2 mb-3">
-                            <Button
-                                block
-                                type="submit"
-                                isLoading={isFetching}
-                                icon="sign"
-                                theme="primary"
-                            >
-                                Sign in
-                            </Button>
-                        </div>
-                    </form>
-                    <a href="register" className="text-center">Register a new membership</a>
+                    <div className="show_hide h-auto overflow-hidden">
+                        <img src={banner} className="scale-100" />
+                    </div>
 
                 </div>
             </div>

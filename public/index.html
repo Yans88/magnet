@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="%PUBLIC_URL%/css/custom.css">
     
     <link rel="stylesheet" href="%PUBLIC_URL%/css/adminlte.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -27,12 +28,133 @@
       Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
+
     -->
-    <title>Magnet</title>
+    <style>
+      html {
+            height:100%;
+            box-sizing: border-box;
+        }
+
+        body {
+            height:100%;
+            background-color: #fff;
+            color: #333;
+            font: 1.2em / 1.5 Helvetica Neue, Helvetica, Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: inherit;
+        }
+
+        section {
+            height: 100%
+        }
+
+        .wrapper {
+            min-height: 100%;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+        }
+
+        .page-header,
+        .page-footer {
+            background-color:#DE050D;
+            opacity: 2;
+            color: #fff;
+            padding: 20px;
+        }
+
+       
+
+        .preview {
+            height: 400px;
+            overflow: auto;
+        }
+
+        rs-panel-group > .rs-panel {
+            border: 1px solid #E9E9E9;
+        }
+
+
+    </style>
+    <title>Magnet Cabinet</title>
   </head>
   <body class="text-sm">
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <section>
+      <div class="wrapper">
+        <main class="page-body">
+            <div id="root"></div>
+        </main>
+        <footer class="page-footer backdrop-opacity-10">
+           <div class="mobile-view">
+              
+              <div>
+                <img src="%PUBLIC_URL%/logo_white.svg" width="100%"/>
+              </div>
+
+              <div>
+                <div class="grid grid-cols-3 place-items-center">
+                      <div class="w-[61%] col-span-3">
+                        <img src="%PUBLIC_URL%/email_white.svg" width="20px" class="float-left"/> &nbsp;<span style="font-size: 15px;">support.magnet@gmail.com</span>
+                      </div>
+                      <div class="w-[40%] col-span-3 mt-4 ">
+                        <img src="%PUBLIC_URL%/phone_white.svg" width="20px" class="float-left"/> &nbsp; <span style="font-size: 15px;">021 -  5559473</span>
+                      </div>
+
+                      <div class="w-[40%] col-span-3 mt-4">
+                        <img src="%PUBLIC_URL%/wa_white.svg" width="20px" class="float-left"/>  &nbsp; <span style="font-size: 15px;">0822-4100-5172</span>
+                      </div>
+                      <div class="w-full col-span-3 mx-1 mt-4">
+                        <span style="font-size: 14px;">&copy; 2021 -  2021 www.magnet.co.id - All Rights Reserved</span>
+                      </div>
+
+                </div>
+              </div>
+
+
+            </div>  
+           <div class="mobile-hide grid grid-cols-6">
+              <div class="show_hide">
+                  <img src="%PUBLIC_URL%/logo_white.svg" width="180px"/>
+              </div>
+             
+              <div class="show_hide col-span-3 ml-6">
+                  <div class="grid grid-cols-4">
+                      
+                      <div class="w-[100%] col-span-2">
+                          <img src="%PUBLIC_URL%/email_white.svg" width="20px" class="float-left"/> &nbsp;<span style="font-size: 15px;">support.magnet@gmail.com</span>
+                      </div>
+                     
+
+                      <div >
+
+                        <img src="%PUBLIC_URL%/phone_white.svg" width="20px" class="float-left"/> &nbsp; <span style="font-size: 15px;">021 -  5559473</span>
+                        
+                         
+                      </div>
+
+                      <div>
+
+                        <img src="%PUBLIC_URL%/wa_white.svg" width="20px" class="float-left"/>  &nbsp; <span style="font-size: 15px;">0822-4100-5172</span>
+                         
+                      </div>
+
+                      <di class="hide lg:col-span-3 pt-2">
+                        &copy; 2021 -  2021 www.magnet.co.id - All Rights Reserved
+                      </div>
+
+                  </div>
+                
+
+              </div>
+           </div>
+        </footer>
+      </div>
+    </section>  
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

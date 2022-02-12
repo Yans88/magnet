@@ -4,6 +4,9 @@ import { Form } from 'react-bootstrap'
 import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
 import { chgPropsProfile, changePass, updProfile, clearState, profileUser } from '../main/mainSlice'
+import icon from '../../assets/setting.svg';
+import "../../styles/custom_muis.css";
+
 
 class Setting extends Component {
     constructor(props) {
@@ -95,11 +98,13 @@ class Setting extends Component {
 
                 <section className="content">
                     <div className="container-fluid">
-                        <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>Setting</h1>
+                        <img src={icon} width="35px" className="float-left mt-3" />
+                        <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Pengaturan</h1>
+
                         <div className="row">
                             <div className="col-12">
                                 {/* card start */}
-                                <div className="card card-success shadow-lg" style={{ "minHeight": "430px" }}>
+                                <div className="card card-success shadow-lg rounded-2xl" style={{ "minHeight": "430px",borderRadius:"2rem" }}>
                                     <div className="card-body" style={{ paddingLeft: 20, paddingRight: 20 }}>
                                         <Nav appearance="subtle" activeKey={active_tab} className="tab_personal">
                                             <Nav.Item
@@ -116,17 +121,18 @@ class Setting extends Component {
                                                 className="default" >Profile
                                             </Nav.Item>
                                         </Nav>
-                                        <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 20 }}>
+                                        <div style={{ paddingTop: 20 }} className="px-3 lg:px-5">
                                             {errorMessage ? <div className={!isError ? "alert alert-info alert-sm" : "alert alert-danger alert-sm"} style={{ marginTop: '.3rem' }}>
                                                 <button onClick={this.hideAlert.bind(this)} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
                                                 <span className="fw-semi-bold">{errorMessage}</span>
                                             </div> : <br />}
                                             {active_tab === 'password_form' && (
+                                               
+                                               
                                                 <Fragment>
-
+                                                <div className="border py-4 px-4 w-[100%] shadow-lg rounded-2xl ">    
                                                     <Row>
-                                                        <Col xs={6}><label style={{ color: '#6b798f', marginTop: 8 }}>Current Password</label></Col>
-                                                        <Col xs={18}>
+                                                        <Col >
                                                             {errMsg1.current_password ?
                                                                 (<span className="float-right text-error badge badge-danger">{errMsg1.current_password}</span>) : ''}
                                                             <Form.Control
@@ -143,8 +149,7 @@ class Setting extends Component {
                                                     <br />
                                                     <br />
                                                     <Row>
-                                                        <Col xs={6}><label style={{ color: '#6b798f', marginTop: 8 }}>New Password</label></Col>
-                                                        <Col xs={18}>
+                                                        <Col >
                                                             {errMsg1.password ?
                                                                 (<span className="float-right text-error badge badge-danger">{errMsg1.password}</span>) : ''}
                                                             <Form.Control
@@ -161,8 +166,7 @@ class Setting extends Component {
                                                     <br />
                                                     <br />
                                                     <Row>
-                                                        <Col xs={6}><label style={{ color: '#6b798f', marginTop: 8 }}>Repeat New Password</label></Col>
-                                                        <Col xs={18}>
+                                                        <Col >
                                                             {errMsg1.konfirmasi_password ?
                                                                 (<span className="float-right text-error badge badge-danger">{errMsg1.konfirmasi_password}</span>) : ''}
                                                             <Form.Control
@@ -178,24 +182,30 @@ class Setting extends Component {
                                                     </Row>
                                                     <br />
                                                     <br />
-                                                    <Row>
-                                                        <Col xs={5} xsPush={20}>
-                                                            <AppButton
-                                                                onClick={this.handleSubmitPass.bind(this)}
-                                                                type="button"
-                                                                size="lg"
-                                                                theme="success">
-                                                                CHANGE PASSWORD</AppButton>
-                                                        </Col>
-                                                    </Row>
+                                                    
+                                                </div>
+                                                <div className="grid grid-cols-1 place-items-center mt-4 mb-2" >
+                                                    <div className="w-[75%] lg:w-[20%]">
+                                                    
+                                                        <AppButton
+                                                            onClick={this.handleSubmitPass.bind(this)}
+                                                            type="button"
+                                                            size="lg"
+                                                            theme=""
+                                                            style={{ backgroundColor:"#C3262A",color:"#fff"}}
+                                                            >
+                                                            CHANGE PASSWORD</AppButton>
+                                                            
+                                                    </div>
+                                                </div>
+
                                                 </Fragment>)}
 
                                             {active_tab === 'profile' && (
                                                 <Fragment>
-                                                    
+                                                    <div className="border py-4 px-4 w-[100%] shadow-lg rounded-2xl ">
                                                     <Row>
-                                                        <Col xs={6}><label style={{ color: '#6b798f', marginTop: 8 }}>First Name</label></Col>
-                                                        <Col xs={18}>
+                                                        <Col>
                                                             <Form.Control
                                                                 value={user.nama_depan ? user.nama_depan : ''}
                                                                 autoComplete="off"
@@ -210,8 +220,7 @@ class Setting extends Component {
                                                     <br />
                                                     <br />
                                                     <Row>
-                                                        <Col xs={6}><label style={{ color: '#6b798f', marginTop: 8 }}>Last Name</label></Col>
-                                                        <Col xs={18}>
+                                                        <Col>
                                                             <Form.Control
                                                                 value={user.nama_belakang ? user.nama_belakang : ''}
                                                                 autoComplete="off"
@@ -226,8 +235,7 @@ class Setting extends Component {
                                                     <br />
                                                     <br />
                                                     <Row>
-                                                        <Col xs={6}><label style={{ color: '#6b798f', marginTop: 8 }}>Email</label></Col>
-                                                        <Col xs={18}>
+                                                        <Col>
                                                             {errMsg1.email ?
                                                                 (<span className="float-right text-error badge badge-danger">{errMsg1.email}</span>) : ''}
                                                             <Form.Control
@@ -243,17 +251,25 @@ class Setting extends Component {
                                                     </Row>
                                                     <br />
                                                     <br />
-                                                    <Row>
-                                                        <Col xs={4} xsPush={20}>
-                                                            <AppButton
-                                                                onClick={this.handleSubmit.bind(this)}
-                                                                style={{ marginLeft: 18 }}
-                                                                type="button"
-                                                                size="lg"
-                                                                theme="success">
-                                                                UPDATE PROFILE</AppButton>
-                                                        </Col>
-                                                    </Row>
+                                                    
+                                                    </div>
+
+                                                    <div className="grid grid-cols-1 place-items-center mt-4 mb-2" >
+                                                        <div className="w-[70%] lg:w-[20%]">
+                                                                <AppButton
+                                                                    onClick={this.handleSubmit.bind(this)}
+                                                                    style={{ marginLeft: 18 }}
+                                                                    type="button"
+                                                                    size="lg"
+                                                                    theme=""
+                                                                    style={{ backgroundColor:"#C3262A",color:"#fff"}}
+                                                                    
+                                                                    >
+                                                                    UPDATE PROFILE</AppButton>
+                                                           
+                                                        </div>
+                                                    </div>
+
                                                 </Fragment>)}
                                         </div>
 

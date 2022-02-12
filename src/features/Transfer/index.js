@@ -9,6 +9,7 @@ import "moment/locale/id";
 import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 import ReactDatatable from '@ashvin27/react-datatable';
+import icon from '../../assets/transfer_ijo.svg';
 
 var yesterday = moment();
 var valid_startDate = function (current) {
@@ -305,120 +306,158 @@ class Transfer extends Component {
             <div className="content-wrapper table__account">
 
                 <section className="content">
-                    <div className="container-fluid">
-                        <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>Transfer Internal</h1>
-                        <div className="row">
+                    <div className="container-fluid mt-3">
+                        
+                        <img src={icon} width="35px" className="float-left mt-3" />
+                        <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Transfer Internal</h1>
+                        
+                        
+                        <div className="row mt-4">
                             <div className="col-12">
                                 {/* card start */}
-                                <div className="card card-success shadow-lg" style={{ "minHeight": "500px" }}>
+                                <div className="card card-success shadow-lg" style={{ "minHeight": "500px" ,borderRadius:"20px" }}>
                                     <div className="card-body">
 
-                                        <div style={{ paddingLeft: 30, paddingRight: 30, paddingTop: 5 }}>
-                                            <h3 className="mb-5">Akun Trading MT5 </h3>
-                                            <div className="row">
-                                                <div className="col-sm-6">
-                                                    <h3 className="form-section text-capitalize">Dari</h3>
-                                                    <table className="table table-hover">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>-</th>
-                                                                <th>Login</th>
-                                                                <th>Nama</th>
-                                                                <th style={{ textAlign: 'right' }}>Margin Free</th>
-                                                                <th style={{ textAlign: 'right' }}>Equity</th>
-                                                                <th style={{ textAlign: 'right' }}>Rate</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
+                                        <div style={{ paddingTop: 5 }} className="px-0 lg:px-3">
+                                            <h3 className="label_ijo">Akun Trading MT5</h3>
+                                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-0  py-4">
+                                                
+                                                <div className="">
+                                                    <h3 className="form-section text-capitalize" style={{ color:"#2E2E2F" }}>Dari</h3>
+                                                    <div className="p-2" style={{border:"1px solid #000",borderRadius:"5px"}}>
+
+                                                            <div className="flex p-3" >
+                                                            
+                                                                <div class="flex-initial w-20 ...">
+                                                                
+                                                                </div>
+
+                                                                <div class="flex-initial w-64 text-black font-bold ...">
+                                                                    LOGIN
+                                                                </div>
+
+                                                                <div class="flex-initial w-64 text-black font-bold ...">
+                                                                    NAMA
+                                                                </div>
+
+                                                                <div class="flex-initial w-64 text-black font-bold ...">
+                                                                    Margin Free
+                                                                </div>
+                                                                <div class="flex-initial w-64 text-black font-bold ...">
+                                                                    Equity
+                                                                </div>
+                                                                <div class="flex-initial w-64 text-black font-bold ...">
+                                                                    Rate
+                                                                </div>
+
+                                                                
+
+                                                            </div>
+
                                                             {akun_trading ? (
-                                                                akun_trading.map((at, index) => {
-                                                                    return (
+                                                                        akun_trading.map((at, index) => {
+                                                                            return (
+
                                                                         <Fragment key={index}>
-                                                                            <tr onClick={e => this.onClickRow(at)} className={this.state.selected.login === at.login ? "active-row" : ''}>
-                                                                                <td>
+
+                                                                            <div style={{color:"#222"}} onClick={e => this.onClickRow(at)} className={this.state.selected.login === at.login ? "flex px-2 active-row" : 'flex px-2'}>
+                                                                            
+                                                                                <div class="flex-initial w-20 ...">
+
                                                                                     <input type="radio"
-                                                                                        onChange={e => this.onClickRow(at)}
-                                                                                        checked={this.state.selected.login === at.login ? true : false}
-                                                                                        name="account-selection" value={at.login} />
-                                                                                </td>
-                                                                                <td>{at.login}
-                                                                                </td>
-                                                                                <td>{at.name}</td>
-                                                                                <td align="right">
+                                                                                    onChange={e => this.onClickRow(at)}
+                                                                                    checked={this.state.selected.login === at.login ? true : false}
+                                                                                    name="account-selection" value={at.login} />
+
+                                                                                </div>
+
+                                                                                <div class="flex-initial w-64 ...">
+                                                                                    {at.login}
+                                                                                </div>
+
+                                                                                <div class="flex-initial w-64 ...">
+                                                                                    {at.name}
+                                                                                </div>
+
+                                                                                <div class="flex-initial w-64 ...">
                                                                                     <NumberFormat
                                                                                         value={at.margin_free > 0 ? at.margin_free : '0.00'}
                                                                                         thousandSeparator={true}
                                                                                         decimalScale={2}
                                                                                         displayType={'text'}
                                                                                     />
-                                                                                </td>
-                                                                                <td align="right">
-                                                                                    <NumberFormat
-                                                                                        value={at.equity > 0 ? at.equity : '0.00'}
-                                                                                        thousandSeparator={true}
-                                                                                        decimalScale={2}
-                                                                                        displayType={'text'}
-                                                                                    />
-                                                                                </td>
-                                                                                <td align="right">
-                                                                                    {at.rate}
-                                                                                </td>
-                                                                            </tr>
+                                                                                </div>
+                                                                                <div class="flex-initial w-64 ...">
+                                                                                        <NumberFormat
+                                                                                                value={at.equity > 0 ? at.equity : '0.00'}
+                                                                                                thousandSeparator={true}
+                                                                                                decimalScale={2}
+                                                                                                displayType={'text'}
+                                                                                            />
+                                                                                </div>
+                                                                                <div class="flex-initial w-64 ...">
+                                                                                        {at.rate}
+                                                                                </div>
+
+                                                                                
+
+                                                                            </div>
+
                                                                         </Fragment>
+
                                                                     );
                                                                 })
                                                             ) : ''}
 
-                                                        </tbody>
-                                                    </table >
-
-
-                                                    <div className="row">
-                                                        <div className="col-sm-6 col-md-6 mb-6" style={{ paddingRight:0 }}>
-                                                            <input name="setor" type="number" placeholder='Jumlah' className="form-control" />
-                                                        </div>
-                                                        <div className="col-sm-2 col-md-2 mb-2" style={{ paddingLeft:0 }}>
-                                                            <AppButton
-                                                                style={{ minHeight: 32 }}
-                                                                type="button"
-                                                                size="sm"
-                                                                theme="success">Transfer</AppButton>
-                                                        </div>
                                                     </div>
 
 
                                                 </div>
-                                                <div className="col-sm-6">
-                                                    <h3 className="form-section text-capitalize">Tujuan</h3>
+                                                
+                                                <div>
+                                                    <h3 className="form-section text-capitalize" style={{ color:"#2E2E2F" }}>Tujuan</h3>
+                                                    <div className="p-2" style={{border:"1px solid #000",borderRadius:"5px"}}>
+                                                    <div className="flex p-3">
+                                                    
+                                                        <div class="flex-initial w-20 ...">
+                                                        
+                                                        </div>
 
-                                                    <table className="table table-hover">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>-</th>
-                                                                <th>Login</th>
-                                                                <th>Nama</th>
-                                                                <th style={{ textAlign: 'right' }}>Margin Free</th>
-                                                                <th style={{ textAlign: 'right' }}>Equity</th>
-                                                                <th style={{ textAlign: 'right' }}>Rate</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
+                                                        <div class="flex-initial w-64 text-black font-bold ...">
+                                                            LOGIN
+                                                        </div>
 
+                                                        <div class="flex-initial w-64 text-black font-bold ...">
+                                                            NAMA
+                                                        </div>
 
-                                                        </tbody>
-                                                    </table >
+                                                        <div class="flex-initial w-64 text-black font-bold ...">
+                                                            Margin Free
+                                                        </div>
+                                                        <div class="flex-initial w-64 text-black font-bold ...">
+                                                            Equity
+                                                        </div>
+                                                        <div class="flex-initial w-64 text-black font-bold ...">
+                                                            Rate
+                                                        </div>
+
+                                                        
+
+                                                    </div>
+                                                    </div>
+
                                                 </div>
+                                            
                                             </div>
 
-
                                             <br />
-                                            <h3>Daftar Transfer Internal(draft)</h3>
+                                            <h3 style={{ color:"#2E2E2F" }}>Daftar Transfer Internal</h3>
 
-                                            <div className="row">
+                                            <div className="row mt-3 mb-4">
                                                 <div className="col-md-12">
-                                                    <div className="mb-3 pull-right">
-                                                        <div className="pull-left margin-left-10 max-w-250">
-                                                            <label>Tanggal: Awal</label>
+                                                    <div className="mb-3">
+                                                        <div className="pull-left margin-left-0 max-w-250">
+                                                            <label style={{ color:"#2E2E2F" }}>Tanggal: Awal</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
                                                                 timeFormat={false}
@@ -436,8 +475,8 @@ class Transfer extends Component {
                                                                 locale="id" isValidDate={this.state.validSd}
                                                             />
                                                         </div>
-                                                        <div className="pull-left margin-left-10 max-w-250">
-                                                            <label>Tanggal: Akhir</label>
+                                                        <div className="pull-left ml-4 lg:ml-1 max-w-250">
+                                                            <label style={{ color:"#2E2E2F" }}>Tanggal: Akhir</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
                                                                 timeFormat={false}

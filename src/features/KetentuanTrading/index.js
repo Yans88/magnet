@@ -72,12 +72,13 @@ class KetentuanTrading extends Component {
                 </div>
                 <section className="content">
                     <div className="container-fluid">
-                        <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>Ketentuan Trading</h1>
+                        <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>Registrasi Akun Online</h1>
                         <div className="row">
                             <div className="col-12">
                                 {/* card start */}
                                 <div className="card card-success shadow-lg" style={{ "minHeight": "800px" }}>
                                     <div className="card-body">
+                                    <h3 className="label_ijo">Ketentuan Trading</h3>
                                         <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 20 }}>
                                             <div className="alert alert-default alert-sm" style={{ backgroundColor: '#fbfbfd', border: '2px solid #DBD7D6' }} >
                                                 {dataSetting ? (
@@ -96,28 +97,34 @@ class KetentuanTrading extends Component {
                                             </div>
                                         </div>
                                         <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '3em -1.5em -1.5em' }}>
-                                            <div className="form-group">
-                                                <div className="form-check">
-                                                    {errMsg.agree ? (<span className="text-error badge badge-danger">{errMsg.agree}</span>) : ''}
-                                                    <label>
-                                                        <input
-                                                            checked={dataKetentuanTrading.agree ? true : false}
-                                                            onChange={this.handleChange.bind(this)} className="form-check-input" type="checkbox" name="agree" />
-                                                        <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+                                            <div className="grid grid-cols-1 place-items-center">
+                                                <div className="form-group w-3/4">
+                                                    <div className="form-check">
+                                                        {errMsg.agree ? (<span className="text-error badge badge-danger">{errMsg.agree}</span>) : ''}
+                                                        <label>
+                                                            <input
+                                                                checked={dataKetentuanTrading.agree ? true : false}
+                                                                onChange={this.handleChange.bind(this)} className="form-check-input" type="checkbox" name="agree" />
+                                                            <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
 
-                                                    </label>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div className="form-group w-1/4">    
+                                                    <AppButton
+                                                        style={{ color: '#ffffff' }}
+                                                        onClick={this.handleSubmit1.bind(this)}
+                                                        type="button"
+                                                        size="xl"
+                                                        theme=""
+                                                                style={{ backgroundColor:"#C3262A",color:"#fff"}}>Selanjutnya</AppButton>
                                                 </div>
 
-                                                <AppButton
-                                                    style={{ color: '#ffffff' }}
-                                                    onClick={this.handleSubmit1.bind(this)}
-                                                    type="button"
-                                                    size="lg"
-                                                    theme="warning">Selanjutnya</AppButton>
 
-
+                                                </div>
                                             </div>
-                                        </div>
+                                        
                                     </div>
 
                                 </div>

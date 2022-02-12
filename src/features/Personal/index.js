@@ -460,20 +460,22 @@ class Personal extends Component {
         return (
 		
             <div className="content-wrapper">
-
-                <div className="content-area__edge">
-                    <ul className="list-unstyled list-steps mb-0">
-                        <li className={lastSegmentUrl === "personal" ? "active default" : "default"}><a href="personal">Informasi Pribadi</a></li>
-                        <li className={lastSegmentUrl === "account-type" ? "active default" : "default"}><a href="account-type"><span />Tipe Akun</a></li>
-                        <li className={lastSegmentUrl === "decleration" ? "active default" : "default"}><a href="decleration"><span />Pernyataan</a></li>
-                        <li className={lastSegmentUrl === "trading_rules" ? "active default" : "default"}><a href="trading_rules"><span />Peraturan Trading</a></li>
-                        <li className={lastSegmentUrl === "company_profile" ? "active default" : "default"}><a href="company_profile"><span />Profil Perusahaan</a></li>
-                    </ul>
-                </div>
+                
+                
 
                 <section className="content">
                     <div className="container-fluid">
-                        <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>Registrasi Akun Online</h1>
+                    <div className="content-area__edge">
+                        <ul className="list-unstyled list-steps mb-0">
+                            <li className={lastSegmentUrl === "personal" ? "active default" : "default"}><a href="personal">1. Informasi Pribadi</a></li>
+                            <li className={lastSegmentUrl === "account-type" ? "active default" : "default"}><a href="account-type"><span />2. Tipe Akun</a></li>
+                            <li className={lastSegmentUrl === "decleration" ? "active default" : "default"}><a href="decleration"><span />3. Pernyataan</a></li>
+                            <li className={lastSegmentUrl === "trading_rules" ? "active default" : "default"}><a href="trading_rules"><span />4. Peraturan Trading</a></li>
+                            <li className={lastSegmentUrl === "company_profile" ? "active default" : "default"}><a href="company_profile"><span />5. Profil Perusahaan</a></li>
+                        </ul>
+                    </div>
+
+                        <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }} className="text-gray-500">Registrasi Akun Online</h1>
                         {errFetchUserByToken ? (
                             <div className="alert alert-danger alert-sm" style={{ marginTop: '.3rem' }}>
                                 <button onClick={this.hideAlertToken.bind(this)} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -484,14 +486,14 @@ class Personal extends Component {
                             <div className="col-12">
                                 {/* card start */}
 
-                                <div className="card card-success shadow-lg">
+                                <div className="card card-success shadow-lg" style={{borderRadius:"2rem" }}>
                                     <div className="card-body">
                                         <Nav appearance="subtle" activeKey={active_tab} justified className="tab_personal">
                                             <Nav.Item
                                                 onSelect={this.handleSelect.bind(this)}
                                                 active={active_tab === 'detil_pribadi' ? true : false}
                                                 eventKey="detil_pribadi"
-                                                className="default" >Detil Pribadi
+                                                className="default border   border-white" >Detil Pribadi
                                             </Nav.Item>
                                             <Nav.Item
                                                 eventKey="exp_trading"
@@ -535,11 +537,11 @@ class Personal extends Component {
                                             <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                                                     <br />
-                                                    <h3>Detil Pribadi</h3>
+                                                    <h3 className="label_ijo">Detil Pribadi</h3>
                                                     <br />
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="nama_depan">
-                                                            <Form.Label>Nama Depan</Form.Label>
+                                                            <Form.Label><span className="label_merah">Nama Depan</span></Form.Label>
                                                             <Form.Control
                                                                 value={user.nama_depan ? user.nama_depan : ''}
                                                                 autoComplete="off"
@@ -552,7 +554,7 @@ class Personal extends Component {
 																{errMsg1.nama_depan ? (<span className="text-error badge badge-danger">{errMsg1.nama_depan}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} controlId="nama_belakang">
-                                                            <Form.Label>Nama Belakang</Form.Label>
+                                                            <Form.Label><span className="label_merah">Nama Belakang</span></Form.Label>
                                                             <Form.Control
                                                                 value={user.nama_belakang ? user.nama_belakang : ''}
                                                                 autoComplete="off"
@@ -566,7 +568,7 @@ class Personal extends Component {
                                                     </Form.Row>
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="tempat_lahir">
-                                                            <Form.Label>Tempat Lahir</Form.Label>
+                                                            <Form.Label><span className="label_form">Tempat Lahir</span></Form.Label>
                                                             <Form.Control
                                                                 name="tempat_lahir"
                                                                 size="lg"
@@ -655,24 +657,9 @@ class Personal extends Component {
 															{errMsg1.no_identitas ? (<span className="text-error badge badge-danger">{errMsg1.no_identitas}</span>) : ''}
                                                         </Form.Group>
                                                     </Form.Row>
+                                                   
                                                     <Form.Row>
-                                                        <Form.Group as={Col} xs={3} controlId="npwp">
-                                                            <Form.Label>NPWP</Form.Label>
-                                                            <Form.Control
-                                                                value={user.npwp ? user.npwp : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChange}
-                                                                size="lg"
-                                                                name="npwp"
-                                                                type="text"
-                                                                required
-                                                                placeholder="NPWP" />
-																{errMsg1.npwp ? (<span className="text-error badge badge-danger">{errMsg1.npwp}</span>) : ''}
-                                                        </Form.Group>
-														
-                                                    </Form.Row>
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={3} controlId="jenis_kelamin">
+                                                        <Form.Group as={Col} xs={6} controlId="jenis_kelamin">
                                                             <Form.Label>Jenis Kelamin</Form.Label><br />
                                                             <Form.Check
                                                                 onChange={this.handleChange}
@@ -694,57 +681,25 @@ class Personal extends Component {
                                                             />
 															{errMsg1.jenis_kelamin ? (<span className="text-error badge badge-danger">{errMsg1.jenis_kelamin}</span>) : ''}
                                                         </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} controlId="status_pernikahan">
-                                                            <Form.Label>Status Pernikahan</Form.Label>
+
+                                                        <Form.Group as={Col} controlId="handphone">
+                                                            <Form.Label>No Handphone</Form.Label>
                                                             <Form.Control
-                                                                name="status_pernikahan"
-                                                                size="lg"
-                                                                value={user.status_pernikahan ? user.status_pernikahan : ''}
-                                                                onChange={this.handleChange}
-                                                                as="select">
-                                                                <option value="">Pilih</option>
-                                                                <option value="Belum Kawin">Belum Kawin</option>
-                                                                <option value="Kawin">Kawin</option>
-                                                                <option value="Cerai">Cerai</option>
-                                                                <option value="Janda/Duda">Janda/Duda</option>
-                                                            </Form.Control>
-															{errMsg1.status_pernikahan ? (<span className="text-error badge badge-danger">{errMsg1.status_pernikahan}</span>) : ''}
-                                                        </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
-                                                        {user.status_pernikahan === "Kawin" && (
-                                                            <Fragment>
-                                                                <Form.Group as={Col} controlId="nama_pasangan">
-                                                                    <Form.Label>Nama Pasangan</Form.Label>
-                                                                    <Form.Control
-                                                                        value={user.nama_pasangan ? user.nama_pasangan : ''}
-                                                                        autoComplete="off"
-                                                                        onChange={this.handleChange}
-                                                                        size="lg"
-                                                                        name="nama_pasangan"
-                                                                        type="text"
-                                                                        required
-                                                                        placeholder="Nama Pasangan" />
-																		{errMsg1.nama_pasangan ? (<span className="text-error badge badge-danger">{errMsg1.nama_pasangan}</span>) : ''}
-                                                                </Form.Group>
-                                                            </Fragment>
-                                                        )}
-                                                        <Form.Group as={Col} xs={user.status_pernikahan !== "Kawin" && "6"} md={{ span: user.status_pernikahan !== "Kawin" && "6", offset: user.status_pernikahan !== "Kawin" && "6" }} controlId="nama_ibu_kandung">
-                                                            <Form.Label>Nama Gadis Ibu Kandung</Form.Label>
-                                                            <Form.Control
-                                                                value={user.nama_ibu_kandung ? user.nama_ibu_kandung : ''}
+                                                                value={user.handphone ? user.handphone : ''}
                                                                 autoComplete="off"
                                                                 onChange={this.handleChange}
                                                                 size="lg"
-                                                                name="nama_ibu_kandung"
+                                                                name="handphone"
                                                                 type="text"
                                                                 required
-                                                                placeholder="Nama Gadis Ibu Kandung" />
-																{errMsg1.nama_ibu_kandung ? (<span className="text-error badge badge-danger">{errMsg1.nama_ibu_kandung}</span>) : ''}
+                                                                placeholder="No Handphone" />
+																 {errMsg1.handphone ? (<span className="text-error badge badge-danger">{errMsg1.handphone}</span>) : ''}
                                                         </Form.Group>
+
+
                                                     </Form.Row>
+                                                    
+                                                    
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="alamat">
                                                             <Form.Label>Alamat</Form.Label>
@@ -754,7 +709,7 @@ class Personal extends Component {
                                                                 onChange={this.handleChange}
                                                                 size="lg"
                                                                 name="alamat"
-                                                                type="text"
+                                                                type="textarea"
                                                                 required
                                                                 placeholder="Alamat" />
 																{errMsg1.alamat ? (<span className="text-error badge badge-danger">{errMsg1.alamat}</span>) : ''}
@@ -788,9 +743,8 @@ class Personal extends Component {
 																 {errMsg1.rw ? (<span className="text-error badge badge-danger">{errMsg1.rw}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} xs={3} controlId="provinsi">
-
+                                                            <Form.Label>Kota</Form.Label>    
                                                             <Form.Control
-                                                                style={{ marginTop: 28 }}
                                                                 name="provinsi"
                                                                 size="lg"
                                                                 value={user.provinsi ? user.provinsi : ''}
@@ -810,9 +764,28 @@ class Personal extends Component {
                                                             </Form.Control>
 															 {errMsg1.provinsi ? (<span className="text-error badge badge-danger">{errMsg1.provinsi}</span>) : ''}
                                                         </Form.Group>
+
+                                                        <Form.Group as={Col} controlId="status_kepemilikan">
+                                                            <Form.Label>Status Kepemilikan Rumah</Form.Label>
+                                                            <Form.Control
+                                                                name="status_kepemilikan"
+                                                                size="lg"
+                                                                value={user.status_kepemilikan ? user.status_kepemilikan : ''}
+                                                                onChange={this.handleChange}
+                                                                as="select">
+                                                                <option value="">Pilih</option>
+                                                                <option value="Milik">Pribadi</option>
+                                                                <option value="Keluarga">Keluarga</option>
+                                                                <option value="Sewa/Kontrak">Sewa/Kontrak</option>
+
+                                                            </Form.Control>
+															 {errMsg1.status_kepemilikan ? (<span className="text-error badge badge-danger">{errMsg1.status_kepemilikan}</span>) : ''}
+                                                        </Form.Group>
+
                                                     </Form.Row>
                                                     <Form.Row>
-                                                        <Form.Group as={Col} controlId="warga_negara">
+                                                        
+                                                        <Form.Group as={Col} xs={4} controlId="warga_negara">
                                                             <Form.Label>Kewarganegaraan</Form.Label>
                                                             <Form.Control
                                                                 name="warga_negara"
@@ -834,8 +807,65 @@ class Personal extends Component {
                                                             </Form.Control>
 															 {errMsg1.warga_negara ? (<span className="text-error badge badge-danger">{errMsg1.warga_negara}</span>) : ''}
                                                         </Form.Group>
+
+                                                        <Form.Group as={Col} xs={4} controlId="status_pernikahan">
+                                                            <Form.Label>Status Pernikahan</Form.Label>
+                                                            <Form.Control
+                                                                name="status_pernikahan"
+                                                                size="lg"
+                                                                value={user.status_pernikahan ? user.status_pernikahan : ''}
+                                                                onChange={this.handleChange}
+                                                                as="select">
+                                                                <option value="">Pilih</option>
+                                                                <option value="Belum Kawin">Belum Kawin</option>
+                                                                <option value="Kawin">Kawin</option>
+                                                                <option value="Cerai">Cerai</option>
+                                                                <option value="Janda/Duda">Janda/Duda</option>
+                                                            </Form.Control>
+															{errMsg1.status_pernikahan ? (<span className="text-error badge badge-danger">{errMsg1.status_pernikahan}</span>) : ''}
+                                                        </Form.Group>
+
+
+                                                        <Form.Group as={Col} xs={4} controlId="nama_ibu_kandung">
+                                                            <Form.Label>Nama Gadis Ibu Kandung</Form.Label>
+                                                            <Form.Control
+                                                                value={user.nama_ibu_kandung ? user.nama_ibu_kandung : ''}
+                                                                autoComplete="off"
+                                                                onChange={this.handleChange}
+                                                                size="lg"
+                                                                name="nama_ibu_kandung"
+                                                                type="text"
+                                                                required
+                                                                placeholder="Nama Gadis Ibu Kandung" />
+																{errMsg1.nama_ibu_kandung ? (<span className="text-error badge badge-danger">{errMsg1.nama_ibu_kandung}</span>) : ''}
+                                                        </Form.Group>
+
+
+
                                                     </Form.Row>
                                                     <Form.Row>
+                                                        {user.status_pernikahan === "Kawin" && (
+                                                            <Fragment>
+                                                                <Form.Group controlId="nama_pasangan">
+                                                                    <Form.Label>Nama Pasangan</Form.Label>
+                                                                    <Form.Control
+                                                                        value={user.nama_pasangan ? user.nama_pasangan : ''}
+                                                                        autoComplete="off"
+                                                                        onChange={this.handleChange}
+                                                                        size="lg"
+                                                                        name="nama_pasangan"
+                                                                        type="text"
+                                                                        required
+                                                                        placeholder="Nama Pasangan" />
+																		{errMsg1.nama_pasangan ? (<span className="text-error badge badge-danger">{errMsg1.nama_pasangan}</span>) : ''}
+                                                                </Form.Group>
+                                                            </Fragment>
+                                                        )}
+                                                        
+                                                    </Form.Row>
+
+                                                    <Form.Row>
+                                                        
                                                         <Form.Group as={Col} controlId="telp">
                                                             <Form.Label>Telepon Rumah</Form.Label>
                                                             <Form.Control
@@ -863,68 +893,80 @@ class Personal extends Component {
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
-                                                        <Form.Group as={Col} controlId="handphone">
-                                                            <Form.Label>No Handphone</Form.Label>
-                                                            <Form.Control
-                                                                value={user.handphone ? user.handphone : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChange}
-                                                                size="lg"
-                                                                name="handphone"
-                                                                type="text"
-                                                                required
-                                                                placeholder="No Handphone" />
-																 {errMsg1.handphone ? (<span className="text-error badge badge-danger">{errMsg1.handphone}</span>) : ''}
-                                                        </Form.Group>
+                                                        
 														
                                                     </Form.Row>
                                                     <Form.Row>
-                                                        <Form.Group as={Col} controlId="status_kepemilikan">
-                                                            <Form.Label>Status Kepemilikan Rumah</Form.Label>
-                                                            <Form.Control
-                                                                name="status_kepemilikan"
-                                                                size="lg"
-                                                                value={user.status_kepemilikan ? user.status_kepemilikan : ''}
-                                                                onChange={this.handleChange}
-                                                                as="select">
-                                                                <option value="">Pilih</option>
-                                                                <option value="Milik">Pribadi</option>
-                                                                <option value="Keluarga">Keluarga</option>
-                                                                <option value="Sewa/Kontrak">Sewa/Kontrak</option>
-
-                                                            </Form.Control>
-															 {errMsg1.status_kepemilikan ? (<span className="text-error badge badge-danger">{errMsg1.status_kepemilikan}</span>) : ''}
-                                                        </Form.Group>
+                                                        
                                                     </Form.Row>
+
+                                                    <Form.Row>
+                                                        <Form.Group as={Col} xs={3} controlId="npwp">
+                                                            <Form.Label>NPWP</Form.Label>
+                                                            <Form.Control
+                                                                value={user.npwp ? user.npwp : ''}
+                                                                autoComplete="off"
+                                                                onChange={this.handleChange}
+                                                                size="lg"
+                                                                name="npwp"
+                                                                type="text"
+                                                                required
+                                                                placeholder="NPWP" />
+																{errMsg1.npwp ? (<span className="text-error badge badge-danger">{errMsg1.npwp}</span>) : ''}
+                                                        </Form.Group>
+														
+                                                    </Form.Row>
+
 
                                                 </div>
                                                 <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
-                                                    <div className="form-group">
-                                                        <div className="form-check">
-                                                            {errMsg1.agreement1 ? (<span className="text-error badge badge-danger">{errMsg1.agreement1}</span>) : ''}
-                                                            <label>
-                                                                <input
-                                                                    checked={user.agreement1 ? true : false}
-                                                                    onChange={this.handleChange} value={1} className="form-check-input" type="checkbox" name="agreement1" />
-                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+                                                    <div className="grid grid-cols-1 place-items-center">
+                                                        <div className="form-group w-2/3">
+                                                            <div className="form-check">
+                                                                {errMsg1.agreement1 ? (<span className="text-error badge badge-danger">{errMsg1.agreement1}</span>) : ''}
+                                                                <label>
+                                                                    <input
+                                                                        checked={user.agreement1 ? true : false}
+                                                                        onChange={this.handleChange} value={1} className="form-check-input" type="checkbox" name="agreement1" />
+                                                                    <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
 
-                                                            </label>
+                                                                </label>
+                                                                
+                                                            </div>
+                                                            
+                                                            <div className="grid grid-cols-1 place-items-center">
+
+                                                                <div className="form-group w-[50%] text-center mt-4">
+                                                                <label>
+                                                                    Dengan mendaftar, saya menyetujui <br/>Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                                </label>
+                                                                </div>
+
+                                                                <div className="form-group w-[40%] text-center">
+                                                               
+                                                                <AppButton
+                                                                style={{ color: '#ffffff', marginRight: 5 }}
+                                                                onClick={this.handleSubmit1.bind(this, 'detil_pribadi')}
+                                                                type="button"
+                                                                size="lg"
+                                                                theme=""
+                                                                style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
+
+                                                                >Selanjutnya</AppButton>
+
+                                                                <AppButton
+                                                                onClick={this.handleSubmit1.bind(this)}
+                                                                type="button"
+                                                                size="lg"
+                                                                theme=""
+                                                                style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
+                                                                Simpan</AppButton>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
-
-                                                        <AppButton
-                                                            style={{ color: '#ffffff', marginRight: 5 }}
-                                                            onClick={this.handleSubmit1.bind(this, 'detil_pribadi')}
-                                                            type="button"
-                                                            size="lg"
-                                                            theme="warning">Selanjutnya</AppButton>
-
-                                                        <AppButton
-                                                            onClick={this.handleSubmit1.bind(this)}
-                                                            type="button"
-                                                            size="lg"
-                                                            theme="success">
-                                                            Simpan</AppButton>
                                                     </div>
+
                                                 </div>
 
 
@@ -935,7 +977,7 @@ class Personal extends Component {
                                             <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                                                     <br />
-                                                    <h3>Pengalaman Trading</h3>
+                                                    <h3 className="label_ijo">Pengalaman Trading</h3>
                                                     <br />
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="tujuan_pembukaan_rekening">
@@ -980,6 +1022,7 @@ class Personal extends Component {
                                                     {dataExpTrading.pertanyaan1 === 'Y' ? (
                                                         <Form.Row>
                                                             <Form.Group as={Col} controlId="pertanyaan2">
+                                                                
                                                                 <Form.Label>Pengalaman Trading anda Sebelumnya di</Form.Label>
                                                                 <Form.Control
                                                                     value={dataExpTrading.pertanyaan2 ? dataExpTrading.pertanyaan2 : ''}
@@ -1080,30 +1123,56 @@ class Personal extends Component {
                                                 </div>
                                                 <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
                                                     <div className="form-group">
-                                                        <div className="form-check">
-                                                            {errMsg2.agreement2 ? (<span className="text-error badge badge-danger">{errMsg2.agreement2}</span>) : ''}
-                                                            <label>
-                                                                <input
-                                                                    checked={dataExpTrading.agreement2 ? true : false}
-                                                                    onChange={this.handleChangeTrading.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement2" />
-                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+                                                        
 
-                                                            </label>
+                                                    <div className="grid grid-cols-1 place-items-center">
+                                                        <div className="form-group w-2/3">
+                                                            <div className="form-check">
+                                                                {errMsg2.agreement2 ? (<span className="text-error badge badge-danger">{errMsg2.agreement2}</span>) : ''}
+                                                                <label>
+                                                                    <input
+                                                                        checked={dataExpTrading.agreement2 ? true : false}
+                                                                        onChange={this.handleChangeTrading.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement2" />
+                                                                    <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
 
-                                                        </div>
-                                                        <AppButton
+                                                                </label>
+                                                                
+                                                            </div>
+                                                            
+                                                            <div className="grid grid-cols-1 place-items-center">
+
+                                                               <div className="form-group w-[50%] text-center mt-4">
+                                                                <label>
+                                                                    Dengan mendaftar, saya menyetujui <br/>Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                                </label>
+                                                                </div>
+
+                                                                <div className="form-group w-[40%] text-center">
+                                                               
+                                                                <AppButton
                                                             style={{ color: '#ffffff', marginRight: 5 }}
                                                             onClick={this.handleSubmit2.bind(this, 'detil_pribadi')}
                                                             type="button"
                                                             size="lg"
-                                                            theme="warning">Selanjutnya</AppButton>
+                                                            theme=""
+                                                            style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
+
+                                                            >Selanjutnya</AppButton>
 
                                                         <AppButton
                                                             onClick={this.handleSubmit2.bind(this)}
                                                             type="button"
                                                             size="lg"
-                                                            theme="success">
+                                                            theme=""
+                                                                style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
                                                             Simpan</AppButton>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
                                                     </div>
 
                                                 </div>
@@ -1114,9 +1183,10 @@ class Personal extends Component {
                                             <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                                                     <br />
-                                                    <h3>Daftar Kekayaan</h3>
+                                                    <h3 className="label_ijo">Kekayaan Pribadi</h3>
                                                     <br />
                                                     <Form.Row>
+                                                        
                                                         <Form.Group as={Col} controlId="pendapatan_pertahun">
                                                             <Form.Label>Pendapatan per Tahun</Form.Label>
                                                             <Form.Control
@@ -1132,8 +1202,7 @@ class Personal extends Component {
                                                             </Form.Control>
 															{errMsg3.pendapatan_pertahun ? (<span className="text-error badge badge-danger">{errMsg3.pendapatan_pertahun}</span>) : ''}
                                                         </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
+
                                                         <Form.Group as={Col} controlId="lokasi">
                                                             <Form.Label>Lokasi</Form.Label>
                                                             <Form.Control
@@ -1147,10 +1216,12 @@ class Personal extends Component {
                                                                 placeholder="Lokasi" />
 																{errMsg3.lokasi ? (<span className="text-error badge badge-danger">{errMsg3.lokasi}</span>) : ''}
                                                         </Form.Group>
+
                                                     </Form.Row>
+                                                    
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="njop">
-                                                            <Form.Label>Nilai NJOP Rumah</Form.Label>
+                                                            <Form.Label><span className="label_merah">Nilai NJOP Rumah</span></Form.Label>
                                                             <NumberFormat
                                                                 value={dataKekayaan.njop ? dataKekayaan.njop : ''}
                                                                 autoComplete="off"
@@ -1164,10 +1235,9 @@ class Personal extends Component {
                                                                 placeholder="Nilai NJOP Rumah" />
                                                             {errMsg3.njop ? (<span className="text-error badge badge-danger">{errMsg3.njop}</span>) : ''}
                                                         </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
+
                                                         <Form.Group as={Col} controlId="deposit_bank">
-                                                            <Form.Label>Deposit Bank</Form.Label>
+                                                            <Form.Label><span className="label_merah">Deposit Bank</span></Form.Label>
                                                             <NumberFormat
                                                                 value={dataKekayaan.deposit_bank ? dataKekayaan.deposit_bank : ''}
                                                                 autoComplete="off"
@@ -1181,10 +1251,13 @@ class Personal extends Component {
                                                                 placeholder="Deposit Bank" />
                                                             {errMsg3.deposit_bank ? (<span className="text-error badge badge-danger">{errMsg3.deposit_bank}</span>) : ''}
                                                         </Form.Group>
+
                                                     </Form.Row>
+                                                    
                                                     <Form.Row>
+                                                        
                                                         <Form.Group as={Col} controlId="jml_total">
-                                                            <Form.Label>Jumlah Total</Form.Label>
+                                                            <Form.Label><span className="label_merah">Jumlah Total</span></Form.Label>
                                                             <NumberFormat
                                                                 value={nilai_njop + deposit_bank}
                                                                 autoComplete="off"
@@ -1198,10 +1271,9 @@ class Personal extends Component {
                                                                 placeholder="Jumlah Total" />
 
                                                         </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
+
                                                         <Form.Group as={Col} controlId="lainnya">
-                                                            <Form.Label>Lainnya</Form.Label>
+                                                            <Form.Label><span className="label_merah">Jumlah Kekayaan Lainnya</span></Form.Label>
                                                             <NumberFormat
                                                                 value={dataKekayaan.lainnya ? dataKekayaan.lainnya : ''}
                                                                 autoComplete="off"
@@ -1214,34 +1286,59 @@ class Personal extends Component {
                                                                 inputMode="numeric"
                                                                 placeholder="Lainnya" />
                                                         </Form.Group>
+
                                                     </Form.Row>
+                                                    
                                                 </div>
                                                 <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
                                                     <div className="form-group">
-                                                        <div className="form-check">
-                                                            {errMsg3.agreement3 ? (<span className="text-error badge badge-danger">{errMsg3.agreement3}</span>) : ''}
-                                                            <label>
-                                                                <input
-                                                                    checked={dataKekayaan.agreement3 ? true : false}
-                                                                    onChange={this.handleChangeKekayaan.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement3" />
-                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+                                                     
+                                                     <div className="grid grid-cols-1 place-items-center">
+                                                        <div className="form-group w-2/3">
+                                                            <div className="form-check">
+                                                                {errMsg3.agreement3 ? (<span className="text-error badge badge-danger">{errMsg3.agreement3}</span>) : ''}
+                                                                <label>
+                                                                    <input
+                                                                        checked={dataKekayaan.agreement3 ? true : false}
+                                                                        onChange={this.handleChangeKekayaan.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement3" />
+                                                                    <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
 
-                                                            </label>
-                                                        </div>
+                                                                </label>
+                                                            </div>
+                                                            
+                                                            <div className="grid grid-cols-1 place-items-center">
 
-                                                        <AppButton
+                                                                <div className="form-group w-[50%] text-center mt-4">
+                                                                <label>
+                                                                    Dengan mendaftar, saya menyetujui <br/>Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                                </label>
+                                                                </div>
+
+                                                                <div className="form-group w-[40%] text-center">
+                                                               
+                                                                <AppButton
                                                             style={{ color: '#ffffff', marginRight: 5 }}
                                                             onClick={this.handleSubmit3.bind(this, 'detil_pribadi')}
                                                             type="button"
                                                             size="lg"
-                                                            theme="warning">Selanjutnya</AppButton>
+                                                            theme=""
+                                                            style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
+                                                            >Selanjutnya</AppButton>
 
                                                         <AppButton
                                                             onClick={this.handleSubmit3.bind(this)}
                                                             type="button"
                                                             size="lg"
-                                                            theme="success">
+                                                            theme=""
+                                                                style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
                                                             Simpan</AppButton>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
                                                     </div>
                                                 </div>
                                             </Form>
@@ -1252,11 +1349,11 @@ class Personal extends Component {
                                             <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                                                     <br />
-                                                    <h3>Kontak Darurat</h3>
+                                                    <h3 className="label_ijo">Kontak Darurat</h3>
                                                     <br />
 
                                                     <Form.Row>
-                                                        <Form.Group as={Col} controlId="nama">
+                                                        <Form.Group as={Col} xs={6} controlId="nama">
                                                             <Form.Label>Nama</Form.Label>{' '}
                                                             {errMsg4.nama ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.nama}</span>) : ''}
                                                             <Form.Control
@@ -1299,8 +1396,7 @@ class Personal extends Component {
                                                                 required
                                                                 placeholder="Kode Pos" />
                                                         </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
+
                                                         <Form.Group as={Col} controlId="telpp">
                                                             <Form.Label>No. Telepon</Form.Label>{' '}
                                                             {errMsg4.telp ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.telp}</span>) : ''}
@@ -1314,7 +1410,9 @@ class Personal extends Component {
                                                                 required
                                                                 placeholder="No. Telepon" />
                                                         </Form.Group>
+
                                                     </Form.Row>
+                                                    
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="handphone">
                                                             <Form.Label>No. Handphone</Form.Label>
@@ -1329,8 +1427,7 @@ class Personal extends Component {
                                                                 required
                                                                 placeholder="No. Handphone" />
                                                         </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
+
                                                         <Form.Group as={Col} controlId="hubungan">
                                                             <Form.Label>Hubungan</Form.Label>
 															{errMsg4.hubungan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.hubungan}</span>) : ''}
@@ -1345,32 +1442,59 @@ class Personal extends Component {
                                                                 <option value="Teman">Teman</option>
                                                             </Form.Control>
                                                         </Form.Group>
+
                                                     </Form.Row>
+                                                    
                                                 </div>
                                                 <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
                                                     <div className="form-group">
-                                                        <div className="form-check">
-                                                            {errMsg4.agreement4 ? (<span className="text-error badge badge-danger">{errMsg4.agreement4}</span>) : ''}
-                                                            <label>
-                                                                <input
-                                                                    checked={dataKontakDarurat.agreement4 ? true : false}
-                                                                    onChange={this.handleChangeKontakDarurat.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement4" />
-                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
 
-                                                            </label>
+                                                        <div className="grid grid-cols-1 place-items-center">
+                                                            <div className="form-group w-2/3">
+                                                                
+                                                                <div className="form-check">
+                                                                    {errMsg4.agreement4 ? (<span className="text-error badge badge-danger">{errMsg4.agreement4}</span>) : ''}
+                                                                    <label>
+                                                                        <input
+                                                                            checked={dataKontakDarurat.agreement4 ? true : false}
+                                                                            onChange={this.handleChangeKontakDarurat.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement4" />
+                                                                        <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+
+                                                                    </label>
+                                                                </div>
+                                                                
+                                                                <div className="grid grid-cols-1 place-items-center">
+
+                                                                    <div className="form-group w-[50%] text-center mt-4">
+                                                                    <label>
+                                                                        Dengan mendaftar, saya menyetujui <br/>Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                                    </label>
+                                                                    </div>
+
+                                                                    <div className="form-group w-[40%] text-center">
+                                                                
+                                                                    <AppButton
+                                                                        style={{ color: '#ffffff', marginRight: 5 }}
+                                                                        onClick={this.handleSubmit4.bind(this, 'detil_pribadi')}
+                                                                        type="button"
+                                                                        size="lg"
+                                                                        theme=""
+                                                                        style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
+                                                                        >Selanjutnya</AppButton>
+                                                                    <AppButton
+                                                                        onClick={this.handleSubmit4.bind(this)}
+                                                                        type="button"
+                                                                        size="lg"
+                                                                        theme=""
+                                                                style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
+                                                                        Simpan</AppButton>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
                                                         </div>
-                                                        <AppButton
-                                                            style={{ color: '#ffffff', marginRight: 5 }}
-                                                            onClick={this.handleSubmit4.bind(this, 'detil_pribadi')}
-                                                            type="button"
-                                                            size="lg"
-                                                            theme="warning">Selanjutnya</AppButton>
-                                                        <AppButton
-                                                            onClick={this.handleSubmit4.bind(this)}
-                                                            type="button"
-                                                            size="lg"
-                                                            theme="success">
-                                                            Simpan</AppButton>
+
                                                     </div>
                                                 </div>
                                             </Form>
@@ -1382,7 +1506,7 @@ class Personal extends Component {
                                             <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                                                     <br />
-                                                    <h3>Pekerjaan</h3>
+                                                    <h3 className="label_ijo">Pekerjaan</h3>
                                                     <br />
 
                                                     <Form.Row>
@@ -1404,9 +1528,7 @@ class Personal extends Component {
                                                                 <option value="Lainnya">Lainnya</option>
                                                             </Form.Control>
                                                         </Form.Group>
-                                                    </Form.Row>
 
-                                                    <Form.Row>
                                                         <Form.Group as={Col} controlId="nama_perusahaan">
                                                             <Form.Label>Nama Perusahaan</Form.Label>
                                                             {errMsg5.nama_perusahaan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.nama_perusahaan}</span>) : ''}
@@ -1420,7 +1542,10 @@ class Personal extends Component {
                                                                 required
                                                                 placeholder="Nama Perusahaan" />
                                                         </Form.Group>
+
                                                     </Form.Row>
+
+                                                    
 
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="jenis_bisnis">
@@ -1436,9 +1561,7 @@ class Personal extends Component {
                                                                 required
                                                                 placeholder="Jenis Bisnis" />
                                                         </Form.Group>
-                                                    </Form.Row>
 
-                                                    <Form.Row>
                                                         <Form.Group as={Col} controlId="jabatan">
                                                             <Form.Label>Posisi/Jabatan</Form.Label>
                                                             {errMsg5.jabatan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.jabatan}</span>) : ''}
@@ -1452,7 +1575,10 @@ class Personal extends Component {
                                                                 required
                                                                 placeholder="Posisi/Jabatan" />
                                                         </Form.Group>
+
                                                     </Form.Row>
+
+                                                   
 
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="lama_bekerja">
@@ -1471,8 +1597,8 @@ class Personal extends Component {
 
                                                             </Form.Control>
                                                         </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
+
+
                                                         <Form.Group as={Col} controlId="pekerjaan_sebelumnya">
                                                             <Form.Label>Lama Bekerja Sebelumnya</Form.Label>
                                                             <Form.Control
@@ -1488,7 +1614,9 @@ class Personal extends Component {
 
                                                             </Form.Control>
                                                         </Form.Group>
+
                                                     </Form.Row>
+                                                   
 
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="alamat_kantor">
@@ -1520,9 +1648,7 @@ class Personal extends Component {
                                                                 required
                                                                 placeholder="Nomor Telepon Kantor." />
                                                         </Form.Group>
-                                                    </Form.Row>
 
-                                                    <Form.Row>
                                                         <Form.Group as={Col} controlId="fax_kantor">
                                                             <Form.Label>Nomor Fax Kantor</Form.Label>
                                                             <Form.Control
@@ -1535,33 +1661,64 @@ class Personal extends Component {
                                                                 required
                                                                 placeholder="Nomor Fax Kantor" />
                                                         </Form.Group>
+
                                                     </Form.Row>
+
+                                                    
 
                                                 </div>
                                                 <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
                                                     <div className="form-group">
-                                                        <div className="form-check">
-                                                            {errMsg5.agreement5 ? (<span className="text-error badge badge-danger">{errMsg5.agreement5}</span>) : ''}
-                                                            <label>
-                                                                <input
-                                                                    checked={dataPekerjaan.agreement5 ? true : false}
-                                                                    onChange={this.handleChangePekerjaan.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement5" />
-                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+                                                        
+                                                        
 
-                                                            </label>
+
+                                                        <div className="grid grid-cols-1 place-items-center">
+                                                            <div className="form-group w-2/3">
+                                                                
+                                                                <div className="form-check">
+                                                                    {errMsg5.agreement5 ? (<span className="text-error badge badge-danger">{errMsg5.agreement5}</span>) : ''}
+                                                                    <label>
+                                                                        <input
+                                                                            checked={dataPekerjaan.agreement5 ? true : false}
+                                                                            onChange={this.handleChangePekerjaan.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement5" />
+                                                                        <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+
+                                                                    </label>
+                                                                </div>
+                                                                
+                                                                <div className="grid grid-cols-1 place-items-center">
+
+                                                                    <div className="form-group w-[50%] text-center mt-4">
+                                                                    <label>
+                                                                        Dengan mendaftar, saya menyetujui <br/>Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                                    </label>
+                                                                    </div>
+
+                                                                    <div className="form-group w-[40%] text-center">
+                                                                
+                                                                    <AppButton
+                                                                        style={{ color: '#ffffff', marginRight: 5 }}
+                                                                        onClick={this.handleSubmit5.bind(this, 'detil_pribadi')}
+                                                                        type="button"
+                                                                        size="lg"
+                                                                        theme=""
+                                                                        style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
+                                                                        >Selanjutnya</AppButton>
+                                                                    <AppButton
+                                                                        onClick={this.handleSubmit5.bind(this)}
+                                                                        type="button"
+                                                                        size="lg"
+                                                                        theme=""
+                                                                style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
+                                                                        Simpan</AppButton>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
                                                         </div>
-                                                        <AppButton
-                                                            style={{ color: '#ffffff', marginRight: 5 }}
-                                                            onClick={this.handleSubmit5.bind(this, 'detil_pribadi')}
-                                                            type="button"
-                                                            size="lg"
-                                                            theme="warning">Selanjutnya</AppButton>
-                                                        <AppButton
-                                                            onClick={this.handleSubmit5.bind(this)}
-                                                            type="button"
-                                                            size="lg"
-                                                            theme="success">
-                                                            Simpan</AppButton>
+
                                                     </div>
                                                 </div>
                                             </Form>
@@ -1572,7 +1729,7 @@ class Personal extends Component {
                                             <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                                                     <br />
-                                                    <h3>Akun Bank</h3>
+                                                    <h3 className="label_ijo">Akun Bank</h3>
                                                     <br />
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="nama_pemilik">
@@ -1589,8 +1746,7 @@ class Personal extends Component {
                                                                 placeholder="Nama Pemilik Rekening" />
 																{errMsg6.nama_pemilik ? (<span className="text-error badge badge-danger">{errMsg6.nama_pemilik}</span>) : ''}
                                                         </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
+
                                                         <Form.Group as={Col} controlId="bank_id">
                                                             <Form.Label>Nama Bank</Form.Label>
                                                             <Form.Control
@@ -1612,7 +1768,9 @@ class Personal extends Component {
                                                             </Form.Control>
 															{errMsg6.bank ? (<span className="text-error badge badge-danger">{errMsg6.bank}</span>) : ''}
                                                         </Form.Group>
+
                                                     </Form.Row>
+                                                    
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="no_rek">
                                                             <Form.Label>Nomor Rekening Bank</Form.Label>
@@ -1629,9 +1787,7 @@ class Personal extends Component {
                                                                 placeholder="Nomor Rekening Bank" />
 																{errMsg6.no_rek ? (<span className="text-error badge badge-danger">{errMsg6.no_rek}</span>) : ''}
                                                         </Form.Group>
-                                                    </Form.Row>
 
-                                                    <Form.Row>
                                                         <Form.Group as={Col} controlId="cabang">
                                                             <Form.Label>Cabang</Form.Label>
                                                             <Form.Control
@@ -1645,8 +1801,10 @@ class Personal extends Component {
                                                                 placeholder="Cabang" />
 																{errMsg6.cabang ? (<span className="text-error badge badge-danger">{errMsg6.cabang}</span>) : ''}
                                                         </Form.Group>
-														
+
                                                     </Form.Row>
+
+                                                    
 
                                                     {/*  <Form.Row>
                                                         <Form.Group as={Col} controlId="no_telp">
@@ -1700,7 +1858,14 @@ class Personal extends Component {
                                                 </div>
                                                 <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
                                                     <div className="form-group">
-                                                        <div className="form-check">
+                                                        
+                                                        
+
+
+                                                    <div className="grid grid-cols-1 place-items-center">
+                                                            <div className="form-group w-2/3">
+                                                                
+                                                            <div className="form-check">
                                                             {errMsg6.agreement6 ? (<span className="text-error badge badge-danger">{errMsg6.agreement6}</span>) : ''}
                                                             <label>
                                                                 <input
@@ -1710,18 +1875,40 @@ class Personal extends Component {
 
                                                             </label>
                                                         </div>
-                                                        <AppButton
-                                                            style={{ color: '#ffffff', marginRight: 5 }}
-                                                            onClick={this.handleSubmit6.bind(this, 'detil_pribadi')}
-                                                            type="button"
-                                                            size="lg"
-                                                            theme="warning">Selanjutnya</AppButton>
-                                                        <AppButton
-                                                            onClick={this.handleSubmit6.bind(this)}
-                                                            type="button"
-                                                            size="lg"
-                                                            theme="success">
-                                                            Simpan</AppButton>
+                                                                
+                                                                <div className="grid grid-cols-1 place-items-center">
+
+                                                                    <div className="form-group w-[50%] text-center mt-4">
+                                                                    <label>
+                                                                        Dengan mendaftar, saya menyetujui <br/>Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                                    </label>
+                                                                    </div>
+
+                                                                    <div className="form-group w-[40%] text-center">
+                                                                
+                                                                    <AppButton
+                                                                        style={{ color: '#ffffff', marginRight: 5 }}
+                                                                        onClick={this.handleSubmit6.bind(this, 'detil_pribadi')}
+                                                                        type="button"
+                                                                        size="lg"
+                                                                        theme=""
+                                                                        style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
+                                                                        >Selanjutnya</AppButton>
+                                                                    
+                                                                    <AppButton
+                                                                        onClick={this.handleSubmit6.bind(this)}
+                                                                        type="button"
+                                                                        size="lg"
+                                                                        theme=""
+                                                                style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
+                                                                        Simpan</AppButton>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </Form>
@@ -1732,7 +1919,7 @@ class Personal extends Component {
 
                                             <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                                                 <br />
-                                                <h3>Unggah Dokumen</h3>
+                                                <h3 className="label_ijo">Unggah Dokumen</h3>
                                                 <br />
                                                 <div className="row">
                                                     <div className="col-md-4">
@@ -1947,13 +2134,38 @@ class Personal extends Component {
                                                             </div>
                                                         </div>
 
-                                                        <AppButton
-														disabled={!unggahFileName}
-                                                            style={{ color: '#ffffff', marginRight: 5 }}
-                                                            onClick={this.handleSubmit7.bind(this, 'detil_pribadi')}
-                                                            type="button"
-                                                            size="lg"
-                                                            theme="warning">Selanjutnya</AppButton>
+                                                        <div className="grid grid-cols-1 place-items-center">
+                                                            <div className="form-group w-2/3">
+                                                                
+                                                            
+                                                                
+                                                                <div className="grid grid-cols-1 place-items-center">
+
+                                                                    <div className="form-group w-[50%] text-center mt-4">
+                                                                    <label>
+                                                                        Dengan mendaftar, saya menyetujui <br/>Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                                    </label>
+                                                                    </div>
+
+                                                                    <div className="form-group w-[40%] text-center">
+                                                                
+                                                                    <AppButton
+                                                                    disabled={!unggahFileName}
+                                                                        style={{ color: '#ffffff', marginRight: 5 }}
+                                                                        onClick={this.handleSubmit7.bind(this, 'detil_pribadi')}
+                                                                        type="button"
+                                                                        size="lg"
+                                                                        theme=""
+                                                                        style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
+                                                                        >Selanjutnya</AppButton>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        
                                                     </div>
 
                                                 </div>

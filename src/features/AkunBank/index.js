@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
 import { getBankAkun, getAkunTrading, actionPenarikan, closeForm } from '../Penarikan/penarikanSlice'
+import icon from '../../assets/akun_bank_ijo.svg';
 
 class AkunBank extends Component {
     constructor(props) {
@@ -38,38 +39,48 @@ class AkunBank extends Component {
             <div className="content-wrapper">
 
                 <section className="content">
-                    <div className="container-fluid">
-                        <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>Akun Bank Saya</h1>
-                        <div className="row">
+                    <div className="container-fluid mt-3">
+                        <img src={icon} width="35px" className="float-left mt-3" />
+                        <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Akun Bank Saya</h1>
+
+                        <div className="row mt-4">
                             <div className="col-12">
                                 {/* card start */}
-                                <div className="card card-success shadow-lg" style={{ "minHeight": "500px" }}>
+                                <div className="card card-success shadow-lg w-[100%] lg:w-[100%]" style={{ "minHeight": "500px",borderRadius:"20px" }}>
                                     <div className="card-body">
 
-                                        <div style={{ paddingLeft: 30, paddingRight: 30, paddingTop: 5 }}>
-                                            <h3 className="mb-5">Akun Bank Pengguna </h3>
-                                            <div className="row">
+                                        <div style={{ paddingTop: 5 }} className="px-0 lg:px-3" >
+                                            <h3 className="label_ijo text-lg lg:text-xl">Akun Bank Pengguna</h3>
+                                            <div className="row my-4 mx-1">
                                                 {data_bank ? (
                                                     data_bank.map((dp, index, arr) => {
                                                         return (
                                                             <Fragment key={index}>
-                                                                <div className="col-sm-6 col-md-3 mb-3">
+                                                                <div className="grid grid-cols-1 lg:grid-cols-3 place-items-center mt-0  py-4 px-1  lg:px-4 rounded-2xl mt-4" style={{ border:"2px solid #ddd",color:"#2E2E2F"}}>
+                                                                    
+                                                                    <div className="px-2">
+                                                                        <img alt={dp.nama_bank} src={dp.file} />
+                                                                    </div>
+                                                                    
+                                                                    <div className="px-2">
+                                                                        <h3 className="box-bank__title" style={{ fontSize: 30 }}>{dp.nama_bank}</h3>
+                                                                        <p style={{ fontSize: 25 }}>{dp.nama_pemilik}</p>
+                                                                    </div>
 
-                                                                    <div className="box-bank" style={{ height: 250 }}>
-                                                                        <div className="box-bank__media">
-                                                                            <img alt={dp.nama_bank} src={dp.file} style={{ height: 80 }} />
-                                                                        </div>
-                                                                        <h3 className="box-bank__title">{dp.nama_bank}</h3>
-                                                                        <p>{dp.nama_pemilik}</p>
+                                                                    <div style={{ fontSize: 30 }} className="px-2 pt-4 lg:pt-0">
                                                                         <AppButton
                                                                             className="btn-akun-bank"
                                                                             style={{ color: '#ffffff' }}
                                                                             type="button"
                                                                             size="lg"
-                                                                            theme="success">{dp.no_rek}</AppButton>
-                                                                    </div>
+                                                                            theme=""
+                                                                            style={{ backgroundColor:"#C3262A",color:"#fff"}}
 
+                                                                        >{dp.no_rek}</AppButton>
+
+                                                                    </div>
                                                                 </div>
+                                                                
                                                             </Fragment>
                                                         )
                                                     })

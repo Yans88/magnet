@@ -10,6 +10,7 @@ import "moment/locale/id";
 import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 import ReactDatatable from '@ashvin27/react-datatable';
+import icon from '../../assets/penarikan_ijo.svg';
 
 var yesterday = moment();
 var valid_startDate = function (current) {
@@ -485,33 +486,40 @@ class Penarikan extends Component {
             <div className="content-wrapper">
 
                 <section className="content">
-                    <div className="container-fluid">
-                        <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>Penarikan Dana</h1>
-                        <div className="row">
+                    <div className="container-fluid mt-3">
+                        <img src={icon} width="35px" className="float-left mt-3" />
+                        <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Penarikan Dana</h1>
+
+                        <div className="row mt-4">
                             <div className="col-12">
                                 {/* card start */}
-                                <div className="card card-success shadow-lg" style={{ "minHeight": "500px" }}>
+                                <div className="card card-success shadow-lg w-[100%] lg:w-[100%] " style={{ "minHeight": "500px",borderRadius:"20px" }}>
                                     <div className="card-body">
 
                                         <div style={{ paddingLeft: 30, paddingRight: 30, paddingTop: 5 }}>
-                                            <h3 className="mb-5">Pilih Akun Bank </h3>
-                                            <div className="row">
+                                            <h3 className="label_ijo text-lg lg:text-xl">Pilih Akun Bank</h3>
+
+                                            <div className="row my-4 mx-1">
                                                 {data_bank ? (
                                                     data_bank.map((dp, index, arr) => {
                                                         return (
                                                             <Fragment key={index}>
-                                                                <div onClick={e => this.editRecord(dp)} className="col-sm-6 col-md-3 mb-3">
-
-                                                                    <div className="box-bank box-bank-hover" style={{ height: 250 }}>
-                                                                        <div className="box-bank__media">
-                                                                            <img alt={dp.nama_bank} src={dp.file} />
-                                                                        </div>
-                                                                        <h3 className="box-bank__title">{dp.nama_bank}</h3>
-                                                                        <p>{dp.nama_pemilik}</p>
-                                                                        <div style={{ fontSize: 24 }}>{dp.no_rek}</div>
+                                                                <div className="grid grid-cols-1 lg:grid-cols-3 place-items-center mt-0  py-4 px-1  lg:px-4 rounded-2xl mt-4" style={{ border:"2px solid #ddd",color:"#2E2E2F"}} onClick={e => this.editRecord(dp)} >
+                                                                    
+                                                                    <div className="px-2">
+                                                                        <img alt={dp.nama_bank} src={dp.file} />
+                                                                    </div>
+                                                                    
+                                                                    <div className="px-2">
+                                                                        <h3 className="box-bank__title" style={{ fontSize: 30 }}>{dp.nama_bank}</h3>
+                                                                        <p style={{ fontSize: 25 }}>{dp.nama_pemilik}</p>
                                                                     </div>
 
+                                                                    <div style={{ fontSize: 30 }} className="px-2 pt-4 lg:pt-0">
+                                                                        {dp.no_rek}
+                                                                    </div>
                                                                 </div>
+                                                                
                                                             </Fragment>
                                                         )
                                                     })
@@ -524,13 +532,13 @@ class Penarikan extends Component {
 
 
 
-                                            <h3>Daftar Penarikan</h3>
+                                            <h3 style={{ color:"#2E2E2F" }}>Daftar Penarikan</h3>
 
-                                            <div className="row">
+                                            <div className="row mt-3 mb-4">
                                                 <div className="col-md-12">
-                                                    <div className="mb-3 pull-right">
-                                                        <div className="pull-left margin-left-10 max-w-250">
-                                                            <label>Tanggal: Awal</label>
+                                                    <div className="mb-3">
+                                                        <div className="pull-left margin-left-0 max-w-250">
+                                                            <label style={{ color:"#2E2E2F" }}>Tanggal: Awal</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
                                                                 timeFormat={false}
@@ -549,7 +557,7 @@ class Penarikan extends Component {
                                                             />
                                                         </div>
                                                         <div className="pull-left margin-left-10 max-w-250">
-                                                            <label>Tanggal: Akhir</label>
+                                                            <label style={{ color:"#2E2E2F" }}>Tanggal: Akhir</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
                                                                 timeFormat={false}
@@ -585,6 +593,8 @@ class Penarikan extends Component {
                                                 />
                                             ) : (<p>No Data ...</p>)}
 
+
+                                           
 
 
                                         </div>
