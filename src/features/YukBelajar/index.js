@@ -1,0 +1,120 @@
+import React, { Component, Fragment } from 'react'
+import { Card } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { getDT } from '../YukBelajar/ybSlice'
+import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
+
+class YukBelajar extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            
+
+            loadingForm: false
+        }
+    }
+
+    componentDidMount = async () => {
+        this.props.onLoad('?tipe=Education&start=0&limit=100');
+        const location = window.location.href;
+        const BaseName = location.substring(location.lastIndexOf("/") + 1);
+        await this.setState({ lastSegmentUrl: BaseName })
+    }
+
+
+
+
+    handleSelect(activeKey) {
+        this.setState({ active_tab: activeKey });
+    }
+
+    render() {
+
+        const { data } = this.props;
+        const { active_tab } = this.state;
+
+        return (
+
+            <div className="content-wrapper">
+
+                <section className="content">
+                    <div className="container-fluid">
+                        <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>Yuk Belajar!</h1>
+                        <div className="row">
+						
+                            <div className="col-12">
+                                {/* card start */}
+                                <div className="card card-success shadow-lg" style={{ "minHeight": "500px" }}>
+                                    <div className="card-body">
+                                        <div style={{ paddingLeft: 30, paddingRight: 30, paddingTop: 25 }}>
+                                            
+                                            <div className="row">
+												{data && (data.map((at, index) => {
+													return (
+														<Fragment>
+															<div className="col-sm-4">
+																<Card>
+																  <img src={at.file} height={200} alt=""/>
+																  <Card.Body>
+																	<Card.Title>{at.title}</Card.Title>
+																	<Card.Text>{at.subtitle}</Card.Text>
+																	 
+																	
+																   
+																  </Card.Body>
+																</Card>
+															</div>
+														</Fragment>
+													);}
+												))}
+                                                
+                                                
+
+                                                
+                                            </div>
+
+
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                {this.props.showFormSuccess ? (<AppSwalSuccess
+                    show={this.props.showFormSuccess}
+                    title={<div dangerouslySetInnerHTML={{ __html: this.props.contentMsg }} />}
+                    type={this.props.tipeSWAL}
+                    handleClose={this.handleCloseSwal.bind(this)}
+                >
+                </AppSwalSuccess>) : ''}
+
+            </div>
+
+
+
+        )
+    }
+}
+const mapStateToProps = (state) => ({
+    data: state.yukBelajar.data || [],
+   
+    profile: state.main.dtProfileUser,
+    user: state.main.currentUser
+});
+const mapDispatchToPros = (dispatch) => {
+    return {
+        onLoad: (param) => {
+            dispatch(getDT(param));
+        }
+       
+    }
+}
+export default connect(mapStateToProps, mapDispatchToPros)(YukBelajar);

@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
-import { getBankCompany, getAkunTrading, actionSetor, closeForm, getHistorySetor } from '../Setoran/setoranSlice'
+import { getBankCompany, getAkunTrading, actionSetor, closeForm, getHistorySetor } from '../Setoran/setoranSlice';
+import { profileUser } from '../main/mainSlice';
 import AppModal from '../../components/modal/MyModal';
 import NumberFormat from 'react-number-format';
 import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
@@ -27,7 +28,9 @@ class Setoran extends Component {
             phonepass: '',
             setor: '',
             akun_trading: '',
-            img: ''
+            img: '',
+            jml_setor: ''
+
         }
         this.state = {
             validSd: valid_startDate,
@@ -71,12 +74,15 @@ class Setoran extends Component {
     }
 
     onClickRow = (record) => {
+        let val = this.state.selected.setor ? this.state.selected.setor : 0;
+        let rate = record.rate > 0 ? record.rate : 1;
         this.setState({
             errMsg: this.initSelected,
             selected: {
                 ...this.state.selected,
                 ...record,
-                akun_trading: record.login
+                akun_trading: record.login,
+                jml_setor: val * rate
             }
         });
     }
@@ -159,13 +165,17 @@ class Setoran extends Component {
                 this.setState({ loadingForm: false, selected: { ...this.state.selected, imgUpload: reader.result, file: val } });
             };
         }
+
         this.setState({
             selected: {
                 ...this.state.selected,
                 [name]: val
             }
         });
-
+        if (name === "setor") {
+            let rate = this.state.selected.rate > 0 ? this.state.selected.rate : 1;
+            this.setState({ loadingForm: false, selected: { ...this.state.selected, jml_setor: val * rate, setor: val } });
+        }
     }
 
     handleSearch(event) {
@@ -178,6 +188,7 @@ class Setoran extends Component {
     }
 
     validateForm(errors) {
+        console.log(errors);
         let valid = true;
         Object.values(errors).forEach(
             (val) => val.length > 0 && (valid = false)
@@ -263,7 +274,14 @@ class Setoran extends Component {
                                 <div className="form-group">
                                     <label>Rate</label>
                                     <div>
-                                        <strong className="font-weight-bold text-black" data-binder="rate" id="divid-rate">10000</strong>
+                                        <strong className="font-weight-bold text-black" data-binder="rate" id="divid-rate">
+                                            <NumberFormat
+                                                value={selected.rate > 0 ? selected.rate : '0.00'}
+                                                thousandSeparator={true}
+                                                decimalScale={2}
+                                                displayType={'text'}
+                                            />
+                                        </strong>
                                     </div>
                                 </div>
                             </div>
@@ -296,7 +314,7 @@ class Setoran extends Component {
                                     <label>Jumlah Setor</label>
                                     <div>
                                         <strong className="font-weight-bold text-black" data-binder="rate">
-                                            {selected.rate === 'USD' ? 'USD' : 'IDR'}
+                                            {selected.rate > '0' ? 'IDR' : 'USD'}
                                         </strong>
                                     </div>
                                 </div>
@@ -310,12 +328,15 @@ class Setoran extends Component {
                                     </div>
                                     <div>
                                         <strong className="font-weight-bold text-black">
-                                            <NumberFormat
-                                                value={selected.setor > 0 ? selected.setor * myRate : '0.00'}
-                                                thousandSeparator={true}
-                                                decimalScale={2}
-                                                displayType={'text'}
-                                            />
+                                            {selected.jml_setor ? (
+
+                                                <NumberFormat
+                                                    value={selected.jml_setor}
+                                                    thousandSeparator={true}
+                                                    decimalScale={2}
+                                                    displayType={'text'} />
+
+                                            ) : ''}
                                         </strong>
                                     </div>
                                 </div>
@@ -394,7 +415,12 @@ class Setoran extends Component {
                                 <div className="form-group">
                                     <label className="frm_lbl">Rate</label>
                                     <div>
-                                        <strong className="font-weight-bold text-black">{selected.rate}</strong>
+                                        <strong className="font-weight-bold text-black"><NumberFormat
+                                                value={selected.rate > 0 ? selected.rate : '0.00'}
+                                                thousandSeparator={true}
+                                                decimalScale={2}
+                                                displayType={'text'}
+                                            /></strong>
                                     </div>
 
                                 </div>
@@ -412,6 +438,36 @@ class Setoran extends Component {
                                         (<span className="float-right text-error badge badge-danger">{errMsg.setor}</span>) : null}
                                     <div>
                                         <input name="setor" value={selected.setor} onChange={this.handleChange.bind(this)} type="number" className="form-control" />
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+					
+					 <div className="row">
+					 <div className="col-sm-6">
+                            <div className="form-group">
+                                <div className="form-group">
+                                    
+                                    <div>
+									
+										<NumberFormat
+                                                                disabled={true}
+                                                                
+                                                                name="jml_setor"
+                                                                className="form-control form-control-sm"
+                                                                value={selected.jml_setor ? selected.jml_setor : '0,00'}
+                                                                thousandSeparator={true}
+                                                                decimalScale={2}
+                                                                inputMode="numeric"
+                                                                autoComplete="off"
+                                                                placeholder="Jumlah Setor" />
+									
+                                        
+                                        
                                     </div>
 
                                 </div>
@@ -569,7 +625,7 @@ class Setoran extends Component {
                 sortable: true
             },
             {
-                key: "#",
+                key: "keterangan",
                 text: "Keterangan",
                 align: "center",
                 sortable: true
@@ -636,8 +692,10 @@ class Setoran extends Component {
 
                                                                     <div style={{ fontSize: 30 }} className="px-2" style={{ textAlign: 'left', fontSize: '1rem', marginTop: 15,color:"#2E2E2F" }}>
                                                                         <div>{dp.nama_bank} CAB. {dp.cabang}, A/N. {dp.atas_nama}</div>
-                                                                        <div>No. Acc. : <strong>{dp.no_rek}</strong></div>
+                                                                        <div>No. Acc IDR : <strong>{dp.no_rek}</strong></div>
+                                                                        <div>No. Acc USD : <strong>{dp.no_rek_usd}</strong></div>
                                                                     </div>
+
                                                                 </div>
 
                                                                 
@@ -777,6 +835,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+            dispatch(profileUser());
             dispatch(getBankCompany());
             dispatch(getAkunTrading());
         },
@@ -784,6 +843,7 @@ const mapDispatchToPros = (dispatch) => {
             dispatch(getHistorySetor(param));
         },
         onSetor: (param) => {
+            dispatch(profileUser());
             dispatch(actionSetor(param));
         },
         closeSwalError: () => {

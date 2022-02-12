@@ -9,7 +9,7 @@ const tokenLogin = process.env.REACT_APP_TOKEN_LOGIN;
 export const getBankAkun = createAsyncThunk(
     'penarikan/getBankAkun',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/general-option/get-akun-bank',
@@ -46,7 +46,7 @@ export const getBankAkun = createAsyncThunk(
 export const getHistorySetor = createAsyncThunk(
     'penarikan/getHistory',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/penarikan-dana' + param,
@@ -83,7 +83,7 @@ export const getHistorySetor = createAsyncThunk(
 export const getAkunTrading = createAsyncThunk(
     'penarikan/getAkunTrading',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/general-option/get-akun-trading?tipe=real',
@@ -120,7 +120,7 @@ export const getAkunTrading = createAsyncThunk(
 export const getAkunTradingDemo = createAsyncThunk(
     'setoran/getAkunTradingDemo',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/general-option/get-akun-trading?tipe=demo',
@@ -157,7 +157,7 @@ export const getAkunTradingDemo = createAsyncThunk(
 export const actionPenarikan = createAsyncThunk(
     'penarikan/actionPenarikan',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         const form = Object.keys(param).reduce((f, k) => {
             f.append(k, param[k]);
             return f;

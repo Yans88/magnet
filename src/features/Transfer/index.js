@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
-import { getAkunTrading, closeForm, getHistorySetor } from '../Transfer/transferSlice'
+import { getAkunTrading, closeForm, getHistorySetor, getAkunTradingTo,actionTransfer } from '../Transfer/transferSlice';
+import { profileUser } from '../main/mainSlice';
 import NumberFormat from 'react-number-format';
 import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
 import moment from 'moment';
@@ -20,10 +21,10 @@ class Transfer extends Component {
     constructor(props) {
         super(props);
         this.initSelected = {
+            transfer_id: '',
             nominal: '',
-            akun_trading: '',
-            akun_bank: '',
-            penarikan_dana_id: ''
+            from: '',
+            to: '',            
         }
         this.state = {
             validSd: valid_startDate,
@@ -51,31 +52,32 @@ class Transfer extends Component {
         await this.setState({ lastSegmentUrl: BaseName })
     }
 
-    editRecord = (record) => {
-        this.setState({
-            formMT5: true,
-            nextStep: false,
-            loadingForm: false,
-            errMsg: this.initSelected,
-            selected: {
-                ...this.state.selected,
-                ...record,
-                akun_bank: record.akun_bank_id
-            }
-        });
-
-    }
+    
 
     onClickRow = (record) => {
         this.setState({
             errMsg: this.initSelected,
             selected: {
-                ...this.state.selected,
-                ...record,
-                akun_trading: record.login
+                ...this.state.selected,                
+                from: record.login,
+                nominal: '',
+                to: ''
             }
         });
+		this.props.onLoadTo(record.login);
     }
+	
+	
+	onClickRow2 = (record) => {
+        this.setState({
+            errMsg: this.initSelected,
+            selected: {
+                ...this.state.selected,                
+                to: record.login
+            }
+        });		
+    }
+	
 
     handleNext = () => {
         var errors = this.state.errMsg;
@@ -104,7 +106,7 @@ class Transfer extends Component {
 
     handleClose = () => {
         this.setState({
-            errMsg: {},
+            errMsg: this.initSelected,
             selected: this.initSelected,
             loadingForm: false,
             nextStep1: false,
@@ -114,49 +116,19 @@ class Transfer extends Component {
     };
 
     handleSubmit() {
-        var errors = this.state.errMsg;
-        errors.nominal = !this.state.selected.nominal ? "Required" : '';
-        this.setState({ errors });
-        if (this.validateForm(this.state.errors)) {
-            this.setState({
+        this.setState({
                 ...this.state,
                 loadingForm: true,
             });
             //console.log(this.state.selected);
             this.props.onSetor(this.state.selected);
-        } else {
-            console.error('Invalid Form')
-        }
 
     }
 
     handleChange(event) {
         const { name, value } = event.target
         var val = value;
-        this.setState({ errMsg: this.initSelected });
-
-        if (event.target.name === "img") {
-            val = event.target.files[0];
-            this.setState({ selected: { ...this.state.selected, imgUpload: "", img: "" } });
-            if (!val) return;
-            if (!val.name.match(/\.(jpg|jpeg|png)$/)) {
-                this.setState({ loadingForm: true, errMsg: { ...this.state.errMsg, img: "Please select valid image(.jpg .jpeg .png)" } });
-
-                //setLoading(true);
-                return;
-            }
-            if (val.size > 2099200) {
-                this.setState({ loadingForm: true, errMsg: { ...this.state.errMsg, img: "File size over 2MB" } });
-
-                //setLoading(true);
-                return;
-            }
-            let reader = new FileReader();
-            reader.readAsDataURL(val);
-            reader.onloadend = () => {
-                this.setState({ loadingForm: false, selected: { ...this.state.selected, imgUpload: reader.result, file: val } });
-            };
-        }
+        this.setState({ errMsg: this.initSelected });        
         this.setState({
             selected: {
                 ...this.state.selected,
@@ -237,11 +209,13 @@ class Transfer extends Component {
 
     render() {
 
-        const { akun_trading, data_history } = this.props;
+        const { akun_trading, data_history, akun_trading_to, errorMessage, profile } = this.props;
+        const { selected } = this.state;
+		console.log(profile);
         
         const columns = [
             {
-                key: "nama_bank",
+                key: "from",
                 text: "Dari",
                 width: 100,
                 align: "center",
@@ -249,7 +223,7 @@ class Transfer extends Component {
 
             },
             {
-                key: "akun_bank_id",
+                key: "to",
                 text: "Tujuan",
                 width: 150,
                 align: "center",
@@ -275,18 +249,20 @@ class Transfer extends Component {
             },
 
             {
-                key: "-",
+                key: "created_at",
                 text: "WAKTU TRANSFER",
-                width: 150,
+                width: 80,
                 align: "center",
                 sortable: true,
-
+				cell: record => {
+                    return (moment(new Date(record.created_at)).format('DD-MM-YYYY HH:mm'))
+                }
             },
 
 
         ];
         const config = {
-            key_column: 'penarikan_dana_id',
+            key_column: 'transfer_id',
             page_size: 10,
             length_menu: [10, 20, 50],
             show_filter: false,
@@ -410,15 +386,41 @@ class Transfer extends Component {
                                                             ) : ''}
 
                                                     </div>
-
+                                                                    
 
                                                 </div>
                                                 
                                                 <div>
-                                                    <h3 className="form-section text-capitalize" style={{ color:"#2E2E2F" }}>Tujuan</h3>
-                                                    <div className="p-2" style={{border:"1px solid #000",borderRadius:"5px"}}>
-                                                    <div className="flex p-3">
                                                     
+                                                    <div className="row">
+                                                        <div className="col-sm-3 col-md-3"><h3 className="form-section text-capitalize" style={{ color:"#2E2E2F" }}>Tujuan</h3></div>
+                                                        <div className="col-sm-6 col-md-6 mb-0" style={{ paddingRight:0 }}>
+															
+                                                            <input 
+															disabled = {selected.from && selected.to ? false : true}
+															value = {selected.nominal}
+															onChange={this.handleChange.bind(this)}
+															name="nominal"
+															type="number" placeholder='Jumlah' className="form-control" />
+															{errorMessage ? (<span className="text-error badge badge-danger">{errorMessage}</span>) : ''}
+                                                        </div>
+                                                        <div className="col-sm-2 col-md-2 mb-0" style={{ paddingLeft:0 }}>
+                                                            <AppButton
+																disabled = {selected.nominal >= 10000 ? false : true}
+                                                                style={{ minHeight: 32 }}
+                                                                type="button"
+                                                                size="sm"
+																onClick={this.handleSubmit.bind(this)}
+                                                                theme="success">Transfer</AppButton>
+                                                        </div>
+														
+                                                    </div>
+
+                                                    <div className="p-2 pt-0" style={{border:"1px solid #000",borderRadius:"5px"}}>
+                                                    <div className="flex p-3">
+
+                                                       
+
                                                         <div class="flex-initial w-20 ...">
                                                         
                                                         </div>
@@ -426,6 +428,8 @@ class Transfer extends Component {
                                                         <div class="flex-initial w-64 text-black font-bold ...">
                                                             LOGIN
                                                         </div>
+
+                                                    
 
                                                         <div class="flex-initial w-64 text-black font-bold ...">
                                                             NAMA
@@ -444,10 +448,66 @@ class Transfer extends Component {
                                                         
 
                                                     </div>
+
+                                                    {akun_trading_to ? (
+                                                                        akun_trading_to.map((at, index) => {
+                                                                            return (
+
+                                                                        <Fragment key={index}>
+                                                                            
+                                                                            <div style={{color:"#222"}} onClick={e => this.onClickRow2(at)} className={this.state.selected.login === at.login ? "flex px-2 active-row" : 'flex px-2'}>
+                                                                            
+                                                                                <div class="flex-initial w-20 ...">
+
+                                                                                <input type="radio"
+                                                                                        onChange={e => this.onClickRow(at)}
+                                                                                        checked={this.state.selected.to === at.login ? true : false}
+                                                                                        name="account-selection2" value={at.login} />
+
+                                                                                </div>
+
+                                                                                <div class="flex-initial w-64 ...">
+                                                                                    {at.login}
+                                                                                </div>
+
+                                                                                <div class="flex-initial w-64 ...">
+                                                                                    {at.name}
+                                                                                </div>
+
+                                                                                <div class="flex-initial w-64 ...">
+                                                                                    <NumberFormat
+                                                                                        value={at.margin_free > 0 ? at.margin_free : '0.00'}
+                                                                                        thousandSeparator={true}
+                                                                                        decimalScale={2}
+                                                                                        displayType={'text'}
+                                                                                    />
+                                                                                </div>
+                                                                                <div class="flex-initial w-64 ...">
+                                                                                        <NumberFormat
+                                                                                                value={at.equity > 0 ? at.equity : '0.00'}
+                                                                                                thousandSeparator={true}
+                                                                                                decimalScale={2}
+                                                                                                displayType={'text'}
+                                                                                            />
+                                                                                </div>
+                                                                                <div class="flex-initial w-64 ...">
+                                                                                        {at.rate}
+                                                                                </div>
+
+                                                                                
+
+                                                                            </div>
+
+                                                                        </Fragment>
+
+                                                                    );
+                                                                })
+                                                            ) : ''}
+
                                                     </div>
 
                                                 </div>
-                                            
+                                                
                                             </div>
 
                                             <br />
@@ -510,8 +570,9 @@ class Transfer extends Component {
                                                     loading={this.props.isLoading}
                                                     total_record={this.props.totalData}
                                                 />
-                                            ) : (<p>No Data ...</p>)}
-
+                                            ) : (<h3 style={{textAlign:"center"}}><br/><br/><br/><br/>Halaman ini tidak bisa diakses mulai dari Sabtu jam 04.00 WIB sampai dengan Senin jam 05.00 WIB</h3>)}
+												
+										   
 
 
                                         </div>
@@ -542,24 +603,32 @@ class Transfer extends Component {
 }
 const mapStateToProps = (state) => ({
     akun_trading: state.transfer.akunTrading || [],
+    akun_trading_to: state.transfer.akunTradingTo || [],
     data_history: state.transfer.dataHistory || [],
     totalData: state.transfer.totalData,
     contentMsg: state.transfer.contentMsg || null,
+    errorMessage: state.transfer.errorMessage || '',
     showFormSuccess: state.transfer.showFormSuccess,
     tipeSWAL: state.transfer.tipeSWAL,
     isLoading: state.transfer.isFetching,
+	profile: state.main.dtProfileUser,
     user: state.main.currentUser
 });
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+			dispatch(profileUser());
             dispatch(getAkunTrading());
+        },
+		onLoadTo: (param) => {			
+            dispatch(getAkunTradingTo(param));
         },
         onLoadHistory: (param) => {
             dispatch(getHistorySetor(param));
         },
         onSetor: (param) => {
-            console.log(param);
+			dispatch(profileUser());
+            dispatch(actionTransfer(param));
         },
         closeSwalError: () => {
             dispatch(closeForm());

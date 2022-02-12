@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import AppButton from '../../components/button/Button';
 import { connect } from 'react-redux';
-import { getSetting, getKT, chgProps, simpanDataKT } from './ktSlice'
+import { getSetting, getKT, chgProps, simpanDataKT } from './ktSlice';
+import { profileUser } from '../main/mainSlice'
 
 class KetentuanTrading extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class KetentuanTrading extends Component {
     }
 
     componentDidMount = async () => {
+		sessionStorage.removeItem("data_tipe_akun_id");		
         this.props.onLoad();
         const location = window.location.href;
         const BaseName = location.substring(location.lastIndexOf("/") + 1);
@@ -44,7 +46,7 @@ class KetentuanTrading extends Component {
     handleChange(evt) {
         const name = evt.target.name;
         var value = evt.target.value;
-
+		sessionStorage.setItem('data_tipe_akun_id', this.props.dataKetentuanTrading.data_tipe_akun_id);
         const dt = {};
         if (name === "agree") {
             value = evt.target.checked ? 'Y' : 'N';
@@ -57,7 +59,7 @@ class KetentuanTrading extends Component {
     render() {
         const { lastSegmentUrl, errMsg } = this.state;
         const { dataSetting, dataKetentuanTrading } = this.props;
-        console.log(dataSetting);
+        
         return (
 
             <div className="content-wrapper">
@@ -153,13 +155,15 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+			dispatch(profileUser());
             dispatch(getSetting());
             dispatch(getKT());
         },
-        changeProps: (param) => {
+        changeProps: (param) => {			
             dispatch(chgProps(param));
         },
         saveDataKT: (param) => {
+			dispatch(profileUser());
             dispatch(simpanDataKT(param));
             dispatch(getKT());
         }

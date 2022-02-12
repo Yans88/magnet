@@ -43,7 +43,7 @@ class MyHeader extends Component {
     }
 
     render() {
-
+        const { profile } = this.props;
         return (
 
             <Header>
@@ -70,8 +70,10 @@ class MyHeader extends Component {
 
                                     <div className=" w-2/3 grid grid-cols-1 pt-2">
                                         
-                                        <div className="font-bold ml-2">STATUS<br/>
-                                            <h5 style={{ fontWeight: 600, fontSize: 14, marginLeft: 0 }}><span style={{ color: '#dc3545' }}>Belum Lengkap -</span> <a style={{ color: '#269647' }} href="personal">Daftar disini</a></h5>
+                                        <div className="font-bold ml-2">
+                                            
+                                            {(<h5 style={{ fontWeight: 600, fontSize: 14, marginLeft: 8 }}>STATUS<br /><span style={{ color: '#dc3545' }}>{profile.status_dokumen} </span>{profile.status_dokumen !== 'Approve' && (<a style={{ color: '#269647' }} href="personal">- Daftar disini</a>)}</h5>)}
+
                                         </div>
 
                                         
@@ -136,6 +138,7 @@ const mapDispatchToPros = (dispatch) => {
 }
 const mapStateToProps = (state) => ({
     user: state.main.currentUser,
+    profile: state.main.dtProfileUser,
     errFetchUserByToken:state.main.errFetchUserByToken
 });
 export default connect(mapStateToProps, mapDispatchToPros)(MyHeader);

@@ -5,7 +5,8 @@ import AppButton from '../../components/button/Button';
 import moment from 'moment';
 import "moment/locale/id";
 import { Form } from 'react-bootstrap'
-import { getDataPernyataan, chgProps, simpanDataPernyataan } from './pernyataanSlice'
+import { getDataPernyataan, chgProps, simpanDataPernyataan,getSelectAkun } from './pernyataanSlice';
+import { profileUser } from '../main/mainSlice';
 
 class Pernyataan extends Component {
     constructor(props) {
@@ -25,18 +26,22 @@ class Pernyataan extends Component {
             defaultActiveKey: 1,
             show: false,
             errMsg1: this.initData,
-			data_tipe_akun_id:''
+            data_tipe_akun_id: ''
         }
     }
 
     componentDidMount = async () => {
-		const dt = {};
-		const selectedId = sessionStorage.getItem('data_tipe_akun_id');
-	
-        const location = window.location.href;
-        const BaseName = location.substring(location.lastIndexOf("/") + 1);
-        this.props.onLoad();
-        await this.setState({ lastSegmentUrl: BaseName, data_tipe_akun_id:selectedId })
+        const dt = {};
+        const selectedId = sessionStorage.getItem('tipe_akun');
+        if (selectedId) {
+            const location = window.location.href;
+            const BaseName = location.substring(location.lastIndexOf("/") + 1);
+            this.props.onLoad(selectedId);
+            await this.setState({ lastSegmentUrl: BaseName })
+        } else {
+			alert("Silahkan pilih tipe akun terlebih dulu");
+            this.props.history.push("/account-type");
+        }
     }
 
     handleBack() {
@@ -75,7 +80,7 @@ class Pernyataan extends Component {
             errors.pernyataan3 = this.props.dataPernyataan.pernyataan3 !== 'Y' ? "Pilihan ini harus disetujui" : '';
             //errors.wakil_pialang = !this.props.dataPernyataan.wakil_pialang ? "Silakan Pilih Wakil Pialang" : '';
             errors.badan_abritase = this.props.dataPernyataan.badan_abritase === '' ? "Silakan Pilih Pilihan Resolusi Konflik" : '';
-			if(!errors.badan_abritase) errors.badan_abritase = this.props.dataPernyataan.badan_abritase === 'N' && !this.props.dataPernyataan.pengadilan ? "Silakan Pilih Pengadilan Negeri" : '';
+            if (!errors.badan_abritase) errors.badan_abritase = this.props.dataPernyataan.badan_abritase === 'N' && !this.props.dataPernyataan.pengadilan ? "Silakan Pilih Pengadilan Negeri" : '';
             this.setState({ errors });
             if (!this.validateForm(this.state.errMsg1)) {
                 console.error('Invalid Form')
@@ -96,11 +101,10 @@ class Pernyataan extends Component {
             if (!this.validateForm(this.state.errMsg1)) {
                 console.error('Invalid Form')
             } else {
-				 const saveData = {
-					...this.props.dataPernyataan,
-					data_tipe_akun_id: this.state.data_tipe_akun_id
-				}				
-                this.props.onSave(saveData);
+                // const saveData = {
+                    // ...this.props.dataPernyataan,                   
+                // }
+                this.props.onSave(this.props.dataPernyataan);
                 if (action) this.props.history.push("/trading_rules");
             }
 
@@ -124,7 +128,7 @@ class Pernyataan extends Component {
         const { user, dataPernyataan } = this.props;
         const { arr_wakil_pialang } = dataPernyataan;
         const tgl_lhir = user && user.tanggal_lahir ? moment(new Date(user.tanggal_lahir)).format('DD/MM/YYYY') : '';
-
+		
         return (
 
             <div className="content-wrapper">
@@ -430,29 +434,18 @@ class Pernyataan extends Component {
                                                         </li>
                                                         <li tabIndex={1}>
 
-                                                            <Form.Group controlId="wakil_pialang">
-                                                                <Form.Label style={{ fontWeight: 480, color: "#505f79" }}>Nama: </Form.Label>
-                                                                <Form.Control
-                                                                    style={{ marginLeft: 60, marginTop: -35, width: "30%" }}
-                                                                    name="wakil_pialang"
-                                                                    size="lg"
-                                                                    value={dataPernyataan.wakil_pialang ? dataPernyataan.wakil_pialang : ''}
-                                                                    onChange={this.handleChange.bind(this)}
-                                                                    as="select">
-                                                                    <option value="">Pilih</option>
-                                                                    {arr_wakil_pialang ? (
-                                                                        arr_wakil_pialang.map(function (arw) {
-                                                                            return <option
-                                                                                value={arw.user_id}
-                                                                                key={arw.user_id}>{arw.nama_depan + ' ' + arw.nama_belakang}
-                                                                            </option>
-                                                                        })
-
-                                                                    ) : ''}
-
-                                                                </Form.Control>
-                                                                {errMsg1.wakil_pialang ? (<span style={{ marginLeft: 65 }} className="text-error badge badge-danger">{errMsg1.wakil_pialang}</span>) : ''}
-                                                            </Form.Group>
+                                                            <p>Nama: <b className="declaration_name_html">{arr_wakil_pialang &&
+															(arr_wakil_pialang.map((awp, index)=>{
+																if(index > 0){
+																	return (
+																		', '+awp.nama_depan + ' ' + awp.nama_belakang						
+																	)
+																}else{
+																	return (
+																		awp.nama_depan + ' ' + awp.nama_belakang					
+																	)
+																}
+															}))}</b></p>
                                                             <p>Pekerjaan/Jabatan: <b className="declaration_employment_status_html">Wakil Pialang</b>
                                                                 <br clear="all" />
                                                             </p><p>Alamat: <b>Pakuwon Center - Superblok Tunjungan City, Office Building Lt.15 Unit 5, 6, 7, Jl.Embong Malang 1, 3, 5 Surabaya 60261</b></p>
@@ -962,13 +955,17 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToPros = (dispatch) => {
     return {
-        onLoad: () => {
-            dispatch(getDataPernyataan());
+        onLoad: (param) => {
+			dispatch(profileUser());			
+            dispatch(getDataPernyataan(param));	
+			dispatch(getSelectAkun(param));			
         },
         changeProps: (param) => {
             dispatch(chgProps(param));
+			
         },
         onSave: (param) => {
+			dispatch(profileUser());
             dispatch(simpanDataPernyataan(param));
         }
     }

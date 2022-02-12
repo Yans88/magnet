@@ -2,31 +2,31 @@ import React, { Component } from 'react'
 import { Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
-import { getDataPP,action_contact_us,closeForm } from '../ProfilePerusahaan/ppSlice'
+import { getDataPP, action_contact_us, closeForm } from '../ProfilePerusahaan/ppSlice'
 import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
 import icon from '../../assets/hubungi_kami_2.svg';
 import phone_red from '../../assets/phone.svg';
 import wa_red from '../../assets/wa.svg';
 import email_red from '../../assets/email_white.svg';
 import location_red from '../../assets/location_white.svg';
-
+import { profileUser } from '../main/mainSlice'
 
 class HubungiKami extends Component {
     constructor(props) {
         super(props);
-		this.initSelected = {
+        this.initSelected = {
             nama_depan: "",
-			nama_belakang:"",
+            nama_belakang: "",
             email: "",
             phone: "",
-            message: "",    
-			subjek:'',
+            message: "",
+            subject: '',
         }
         this.state = {
             lastSegmentUrl: "",
             selected: this.initSelected,
             errMsg: this.initSelected,
-			loadingForm:false
+            loadingForm: false
         }
     }
 
@@ -36,45 +36,45 @@ class HubungiKami extends Component {
         const BaseName = location.substring(location.lastIndexOf("/") + 1);
         await this.setState({ lastSegmentUrl: BaseName })
     }
-	
-	 handleChange(evt) {
+
+    handleChange(evt) {
         const name = evt.target.name;
         var val = evt.target.value;
-       this.setState({
+        this.setState({
             loadingForm: false,
             errMsg: { ...this.state.errMsg, [name]: "" },
             selected: {
                 ...this.state.selected,
-				nama_depan:this.props.user.nama_depan,
-				nama_belakang:this.props.user.nama_belakang,
-				email:this.props.profile.email,
-				phone:this.props.user.handphone,
+                nama_depan: this.props.user.nama_depan,
+                nama_belakang: this.props.user.nama_belakang,
+                email: this.props.profile.email,
+                phone: this.props.user.handphone,
                 [name]: val
             }
         });
     }
-	
-	handleSubmit() {
+
+    handleSubmit() {
         this.props.onSubmit(this.state.selected);
 
     }
-	
-	handleCloseSwal() {       
-		this.setState({
-			selected: {
-                 ...this.state.selected,
-                message: "",    
-				subjek:'',
+
+    handleCloseSwal() {
+        this.setState({
+            selected: {
+                ...this.state.selected,
+                message: "",
+                subject: '',
             }
-		})
-        this.props.closeSwal();        
+        })
+        this.props.closeSwal();
     }
-	
+
     render() {
 
         const { profile_perusahaan } = this.props;
         const { selected } = this.state;
-		
+
         return (
 
             <div className="content-wrapper">
@@ -184,10 +184,10 @@ class HubungiKami extends Component {
                                                             <Form.Control
                                                                 autoComplete="off"
                                                                 size="lg"
-                                                                name="subjek"
+                                                                name="subject"
                                                                 type="text"
-																onChange={this.handleChange.bind(this)}
-																value={selected.subjek}
+                                                                onChange={this.handleChange.bind(this)}
+                                                                value={selected.subject}
                                                                 required
                                                                 placeholder="Masukkan Subjek" />
                                                         </Form.Group>
@@ -196,11 +196,11 @@ class HubungiKami extends Component {
 
                                                             <Form.Control
                                                                 autoComplete="off"
-																value={selected.message}
+                                                                value={selected.message}
                                                                 rows={10}
                                                                 name="message"
                                                                 as="textarea"
-																onChange={this.handleChange.bind(this)}
+                                                                onChange={this.handleChange.bind(this)}
                                                                 required
                                                                 placeholder="Masukkan Pesan" />
                                                         </Form.Group>
@@ -219,6 +219,7 @@ class HubungiKami extends Component {
                                                             </div>
                                                         </div>
                                                     </Form>
+
                                             </div>
 
                                         </div>
@@ -230,15 +231,15 @@ class HubungiKami extends Component {
                         </div>
                     </div>
                 </section>
-				
-				{this.props.showFormSuccess ? (<AppSwalSuccess
+
+                {this.props.showFormSuccess ? (<AppSwalSuccess
                     show={this.props.showFormSuccess}
                     title={<div dangerouslySetInnerHTML={{ __html: this.props.contentMsg }} />}
                     type={this.props.tipeSWAL}
                     handleClose={this.handleCloseSwal.bind(this)}
                 >
                 </AppSwalSuccess>) : ''}
-				
+
             </div>
 
 
@@ -248,21 +249,23 @@ class HubungiKami extends Component {
 }
 const mapStateToProps = (state) => ({
     profile_perusahaan: state.companyProfile.profile_perusahaan || {},
-	contentMsg: state.companyProfile.contentMsg || null,
+    contentMsg: state.companyProfile.contentMsg || null,
     showFormSuccess: state.companyProfile.showFormSuccess,
     tipeSWAL: state.companyProfile.tipeSWAL,
-	 profile: state.main.dtProfileUser,
+    profile: state.main.dtProfileUser,
     user: state.main.currentUser
 });
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+            dispatch(profileUser());
             dispatch(getDataPP());
         },
-		onSubmit: (param) => {
+        onSubmit: (param) => {
+            dispatch(profileUser());
             dispatch(action_contact_us(param));
         },
-		closeSwal: () => {
+        closeSwal: () => {
             dispatch(closeForm());
         }
     }

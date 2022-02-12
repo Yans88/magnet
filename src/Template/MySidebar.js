@@ -23,7 +23,9 @@ class MySidebar extends Component {
 
     render() {
         const { expandMenu } = this.props.main;
+        const { profile } = this.props;
         const { lastSegmentUrl } = this.state;
+
         return (
             <div>
                 <Sidebar
@@ -55,6 +57,7 @@ class MySidebar extends Component {
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
                                 <Nav.Item                                    
+
                                     onSelect={e => this.handleMenu('deposit')}
                                     componentClass={Link}
                                     to='/deposit'
@@ -69,6 +72,7 @@ class MySidebar extends Component {
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
 								 <Nav.Item                                    
+
                                     onSelect={e => this.handleMenu('bank-accounts')}
                                     componentClass={Link}
                                     to='/bank-accounts'
@@ -141,19 +145,19 @@ class MySidebar extends Component {
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
                                 <Nav.Item
-                                    disabled
-                                    onSelect={e => this.handleMenu('members')}
+                                    onSelect={e => this.handleMenu('education')}
                                     componentClass={Link}
-                                    to='/'
-                                    exact='/'
-                                    eventKey='/'
-                                    className={lastSegmentUrl === "members" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
+                                    to='/education'
+                                    exact='/education'
+                                    eventKey='/education'
+                                    className={lastSegmentUrl === "education" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
                                     icon={<Icon icon="mortar-board" style={{left:"9px"}} />}>
                                     Yuk Belajar!
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
-                                <Nav.Item                                    
+                                
+                                <Nav.Item
                                     onSelect={e => this.handleMenu('setting')}
                                     componentClass={Link}
                                     to='/setting'
@@ -189,8 +193,10 @@ class MySidebar extends Component {
 }
 
 const mapStateToProps = (state) => {
+
     return {
-        main: state.main
+        main: state.main,
+        profile: state.main.dtProfileUser
     }
 }
 

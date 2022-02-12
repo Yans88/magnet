@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { getRate, getTA, chgPropsTA, closeForm, confirmDel, simpanDataTA } from './taSlice'
+import { getRate, getTA, chgPropsTA, closeForm, confirmDel, simpanDataTA } from './taSlice';
+import { profileUser } from '../main/mainSlice';
 import { Button, Col, Row, Form, Card, ListGroup } from 'react-bootstrap'
 import AppModal from '../../components/modal/MyModal';
 
@@ -15,6 +16,14 @@ class TypeAccount extends Component {
 
     componentDidMount = async () => {
 		sessionStorage.removeItem("data_tipe_akun_id");
+		sessionStorage.removeItem("tipe_akun");
+		const act = sessionStorage.getItem('act_tipe_akun_id');
+		if(act){
+			const dt = {};
+			dt['key'] = 'act';
+			dt['value'] = act;
+			this.props.changeProps(dt);
+		}
         this.props.onLoad();
         const location = window.location.href;
         const BaseName = location.substring(location.lastIndexOf("/") + 1);
@@ -40,7 +49,7 @@ class TypeAccount extends Component {
 
     handleNext= async () => {		
 		console.log(this.props.dataSelect);
-        await sessionStorage.setItem('data_tipe_akun_id', this.props.dataSelect.tipe_akun);
+        await sessionStorage.setItem('tipe_akun', this.props.dataSelect.tipe_akun);
         this.props.onSave(this.props.dataSelect);
         this.props.history.push("/decleration");
         this.props.closeModal();
@@ -177,10 +186,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+			dispatch(profileUser());
             dispatch(getRate());
             dispatch(getTA());
         },
         onSave: (param) => {
+			dispatch(profileUser());
             dispatch(simpanDataTA(param));
         },
         changeProps: (param) => {

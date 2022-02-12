@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
-import { getBankAkun, getAkunTrading, actionPenarikan, closeForm, getHistorySetor } from '../Penarikan/penarikanSlice'
+import { getBankAkun, getAkunTrading, actionPenarikan, closeForm, getHistorySetor } from '../Penarikan/penarikanSlice';
+import { profileUser } from '../main/mainSlice';
 import AppModal from '../../components/modal/MyModal';
 import NumberFormat from 'react-number-format';
 import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
@@ -23,8 +24,8 @@ class Penarikan extends Component {
         this.initSelected = {
             nominal: '',
             akun_trading: '',
-            akun_bank:'',
-            penarikan_dana_id:''
+            akun_bank: '',
+            penarikan_dana_id: ''
         }
         this.state = {
             validSd: valid_startDate,
@@ -231,7 +232,7 @@ class Penarikan extends Component {
 
             return true;
         });
-        
+
         const Qs = "?search=" + this.state.search + "&limit=" + this.state.limit + "&start=" + (this.state.start - 1) + "&start_date=" + this.state.start_date + "&end_date=" + this.state.end_date;
         this.props.onLoadHistory(Qs);
     }
@@ -311,7 +312,14 @@ class Penarikan extends Component {
                                 <div className="form-group">
                                     <label className="frm_lbl">Rate</label>
                                     <div>
-                                        <strong className="font-weight-bold text-black">{selected.rate}</strong>
+                                        <strong className="font-weight-bold text-black">
+											<NumberFormat
+                                                value={selected.rate > 0 ? selected.rate : '0.00'}
+                                                thousandSeparator={true}
+                                                decimalScale={2}
+                                                displayType={'text'}
+                                            />
+										</strong>
                                     </div>
 
                                 </div>
@@ -325,7 +333,7 @@ class Penarikan extends Component {
                             <div className="form-group">
                                 <div className="form-group">
                                     <label className="frm_lbl">Jumlah Penarikan</label>
-                                    
+
                                     <div>
                                         <input name="nominal" value={selected.nominal} onChange={this.handleChange.bind(this)} type="number" className="form-control" />
                                     </div>
@@ -459,7 +467,7 @@ class Penarikan extends Component {
                 sortable: true
             },
             {
-                key: "#",
+                key: "keterangan",
                 text: "Keterangan",
                 align: "center",
                 sortable: true
@@ -653,6 +661,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+            dispatch(profileUser());
             dispatch(getBankAkun());
             dispatch(getAkunTrading());
         },
@@ -660,6 +669,7 @@ const mapDispatchToPros = (dispatch) => {
             dispatch(getHistorySetor(param));
         },
         onSetor: (param) => {
+            dispatch(profileUser());
             dispatch(actionPenarikan(param));
         },
         closeSwalError: () => {

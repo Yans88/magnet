@@ -92,16 +92,18 @@ export const simpanDataPP = createAsyncThunk(
 export const action_contact_us = createAsyncThunk(
     'contact_us/action_contact_us',
     async (param, thunkAPI) => {
+		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         const config = {
             headers: {
+				'Authorization': token,
                 'x-app-origin': 'cabinet-app',
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             }
         };
-		const _API_URL = API_URL.replace('api','');
+		//const _API_URL = API_URL.replace('api','');
         try {
-            const response = await axios.post(_API_URL + 'action-data-contact-us', param, config);
+            const response = await axios.post(API_URL + '/action-data-contact-us', param, config);
             let data = '';
             let _data = await response;
             if (response.status === 200) {

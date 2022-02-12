@@ -9,7 +9,7 @@ const tokenLogin = process.env.REACT_APP_TOKEN_LOGIN;
 export const simpanDataPribadi = createAsyncThunk(
     'personal/simpanDataPribadi',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         const config = {
             headers: {
                 'Authorization': token,
@@ -43,7 +43,7 @@ export const simpanDataPribadi = createAsyncThunk(
 export const simpanDataExpTrading = createAsyncThunk(
     'personal/simpanDataExpTrading',
     async (param, thunkAPI) => {
-const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         const config = {
             headers: {
                 'Authorization': token,
@@ -78,7 +78,7 @@ const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getIte
 export const simpanDataKekayaan = createAsyncThunk(
     'personal/simpanDataKekayaan',
     async (param, thunkAPI) => {
-const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         const config = {
             headers: {
                 'Authorization': token,
@@ -113,7 +113,7 @@ const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getIte
 export const simpanKontakDarurat = createAsyncThunk(
     'personal/simpanKontakDarurat',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         const config = {
             headers: {
                 'Authorization': token,
@@ -148,7 +148,7 @@ export const simpanKontakDarurat = createAsyncThunk(
 export const simpanDataPekerjaan = createAsyncThunk(
     'personal/simpanDataPekerjaan',
     async (param, thunkAPI) => {
-const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         const config = {
             headers: {
                 'Authorization': token,
@@ -183,7 +183,7 @@ const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getIte
 export const simpanAkunBank = createAsyncThunk(
     'personal/simpanAkunBank',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         const config = {
             headers: {
                 'Authorization': token,
@@ -218,7 +218,7 @@ export const simpanAkunBank = createAsyncThunk(
 export const simpanDPP = createAsyncThunk(
     'personal/simpanDPP',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         const config = {
             headers: {
                 'Authorization': token,
@@ -251,7 +251,7 @@ export const simpanDPP = createAsyncThunk(
 export const uplDocPribadi = createAsyncThunk(
     'personal/uplDocPribadi',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         const form = Object.keys(param).reduce((f, k) => {
             f.append(k, param[k]);
             return f;
@@ -264,8 +264,7 @@ export const uplDocPribadi = createAsyncThunk(
                 'Content-Type': 'application/json',
             }
         };
-        console.log('uplDocPribadi');
-        console.log(config);
+        
         try {
             const response = await axios.post(API_URL + '/action-dokumen_pribadi', form, config);
             let data = '';
@@ -292,7 +291,7 @@ export const uplDocPribadi = createAsyncThunk(
 export const getExpTrading = createAsyncThunk(
     'personal/getExpTrading',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/get-data-pengalaman-trading',
@@ -344,7 +343,7 @@ export const getExpTrading = createAsyncThunk(
 export const getKekayaan = createAsyncThunk(
     'personal/getKekayaan',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/get-kekayaan',
@@ -396,7 +395,7 @@ export const getKekayaan = createAsyncThunk(
 export const getKontakDarurat = createAsyncThunk(
     'personal/getKontakDarurat',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/get-kontak-darurat',
@@ -442,7 +441,7 @@ export const getKontakDarurat = createAsyncThunk(
 export const getPekerjaan = createAsyncThunk(
     'personal/getPekerjaan',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/get-data-pekerjaan',
@@ -488,7 +487,7 @@ export const getPekerjaan = createAsyncThunk(
 export const getAkunBank = createAsyncThunk(
     'personal/getAkunBank',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/get-data-akun-bank',
@@ -533,7 +532,7 @@ export const getAkunBank = createAsyncThunk(
 export const getDocPribadi = createAsyncThunk(
     'personal/getDocPribadi',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/dokumen_pribadi',
@@ -548,26 +547,26 @@ export const getDocPribadi = createAsyncThunk(
                 const _data = JSON.stringify(response);
                 if (response.status === 200) {
                     let data = response.data;
-                    let unggahFileName = [];
+                    let unggahFileNames = [];
                     if (data.error_message === 0) {
                         let payload = {
                             ...data.payload,
                             dokumen_pribadi_pernyataan: {
                                 data_pribadi_pernyataan_id: '',
-                                agree: data.payload.dokumen_pribadi_pernyataan ? data.payload.dokumen_pribadi_pernyataan.agree : 'N',
-								unggahFileName : unggahFileName
+                                agree: data.payload.dokumen_pribadi_pernyataan && data.payload.dokumen_pribadi_pernyataan.agree ? data.payload.dokumen_pribadi_pernyataan.agree : 'N',
+                                unggahFileName: unggahFileNames
                             }
-                        }
-                        let dokumen_pribadi_pernyataan = data.payload.dokumen_pribadi_pernyataan;
-                        if (dokumen_pribadi_pernyataan && dokumen_pribadi_pernyataan !== "") {
-							const arr_dokumen = data.payload.arr_dokumen.data;
-							for(var i = 0; i<arr_dokumen.length;i++){
-								unggahFileName.push(arr_dokumen[i].tipe);
-							}
-							
+                        }                       
+						
+                        if (data.payload.arr_dokumen.total_data > 0) {
+                            const arr_dokumen = data.payload.arr_dokumen.data;
+                            for (var i = 0; i < arr_dokumen.length; i++) {
+                                unggahFileNames.push(arr_dokumen[i].tipe);
+                            }
+
                             payload = {
-                                ...data.payload,
-								unggahFileName : unggahFileName.includes('KTP') && unggahFileName.includes('OTHER') && unggahFileName.includes('PHOTO')
+                                ...payload,
+                                unggahFileName: unggahFileNames.includes('KTP') && unggahFileNames.includes('OTHER') && unggahFileNames.includes('PHOTO')
                             }
                         }
                         return payload;
@@ -588,7 +587,7 @@ export const getDocPribadi = createAsyncThunk(
 export const delDocPribadi = createAsyncThunk(
     'personal/delDocPribadi',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/delete-dokumen_pribadi/' + param,
@@ -597,8 +596,7 @@ export const delDocPribadi = createAsyncThunk(
                 'Authorization': token,
             }
         };
-        console.log('delDocPribadi');
-        console.log(config);
+        
         return axios(config)
             .then(function (response) {
                 const _data = JSON.stringify(response);
@@ -624,7 +622,7 @@ export const delDocPribadi = createAsyncThunk(
 export const getNegara = createAsyncThunk(
     'option/getNegara',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/general-option/data-negara',
@@ -660,7 +658,7 @@ export const getNegara = createAsyncThunk(
 export const getProvinsi = createAsyncThunk(
     'option/getProvinsi',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/general-option/data-provinsi',
@@ -695,7 +693,7 @@ export const getProvinsi = createAsyncThunk(
 export const getBank = createAsyncThunk(
     'option/getBank',
     async (param, thunkAPI) => {
-		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
             url: API_URL + '/general-option/data-bank',
@@ -727,10 +725,6 @@ export const getBank = createAsyncThunk(
     }
 );
 
-
-
-
-
 const initialState = {
     isFetching: false,
     isLoading: false,
@@ -744,7 +738,7 @@ const initialState = {
     dataProvinsi: [],
     dataBank: [],
     docPribadi: [],
-	unggahFileName : false,
+    unggahFileName: false,
     dokumenPribadiPernyataan: {},
     dataExpTrading: {},
     dataKontakDarurat: {},
@@ -789,7 +783,7 @@ export const personalSlice = createSlice({
         closeForm: (state) => {
             state.showFormDelete = false;
         },
-		
+
     },
     extraReducers: {
         [getNegara.fulfilled]: (state, { payload }) => {
@@ -905,7 +899,7 @@ export const personalSlice = createSlice({
             state.dataAkunBank = {};
         },
         [getDocPribadi.fulfilled]: (state, { payload }) => {
-            console.log(payload);
+            
             state.isFetchingUpl = false;
             state.docPribadi = payload.arr_dokumen.data;
             state.unggahFileName = payload.unggahFileName;

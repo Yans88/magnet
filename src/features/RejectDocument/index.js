@@ -1,10 +1,21 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap'
+import moment from 'moment';
 import "moment/locale/id";
-import { getRejDoc, chgProps, simpanRejDoc, closeSwal } from './rejectDocSlice'
+import Datetime from 'react-datetime';
+import "react-datetime/css/react-datetime.css";
+import { getRejDoc, chgProps, simpanRejDoc, closeSwal } from './rejectDocSlice';
+import { profileUser } from '../main/mainSlice';
 import AppButton from '../../components/button/Button';
 import { Form } from 'react-bootstrap';
 import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
+
+
+var yesterday = moment().subtract(40, 'years');
+var valid_startDate = function (current) {
+    return current.isAfter(yesterday);
+};
 
 class RejecctDocument extends Component {
     constructor(props) {
@@ -15,6 +26,8 @@ class RejecctDocument extends Component {
         }
 
         this.state = {
+            validSd: valid_startDate,
+            validEd: valid_startDate,
             data_pribadi: {},
             kekayaan: {},
             kontak_darurat: {},
@@ -22,8 +35,9 @@ class RejecctDocument extends Component {
             akun_bank: {},
             pengalaman_trading: {},
             show: false,
-            errMsg1: this.initData,
+            errMsg: this.initData,
         }
+        this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
 
     }
 
@@ -83,6 +97,50 @@ class RejecctDocument extends Component {
         }
     }
 
+    handleChangeStartDate(date) {
+        const dt = {};
+        if (date) {
+            const selectedDate = new Date(date);
+            const _date = moment(selectedDate).format('YYYY-MM-DD');
+            this.setState({
+                data_pribadi: {
+                    ...this.state.data_pribadi,
+                    tanggal_lahir: _date
+                }
+            });
+
+        } else {
+            this.setState({
+                data_pribadi: {
+                    ...this.state.data_pribadi,
+                    tanggal_lahir: ''
+                }
+            });
+        }
+
+    }
+
+    renderView(mode, renderDefault, name) {
+        // Only for years, months and days view
+        if (mode === "time") return renderDefault();
+
+        return (
+            <div className="wrapper">
+                {renderDefault()}
+                <div className="controls">
+                    <Button variant="warning" type="button" onClick={() => this.clear(name)}>Clear</Button>
+                </div>
+            </div>
+        );
+    }
+
+    clear(name) {
+        if (name === "tanggal_lahir") {
+            this.handleChangeStartDate();
+        }
+
+    }
+
     handlesubmit() {
         const saveData = [];
         var field_pribadi = [];
@@ -91,12 +149,15 @@ class RejecctDocument extends Component {
         var field_data_kerja = [];
         var field_akun_bank = [];
         var field_pengalaman_trading = [];
+		var errors = this.state.errMsg;
+        
         for (let [key, value] of Object.entries(this.state.data_pribadi)) {
             let dt = {
                 field: key,
                 value: value,
                 note: 1
             }
+			
             field_pribadi.push(dt);
         }
         for (let [key, value] of Object.entries(this.state.kekayaan)) {
@@ -104,7 +165,15 @@ class RejecctDocument extends Component {
                 field: key,
                 value: value,
                 note: 1
-            }
+            }			
+			if(key === 'njop'){
+				var value_njop = parseInt(value ? value : 0);
+				errors.njop = value_njop < 100000000 ? "Min. 100.000.000" : '';
+			}
+			if(key === 'deposit_bank'){
+				var value_db = parseInt(value ? value : 0);
+				errors.deposit_bank = value_db < 10000000 ? "Min. 10.000.000" : '';
+			}
             field_kekayaan.push(dt2);
         }
         for (let [key, value] of Object.entries(this.state.kontak_darurat)) {
@@ -164,9 +233,15 @@ class RejecctDocument extends Component {
             post_dt = { nama_group: "pengalaman_trading", data_field: field_pengalaman_trading }
             saveData.push(post_dt);
         }
-        if (saveData.length > 0) {
-            this.props.onSave(saveData);
+		this.setState({ errors });
+		if (this.validateForm(this.state.errMsg)) {
+            if (saveData.length > 0) {
+				this.props.onSave(saveData);
+			}
+        } else {
+            console.error('Invalid Form')
         }
+        
     }
 
     validateForm(errors) {
@@ -180,7 +255,8 @@ class RejecctDocument extends Component {
     render() {
 
         const { user, dataRejDoc, isFetching } = this.props;
-
+        const { errMsg } = this.state;
+        // console.log(this.state);
         return (
 
             <div className="content-wrapper">
@@ -196,29 +272,196 @@ class RejecctDocument extends Component {
                                             <Form>
                                                 {dataRejDoc ? dataRejDoc.map((dr, index) => {
                                                     return (
-													<div key={index}>
-                                                        <h4>{dr.nama_group}</h4><br />
-                                                        {dr.data_field.map((df, ix) => {
-                                                            return (<div key={df.field}>
-                                                                <Form.Group controlId={df.field}>
-                                                                    <Form.Label>{df.field}</Form.Label>
-                                                                    <Form.Control
-                                                                        autoComplete="off"
-                                                                        onChange={this.handleChange.bind(this, dr.nama_group)}
-                                                                        size="lg"
-                                                                        name={df.field}
-                                                                        type="text"
-                                                                        required
-                                                                        placeholder={df.field} />
-                                                                    <div style={{ color: "red" }}>{df.note}</div>
-                                                                </Form.Group>
+                                                        <div key={index}>
+                                                            <h4>{dr.label_group}</h4><br />
+                                                            {dr.data_field.map((df, ix) => {
 
-                                                            </div>)
-                                                        })}
+                                                                return (
 
 
+                                                                    <div key={df.field}>
+                                                                        <Form.Group controlId={df.field}>
+                                                                            <Form.Label>{df.label_field}</Form.Label> {errMsg && errMsg[df.field] ? (<span className="text-error badge badge-danger">{errMsg[df.field]}</span>) : ''}
+                                                                            {dr.type_field === "text" &&
+                                                                                <Form.Control
+                                                                                    autoComplete="off"
+                                                                                    onChange={this.handleChange.bind(this, dr.nama_group)}
+                                                                                    size="lg"
+                                                                                    value={this.state[dr.nama_group][dr.field]}
+                                                                                    name={df.field}
+                                                                                    type="text"
+                                                                                    required
+                                                                                    placeholder={df.label_field} />}
+																					
+                                                                            {df.field === "jenis_kelamin" &&
+                                                                                <Fragment>
+                                                                                    <br />
+                                                                                    <Form.Check
+                                                                                        onChange={this.handleChange.bind(this, dr.nama_group)}
+                                                                                        inline
+                                                                                        checked={this.state.data_pribadi.jenis_kelamin === 'Laki-Laki' ? true : false}
+                                                                                        value='Laki-Laki'
+                                                                                        type='radio'
+                                                                                        name='jenis_kelamin'
+                                                                                        label='Laki-laki'
+                                                                                    />
+                                                                                    <Form.Check
+                                                                                        onChange={this.handleChange.bind(this, dr.nama_group)}
+                                                                                        inline
+                                                                                        value='Perempuan'
+                                                                                        type='radio'
+                                                                                        checked={this.state.data_pribadi.jenis_kelamin === 'Perempuan' ? true : false}
+                                                                                        name='jenis_kelamin'
+                                                                                        label='Perempuan'
+                                                                                    />
+                                                                                </Fragment>
+                                                                            }
+                                                                            {df.field === "jenis_akun_bank" &&
+                                                                                <Fragment>
+                                                                                    <br />
+                                                                                    <Form.Check
+                                                                                        onChange={this.handleChange.bind(this, dr.nama_group)}
+                                                                                        inline
+                                                                                        checked={this.state[dr.nama_group][dr.field] === 'Giro' ? ("checked") : ""}
+                                                                                        value='Giro'
+                                                                                        type='radio'
+                                                                                        name='jenis_akun_bank'
+                                                                                        label='Giro'
+                                                                                    />
+                                                                                    <Form.Check
+                                                                                        onChange={this.handleChange.bind(this, dr.nama_group)}
+                                                                                        inline
+                                                                                        value='Rekening tabungan'
+                                                                                        type='radio'
+                                                                                        checked={this.state[dr.nama_group][dr.field] === 'Rekening tabungan' ? ("checked") : ""}
+                                                                                        name='jenis_akun_bank'
+                                                                                        label='Rekening tabungan'
+                                                                                    />
+                                                                                    <Form.Check
+                                                                                        onChange={this.handleChange.bind(this, dr.nama_group)}
+                                                                                        inline
+                                                                                        value='Lainnya'
+                                                                                        type='radio'
+                                                                                        checked={this.state[dr.nama_group][dr.field] === 'Lainnya' ? ("checked") : ""}
+                                                                                        name='jenis_akun_bank'
+                                                                                        label='Lainnya'
+                                                                                    />
+                                                                                </Fragment>
+                                                                            }
+                                                                            {dr.type_field === "number" &&
+                                                                                <Form.Control
+                                                                                    autoComplete="off"
+                                                                                    onChange={this.handleChange.bind(this, dr.nama_group)}
+                                                                                    size="lg"
+                                                                                    name={df.field}
+                                                                                    value={this.state[dr.nama_group][dr.field]}
+                                                                                    type="text"
+                                                                                    required
+                                                                                    placeholder={df.label_field} />}
+                                                                            {dr.type_field === "date" &&
+                                                                                <Datetime
+                                                                                    closeOnSelect={true}
+                                                                                    timeFormat={false}
+                                                                                    setViewDate={this.state[dr.nama_group][dr.field] ? (new Date(this.state[dr.nama_group][dr.field])) : new Date()}
+                                                                                    value={this.state[dr.nama_group][dr.field] ? (new Date(this.state[dr.nama_group][dr.field])) : ''}
+                                                                                    onChange={this.handleChangeStartDate}
+                                                                                    inputProps={{
+                                                                                        readOnly: true,
+                                                                                        autoComplete: "off",
+                                                                                        placeholder: 'Tanggal Lahir',
+                                                                                        name: 'tanggal_lahir',
+                                                                                        className: 'form-control form-control-lg'
+                                                                                    }}
+                                                                                    renderView={(mode, renderDefault, tanggal_lahir) =>
+                                                                                        this.renderView(mode, renderDefault, 'tanggal_lahir')
+                                                                                    }
+                                                                                    locale="id" isValidDate={this.state.validSd}
+                                                                                />}
+                                                                            {dr.type_field === "dropdown" &&
+                                                                                <Form.Control
+                                                                                    as="select"
+                                                                                    onChange={this.handleChange.bind(this, dr.nama_group)}
+                                                                                    size="lg"
+                                                                                    name={df.field}
+                                                                                    type="text"
+                                                                                    required>
+                                                                                    <option value="">Pilih</option>
+                                                                                    {df.field === "jenis_identitas" && (
+                                                                                        <Fragment>
+                                                                                            <option value="KTP">KTP</option>
+                                                                                            <option value="SIM">SIM</option>
+                                                                                            <option value="Passpor">Passport</option>
+                                                                                        </Fragment>
 
-                                                    </div>
+                                                                                    )}
+                                                                                    {df.field === "tujuan_pembukaan_rekening" && (
+                                                                                        <Fragment>
+                                                                                            <option value="Spekulasi">Spekulasi</option>
+                                                                                            <option value="Keuntungan">Keuntungan</option>
+                                                                                            <option value="Lindung Nilai">Lindung Nilai</option>
+                                                                                            <option value="Lainnya">Lainnya</option>
+                                                                                        </Fragment>
+
+                                                                                    )}
+																					{df.field === "pengalaman_trading" && (
+                                                                                        <Fragment>
+                                                                                            <option value="Spekulasi">Spekulasi</option>
+                                                                                            <option value="Keuntungan">Keuntungan</option>
+                                                                                            <option value="Lindung Nilai">Lindung Nilai</option>
+                                                                                            <option value="Lainnya">Lainnya</option>
+                                                                                        </Fragment>
+
+                                                                                    )}
+                                                                                    {df.field === "status_pernikahan" && (
+                                                                                        <Fragment>
+
+                                                                                            <option value="Belum Kawin">Belum Kawin</option>
+                                                                                            <option value="Kawin">Kawin</option>
+                                                                                            <option value="Cerai">Cerai</option>
+                                                                                            <option value="Janda/Duda">Janda/Duda</option>
+                                                                                        </Fragment>
+
+                                                                                    )}
+
+                                                                                    {df.field === "status_kepemilikan" && (
+                                                                                        <Fragment>
+                                                                                            <option value="Milik">Pribadi</option>
+                                                                                            <option value="Keluarga">Keluarga</option>
+                                                                                            <option value="Sewa/Kontrak">Sewa/Kontrak</option>
+                                                                                        </Fragment>
+
+                                                                                    )}
+
+
+                                                                                    {df.option && (df.field === "tempat_lahir" || df.field === "provinsi") ? (
+                                                                                        df.option.map(function (prov) {
+                                                                                            return <option
+                                                                                                value={prov.nama_provinsi}
+                                                                                                key={prov.provinsi_id}>{prov.nama_provinsi}
+                                                                                            </option>
+                                                                                        })
+
+                                                                                    ) : ''}
+                                                                                    {df.option && df.field === "warga_negara" ? (
+                                                                                        df.option.map(function (prov) {
+                                                                                            return <option
+                                                                                                value={prov.nama_negara}
+                                                                                                key={prov.negara_id}>{prov.nama_negara}
+                                                                                            </option>
+                                                                                        })) : ''}
+                                                                                </Form.Control>
+                                                                            }
+                                                                            <div style={{ color: "red" }}>{df.note}</div>
+                                                                        </Form.Group>
+
+                                                                    </div>
+
+                                                                )
+                                                            })}
+
+
+
+                                                        </div>
 
                                                     )
                                                 }
@@ -226,7 +469,7 @@ class RejecctDocument extends Component {
                                                 ) : ''}
                                             </Form>
                                             {dataRejDoc.length > 0 ? (
-												<div style={{ textAlign: 'center' }}>
+                                                <div style={{ textAlign: 'center' }}>
                                                     <strong>
                                                         Dengan mendaftar saya menyetujui <br /> syarat dan kebijakan privasi
 
@@ -240,7 +483,7 @@ class RejecctDocument extends Component {
                                                         size="lg"
                                                         theme="danger">Selanjutnya</AppButton>
                                                 </div>
-											) : (<h3>No Data</h3>)
+                                            ) : (<h3>No Data</h3>)
                                             }
                                         </div>
 
@@ -277,15 +520,17 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
+            dispatch(profileUser());
             dispatch(getRejDoc());
         },
         changeProps: (param) => {
             dispatch(chgProps(param));
         },
         onSave: (param) => {
+            dispatch(profileUser());
             dispatch(simpanRejDoc(param));
         },
-        closeSwal: () => {       
+        closeSwal: () => {
             dispatch(closeSwal());
             dispatch(getRejDoc());
         },
