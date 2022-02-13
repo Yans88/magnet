@@ -256,7 +256,9 @@ class Beranda extends Component {
                                 
 
                                 <div className="mobile-hide absolute mt-[27rem] bg-white text-black text-center rounded-2xl shadow-lg  py-10 w-3/4 ..." >
-                                    <a href="account-type" className="btn btn-lgreen btn-sm"><span className="font-bold text-black">BUAT AKUN TRADING BARU</span></a>
+                                    <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
+                                        <span className="font-bold text-black">BUAT AKUN TRADING BARU</span>
+                                    </Link>
                                         <div className="grid grid-cols-3 gap-4 px-5  mt-2">
 
                                                 {akun_trading ? (
@@ -264,14 +266,18 @@ class Beranda extends Component {
                                                     return (
                                                         <Fragment key={index}>
                                                         <div className="border border-solid border-gray-300 text-left p-4 rounded-2xl" style={{ backgroundColor:"#F1F1F1"}}>
-                                                            <div className="box-account__id">#{at.login}
+                                                            
 
-                                                                <div className="box-bank__actions">
-
+                                                            
+                                                            <div className="grid grid-cols-2">
+                                                                <div>
+                                                                    <span className="text-red-500">#{at.login}</span>
+                                                                </div>
+                                                                <div className="box-bank__actions place-items-end text-right">
                                                                     <Dropdown>
                                                                         <Dropdown.Toggle size="sm" variant="secondary"
-                                                                            style={{ backgroundColor: 'transparent', borderColor: 'transparent' }} id="dropdown-basic">
-                                                                            <i className="fa fa-ellipsis-h"></i>
+                                                                            style={{ backgroundColor: 'transparent', borderColor: 'transparent',color:'#000' }} id="dropdown-basic">
+                                                                            <i className="fa fa-ellipsis-v"></i>
                                                                         </Dropdown.Toggle>
 
                                                                         <Dropdown.Menu className="my-dropdown-menu">
@@ -283,8 +289,6 @@ class Beranda extends Component {
 
                                                                 </div>
                                                             </div>
-
-                                                            <span className="text-red-500">#{at.login}</span>
                                                             <div className="grid grid-cols-2">
                                                                 <div className="font-bold">NO AKUN</div>
                                                                 <div className="font-bold">FREE MARGIN</div>

@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { getDT } from '../YukBelajar/ybSlice'
 import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
+import icon from '../../assets/yukbelajar2.svg';
 
 class YukBelajar extends Component {
     constructor(props) {
@@ -39,8 +40,10 @@ class YukBelajar extends Component {
             <div className="content-wrapper">
 
                 <section className="content">
-                    <div className="container-fluid">
-                        <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>Yuk Belajar!</h1>
+                    <div className="container-fluid  mt-3">
+                        <img src={icon} width="35px" className="float-left mt-3" />
+                        <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Yuk Belajar</h1>
+
                         <div className="row">
 						
                             <div className="col-12">
