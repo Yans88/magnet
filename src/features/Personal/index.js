@@ -136,9 +136,21 @@ class Personal extends Component {
         var value = evt.target.value;
         const dt = {};
 
+        console.log(name);
+
         if (name === "agreement2") {
             value = evt.target.checked ? 1 : 0;
         }
+
+        if (name === "pertanyaan1") {
+            value = evt.target.checked ? 'Y' : 'N';
+        }
+
+        if (name === "pertanyaan5" || name === "pertanyaan4" || name === "pertanyaan3") {
+            value = evt.target.checked ? 'Y' : 'N';
+        }
+
+        
 
         dt['key'] = name;
         dt['value'] = value;
@@ -538,9 +550,11 @@ class Personal extends Component {
 
                                             <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                                                    
                                                     <br />
-                                                    <h3 className="label_ijo">Detil Pribadi</h3>
-                                                    <br />
+                                                    <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Detil Pribadi</span>
+                                                    <br /><br/>
+
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="nama_depan">
                                                             <Form.Label><span className="label_merah">Nama Depan</span></Form.Label>
@@ -940,7 +954,7 @@ class Personal extends Component {
 
                                                                 <div className="form-group w-[50%] text-center mt-4">
                                                                 <label>
-                                                                    Dengan mendaftar, saya menyetujui <br/>Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                                    <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
                                                                 </label>
                                                                 </div>
 
@@ -979,8 +993,8 @@ class Personal extends Component {
                                             <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                                                     <br />
-                                                    <h3 className="label_ijo">Pengalaman Trading</h3>
-                                                    <br />
+                                                    <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Pengalaman Trading</span>
+                                                    <br /><br/>
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="tujuan_pembukaan_rekening">
                                                             <Form.Label>Tujuan Pembukaan Rekening</Form.Label>
@@ -1001,64 +1015,64 @@ class Personal extends Component {
                                                     <Form.Row>
                                                         <Form.Group as={Col} xs={3} controlId="pertanyaan1">
                                                             <Form.Label>Pengalaman Trading</Form.Label><br />
+                                                           
+
                                                             <Form.Check
                                                                 onChange={this.handleChangeTrading.bind(this)}
-                                                                inline
+                                                                inline 
+                                                                type="switch"
+                                                                label="Check this switch"
+                                                                value="Y"
+                                                                id="custom-switch"
+                                                                label={dataExpTrading.pertanyaan1 === 'Y' ? "Ya" : "Tidak"}
+                                                                name='pertanyaan1'
                                                                 checked={dataExpTrading.pertanyaan1 === 'Y' ? ("checked") : ""}
-                                                                value='Y'
-                                                                type='radio'
-                                                                name='pertanyaan1'
-                                                                label='Ya'
                                                             />
-                                                            <Form.Check
-                                                                onChange={this.handleChangeTrading.bind(this)}
-                                                                inline
-                                                                value='N'
-                                                                type='radio'
-                                                                checked={dataExpTrading.pertanyaan1 !== 'Y' ? ("checked") : ""}
-                                                                name='pertanyaan1'
-                                                                label='Tidak'
-                                                            />
+
+                                                            
+                                                            
+
+                                                            
+                                                            
                                                         </Form.Group>
+                                                        {dataExpTrading.pertanyaan1 === 'Y' ? (
+                                                        
+                                                        <Form.Group as={Col} xs={6} controlId="pertanyaan2">
+                                                            
+                                                            <Form.Label>Pengalaman Trading anda Sebelumnya di</Form.Label>
+                                                            <Form.Control
+                                                                value={dataExpTrading.pertanyaan2 ? dataExpTrading.pertanyaan2 : ''}
+                                                                autoComplete="off"
+                                                                onChange={this.handleChangeTrading.bind(this)}
+                                                                size="lg"
+                                                                name="pertanyaan2"
+                                                                type="text"
+                                                                required
+                                                                placeholder="Nama Perusahaan/Brand" />
+                                                        </Form.Group>
+                                                        
+                                                         ) : ''}
+
                                                     </Form.Row>
-                                                    {dataExpTrading.pertanyaan1 === 'Y' ? (
-                                                        <Form.Row>
-                                                            <Form.Group as={Col} controlId="pertanyaan2">
-                                                                
-                                                                <Form.Label>Pengalaman Trading anda Sebelumnya di</Form.Label>
-                                                                <Form.Control
-                                                                    value={dataExpTrading.pertanyaan2 ? dataExpTrading.pertanyaan2 : ''}
-                                                                    autoComplete="off"
-                                                                    onChange={this.handleChangeTrading.bind(this)}
-                                                                    size="lg"
-                                                                    name="pertanyaan2"
-                                                                    type="text"
-                                                                    required
-                                                                    placeholder="Nama Perusahaan/Brand" />
-                                                            </Form.Group>
-                                                        </Form.Row>) : ''}
+                                                    
 
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="pertanyaan3">
                                                             <Form.Label>Apakah Anda memiliki keluarga yang bekerja di BAPPEBTI / BBJ / KBI / BKDI / ISI Clearing?</Form.Label><br />
+                                                            
                                                             <Form.Check
                                                                 onChange={this.handleChangeTrading.bind(this)}
-                                                                inline
+                                                                inline 
+                                                                type="switch"
+                                                                label="Check this switch"
+                                                                value="Y"
+                                                                id="custom-switch4"
+                                                                label={dataExpTrading.pertanyaan3 === 'Y' ? "Ya" : "Tidak"}
+                                                                name='pertanyaan3'
                                                                 checked={dataExpTrading.pertanyaan3 === 'Y' ? ("checked") : ""}
-                                                                value='Y'
-                                                                type='radio'
-                                                                name='pertanyaan3'
-                                                                label='Ya'
                                                             />
-                                                            <Form.Check
-                                                                onChange={this.handleChangeTrading.bind(this)}
-                                                                inline
-                                                                value='N'
-                                                                type='radio'
-                                                                checked={dataExpTrading.pertanyaan3 !== 'Y' ? ("checked") : ""}
-                                                                name='pertanyaan3'
-                                                                label='Tidak'
-                                                            />
+
+                                                            
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
@@ -1066,50 +1080,40 @@ class Personal extends Component {
                                                             <Form.Label>Apakah Anda telah dinyatakan pailit oleh Pengadilan?</Form.Label><br />
                                                             <Form.Check
                                                                 onChange={this.handleChangeTrading.bind(this)}
-                                                                inline
+                                                                inline 
+                                                                type="switch"
+                                                                label="Check this switch"
+                                                                value="Y"
+                                                                id="custom-switch3"
+                                                                label={dataExpTrading.pertanyaan4 === 'Y' ? "Ya" : "Tidak"}
+                                                                name='pertanyaan4'
                                                                 checked={dataExpTrading.pertanyaan4 === 'Y' ? ("checked") : ""}
-                                                                value='Y'
-                                                                type='radio'
-                                                                name='pertanyaan4'
-                                                                label='Ya'
                                                             />
-                                                            <Form.Check
-                                                                onChange={this.handleChangeTrading.bind(this)}
-                                                                inline
-                                                                value='N'
-                                                                type='radio'
-                                                                checked={dataExpTrading.pertanyaan4 !== 'Y' ? ("checked") : ""}
-                                                                name='pertanyaan4'
-                                                                label='Tidak'
-                                                            />
+
+                                                            
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
-                                                        <Form.Group as={Col} controlId="pertanyaan5">
+                                                        <Form.Group as={Col} xs={3} controlId="pertanyaan5">
                                                             <Form.Label>Memiliki pengalaman perdagangan dalam Perdagangan Berjangka</Form.Label><br />
+                                                            
                                                             <Form.Check
                                                                 onChange={this.handleChangeTrading.bind(this)}
-                                                                inline
+                                                                inline 
+                                                                type="switch"
+                                                                label="Check this switch"
+                                                                value="Y"
+                                                                id="custom-switch2"
+                                                                label={dataExpTrading.pertanyaan5 === 'Y' ? "Ya" : "Tidak"}
+                                                                name='pertanyaan5'
                                                                 checked={dataExpTrading.pertanyaan5 === 'Y' ? ("checked") : ""}
-                                                                value='Y'
-                                                                type='radio'
-                                                                name='pertanyaan5'
-                                                                label='Ya'
                                                             />
-                                                            <Form.Check
-                                                                onChange={this.handleChangeTrading.bind(this)}
-                                                                inline
-                                                                value='N'
-                                                                type='radio'
-                                                                checked={dataExpTrading.pertanyaan5 !== 'Y' ? ("checked") : ""}
-                                                                name='pertanyaan5'
-                                                                label='Tidak'
-                                                            />
+
+                                                            
                                                         </Form.Group>
-                                                    </Form.Row>
-                                                    {dataExpTrading.pertanyaan5 === 'Y' ? (
-                                                        <Form.Row>
-                                                            <Form.Group as={Col} controlId="pertanyaan6">
+                                                        {dataExpTrading.pertanyaan5 === 'Y' ? (
+                                                        
+                                                            <Form.Group as={Col} xs={6} controlId="pertanyaan6">
                                                                 <Form.Label>Pengalaman Trading Berjangka anda Sebelumnya di</Form.Label>
                                                                 <Form.Control
                                                                     value={dataExpTrading.pertanyaan6 ? dataExpTrading.pertanyaan6 : ''}
@@ -1121,7 +1125,9 @@ class Personal extends Component {
                                                                     required
                                                                     placeholder="Nama Perusahaan/Brand" />
                                                             </Form.Group>
-                                                        </Form.Row>) : ''}
+                                                        ) : ''}
+                                                    </Form.Row>
+                                                    
                                                 </div>
                                                 <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
                                                     <div className="form-group">
@@ -1145,7 +1151,7 @@ class Personal extends Component {
 
                                                                <div className="form-group w-[50%] text-center mt-4">
                                                                 <label>
-                                                                    Dengan mendaftar, saya menyetujui <br/>Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                                    <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
                                                                 </label>
                                                                 </div>
 
@@ -1184,9 +1190,10 @@ class Personal extends Component {
                                         {active_tab === 'kekayaan' && (<Fragment>
                                             <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                                                    
                                                     <br />
-                                                    <h3 className="label_ijo">Kekayaan Pribadi</h3>
-                                                    <br />
+                                                    <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Kekayaan Pribadi</span>
+                                                    <br /><br/>
                                                     <Form.Row>
                                                         
                                                         <Form.Group as={Col} controlId="pendapatan_pertahun">
@@ -1312,7 +1319,7 @@ class Personal extends Component {
 
                                                                 <div className="form-group w-[50%] text-center mt-4">
                                                                 <label>
-                                                                    Dengan mendaftar, saya menyetujui <br/>Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                                    <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
                                                                 </label>
                                                                 </div>
 
@@ -1350,9 +1357,11 @@ class Personal extends Component {
                                         {active_tab === 'kontak_darurat' && (<Fragment>
                                             <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                                                    
+                                                    
                                                     <br />
-                                                    <h3 className="label_ijo">Kontak Darurat</h3>
-                                                    <br />
+                                                    <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Kontak Darurat</span>
+                                                    <br /><br/>
 
                                                     <Form.Row>
                                                         <Form.Group as={Col} xs={6} controlId="nama">
@@ -1469,7 +1478,7 @@ class Personal extends Component {
 
                                                                     <div className="form-group w-[50%] text-center mt-4">
                                                                     <label>
-                                                                        Dengan mendaftar, saya menyetujui <br/>Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                                    <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
                                                                     </label>
                                                                     </div>
 
@@ -1507,9 +1516,10 @@ class Personal extends Component {
                                         {active_tab === 'pekerjaan' && (<Fragment>
                                             <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                                                   
                                                     <br />
-                                                    <h3 className="label_ijo">Pekerjaan</h3>
-                                                    <br />
+                                                    <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Pekerjaan</span>
+                                                    <br /><br/>
 
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="status_pekerjaan">
@@ -1693,7 +1703,7 @@ class Personal extends Component {
 
                                                                     <div className="form-group w-[50%] text-center mt-4">
                                                                     <label>
-                                                                        Dengan mendaftar, saya menyetujui <br/>Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                                        <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
                                                                     </label>
                                                                     </div>
 
@@ -1730,9 +1740,10 @@ class Personal extends Component {
                                         {active_tab === 'detil_bank' && (<Fragment>
                                             <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                                                    
                                                     <br />
-                                                    <h3 className="label_ijo">Akun Bank</h3>
-                                                    <br />
+                                                    <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Akun Bank</span>
+                                                    <br /><br/>
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="nama_pemilik">
                                                             <Form.Label>Nama Pemilik Rekening</Form.Label>
@@ -1882,7 +1893,7 @@ class Personal extends Component {
 
                                                                     <div className="form-group w-[50%] text-center mt-4">
                                                                     <label>
-                                                                        Dengan mendaftar, saya menyetujui <br/>Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                                        <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
                                                                     </label>
                                                                     </div>
 
@@ -1920,9 +1931,10 @@ class Personal extends Component {
                                         {active_tab === 'unggah_file' && (<Fragment>
 
                                             <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                                                
                                                 <br />
-                                                <h3 className="label_ijo">Unggah Dokumen</h3>
-                                                <br />
+                                                    <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Unggah Dokumen</span>
+                                                    <br /><br/>
                                                 <div className="row">
                                                     <div className="col-md-4">
                                                         <div className="alert alert-success alert-sm" style={{ backgroundColor: '#effbf3' }} >
@@ -2145,7 +2157,7 @@ class Personal extends Component {
 
                                                                     <div className="form-group w-[50%] text-center mt-4">
                                                                     <label>
-                                                                        Dengan mendaftar, saya menyetujui <br/>Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                                        <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
                                                                     </label>
                                                                     </div>
 
