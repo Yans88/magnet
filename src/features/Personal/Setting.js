@@ -118,7 +118,7 @@ class Setting extends Component {
                                                 onSelect={this.handleSelect.bind(this)}
                                                 active={active_tab === 'profile' ? true : false}
                                                 eventKey="profile"
-                                                className="default" >Profile
+                                                className="default" >Personal Info
                                             </Nav.Item>
                                         </Nav>
                                         <div style={{ paddingTop: 20 }} className="px-3 lg:px-5">
@@ -213,7 +213,9 @@ class Setting extends Component {
                                                                 name="nama_depan"
                                                                 type="text"
                                                                 readOnly
-                                                                placeholder="First Name" />
+                                                                placeholder="First Name"
+                                                                style={{backgroundColor:"#e9ecef"}}
+                                                                />
 
                                                         </Col>
                                                     </Row>

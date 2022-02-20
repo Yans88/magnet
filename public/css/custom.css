@@ -415,7 +415,7 @@ table td, .table th {
 .card-header > h1{line-height: 1.2 !important;}
 
 input:read-only {
-  background-color: #fff !important;
+  background-color: #e9ecef !important;
 }
 
 .list-steps {

@@ -35,7 +35,7 @@ const AppModal = ({
                     <Button theme="info" onClick={titleClose ? handleBack : handleClose} style={{ marginRight: 5,backgroundColor:"#17a2b8" }}>
                         {titleClose ? titleClose : "Close"}
                     </Button>
-                    <Button
+                    <Button style={{ backgroundColor:"#28a745" }}
                         disabled={isDisable}
                         isLoading={isLoading}
                         theme={themeButton}
