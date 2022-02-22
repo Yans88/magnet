@@ -172,6 +172,40 @@ export const regUser = createAsyncThunk(
     }
 );
 
+export const changePass = createAsyncThunk(
+    'user/changePass',
+    async (param, thunkAPI) => {
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        const config = {
+            headers: {
+                'Authorization': token,
+                'x-app-origin': 'cabinet-app',
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+        };
+        try {
+            const response = await axios.post(API_URL + '/change-password', param, config);
+            let data = '';
+            let _data = await response;
+            if (response.status === 200) {
+                data = _data.data;
+				console.log(data);
+                if (data.error_message === 0) {
+                    return data;
+                } else {
+                    return thunkAPI.rejectWithValue(data);
+                }
+            } else {
+                return thunkAPI.rejectWithValue(_data);
+            }
+        } catch (e) {
+            console.log('Error', e.response.data);
+            thunkAPI.rejectWithValue(e.response.data);
+        }
+    }
+);
+
 export const chgPass = createAsyncThunk(
     'users/chgPass',
     async (param, thunkAPI) => {
@@ -362,38 +396,7 @@ export const completeData = createAsyncThunk(
     }
 );
 
-export const changePass = createAsyncThunk(
-    'user/changePass',
-    async (param, thunkAPI) => {
-        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
-        const config = {
-            headers: {
-                'Authorization': token,
-                'x-app-origin': 'cabinet-app',
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            }
-        };
-        try {
-            const response = await axios.post(API_URL + '/change-password', param, config);
-            let data = '';
-            let _data = await response;
-            if (response.status === 200) {
-                data = _data.data;
-                if (data.error_message === 0) {
-                    return data;
-                } else {
-                    return thunkAPI.rejectWithValue(data);
-                }
-            } else {
-                return thunkAPI.rejectWithValue(_data);
-            }
-        } catch (e) {
-            console.log('Error', e.response.data);
-            thunkAPI.rejectWithValue(e.response.data);
-        }
-    }
-);
+
 
 export const updProfile = createAsyncThunk(
     'user/updProfile',
@@ -480,6 +483,8 @@ const initialState = {
     dataMarketing: [],
     showFormSuccess: false,
     myStatus: false,
+    contentMsg: '',
+	tipeSWAL : "success"
 };
 
 export const mainSlice = createSlice({
@@ -495,6 +500,9 @@ export const mainSlice = createSlice({
             state.isSuccess = false;
             state.isFetching = false;
             state.errorMessage = null;
+			state.showFormSuccess= false;
+			state.contentMsg= '';
+			state.tipeSWAL = "success";
             return state;
         },
         onLogout: (state) => {
@@ -517,6 +525,7 @@ export const mainSlice = createSlice({
     },
     extraReducers: {
         [loginUser.fulfilled]: (state, { payload }) => {
+			console.log(payload);
             state.isFetching = false;
             state.isSuccess = true;
             state.isLoggedIn = !!localStorage.getItem(tokenLogin);
@@ -651,6 +660,46 @@ export const mainSlice = createSlice({
             state.errorMessage = payload.message;
         },
         [changePass.pending]: (state) => {
+            state.errorMessage = '';
+        },
+		[chgPass.rejected]: (state, { payload }) => {			
+            state.isFetching = false;
+            state.isError = true;
+			state.tipeSWAL = "warning";
+            state.errorMessage = payload.message;
+			state.contentMsg = "<div style='font-size:20px; text-align:center;'><strong>Failed</strong>, "+payload.message+"</div>";
+			state.showFormSuccess = true;
+            return state;
+        },
+        [chgPass.fulfilled]: (state, { payload }) => {            
+            state.isFetching = false;
+			state.showFormSuccess = true;
+            state.isError = false;
+			state.tipeSWAL = "success";
+            //state.errorMessage = payload.message;
+			state.contentMsg = "<div style='font-size:20px; text-align:center;'><strong>Success</strong>, Password berhasil disimpan</div>";            
+        },
+		[changePass.pending]: (state) => {
+            state.errorMessage = '';
+        },
+		[chgPhonePass.rejected]: (state, { payload }) => {			
+            state.isFetching = false;
+            state.isError = true;
+			state.tipeSWAL = "warning";
+            state.errorMessage = payload.message;
+			state.contentMsg = "<div style='font-size:20px; text-align:center;'><strong>Failed</strong>, "+payload.message+"</div>";
+			state.showFormSuccess = true;
+            return state;
+        },
+        [chgPhonePass.fulfilled]: (state, { payload }) => {            
+            state.isFetching = false;
+			state.showFormSuccess = true;
+            state.isError = false;
+			state.tipeSWAL = "success";
+            //state.errorMessage = payload.message;
+			state.contentMsg = "<div style='font-size:20px; text-align:center;'><strong>Success</strong>, Password berhasil disimpan</div>";            
+        },
+        [chgPhonePass.pending]: (state) => {
             state.errorMessage = '';
         },
         [updProfile.fulfilled]: (state, { payload }) => {
