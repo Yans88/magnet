@@ -595,6 +595,12 @@ ol, ul, dl {
   float: right;
 }
 
+.custom-file-input3 > .form-control-file{
+  background-color: transparent !important;
+  border:none !important;
+  color:rgba(0, 0, 0, 0) !important;
+}
+
 .align-items-center {
   -webkit-box-align: center!important;
   -ms-flex-align: center!important;

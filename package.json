@@ -1,7 +1,7 @@
 {
   "name": "magnet",
   "version": "0.1.0",
-  "homepage": "https://dev.andtechnology.me/magnet_cabinet_design",
+  "homepage": "https://dev.andtechnology.me/magnet",
   "private": true,
   "dependencies": {
     "@ashvin27/react-datatable": "^1.5.3",
@@ -12,6 +12,7 @@
     "@types/react-transition-group": "^4.4.3",
     "axios": "^0.21.4",
     "bootstrap": "^4.6.0",
+    "compress.js": "^1.2.2",
     "crypto-js": "^4.1.1",
     "formik": "^2.2.9",
     "jquery": "^3.6.0",
