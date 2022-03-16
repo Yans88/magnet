@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@ashvin27/react-datatable": "^1.5.3",
+    "@headlessui/react": "^1.5.0",
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",

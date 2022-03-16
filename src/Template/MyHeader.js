@@ -6,6 +6,9 @@ import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import logoa from '../assets/logo.svg';
 import "../styles/custom_muis.css";
+import { useRef } from 'react'
+import { Disclosure } from '@headlessui/react'
+
 import icon_akun from '../assets/logo.svg';
 
 import moment from 'moment';
@@ -15,6 +18,7 @@ const tokenLogin = process.env.REACT_APP_TOKEN_LOGIN;
 
 class MyHeader extends Component {
 
+    
     componentDidMount() {
         this.fetchProfileAdmin();
     }
@@ -42,8 +46,14 @@ class MyHeader extends Component {
         
     }
 
+
+  
+    
     render() {
         const { profile } = this.props;
+          
+        
+
         return (
 
             <Header>
@@ -89,7 +99,7 @@ class MyHeader extends Component {
                                     </Dropdown>
                                 </Nav>
 
-                                <Nav className="mobile-view ml-4">
+                                <Nav className="mobile-view">
                                     
                                     
                                         <Dropdown className="show dr-logout text-black" style={{color:"#000"}} icon={<Icon icon="user-o" size="lg" />} title={this.props.user.nama_depan ? (this.props.user.nama_depan) : ("Account")}>
@@ -120,6 +130,7 @@ class MyHeader extends Component {
         )
     }
 }
+
 const mapDispatchToPros = (dispatch) => {
     return {
         onClickExpand: () => {

@@ -298,103 +298,72 @@ class Transfer extends Component {
                                             <h3 className="label_ijo">Akun Trading MT5</h3>
                                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-0  py-4">
                                                 
-                                                <div className="">
                                                     <h3 className="form-section text-capitalize" style={{ color:"#2E2E2F" }}>Dari</h3>
-                                                    <div className="p-2" style={{border:"1px solid #000",borderRadius:"5px"}}>
-
-                                                            <div className="flex p-3" >
-                                                            
-                                                                <div class="flex-initial w-20 ...">
-                                                                
-                                                                </div>
-
-                                                                <div class="flex-initial w-64 text-black font-bold ...">
-                                                                    LOGIN
-                                                                </div>
-
-                                                                <div class="flex-initial w-64 text-black font-bold ...">
-                                                                    NAMA
-                                                                </div>
-
-                                                                <div class="flex-initial w-64 text-black font-bold ...">
-                                                                    Margin Free
-                                                                </div>
-                                                                <div class="flex-initial w-64 text-black font-bold ...">
-                                                                    Equity
-                                                                </div>
-                                                                <div class="flex-initial w-64 text-black font-bold ...">
-                                                                    Rate
-                                                                </div>
-
-                                                                
-
-                                                            </div>
-
+                                                    <div class="table-responsive">
+                                                    <table className="table table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th>Login</th>
+                                                                <th>Nama</th>
+                                                                <th style={{ textAlign: 'right' }}>Margin Free</th>
+                                                                <th style={{ textAlign: 'right' }}>Equity</th>
+                                                                <th style={{ textAlign: 'right' }}>Rate</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
                                                             {akun_trading ? (
-                                                                        akun_trading.map((at, index) => {
-                                                                            return (
-
+                                                                akun_trading.map((at, index) => {
+                                                                    return (
                                                                         <Fragment key={index}>
-
-                                                                            <div style={{color:"#222"}} onClick={e => this.onClickRow(at)} className={this.state.selected.login === at.login ? "flex px-2 active-row" : 'flex px-2'}>
-                                                                            
-                                                                                <div class="flex-initial w-20 ...">
-
+                                                                            <tr onClick={e => this.onClickRow(at)} className={this.state.selected.login === at.login ? "active-row" : ''}>
+                                                                                <td>
                                                                                     <input type="radio"
-                                                                                    onChange={e => this.onClickRow(at)}
-                                                                                    checked={this.state.selected.login === at.login ? true : false}
-                                                                                    name="account-selection" value={at.login} />
-
-                                                                                </div>
-
-                                                                                <div class="flex-initial w-64 ...">
-                                                                                    {at.login}
-                                                                                </div>
-
-                                                                                <div class="flex-initial w-64 ...">
-                                                                                    {at.name}
-                                                                                </div>
-
-                                                                                <div class="flex-initial w-64 ...">
+                                                                                        onChange={e => this.onClickRow(at)}
+                                                                                        checked={this.state.selected.login === at.login ? true : false}
+                                                                                        name="account-selection" value={at.login} />
+                                                                                </td>
+                                                                                <td>{at.login}
+                                                                                </td>
+                                                                                <td>{at.name}</td>
+                                                                                <td align="right">
                                                                                     <NumberFormat
                                                                                         value={at.margin_free > 0 ? at.margin_free : '0.00'}
                                                                                         thousandSeparator={true}
                                                                                         decimalScale={2}
                                                                                         displayType={'text'}
                                                                                     />
-                                                                                </div>
-                                                                                <div class="flex-initial w-64 ...">
-                                                                                        <NumberFormat
-                                                                                                value={at.equity > 0 ? at.equity : '0.00'}
-                                                                                                thousandSeparator={true}
-                                                                                                decimalScale={2}
-                                                                                                displayType={'text'}
-                                                                                            />
-                                                                                </div>
-                                                                                <div class="flex-initial w-64 ...">
-                                                                                        {at.rate}
-                                                                                </div>
-
-                                                                                
-
-                                                                            </div>
-
+                                                                                </td>
+                                                                                <td align="right">
+                                                                                    <NumberFormat
+                                                                                        value={at.equity > 0 ? at.equity : '0.00'}
+                                                                                        thousandSeparator={true}
+                                                                                        decimalScale={2}
+                                                                                        displayType={'text'}
+                                                                                    />
+                                                                                </td>
+                                                                                <td align="right">
+                                                                                    {at.rate}
+                                                                                </td>
+                                                                            </tr>
                                                                         </Fragment>
-
                                                                     );
                                                                 })
                                                             ) : ''}
 
+                                                        </tbody>
+                                                    </table >
                                                     </div>
+
+                                                    
                                                                     
 
-                                                </div>
                                                 
                                                 <div>
                                                     
-                                                    <div className="row">
-                                                        <div className="col-sm-3 col-md-3"><h3 className="form-section text-capitalize" style={{ color:"#2E2E2F" }}>Tujuan</h3></div>
-                                                        <div className="col-sm-6 col-md-6 mb-0" style={{ paddingRight:0 }}>
+                                                <div className="row">
+                                                        <div className="col-12 col-sm-3 col-md-1"><h3 className="form-section text-capitalize" style={{ color:"#2E2E2F" }}>Tujuan</h3></div>
+                                                        <div className="col-8 col-sm-3 col-md-3 mb-0" style={{ paddingRight:0 }}>
 															
                                                             <input 
 															disabled = {selected.from && selected.to ? false : true}
@@ -404,7 +373,7 @@ class Transfer extends Component {
 															type="number" placeholder='Jumlah' className="form-control" />
 															{errorMessage ? (<span className="text-error badge badge-danger">{errorMessage}</span>) : ''}
                                                         </div>
-                                                        <div className="col-sm-2 col-md-2 mb-0" style={{ paddingLeft:0 }}>
+                                                        <div className=" col-3 col-sm-2 col-md-2 mb-0" style={{ paddingTop:"2px" }}>
                                                             <AppButton
 																disabled = {selected.nominal >= 10000 ? false : true}
                                                                 style={{ minHeight: 32 }}
@@ -416,93 +385,62 @@ class Transfer extends Component {
 														
                                                     </div>
 
-                                                    <div className="p-2 pt-0" style={{border:"1px solid #000",borderRadius:"5px"}}>
-                                                    <div className="flex p-3">
-
-                                                       
-
-                                                        <div class="flex-initial w-20 ...">
-                                                        
-                                                        </div>
-
-                                                        <div class="flex-initial w-64 text-black font-bold ...">
-                                                            LOGIN
-                                                        </div>
-
-                                                    
-
-                                                        <div class="flex-initial w-64 text-black font-bold ...">
-                                                            NAMA
-                                                        </div>
-
-                                                        <div class="flex-initial w-64 text-black font-bold ...">
-                                                            Margin Free
-                                                        </div>
-                                                        <div class="flex-initial w-64 text-black font-bold ...">
-                                                            Equity
-                                                        </div>
-                                                        <div class="flex-initial w-64 text-black font-bold ...">
-                                                            Rate
-                                                        </div>
-
-                                                        
-
-                                                    </div>
-
-                                                    {akun_trading_to ? (
+                                                    <div className="p-0 pt-0" style={{border:"1px solid none",borderRadius:"5px"}}>
+                                                        <div class="table-responsive">       
+                                                            <table className="table table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th>Login</th>
+                                                                        <th>Nama</th>
+                                                                        <th style={{ textAlign: 'right' }}>Margin Free</th>
+                                                                        <th style={{ textAlign: 'right' }}>Equity</th>
+                                                                        <th style={{ textAlign: 'right' }}>Rate</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {akun_trading_to ? (
                                                                         akun_trading_to.map((at, index) => {
                                                                             return (
-
-                                                                        <Fragment key={index}>
-                                                                            
-                                                                            <div style={{color:"#222"}} onClick={e => this.onClickRow2(at)} className={this.state.selected.login === at.login ? "flex px-2 active-row" : 'flex px-2'}>
-                                                                            
-                                                                                <div class="flex-initial w-20 ...">
-
-                                                                                <input type="radio"
-                                                                                        onChange={e => this.onClickRow(at)}
-                                                                                        checked={this.state.selected.to === at.login ? true : false}
-                                                                                        name="account-selection2" value={at.login} />
-
-                                                                                </div>
-
-                                                                                <div class="flex-initial w-64 ...">
-                                                                                    {at.login}
-                                                                                </div>
-
-                                                                                <div class="flex-initial w-64 ...">
-                                                                                    {at.name}
-                                                                                </div>
-
-                                                                                <div class="flex-initial w-64 ...">
-                                                                                    <NumberFormat
-                                                                                        value={at.margin_free > 0 ? at.margin_free : '0.00'}
-                                                                                        thousandSeparator={true}
-                                                                                        decimalScale={2}
-                                                                                        displayType={'text'}
-                                                                                    />
-                                                                                </div>
-                                                                                <div class="flex-initial w-64 ...">
-                                                                                        <NumberFormat
+                                                                                <Fragment key={index}>
+                                                                                    <tr onClick={e => this.onClickRow2(at)} className={this.state.selected.login === at.login ? "active-row" : ''}>
+                                                                                        <td>
+                                                                                            <input type="radio"
+                                                                                                onChange={e => this.onClickRow(at)}
+                                                                                                checked={this.state.selected.login === at.login ? true : false}
+                                                                                                name="account-selection2" value={at.login} />
+                                                                                        </td>
+                                                                                        <td>{at.login}
+                                                                                        </td>
+                                                                                        <td>{at.name}</td>
+                                                                                        <td align="right">
+                                                                                            <NumberFormat
+                                                                                                value={at.margin_free > 0 ? at.margin_free : '0.00'}
+                                                                                                thousandSeparator={true}
+                                                                                                decimalScale={2}
+                                                                                                displayType={'text'}
+                                                                                            />
+                                                                                        </td>
+                                                                                        <td align="right">
+                                                                                            <NumberFormat
                                                                                                 value={at.equity > 0 ? at.equity : '0.00'}
                                                                                                 thousandSeparator={true}
                                                                                                 decimalScale={2}
                                                                                                 displayType={'text'}
                                                                                             />
-                                                                                </div>
-                                                                                <div class="flex-initial w-64 ...">
-                                                                                        {at.rate}
-                                                                                </div>
+                                                                                        </td>
+                                                                                        <td align="right">
+                                                                                            {at.rate}
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </Fragment>
+                                                                            );
+                                                                        })
+                                                                    ) : ''}
 
-                                                                                
-
-                                                                            </div>
-
-                                                                        </Fragment>
-
-                                                                    );
-                                                                })
-                                                            ) : ''}
+                                                                </tbody>
+                                                            </table >
+                                                        </div>
 
                                                     </div>
 
@@ -514,9 +452,9 @@ class Transfer extends Component {
                                             <h3 style={{ color:"#2E2E2F" }}>Daftar Transfer Internal</h3>
 
                                             <div className="row mt-3 mb-4">
-                                                <div className="col-md-12">
+                                                <div className="col-md-12 col-12">
                                                     <div className="mb-3">
-                                                        <div className="pull-left margin-left-0 max-w-250">
+                                                        <div className="pull-left col-12 col-md-3">
                                                             <label style={{ color:"#2E2E2F" }}>Tanggal: Awal</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
@@ -535,7 +473,7 @@ class Transfer extends Component {
                                                                 locale="id" isValidDate={this.state.validSd}
                                                             />
                                                         </div>
-                                                        <div className="pull-left ml-4 lg:ml-1 max-w-250">
+                                                        <div className="pull-left col-12 col-md-3">
                                                             <label style={{ color:"#2E2E2F" }}>Tanggal: Akhir</label>
                                                             <Datetime
                                                                 closeOnSelect={true}

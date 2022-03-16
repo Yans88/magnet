@@ -113,7 +113,7 @@ class TypeAccount extends Component {
                                             <Row>
                                                 {dataTypeAccount ? (
                                                     dataTypeAccount.map((dta) => {
-                                                        return <Col key={dta.tipe_akun_id} xs={4}>
+                                                        return <Col key={dta.tipe_akun_id} xs={12} lg={4}>
                                                             <Card
                                                                 bg="light">
                                                                 <Card.Header><strong>{dta.nama_tipe_akun}</strong></Card.Header>

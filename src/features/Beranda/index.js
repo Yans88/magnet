@@ -255,7 +255,7 @@ class Beranda extends Component {
 
                                 
 
-                                <div className="mobile-hide absolute mt-[27rem] bg-white text-black text-center rounded-2xl shadow-lg  py-10 w-3/4 ..." >
+                                <div className="mobile-hide absolute mt-[32rem] bg-white text-black text-center rounded-2xl shadow-lg  py-10 w-3/4 ..." >
                                     <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
                                         <span className="font-bold text-black">BUAT AKUN TRADING BARU</span>
                                     </Link>
@@ -346,7 +346,7 @@ class Beranda extends Component {
 
                             </div>
 
-                                <div className="mobile-hide relative mt-[26rem] bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[80%] mb-10 mx-12 ml-[10%] ...">
+                                <div className="mobile-hide relative mt-[30rem] bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[80%] mb-10 mx-12 ml-[10%] ...">
                                     <a href="account-type" className="btn btn-lgreen btn-sm"><span className="font-bold text-red-700">AKUN DEMO MT5</span></a><br/>
                                     <a href="account-type" className="btn btn-lgreen btn-sm"><span className="font-bold text-black">BUAT AKUN DEMO</span></a>
                                     
@@ -358,6 +358,26 @@ class Beranda extends Component {
 
                                                 <div className="rounded-2xl border border-solid border-gray-300 text-left p-4" style={{ backgroundColor:"#F1F1F1"}}>
                                                     <span className="text-red-500">#{at.login}</span>
+                                                    <div className="grid grid-cols-2">
+                                                                <div>
+                                                                    <span className="text-red-500">#{at.login}</span>
+                                                                </div>
+                                                                <div className="box-bank__actions place-items-end text-right">
+                                                                    <Dropdown>
+                                                                        <Dropdown.Toggle size="sm" variant="secondary"
+                                                                            style={{ backgroundColor: 'transparent', borderColor: 'transparent',color:'#000' }} id="dropdown-basic">
+                                                                            <i className="fa fa-ellipsis-v"></i>
+                                                                        </Dropdown.Toggle>
+
+                                                                        <Dropdown.Menu className="my-dropdown-menu">
+                                                                            <Dropdown.Item as="button" onClick={() => this.chg_pass(at)}>RESET PASSWORD</Dropdown.Item>
+                                                                            <Dropdown.Item as="button" onClick={() => this.chg_pass2(at)}>RESET PHONE PASSWORD</Dropdown.Item>
+
+                                                                        </Dropdown.Menu>
+                                                                    </Dropdown>
+
+                                                                </div>
+                                                            </div>
                                                     <div className="grid grid-cols-2">
                                                         <div className="font-bold">NO AKUN</div>
                                                         <div className="font-bold">NAME</div>
@@ -386,10 +406,13 @@ class Beranda extends Component {
 
                                                         <div className="border border-solid border-gray-300 text-left p-4 rounded-2xl" style={{ backgroundColor:"#F1F1F1"}}>
                                                             <span className="text-red-500">#{at.login}</span>
+                                                            
+                                                            
                                                             <div className="grid grid-cols-2">
                                                                 <div className="font-bold">NO AKUN</div>
-                                                                <div className="font-bold">FREE MARGIN</div>
                                                                 <div>{at.login}</div>
+                                                                <div className="font-bold">FREE MARGIN</div>
+                                                                
                                                                 <div><NumberFormat
                                                                                         value={at.margin_free > 0 ? at.margin_free : '0.00'}
                                                                                         thousandSeparator={true}
@@ -397,13 +420,14 @@ class Beranda extends Component {
                                                                                         displayType={'text'}
                                                                                     /></div>
                                                                 <div className="font-bold">EQUITY</div>
-                                                                <div className="font-bold">LEVERAGE</div>
                                                                 <div><NumberFormat
                                                                                         value={at.equity > 0 ? at.equity : '0.00'}
                                                                                         thousandSeparator={true}
                                                                                         decimalScale={2}
                                                                                         displayType={'text'}
                                                                                     /></div>
+                                                                <div className="font-bold">LEVERAGE</div>
+                                                                
                                                                 <div><NumberFormat
                                                                                         value={at.leverage > 0 ? at.leverage : '0.00'}
                                                                                         thousandSeparator={true}

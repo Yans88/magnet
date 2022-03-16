@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Nav, Sidebar, Sidenav, Icon } from 'rsuite';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { Disclosure } from '@headlessui/react'
+import { BiCaretRight } from 'react-icons/bi'
 
 class MySidebar extends Component {
 
@@ -27,9 +28,11 @@ class MySidebar extends Component {
         const { lastSegmentUrl } = this.state;
 
         return (
-            <div>
+            <div >
+                
+                <div>
                 <Sidebar
-                    style={{ display: 'flex', flexDirection: 'column' }}
+                    style={{ display:'flex', flexDirection: 'column' }}
                     width={expandMenu ? 230 : 56}
                     collapsible
                 >
@@ -187,6 +190,7 @@ class MySidebar extends Component {
 
 
                 </Sidebar>
+                </div>
             </div>
         )
     }

@@ -502,6 +502,7 @@ class Personal extends Component {
 
                                 <div className="card card-success shadow-lg" style={{borderRadius:"2rem" }}>
                                     <div className="card-body">
+                                        <div className="mobile-hide">
                                         <Nav appearance="subtle" activeKey={active_tab} justified className="tab_personal">
                                             <Nav.Item
                                                 onSelect={this.handleSelect.bind(this)}
@@ -546,6 +547,8 @@ class Personal extends Component {
                                                 className="default">Unggah Dokumen
                                             </Nav.Item>
                                         </Nav>
+                                        </div>
+
                                         {active_tab === 'detil_pribadi' && (<Fragment>
 
                                             <Form>
@@ -556,7 +559,7 @@ class Personal extends Component {
                                                     <br /><br/>
 
                                                     <Form.Row>
-                                                        <Form.Group as={Col} controlId="nama_depan">
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="nama_depan">
                                                             <Form.Label><span className="label_merah">Nama Depan</span></Form.Label>
                                                             <Form.Control
                                                                 value={user.nama_depan ? user.nama_depan : ''}
@@ -583,7 +586,7 @@ class Personal extends Component {
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
-                                                        <Form.Group as={Col} controlId="tempat_lahir">
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="tempat_lahir">
                                                             <Form.Label><span className="label_form">Tempat Lahir</span></Form.Label>
                                                             <Form.Control
                                                                 name="tempat_lahir"
@@ -605,7 +608,7 @@ class Personal extends Component {
                                                             </Form.Control>
                                                             {errMsg1.tempat_lahir ? (<span className="text-error badge badge-danger">{errMsg1.tempat_lahir}</span>) : ''}
                                                         </Form.Group>
-                                                        <Form.Group as={Col} controlId="kota_lahir">
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="kota_lahir">
                                                             <Form.Label>Kota Kelahiran Sesuai Dengan Identitas</Form.Label>
                                                             <Form.Control
                                                                 value={user.kota_lahir ? user.kota_lahir : ''}
@@ -621,7 +624,7 @@ class Personal extends Component {
 
                                                     </Form.Row>
                                                     <Form.Row>
-                                                        <Form.Group as={Col} xs={3} controlId="tanggal_lahir">
+                                                        <Form.Group as={Col} xs={12} lg={3} controlId="tanggal_lahir">
                                                             <Form.Label>Tanggal Lahir</Form.Label>
                                                             <Datetime
                                                                 closeOnSelect={true}
@@ -643,7 +646,7 @@ class Personal extends Component {
                                                             />
                                                             {errMsg1.tanggal_lahir ? (<span className="text-error badge badge-danger">{errMsg1.tanggal_lahir}</span>) : ''}
                                                         </Form.Group>
-                                                        <Form.Group as={Col} xs={3} controlId="jenis_identitas">
+                                                        <Form.Group as={Col} xs={12} lg={3}  controlId="jenis_identitas">
                                                             <Form.Label>Nomor identifikasi</Form.Label>
                                                             <Form.Control
                                                                 name="jenis_identitas"
@@ -658,7 +661,7 @@ class Personal extends Component {
                                                             </Form.Control>
                                                             {errMsg1.jenis_identitas ? (<span className="text-error badge badge-danger">{errMsg1.jenis_identitas}</span>) : ''}
                                                         </Form.Group>
-                                                        <Form.Group as={Col} controlId="no_identitas">
+                                                        <Form.Group as={Col}  xs={12} lg={3} controlId="no_identitas">
 
                                                             <Form.Control
                                                                 style={{ marginTop: 28 }}
@@ -675,7 +678,7 @@ class Personal extends Component {
                                                     </Form.Row>
                                                    
                                                     <Form.Row>
-                                                        <Form.Group as={Col} xs={6} controlId="jenis_kelamin">
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="jenis_kelamin">
                                                             <Form.Label>Jenis Kelamin</Form.Label><br />
                                                             <Form.Check
                                                                 onChange={this.handleChange}
@@ -732,7 +735,7 @@ class Personal extends Component {
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
-                                                        <Form.Group as={Col} xs={2} controlId="rt">
+                                                        <Form.Group as={Col} xs={12} lg={2} controlId="rt">
                                                             <Form.Label>RT</Form.Label>
                                                             <Form.Control
                                                                 value={user.rt ? user.rt : ''}
@@ -745,7 +748,7 @@ class Personal extends Component {
                                                                 placeholder="RT" />
                                                             {errMsg1.rt ? (<span className="text-error badge badge-danger">{errMsg1.rt}</span>) : ''}
                                                         </Form.Group>
-                                                        <Form.Group as={Col} xs={2} controlId="rw">
+                                                        <Form.Group as={Col} xs={12} lg={2} controlId="rw">
                                                             <Form.Label>RW</Form.Label>
                                                             <Form.Control
                                                                 value={user.rw ? user.rw : ''}
@@ -758,7 +761,7 @@ class Personal extends Component {
                                                                 placeholder="RW" />
                                                             {errMsg1.rw ? (<span className="text-error badge badge-danger">{errMsg1.rw}</span>) : ''}
                                                         </Form.Group>
-                                                        <Form.Group as={Col} xs={3} controlId="provinsi">
+                                                        <Form.Group as={Col} xs={12} lg={3} controlId="provinsi">
                                                             <Form.Label>Kota</Form.Label>    
                                                             <Form.Control
                                                                 name="provinsi"
@@ -801,7 +804,7 @@ class Personal extends Component {
                                                     </Form.Row>
                                                     <Form.Row>
                                                         
-                                                        <Form.Group as={Col} xs={4} controlId="warga_negara">
+                                                        <Form.Group as={Col} xs={12} lg={4} controlId="warga_negara">
                                                             <Form.Label>Kewarganegaraan</Form.Label>
                                                             <Form.Control
                                                                 name="warga_negara"
@@ -824,7 +827,7 @@ class Personal extends Component {
                                                             {errMsg1.warga_negara ? (<span className="text-error badge badge-danger">{errMsg1.warga_negara}</span>) : ''}
                                                         </Form.Group>
 
-                                                        <Form.Group as={Col} xs={4} controlId="status_pernikahan">
+                                                        <Form.Group as={Col} xs={12} lg={4} controlId="status_pernikahan">
                                                             <Form.Label>Status Pernikahan</Form.Label>
                                                             <Form.Control
                                                                 name="status_pernikahan"
@@ -842,7 +845,7 @@ class Personal extends Component {
                                                         </Form.Group>
 
 
-                                                        <Form.Group as={Col} xs={4} controlId="nama_ibu_kandung">
+                                                        <Form.Group as={Col} xs={12} lg={4} controlId="nama_ibu_kandung">
                                                             <Form.Label>Nama Gadis Ibu Kandung</Form.Label>
                                                             <Form.Control
                                                                 value={user.nama_ibu_kandung ? user.nama_ibu_kandung : ''}
@@ -882,7 +885,7 @@ class Personal extends Component {
 
                                                     <Form.Row>
                                                         
-                                                        <Form.Group as={Col} controlId="telp">
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="telp">
                                                             <Form.Label>Telepon Rumah</Form.Label>
                                                             <Form.Control
                                                                 value={user.telp ? user.telp : ''}
@@ -895,7 +898,7 @@ class Personal extends Component {
                                                                 placeholder="Telepon Rumah" />
                                                             {errMsg1.telp ? (<span className="text-error badge badge-danger">{errMsg1.telp}</span>) : ''}
                                                         </Form.Group>
-                                                        <Form.Group as={Col} controlId="fax">
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="fax">
                                                             <Form.Label>FAX</Form.Label>
                                                             <Form.Control
                                                                 value={user.fax ? user.fax : ''}
@@ -917,7 +920,7 @@ class Personal extends Component {
                                                     </Form.Row>
 
                                                     <Form.Row>
-                                                        <Form.Group as={Col} xs={3} controlId="npwp">
+                                                        <Form.Group as={Col} xs={12} lg={3} controlId="npwp">
                                                             <Form.Label>NPWP</Form.Label>
                                                             <Form.Control
                                                                 value={user.npwp ? user.npwp : ''}

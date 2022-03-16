@@ -523,7 +523,7 @@ class Setoran extends Component {
         </Fragment>;
 
 
-        const contentDelete = <table className="table table-hover">
+        const contentDelete = <div className="table-responsive"><table className="table table-hover">
             <thead>
                 <tr>
                     <th>-</th>
@@ -575,7 +575,7 @@ class Setoran extends Component {
                 ) : ''}
 
             </tbody>
-        </table >;
+        </table ></div>;
         const columns = [
             {
                 key: "akun_trading_id",
@@ -717,7 +717,7 @@ class Setoran extends Component {
                                             <div className="row mt-3 mb-4">
                                                 <div className="col-md-12">
                                                     <div className="mb-3">
-                                                        <div className="pull-left margin-left-1 max-w-250">
+                                                        <div className="pull-left col-7 col-md-4">
                                                             <label style={{ color:"#2E2E2F" }}>Tanggal: Awal</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
@@ -736,7 +736,7 @@ class Setoran extends Component {
                                                                 locale="id" isValidDate={this.state.validSd}
                                                             />
                                                         </div>
-                                                        <div className="pull-left margin-left-10 max-w-250">
+                                                        <div className="pull-left col-7 col-md-4">
                                                             <label style={{ color:"#2E2E2F" }}>Tanggal: Akhir</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
@@ -755,8 +755,11 @@ class Setoran extends Component {
                                                                 locale="id" isValidDate={this.state.validSd}
                                                             />
                                                         </div>
-                                                        <div className="pull-left margin-left-10 max-w-250">
+                                                        <div className="pull-left col-7">
                                                             <label style={{ color:"#2E2E2F" }}>Cari</label>
+                                                            
+                                                        </div>
+                                                        <div className="pull-left col-7">
                                                             <input name="search" value={this.state.search} onChange={this.handleSearch.bind(this)} type="text" placeholder="cari nomor akun atau jumlah setor" className="form-control form-control-lg" />
 
                                                         </div>

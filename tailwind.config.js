@@ -10,6 +10,11 @@ module.exports = {
         'hijau-lain':'#079D00',
       },
     },
+
+    screens: {
+      'xs': '475px'
+    },
+
   },
   plugins: [],
 }

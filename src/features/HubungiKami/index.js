@@ -85,17 +85,17 @@ class HubungiKami extends Component {
                         <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Hubungi Kami</h1>
 
                         <div className="row">
-                            <div className="col-12">
+                            <div className="col-12 col-xs-12">
                                 {/* card start */}
-                                <div className="card card-success shadow-lg" style={{ "minHeight": "500px",borderRadius:"20px" }}>
+                                <div className="card card-success shadow-lg" style={{ "minHeight": "700px",borderRadius:"20px" }}>
                                     <div className="card-body p-0" >
-                                        <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center mt-0" >
+                                        <div className="grid sm:grid-cols-1 lg:grid-cols-2 place-items-center mt-0" >
                                             <div>
                                                 
                                                 <div className="hub_kami alert alert-success alert-sm" style={{ backgroundColor: '#1A9425', paddingTop: 30,color:"#fff",borderRadius:"20px",marginBottom:"0rem" }} >
                                                         <h2 style={{ color:"#fff"}}>Contact Information</h2>
                                                         <p className="text-base font-bold text-white text-left pt-2 pb-2 ...">Fill up the form and our Team will get back to you within 24 hours</p>
-
+                                                    
                                                         <div className="flex pt-5">
 
                                                             <div className="flex-none w-10  ...">
@@ -205,7 +205,8 @@ class HubungiKami extends Component {
                                                                 placeholder="Masukkan Pesan" />
                                                         </Form.Group>
                                                         <div className="grid grid-cols-1 mt-0" >
-                                                            <div className="w-[40%] pt-2">
+                                                            
+                                                            <div className="w-[100%] pt-2">
                                                                 <AppButton
                                                                 disabled ={this.state.selected.message && this.state.selected.subjek ? false : true}
                                                                 style={{ color: "#fff", marginTop: 10 }}
@@ -217,7 +218,12 @@ class HubungiKami extends Component {
                                                                 >
                                                                 HUBUNGI KAMI</AppButton>
                                                             </div>
+                                                            <div className="mobile-view" style={{marginBottom:"50px"}}>
+                                                                &nbsp;
+                                                            </div>
+
                                                         </div>
+                                                        
                                                     </Form>
 
                                             </div>

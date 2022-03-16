@@ -333,6 +333,7 @@ table td, .table th {
   background-color: #fff !important;
 }
 
+
 .rs-modal-header {   
   padding: 1rem !important;
   border-bottom: 1px solid #e9ecef !important;    
@@ -880,6 +881,18 @@ tbody td {
   .mobile-view{
     display: inline;
   }
+
+  .list-steps li {
+    display: flex;
+    margin-right: 4px;
+    margin-left: 1px;
+  }
+
+  .rs-modal-dialog{
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  
 
 }
 /*sm*/
