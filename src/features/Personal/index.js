@@ -269,10 +269,9 @@ class Personal extends Component {
       const imgExt = img.ext;
       //const resizedFiile = Compress.convertBase64ToFile(base64str, imgExt);
       const dtKTP = {
-        trx_id: "",
-        ktp_image: base64str,
+        file: value,
       };
-      this.props.onUploadKTP(dtKTP);
+      await this.props.onUploadKTP(dtKTP);
     }
 
     if (value) {

@@ -92,42 +92,60 @@ export const fetchUserBytoken = createAsyncThunk(
 export const fetchUserKTP = createAsyncThunk(
   "users/fetchUserKTP",
   async (param, thunkAPI) => {
+   
+	const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+    const form = Object.keys(param).reduce((f, k) => {
+        f.append(k, param[k]);
+        return f;
+    }, new FormData());
     const config = {
-      headers: {
-        token: "MDkxZmUxZWEtZGMzYS00YTUyLWEwMDktNGRlMzE3MTJjYTY3",
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
+        headers: {
+        'Authorization': `${token}`,
+        'x-app-origin': 'cabinet-app',
+         Accept: 'application/json',
+        'Content-Type': 'application/json',
+        }
     };
     try {
       const response = await axios.post(
-        "https://api.asliri.id:8443/magnetfx_poc/ocr_extra",
-        param,
+        API_URL + '/general-option/ocr',
+        form,
         config
       );
       let data = "";
       let _data = await response;
       if (response.status === 200) {
         data = _data.data;
-        if (data.error_message === 200) {
-          let myData = data.data;
-          let payload = {
-            nama_depan: myData.nama,
-            tempat_lahir: myData.tempat_lahir,
-            tanggal_lahir: myData.tanggal_lahir,
-            status_pernikahan: myData.status_perkawinan,
-            alamat: myData.alamat,
-            provinsi: myData.provinsi,
-            warga_negara: myData.kewarganegaraan,
-          };
-          console.log(payload);
-          return payload;
+        if (data.error_message === 0) {
+			let myData = data.payload;	
+			let rt_rw = '';
+			let rt = '';
+			let rw = '';
+			Object.keys(myData).map((key) => {
+				if(key === 'rt/rw'){
+					rt_rw = myData[key].split('/');
+					rt = rt_rw[0];
+					rw = rt_rw[1];					
+				}                
+            });
+			const payload = {
+				nama_depan: myData.nama,
+				tempat_lahir: myData.tempat_lahir,
+				tanggal_lahir: myData.tanggal_lahir,
+				status_pernikahan: myData.status_perkawinan,
+				alamat: myData.alamat,
+				provinsi: myData.provinsi,
+				warga_negara: myData.kewarganegaraan,
+				rw: rw,
+				rt: rt,
+			  };
+			return payload;
         } else {
           return thunkAPI.rejectWithValue(data);
         }
       } else {
         return thunkAPI.rejectWithValue(_data);
-      }
+      }      
     } catch (e) {
       console.log("Error", e.response.data);
       thunkAPI.rejectWithValue(e.response.data);
@@ -666,6 +684,17 @@ export const mainSlice = createSlice({
       state.errFetchUserByToken = payload.message;
       state.isLoggedIn = false;
       state.token = null;
+    },
+	[fetchUserKTP.pending]: (state) => {
+      state.errFetchUserByToken = "";
+    },
+	[fetchUserKTP.fulfilled]: (state, { payload }) => {
+      state.errFetchUserByToken = "";
+      state.currentUser = payload;
+    },
+	[fetchUserKTP.rejected]: (state, { payload }) => {     
+		console.log('payload', payload);
+      //state.errFetchUserByToken = payload.message;
     },
     [regUser.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
