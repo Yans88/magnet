@@ -281,7 +281,7 @@ class Personal extends Component {
       };
       this.props.uploadFile(dt);
       await this.sleep(2000);
-      this.props.getDPP();
+     // this.props.getDPP();
     }
   };
 

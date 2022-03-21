@@ -121,6 +121,11 @@ export const fetchUserKTP = createAsyncThunk(
 			let rt_rw = '';
 			let rt = '';
 			let rw = '';
+			let jenis_kelamin = myData.jenis_kelamin == 'LAKILAKI' ? 'Laki-Laki' : '';
+			jenis_kelamin = myData.jenis_kelamin == 'Perempuan' ? 'Perempuan' : jenis_kelamin;
+			
+			var tanggal_lahir = myData.tanggal_lahir.split("-");
+			const selectedDate = myData.tanggal_lahir ? tanggal_lahir[2]+'-'+tanggal_lahir[1]+'-'+tanggal_lahir[0] : '';
 			Object.keys(myData).map((key) => {
 				if(key === 'rt/rw'){
 					rt_rw = myData[key].split('/');
@@ -129,13 +134,16 @@ export const fetchUserKTP = createAsyncThunk(
 				}                
             });
 			const payload = {
+				jenis_identitas: "KTP",
+				no_identitas: myData.nik,
 				nama_depan: myData.nama,
 				tempat_lahir: myData.tempat_lahir,
-				tanggal_lahir: myData.tanggal_lahir,
-				status_pernikahan: myData.status_perkawinan,
+				tanggal_lahir: selectedDate,
+				status_pernikahan: ucwords(myData.status_perkawinan),
+				jenis_kelamin: jenis_kelamin,
 				alamat: myData.alamat,
-				provinsi: myData.provinsi,
-				warga_negara: myData.kewarganegaraan,
+				provinsi: ucwords(myData.provinsi),
+				warga_negara: myData.kewarganegaraan == "WNI" ? 'Indonesia' : '',
 				rw: rw,
 				rt: rt,
 			  };
@@ -152,6 +160,14 @@ export const fetchUserKTP = createAsyncThunk(
     }
   }
 );
+
+const ucwords =(str)=> {
+	var splitStr = str.toLowerCase().split(' ');
+	for (var i = 0; i < splitStr.length; i++) {      
+       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+	}   
+	return splitStr.join(' '); 
+}
 
 export const profileUser = createAsyncThunk(
   "users/profileUser",
