@@ -421,7 +421,7 @@ const Register = () => {
                                         autoComplete="off"
                                         type="password"
                                         className="form-control"
-                                        placeholder="Password"
+                                        placeholder="Password Again"
                                         style={{backgroundColor:"#fff",border:"0"}}
                                         {...formik.getFieldProps('konfirmasi_password')} />
                                     
