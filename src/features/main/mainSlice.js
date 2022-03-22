@@ -23,13 +23,19 @@ export const loginUser = createAsyncThunk(
         if (data.error_message === 0) {
           let payload = data.payload;
           let statusDokumen = payload.status;
+          let status_Dokumen = payload.status_dokumen;
           let myStatus = false;
+          
           if (statusDokumen === "Reject") {
             myStatus = true;
           } else {
             myStatus = false;
             await localStorage.setItem(tokenLogin, payload.accessToken);
           }
+		  if (status_Dokumen === "Belum Lengkap") {
+			  await localStorage.setItem('myStatusDokumen', true);
+		  }
+		  
           data = {
             ...data,
             myStatus: myStatus,

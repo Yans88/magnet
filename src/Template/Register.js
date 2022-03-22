@@ -23,7 +23,7 @@ const Register = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const initData = { kode_verifikasi: '', nama_depan: '', nama_belakng: '', tgl: '', bln: '', thn: '', cabang: '', marketing: '', tanggal_lahir: '', myCaptcha: '', ref_code: '' };
+    const initData = { kode_verifikasi: '', nama_depan: '', nama_belakng: '', tgl: '', bln: '', thn: '', cabang: '', marketing: '', tanggal_lahir: '', myCaptcha: '', ref_code: '', email:'' };
     const errorValidate = { kode_verifikasi: '', nama_depan: '', nama_belakng: '', tgl: '', bln: '', thn: '', cabang: '', marketing: '', myCaptcha: '', ref_code: '' };
     const [selected, setSelected] = useState(initData);
     const [errMsg, setErrMsg] = useState(errorValidate);
@@ -59,6 +59,11 @@ const Register = () => {
 
         }),
         onSubmit: (values) => {
+			
+			setSelected({
+				...selected,
+				email: values.email
+			});
             dispatch(regUser(values));
         }
     });
@@ -147,7 +152,7 @@ const Register = () => {
         <Form.Group controlId="kode_verifikasi">
             <Form.Label>
             <span className="text-red-500 text-left text-lg">Verifikasi</span><br/>
-                Silakan masukkan kode aktivasi yang dikirim ke email ? Anda
+                Silakan masukkan kode aktivasi yang dikirim ke email ? Anda {selected.email}
             </Form.Label>
             {errMsg.kode_verifikasi ?
                 (<span className="float-right text-error badge badge-danger">{errMsg.kode_verifikasi}</span>) : ''}
