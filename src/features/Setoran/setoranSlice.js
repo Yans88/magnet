@@ -122,7 +122,7 @@ export const getAkunTradingDemo = createAsyncThunk(
         const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
         var config = {
             method: 'get',
-            url: API_URL + '/general-option/get-akun-trading?tipe=real',
+            url: API_URL + '/general-option/get-akun-trading?tipe=demo',
             headers: {
                 'x-app-origin': 'cabinet-app',
                 'Authorization': token,
