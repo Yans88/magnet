@@ -167,7 +167,7 @@ class Beranda extends Component {
     render() {
         const { akun_trading, akun_trading_demo, profile } = this.props;
 		const { selected, errMsg, myStatusDokumen } = this.state;
-		console.log(myStatusDokumen);
+		
 		const frmUser = <Form id="myForm">
 
             <Form.Group controlId="password">

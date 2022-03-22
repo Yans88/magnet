@@ -7,6 +7,7 @@ import "moment/locale/id";
 import { Form } from 'react-bootstrap'
 import { getDataPernyataan, chgProps, simpanDataPernyataan,getSelectAkun } from './pernyataanSlice';
 import { profileUser } from '../main/mainSlice';
+import { getAkunTradingDemo } from '../Setoran/setoranSlice';
 
 class Pernyataan extends Component {
     constructor(props) {
@@ -213,7 +214,7 @@ class Pernyataan extends Component {
                                                                 <Input readOnly size="lg" value={user && user.no_identitas ? user.no_identitas : ''} />
                                                             </Col>
                                                             <Col xs={9}>
-                                                                <Input readOnly size="lg" />
+                                                                <Input readOnly size="lg" value={localStorage.getItem('loginDemo') ? localStorage.getItem('loginDemo') : ''} />
                                                             </Col>
                                                         </Row>
                                                         <br />
@@ -958,7 +959,8 @@ const mapDispatchToPros = (dispatch) => {
         onLoad: (param) => {
 			dispatch(profileUser());			
             dispatch(getDataPernyataan(param));	
-			dispatch(getSelectAkun(param));			
+			dispatch(getSelectAkun(param));	
+			dispatch(getAkunTradingDemo());			
         },
         changeProps: (param) => {
             dispatch(chgProps(param));
