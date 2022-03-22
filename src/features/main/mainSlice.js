@@ -131,6 +131,8 @@ export const fetchUserKTP = createAsyncThunk(
 			jenis_kelamin = myData.jenis_kelamin == 'Perempuan' ? 'Perempuan' : jenis_kelamin;
 			
 			var tanggal_lahir = myData.tanggal_lahir.split("-");
+			var nama = myData.nama.split(" ");
+			var nama_belakang = typeof nama[0] !== 'undefined' && nama[0] ? myData.nama.replace(nama[0]+" ", "") : '';
 			const selectedDate = myData.tanggal_lahir ? tanggal_lahir[2]+'-'+tanggal_lahir[1]+'-'+tanggal_lahir[0] : '';
 			Object.keys(myData).map((key) => {
 				if(key === 'rt/rw'){
@@ -142,7 +144,8 @@ export const fetchUserKTP = createAsyncThunk(
 			const payload = {
 				jenis_identitas: "KTP",
 				no_identitas: myData.nik,
-				nama_depan: myData.nama,
+				nama_depan: typeof nama[0] !== 'undefined' && nama[0] ? nama[0] : myData.nama,
+				nama_belakang : nama_belakang,
 				tempat_lahir: myData.tempat_lahir,
 				tanggal_lahir: selectedDate,
 				status_pernikahan: ucwords(myData.status_perkawinan),
