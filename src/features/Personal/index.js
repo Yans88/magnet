@@ -254,7 +254,7 @@ class Personal extends Component {
   handleChangePhoto = async (evt) => {
     const name = evt.target.name;
     const value = evt.target.files[0];
-
+	var errors = this.state.errMsg1;
     if (name === "KTP") {
       const compress = new Compress();
       const resizedImage = await compress.compress([value], {
@@ -271,7 +271,57 @@ class Personal extends Component {
       const dtKTP = {
         file: value,
       };
-      await this.props.onUploadKTP(dtKTP);
+      this.props.onUploadKTP(dtKTP);
+	  await this.sleep(5500);
+		console.log(this.props.user);
+		errors.nama_depan = !this.props.user.nama_depan
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.tempat_lahir = !this.props.user.tempat_lahir
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.kota_lahir = !this.props.user.kota_lahir
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.tanggal_lahir = !this.props.user.tanggal_lahir
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.jenis_identitas = !this.props.user.jenis_identitas
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.no_identitas = !this.props.user.no_identitas
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.npwp = !this.props.user.npwp ? "Kolom ini harus diisi" : "";
+		errors.jenis_kelamin = !this.props.user.jenis_kelamin
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.status_pernikahan = !this.props.user.status_pernikahan
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.nama_pasangan =
+		  !this.props.user.nama_pasangan &&
+		  this.props.user.status_pernikahan === "Kawin"
+			? "Kolom ini harus diisi"
+			: "";
+		errors.nama_ibu_kandung = !this.props.user.nama_ibu_kandung
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.alamat = !this.props.user.alamat ? "Kolom ini harus diisi" : "";
+		errors.rt = !this.props.user.rt ? "Kolom ini harus diisi" : "";
+		errors.rw = !this.props.user.rw ? "Kolom ini harus diisi" : "";
+		errors.provinsi = !this.props.user.provinsi ? "Kolom ini harus diisi" : "";
+		errors.warga_negara = !this.props.user.warga_negara
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.telp = !this.props.user.telp ? "Kolom ini harus diisi" : "";
+		errors.handphone = !this.props.user.handphone
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.status_kepemilikan = !this.props.user.status_kepemilikan
+		  ? "Kolom ini harus diisi"
+		  : "";
+		this.setState({ errors });
     }
 
     if (value) {
@@ -3708,7 +3758,7 @@ const mapStateToProps = (state) => ({
   errorMessage: state.personal.errorMessage,
   errUplFileMsg: state.personal.errUplFileMsg,
   showFormDelete: state.personal.showFormDelete,
-  isLoading: state.personal.isLoading,
+  isLoading: state.personal.isLoading, 
   errFetchUserByToken: state.main.errFetchUserByToken,
   user: state.main.currentUser,
 });

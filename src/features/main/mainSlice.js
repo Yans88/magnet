@@ -127,8 +127,8 @@ export const fetchUserKTP = createAsyncThunk(
 			let rt_rw = '';
 			let rt = '';
 			let rw = '';
-			let jenis_kelamin = myData.jenis_kelamin == 'LAKILAKI' ? 'Laki-Laki' : '';
-			jenis_kelamin = myData.jenis_kelamin == 'Perempuan' ? 'Perempuan' : jenis_kelamin;
+			let jenis_kelamin = myData.jenis_kelamin === 'LAKILAKI' ? 'Laki-Laki' : '';
+			jenis_kelamin = myData.jenis_kelamin === 'PEREMPUAN' || myData.jenis_kelamin === 'WANITA' ? 'Perempuan' : jenis_kelamin;
 			
 			var tanggal_lahir = myData.tanggal_lahir.split("-");
 			var nama = myData.nama.split(" ");
@@ -143,18 +143,18 @@ export const fetchUserKTP = createAsyncThunk(
             });
 			const payload = {
 				jenis_identitas: "KTP",
-				no_identitas: myData.nik,
+				no_identitas: myData.nik ? myData.nik : '',
 				nama_depan: typeof nama[0] !== 'undefined' && nama[0] ? nama[0] : myData.nama,
-				nama_belakang : nama_belakang,
-				tempat_lahir: myData.tempat_lahir,
-				tanggal_lahir: selectedDate,
-				status_pernikahan: ucwords(myData.status_perkawinan),
-				jenis_kelamin: jenis_kelamin,
-				alamat: myData.alamat,
-				provinsi: ucwords(myData.provinsi),
+				nama_belakang : nama_belakang && nama_belakang,
+				tempat_lahir: myData.tempat_lahir && myData.tempat_lahir,
+				tanggal_lahir: selectedDate && selectedDate,
+				status_pernikahan: myData.status_perkawinan && ucwords(myData.status_perkawinan),
+				jenis_kelamin: myData.jenis_kelamin && jenis_kelamin,
+				alamat: myData.alamat && myData.alamat,
+				provinsi: myData.provinsi && ucwords(myData.provinsi),
 				warga_negara: myData.kewarganegaraan == "WNI" ? 'Indonesia' : '',
-				rw: rw,
-				rt: rt,
+				rw: rw ? rw : '',
+				rt: rt ? rt : '',				
 			  };
 			return payload;
         } else {
@@ -712,13 +712,14 @@ export const mainSlice = createSlice({
     },
 	[fetchUserKTP.pending]: (state) => {
       state.errFetchUserByToken = "";
+	  state.currentUser = {};	  
     },
 	[fetchUserKTP.fulfilled]: (state, { payload }) => {
       state.errFetchUserByToken = "";
-      state.currentUser = payload;
+      state.currentUser = payload;	  
     },
 	[fetchUserKTP.rejected]: (state, { payload }) => {     
-		console.log('payload', payload);
+		console.log('payload', payload);		
       //state.errFetchUserByToken = payload.message;
     },
     [regUser.fulfilled]: (state, { payload }) => {

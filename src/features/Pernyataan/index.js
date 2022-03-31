@@ -825,7 +825,7 @@ class Pernyataan extends Component {
                                                         </Col>
 
                                                         <Col xs={9}>
-                                                            <Input readOnly size="lg" />
+                                                           <Input readOnly size="lg" value={localStorage.getItem('loginDemo') ? localStorage.getItem('loginDemo') : ''} />
                                                         </Col>
                                                     </Row>
                                                     <br />

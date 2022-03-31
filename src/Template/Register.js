@@ -331,14 +331,20 @@ const Register = () => {
         <div className="social-auth-links text-center mt-2 mb-3">
             <div className="grid grid-cols-1 gap-0 place-items-center">
                 <div className="w-3/5">
-                <Button
-                    block
-                    onClick={handleSubmit2}
-                    isLoading={isFetching}
-                    theme="danger"
-                >
-                    Daftar
-                </Button>
+                
+				{succesCompleteProfile ? (
+                    <Button
+						block
+						disabled={true}
+						isLoading={isFetching}
+						theme="danger"> Daftar </Button>                                            
+					) : (
+					<Button
+						block
+						onClick={handleSubmit2}
+						isLoading={isFetching}
+						theme="danger"> Daftar </Button>
+					) }
                 </div>
             </div>
         </div>
@@ -441,16 +447,12 @@ const Register = () => {
                                 <div className="social-auth-links text-center mt-2 mb-3">
                                     <div className="grid grid-cols-1 gap-0 place-items-center">
                                         <div className="w-2/4">
-                                            <Button
+											<Button
                                                 disabled={selected.myCaptcha ? false : true}
                                                 block
                                                 type="submit"
                                                 isLoading={isFetching}
-                                                theme="danger"
-                                                
-                                            >
-                                                Lanjut Registrasi
-                                            </Button>
+                                                theme="danger"> Lanjut Registrasi </Button>
                                         </div>
                                     </div>
                                 </div>

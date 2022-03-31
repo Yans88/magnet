@@ -48,7 +48,6 @@ class TypeAccount extends Component {
     }
 
     handleNext= async () => {		
-		console.log(this.props.dataSelect);
         await sessionStorage.setItem('tipe_akun', this.props.dataSelect.tipe_akun);
         this.props.onSave(this.props.dataSelect);
         this.props.history.push("/decleration");
