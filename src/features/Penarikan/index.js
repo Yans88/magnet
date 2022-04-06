@@ -473,6 +473,43 @@ class Penarikan extends Component {
                 sortable: true
             },
         ];
+
+        const columns_mobile = [
+            {
+                key: "nama_bank",
+                text: "Bank",
+                width: 100,
+                align: "center",
+                sortable: true,
+
+            },
+            {
+                key: "akun_bank_id",
+                text: "Akun Bank",
+                width: 60,
+                align: "center",
+                sortable: true,
+
+            },
+            {
+                key: "nominal",
+                text: "Jumlah",
+                align: "center",
+                width: 100,
+                sortable: true,
+                cell: record => {
+                    return (<div style={{ textAlign: "right" }}><Fragment>
+                        <NumberFormat
+                            value={record.nominal}
+                            thousandSeparator={true}
+                            decimalScale={2}
+                            displayType={'text'}
+                        />
+                    </Fragment></div>)
+                }
+            }
+        ];
+
         const config = {
             key_column: 'penarikan_dana_id',
             page_size: 10,
@@ -504,7 +541,7 @@ class Penarikan extends Component {
                                 <div className="card card-success shadow-lg w-[100%] lg:w-[100%] " style={{ "minHeight": "500px",borderRadius:"20px" }}>
                                     <div className="card-body">
 
-                                        <div style={{ paddingLeft: 30, paddingRight: 30, paddingTop: 5 }}>
+                                        <div style={{ paddingLeft: 10, paddingRight: 10, paddingTop: 5 }}>
                                             <h3 className="label_ijo text-lg lg:text-xl">Pilih Akun Bank</h3>
 
                                             <div className="row my-4 mx-1">
@@ -512,20 +549,19 @@ class Penarikan extends Component {
                                                     data_bank.map((dp, index, arr) => {
                                                         return (
                                                             <Fragment key={index}>
-                                                                <div className="grid grid-cols-1 lg:grid-cols-3 place-items-center mt-0  py-4 px-1  lg:px-4 rounded-2xl mt-4" style={{ border:"2px solid #ddd",color:"#2E2E2F"}} onClick={e => this.editRecord(dp)} >
+                                                                <div className="grid grid-cols-2 place-items-center mt-0  py-4 px-1  lg:px-4 rounded-2xl mt-4" style={{ border:"2px solid #ddd",color:"#2E2E2F"}} onClick={e => this.editRecord(dp)} >
                                                                     
-                                                                    <div className="px-2">
+                                                                    <div className="px-2 lg:w-1/2">
                                                                         <img alt={dp.nama_bank} src={dp.file} />
                                                                     </div>
                                                                     
-                                                                    <div className="px-2">
+                                                                    <div className="px-2 text-left lg:w-1/2">
                                                                         <h3 className="box-bank__title" style={{ fontSize: 30 }}>{dp.nama_bank}</h3>
-                                                                        <p style={{ fontSize: 25 }}>{dp.nama_pemilik}</p>
+                                                                        <p style={{ fontSize: 25 }}>{dp.nama_pemilik}</p><br/>
+                                                                         <p style={{ fontSize: 25 }}>{dp.no_rek}</p>
                                                                     </div>
 
-                                                                    <div style={{ fontSize: 30 }} className="px-2 pt-4 lg:pt-0">
-                                                                        {dp.no_rek}
-                                                                    </div>
+                                                                    
                                                                 </div>
                                                                 
                                                             </Fragment>
@@ -543,9 +579,9 @@ class Penarikan extends Component {
                                             <h3 style={{ color:"#2E2E2F" }}>Daftar Penarikan</h3>
 
                                             <div className="row mt-3 mb-4">
-                                                <div className="col-md-12">
+                                                <div className="col-md-12 col-12">
                                                     <div className="mb-3">
-                                                        <div className="pull-left margin-left-0 max-w-250">
+                                                        <div className="pull-left margin-left-0  col-6">
                                                             <label style={{ color:"#2E2E2F" }}>Tanggal: Awal</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
@@ -564,7 +600,7 @@ class Penarikan extends Component {
                                                                 locale="id" isValidDate={this.state.validSd}
                                                             />
                                                         </div>
-                                                        <div className="pull-left margin-left-10 max-w-250">
+                                                        <div className="pull-left col-6">
                                                             <label style={{ color:"#2E2E2F" }}>Tanggal: Akhir</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
@@ -589,6 +625,7 @@ class Penarikan extends Component {
 
                                             </div>
 
+                                            <div className="mobile-hide">                    
                                             {data_history ? (
                                                 <ReactDatatable
                                                     config={config}
@@ -600,6 +637,23 @@ class Penarikan extends Component {
                                                     total_record={this.props.totalData}
                                                 />
                                             ) : (<p>No Data ...</p>)}
+                                            </div>
+
+                                            <div className="mobile-view">                    
+                                            {data_history ? (
+                                                <ReactDatatable
+                                                    config={config}
+                                                    records={data_history}
+                                                    columns={columns_mobile}
+                                                    dynamic={true}
+                                                    onChange={this.tableChangeHandler}
+                                                    loading={this.props.isLoading}
+                                                    total_record={this.props.totalData}
+                                                />
+                                            ) : (<p>No Data ...</p>)}
+                                            </div>
+
+
 
 
                                            
@@ -619,7 +673,7 @@ class Penarikan extends Component {
                 <AppModal
 
                     show={this.state.formMT5}
-                    size={this.state.nextStep ? "xs" : "sm"}
+                    size={this.state.nextStep ? "xs" : "xs"}
                     form={this.state.nextStep ? contentNext : contentDelete}
                     handleClose={this.handleClose}
                     handleBack={this.state.nextStep ? this.handleBack : this.handleClose}

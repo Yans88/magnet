@@ -502,6 +502,53 @@ class Personal extends Component {
 
                                 <div className="card card-success shadow-lg" style={{borderRadius:"2rem" }}>
                                     <div className="card-body">
+                                        <div className="mobile-view">
+                                        <Nav appearance="subtle" activeKey={active_tab} justified className="tab_personal">
+                                            <Nav.Item
+                                                onSelect={this.handleSelect.bind(this)}
+                                                active={active_tab === 'detil_pribadi' ? true : false}
+                                                eventKey="detil_pribadi"
+                                                className="default border   border-white" >Detil Pribadi
+                                            </Nav.Item>
+                                            <Nav.Item
+                                                eventKey="exp_trading"
+                                                onSelect={this.handleSelect.bind(this)}
+                                                active={active_tab === 'exp_trading' ? true : false}
+                                                className="default">Pengalaman Trading
+                                            </Nav.Item>
+                                            <Nav.Item
+                                                onSelect={this.handleSelect.bind(this)}
+                                                active={active_tab === 'kekayaan' ? true : false}
+                                                eventKey="kekayaan"
+                                                className="default">Kekayaan Pribadi
+                                            </Nav.Item>
+                                            <Nav.Item
+                                                onSelect={this.handleSelect.bind(this)}
+                                                active={active_tab === 'kontak_darurat' ? true : false}
+                                                eventKey="kontak_darurat"
+                                                className="default">Kontak Darurat
+                                            </Nav.Item>
+                                            <Nav.Item
+                                                onSelect={this.handleSelect.bind(this)}
+                                                active={active_tab === 'pekerjaan' ? true : false}
+                                                eventKey="pekerjaan"
+                                                className="default">Pekerjaan
+                                            </Nav.Item>
+                                            <Nav.Item
+                                                onSelect={this.handleSelect.bind(this)}
+                                                active={active_tab === 'detil_bank' ? true : false}
+                                                eventKey="detil_bank"
+                                                className="default">Detil Bank
+                                            </Nav.Item>
+                                            <Nav.Item
+                                                onSelect={this.handleSelect.bind(this)}
+                                                active={active_tab === 'unggah_file' ? true : false}
+                                                eventKey="unggah_file"
+                                                className="default">Unggah Dokumen
+                                            </Nav.Item>
+                                        </Nav>
+                                        </div>
+                                        
                                         <div className="mobile-hide">
                                         <Nav appearance="subtle" activeKey={active_tab} justified className="tab_personal">
                                             <Nav.Item
@@ -560,7 +607,7 @@ class Personal extends Component {
 
                                                     <Form.Row>
                                                         <Form.Group as={Col} xs={12} lg={6} controlId="nama_depan">
-                                                            <Form.Label><span className="label_merah">Nama Depan</span></Form.Label>
+                                                            
                                                             <Form.Control
                                                                 value={user.nama_depan ? user.nama_depan : ''}
                                                                 autoComplete="off"
@@ -573,7 +620,7 @@ class Personal extends Component {
                                                             {errMsg1.nama_depan ? (<span className="text-error badge badge-danger">{errMsg1.nama_depan}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} controlId="nama_belakang">
-                                                            <Form.Label><span className="label_merah">Nama Belakang</span></Form.Label>
+                                                            
                                                             <Form.Control
                                                                 value={user.nama_belakang ? user.nama_belakang : ''}
                                                                 autoComplete="off"
@@ -587,14 +634,13 @@ class Personal extends Component {
                                                     </Form.Row>
                                                     <Form.Row>
                                                         <Form.Group as={Col} xs={12} lg={6} controlId="tempat_lahir">
-                                                            <Form.Label><span className="label_form">Tempat Lahir</span></Form.Label>
                                                             <Form.Control
                                                                 name="tempat_lahir"
                                                                 size="lg"
                                                                 value={user.tempat_lahir ? user.tempat_lahir : ''}
                                                                 onChange={this.handleChange}
                                                                 as="select">
-                                                                <option value="">Pilih</option>
+                                                                <option value="">Provinsi</option>
                                                                 {dataProvinsi ? (
                                                                     dataProvinsi.map(function (prov) {
                                                                         return <option
@@ -609,7 +655,7 @@ class Personal extends Component {
                                                             {errMsg1.tempat_lahir ? (<span className="text-error badge badge-danger">{errMsg1.tempat_lahir}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} xs={12} lg={6} controlId="kota_lahir">
-                                                            <Form.Label>Kota Kelahiran Sesuai Dengan Identitas</Form.Label>
+                                                            
                                                             <Form.Control
                                                                 value={user.kota_lahir ? user.kota_lahir : ''}
                                                                 autoComplete="off"
@@ -625,7 +671,7 @@ class Personal extends Component {
                                                     </Form.Row>
                                                     <Form.Row>
                                                         <Form.Group as={Col} xs={12} lg={3} controlId="tanggal_lahir">
-                                                            <Form.Label>Tanggal Lahir</Form.Label>
+                                                            
                                                             <Datetime
                                                                 closeOnSelect={true}
                                                                 timeFormat={false}
@@ -647,14 +693,13 @@ class Personal extends Component {
                                                             {errMsg1.tanggal_lahir ? (<span className="text-error badge badge-danger">{errMsg1.tanggal_lahir}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} xs={12} lg={3}  controlId="jenis_identitas">
-                                                            <Form.Label>Nomor identifikasi</Form.Label>
                                                             <Form.Control
                                                                 name="jenis_identitas"
                                                                 size="lg"
                                                                 value={user.jenis_identitas ? user.jenis_identitas : ''}
                                                                 onChange={this.handleChange}
                                                                 as="select">
-                                                                <option value="">Pilih</option>
+                                                                <option value="">Nomor identifikasi</option>
                                                                 <option value="KTP">KTP</option>
                                                                 <option value="SIM">SIM</option>
                                                                 <option value="Passpor">Passport</option>
@@ -664,13 +709,14 @@ class Personal extends Component {
                                                         <Form.Group as={Col}  xs={12} lg={3} controlId="no_identitas">
 
                                                             <Form.Control
-                                                                style={{ marginTop: 28 }}
+                                                                
                                                                 value={user.no_identitas ? user.no_identitas : ''}
                                                                 autoComplete="off"
                                                                 onChange={this.handleChange}
                                                                 size="lg"
                                                                 name="no_identitas"
                                                                 type="text"
+                                                                placeholder="No Identitas"
                                                                 required
                                                             />
                                                             {errMsg1.no_identitas ? (<span className="text-error badge badge-danger">{errMsg1.no_identitas}</span>) : ''}
@@ -678,7 +724,7 @@ class Personal extends Component {
                                                     </Form.Row>
                                                    
                                                     <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="jenis_kelamin">
+                                                        <Form.Group as={Col} xs={12} lg={2} controlId="jenis_kelamin">
                                                             <Form.Label>Jenis Kelamin</Form.Label><br />
                                                             <Form.Check
                                                                 onChange={this.handleChange}
@@ -701,8 +747,7 @@ class Personal extends Component {
                                                             {errMsg1.jenis_kelamin ? (<span className="text-error badge badge-danger">{errMsg1.jenis_kelamin}</span>) : ''}
                                                         </Form.Group>
 
-                                                        <Form.Group as={Col} controlId="handphone">
-                                                            <Form.Label>No Handphone</Form.Label>
+                                                        <Form.Group as={Col} lg={4} controlId="handphone">
                                                             <Form.Control
                                                                 value={user.handphone ? user.handphone : ''}
                                                                 autoComplete="off"
@@ -721,7 +766,6 @@ class Personal extends Component {
                                                     
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="alamat">
-                                                            <Form.Label>Alamat</Form.Label>
                                                             <Form.Control
                                                                 value={user.alamat ? user.alamat : ''}
                                                                 autoComplete="off"
@@ -736,7 +780,6 @@ class Personal extends Component {
                                                     </Form.Row>
                                                     <Form.Row>
                                                         <Form.Group as={Col} xs={12} lg={2} controlId="rt">
-                                                            <Form.Label>RT</Form.Label>
                                                             <Form.Control
                                                                 value={user.rt ? user.rt : ''}
                                                                 autoComplete="off"
@@ -749,7 +792,6 @@ class Personal extends Component {
                                                             {errMsg1.rt ? (<span className="text-error badge badge-danger">{errMsg1.rt}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} xs={12} lg={2} controlId="rw">
-                                                            <Form.Label>RW</Form.Label>
                                                             <Form.Control
                                                                 value={user.rw ? user.rw : ''}
                                                                 autoComplete="off"
@@ -762,14 +804,13 @@ class Personal extends Component {
                                                             {errMsg1.rw ? (<span className="text-error badge badge-danger">{errMsg1.rw}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} xs={12} lg={3} controlId="provinsi">
-                                                            <Form.Label>Kota</Form.Label>    
                                                             <Form.Control
                                                                 name="provinsi"
                                                                 size="lg"
                                                                 value={user.provinsi ? user.provinsi : ''}
                                                                 onChange={this.handleChange}
                                                                 as="select">
-                                                                <option value="">Pilih</option>
+                                                                <option value="">Kota</option>
                                                                 {dataProvinsi ? (
                                                                     dataProvinsi.map(function (prov) {
                                                                         return <option
@@ -785,14 +826,13 @@ class Personal extends Component {
                                                         </Form.Group>
 
                                                         <Form.Group as={Col} controlId="status_kepemilikan">
-                                                            <Form.Label>Status Kepemilikan Rumah</Form.Label>
                                                             <Form.Control
                                                                 name="status_kepemilikan"
                                                                 size="lg"
                                                                 value={user.status_kepemilikan ? user.status_kepemilikan : ''}
                                                                 onChange={this.handleChange}
                                                                 as="select">
-                                                                <option value="">Pilih</option>
+                                                                <option value="">Status Kepemilikan Rumah</option>
                                                                 <option value="Milik">Pribadi</option>
                                                                 <option value="Keluarga">Keluarga</option>
                                                                 <option value="Sewa/Kontrak">Sewa/Kontrak</option>
@@ -804,15 +844,14 @@ class Personal extends Component {
                                                     </Form.Row>
                                                     <Form.Row>
                                                         
-                                                        <Form.Group as={Col} xs={12} lg={4} controlId="warga_negara">
-                                                            <Form.Label>Kewarganegaraan</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={3} controlId="warga_negara">
                                                             <Form.Control
                                                                 name="warga_negara"
                                                                 size="lg"
                                                                 value={user.warga_negara ? user.warga_negara : ''}
                                                                 onChange={this.handleChange}
                                                                 as="select">
-                                                                <option value="">Pilih</option>
+                                                                <option value="">Kewarganegaraan</option>
                                                                 {dataNegara ? (
                                                                     dataNegara.map(function (neg) {
                                                                         return <option
@@ -827,15 +866,14 @@ class Personal extends Component {
                                                             {errMsg1.warga_negara ? (<span className="text-error badge badge-danger">{errMsg1.warga_negara}</span>) : ''}
                                                         </Form.Group>
 
-                                                        <Form.Group as={Col} xs={12} lg={4} controlId="status_pernikahan">
-                                                            <Form.Label>Status Pernikahan</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={3} controlId="status_pernikahan">
                                                             <Form.Control
                                                                 name="status_pernikahan"
                                                                 size="lg"
                                                                 value={user.status_pernikahan ? user.status_pernikahan : ''}
                                                                 onChange={this.handleChange}
                                                                 as="select">
-                                                                <option value="">Pilih</option>
+                                                                <option value="">Status Pernikahan</option>
                                                                 <option value="Belum Kawin">Belum Kawin</option>
                                                                 <option value="Kawin">Kawin</option>
                                                                 <option value="Cerai">Cerai</option>
@@ -844,29 +882,9 @@ class Personal extends Component {
 															{errMsg1.status_pernikahan ? (<span className="text-error badge badge-danger">{errMsg1.status_pernikahan}</span>) : ''}
                                                         </Form.Group>
 
-
-                                                        <Form.Group as={Col} xs={12} lg={4} controlId="nama_ibu_kandung">
-                                                            <Form.Label>Nama Gadis Ibu Kandung</Form.Label>
-                                                            <Form.Control
-                                                                value={user.nama_ibu_kandung ? user.nama_ibu_kandung : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChange}
-                                                                size="lg"
-                                                                name="nama_ibu_kandung"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Nama Gadis Ibu Kandung" />
-																{errMsg1.nama_ibu_kandung ? (<span className="text-error badge badge-danger">{errMsg1.nama_ibu_kandung}</span>) : ''}
-                                                        </Form.Group>
-
-
-
-                                                    </Form.Row>
-                                                    <Form.Row>
                                                         {user.status_pernikahan === "Kawin" && (
                                                             <Fragment>
-                                                                <Form.Group controlId="nama_pasangan">
-                                                                    <Form.Label>Nama Pasangan</Form.Label>
+                                                                <Form.Group as={Col} xs={12} lg={3} controlId="nama_pasangan">
                                                                     <Form.Control
                                                                         value={user.nama_pasangan ? user.nama_pasangan : ''}
                                                                         autoComplete="off"
@@ -879,14 +897,31 @@ class Personal extends Component {
 																		{errMsg1.nama_pasangan ? (<span className="text-error badge badge-danger">{errMsg1.nama_pasangan}</span>) : ''}
                                                                 </Form.Group>
                                                             </Fragment>
-                                                        )}
+                                                        )}            
+
+                                                        <Form.Group as={Col} xs={12} lg={3} controlId="nama_ibu_kandung">
+                                                            <Form.Control
+                                                                value={user.nama_ibu_kandung ? user.nama_ibu_kandung : ''}
+                                                                autoComplete="off"
+                                                                onChange={this.handleChange}
+                                                                size="lg"
+                                                                name="nama_ibu_kandung"
+                                                                type="text"
+                                                                required
+                                                                placeholder="Nama Gadis Ibu Kandung" />
+																{errMsg1.nama_ibu_kandung ? (<span className="text-error badge badge-danger">{errMsg1.nama_ibu_kandung}</span>) : ''}
+                                                        </Form.Group>
+
                                                         
+
+
+
                                                     </Form.Row>
+                                                    
 
                                                     <Form.Row>
                                                         
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="telp">
-                                                            <Form.Label>Telepon Rumah</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={4} controlId="telp">
                                                             <Form.Control
                                                                 value={user.telp ? user.telp : ''}
                                                                 autoComplete="off"
@@ -898,8 +933,7 @@ class Personal extends Component {
                                                                 placeholder="Telepon Rumah" />
                                                             {errMsg1.telp ? (<span className="text-error badge badge-danger">{errMsg1.telp}</span>) : ''}
                                                         </Form.Group>
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="fax">
-                                                            <Form.Label>FAX</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={4} controlId="fax">
                                                             <Form.Control
                                                                 value={user.fax ? user.fax : ''}
                                                                 autoComplete="off"
@@ -910,18 +944,8 @@ class Personal extends Component {
                                                                 required
                                                                 placeholder="FAX" />
                                                         </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
-                                                        
-														
-                                                    </Form.Row>
-                                                    <Form.Row>
-                                                        
-                                                    </Form.Row>
 
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={3} controlId="npwp">
-                                                            <Form.Label>NPWP</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={4} controlId="npwp">
                                                             <Form.Control
                                                                 value={user.npwp ? user.npwp : ''}
                                                                 autoComplete="off"
@@ -935,12 +959,13 @@ class Personal extends Component {
                                                         </Form.Group>
 
                                                     </Form.Row>
-
+                                                    
+                                                    
 
                                                 </div>
                                                 <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
                                                     <div className="grid grid-cols-1 place-items-center">
-                                                        <div className="form-group w-2/3">
+                                                        <div className="form-group lg:w-2/3">
                                                             <div className="form-check">
                                                                 {errMsg1.agreement1 ? (<span className="text-error badge badge-danger">{errMsg1.agreement1}</span>) : ''}
                                                                 <label>
@@ -955,13 +980,13 @@ class Personal extends Component {
                                                             
                                                             <div className="grid grid-cols-1 place-items-center">
 
-                                                                <div className="form-group w-[50%] text-center mt-4">
+                                                                <div className="form-group lg:w-[50%] text-center mt-4">
                                                                 <label>
                                                                     <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
                                                                 </label>
                                                                 </div>
 
-                                                                <div className="form-group w-[40%] text-center">
+                                                                <div className="form-group w-[100%] lg:w-[40%] text-center">
                                                                
                                                                 <AppButton
                                                                 style={{ color: '#ffffff', marginRight: 5 }}
@@ -1000,14 +1025,13 @@ class Personal extends Component {
                                                     <br /><br/>
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="tujuan_pembukaan_rekening">
-                                                            <Form.Label>Tujuan Pembukaan Rekening</Form.Label>
                                                             <Form.Control
                                                                 name="tujuan_pembukaan_rekening"
                                                                 size="lg"
                                                                 value={dataExpTrading.tujuan_pembukaan_rekening ? dataExpTrading.tujuan_pembukaan_rekening : ''}
                                                                 onChange={this.handleChangeTrading.bind(this)}
                                                                 as="select">
-                                                                <option value="">Pilih</option>
+                                                                <option value="">Tujuan Pembukaan Rekening</option>
                                                                 <option value="Spekulasi">Spekulasi</option>
                                                                 <option value="Keuntungan">Keuntungan</option>
                                                                 <option value="Lindung Nilai">Lindung Nilai</option>
@@ -1016,7 +1040,7 @@ class Personal extends Component {
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
-                                                        <Form.Group as={Col} xs={3} controlId="pertanyaan1">
+                                                        <Form.Group as={Col} xs={6} lg={3} controlId="pertanyaan1">
                                                             <Form.Label>Pengalaman Trading</Form.Label><br />
                                                            
 
@@ -1040,7 +1064,7 @@ class Personal extends Component {
                                                         </Form.Group>
                                                         {dataExpTrading.pertanyaan1 === 'Y' ? (
                                                         
-                                                        <Form.Group as={Col} xs={6} controlId="pertanyaan2">
+                                                        <Form.Group as={Col} xs={6} lg={6} controlId="pertanyaan2">
                                                             
                                                             <Form.Label>Pengalaman Trading anda Sebelumnya di</Form.Label>
                                                             <Form.Control
@@ -1097,7 +1121,7 @@ class Personal extends Component {
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
-                                                        <Form.Group as={Col} xs={3} controlId="pertanyaan5">
+                                                        <Form.Group as={Col} xs={12} lg={4} controlId="pertanyaan5">
                                                             <Form.Label>Memiliki pengalaman perdagangan dalam Perdagangan Berjangka</Form.Label><br />
                                                             
                                                             <Form.Check
@@ -1116,7 +1140,7 @@ class Personal extends Component {
                                                         </Form.Group>
                                                         {dataExpTrading.pertanyaan5 === 'Y' ? (
                                                         
-                                                            <Form.Group as={Col} xs={6} controlId="pertanyaan6">
+                                                            <Form.Group as={Col} xs={12} lg={6} controlId="pertanyaan6">
                                                                 <Form.Label>Pengalaman Trading Berjangka anda Sebelumnya di</Form.Label>
                                                                 <Form.Control
                                                                     value={dataExpTrading.pertanyaan6 ? dataExpTrading.pertanyaan6 : ''}
@@ -1137,7 +1161,7 @@ class Personal extends Component {
                                                         
 
                                                     <div className="grid grid-cols-1 place-items-center">
-                                                        <div className="form-group w-2/3">
+                                                        <div className="form-group lg:w-2/3">
                                                             <div className="form-check">
                                                                 {errMsg2.agreement2 ? (<span className="text-error badge badge-danger">{errMsg2.agreement2}</span>) : ''}
                                                                 <label>
@@ -1152,13 +1176,13 @@ class Personal extends Component {
                                                             
                                                             <div className="grid grid-cols-1 place-items-center">
 
-                                                               <div className="form-group w-[50%] text-center mt-4">
+                                                               <div className="form-group lg:w-[50%] text-center mt-4">
                                                                 <label>
-                                                                    <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                                                    <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-extrabold">Kebijakan Privasi</span>
                                                                 </label>
                                                                 </div>
 
-                                                                <div className="form-group w-[40%] text-center">
+                                                                <div className="form-group w-[100%] lg:w-[40%] text-center">
                                                                
                                                                 <AppButton
                                                             style={{ color: '#ffffff', marginRight: 5 }}
@@ -1199,15 +1223,14 @@ class Personal extends Component {
                                                     <br /><br/>
                                                     <Form.Row>
                                                         
-                                                        <Form.Group as={Col} controlId="pendapatan_pertahun">
-                                                            <Form.Label>Pendapatan per Tahun</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="pendapatan_pertahun">
                                                             <Form.Control
                                                                 name="pendapatan_pertahun"
                                                                 size="lg"
                                                                 value={dataKekayaan.pendapatan_pertahun ? dataKekayaan.pendapatan_pertahun : ''}
                                                                 onChange={this.handleChangeKekayaan.bind(this)}
                                                                 as="select">
-                                                                <option value="">-</option>
+                                                                <option value="">Pendapatan perTahun</option>
                                                                 <option value="Antara 100-250 juta">Antara 100-250 juta</option>
                                                                 <option value="Antara 250-500 juta">Antara 250-500 juta</option>
                                                                 <option value="Di atas 500 juta">Di atas 500 juta</option>
@@ -1215,8 +1238,7 @@ class Personal extends Component {
                                                             {errMsg3.pendapatan_pertahun ? (<span className="text-error badge badge-danger">{errMsg3.pendapatan_pertahun}</span>) : ''}
                                                         </Form.Group>
 
-                                                        <Form.Group as={Col} controlId="lokasi">
-                                                            <Form.Label>Lokasi</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="lokasi">
                                                             <Form.Control
                                                                 value={dataKekayaan.lokasi ? dataKekayaan.lokasi : ''}
                                                                 autoComplete="off"
@@ -1233,7 +1255,7 @@ class Personal extends Component {
                                                     
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="njop">
-                                                            <Form.Label><span className="label_merah">Nilai NJOP Rumah</span></Form.Label>
+                                                            
                                                             <NumberFormat
                                                                 value={dataKekayaan.njop ? dataKekayaan.njop : ''}
                                                                 autoComplete="off"
@@ -1249,7 +1271,7 @@ class Personal extends Component {
                                                         </Form.Group>
 
                                                         <Form.Group as={Col} controlId="deposit_bank">
-                                                            <Form.Label><span className="label_merah">Deposit Bank</span></Form.Label>
+                                                            
                                                             <NumberFormat
                                                                 value={dataKekayaan.deposit_bank ? dataKekayaan.deposit_bank : ''}
                                                                 autoComplete="off"
@@ -1268,8 +1290,8 @@ class Personal extends Component {
                                                     
                                                     <Form.Row>
                                                         
-                                                        <Form.Group as={Col} controlId="jml_total">
-                                                            <Form.Label><span className="label_merah">Jumlah Total</span></Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="jml_total">
+                                                            
                                                             <NumberFormat
                                                                 value={nilai_njop + deposit_bank}
                                                                 autoComplete="off"
@@ -1284,8 +1306,7 @@ class Personal extends Component {
 
                                                         </Form.Group>
 
-                                                        <Form.Group as={Col} controlId="lainnya">
-                                                            <Form.Label><span className="label_merah">Jumlah Kekayaan Lainnya</span></Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="lainnya">
                                                             <NumberFormat
                                                                 value={dataKekayaan.lainnya ? dataKekayaan.lainnya : ''}
                                                                 autoComplete="off"
@@ -1296,7 +1317,7 @@ class Personal extends Component {
                                                                 thousandSeparator={true}
                                                                 decimalScale={2}
                                                                 inputMode="numeric"
-                                                                placeholder="Lainnya" />
+                                                                placeholder="Jumlah Kekayaan Lainnya" />
                                                         </Form.Group>
 
                                                     </Form.Row>
@@ -1306,7 +1327,7 @@ class Personal extends Component {
                                                     <div className="form-group">
                                                      
                                                      <div className="grid grid-cols-1 place-items-center">
-                                                        <div className="form-group w-2/3">
+                                                        <div className="form-group lg:w-2/3">
                                                             <div className="form-check">
                                                                 {errMsg3.agreement3 ? (<span className="text-error badge badge-danger">{errMsg3.agreement3}</span>) : ''}
                                                                 <label>
@@ -1320,13 +1341,13 @@ class Personal extends Component {
                                                             
                                                             <div className="grid grid-cols-1 place-items-center">
 
-                                                                <div className="form-group w-[50%] text-center mt-4">
+                                                                <div className="form-group lg:w-[50%] text-center mt-4">
                                                                 <label>
                                                                     <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
                                                                 </label>
                                                                 </div>
 
-                                                                <div className="form-group w-[40%] text-center">
+                                                                <div className="form-group w-[100%] lg:w-[40%] text-center">
                                                                
                                                                 <AppButton
                                                             style={{ color: '#ffffff', marginRight: 5 }}
@@ -1367,8 +1388,8 @@ class Personal extends Component {
                                                     <br /><br/>
 
                                                     <Form.Row>
-                                                        <Form.Group as={Col} xs={6} controlId="nama">
-                                                            <Form.Label>Nama</Form.Label>{' '}
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="nama">
+                                                            {' '}
                                                             {errMsg4.nama ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.nama}</span>) : ''}
                                                             <Form.Control
                                                                 value={dataKontakDarurat.nama ? dataKontakDarurat.nama : ''}
@@ -1382,8 +1403,8 @@ class Personal extends Component {
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
-                                                        <Form.Group as={Col} controlId="alamatt">
-                                                            <Form.Label>Alamat</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={12} controlId="alamatt">
+                                                            
                                                             {errMsg4.alamat ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.alamat}</span>) : ''}
                                                             <Form.Control
                                                                 value={dataKontakDarurat.alamat ? dataKontakDarurat.alamat : ''}
@@ -1397,8 +1418,8 @@ class Personal extends Component {
                                                         </Form.Group>
                                                     </Form.Row>
                                                     <Form.Row>
-                                                        <Form.Group as={Col} controlId="kode_pos">
-                                                            <Form.Label>Kode Pos</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="kode_pos">
+                                                            
                                                             {errMsg4.kode_pos ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.kode_pos}</span>) : ''}
                                                             <Form.Control
                                                                 value={dataKontakDarurat.kode_pos ? dataKontakDarurat.kode_pos : ''}
@@ -1411,8 +1432,8 @@ class Personal extends Component {
                                                                 placeholder="Kode Pos" />
                                                         </Form.Group>
 
-                                                        <Form.Group as={Col} controlId="telpp">
-                                                            <Form.Label>No. Telepon</Form.Label>{' '}
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="telpp">
+                                                            {' '}
                                                             {errMsg4.telp ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.telp}</span>) : ''}
                                                             <Form.Control
                                                                 value={dataKontakDarurat.telp ? dataKontakDarurat.telp : ''}
@@ -1428,8 +1449,8 @@ class Personal extends Component {
                                                     </Form.Row>
                                                     
                                                     <Form.Row>
-                                                        <Form.Group as={Col} controlId="handphone">
-                                                            <Form.Label>No. Handphone</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="handphone">
+                                                            
                                                             {errMsg4.handphone ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.handphone}</span>) : ''}
                                                             <Form.Control
                                                                 value={dataKontakDarurat.handphone ? dataKontakDarurat.handphone : ''}
@@ -1442,8 +1463,8 @@ class Personal extends Component {
                                                                 placeholder="No. Handphone" />
                                                         </Form.Group>
 
-                                                        <Form.Group as={Col} controlId="hubungan">
-                                                            <Form.Label>Hubungan</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="hubungan">
+                                                            
                                                             {errMsg4.hubungan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.hubungan}</span>) : ''}
                                                             <Form.Control
                                                                 name="hubungan"
@@ -1451,7 +1472,7 @@ class Personal extends Component {
                                                                 value={dataKontakDarurat.hubungan ? dataKontakDarurat.hubungan : ''}
                                                                 onChange={this.handleChangeKontakDarurat.bind(this)}
                                                                 as="select">
-                                                                <option value="">-</option>
+                                                                <option value="">Hubungan</option>
                                                                 <option value="Keluarga">Keluarga</option>
                                                                 <option value="Teman">Teman</option>
                                                             </Form.Control>
@@ -1464,7 +1485,7 @@ class Personal extends Component {
                                                     <div className="form-group">
 
                                                         <div className="grid grid-cols-1 place-items-center">
-                                                            <div className="form-group w-2/3">
+                                                            <div className="form-group lg:w-2/3">
                                                                 
                                                                 <div className="form-check">
                                                                     {errMsg4.agreement4 ? (<span className="text-error badge badge-danger">{errMsg4.agreement4}</span>) : ''}
@@ -1479,13 +1500,13 @@ class Personal extends Component {
                                                                 
                                                                 <div className="grid grid-cols-1 place-items-center">
 
-                                                                    <div className="form-group w-[50%] text-center mt-4">
+                                                                    <div className="form-group lg:w-[50%] text-center mt-4">
                                                                     <label>
                                                                     <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
                                                                     </label>
                                                                     </div>
 
-                                                                    <div className="form-group w-[40%] text-center">
+                                                                    <div className="form-group w-[100%] lg:w-[40%] text-center">
                                                                 
                                                                     <AppButton
                                                                         style={{ color: '#ffffff', marginRight: 5 }}
@@ -1526,7 +1547,7 @@ class Personal extends Component {
 
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="status_pekerjaan">
-                                                            <Form.Label>Status Pekerjaan</Form.Label>
+                                                            
                                                             {errMsg5.status_pekerjaan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.status_pekerjaan}</span>) : ''}
                                                             <Form.Control
                                                                 name="status_pekerjaan"
@@ -1534,7 +1555,7 @@ class Personal extends Component {
                                                                 value={dataPekerjaan.status_pekerjaan ? dataPekerjaan.status_pekerjaan : ''}
                                                                 onChange={this.handleChangePekerjaan.bind(this)}
                                                                 as="select">
-                                                                <option value="">-</option>
+                                                                <option value="">Status Pekerjaan</option>
                                                                 <option value="Swasta">Swasta</option>
                                                                 <option value="Wiraswasta">Wiraswasta</option>
                                                                 <option value="Profesional">Profesional</option>
@@ -1545,7 +1566,7 @@ class Personal extends Component {
                                                         </Form.Group>
 
                                                         <Form.Group as={Col} controlId="nama_perusahaan">
-                                                            <Form.Label>Nama Perusahaan</Form.Label>
+                                                            
                                                             {errMsg5.nama_perusahaan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.nama_perusahaan}</span>) : ''}
                                                             <Form.Control
                                                                 value={dataPekerjaan.nama_perusahaan ? dataPekerjaan.nama_perusahaan : ''}
@@ -1564,7 +1585,7 @@ class Personal extends Component {
 
                                                     <Form.Row>
                                                         <Form.Group as={Col} controlId="jenis_bisnis">
-                                                            <Form.Label>Jenis Bisnis</Form.Label>
+                                                            
                                                             {errMsg5.jenis_bisnis ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.jenis_bisnis}</span>) : ''}
                                                             <Form.Control
                                                                 value={dataPekerjaan.jenis_bisnis ? dataPekerjaan.jenis_bisnis : ''}
@@ -1578,7 +1599,7 @@ class Personal extends Component {
                                                         </Form.Group>
 
                                                         <Form.Group as={Col} controlId="jabatan">
-                                                            <Form.Label>Posisi/Jabatan</Form.Label>
+                                                            
                                                             {errMsg5.jabatan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.jabatan}</span>) : ''}
                                                             <Form.Control
                                                                 value={dataPekerjaan.jabatan ? dataPekerjaan.jabatan : ''}
@@ -1596,8 +1617,7 @@ class Personal extends Component {
                                                    
 
                                                     <Form.Row>
-                                                        <Form.Group as={Col} controlId="lama_bekerja">
-                                                            <Form.Label>Lama Bekerja</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="lama_bekerja">
                                                             {errMsg5.lama_bekerja ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.lama_bekerja}</span>) : ''}
                                                             <Form.Control
                                                                 name="lama_bekerja"
@@ -1605,7 +1625,7 @@ class Personal extends Component {
                                                                 value={dataPekerjaan.lama_bekerja ? dataPekerjaan.lama_bekerja : ''}
                                                                 onChange={this.handleChangePekerjaan.bind(this)}
                                                                 as="select">
-                                                                <option value="">-</option>
+                                                                <option value="">Lama Bekerja</option>
                                                                 <option value="1 Tahun">1 Tahun</option>
                                                                 <option value="1 - 5 Tahun">1 - 5 Tahun</option>
                                                                 <option value="> 5 Tahun"> {'>'} 5 Tahun</option>
@@ -1614,15 +1634,14 @@ class Personal extends Component {
                                                         </Form.Group>
 
 
-                                                        <Form.Group as={Col} controlId="pekerjaan_sebelumnya">
-                                                            <Form.Label>Lama Bekerja Sebelumnya</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="pekerjaan_sebelumnya">
                                                             <Form.Control
                                                                 name="pekerjaan_sebelumnya"
                                                                 size="lg"
                                                                 value={dataPekerjaan.pekerjaan_sebelumnya ? dataPekerjaan.pekerjaan_sebelumnya : ''}
                                                                 onChange={this.handleChangePekerjaan.bind(this)}
                                                                 as="select">
-                                                                <option value="">-</option>
+                                                                <option value="">Lama Bekerja Sebelumnya</option>
                                                                 <option value="1 Tahun">1 Tahun</option>
                                                                 <option value="1 - 5 Tahun">1 - 5 Tahun</option>
                                                                 <option value="> 5 Tahun"> {'>'} 5 Tahun</option>
@@ -1634,8 +1653,7 @@ class Personal extends Component {
                                                    
 
                                                     <Form.Row>
-                                                        <Form.Group as={Col} controlId="alamat_kantor">
-                                                            <Form.Label>Alamat kantor</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={12} controlId="alamat_kantor">
                                                             {errMsg5.alamat_kantor ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.alamat_kantor}</span>) : ''}
                                                             <Form.Control
                                                                 value={dataPekerjaan.alamat_kantor ? dataPekerjaan.alamat_kantor : ''}
@@ -1650,8 +1668,7 @@ class Personal extends Component {
                                                     </Form.Row>
 
                                                     <Form.Row>
-                                                        <Form.Group as={Col} controlId="telp_kantor">
-                                                            <Form.Label>Nomor Telepon Kantor.</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={12} controlId="telp_kantor">
                                                             {errMsg5.telp_kantor ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.telp_kantor}</span>) : ''}
                                                             <Form.Control
                                                                 value={dataPekerjaan.telp_kantor ? dataPekerjaan.telp_kantor : ''}
@@ -1664,8 +1681,7 @@ class Personal extends Component {
                                                                 placeholder="Nomor Telepon Kantor." />
                                                         </Form.Group>
 
-                                                        <Form.Group as={Col} controlId="fax_kantor">
-                                                            <Form.Label>Nomor Fax Kantor</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={12} controlId="fax_kantor">
                                                             <Form.Control
                                                                 value={dataPekerjaan.fax_kantor ? dataPekerjaan.fax_kantor : ''}
                                                                 autoComplete="off"
@@ -1689,7 +1705,7 @@ class Personal extends Component {
 
 
                                                         <div className="grid grid-cols-1 place-items-center">
-                                                            <div className="form-group w-2/3">
+                                                            <div className="form-group lg:w-2/3">
                                                                 
                                                                 <div className="form-check">
                                                                     {errMsg5.agreement5 ? (<span className="text-error badge badge-danger">{errMsg5.agreement5}</span>) : ''}
@@ -1704,13 +1720,13 @@ class Personal extends Component {
                                                                 
                                                                 <div className="grid grid-cols-1 place-items-center">
 
-                                                                    <div className="form-group w-[50%] text-center mt-4">
+                                                                    <div className="form-group lg:w-[50%] text-center mt-4">
                                                                     <label>
                                                                         <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
                                                                     </label>
                                                                     </div>
 
-                                                                    <div className="form-group w-[40%] text-center">
+                                                                    <div className="form-group w-[100%] lg:w-[40%] text-center">
                                                                 
                                                                     <AppButton
                                                                         style={{ color: '#ffffff', marginRight: 5 }}
@@ -1748,8 +1764,7 @@ class Personal extends Component {
                                                     <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Akun Bank</span>
                                                     <br /><br/>
                                                     <Form.Row>
-                                                        <Form.Group as={Col} controlId="nama_pemilik">
-                                                            <Form.Label>Nama Pemilik Rekening</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="nama_pemilik">
                                                             <Form.Control
                                                                 disabled
                                                                 value={user.nama_depan ? user.nama_depan + ' ' + user.nama_belakang : ''}
@@ -1763,15 +1778,14 @@ class Personal extends Component {
                                                             {errMsg6.nama_pemilik ? (<span className="text-error badge badge-danger">{errMsg6.nama_pemilik}</span>) : ''}
                                                         </Form.Group>
 
-                                                        <Form.Group as={Col} controlId="bank_id">
-                                                            <Form.Label>Nama Bank</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="bank_id">
                                                             <Form.Control
                                                                 name="bank_id"
                                                                 size="lg"
                                                                 value={dataAkunBank.bank_id ? dataAkunBank.bank_id : ''}
                                                                 onChange={this.handleChangeAkunBank.bind(this)}
                                                                 as="select">
-                                                                <option value="">Pilih</option>
+                                                                <option value="">Nama Bank</option>
                                                                 {dataBank ? (
                                                                     dataBank.map(function (bnk) {
                                                                         return <option
@@ -1788,8 +1802,7 @@ class Personal extends Component {
                                                     </Form.Row>
                                                     
                                                     <Form.Row>
-                                                        <Form.Group as={Col} controlId="no_rek">
-                                                            <Form.Label>Nomor Rekening Bank</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="no_rek">
                                                             <NumberFormat
                                                                 value={dataAkunBank.no_rek ? dataAkunBank.no_rek : ''}
                                                                 autoComplete="off"
@@ -1804,8 +1817,7 @@ class Personal extends Component {
                                                             {errMsg6.no_rek ? (<span className="text-error badge badge-danger">{errMsg6.no_rek}</span>) : ''}
                                                         </Form.Group>
 
-                                                        <Form.Group as={Col} controlId="cabang">
-                                                            <Form.Label>Cabang</Form.Label>
+                                                        <Form.Group as={Col} xs={12} lg={6} controlId="cabang">
                                                             <Form.Control
                                                                 value={dataAkunBank.cabang ? dataAkunBank.cabang : ''}
                                                                 autoComplete="off"
@@ -1879,7 +1891,7 @@ class Personal extends Component {
 
 
                                                     <div className="grid grid-cols-1 place-items-center">
-                                                            <div className="form-group w-2/3">
+                                                            <div className="form-group lg:w-2/3">
                                                                 
                                                             <div className="form-check">
                                                             {errMsg6.agreement6 ? (<span className="text-error badge badge-danger">{errMsg6.agreement6}</span>) : ''}
@@ -1894,13 +1906,13 @@ class Personal extends Component {
                                                                 
                                                                 <div className="grid grid-cols-1 place-items-center">
 
-                                                                    <div className="form-group w-[50%] text-center mt-4">
+                                                                    <div className="form-group lg:w-[50%] text-center mt-4">
                                                                     <label>
                                                                         <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
                                                                     </label>
                                                                     </div>
 
-                                                                    <div className="form-group w-[40%] text-center">
+                                                                    <div className="form-group w-[100%] lg:w-[40%] text-center">
                                                                 
                                                                     <AppButton
                                                                         style={{ color: '#ffffff', marginRight: 5 }}
@@ -2152,19 +2164,19 @@ class Personal extends Component {
                                                         </div>
 
                                                         <div className="grid grid-cols-1 place-items-center">
-                                                            <div className="form-group w-2/3">
+                                                            <div className="form-group lg:w-2/3">
                                                                 
                                                             
                                                                 
                                                                 <div className="grid grid-cols-1 place-items-center">
 
-                                                                    <div className="form-group w-[50%] text-center mt-4">
+                                                                    <div className="form-group lg:w-[50%] text-center mt-4">
                                                                     <label>
                                                                         <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
                                                                     </label>
                                                                     </div>
 
-                                                                    <div className="form-group w-[40%] text-center">
+                                                                    <div className="form-group lg:w-[40%] text-center">
                                                                 
                                                                     <AppButton
                                                                     disabled={!unggahFileName}

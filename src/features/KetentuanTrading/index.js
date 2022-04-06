@@ -65,11 +65,11 @@ class KetentuanTrading extends Component {
             <div className="content-wrapper">
                 <div className="content-area__edge">
                     <ul className="list-unstyled list-steps mb-0">
-                        <li className={lastSegmentUrl === "personal" ? "active default" : "default"}><a href="personal">Informasi Pribadi</a></li>
-                        <li className={lastSegmentUrl === "account-type" ? "active default" : "default"}><a href="account-type"><span />Tipe Akun</a></li>
-                        <li className={lastSegmentUrl === "decleration" ? "active default" : "default"}><a href="decleration"><span />Pernyataan</a></li>
-                        <li className={lastSegmentUrl === "trading_rules" ? "active default" : "default"}><a href="trading_rules"><span />Peraturan Trading</a></li>
-                        <li className={lastSegmentUrl === "company_profile" ? "active default" : "default"}><a href="company_profile"><span />Profil Perusahaan</a></li>
+                        <li className={lastSegmentUrl === "personal" ? "active default" : "default"}><a href="personal">1. Informasi Pribadi</a></li>
+                        <li className={lastSegmentUrl === "account-type" ? "active default" : "default"}><a href="account-type"><span />2. Tipe Akun</a></li>
+                        <li className={lastSegmentUrl === "decleration" ? "active default" : "default"}><a href="decleration"><span />3. Pernyataan</a></li>
+                        <li className={lastSegmentUrl === "trading_rules" ? "active default" : "default"}><a href="trading_rules"><span />4. Peraturan Trading</a></li>
+                        <li className={lastSegmentUrl === "company_profile" ? "active default" : "default"}><a href="company_profile"><span />5. Profil Perusahaan</a></li>
                     </ul>
                 </div>
                 <section className="content">
@@ -100,7 +100,7 @@ class KetentuanTrading extends Component {
                                         </div>
                                         <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '3em -1.5em -1.5em' }}>
                                             <div className="grid grid-cols-1 place-items-center">
-                                                <div className="form-group w-3/4">
+                                                <div className="form-group lg:w-3/4">
                                                     <div className="form-check">
                                                         {errMsg.agree ? (<span className="text-error badge badge-danger">{errMsg.agree}</span>) : ''}
                                                         <label>

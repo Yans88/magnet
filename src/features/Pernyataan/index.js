@@ -134,11 +134,11 @@ class Pernyataan extends Component {
             <div className="content-wrapper">
                 <div className="content-area__edge">
                     <ul className="list-unstyled list-steps mb-0">
-                        <li className={lastSegmentUrl === "personal" ? "active default" : "default"}><a href="personal">Informasi Pribadi</a></li>
-                        <li className={lastSegmentUrl === "account-type" ? "active default" : "default"}><a href="account-type"><span />Tipe Akun</a></li>
-                        <li className={lastSegmentUrl === "decleration" ? "active default" : "default"}><a href="decleration"><span />Pernyataan</a></li>
-                        <li className={lastSegmentUrl === "trading_rules" ? "active default" : "default"}><a href="trading_rules"><span />Peraturan Trading</a></li>
-                        <li className={lastSegmentUrl === "company_profile" ? "active default" : "default"}><a href="company_profile"><span />Profil Perusahaan</a></li>
+                        <li className={lastSegmentUrl === "personal" ? "active default" : "default"}><a href="personal">1. Informasi Pribadi</a></li>
+                        <li className={lastSegmentUrl === "account-type" ? "active default" : "default"}><a href="account-type"><span />2. Tipe Akun</a></li>
+                        <li className={lastSegmentUrl === "decleration" ? "active default" : "default"}><a href="decleration"><span />3. Pernyataan</a></li>
+                        <li className={lastSegmentUrl === "trading_rules" ? "active default" : "default"}><a href="trading_rules"><span />4. Peraturan Trading</a></li>
+                        <li className={lastSegmentUrl === "company_profile" ? "active default" : "default"}><a href="company_profile"><span />5. Profil Perusahaan</a></li>
                     </ul>
                 </div>
                 <section className="content">
@@ -148,53 +148,65 @@ class Pernyataan extends Component {
                             <div className="col-12">
                                 <div className="card card-success shadow-lg" style={{ "minHeight": "800px",borderRadius:"2rem" }}>
                                     <div className="card-body ">
-                                        <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 0 }}>
+                                        <div style={{ paddingLeft: 0, paddingRight: 0, paddingTop: 0 }}>
                                                     <h3 className="label_ijo">Pernyataan</h3>
                                             <br />
 
                                             <PanelGroup accordion activeKey={defaultActiveKey} defaultActiveKey={1} onSelect={this.handleSelect.bind(this)}>
-                                                <Panel eventKey={1} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="Pernyataan Telah Melakukan Simulasi Perdagangan Berjangka Komoditi">
+                                                <Panel eventKey={1} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="1. Pernyataan Telah Melakukan Simulasi Perdagangan Berjangka Komoditi">
                                                         <br/>
                                                         <strong><span className="label_hitam">Yang mengisi formulir di bawah ini: </span></strong>
                                                         <br /><br/>
                                                         <Row>
-                                                            <Col xs={9}><label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Nama Lengkap</span></label></Col>
-                                                        </Row>
-                                                        <Row>
-                                                            <Col xs={9}>
+                                                            
+                                                            <Col xs={12} lg={6}><label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Nama Lengkap</span></label></Col>
+                                                            <Col xs={24} lg={6}>
                                                                 <Input readOnly size="lg" value={user ? user.nama_depan + ' ' + user.nama_belakang : ''} />
                                                             </Col>
+
+                                                        </Row>
+                                                        <Row>
+                                                            
                                                         </Row>
         
 
                                                         <br />
                                                         <Row>
-                                                            <Col xs={6}>
+                                                            <Col xs={24} lg={6}>
                                                                 <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Tempat Lahir</span></label></Col>
-                                                            <Col xs={6}>
-                                                                <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Tanggal Lahir</span></label></Col> 
-                                                            <Col xs={6}>
-                                                                <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Kota Lahir</span></label></Col>        
-                                                        </Row>
-                                                        <Row>
-                                                            <Col xs={6}>
+                                                            
+                                                            <Col xs={24} lg={6}>
                                                                 <Input readOnly size="lg" value={user && user.tempat_lahir ? user.tempat_lahir : ''} />
-                                                            </Col>
-                                                            <Col xs={6}>
-                                                                <Input readOnly size="lg" value={user ? tgl_lhir : ''} />
-                                                            </Col>
-                                                            <Col xs={6}>
-                                                                <Input readOnly size="lg" value={user && user.kota_lahir ? user.kota_lahir : ''} />
                                                             </Col>
                                                         </Row>
                                                         <br />
+                                                        <Row>    
+                                                            <Col xs={24} lg={6}>
+                                                                <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Tanggal Lahir</span></label></Col>
+
+                                                            <Col xs={24} lg={6}>
+                                                                <Input readOnly size="lg" value={user ? tgl_lhir : ''} />
+                                                            </Col>
+                                                        </Row>
+                                                        <br />
+                                                        <Row>    
+                                                            <Col xs={24} lg={6}>
+                                                                <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Kota Lahir</span></label></Col>
+                                                            
+                                                            <Col xs={24} lg={6}>
+                                                                <Input readOnly size="lg" value={user && user.kota_lahir ? user.kota_lahir : ''} />
+                                                            </Col>
+
+                                                        </Row>
+                                                        
+                                                        <br />
                                                         
                                                         <Row>
-                                                            <Col xs={6}>
+                                                            <Col xs={24} lg={6}>
                                                                 <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Alamat Rumah</span></label></Col>
                                                         </Row>
                                                         <Row>
-                                                            <Col xs={18}>
+                                                            <Col xs={24} lg={18}>
                                                                 <Input readOnly size="lg" value={user && user.alamat ? user.alamat : ''} />
                                                             </Col>
                                                         </Row>
@@ -266,11 +278,11 @@ class Pernyataan extends Component {
                                                         </div>
                                                     
                                                 </Panel>
-                                                <Panel eventKey={2} className="w-accordion__header__title label_hitam shadow-lg px-2 py-1 my-2 mx-2" header="Dokumen Pemberitahuan Adanya Risiko yang harus disampaikan oleh Pialang Berjangka untuk Transaksi Kontrak Derivatif dalam Sistem Perdagangan Alternatif">
+                                                <Panel eventKey={2} className="w-accordion__header__title label_hitam shadow-lg px-2 py-1 my-2 mx-2" header="2. Dokumen Pemberitahuan Adanya Risiko yang harus disampaikan oleh Pialang Berjangka untuk Transaksi Kontrak Derivatif dalam Sistem Perdagangan Alternatif">
                                                     <br/>
                                                     <p style={{ textAlign: "justify", color: "#000", fontSize: "1rem", fontWeight: 300 }}>Dokumen Pemberitahuan Adanya Risiko ini disampaikan kepada Anda sesuai dengan Pasal 50 ayat (2) Undang-Undang Nomor 32 Tahun 1997 tentang Perdagangan Berjangka Komoditi sebagaimana telah diubah dengan Undang-Undang Nomor 10 Tahun 2011 tentang Perubahan Atas Undang-Undang Nomor 32 Tahun 1997 Tentang Perdagangan Berjangka Komoditi.</p>
                                                     <p style={{ textAlign: "justify", color: "#000", fontSize: "1rem", fontWeight: 300 }}>Maksud dokumen ini adalah memberitahukan bahwa kemungkinan kerugian atau keuntungan dalam perdagangan Kontrak Derivatif dalam Sistem Perdagangan Alternatif bisa mencapai jumlah yang sangat besar.Oleh karena itu, Anda harus berhati-hati dalam memutuskan untuk melakukan transaksi, apakah kondisi keuangan Anda mencukupi.</p>
-                                                    <ol>
+                                                    <ol style={{ listStyle:"auto" }}>
                                                         <li tabIndex="1">
                                                             <p>
                                                                 <strong>Perdagangan Kontrak Derivatif dalam Sistem Perdagangan Alternatif belum tentu layak bagi semua investor.</strong></p>
@@ -279,14 +291,7 @@ class Pernyataan extends Component {
                                                             <p>Hal ini disebabkan Perdagangan Berjangka sangat dipengaruhi oleh mekanisme leverage, dimana dengan jumlah investasi dalam bentuk yang relatif kecil dapat digunakan untuk membuka posisi dengan aset yang bernilai jauh lebih tinggi.Apabila Anda tidak siap dengan risiko seperti ini, sebaiknya Anda tidak melakukan perdagangan Kontrak Derivatif dalam Sistem Perdagangan Alternatif.</p>
 
                                                         </li>
-                                                        <li tabIndex="1">
-                                                            <p>
-                                                                <strong>Perdagangan Kontrak Derivatif dalam Sistem Perdagangan Alternatif belum tentu layak bagi semua investor.</strong></p>
-                                                            <p>Anda dapat menderita kerugian dalam jumlah besar dan dalam jangka waktu singkat.Jumlah kerugian uang dimungkinkan dapat melebihi jumlah uang yang pertama kali Anda setor (Margin Awal) ke Pialang Berjangka Anda.</p>
-                                                            <p>Anda mungkin menderita kerugian seluruh Margin dan Margin tambahan yang ditempatkan pada Pialang Berjangka untuk mempertahankan posisi Kontrak Derivatif dalam Sistem Perdagangan Alternatif Anda.</p>
-                                                            <p>Hal ini disebabkan Perdagangan Berjangka sangat dipengaruhi oleh mekanisme leverage, dimana dengan jumlah investasi dalam bentuk yang relatif kecil dapat digunakan untuk membuka posisi dengan aset yang bernilai jauh lebih tinggi.Apabila Anda tidak siap dengan risiko seperti ini, sebaiknya Anda tidak melakukan perdagangan Kontrak Derivatif dalam Sistem Perdagangan Alternatif.</p>
-
-                                                        </li>
+                                                        
                                                         <li tabIndex="1">
                                                             <p>
                                                                 <strong>Perdagangan Kontrak Derivatif dalam Sistem Perdagangan Alternatif mempunyai risiko dan mempunyai kemungkinan kerugian yang tidak terbatas yang jauh lebih besar dari jumlah uang yang disetor (Margin) ke Pialang Berjangka.</strong></p>
@@ -413,7 +418,7 @@ class Pernyataan extends Component {
 
                                                 </Panel>
 
-                                                <Panel eventKey={3} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="Perjanjian Pemberian Amanat secara Elektronik On-line untuk Transaksi Kontrak Derivatif dalam Sistem Perdagangan Alternatif">
+                                                <Panel eventKey={3} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="3. Perjanjian Pemberian Amanat secara Elektronik On-line untuk Transaksi Kontrak Derivatif dalam Sistem Perdagangan Alternatif">
                                                     <br/>
                                                     <div className="form-group text-center">
                                                         <div className="alert alert-danger kolom_merah" style={{ background: '#C2252C',color:'#fff',borderRadius:'10px'}}>
@@ -757,7 +762,7 @@ class Pernyataan extends Component {
                                                     </ol>
                                                 </Panel>
 
-                                                <Panel eventKey={4} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="Pernyataan Bertanggung Jawab atas Kode Akses Transaksi Nasabah (Personal Access Password)">
+                                                <Panel eventKey={4} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="4. Pernyataan Bertanggung Jawab atas Kode Akses Transaksi Nasabah (Personal Access Password)">
                                                     <br/>
                                                     <strong>Yang mengisi formulir di bawah ini: </strong>
                                                     <br />
@@ -885,7 +890,7 @@ class Pernyataan extends Component {
                                         <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
                                         <div className="grid grid-cols-1 place-items-center"> 
                                           
-                                            <div className="form-group w-3/4">
+                                            <div className="form-group lg:w-3/4">
                                                 <div className="form-check">
                                                     {errMsg1.agree ? (<span className="text-error badge badge-danger">{errMsg1.agree}</span>) : ''}
                                                     <label>
@@ -899,7 +904,7 @@ class Pernyataan extends Component {
                                                 </div>
                                             </div>
 
-                                                <div className="form-group w-[40%] text-center">
+                                                <div className="form-group lg:w-[40%] text-center">
                                                     <label>
                                                         Dengan mendaftar, saya menyetujui Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
                                                     </label>

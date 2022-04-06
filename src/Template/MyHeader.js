@@ -70,8 +70,8 @@ class MyHeader extends Component {
 
                     
                     <Navbar.Body>
-                        <Nav pullRight className="mobile-view">
-                            <Nav.Item icon={<Icon icon="bars" />} onClick={this.handleToggle.bind(this)} className="drawwer"></Nav.Item>
+                        <Nav pullRight>
+                            <Nav.Item icon={<Icon icon="bars" />} onClick={this.handleToggle.bind(this)} className="drawwer" style={{fontSize:"20px"}}></Nav.Item>
                         </Nav>
                         
                             <div className="grid grid-cols-2 text-black pt-0 mb-2">

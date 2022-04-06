@@ -165,7 +165,7 @@ const Register = () => {
         <div className="social-auth-links text-center mt-2 mb-3">
             <div className="grid grid-cols-1 gap-0 place-items-center">
             <div className="w-full mb-2">
-                <div className="text-black text-sm font-semibold">Belum menerima kode verifikasi?<a href="login" className="text-center font-bold text-hijau-forex"> Kirim ulang kode aktivasi</a></div>
+                <div className="text-black text-sm ">Belum menerima kode verifikasi?<a href="login" className="text-center italic text-hijau-forex"> Kirim ulang kode aktivasi</a></div>
             </div>    
             <div className="w-2/4">
                 <Button
@@ -311,7 +311,7 @@ const Register = () => {
 
         </Form.Row>  */}
         <Form.Group controlId="ref_code">
-            <Form.Label><span className="text-merah-button">Kode Referensi</span> </Form.Label>
+            <Form.Label><span className="text-merah-button">Referral code</span> </Form.Label>
             {errMsg.ref_code ?
                 (<span className="float-right text-error badge badge-danger">{errMsg.ref_code}</span>) : ''}
             <Form.Control
@@ -342,9 +342,13 @@ const Register = () => {
     return (
 
         <div class="">
-            <div class="w-full grid grid-cols-2 gap-4 bg-white">
+            <div class="w-full grid lg:grid-cols-2 gap-4 bg-white">
 
-                <div className="grid grid-cols-1 gap-0 place-items-center h-screen">
+                <div className="overflow-hidden mobile-view">
+                                <img src={banner} className="scale-100" />
+                </div>
+
+                <div className="grid grid-cols-1 gap-0 place-items-center">
                     <div className="login-box ">
 
                 <div className="login-box">
@@ -441,7 +445,8 @@ const Register = () => {
                                                 block
                                                 type="submit"
                                                 isLoading={isFetching}
-                                                theme="danger"
+                                                theme=""
+                                                style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
                                                 
                                             >
                                                 Lanjut Registrasi
@@ -454,7 +459,7 @@ const Register = () => {
                             {isVerifikasi ? frmUser : ''}
                             {isCompleteProfile ? frmUser2 : ''}
                             {succesCompleteProfile ? (<h4><p className='login-box-msg'>Pendaftaran berhasil, <a href="login" className="text-center">Silahkan login</a></p></h4>) : ''}
-                            {!succesCompleteProfile ? (<div className="font-bold text-black text-center">Sudah punya akun ? <a href="login" className="text-center font-bold text-hijau-forex">Login</a></div>) : ''}
+                            {!succesCompleteProfile ? (<div className="text-black text-center">Sudah punya akun ? <a href="login" className="text-center font-bold text-hijau-forex">Login</a></div>) : ''}
                             </div>
 
                         </div>
@@ -463,7 +468,7 @@ const Register = () => {
             </div>
             </div>
 
-            <div className="h-auto overflow-hidden">
+            <div className="h-auto overflow-hidden mobile-hide">
                 <img src={banner} className="scale-100" />
             </div>
 

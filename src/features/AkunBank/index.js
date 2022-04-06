@@ -57,13 +57,13 @@ class AkunBank extends Component {
                                                     data_bank.map((dp, index, arr) => {
                                                         return (
                                                             <Fragment key={index}>
-                                                                <div className="grid grid-cols-1 lg:grid-cols-3 place-items-center mt-0  py-4 px-1  lg:px-4 rounded-2xl mt-4" style={{ border:"2px solid #ddd",color:"#2E2E2F"}}>
+                                                                <div className="grid grid-cols-3 place-items-center mt-0  py-4 px-1  lg:px-4 rounded-2xl mt-4" style={{ border:"2px solid #ddd",color:"#2E2E2F"}}>
                                                                     
-                                                                    <div className="px-2">
+                                                                    <div className="px-2 lg:w-1/2">
                                                                         <img alt={dp.nama_bank} src={dp.file} />
                                                                     </div>
                                                                     
-                                                                    <div className="px-2">
+                                                                    <div className="px-2 text-left lg:w-1/2">
                                                                         <h3 className="box-bank__title" style={{ fontSize: 30 }}>{dp.nama_bank}</h3>
                                                                         <p style={{ fontSize: 25 }}>{dp.nama_pemilik}</p>
                                                                     </div>

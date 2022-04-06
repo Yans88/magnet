@@ -160,11 +160,18 @@ const Login = () => {
             <div className="mobile-view">
                 
                 <div class="w-full grid grid-cols-2 gap-4">
+                        
+                        <div className="overflow-hidden col-span-2">
+                                <img src={banner} className="scale-100" />
+                        </div>
 
-                        <div className="col-span-2 lg:col-span-0 grid grid-cols-1 gap-0 place-items-center h-screen">
+                        <div className="col-span-2 lg:col-span-0 grid grid-cols-1 gap-0 place-items-center">
+                            
+                            
                             <div className="login-box ">
                                 <div className="card  border-white">
                                     <div className="card-header text-center h1 text-red-500 text-lg bg-white border-white">
+                                        
                                         <img src={logoa} />
                                         <b><span className="text-merah-button font-bold text-lg">Login</span></b>
                                     </div>
@@ -250,9 +257,7 @@ const Login = () => {
                         </div>
                     
 
-                    <div className="show_hide h-auto overflow-hidden">
-                        <img src={banner} className="scale-100" />
-                    </div>
+                    
 
                 </div>
             </div>

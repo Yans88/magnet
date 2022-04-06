@@ -6,6 +6,11 @@ input[type="checkbox"]:checked + label:before {
   background: green;
 }
 
+.rs-sidenav {
+  -webkit-transition: width 0.2s ease-in;
+  transition: width 0.2s ease-in;
+  width: 56px;
+}
 
 
   #custom-switch[type="checkbox"]:before{
@@ -864,6 +869,9 @@ tbody td {
 
 
 @media only screen and (min-width: 360px) and (max-width: 568px){ 
+  .sidebar-mobile{
+    width: 414px;
+  }
 
   .font_custom{
     font-size: 1.1rem;
@@ -889,8 +897,8 @@ tbody td {
   }
 
   .rs-modal-dialog{
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 5%;
+    margin-right: 8%;
   }
   
 

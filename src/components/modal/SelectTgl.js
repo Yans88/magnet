@@ -22,7 +22,7 @@ class SelectTgl extends React.Component {
 class SelectBln extends React.Component {
     buildOptions() {
         var arr = [];
-        var bln = ['Bulan', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'Sepetember', 'Oktober', 'November', 'Desember'];
+        var bln = ['Bulan', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
         for (let i = 0; i <= 12; i++) {
             let val = i < 10 && i > 0 ? '0' + i : i;
             val = val === 0 ? "" : val;

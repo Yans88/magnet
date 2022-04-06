@@ -631,6 +631,57 @@ class Setoran extends Component {
                 sortable: true
             },
         ];
+
+        const columns_mobile = [
+            {
+                key: "akun_trading_id",
+                text: "No. Akun",
+                width: 100,
+                align: "center",
+                sortable: true,
+
+            },
+            {
+                key: "-",
+                text: "Waktu Penyetoran",
+                width: 150,
+                align: "center",
+                sortable: true,
+
+            },
+            {
+                key: "rate",
+                text: "Rate",
+                align: "center",
+                width: 100,
+                sortable: true
+            },
+            {
+                key: "setor",
+                text: "Setor",
+                align: "center",
+                width: 100,
+                sortable: true,
+                cell: record => {
+                    return (<div style={{ textAlign: "right" }}><Fragment>
+                        <NumberFormat
+                            value={record.setor}
+                            thousandSeparator={true}
+                            decimalScale={2}
+                            displayType={'text'}
+                        />
+                    </Fragment></div>)
+                }
+            },
+            {
+                key: "status",
+                text: "Status",
+                align: "center",
+                width: 170,
+                sortable: true
+            }
+        ];
+
         const config = {
             key_column: 'file_bukti_setor',
             page_size: 10,
@@ -717,7 +768,7 @@ class Setoran extends Component {
                                             <div className="row mt-3 mb-4">
                                                 <div className="col-md-12">
                                                     <div className="mb-3">
-                                                        <div className="pull-left col-7 col-md-4">
+                                                        <div className="pull-left col-6 col-md-4">
                                                             <label style={{ color:"#2E2E2F" }}>Tanggal: Awal</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
@@ -736,7 +787,7 @@ class Setoran extends Component {
                                                                 locale="id" isValidDate={this.state.validSd}
                                                             />
                                                         </div>
-                                                        <div className="pull-left col-7 col-md-4">
+                                                        <div className="pull-left col-6 col-md-4">
                                                             <label style={{ color:"#2E2E2F" }}>Tanggal: Akhir</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
@@ -768,6 +819,7 @@ class Setoran extends Component {
 
                                             </div>
 
+                                            <div className="mobile-hide">                        
                                             {data_history ? (
                                                 <ReactDatatable
                                                     config={config}
@@ -779,6 +831,21 @@ class Setoran extends Component {
                                                     total_record={this.props.totalData}
                                                 />
                                             ) : (<p>No Data ...</p>)}
+                                            </div>
+
+                                            <div className="mobile-view">                        
+                                            {data_history ? (
+                                                <ReactDatatable
+                                                    config={config}
+                                                    records={data_history}
+                                                    columns={columns_mobile}
+                                                    dynamic={true}
+                                                    onChange={this.tableChangeHandler}
+                                                    loading={this.props.isLoading}
+                                                    total_record={this.props.totalData}
+                                                />
+                                            ) : (<p>No Data ...</p>)}
+                                            </div>
 
 
 
@@ -796,7 +863,7 @@ class Setoran extends Component {
                 <AppModal
 
                     show={this.state.formMT5}
-                    size={this.state.nextStep ? "xs" : "sm"}
+                    size={this.state.nextStep ? "xs" : "xs"}
                     form={this.state.nextStep ? contentNext : contentDelete}
                     handleClose={this.handleClose}
                     handleBack={this.state.nextStep ? this.handleBack : this.handleClose}

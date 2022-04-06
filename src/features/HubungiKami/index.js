@@ -89,91 +89,181 @@ class HubungiKami extends Component {
                                 {/* card start */}
                                 <div className="card card-success shadow-lg" style={{ "minHeight": "700px",borderRadius:"20px" }}>
                                     <div className="card-body p-0" >
-                                        <div className="grid sm:grid-cols-1 lg:grid-cols-2 place-items-center mt-0" >
+                                        <div className="grid sm:grid-cols-1 lg:grid-cols-2 place-items-center lg:mt-10" >
                                             <div>
                                                 
-                                                <div className="hub_kami alert alert-success alert-sm" style={{ backgroundColor: '#1A9425', paddingTop: 30,color:"#fff",borderRadius:"20px",marginBottom:"0rem" }} >
+                                                <div className=" hub_kami alert alert-success alert-sm" style={{ backgroundColor: '#1A9425', paddingTop: 10,color:"#fff",borderRadius:"20px",marginBottom:"0rem" }} >
+                                                        <div className="mobile-hide">
                                                         <h2 style={{ color:"#fff"}}>Contact Information</h2>
                                                         <p className="text-base font-bold text-white text-left pt-2 pb-2 ...">Fill up the form and our Team will get back to you within 24 hours</p>
                                                     
-                                                        <div className="flex pt-5">
+                                                        </div>
+                                                        
+                                                        <div className="mobile-view">
+                                                        <h2 style={{ color:"#fff",fontSize:"15px"}}>Contact Information</h2>
+                                                        <p className="text-base font-bold text-white text-left pt-0 pb-0 ...">Fill up the form and our Team will get back to you within 24 hours</p>
+                                                    
+                                                        </div>
+                                                                                
+                                                        <div className="mobile-hide">
+                                                            <div className="flex lg:pt-5">
 
-                                                            <div className="flex-none w-10  ...">
-                                                                <img src={wa_red} width="30px" />
+                                                                <div className="flex-none w-10  ...">
+                                                                    <img src={wa_red} width="30px" />
+                                                                </div>
+                                                                <div className="flex-grow  ...">
+                                                                    <p className="text-base font-bold text-black text-left ...">
+                                                                    <a href="https://api.whatsapp.com/send?phone=6287835355526&text=Halo" title="">  
+                                                                    <span className="text-white">{profile_perusahaan.telp}</span>
+                                                                    </a>
+                                                                    </p>
+                                                                </div>
+                                                                
                                                             </div>
-                                                            <div className="flex-grow  ...">
-                                                                <p className="text-base font-bold text-black text-left ...">
-                                                                <a href="https://api.whatsapp.com/send?phone=6287835355526&text=Halo" title="">  
-                                                                <span className="text-white">{profile_perusahaan.telp}</span>
-                                                                </a>
+
+                                                            <div className="flex lg:pt-5">
+
+                                                                <div className="flex-none w-10  ...">
+                                                                <img src={phone_red} width="30px" />
+                                                                </div>
+                                                                <div className="flex-grow  ...">
+                                                                <p className="text-base font-bold text-gray-600 text-left ...">
+                                                                    <a href="tel:+62212506336" title="">
+                                                                    <span className="text-white">{profile_perusahaan.telp_compliance}</span>
+                                                                    </a>
                                                                 </p>
+                                                                </div>
+
                                                             </div>
-                                                            
+
+                                                            <div className="flex lg:pt-5">
+
+                                                                <div className="flex-none w-10  ...">
+                                                                    <img src={email_red} width="30px" />
+                                                                </div>
+                                                                <div className="flex-grow  ...">
+                                                                <p className="text-base font-bold text-gray-600 text-left ...">
+                                                                <a href="mailto:info@magnetfx.co.id" title="">
+                                                                        <span className="text-white">{profile_perusahaan.email}</span>
+                                                                    </a>
+                                                                </p>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div className="flex lg:pt-5">
+
+                                                                <div className="flex-none w-10  ...">
+                                                                <img src={location_red} width="30px" />
+                                                                </div>
+                                                                <div className="flex-grow  ...">
+                                                                <p className="text-base font-bold text-white text-left ...">
+                                                                Gedung Sona Topas Tower - Lt. 18 Suite 1804
+                                                                Jl. Jend. Sudirman Kav. 26
+                                                                Jakarta Selatan 12920
+                                                                Indonesia
+                                                                </p>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div className="flex xs:pt-2 lg:pt-5 lg:pb-20">
+
+                                                                <div className="flex-none w-10  ...">
+                                                                    <img src={email_red} width="30px" />
+                                                                </div>
+                                                                <div className="flex-grow  ...">
+                                                                <p className="text-base font-bold text-gray-600 text-left ...">
+                                                                    <a href={profile_perusahaan.website}><span className="text-white">{profile_perusahaan.website}</span></a>
+                                                                </p>
+                                                                </div>
+
+                                                            </div>
                                                         </div>
 
-                                                        <div className="flex pt-5">
+                                                        <div className="mobile-view">
+                                                            <div className="flex pt-2">
 
-                                                            <div className="flex-none w-10  ...">
-                                                            <img src={phone_red} width="30px" />
-                                                            </div>
-                                                            <div className="flex-grow  ...">
-                                                            <p className="text-base font-bold text-gray-600 text-left ...">
-                                                                <a href="tel:+62212506336" title="">
-                                                                <span className="text-white">{profile_perusahaan.telp_compliance}</span>
-                                                                </a>
-                                                            </p>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div className="flex pt-5">
-
-                                                            <div className="flex-none w-10  ...">
-                                                                <img src={email_red} width="30px" />
-                                                            </div>
-                                                            <div className="flex-grow  ...">
-                                                            <p className="text-base font-bold text-gray-600 text-left ...">
-                                                            <a href="mailto:info@magnetfx.co.id" title="">
-                                                                    <span className="text-white">{profile_perusahaan.email}</span>
-                                                                </a>
-                                                            </p>
+                                                                <div className="flex-none w-10  ...">
+                                                                    <img src={wa_red} width="30px" />
+                                                                </div>
+                                                                <div className="flex-grow  ...">
+                                                                    <p className="text-base font-bold text-black text-left ...">
+                                                                    <a href="https://api.whatsapp.com/send?phone=6287835355526&text=Halo" title="">  
+                                                                    <span className="text-white">{profile_perusahaan.telp}</span>
+                                                                    </a>
+                                                                    </p>
+                                                                </div>
+                                                                
                                                             </div>
 
-                                                        </div>
+                                                            <div className="flex pt-2">
 
-                                                        <div className="flex pt-5">
+                                                                <div className="flex-none w-10  ...">
+                                                                <img src={phone_red} width="30px" />
+                                                                </div>
+                                                                <div className="flex-grow  ...">
+                                                                <p className="text-base font-bold text-gray-600 text-left ...">
+                                                                    <a href="tel:+62212506336" title="">
+                                                                    <span className="text-white">{profile_perusahaan.telp_compliance}</span>
+                                                                    </a>
+                                                                </p>
+                                                                </div>
 
-                                                            <div className="flex-none w-10  ...">
-                                                            <img src={location_red} width="30px" />
-                                                            </div>
-                                                            <div className="flex-grow  ...">
-                                                            <p className="text-base font-bold text-white text-left ...">
-                                                            Gedung Sona Topas Tower - Lt. 18 Suite 1804
-                                                            Jl. Jend. Sudirman Kav. 26
-                                                            Jakarta Selatan 12920
-                                                            Indonesia
-                                                            </p>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div className="flex pt-5 pb-20">
-
-                                                            <div className="flex-none w-10  ...">
-                                                                <img src={email_red} width="30px" />
-                                                            </div>
-                                                            <div className="flex-grow  ...">
-                                                            <p className="text-base font-bold text-gray-600 text-left ...">
-                                                                <a href={profile_perusahaan.website}><span className="text-white">{profile_perusahaan.website}</span></a>
-                                                            </p>
                                                             </div>
 
+                                                            <div className="flex pt-2">
+
+                                                                <div className="flex-none w-10  ...">
+                                                                    <img src={email_red} width="30px" />
+                                                                </div>
+                                                                <div className="flex-grow  ...">
+                                                                <p className="text-base font-bold text-gray-600 text-left ...">
+                                                                <a href="mailto:info@magnetfx.co.id" title="">
+                                                                        <span className="text-white">{profile_perusahaan.email}</span>
+                                                                    </a>
+                                                                </p>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div className="flex pt-2">
+
+                                                                <div className="flex-none w-10  ...">
+                                                                <img src={location_red} width="30px" />
+                                                                </div>
+                                                                <div className="flex-grow  ...">
+                                                                <p className="text-base font-bold text-white text-left ...">
+                                                                Gedung Sona Topas Tower - Lt. 18 Suite 1804
+                                                                Jl. Jend. Sudirman Kav. 26
+                                                                Jakarta Selatan 12920
+                                                                Indonesia
+                                                                </p>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div className="flex xs:pt-2 pt-2">
+
+                                                                <div className="flex-none w-10  ...">
+                                                                    <img src={email_red} width="30px" />
+                                                                </div>
+                                                                <div className="flex-grow  ...">
+                                                                <p className="text-base font-bold text-gray-600 text-left ...">
+                                                                    <a href={profile_perusahaan.website}><span className="text-white">{profile_perusahaan.website}</span></a>
+                                                                </p>
+                                                                </div>
+
+                                                            </div>
                                                         </div>
 
 
                                                         
 
                                                 </div>
+
+
+                                                
 
                                             </div>
 
@@ -197,7 +287,7 @@ class HubungiKami extends Component {
                                                             <Form.Control
                                                                 autoComplete="off"
                                                                 value={selected.message}
-                                                                rows={10}
+                                                                rows={5}
                                                                 name="message"
                                                                 as="textarea"
                                                                 onChange={this.handleChange.bind(this)}

@@ -481,7 +481,9 @@ class RejecctDocument extends Component {
                                                         style={{ color: '#ffffff', marginRight: 5 }}
                                                         type="button"
                                                         size="lg"
-                                                        theme="danger">Selanjutnya</AppButton>
+                                                        theme=""
+                                                        style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
+                                                        >Selanjutnya</AppButton>
                                                 </div>
                                             ) : (<h3>No Data</h3>)
                                             }
