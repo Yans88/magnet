@@ -300,8 +300,7 @@ export const getExpTrading = createAsyncThunk(
                 'Authorization': token,
             }
         };
-        console.log('getExpTrading');
-        console.log(config);
+        
 
         return axios(config)
             .then(function (response) {
@@ -352,15 +351,8 @@ export const getKekayaan = createAsyncThunk(
                 'Authorization': token,
             }
         };
-        console.log('getKekayaan');
-        console.log(config);
-        axios(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+       
+        
         return axios(config)
             .then(function (response) {
                 const _data = JSON.stringify(response);

@@ -30,6 +30,7 @@ class Beranda extends Component {
             errMsg: this.initSelected,
 			showFormResPass : false,
 			showFormResPhonePass : false,
+			myStatusDokumen : localStorage.getItem('myStatusDokumen') ? localStorage.getItem('myStatusDokumen') : false,
         }
     }
 
@@ -153,17 +154,20 @@ class Beranda extends Component {
     }
 	
 	handleClose() {
+		localStorage.removeItem('myStatusDokumen');
         this.setState({
 			showFormResPass : false,
 			showFormResPhonePass : false,
+			myStatusDokumen : false,
             selected: this.initSelected,
             errMsg: this.initSelected,
         });
     }
-
+	
     render() {
         const { akun_trading, akun_trading_demo, profile } = this.props;
-		const { selected, errMsg } = this.state;
+		const { selected, errMsg, myStatusDokumen } = this.state;
+		
 		const frmUser = <Form id="myForm">
 
             <Form.Group controlId="password">
@@ -232,6 +236,14 @@ class Beranda extends Component {
 			<br/>
 			<span style={{color:'red', fontWeight:'bold',fontStyle:'italic'}}>Password ini akan di gunakan untuk menelpon dealing kamu</span>
         </Form>;
+		const contentDelete = (
+    <div
+      dangerouslySetInnerHTML={{
+        __html:
+          '<div id="caption" style="padding-bottom:20px; text-align:left;">Nasabah yang terhormat, selamat datang di Magnet, Kami sangat senang anda bergabung bersama kami, agar bisa segera memulai silahkan lengkapi data pribadi anda. Data ini diperlukan sebagai persyaratan resmi dalam pembukaan rekening.<p style="color:red;margin-top:10px;">Dear valued customer, Welcome to Magnet, We are glad to you join us, in order for you to start, please complete your personal data. this data is needed as a requirement in opening an account.</p></div>',
+      }}
+    />
+  );
         return (
 
             <div className="content-wrapper">
@@ -383,6 +395,30 @@ class Beranda extends Component {
                                                         <div className="font-bold">NAME</div>
                                                         <div>{at.login}</div>
                                                         <div>{at.name}</div>
+
+                                                         <div className="">No Akun</div>
+                                                                <div className="">Free Margin</div>
+                                                                <div>{at.login}</div>
+                                                                <div><NumberFormat
+                                                                                        value={at.margin_free > 0 ? at.margin_free : '0.00'}
+                                                                                        thousandSeparator={true}
+                                                                                        decimalScale={2}
+                                                                                        displayType={'text'}
+                                                                                    /></div>
+                                                                <div className="">Equity</div>
+                                                                <div className="">Leverage</div>
+                                                                <div><NumberFormat
+                                                                                        value={at.equity > 0 ? at.equity : '0.00'}
+                                                                                        thousandSeparator={true}
+                                                                                        decimalScale={2}
+                                                                                        displayType={'text'}
+                                                                                    /></div>
+                                                                <div><NumberFormat
+                                                                                        value={at.leverage > 0 ? at.leverage : '0.00'}
+                                                                                        thousandSeparator={true}
+                                                                                        decimalScale={2}
+                                                                                        displayType={'text'}
+                                                                                    /></div>
                                                     </div>
                                                 </div>
 
@@ -508,6 +544,18 @@ class Beranda extends Component {
                     handleClose={this.handleClose.bind(this)}
                     isLoading={this.props.isAddLoading ? this.props.isAddLoading : this.state.loadingForm}
                     formSubmit={this.handleSubmit2.bind(this)} />
+				 <AppModal
+					show={myStatusDokumen}
+					size="sm"
+					form={contentDelete}
+					handleClose={this.handleClose.bind(this)}
+					backdrop="static"
+					keyboard={false}
+					noBtnAction={true}					
+					title="Status"
+					titleButton="Delete"
+					themeButton="danger"
+				  ></AppModal>
             </div>
 
 

@@ -136,8 +136,8 @@ export const getAkunTradingDemo = createAsyncThunk(
                     let data = response.data;
                     if (data.error_message === 0) {
                         let payload = data.payload;
-
-
+                        let payload1 = data.payload[0];
+						localStorage.setItem('loginDemo', payload1.login);						
                         return payload;
                     } else {
                         return thunkAPI.rejectWithValue(data);

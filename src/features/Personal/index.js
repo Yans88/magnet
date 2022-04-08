@@ -1,611 +1,954 @@
-import React, { Component, Fragment } from 'react'
-import { Icon, IconButton, Nav, Placeholder } from 'rsuite';
-import { connect } from 'react-redux';
-import { Button, Col, Figure, Form } from 'react-bootstrap'
-import NumberFormat from 'react-number-format';
+import React, { Component, Fragment } from "react";
+import { Icon, IconButton, Nav, Placeholder } from "rsuite";
+import { connect } from "react-redux";
+import { Button, Col, Figure, Form } from "react-bootstrap";
+import NumberFormat from "react-number-format";
+import Compress from "compress.js";
 import {
-    getNegara, getProvinsi, getBank, getExpTrading, getKekayaan, getKontakDarurat, getPekerjaan, getAkunBank,
-    chgPropsExpTrading, chgPropsKontakDarurat, chgPropsAkunBank, chgPropsKekayaan, chgPropsPekerjaan, chgPropsDPP,
-    getDocPribadi, clearState, confirmDel, closeForm,
-    uplDocPribadi, delDocPribadi, simpanDataPribadi, simpanDataExpTrading,
-    simpanDataKekayaan, simpanKontakDarurat, simpanDataPekerjaan, simpanAkunBank, simpanDPP
-} from './personalSlice'
-import { fetchUserBytoken, chgProps, onLogout, profileUser } from '../main/mainSlice'
-import moment from 'moment';
+  getNegara,
+  getProvinsi,
+  getBank,
+  getExpTrading,
+  getKekayaan,
+  getKontakDarurat,
+  getPekerjaan,
+  getAkunBank,
+  chgPropsExpTrading,
+  chgPropsKontakDarurat,
+  chgPropsAkunBank,
+  chgPropsKekayaan,
+  chgPropsPekerjaan,
+  chgPropsDPP,
+  getDocPribadi,
+  clearState,
+  confirmDel,
+  closeForm,
+  uplDocPribadi,
+  delDocPribadi,
+  simpanDataPribadi,
+  simpanDataExpTrading,
+  simpanDataKekayaan,
+  simpanKontakDarurat,
+  simpanDataPekerjaan,
+  simpanAkunBank,
+  simpanDPP,
+} from "./personalSlice";
+import {
+  fetchUserBytoken,
+  chgProps,
+  onLogout,
+  profileUser,
+  fetchUserKTP,
+} from "../main/mainSlice";
+import moment from "moment";
 import "moment/locale/id";
-import Datetime from 'react-datetime';
+import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
-import AppModal from '../../components/modal/MyModal';
-import AppButton from '../../components/button/Button';
+import AppModal from "../../components/modal/MyModal";
+import AppButton from "../../components/button/Button";
 
-var yesterday = moment().subtract(40, 'years');
+var yesterday = moment().subtract(40, "years");
 var valid_startDate = function (current) {
-    return current.isAfter(yesterday);
+  return current.isAfter(yesterday);
 };
 
 class Personal extends Component {
-    constructor(props) {
-        super(props);
-        this.initDataPribadi = {
-            agreement1: '',
-        }
-        this.initDataExpTrading = {
-            agreement2: '',
-        }
-        this.initDataKekayaan = {
-            agreement3: '',
-        }
-        this.initDataKontakDarurat = {
-            agreement4: '',
-            nama: '',
-            telp: ''
-        }
-        this.initPekerjaan = {
-            agreement5: '',
-        }
-        this.initAkunBank = {
-            agreement6: '',
-        }
-        this.initDPP = {
-            agree: '',
-        }
-
-        this.state = {
-            validSd: valid_startDate,
-            validEd: valid_startDate,
-            lastSegmentUrl: "",
-            active_tab: "detil_pribadi",
-            dokumen_id: '',
-            errMsg1: this.initDataPribadi,
-            errMsg2: this.initDataExpTrading,
-            errMsg3: this.initDataKekayaan,
-            errMsg4: this.initDataKontakDarurat,
-            errMsg5: this.initPekerjaan,
-            errMsg6: this.initAkunBank,
-            errMsg7: this.initDPP,
-
-        }
-        this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    componentDidMount = async () => {
-        sessionStorage.removeItem("data_tipe_akun_id");
-        await sessionStorage.setItem('act_tipe_akun_id', 'pendaftaran');
-        this.props.onLoad();
-        const location = window.location.href;
-        const BaseName = location.substring(location.lastIndexOf("/") + 1);
-        await this.setState({ lastSegmentUrl: BaseName })
-    }
-
-    handleSelect(activeKey) {
-        this.setState({ active_tab: activeKey });
-    }
-
-
-
-    handleChangeStartDate(date) {
-        const dt = {};
-        if (date) {
-            const selectedDate = new Date(date);
-            const _date = moment(selectedDate).format('YYYY-MM-DD');
-            dt['key'] = "tanggal_lahir";
-            dt['value'] = _date;
-        } else {
-            dt['key'] = "tanggal_lahir";
-            dt['value'] = '';
-        }
-        this.props.changeProps(dt);
-    }
-
-    renderView(mode, renderDefault, name) {
-        // Only for years, months and days view
-        if (mode === "time") return renderDefault();
-
-        return (
-            <div className="wrapper">
-                {renderDefault()}
-                <div className="controls">
-                    <Button variant="warning" type="button" onClick={() => this.clear(name)}>Clear</Button>
-                </div>
-            </div>
-        );
-    }
-
-    clear(name) {
-        if (name === "tanggal_lahir") {
-            this.handleChangeStartDate();
-        }
-
-    }
-
-    handleChange(evt) {
-        const name = evt.target.name;
-        var value = evt.target.value;
-        const dt = {};
-        if (name === "agreement1") {
-            value = evt.target.checked ? 1 : 0;
-        }
-        dt['key'] = name;
-        dt['value'] = value;
-        this.props.changeProps(dt);
-    }
-
-    handleChangeTrading(evt) {
-        const name = evt.target.name;
-        var value = evt.target.value;
-        const dt = {};
-
-        console.log(name);
-
-        if (name === "agreement2") {
-            value = evt.target.checked ? 1 : 0;
-        }
-
-        if (name === "pertanyaan1") {
-            value = evt.target.checked ? 'Y' : 'N';
-        }
-
-        if (name === "pertanyaan5" || name === "pertanyaan4" || name === "pertanyaan3") {
-            value = evt.target.checked ? 'Y' : 'N';
-        }
-
-        
-
-        dt['key'] = name;
-        dt['value'] = value;
-
-        this.props.changePropsTrading(dt);
-    }
-
-    handleChangeKekayaan(evt) {
-        const name = evt.target.name;
-        var value = evt.target.value;
-        if (name === "agreement3") {
-            value = evt.target.checked ? 1 : 0;
-        }
-        const dt = {};
-        dt['key'] = name;
-        dt['value'] = value;
-        this.props.changePropsKekayaan(dt);
-    }
-
-    handleChangeKontakDarurat(evt) {
-        let name = evt.target.name;
-        var value = evt.target.value;
-        name = name === 'alamatt' ? 'alamat' : name;
-        name = name === 'telpp' ? 'telp' : name;
-        const dt = {};
-        if (name === "agreement4") {
-            value = evt.target.checked ? 1 : 0;
-        }
-        dt['key'] = name;
-        dt['value'] = value;
-        this.props.changePropsKontak(dt);
-    }
-
-    handleChangePekerjaan(evt) {
-        const name = evt.target.name;
-        var value = evt.target.value;
-        const dt = {};
-        if (name === "agreement5") {
-            value = evt.target.checked ? 1 : 0;
-        }
-        dt['key'] = name;
-        dt['value'] = value;
-        this.props.changePropsPekerjaan(dt);
-    }
-
-    handleChangeAkunBank(evt) {
-        const name = evt.target.name;
-        var value = evt.target.value;
-        const dt = {};
-        if (name === "agreement6") {
-            value = evt.target.checked ? "Y" : "N";
-        }
-        dt['key'] = name;
-        dt['value'] = value;
-        this.props.changePropsAkunBank(dt);
-    }
-
-    handleChangeDPP(evt) {
-        const name = evt.target.name;
-        var value = evt.target.value;
-        const dt = {};
-        dt['key'] = name;
-        dt['value'] = value;
-        this.props.changePropsDPP(dt);
-    }
-
-    sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    handleChangePhoto = async (evt) => {
-        const name = evt.target.name;
-        const value = evt.target.files[0];
-
-        if (value) {
-            const dt = {
-                file: value,
-                tipe: name
-            };
-            this.props.uploadFile(dt);
-            await this.sleep(2000);
-            this.props.getDPP();
-        }
-    }
-
-    hideAlert() {
-        this.props.clearErr();
-    }
-
-    hideAlertToken() {
-        this.props.logOut();
-    }
-
-    deleteRecordFile(record) {
-        this.setState({
-            dokumen_id: record
-        });
-        this.props.showConfirmDel(true);
-    }
-    handleDelete = async () => {
-        this.props.onDelete(this.state.dokumen_id);
-        await this.sleep(300);
-        this.props.getDPP();
-    }
-    handleClose() {
-        this.props.closeModal();
-        this.setState({
-            dokumen_id: ''
-        });
+  constructor(props) {
+    super(props);
+    this.initDataPribadi = {
+      agreement1: "",
+    };
+    this.initDataExpTrading = {
+      agreement2: "",
+    };
+    this.initDataKekayaan = {
+      agreement3: "",
+    };
+    this.initDataKontakDarurat = {
+      agreement4: "",
+      nama: "",
+      telp: "",
+    };
+    this.initPekerjaan = {
+      agreement5: "",
+    };
+    this.initAkunBank = {
+      agreement6: "",
+    };
+    this.initDPP = {
+      agree: "",
     };
 
-    validateForm(errors) {
-        let valid = true;
-        Object.values(errors).forEach(
-            (val) => val.length > 0 && (valid = false)
-        );
-        return valid;
+    this.state = {
+      validSd: valid_startDate,
+      validEd: valid_startDate,
+      lastSegmentUrl: "",
+      active_tab: "detil_pribadi",
+      dokumen_id: "",
+      errMsg1: this.initDataPribadi,
+      errMsg2: this.initDataExpTrading,
+      errMsg3: this.initDataKekayaan,
+      errMsg4: this.initDataKontakDarurat,
+      errMsg5: this.initPekerjaan,
+      errMsg6: this.initAkunBank,
+      errMsg7: this.initDPP,
+    };
+    this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount = async () => {
+    sessionStorage.removeItem("data_tipe_akun_id");
+    await sessionStorage.setItem("act_tipe_akun_id", "pendaftaran");
+    this.props.onLoad();
+    const location = window.location.href;
+    const BaseName = location.substring(location.lastIndexOf("/") + 1);
+    await this.setState({ lastSegmentUrl: BaseName });
+  };
+
+  handleSelect(activeKey) {
+    this.setState({ active_tab: activeKey });
+  }
+
+  handleChangeStartDate(date) {
+    const dt = {};
+    if (date) {
+      const selectedDate = new Date(date);
+      const _date = moment(selectedDate).format("YYYY-MM-DD");
+      dt["key"] = "tanggal_lahir";
+      dt["value"] = _date;
+    } else {
+      dt["key"] = "tanggal_lahir";
+      dt["value"] = "";
+    }
+    this.props.changeProps(dt);
+  }
+
+  renderView(mode, renderDefault, name) {
+    // Only for years, months and days view
+    if (mode === "time") return renderDefault();
+
+    return (
+      <div className="wrapper">
+        {renderDefault()}
+        <div className="controls">
+          <Button
+            variant="warning"
+            type="button"
+            onClick={() => this.clear(name)}
+          >
+            Clear
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  clear(name) {
+    if (name === "tanggal_lahir") {
+      this.handleChangeStartDate();
+    }
+  }
+
+  handleChange(evt) {
+    const name = evt.target.name;
+    var value = evt.target.value;
+    const dt = {};
+    if (name === "agreement1") {
+      value = evt.target.checked ? 1 : 0;
+    }
+    dt["key"] = name;
+    dt["value"] = value;
+    this.props.changeProps(dt);
+  }
+
+  handleChangeTrading(evt) {
+    const name = evt.target.name;
+    var value = evt.target.value;
+    const dt = {};
+    if (name === "agreement2") {
+      value = evt.target.checked ? 1 : 0;
     }
 
-    handleSubmit1 = async (action) => {
-        var errors = this.state.errMsg1;
-
-        errors.nama_depan = !this.props.user.nama_depan ? "Kolom ini harus diisi" : '';
-        errors.tempat_lahir = !this.props.user.tempat_lahir ? "Kolom ini harus diisi" : '';
-        errors.kota_lahir = !this.props.user.kota_lahir ? "Kolom ini harus diisi" : '';
-        errors.tanggal_lahir = !this.props.user.tanggal_lahir ? "Kolom ini harus diisi" : '';
-        errors.jenis_identitas = !this.props.user.jenis_identitas ? "Kolom ini harus diisi" : '';
-        errors.no_identitas = !this.props.user.no_identitas ? "Kolom ini harus diisi" : '';
-        errors.npwp = !this.props.user.npwp ? "Kolom ini harus diisi" : '';
-        errors.jenis_kelamin = !this.props.user.jenis_kelamin ? "Kolom ini harus diisi" : '';
-        errors.status_pernikahan = !this.props.user.status_pernikahan ? "Kolom ini harus diisi" : '';
-        errors.nama_pasangan = !this.props.user.nama_pasangan && this.props.user.status_pernikahan === 'Kawin' ? "Kolom ini harus diisi" : '';
-        errors.nama_ibu_kandung = !this.props.user.nama_ibu_kandung ? "Kolom ini harus diisi" : '';
-        errors.alamat = !this.props.user.alamat ? "Kolom ini harus diisi" : '';
-        errors.rt = !this.props.user.rt ? "Kolom ini harus diisi" : '';
-        errors.rw = !this.props.user.rw ? "Kolom ini harus diisi" : '';
-        errors.provinsi = !this.props.user.provinsi ? "Kolom ini harus diisi" : '';
-        errors.warga_negara = !this.props.user.warga_negara ? "Kolom ini harus diisi" : '';
-        errors.telp = !this.props.user.telp ? "Kolom ini harus diisi" : '';
-        errors.handphone = !this.props.user.handphone ? "Kolom ini harus diisi" : '';
-        errors.status_kepemilikan = !this.props.user.status_kepemilikan ? "Kolom ini harus diisi" : '';
-        errors.agreement1 = !this.props.user.agreement1 || !this.props.user.no_identitas ? "Kolom ini harus diisi" : '';
-
-        this.setState({ errors });
-        if (this.validateForm(this.state.errMsg1)) {
-            this.props.onSaveDataPribadi(this.props.user);
-            await this.sleep(150);
-            this.props.getDataPribadi();
-            if (action === 'detil_pribadi') this.setState({ active_tab: 'exp_trading' });
-        } else {
-            console.error('Invalid Form')
-        }
+    if (name === "pertanyaan1") {
+      value = evt.target.checked ? "Y" : "N";
     }
 
-    handleSubmit2 = async (action) => {
-        var errors = this.state.errMsg2;
-        errors.agreement2 = !this.props.dataExpTrading.agreement2 ? "Kolom ini harus diisi" : '';
-        errors.pertanyaan4 = this.props.dataExpTrading.pertanyaan4 === 'Y' ? 'maaf' : '';
-        errors.pertanyaan3 = this.props.dataExpTrading.pertanyaan3 === 'Y' ? 'maaf' : '';
-        if (errors.pertanyaan4 || errors.pertanyaan3) {
-            alert("Maaf, berdasarkan peraturan anda tidak diperbolehkan membuka rekening pada perusahaan pialang berjangka");
-        }
-        this.setState({ errors });
-        if (this.validateForm(this.state.errMsg2)) {
-            const saveData = {
-                tujuan_pembukaan_rekening: this.props.dataExpTrading.tujuan_pembukaan_rekening ? this.props.dataExpTrading.tujuan_pembukaan_rekening : "",
-                pertanyaan1: this.props.dataExpTrading.pertanyaan1 ? this.props.dataExpTrading.pertanyaan1 : "N",
-                pertanyaan2: this.props.dataExpTrading.pertanyaan2 ? this.props.dataExpTrading.pertanyaan2 : "",
-                pertanyaan3: this.props.dataExpTrading.pertanyaan3 ? this.props.dataExpTrading.pertanyaan3 : "N",
-                pertanyaan4: this.props.dataExpTrading.pertanyaan4 ? this.props.dataExpTrading.pertanyaan4 : "N",
-                pertanyaan5: this.props.dataExpTrading.pertanyaan5 ? this.props.dataExpTrading.pertanyaan5 : "N",
-                pertanyaan6: this.props.dataExpTrading.pertanyaan6 ? this.props.dataExpTrading.pertanyaan6 : "",
-                pengalaman_trading_id: this.props.dataExpTrading.pengalaman_trading_id ? this.props.dataExpTrading.pengalaman_trading_id : '',
-                agree: 'Y'
-            }
-            await this.props.onSaveDataTrading(saveData);
-            this.props.getDataTrading();
-            if (action === 'detil_pribadi') this.setState({ active_tab: 'kekayaan' });
-        } else {
-            console.error('Invalid Form')
-        }
+    if (
+      name === "pertanyaan5" ||
+      name === "pertanyaan4" ||
+      name === "pertanyaan3"
+    ) {
+      value = evt.target.checked ? "Y" : "N";
     }
 
-    handleSubmit3(action) {
-        var errors = this.state.errMsg3;
-        errors.pendapatan_pertahun = !this.props.dataKekayaan.pendapatan_pertahun ? "Kolom ini harus diisi" : '';
-        errors.lokasi = !this.props.dataKekayaan.lokasi ? "Kolom ini harus diisi" : '';
-        errors.agreement3 = !this.props.dataKekayaan.agreement3 ? "Kolom ini harus diisi" : '';
-        errors.njop = !this.props.dataKekayaan.njop ? "Kolom ini harus diisi" : '';
-        errors.deposit_bank = !this.props.dataKekayaan.njop ? "Kolom ini harus diisi" : '';
-        var njop = parseInt(this.props.dataKekayaan.njop ? this.props.dataKekayaan.njop.replace(/,/g, '') : 0);
-        var deposit_bank = parseInt(this.props.dataKekayaan.deposit_bank ? this.props.dataKekayaan.deposit_bank.replace(/,/g, '') : 0);
-        errors.njop = njop < 100000000 ? "Min. 100.000.000" : '';
-        errors.deposit_bank = deposit_bank < 10000000 ? "Min. 10.000.000" : '';
-        this.setState({ errors });
-        if (this.validateForm(this.state.errMsg3)) {
-            const saveData = {
-                ...this.props.dataKekayaan,
-                lainnya: parseInt(this.props.dataKekayaan.lainnya ? this.props.dataKekayaan.lainnya.replace(/,/g, '') : 0),
-                njop: parseInt(this.props.dataKekayaan.njop ? this.props.dataKekayaan.njop.replace(/,/g, '') : 0),
-                deposit_bank: parseInt(this.props.dataKekayaan.deposit_bank ? this.props.dataKekayaan.deposit_bank.replace(/,/g, '') : 0),
-            }
-            this.props.onSaveDataKekayaan(saveData);
-            if (action === 'detil_pribadi') this.setState({ active_tab: 'kontak_darurat' });
-        } else {
-            console.error('Invalid Form')
-        }
+    dt["key"] = name;
+    dt["value"] = value;
+
+    this.props.changePropsTrading(dt);
+  }
+
+  handleChangeKekayaan(evt) {
+    const name = evt.target.name;
+    var value = evt.target.value;
+    if (name === "agreement3") {
+      value = evt.target.checked ? 1 : 0;
+    }
+    const dt = {};
+    dt["key"] = name;
+    dt["value"] = value;
+    this.props.changePropsKekayaan(dt);
+  }
+
+  handleChangeKontakDarurat(evt) {
+    let name = evt.target.name;
+    var value = evt.target.value;
+    name = name === "alamatt" ? "alamat" : name;
+    name = name === "telpp" ? "telp" : name;
+    const dt = {};
+    if (name === "agreement4") {
+      value = evt.target.checked ? 1 : 0;
+    }
+    dt["key"] = name;
+    dt["value"] = value;
+    this.props.changePropsKontak(dt);
+  }
+
+  handleChangePekerjaan(evt) {
+    const name = evt.target.name;
+    var value = evt.target.value;
+    const dt = {};
+    if (name === "agreement5") {
+      value = evt.target.checked ? 1 : 0;
+    }
+    dt["key"] = name;
+    dt["value"] = value;
+    this.props.changePropsPekerjaan(dt);
+  }
+
+  handleChangeAkunBank(evt) {
+    const name = evt.target.name;
+    var value = evt.target.value;
+    const dt = {};
+    if (name === "agreement6") {
+      value = evt.target.checked ? "Y" : "N";
+    }
+    dt["key"] = name;
+    dt["value"] = value;
+    this.props.changePropsAkunBank(dt);
+  }
+
+  handleChangeDPP(evt) {
+    const name = evt.target.name;
+    var value = evt.target.value;
+    const dt = {};
+    dt["key"] = name;
+    dt["value"] = value;
+    this.props.changePropsDPP(dt);
+  }
+
+  sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  handleChangePhoto = async (evt) => {
+    const name = evt.target.name;
+    const value = evt.target.files[0];
+	var errors = this.state.errMsg1;
+    if (name === "KTP") {
+      const compress = new Compress();
+      const resizedImage = await compress.compress([value], {
+        size: 0.5, // the max size in MB, defaults to 2MB
+        quality: 1, // the quality of the image, max is 1,
+        maxWidth: 400, // the max width of the output image, defaults to 1920px
+        maxHeight: 300, // the max height of the output image, defaults to 1920px
+        resize: true, // defaults to true, set false if you do not want to resize the image width and height
+      });
+      const img = resizedImage[0];
+      const base64str = img.data;
+      const imgExt = img.ext;
+      //const resizedFiile = Compress.convertBase64ToFile(base64str, imgExt);
+      const dtKTP = {
+        file: value,
+      };
+      this.props.onUploadKTP(dtKTP);
+	  await this.sleep(5500);
+		console.log(this.props.user);
+		errors.nama_depan = !this.props.user.nama_depan
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.tempat_lahir = !this.props.user.tempat_lahir
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.kota_lahir = !this.props.user.kota_lahir
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.tanggal_lahir = !this.props.user.tanggal_lahir
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.jenis_identitas = !this.props.user.jenis_identitas
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.no_identitas = !this.props.user.no_identitas
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.npwp = !this.props.user.npwp ? "Kolom ini harus diisi" : "";
+		errors.jenis_kelamin = !this.props.user.jenis_kelamin
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.status_pernikahan = !this.props.user.status_pernikahan
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.nama_pasangan =
+		  !this.props.user.nama_pasangan &&
+		  this.props.user.status_pernikahan === "Kawin"
+			? "Kolom ini harus diisi"
+			: "";
+		errors.nama_ibu_kandung = !this.props.user.nama_ibu_kandung
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.alamat = !this.props.user.alamat ? "Kolom ini harus diisi" : "";
+		errors.rt = !this.props.user.rt ? "Kolom ini harus diisi" : "";
+		errors.rw = !this.props.user.rw ? "Kolom ini harus diisi" : "";
+		errors.provinsi = !this.props.user.provinsi ? "Kolom ini harus diisi" : "";
+		errors.warga_negara = !this.props.user.warga_negara
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.telp = !this.props.user.telp ? "Kolom ini harus diisi" : "";
+		errors.handphone = !this.props.user.handphone
+		  ? "Kolom ini harus diisi"
+		  : "";
+		errors.status_kepemilikan = !this.props.user.status_kepemilikan
+		  ? "Kolom ini harus diisi"
+		  : "";
+		this.setState({ errors });
     }
 
-    handleSubmit4 = async (action) => {
-        var errors = this.state.errMsg4;
-        var nama = this.props.user.nama_depan + ' ' + this.props.user.nama_belakang;
-        nama = nama.toString().toLowerCase();
-        errors.nama = !this.props.dataKontakDarurat.nama ? "Nama harus diisi" : '';
-        errors.alamat = !this.props.dataKontakDarurat.alamat ? "Alamat harus diisi" : '';
-        errors.kode_pos = !this.props.dataKontakDarurat.kode_pos ? "Kode Pos harus diisi" : '';
-        errors.handphone = !this.props.dataKontakDarurat.handphone ? "Handphone harus diisi" : '';
-        errors.hubungan = !this.props.dataKontakDarurat.hubungan ? "Hubungan harus diisi" : '';
-        errors.telp = !this.props.dataKontakDarurat.telp ? "Telp. harus diisi" : '';
-        errors.agreement4 = !this.props.dataKontakDarurat.agreement4 ? "Kolom ini harus diisi" : '';
-        if (errors.nama === '') errors.nama = this.props.dataKontakDarurat.nama === nama ? "Nama tidak boleh sama dengan informasi detail" : '';
-        if (errors.telp === '') errors.telp = this.props.dataKontakDarurat.telp === this.props.user.telp ? "Telp tidak boleh sama dengan informasi detail" : '';
-        this.setState({ errors });
-        if (this.validateForm(this.state.errMsg4)) {
-            const saveData = {
-                ...this.props.dataKontakDarurat,
-                agree: 'Y'
-            }
-            await this.props.onSaveKontakDarurat(saveData);
-            this.props.getDataKontakDarurat();
-            if (action === 'detil_pribadi') this.setState({ active_tab: 'pekerjaan' });
-        } else {
-            console.error('Invalid Form')
-        }
+    if (value) {
+      const dt = {
+        file: value,
+        tipe: name,
+      };
+      this.props.uploadFile(dt);
+      await this.sleep(2000);
+	  this.props.getDPP();
     }
+  };
 
-    handleSubmit5 = async (action) => {
-        var errors = this.state.errMsg5;
-        errors.status_pekerjaan = !this.props.dataPekerjaan.status_pekerjaan ? "Harus diisi" : '';
-        errors.nama_perusahaan = !this.props.dataPekerjaan.nama_perusahaan ? "Harus diisi" : '';
-        errors.jenis_bisnis = !this.props.dataPekerjaan.jenis_bisnis ? "Harus diisi" : '';
-        errors.jabatan = !this.props.dataPekerjaan.jabatan ? "Harus diisi" : '';
-        errors.lama_bekerja = !this.props.dataPekerjaan.lama_bekerja ? "Harus diisi" : '';
-        errors.alamat_kantor = !this.props.dataPekerjaan.alamat_kantor ? "Harus diisi" : '';
-        errors.telp_kantor = !this.props.dataPekerjaan.telp_kantor ? "Harus diisi" : '';
-        errors.agreement5 = !this.props.dataPekerjaan.agreement5 ? "Kolom ini harus diisi" : '';
-        this.setState({ errors });
-        if (this.validateForm(this.state.errMsg5)) {
-            const saveData = {
-                ...this.props.dataPekerjaan,
-                agree: 'Y'
-            }
-            await this.props.onSaveDataPekerjaan(saveData);
-            this.props.getDataPekerjaan();
-            if (action === 'detil_pribadi') this.setState({ active_tab: 'detil_bank' });
-        } else {
-            console.error('Invalid Form')
-        }
+  hideAlert() {
+    this.props.clearErr();
+  }
+
+  hideAlertToken() {
+    this.props.logOut();
+  }
+
+  deleteRecordFile(record) {
+    this.setState({
+      dokumen_id: record,
+    });
+    this.props.showConfirmDel(true);
+  }
+  handleDelete = async () => {
+    this.props.onDelete(this.state.dokumen_id);
+    await this.sleep(300);
+    this.props.getDPP();
+  };
+  handleClose() {
+    this.props.closeModal();
+    this.setState({
+      dokumen_id: "",
+    });
+  }
+
+  validateForm(errors) {
+    let valid = true;
+    Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
+    return valid;
+  }
+
+  handleSubmit1 = async (action) => {
+    var errors = this.state.errMsg1;
+
+    errors.nama_depan = !this.props.user.nama_depan
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.tempat_lahir = !this.props.user.tempat_lahir
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.kota_lahir = !this.props.user.kota_lahir
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.tanggal_lahir = !this.props.user.tanggal_lahir
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.jenis_identitas = !this.props.user.jenis_identitas
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.no_identitas = !this.props.user.no_identitas
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.npwp = !this.props.user.npwp ? "Kolom ini harus diisi" : "";
+    errors.jenis_kelamin = !this.props.user.jenis_kelamin
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.status_pernikahan = !this.props.user.status_pernikahan
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.nama_pasangan =
+      !this.props.user.nama_pasangan &&
+      this.props.user.status_pernikahan === "Kawin"
+        ? "Kolom ini harus diisi"
+        : "";
+    errors.nama_ibu_kandung = !this.props.user.nama_ibu_kandung
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.alamat = !this.props.user.alamat ? "Kolom ini harus diisi" : "";
+    errors.rt = !this.props.user.rt ? "Kolom ini harus diisi" : "";
+    errors.rw = !this.props.user.rw ? "Kolom ini harus diisi" : "";
+    errors.provinsi = !this.props.user.provinsi ? "Kolom ini harus diisi" : "";
+    errors.warga_negara = !this.props.user.warga_negara
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.telp = !this.props.user.telp ? "Kolom ini harus diisi" : "";
+    errors.handphone = !this.props.user.handphone
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.status_kepemilikan = !this.props.user.status_kepemilikan
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.agreement1 =
+      !this.props.user.agreement1 || !this.props.user.no_identitas
+        ? "Kolom ini harus diisi"
+        : "";
+
+    this.setState({ errors });
+    if (this.validateForm(this.state.errMsg1)) {
+      this.props.onSaveDataPribadi(this.props.user);
+      await this.sleep(150);
+      this.props.getDataPribadi();
+      if (action === "detil_pribadi")
+        this.setState({ active_tab: "exp_trading" });
+    } else {
+      console.error("Invalid Form");
     }
+  };
 
-    handleSubmit6 = async (action) => {
-        var errors = this.state.errMsg6;
-        var nama_pemilik = this.props.user.nama_depan + ' ' + this.props.user.nama_belakang;
-        errors.nama_pemilik = !this.props.dataAkunBank.nama_pemilik && nama_pemilik === '' ? "Kolom ini harus diisi" : '';
-        errors.bank = !this.props.dataAkunBank.bank_id ? "Kolom ini harus diisi" : '';
-        errors.cabang = !this.props.dataAkunBank.cabang ? "Kolom ini harus diisi" : '';
-        errors.no_rek = !this.props.dataAkunBank.no_rek ? "Kolom ini harus diisi" : '';
-        errors.jenis_akun_bank = !this.props.dataAkunBank.jenis_akun_bank ? "Kolom ini harus diisi" : '';
-        errors.agreement6 = !this.props.dataAkunBank.agreement6 || this.props.dataAkunBank.agreement6 !== 'Y' ? "Kolom ini harus diisi" : '';
-        this.setState({ errors });
-        if (this.validateForm(this.state.errMsg6)) {
-            const saveData = {
-                akun_bank_id: this.props.dataAkunBank.akun_bank_id ? this.props.dataAkunBank.akun_bank_id : '',
-                jenis_akun_bank: this.props.dataAkunBank.jenis_akun_bank ? this.props.dataAkunBank.jenis_akun_bank : '',
-                cabang: this.props.dataAkunBank.cabang ? this.props.dataAkunBank.cabang : '',
-                no_rek: this.props.dataAkunBank.no_rek ? this.props.dataAkunBank.no_rek : '',
-                bank: this.props.dataAkunBank.bank_id ? this.props.dataAkunBank.bank_id : '',
-                nama_pemilik: this.props.user.nama_depan + ' ' + this.props.user.nama_belakang,
-                agree: 'Y',
-                agreement6: 'Y'
-            }
-            await this.props.onSaveAkunBank(saveData);
-            this.props.getDataAKunBank();
-            if (action === 'detil_pribadi') this.setState({ active_tab: 'unggah_file' });
-        } else {
-            console.error('Invalid Form')
-        }
+  handleSubmit2 = async (action) => {
+    var errors = this.state.errMsg2;
+    errors.agreement2 = !this.props.dataExpTrading.agreement2
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.pertanyaan4 =
+      this.props.dataExpTrading.pertanyaan4 === "Y" ? "maaf" : "";
+    errors.pertanyaan3 =
+      this.props.dataExpTrading.pertanyaan3 === "Y" ? "maaf" : "";
+    if (errors.pertanyaan4 || errors.pertanyaan3) {
+      alert(
+        "Maaf, berdasarkan peraturan anda tidak diperbolehkan membuka rekening pada perusahaan pialang berjangka"
+      );
     }
-
-    handleSubmit7() {
-        var errors = this.state.errMsg7;
-        errors.agree = this.props.dokumenPribadiPernyataan.agree !== 'Y' ? "Pilihan harus disetujui" : '';
-        this.setState({ errors });
-        if (this.validateForm(this.state.errMsg7)) {
-            const saveData = {
-                data_pribadi_pernyataan_id: this.props.dokumenPribadiPernyataan.data_pribadi_pernyataan_id,
-                agree: 'Y'
-            }
-            this.props.onSaveDPP(saveData);
-            this.props.history.push("/account-type");
-        } else {
-            console.error('Invalid Form')
-        }
-
+    this.setState({ errors });
+    if (this.validateForm(this.state.errMsg2)) {
+      const saveData = {
+        tujuan_pembukaan_rekening: this.props.dataExpTrading
+          .tujuan_pembukaan_rekening
+          ? this.props.dataExpTrading.tujuan_pembukaan_rekening
+          : "",
+        pertanyaan1: this.props.dataExpTrading.pertanyaan1
+          ? this.props.dataExpTrading.pertanyaan1
+          : "N",
+        pertanyaan2: this.props.dataExpTrading.pertanyaan2
+          ? this.props.dataExpTrading.pertanyaan2
+          : "",
+        pertanyaan3: this.props.dataExpTrading.pertanyaan3
+          ? this.props.dataExpTrading.pertanyaan3
+          : "N",
+        pertanyaan4: this.props.dataExpTrading.pertanyaan4
+          ? this.props.dataExpTrading.pertanyaan4
+          : "N",
+        pertanyaan5: this.props.dataExpTrading.pertanyaan5
+          ? this.props.dataExpTrading.pertanyaan5
+          : "N",
+        pertanyaan6: this.props.dataExpTrading.pertanyaan6
+          ? this.props.dataExpTrading.pertanyaan6
+          : "",
+        pengalaman_trading_id: this.props.dataExpTrading.pengalaman_trading_id
+          ? this.props.dataExpTrading.pengalaman_trading_id
+          : "",
+        agree: "Y",
+      };
+      await this.props.onSaveDataTrading(saveData);
+      this.props.getDataTrading();
+      if (action === "detil_pribadi") this.setState({ active_tab: "kekayaan" });
+    } else {
+      console.error("Invalid Form");
     }
+  };
 
+  handleSubmit3(action) {
+    var errors = this.state.errMsg3;
+    errors.pendapatan_pertahun = !this.props.dataKekayaan.pendapatan_pertahun
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.lokasi = !this.props.dataKekayaan.lokasi
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.agreement3 = !this.props.dataKekayaan.agreement3
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.njop = !this.props.dataKekayaan.njop ? "Kolom ini harus diisi" : "";
+    errors.deposit_bank = !this.props.dataKekayaan.njop
+      ? "Kolom ini harus diisi"
+      : "";
+    var njop = parseInt(
+      this.props.dataKekayaan.njop
+        ? this.props.dataKekayaan.njop.replace(/,/g, "")
+        : 0
+    );
+    var deposit_bank = parseInt(
+      this.props.dataKekayaan.deposit_bank
+        ? this.props.dataKekayaan.deposit_bank.replace(/,/g, "")
+        : 0
+    );
+    errors.njop = njop < 100000000 ? "Min. 100.000.000" : "";
+    errors.deposit_bank = deposit_bank < 10000000 ? "Min. 10.000.000" : "";
+    this.setState({ errors });
+    if (this.validateForm(this.state.errMsg3)) {
+      const saveData = {
+        ...this.props.dataKekayaan,
+        lainnya: parseInt(
+          this.props.dataKekayaan.lainnya
+            ? this.props.dataKekayaan.lainnya.replace(/,/g, "")
+            : 0
+        ),
+        njop: parseInt(
+          this.props.dataKekayaan.njop
+            ? this.props.dataKekayaan.njop.replace(/,/g, "")
+            : 0
+        ),
+        deposit_bank: parseInt(
+          this.props.dataKekayaan.deposit_bank
+            ? this.props.dataKekayaan.deposit_bank.replace(/,/g, "")
+            : 0
+        ),
+      };
+      this.props.onSaveDataKekayaan(saveData);
+      if (action === "detil_pribadi")
+        this.setState({ active_tab: "kontak_darurat" });
+    } else {
+      console.error("Invalid Form");
+    }
+  }
 
+  handleSubmit4 = async (action) => {
+    var errors = this.state.errMsg4;
+    var nama = this.props.user.nama_depan + " " + this.props.user.nama_belakang;
+    nama = nama.toString().toLowerCase();
+    errors.nama = !this.props.dataKontakDarurat.nama ? "Nama harus diisi" : "";
+    errors.alamat = !this.props.dataKontakDarurat.alamat
+      ? "Alamat harus diisi"
+      : "";
+    errors.kode_pos = !this.props.dataKontakDarurat.kode_pos
+      ? "Kode Pos harus diisi"
+      : "";
+    errors.handphone = !this.props.dataKontakDarurat.handphone
+      ? "Handphone harus diisi"
+      : "";
+    errors.hubungan = !this.props.dataKontakDarurat.hubungan
+      ? "Hubungan harus diisi"
+      : "";
+    errors.telp = !this.props.dataKontakDarurat.telp ? "Telp. harus diisi" : "";
+    errors.agreement4 = !this.props.dataKontakDarurat.agreement4
+      ? "Kolom ini harus diisi"
+      : "";
+    if (errors.nama === "")
+      errors.nama =
+        this.props.dataKontakDarurat.nama === nama
+          ? "Nama tidak boleh sama dengan informasi detail"
+          : "";
+    if (errors.telp === "")
+      errors.telp =
+        this.props.dataKontakDarurat.telp === this.props.user.telp
+          ? "Telp tidak boleh sama dengan informasi detail"
+          : "";
+    this.setState({ errors });
+    if (this.validateForm(this.state.errMsg4)) {
+      const saveData = {
+        ...this.props.dataKontakDarurat,
+        agree: "Y",
+      };
+      await this.props.onSaveKontakDarurat(saveData);
+      this.props.getDataKontakDarurat();
+      if (action === "detil_pribadi")
+        this.setState({ active_tab: "pekerjaan" });
+    } else {
+      console.error("Invalid Form");
+    }
+  };
 
-    render() {
-        const { Paragraph } = Placeholder;
-        const { lastSegmentUrl, active_tab, errMsg1, errMsg2, errMsg3, errMsg4, errMsg5, errMsg6, errMsg7 } = this.state;
-        const { dataNegara, dataProvinsi, dataBank, docPribadi, user, dataKekayaan, dataExpTrading,
-            dataKontakDarurat, dataPekerjaan, dataAkunBank, errorMessage, errUplFileMsg,
-            isFetchingUpl, errFetchUserByToken, dokumenPribadiPernyataan, unggahFileName } = this.props;
-        const nilai_njop = dataKekayaan.njop ? parseInt(dataKekayaan.njop.replace(/,/g, '')) : 0;
-        const deposit_bank = dataKekayaan.deposit_bank ? parseInt(dataKekayaan.deposit_bank.replace(/,/g, '')) : 0;
+  handleSubmit5 = async (action) => {
+    var errors = this.state.errMsg5;
+    errors.status_pekerjaan = !this.props.dataPekerjaan.status_pekerjaan
+      ? "Harus diisi"
+      : "";
+    errors.nama_perusahaan = !this.props.dataPekerjaan.nama_perusahaan
+      ? "Harus diisi"
+      : "";
+    errors.jenis_bisnis = !this.props.dataPekerjaan.jenis_bisnis
+      ? "Harus diisi"
+      : "";
+    errors.jabatan = !this.props.dataPekerjaan.jabatan ? "Harus diisi" : "";
+    errors.lama_bekerja = !this.props.dataPekerjaan.lama_bekerja
+      ? "Harus diisi"
+      : "";
+    errors.alamat_kantor = !this.props.dataPekerjaan.alamat_kantor
+      ? "Harus diisi"
+      : "";
+    errors.telp_kantor = !this.props.dataPekerjaan.telp_kantor
+      ? "Harus diisi"
+      : "";
+    errors.agreement5 = !this.props.dataPekerjaan.agreement5
+      ? "Kolom ini harus diisi"
+      : "";
+    this.setState({ errors });
+    if (this.validateForm(this.state.errMsg5)) {
+      const saveData = {
+        ...this.props.dataPekerjaan,
+        agree: "Y",
+      };
+      await this.props.onSaveDataPekerjaan(saveData);
+      this.props.getDataPekerjaan();
+      if (action === "detil_pribadi")
+        this.setState({ active_tab: "detil_bank" });
+    } else {
+      console.error("Invalid Form");
+    }
+  };
 
-        const contentDelete = <div dangerouslySetInnerHTML={{ __html: '<div id="caption" style=padding-bottom:20px;">Apakah anda yakin <br/>akan menghapus file ini ?</div>' }} />;
-        console.log(unggahFileName);
+  handleSubmit6 = async (action) => {
+    var errors = this.state.errMsg6;
+    var nama_pemilik =
+      this.props.user.nama_depan + " " + this.props.user.nama_belakang;
+    errors.nama_pemilik =
+      !this.props.dataAkunBank.nama_pemilik && nama_pemilik === ""
+        ? "Kolom ini harus diisi"
+        : "";
+    errors.bank = !this.props.dataAkunBank.bank_id
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.cabang = !this.props.dataAkunBank.cabang
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.no_rek = !this.props.dataAkunBank.no_rek
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.jenis_akun_bank = !this.props.dataAkunBank.jenis_akun_bank
+      ? "Kolom ini harus diisi"
+      : "";
+    errors.agreement6 =
+      !this.props.dataAkunBank.agreement6 ||
+      this.props.dataAkunBank.agreement6 !== "Y"
+        ? "Kolom ini harus diisi"
+        : "";
+    this.setState({ errors });
+    if (this.validateForm(this.state.errMsg6)) {
+      const saveData = {
+        akun_bank_id: this.props.dataAkunBank.akun_bank_id
+          ? this.props.dataAkunBank.akun_bank_id
+          : "",
+        jenis_akun_bank: this.props.dataAkunBank.jenis_akun_bank
+          ? this.props.dataAkunBank.jenis_akun_bank
+          : "",
+        cabang: this.props.dataAkunBank.cabang
+          ? this.props.dataAkunBank.cabang
+          : "",
+        no_rek: this.props.dataAkunBank.no_rek
+          ? this.props.dataAkunBank.no_rek
+          : "",
+        bank: this.props.dataAkunBank.bank_id
+          ? this.props.dataAkunBank.bank_id
+          : "",
+        nama_pemilik:
+          this.props.user.nama_depan + " " + this.props.user.nama_belakang,
+        agree: "Y",
+        agreement6: "Y",
+      };
+      await this.props.onSaveAkunBank(saveData);
+      this.props.getDataAKunBank();
+      if (action === "detil_pribadi")
+        this.setState({ active_tab: "unggah_file" });
+    } else {
+      console.error("Invalid Form");
+    }
+  };
 
-        return (
+  handleSubmit7() {
+    var errors = this.state.errMsg7;
+    errors.agree =
+      this.props.dokumenPribadiPernyataan.agree !== "Y"
+        ? "Pilihan harus disetujui"
+        : "";
+    this.setState({ errors });
+    if (this.validateForm(this.state.errMsg7)) {
+      const saveData = {
+        data_pribadi_pernyataan_id:
+          this.props.dokumenPribadiPernyataan.data_pribadi_pernyataan_id,
+        agree: "Y",
+      };
+      this.props.onSaveDPP(saveData);
+      this.props.history.push("/account-type");
+    } else {
+      console.error("Invalid Form");
+    }
+  }
 
-            <div className="content-wrapper">
-                
-                
+  render() {
+    const { Paragraph } = Placeholder;
+    const {
+      lastSegmentUrl,
+      active_tab,
+      errMsg1,
+      errMsg2,
+      errMsg3,
+      errMsg4,
+      errMsg5,
+      errMsg6,
+      errMsg7,
+    } = this.state;
+    const {
+      dataNegara,
+      dataProvinsi,
+      dataBank,
+      docPribadi,
+      user,
+      dataKekayaan,
+      dataExpTrading,
+      dataKontakDarurat,
+      dataPekerjaan,
+      dataAkunBank,
+      errorMessage,
+      errUplFileMsg,
+      isFetchingUpl,
+      errFetchUserByToken,
+      dokumenPribadiPernyataan,
+      unggahFileName,
+    } = this.props;
+    const nilai_njop = dataKekayaan.njop
+      ? parseInt(dataKekayaan.njop.replace(/,/g, ""))
+      : 0;
+    const deposit_bank = dataKekayaan.deposit_bank
+      ? parseInt(dataKekayaan.deposit_bank.replace(/,/g, ""))
+      : 0;
 
-                <section className="content">
-                    <div className="container-fluid">
-                    <div className="content-area__edge">
-                        <ul className="list-unstyled list-steps mb-0">
-                            <li className={lastSegmentUrl === "personal" ? "active default" : "default"}><a href="personal">1. Informasi Pribadi</a></li>
-                            <li className={lastSegmentUrl === "account-type" ? "active default" : "default"}><a href="account-type"><span />2. Tipe Akun</a></li>
-                            <li className={lastSegmentUrl === "decleration" ? "active default" : "default"}><a href="decleration"><span />3. Pernyataan</a></li>
-                            <li className={lastSegmentUrl === "trading_rules" ? "active default" : "default"}><a href="trading_rules"><span />4. Peraturan Trading</a></li>
-                            <li className={lastSegmentUrl === "company_profile" ? "active default" : "default"}><a href="company_profile"><span />5. Profil Perusahaan</a></li>
-                        </ul>
-                    </div>
+    const contentDelete = (
+      <div
+        dangerouslySetInnerHTML={{
+          __html:
+            '<div id="caption" style=padding-bottom:20px;">Apakah anda yakin <br/>akan menghapus file ini ?</div>',
+        }}
+      />
+    );
+    //console.log(unggahFileName);
 
-                        <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }} className="text-gray-500">Registrasi Akun Online</h1>
-                        {errFetchUserByToken ? (
-                            <div className="alert alert-danger alert-sm" style={{ marginTop: '.3rem' }}>
-                                <button onClick={this.hideAlertToken.bind(this)} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <span className="fw-semi-bold">{errFetchUserByToken}</span>
-                            </div>
-                        ) : ''}
-                        <div className="row">
-                            <div className="col-12">
-                                {/* card start */}
+    return (
+      <div className="content-wrapper">
+        <section className="content">
+          <div className="container-fluid">
+            <div className="content-area__edge">
+              <ul className="list-unstyled list-steps mb-0">
+                <li
+                  className={
+                    lastSegmentUrl === "personal" ? "active default" : "default"
+                  }
+                >
+                  <a href="personal">1. Informasi Pribadi</a>
+                </li>
+                <li
+                  className={
+                    lastSegmentUrl === "account-type"
+                      ? "active default"
+                      : "default"
+                  }
+                >
+                  <a href="account-type">
+                    <span />
+                    2. Tipe Akun
+                  </a>
+                </li>
+                <li
+                  className={
+                    lastSegmentUrl === "decleration"
+                      ? "active default"
+                      : "default"
+                  }
+                >
+                  <a href="decleration">
+                    <span />
+                    3. Pernyataan
+                  </a>
+                </li>
+                <li
+                  className={
+                    lastSegmentUrl === "trading_rules"
+                      ? "active default"
+                      : "default"
+                  }
+                >
+                  <a href="trading_rules">
+                    <span />
+                    4. Peraturan Trading
+                  </a>
+                </li>
+                <li
+                  className={
+                    lastSegmentUrl === "company_profile"
+                      ? "active default"
+                      : "default"
+                  }
+                >
+                  <a href="company_profile">
+                    <span />
+                    5. Profil Perusahaan
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-                                <div className="card card-success shadow-lg" style={{borderRadius:"2rem" }}>
-                                    <div className="card-body">
-                                        <div className="mobile-view">
-                                        <Nav appearance="subtle" activeKey={active_tab} justified className="tab_personal">
-                                            <Nav.Item
-                                                onSelect={this.handleSelect.bind(this)}
-                                                active={active_tab === 'detil_pribadi' ? true : false}
-                                                eventKey="detil_pribadi"
-                                                className="default border   border-white" >Detil Pribadi
-                                            </Nav.Item>
-                                            <Nav.Item
-                                                eventKey="exp_trading"
-                                                onSelect={this.handleSelect.bind(this)}
-                                                active={active_tab === 'exp_trading' ? true : false}
-                                                className="default">Pengalaman Trading
-                                            </Nav.Item>
-                                            <Nav.Item
-                                                onSelect={this.handleSelect.bind(this)}
-                                                active={active_tab === 'kekayaan' ? true : false}
-                                                eventKey="kekayaan"
-                                                className="default">Kekayaan Pribadi
-                                            </Nav.Item>
-                                            <Nav.Item
-                                                onSelect={this.handleSelect.bind(this)}
-                                                active={active_tab === 'kontak_darurat' ? true : false}
-                                                eventKey="kontak_darurat"
-                                                className="default">Kontak Darurat
-                                            </Nav.Item>
-                                            <Nav.Item
-                                                onSelect={this.handleSelect.bind(this)}
-                                                active={active_tab === 'pekerjaan' ? true : false}
-                                                eventKey="pekerjaan"
-                                                className="default">Pekerjaan
-                                            </Nav.Item>
-                                            <Nav.Item
-                                                onSelect={this.handleSelect.bind(this)}
-                                                active={active_tab === 'detil_bank' ? true : false}
-                                                eventKey="detil_bank"
-                                                className="default">Detil Bank
-                                            </Nav.Item>
-                                            <Nav.Item
-                                                onSelect={this.handleSelect.bind(this)}
-                                                active={active_tab === 'unggah_file' ? true : false}
-                                                eventKey="unggah_file"
-                                                className="default">Unggah Dokumen
-                                            </Nav.Item>
-                                        </Nav>
-                                        </div>
-                                        
-                                        <div className="mobile-hide">
-                                        <Nav appearance="subtle" activeKey={active_tab} justified className="tab_personal">
-                                            <Nav.Item
-                                                onSelect={this.handleSelect.bind(this)}
-                                                active={active_tab === 'detil_pribadi' ? true : false}
-                                                eventKey="detil_pribadi"
-                                                className="default border   border-white" >Detil Pribadi
-                                            </Nav.Item>
-                                            <Nav.Item
-                                                eventKey="exp_trading"
-                                                onSelect={this.handleSelect.bind(this)}
-                                                active={active_tab === 'exp_trading' ? true : false}
-                                                className="default">Pengalaman Trading
-                                            </Nav.Item>
-                                            <Nav.Item
-                                                onSelect={this.handleSelect.bind(this)}
-                                                active={active_tab === 'kekayaan' ? true : false}
-                                                eventKey="kekayaan"
-                                                className="default">Kekayaan Pribadi
-                                            </Nav.Item>
-                                            <Nav.Item
-                                                onSelect={this.handleSelect.bind(this)}
-                                                active={active_tab === 'kontak_darurat' ? true : false}
-                                                eventKey="kontak_darurat"
-                                                className="default">Kontak Darurat
-                                            </Nav.Item>
-                                            <Nav.Item
-                                                onSelect={this.handleSelect.bind(this)}
-                                                active={active_tab === 'pekerjaan' ? true : false}
-                                                eventKey="pekerjaan"
-                                                className="default">Pekerjaan
-                                            </Nav.Item>
-                                            <Nav.Item
-                                                onSelect={this.handleSelect.bind(this)}
-                                                active={active_tab === 'detil_bank' ? true : false}
-                                                eventKey="detil_bank"
-                                                className="default">Detil Bank
-                                            </Nav.Item>
-                                            <Nav.Item
-                                                onSelect={this.handleSelect.bind(this)}
-                                                active={active_tab === 'unggah_file' ? true : false}
-                                                eventKey="unggah_file"
-                                                className="default">Unggah Dokumen
-                                            </Nav.Item>
-                                        </Nav>
-                                        </div>
+            <h1
+              style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}
+              className="text-gray-500"
+            >
+              Registrasi Akun Online
+            </h1>
+            {errFetchUserByToken ? (
+              <div
+                className="alert alert-danger alert-sm"
+                style={{ marginTop: ".3rem" }}
+              >
+                <button
+                  onClick={this.hideAlertToken.bind(this)}
+                  type="button"
+                  className="close"
+                  data-dismiss="alert"
+                  aria-hidden="true"
+                >
+                  ×
+                </button>
+                <span className="fw-semi-bold">{errFetchUserByToken}</span>
+              </div>
+            ) : (
+              ""
+            )}
+            <div className="row">
+              <div className="col-12">
+                {/* card start */}
 
-                                        {active_tab === 'detil_pribadi' && (<Fragment>
+                <div
+                  className="card card-success shadow-lg"
+                  style={{ borderRadius: "2rem" }}
+                >
+                  <div className="card-body">
+                    <Nav
+                      appearance="subtle"
+                      activeKey={active_tab}
+                      justified
+                      className="tab_personal"
+                    >
+                      <Nav.Item
+                        onSelect={this.handleSelect.bind(this)}
+                        active={active_tab === "detil_pribadi" ? true : false}
+                        eventKey="detil_pribadi"
+                        className="default border   border-white"
+                      >
+                        Detil Pribadi
+                      </Nav.Item>
+                      <Nav.Item
+                        eventKey="exp_trading"
+                        onSelect={this.handleSelect.bind(this)}
+                        active={active_tab === "exp_trading" ? true : false}
+                        className="default"
+                      >
+                        Pengalaman Trading
+                      </Nav.Item>
+                      <Nav.Item
+                        onSelect={this.handleSelect.bind(this)}
+                        active={active_tab === "kekayaan" ? true : false}
+                        eventKey="kekayaan"
+                        className="default"
+                      >
+                        Kekayaan Pribadi
+                      </Nav.Item>
+                      <Nav.Item
+                        onSelect={this.handleSelect.bind(this)}
+                        active={active_tab === "kontak_darurat" ? true : false}
+                        eventKey="kontak_darurat"
+                        className="default"
+                      >
+                        Kontak Darurat
+                      </Nav.Item>
+                      <Nav.Item
+                        onSelect={this.handleSelect.bind(this)}
+                        active={active_tab === "pekerjaan" ? true : false}
+                        eventKey="pekerjaan"
+                        className="default"
+                      >
+                        Pekerjaan
+                      </Nav.Item>
+                      <Nav.Item
+                        onSelect={this.handleSelect.bind(this)}
+                        active={active_tab === "detil_bank" ? true : false}
+                        eventKey="detil_bank"
+                        className="default"
+                      >
+                        Detil Bank
+                      </Nav.Item>
+                      <Nav.Item
+                        onSelect={this.handleSelect.bind(this)}
+                        active={active_tab === "unggah_file" ? true : false}
+                        eventKey="unggah_file"
+                        className="default"
+                      >
+                        Unggah Dokumen
+                      </Nav.Item>
+                    </Nav>
+                    {active_tab === "detil_pribadi" && (
+                      <Fragment>
+                        <div
+                          className="grid grid-cols-1 lg:grid-cols-2 place-items-center mt-0  py-2 px-2 rounded-2xl border-gray-700 mt-4 gap-4"
+                          style={{ border: "2px solid #ddd" }}
+                        >
+                          <div className="w-full h-24 p-4 h-32 text-center justify-center font-bold text-lg text-black">
+                            Unggah KTP
+                            <Form>
+                              <Form.Group controlId="KTP">
+                                <Form.File
+                                  className="custom-file-input3"
+                                  size="lg"
+                                  name="KTP"
+                                  setfieldvalue=""
+                                  onChange={this.handleChangePhoto.bind(this)}
+                                ></Form.File>
+                              </Form.Group>
+                            </Form>
+                          </div>
 
-                                            <Form>
-                                                <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                                                    
-                                                    <br />
-                                                    <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Detil Pribadi</span>
-                                                    <br /><br/>
+                          <div className="bg-zinc-100 p-4 rounded-2xl w-full h-32"></div>
+                        </div>
 
-                                                    <Form.Row>
+                        <Form>
+                          <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                            <br />
+                            <span
+                              className="text-2xl label_ijo"
+                              style={{ fontSize: "28px", fontWeight: "bold" }}
+                            >
+                              Detil Pribadi
+                            </span>
+                            <br />
+                            <br />
+
+                            <Form.Row>
                                                         <Form.Group as={Col} xs={12} lg={6} controlId="nama_depan">
                                                             
                                                             <Form.Control
@@ -958,67 +1301,63 @@ class Personal extends Component {
 																{errMsg1.npwp ? (<span className="text-error badge badge-danger">{errMsg1.npwp}</span>) : ''}
                                                         </Form.Group>
 
-                                                    </Form.Row>
-                                                    
-                                                    
+                            </Form.Row>
+                          </div>
+                          <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
+                                <div className="grid grid-cols-1 place-items-center">
+                                    <div className="form-group lg:w-2/3">
+                                        <div className="form-check">
+                                            {errMsg1.agreement1 ? (<span className="text-error badge badge-danger">{errMsg1.agreement1}</span>) : ''}
+                                            <label>
+                                                <input
+                                                    checked={user.agreement1 ? true : false}
+                                                    onChange={this.handleChange} value={1} className="form-check-input" type="checkbox" name="agreement1" />
+                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
 
-                                                </div>
-                                                <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
-                                                    <div className="grid grid-cols-1 place-items-center">
-                                                        <div className="form-group lg:w-2/3">
-                                                            <div className="form-check">
-                                                                {errMsg1.agreement1 ? (<span className="text-error badge badge-danger">{errMsg1.agreement1}</span>) : ''}
-                                                                <label>
-                                                                    <input
-                                                                        checked={user.agreement1 ? true : false}
-                                                                        onChange={this.handleChange} value={1} className="form-check-input" type="checkbox" name="agreement1" />
-                                                                    <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+                                            </label>
+                                            
+                                        </div>
+                                        
+                                        <div className="grid grid-cols-1 place-items-center">
 
-                                                                </label>
-                                                                
-                                                            </div>
-                                                            
-                                                            <div className="grid grid-cols-1 place-items-center">
+                                            <div className="form-group lg:w-[50%] text-center mt-4">
+                                            <label>
+                                                <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
+                                            </label>
+                                            </div>
 
-                                                                <div className="form-group lg:w-[50%] text-center mt-4">
-                                                                <label>
-                                                                    <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
-                                                                </label>
-                                                                </div>
+                                            <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                            
+                                            <AppButton
+                                            style={{ color: '#ffffff', marginRight: 5 }}
+                                            onClick={this.handleSubmit1.bind(this, 'detil_pribadi')}
+                                            type="button"
+                                            size="lg"
+                                            theme=""
+                                            style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
 
-                                                                <div className="form-group w-[100%] lg:w-[40%] text-center">
-                                                               
-                                                                <AppButton
-                                                                style={{ color: '#ffffff', marginRight: 5 }}
-                                                                onClick={this.handleSubmit1.bind(this, 'detil_pribadi')}
-                                                                type="button"
-                                                                size="lg"
-                                                                theme=""
-                                                                style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
+                                            >Selanjutnya</AppButton>
 
-                                                                >Selanjutnya</AppButton>
+                                            <AppButton
+                                            onClick={this.handleSubmit1.bind(this)}
+                                            type="button"
+                                            size="lg"
+                                            theme=""
+                                            style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
+                                            Simpan</AppButton>
+                                            </div>
+                                        </div>
 
-                                                                <AppButton
-                                                                onClick={this.handleSubmit1.bind(this)}
-                                                                type="button"
-                                                                size="lg"
-                                                                theme=""
-                                                                style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
-                                                                Simpan</AppButton>
-                                                                </div>
-                                                            </div>
+                                    </div>
+                                </div>
 
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-
-                                            </Form>
-                                        </Fragment>)}
-                                        {active_tab === 'exp_trading' && (<Fragment>
-
-                                            <Form>
+                            </div>
+                        </Form>
+                      </Fragment>
+                    )}
+                    {active_tab === "exp_trading" && (
+                      <Fragment>
+                        <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                                                     <br />
                                                     <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Pengalaman Trading</span>
@@ -1212,10 +1551,12 @@ class Personal extends Component {
 
                                                 </div>
                                             </Form>
-                                        </Fragment>)}
+                      </Fragment>
+                    )}
 
-                                        {active_tab === 'kekayaan' && (<Fragment>
-                                            <Form>
+                    {active_tab === "kekayaan" && (
+                      <Fragment>
+                        <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                                                     
                                                     <br />
@@ -1375,11 +1716,12 @@ class Personal extends Component {
                                                     </div>
                                                 </div>
                                             </Form>
+                      </Fragment>
+                    )}
 
-                                        </Fragment>)}
-
-                                        {active_tab === 'kontak_darurat' && (<Fragment>
-                                            <Form>
+                    {active_tab === "kontak_darurat" && (
+                      <Fragment>
+                        <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                                                     
                                                     
@@ -1533,12 +1875,12 @@ class Personal extends Component {
                                                     </div>
                                                 </div>
                                             </Form>
+                      </Fragment>
+                    )}
 
-                                        </Fragment>)}
-
-
-                                        {active_tab === 'pekerjaan' && (<Fragment>
-                                            <Form>
+                    {active_tab === "pekerjaan" && (
+                      <Fragment>
+                        <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                                                    
                                                     <br />
@@ -1753,11 +2095,12 @@ class Personal extends Component {
                                                     </div>
                                                 </div>
                                             </Form>
+                      </Fragment>
+                    )}
 
-                                        </Fragment>)}
-
-                                        {active_tab === 'detil_bank' && (<Fragment>
-                                            <Form>
+                    {active_tab === "detil_bank" && (
+                      <Fragment>
+                        <Form>
                                                 <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                                                     
                                                     <br />
@@ -1940,12 +2283,12 @@ class Personal extends Component {
                                                     </div>
                                                 </div>
                                             </Form>
+                      </Fragment>
+                    )}
 
-                                        </Fragment>)}
-
-                                        {active_tab === 'unggah_file' && (<Fragment>
-
-                                            <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                    {active_tab === "unggah_file" && (
+                      <Fragment>
+                        <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                                                 
                                                 <br />
                                                     <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Unggah Dokumen</span>
@@ -2199,165 +2542,162 @@ class Personal extends Component {
 
                                                 </div>
                                             </div>
-
-                                        </Fragment>)}
-                                    </div>
-
-                                </div>
-                                <AppModal
-                                    show={this.props.showFormDelete}
-                                    size="xs"
-                                    form={contentDelete}
-                                    handleClose={this.handleClose.bind(this)}
-                                    backdrop="static"
-                                    keyboard={false}
-                                    title="Delete"
-                                    titleButton="Delete"
-                                    themeButton="danger"
-                                    isLoading={this.props.isLoading}
-                                    formSubmit={this.handleDelete.bind(this)}
-                                ></AppModal>
-
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                      </Fragment>
+                    )}
+                  </div>
+                </div>
+                <AppModal
+                  show={this.props.showFormDelete}
+                  size="xs"
+                  form={contentDelete}
+                  handleClose={this.handleClose.bind(this)}
+                  backdrop="static"
+                  keyboard={false}
+                  title="Delete"
+                  titleButton="Delete"
+                  themeButton="danger"
+                  isLoading={this.props.isLoading}
+                  formSubmit={this.handleDelete.bind(this)}
+                ></AppModal>
+              </div>
             </div>
-
-
-
-        )
-    }
+          </div>
+        </section>
+      </div>
+    );
+  }
 }
 const mapStateToProps = (state) => ({
-    dataProvinsi: state.personal.dataProvinsi || [],
-    dataNegara: state.personal.dataNegara || [],
-    dataBank: state.personal.dataBank || [],
-    docPribadi: state.personal.docPribadi || [],
-    unggahFileName: state.personal.unggahFileName || false,
-    dataExpTrading: state.personal.dataExpTrading || {},
-    dataKekayaan: state.personal.dataKekayaan || {},
-    dataKontakDarurat: state.personal.dataKontakDarurat || {},
-    dataPekerjaan: state.personal.dataPekerjaan || {},
-    dataAkunBank: state.personal.dataAkunBank || {},
-    dokumenPribadiPernyataan: state.personal.dokumenPribadiPernyataan || {},
-    isError: state.personal.isError,
-    isFetchingUpl: state.personal.isFetchingUpl,
-    errorMessage: state.personal.errorMessage,
-    errUplFileMsg: state.personal.errUplFileMsg,
-    showFormDelete: state.personal.showFormDelete,
-    isLoading: state.personal.isLoading,
-    errFetchUserByToken: state.main.errFetchUserByToken,
-    user: state.main.currentUser,
+  dataProvinsi: state.personal.dataProvinsi || [],
+  dataNegara: state.personal.dataNegara || [],
+  dataBank: state.personal.dataBank || [],
+  docPribadi: state.personal.docPribadi || [],
+  unggahFileName: state.personal.unggahFileName || false,
+  dataExpTrading: state.personal.dataExpTrading || {},
+  dataKekayaan: state.personal.dataKekayaan || {},
+  dataKontakDarurat: state.personal.dataKontakDarurat || {},
+  dataPekerjaan: state.personal.dataPekerjaan || {},
+  dataAkunBank: state.personal.dataAkunBank || {},
+  dokumenPribadiPernyataan: state.personal.dokumenPribadiPernyataan || {},
+  isError: state.personal.isError,
+  isFetchingUpl: state.personal.isFetchingUpl,
+  errorMessage: state.personal.errorMessage,
+  errUplFileMsg: state.personal.errUplFileMsg,
+  showFormDelete: state.personal.showFormDelete,
+  isLoading: state.personal.isLoading, 
+  errFetchUserByToken: state.main.errFetchUserByToken,
+  user: state.main.currentUser,
 });
 const mapDispatchToPros = (dispatch) => {
-    return {
-        onLoad: () => {
-			dispatch(profileUser());
-            dispatch(fetchUserBytoken());
-            dispatch(getExpTrading());
-            dispatch(getKekayaan());
-            dispatch(getKontakDarurat());
-            dispatch(getPekerjaan());
-            dispatch(getAkunBank());
-            dispatch(getNegara());
-            dispatch(getProvinsi());
-            dispatch(getBank());
-            dispatch(getDocPribadi());
-        },
-        changeProps: (data) => {
-            dispatch(chgProps(data));
-        },
-        changePropsTrading: (data) => {
-            dispatch(chgPropsExpTrading(data));
-        },
-        changePropsKekayaan: (data) => {
-            dispatch(chgPropsKekayaan(data));
-        },
-        changePropsKontak: (data) => {
-            dispatch(chgPropsKontakDarurat(data));
-        },
-        changePropsPekerjaan: (data) => {
-            dispatch(chgPropsPekerjaan(data));
-        },
-        changePropsAkunBank: (data) => {
-            dispatch(chgPropsAkunBank(data));
-        },
-        changePropsDPP: (data) => {
-            dispatch(chgPropsDPP(data));
-        },
-        uploadFile: (data) => {
-            dispatch(uplDocPribadi(data));
-        },
-        clearErr: () => {
-            dispatch(clearState());
-        },
-        logOut: () => {
-            dispatch(onLogout());
-        },
-        showConfirmDel: (data) => {
-            dispatch(confirmDel(data));
-        },
-        closeModal: () => {
-            dispatch(closeForm());
-        },
-        onDelete: (param) => {
-            dispatch(delDocPribadi(param));
-
-        },
-        onSaveDataPribadi: (param) => {
-			dispatch(profileUser());
-            dispatch(simpanDataPribadi(param));
-        },
-        getDataPribadi: (param) => {
-			dispatch(profileUser());
-            dispatch(fetchUserBytoken());
-        },
-        onSaveDataTrading: async (param) => {
-			dispatch(profileUser());
-            await dispatch(simpanDataExpTrading(param));
-        },
-        getDataTrading: async () => {
-			dispatch(profileUser());
-            await dispatch(getExpTrading());
-        },
-        onSaveDataKekayaan: (param) => {
-			dispatch(profileUser());
-            dispatch(simpanDataKekayaan(param));
-            dispatch(getKekayaan());
-        },
-        onSaveKontakDarurat: (param) => {
-			dispatch(profileUser());
-            dispatch(simpanKontakDarurat(param));
-        },
-        getDataKontakDarurat: async () => {
-			dispatch(profileUser());
-            await dispatch(getKontakDarurat());
-        },
-        onSaveDataPekerjaan: async (param) => {
-			dispatch(profileUser());
-            await dispatch(simpanDataPekerjaan(param));
-        },
-        getDataPekerjaan: async () => {
-			dispatch(profileUser());
-            await dispatch(getPekerjaan());
-        },
-        onSaveAkunBank: async (param) => {
-			dispatch(profileUser());
-            await dispatch(simpanAkunBank(param));
-        },
-        getDataAKunBank: async () => {
-			dispatch(profileUser());
-            await dispatch(getAkunBank());
-        },
-        onSaveDPP: (param) => {
-			dispatch(profileUser());
-            dispatch(simpanDPP(param));
-        },
-        getDPP: async () => {
-			dispatch(profileUser());
-            await dispatch(getDocPribadi());
-        }
-    }
-}
+  return {
+    onLoad: () => {
+      dispatch(profileUser());
+      dispatch(fetchUserBytoken());
+      dispatch(getExpTrading());
+      dispatch(getKekayaan());
+      dispatch(getKontakDarurat());
+      dispatch(getPekerjaan());
+      dispatch(getAkunBank());
+      dispatch(getNegara());
+      dispatch(getProvinsi());
+      dispatch(getBank());
+      dispatch(getDocPribadi());
+    },
+    changeProps: (data) => {
+      dispatch(chgProps(data));
+    },
+    changePropsTrading: (data) => {
+      dispatch(chgPropsExpTrading(data));
+    },
+    changePropsKekayaan: (data) => {
+      dispatch(chgPropsKekayaan(data));
+    },
+    changePropsKontak: (data) => {
+      dispatch(chgPropsKontakDarurat(data));
+    },
+    changePropsPekerjaan: (data) => {
+      dispatch(chgPropsPekerjaan(data));
+    },
+    changePropsAkunBank: (data) => {
+      dispatch(chgPropsAkunBank(data));
+    },
+    changePropsDPP: (data) => {
+      dispatch(chgPropsDPP(data));
+    },
+    uploadFile: (data) => {
+      dispatch(uplDocPribadi(data));
+    },
+    clearErr: () => {
+      dispatch(clearState());
+    },
+    logOut: () => {
+      dispatch(onLogout());
+    },
+    showConfirmDel: (data) => {
+      dispatch(confirmDel(data));
+    },
+    closeModal: () => {
+      dispatch(closeForm());
+    },
+    onDelete: (param) => {
+      dispatch(delDocPribadi(param));
+    },
+    onSaveDataPribadi: (param) => {
+      dispatch(profileUser());
+      dispatch(simpanDataPribadi(param));
+    },
+    getDataPribadi: (param) => {
+      dispatch(profileUser());
+      dispatch(fetchUserBytoken());
+    },
+    onSaveDataTrading: async (param) => {
+      dispatch(profileUser());
+      await dispatch(simpanDataExpTrading(param));
+    },
+    getDataTrading: async () => {
+      dispatch(profileUser());
+      await dispatch(getExpTrading());
+    },
+    onSaveDataKekayaan: (param) => {
+      dispatch(profileUser());
+      dispatch(simpanDataKekayaan(param));
+      dispatch(getKekayaan());
+    },
+    onSaveKontakDarurat: (param) => {
+      dispatch(profileUser());
+      dispatch(simpanKontakDarurat(param));
+    },
+    getDataKontakDarurat: async () => {
+      dispatch(profileUser());
+      await dispatch(getKontakDarurat());
+    },
+    onSaveDataPekerjaan: async (param) => {
+      dispatch(profileUser());
+      await dispatch(simpanDataPekerjaan(param));
+    },
+    getDataPekerjaan: async () => {
+      dispatch(profileUser());
+      await dispatch(getPekerjaan());
+    },
+    onSaveAkunBank: async (param) => {
+      dispatch(profileUser());
+      await dispatch(simpanAkunBank(param));
+    },
+    getDataAKunBank: async () => {
+      dispatch(profileUser());
+      await dispatch(getAkunBank());
+    },
+    onSaveDPP: (param) => {
+      dispatch(profileUser());
+      dispatch(simpanDPP(param));
+    },
+    getDPP: async () => {
+      dispatch(profileUser());
+      await dispatch(getDocPribadi());
+    },
+    onUploadKTP: async (param) => {
+      dispatch(fetchUserKTP(param));
+    },
+  };
+};
 export default connect(mapStateToProps, mapDispatchToPros)(Personal);
