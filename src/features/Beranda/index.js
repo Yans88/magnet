@@ -255,7 +255,7 @@ class Beranda extends Component {
                             
                             
 
-                            <div className="w-full bg-hijau-forex rounded-xl text-white pt-3 pb-20 grid grid-cols-1 place-items-center static">
+                            <div className="w-full bg-hijau-forex rounded-xl text-white pt-3 xs:pb-3 lg:pb-20 grid grid-cols-1 place-items-center static">
                             
                                 <div className="mobile-hide w-[18%]  ">
                                     <img src={akun_icon} width="25px" className="float-left" />
@@ -340,8 +340,8 @@ class Beranda extends Component {
 
                                 </div>
 
-                                <div className="mobile-view relative w-[50%]  ">
-                                    <img src={akun_icon} width="25px" className="float-left" />
+                                <div className="mobile-view relative w-[50%] text-center  ">
+                                    <img src={akun_icon} width="25px" className="float-left pl-0" />
                                     <span className="text-lg font-bold">&nbsp;Akun Saya</span>
                                     
                                     

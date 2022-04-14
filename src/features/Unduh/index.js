@@ -25,8 +25,17 @@ export default class Unduh extends Component {
 
                 <section className="content">
                     <div className="container-fluid">
-                        <img src={icon} width="35px" className="float-left mt-3" />
+                        
+                        
+                        <div className="mobile-hide">
+                        <img src={icon} width="35px" className="float-left mt-3" />    
                         <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Unduh</h1>
+                        </div>
+
+                        <div className="mobile-view">
+                        <img src={icon} width="30px" className="float-left mt-3" />    
+                        <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Unduh</h1>
+                        </div>
 
                         <div className="row">
                             <div className="col-12">
@@ -100,21 +109,32 @@ export default class Unduh extends Component {
                                                 <div className="w-full px-3 py-3">
 
                                                     <div className="border px-2 lg:px-5 py-4 rounded-2xl shadow-lg">
-                                                        <h3 style={{ color:'#2DB147' }} className="text-lg">MT5 For Dekstop</h3>
-                                                        <div className="grid grid-cols-1 place-items-center mt-3 w-full" >
+                                                        <div className="text-center">
+                                                        <h3 style={{ color:'#2DB147',fontSize:"20px" }} className="text-lg">MT5 For Dekstop</h3>
+                                                         </div>
 
-                                                            <div className="w-full">
+                                                        <div className="grid grid-cols-2 place-items-center mt-3 w-full" >
+
+                                                            <div className="w-[60%]">
                                                                 <a href="https://download.mql5.com/cdn/web/pt.victory.international/mt5/victoryinternational5setup.exe">
                                                                     <img alt="Windows" width="80px" src="https://new.vifx.co/assets/cabinet/_ui/media/windows_r.png" className="float-left" />
                                                                 </a>
-                                                                <h1 style={{ marginBottom: 10, fontSize: 28, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }} className="mt-3">&nbsp;Windows</h1>
+                                                                
                                                             </div>
 
-                                                            <div className="w-full mt-1 lg:mt-5">
+                                                            <div className="w-[60%]">
                                                                 <a href="https://www.metatrader5.com/en/terminal/help/start_advanced/install_mac" target="_new">
                                                                         <img alt="MAC" width="80px" src="https://new.vifx.co/assets/cabinet/_ui/media/mac_r.png" className="float-left" />
                                                                 </a>
-                                                                <h1 style={{ marginBottom: 10, fontSize: 28, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }} className="mt-3">&nbsp;Mac OS</h1>
+                                                                
+                                                            </div>
+
+                                                            <div className="w-[60%]">
+                                                                <h1 style={{ fontSize: 20, color:"#2E2E2F" }} className="mt-2">&nbsp;Windows</h1>    
+                                                            </div>
+
+                                                            <div className="w-[60%]">
+                                                                <h1 style={{ fontSize: 20, color:"#2E2E2F"}} className="mt-2">&nbsp;Mac OS</h1>    
                                                             </div>
 
                                                         </div>
@@ -126,26 +146,38 @@ export default class Unduh extends Component {
                                                 
                                                 <div className="w-full px-3 py-3">
 
-                                                    <div className="border px-2 lg:px-5  py-4 rounded-2xl shadow-lg">
-                                                        <h3 style={{ color:'#2DB147' }} className="text-lg">MT5 For Mobile</h3>
-                                                        <div className="grid grid-cols-1 place-items-center mt-3 w-full" >
+                                                    <div className="border px-2 lg:px-5 py-4 rounded-2xl shadow-lg">
+                                                        <div className="text-center">
+                                                        <h3 style={{ color:'#2DB147',fontSize:"20px" }} className="text-lg">MT5 For Mobile</h3>
+                                                         </div>
 
-                                                            <div className="w-full">
+                                                        <div className="grid grid-cols-2 place-items-center mt-3 w-full" >
+
+                                                            <div className="w-[60%]">
                                                                 <a href="https://download.mql5.com/cdn/mobile/mt5/android?server=VictoryInternational-DEMO,VictoryInternational-REAL&amp;utm_source=vifxpro.com&amp;utm_campaign=VIFXPRO" target="_new">
                                                                     <img alt="Android" width="80px" src="https://new.vifx.co/assets/cabinet/_ui/media/android_r.png" className="float-left" />
                                                                 </a>
-                                                                <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }} className="mt-3">&nbsp;Android</h1>
+                                                                
                                                             </div>
 
-                                                            <div className="w-full mt-5">
+                                                            <div className="w-[60%]">
                                                                 <a href="https://download.mql5.com/cdn/mobile/mt5/ios?server=VictoryInternational-DEMO,VictoryInternational-REAL&amp;utm_source=vifxpro.com&amp;utm_campaign=VIFXPRO" target="_new">
                                                                         <img alt="IOS" width="80x" src="https://new.vifx.co/assets/cabinet/_ui/media/mac_r.png" className="float-left" />
                                                                 </a>
-                                                                <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }} className="mt-3">&nbsp;iOS</h1>
+                                                                
+                                                            </div>
+
+                                                            <div className="w-[60%]">
+                                                                <h1 style={{ fontSize: 20, color:"#2E2E2F" }} className="mt-2">&nbsp;Android</h1>    
+                                                            </div>
+
+                                                            <div className="w-[30%]">
+                                                                <h1 style={{ fontSize: 20, color:"#2E2E2F"}} className="mt-2">&nbsp;iOS</h1>    
                                                             </div>
 
                                                         </div>
                                                     </div>
+
 
                                                 </div>
 

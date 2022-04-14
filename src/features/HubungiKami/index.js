@@ -81,8 +81,17 @@ class HubungiKami extends Component {
 
                 <section className="content">
                     <div className="container-fluid mt-3">
-                        <img src={icon} width="35px" className="float-left mt-3" />
+                        
+                        
+                        <div className="mobile-hide">
+                        <img src={icon} width="35px" className="float-left mt-3" />    
                         <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Hubungi Kami</h1>
+                        </div>
+
+                        <div className="mobile-view">
+                        <img src={icon} width="25px" className="float-left mt-3" />    
+                        <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Hubungi Kami</h1>
+                        </div>
 
                         <div className="row">
                             <div className="col-12 col-xs-12">
@@ -294,9 +303,9 @@ class HubungiKami extends Component {
                                                                 required
                                                                 placeholder="Masukkan Pesan" />
                                                         </Form.Group>
-                                                        <div className="grid grid-cols-1 mt-0" >
+                                                        <div className="grid grid-cols-2 place-items-center mt-0" >
                                                             
-                                                            <div className="w-[100%] pt-2">
+                                                            <div className="w-[50%] pt-2 col-span-2">
                                                                 <AppButton
                                                                 disabled ={this.state.selected.message && this.state.selected.subjek ? false : true}
                                                                 style={{ color: "#fff", marginTop: 10 }}

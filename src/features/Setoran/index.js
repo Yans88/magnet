@@ -705,7 +705,13 @@ class Setoran extends Component {
                 <section className="content">
                     <div className="container-fluid mt-3">
                         <img src={icon} width="35px" className="float-left mt-3" />
+                        <div className="mobile-hide">
                         <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Setor Dana</h1>
+                        </div>
+
+                        <div className="mobile-view">
+                        <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Setor Dana</h1>
+                        </div>
 
                         <div className="row mt-4">
                             <div className="col-12">
@@ -713,9 +719,8 @@ class Setoran extends Component {
                                 <div className="card card-success shadow-lg" style={{ "minHeight": "500px",borderRadius:"20px" }}>
                                     <div className="card-body">
 
-                                        <div style={{ paddingTop: 5 }} className="px-3">
-                                            <h3 className="label_ijo">Pilih Metode Setor</h3>
-
+                                        <div style={{ paddingTop: 5 }} className="px-0">
+                                            
                                             <div className="my-4 mx-1">
 
                                                 {data_bank ? (

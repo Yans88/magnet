@@ -151,8 +151,13 @@ const Register = () => {
     const frmUser = <Form id="myForm">
         <Form.Group controlId="kode_verifikasi">
             <Form.Label>
-            <span className="text-red-500 text-left text-lg">Verifikasi</span><br/>
-                Silakan masukkan kode aktivasi yang dikirim ke email ? Anda {selected.email}
+                <div className="w-full mb-0 mt-0">
+                    <div className="text-merah-button  text-lg text-center font-normal ">Verifikasi</div>
+                </div>
+
+                <div className="w-full mb-2 mt-2">
+                    <div className="text-black  text-xs text-center font-normal">Silakan masukkan kode aktivasi yang dikirim ke email ? Anda {selected.email}</div>
+                </div>
             </Form.Label>
             {errMsg.kode_verifikasi ?
                 (<span className="float-right text-error badge badge-danger">{errMsg.kode_verifikasi}</span>) : ''}
@@ -170,14 +175,15 @@ const Register = () => {
         <div className="social-auth-links text-center mt-2 mb-3">
             <div className="grid grid-cols-1 gap-0 place-items-center">
             <div className="w-full mb-2">
-                <div className="text-black text-sm ">Belum menerima kode verifikasi?<a href="login" className="text-center italic text-hijau-forex"> Kirim ulang kode aktivasi</a></div>
+                <div className="text-black text-sm ">Belum menerima kode verifikasi?<a href="login" className="text-center italic text-hijau-forex"><br/> Kirim ulang kode aktivasi</a></div>
             </div>    
-            <div className="w-2/4">
+            <div className="w-2/4 mt-2">
                 <Button
                     block
                     onClick={handleSubmit}
                     isLoading={isFetching}
-                    theme="danger"
+                    theme=""
+                    style={{ backgroundColor:"#C1242B",color:"#fff"}}
                 >
                     Lanjut Registrasi
                 </Button>
@@ -362,121 +368,125 @@ const Register = () => {
                 <div className="grid grid-cols-1 gap-0 place-items-center">
                     <div className="login-box ">
 
-                <div className="login-box">
+                <div class="grid grid-cols-1 place-items-center">
                     <div className="card border-white">
-                        <div className="card-header text-center h1 text-red-500 text-lg bg-white border-white grid grid-cols-1 place-items-center mt-4">
-                            <div style={{width:"75%"}}><img src={logoa}/></div>
+                        <div className="card-header text-center h1 text-red-500 text-lg bg-white border-white grid grid-cols-1 place-items-center lg:mt-4">
+                            <div class="grid grid-cols-1 place-items-center">
+                                <img src={logoa} width="60%" />
+                            </div>
                             <div><b><span className="text-merah-button font-bold text-lg">Daftar</span></b></div>
                         </div>
-                        <div className="card-body">
-                            {
+                        <div class="grid grid-cols-1 place-items-center">
+                            <div className="card-body">
+                                {
 
-                                errorMessage ? (
-                                    <div className="alert alert-danger alert-sm" >
-                                        <button onClick={hideAlert} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                        <span className="fw-semi-bold text-error-login">Error: {errorMessage}</span>
-                                    </div>
-                                ) : (<p className='login-box-msg'></p>)}
-
-                            {!isCompleteProfile && !isVerifikasi && !succesCompleteProfile ? (<form onSubmit={formik.handleSubmit}>
-                                {formik.touched.email && formik.errors.email ? (
-                                    <span className="float-right text-error badge badge-danger">{formik.errors.email}</span>
-                                ) : null}
-                                <div className="input-group mb-3" style={{border:"1px solid #B7B7B7",padding:"5px",borderRadius:"5px"}}>
-                                    <div className="input-group-append">
-                                        <div className="input-group-text bg-white border-white">
-                                            <img src={email_icon} width="22px" />
+                                    errorMessage ? (
+                                        <div className="alert alert-danger alert-sm" >
+                                            <button onClick={hideAlert} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            <span className="fw-semi-bold text-error-login">Error: {errorMessage}</span>
                                         </div>
-                                    </div>
-                                    <input
-                                        autoFocus
-                                        autoComplete="off"
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Email"
-                                        style={{backgroundColor:"#fff",border:"0"}}
-                                        {...formik.getFieldProps('email')} />
-                                    
+                                    ) : (<p className='login-box-msg'></p>)}
 
-                                </div>
-
-                                {formik.touched.password &&
-                                    formik.errors.password ? (
-                                    <span className="float-right text-error badge badge-danger">{formik.errors.password}</span>
-                                ) : null}
-                                <div className="input-group mb-3" style={{border:"1px solid #B7B7B7",padding:"5px",borderRadius:"5px"}}>
-                                    <div className="input-group-append">
-                                        <div className="input-group-text bg-white border-white">
-                                            <img src={password_icon} width="22px" />
+                                {!isCompleteProfile && !isVerifikasi && !succesCompleteProfile ? (<form onSubmit={formik.handleSubmit}>
+                                    {formik.touched.email && formik.errors.email ? (
+                                        <span className="float-right text-error badge badge-danger">{formik.errors.email}</span>
+                                    ) : null}
+                                    <div className="input-group mb-3" style={{border:"1px solid #B7B7B7",padding:"5px",borderRadius:"5px"}}>
+                                        <div className="input-group-append">
+                                            <div className="input-group-text bg-white border-white">
+                                                <img src={email_icon} width="22px" />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <input
-                                        autoComplete="off"
-                                        type="password"
-                                        className="form-control"
-                                        placeholder="Password"
-                                        style={{backgroundColor:"#fff",border:"0"}}
-                                        {...formik.getFieldProps('password')} />
-                                    
-                                </div>
-
-                                {formik.touched.konfirmasi_password &&
-                                    formik.errors.konfirmasi_password ? (
-                                    <span className="float-right text-error badge badge-danger">{formik.errors.konfirmasi_password}</span>
-                                ) : null}
-                                <div className="input-group mb-3" style={{border:"1px solid #B7B7B7",padding:"5px",borderRadius:"5px"}}>
-                                <div className="input-group-append">
+                                        <input
+                                            autoFocus
+                                            autoComplete="off"
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Email"
+                                            style={{backgroundColor:"#fff",border:"0"}}
+                                            {...formik.getFieldProps('email')} />
                                         
-                                        <div className="input-group-text bg-white border-white">
-                                            <img src={password_icon} width="22px" />
-                                        </div>
 
                                     </div>
-                                    <input
-                                        autoComplete="off"
-                                        type="password"
-                                        className="form-control"
-                                        placeholder="Password Again"
-                                        style={{backgroundColor:"#fff",border:"0"}}
-                                        {...formik.getFieldProps('konfirmasi_password')} />
-                                    
-                                </div>
-                                <ReCAPTCHA
-                                    hl="id"
-                                    ref={recaptchaRef}
-                                    sitekey="6LfEKfEcAAAAAGH6QCdvmj3wSSzFSyw0dbIoSmpK"
-                                    onChange={handleChangeCaptcha}
-                                    onExpired={handleExpired}
-                                />
-                                <div className="social-auth-links text-center mt-2 mb-3">
-                                    <div className="grid grid-cols-1 gap-0 place-items-center">
-                                        <div className="w-2/4">
-											<Button
-                                                disabled={selected.myCaptcha ? false : true}
-                                                block
-                                                type="submit"
-                                                isLoading={isFetching}
-                                                theme=""
-                                                style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
-                                                
-                                            >
-                                                Lanjut Registrasi
-                                            </Button>
+
+                                    {formik.touched.password &&
+                                        formik.errors.password ? (
+                                        <span className="float-right text-error badge badge-danger">{formik.errors.password}</span>
+                                    ) : null}
+                                    <div className="input-group mb-3" style={{border:"1px solid #B7B7B7",padding:"5px",borderRadius:"5px"}}>
+                                        <div className="input-group-append">
+                                            <div className="input-group-text bg-white border-white">
+                                                <img src={password_icon} width="22px" />
+                                            </div>
+                                        </div>
+                                        <input
+                                            autoComplete="off"
+                                            type="password"
+                                            className="form-control"
+                                            placeholder="Password"
+                                            style={{backgroundColor:"#fff",border:"0"}}
+                                            {...formik.getFieldProps('password')} />
+                                        
+                                    </div>
+
+                                    {formik.touched.konfirmasi_password &&
+                                        formik.errors.konfirmasi_password ? (
+                                        <span className="float-right text-error badge badge-danger">{formik.errors.konfirmasi_password}</span>
+                                    ) : null}
+                                    <div className="input-group mb-3" style={{border:"1px solid #B7B7B7",padding:"5px",borderRadius:"5px"}}>
+                                    <div className="input-group-append">
+                                            
+                                            <div className="input-group-text bg-white border-white">
+                                                <img src={password_icon} width="22px" />
+                                            </div>
 
                                         </div>
+                                        <input
+                                            autoComplete="off"
+                                            type="password"
+                                            className="form-control"
+                                            placeholder="Confirmation Password"
+                                            style={{backgroundColor:"#fff",border:"0"}}
+                                            {...formik.getFieldProps('konfirmasi_password')} />
+                                        
                                     </div>
+                                    <ReCAPTCHA
+                                        hl="id"
+                                        ref={recaptchaRef}
+                                        sitekey="6LfEKfEcAAAAAGH6QCdvmj3wSSzFSyw0dbIoSmpK"
+                                        onChange={handleChangeCaptcha}
+                                        onExpired={handleExpired}
+                                    />
+                                    <div className="social-auth-links text-center mt-2 mb-3">
+                                        <div className="grid grid-cols-1 gap-0 place-items-center">
+                                            <div className="w-2/4">
+                                                <Button
+                                                    disabled={selected.myCaptcha ? false : true}
+                                                    block
+                                                    type="submit"
+                                                    isLoading={isFetching}
+                                                    theme=""
+                                                    style={{ backgroundColor:"#C1242B",color:"#fff",marginRight:"2%"}}
+                                                >
+                                                    Lanjut Registrasi
+                                                </Button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>) : ''}
+                                <div className="text-left">            
+                                {isVerifikasi ? frmUser : ''}
+                                {isCompleteProfile ? frmUser2 : ''}
+                                {succesCompleteProfile ? (<h4><p className='login-box-msg'>Pendaftaran berhasil, <a href="login" className="text-center">Silahkan login</a></p></h4>) : ''}
+                                {!succesCompleteProfile ? (<div className="text-black text-center">Sudah punya akun ? <a href="login" className="text-center font-bold text-hijau-forex">Login</a></div>) : ''}
                                 </div>
-                            </form>) : ''}
-                            <div className="text-left">            
-                            {isVerifikasi ? frmUser : ''}
-                            {isCompleteProfile ? frmUser2 : ''}
-                            {succesCompleteProfile ? (<h4><p className='login-box-msg'>Pendaftaran berhasil, <a href="login" className="text-center">Silahkan login</a></p></h4>) : ''}
-                            {!succesCompleteProfile ? (<div className="text-black text-center">Sudah punya akun ? <a href="login" className="text-center font-bold text-hijau-forex">Login</a></div>) : ''}
+
                             </div>
-
                         </div>
                     </div>
-                </div >
+                </div>
+                
             </div>
             </div>
 

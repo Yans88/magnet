@@ -162,8 +162,10 @@ const Login = () => {
                 <div class="w-full grid grid-cols-2 gap-4">
                         
                         <div className="overflow-hidden col-span-2">
-                                <img src={banner} className="scale-100" />
+                                <img src={banner} className="scale-100 w-[100%]" />
                         </div>
+
+                        
 
                         <div className="col-span-2 lg:col-span-0 grid grid-cols-1 gap-0 place-items-center">
                             
@@ -172,7 +174,10 @@ const Login = () => {
                                 <div className="card  border-white">
                                     <div className="card-header text-center h1 text-red-500 text-lg bg-white border-white">
                                         
-                                        <img src={logoa} />
+                                        
+                                        <div class="grid grid-cols-1 place-items-center">
+                                            <img src={logoa} width="60%" />
+                                        </div>
                                         <b><span className="text-merah-button font-bold text-lg">Login</span></b>
                                     </div>
                                     <div className="card-body">
@@ -225,25 +230,34 @@ const Login = () => {
                                             </div>
 
                                             <div className="social-auth-links text-center mt-2 mb-3">
-                                                <div className="grid grid-cols-4">
-                                                    <div className="col-span-2 text-left pt-1">
+                                                <div className="grid grid-cols-2">
+                                                    
+                                                    <div className="col-span-2 text-right pt-1">
                                                         <span className="text-black font-bold">Lupa Password</span>
                                                     </div>
-                                                    <div className="col-span-1 align-middle pt-1">
-                                                        <a href="register" className="text-center "><span className="text-hijau-forex font-bold">Daftar</span></a>
-                                                    </div>
-                                                    <div className="col-span-1">
-                                                        <Button
-                                                            block
-                                                            type="submit"
-                                                            isLoading={isFetching}
-                                                            className="bg_color_merah"
-                                                            theme=""
-                                                            style={{ backgroundColor:"#C3262A",color:"#fff"}}
 
-                                                        >
-                                                            Login
-                                                        </Button>
+                                                    <div className="grid col-span-2 grid-cols-1 place-items-center mt-4">
+
+                                                        
+                                                        
+                                                        <div className="col-span-2 w-[35%]">
+                                                            <Button
+                                                                block
+                                                                type="submit"
+                                                                isLoading={isFetching}
+                                                                className="bg_color_merah"
+                                                                theme=""
+                                                                style={{ backgroundColor:"#C3262A",color:"#fff"}}
+
+                                                            >
+                                                                Login
+                                                            </Button>
+                                                        </div>
+
+                                                        <div className="col-span-2 align-middle pt-1">
+                                                            <a href="register" className="text-center "><span className="text-hijau-forex font-bold">Daftar</span></a>
+                                                        </div>
+
                                                     </div>
 
                                                 </div>

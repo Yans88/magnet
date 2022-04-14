@@ -285,8 +285,15 @@ class Transfer extends Component {
                     <div className="container-fluid mt-3">
                         
                         <img src={icon} width="35px" className="float-left mt-3" />
-                        <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Transfer Internal</h1>
                         
+                        <div className="mobile-hide">
+                        <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Transfer Internal</h1>
+                        </div>
+
+                        <div className="mobile-view">
+                        <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Transfer Internal</h1>
+                        </div>
+
                         
                         <div className="row mt-4">
                             <div className="col-12">
@@ -295,10 +302,15 @@ class Transfer extends Component {
                                     <div className="card-body">
 
                                         <div style={{ paddingTop: 5 }} className="px-0 lg:px-3">
-                                            <h3 className="label_ijo">Akun Trading MT5</h3>
-                                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-0  py-4">
-                                                
-                                                    <h3 className="form-section text-capitalize" style={{ color:"#2E2E2F" }}>Dari</h3>
+                                            
+                                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-0  py-0">
+                                                    <div className="mobile-hide">
+                                                        <h3 className="form-section text-capitalize" style={{ color:"#2E2E2F" }}>Dari</h3>
+                                                    </div>
+                                                    <div className="mobile-view">
+                                                        <h3 className="form-section text-capitalize" style={{ color:"#2E2E2F",fontSize:"20px" }}>Dari</h3>
+                                                    </div>
+
                                                     <div class="table-responsive">
                                                     <table className="table table-hover">
                                                         <thead>
@@ -362,26 +374,17 @@ class Transfer extends Component {
                                                 <div>
                                                     
                                                 <div className="row">
-                                                        <div className="col-12 col-sm-3 col-md-1"><h3 className="form-section text-capitalize" style={{ color:"#2E2E2F" }}>Tujuan</h3></div>
-                                                        <div className="col-8 col-sm-3 col-md-3 mb-0" style={{ paddingRight:0 }}>
-															
-                                                            <input 
-															disabled = {selected.from && selected.to ? false : true}
-															value = {selected.nominal}
-															onChange={this.handleChange.bind(this)}
-															name="nominal"
-															type="number" placeholder='Jumlah' className="form-control" />
-															{errorMessage ? (<span className="text-error badge badge-danger">{errorMessage}</span>) : ''}
+                                                        <div className="col-12 col-sm-3 col-md-1">
+                                                            
+                                                            <div className="mobile-hide">
+                                                                <h3 className="form-section text-capitalize" style={{ color:"#2E2E2F" }}>Tujuan</h3>
+                                                            </div>
+                                                            <div className="mobile-view">
+                                                                <h3 className="form-section text-capitalize" style={{ color:"#2E2E2F",fontSize:"20px" }}>Tujuan</h3>
+                                                            </div>
+
                                                         </div>
-                                                        <div className=" col-3 col-sm-2 col-md-2 mb-0" style={{ paddingTop:"2px" }}>
-                                                            <AppButton
-																disabled = {selected.nominal >= 10000 ? false : true}
-                                                                style={{ minHeight: 32 }}
-                                                                type="button"
-                                                                size="sm"
-																onClick={this.handleSubmit.bind(this)}
-                                                                theme="success">Transfer</AppButton>
-                                                        </div>
+                                                        
 														
                                                     </div>
 
@@ -444,12 +447,42 @@ class Transfer extends Component {
 
                                                     </div>
 
+                                                    <div className="grid grid-cols-3 place-items-center">                    
+                                                        <div className="col-span-3 col-12" style={{ paddingRight:0 }}>
+                                                                
+                                                            <input 
+                                                            disabled = {selected.from && selected.to ? false : true}
+                                                            value = {selected.nominal}
+                                                            onChange={this.handleChange.bind(this)}
+                                                            name="nominal"
+                                                            type="number" placeholder='Jumlah' className="form-control" />
+                                                            {errorMessage ? (<span className="text-error badge badge-danger">{errorMessage}</span>) : ''}
+                                                        </div>
+                                                        <div className="col-span-3 mt-2" style={{ paddingTop:"2px" }}>
+                                                            <AppButton
+                                                                disabled = {selected.nominal >= 10000 ? false : true}
+                                                                style={{ minHeight: 32 }}
+                                                                type="button"
+                                                                size="lg"
+                                                                onClick={this.handleSubmit.bind(this)}
+                                                                theme="success">Transfer</AppButton>
+                                                        </div>
+                                                    </div>
+
+
                                                 </div>
                                                 
                                             </div>
 
                                             <br />
-                                            <h3 style={{ color:"#2E2E2F" }}>Daftar Transfer Internal</h3>
+                                            
+
+                                            <div className="mobile-hide">
+                                                <h3 style={{ color:"#2E2E2F" }}>Daftar Transfer Internal</h3>
+                                            </div>
+                                            <div className="mobile-view">
+                                            <h3 style={{ color:"#2E2E2F",fontSize:"20px" }}>Daftar Transfer Internal</h3>
+                                            </div>
 
                                             <div className="row mt-3 mb-4">
                                                 <div className="col-md-12 col-12">
