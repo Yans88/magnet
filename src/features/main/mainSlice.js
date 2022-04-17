@@ -119,6 +119,7 @@ export const fetchUserKTP = createAsyncThunk(
         form,
         config
       );
+
       let data = "";
       let _data = await response;
       if (response.status === 200) {
@@ -155,6 +156,10 @@ export const fetchUserKTP = createAsyncThunk(
           });
           const payload = {
             jenis_identitas: "KTP",
+<<<<<<< HEAD
+            data_pribadi_id: param.data_pribadi_id,
+=======
+>>>>>>> origin/master
             no_identitas: myData.nik ? myData.nik : "",
             nama_depan:
               typeof nama[0] !== "undefined" && nama[0] ? nama[0] : myData.nama,
@@ -166,7 +171,11 @@ export const fetchUserKTP = createAsyncThunk(
             jenis_kelamin: myData.jenis_kelamin && jenis_kelamin,
             alamat: myData.alamat && myData.alamat,
             provinsi: myData.provinsi && ucwords(myData.provinsi),
+<<<<<<< HEAD
+            warga_negara: myData.kewarganegaraan == "WNI" ? "Indonesia" : "",
+=======
             warga_negara: myData.kewarganegaraan === "WNI" ? "Indonesia" : "",
+>>>>>>> origin/master
             rw: rw ? rw : "",
             rt: rt ? rt : "",
           };
