@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
-import { getDataPP, chgProps, simpanDataPP } from './ppSlice'
+import { getDataPP, chgProps, simpanDataPP, closeForm } from './ppSlice'
 import phone_red from '../../assets/phone_red.svg';
 import wa_red from '../../assets/wa_red.svg';
 import email_red from '../../assets/email_red.svg';
 import location_red from '../../assets/location.svg';
 import profilecompany from '../../assets/profilecompany.svg';
 import { profileUser } from '../main/mainSlice';
+import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
 
 class ProfilePerusahaan extends Component {
     constructor(props) {
@@ -62,12 +63,17 @@ class ProfilePerusahaan extends Component {
 			const qs = {
 				...this.state,
 				...this.props.persetujuan,
+				data_tipe_akun_id:"dd",
 			}
-            this.props.onSave(qs);
-            this.props.history.push('/');
+            this.props.onSave(qs);           
         } else {
             console.error('Invalid Form')
         }
+    }
+	
+	handleCloseSwal() {
+        this.props.history.push('/');
+        this.props.closeSwal();
     }
 
     render() {
@@ -368,6 +374,13 @@ class ProfilePerusahaan extends Component {
                         </div>
                     </div>
                 </section>
+				{this.props.showFormSuccess ? (<AppSwalSuccess
+                    show={this.props.showFormSuccess}
+                    title={<div dangerouslySetInnerHTML={{ __html: this.props.contentMsg }} />}
+                    type={this.props.tipeSWAL}
+                    handleClose={this.handleCloseSwal.bind(this)}
+                >
+                </AppSwalSuccess>) : ''}
             </div>
 
 
@@ -383,6 +396,9 @@ const mapStateToProps = (state) => ({
     akun_terpisah: state.companyProfile.akun_terpisah || [],
     wakil_pialang: state.companyProfile.wakil_pialang || [],
     persetujuan: state.companyProfile.persetujuan || {},
+	contentMsg: state.companyProfile.contentMsg || null,
+    showFormSuccess: state.companyProfile.showFormSuccess,
+    tipeSWAL: state.companyProfile.tipeSWAL,
     user: state.main.currentUser
 });
 const mapDispatchToPros = (dispatch) => {
@@ -398,7 +414,9 @@ const mapDispatchToPros = (dispatch) => {
         changeProps: (param) => {
             dispatch(chgProps(param));
         },
-
+		closeSwal: () => {
+            dispatch(closeForm());
+        }
     }
 }
 export default connect(mapStateToProps, mapDispatchToPros)(ProfilePerusahaan);

@@ -7,6 +7,7 @@ import akun_icon from '../../assets/akun_white.svg';
 import { Link } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
 import AppModal from '../../components/modal/MyModal';
+import AppModall from '../../components/modal/MyModall';
 import { Button, Form } from 'react-bootstrap';
 
 class Beranda extends Component {
@@ -128,6 +129,11 @@ class Beranda extends Component {
         }
 
     }
+	
+	handleSubmit3 = async () => {
+        this.props.history.push('/personal');
+
+    }
 
     validateForm(errors) {
         let valid = true;
@@ -240,7 +246,7 @@ class Beranda extends Component {
     <div
       dangerouslySetInnerHTML={{
         __html:
-          '<div id="caption" style="padding-bottom:20px; text-align:left;">Nasabah yang terhormat, selamat datang di Magnet, Kami sangat senang anda bergabung bersama kami, agar bisa segera memulai silahkan lengkapi data pribadi anda. Data ini diperlukan sebagai persyaratan resmi dalam pembukaan rekening.<p style="color:red;margin-top:10px;">Dear valued customer, Welcome to Magnet, We are glad to you join us, in order for you to start, please complete your personal data. this data is needed as a requirement in opening an account.</p></div>',
+          '<div id="caption" style="padding-bottom:20px; text-align:left;">Nasabah yang terhormat, selamat datang di Magnet, Kami sangat senang anda bergabung bersama kami, agar bisa segera memulai silahkan lengkapi data pribadi anda. Data ini diperlukan sebagai persyaratan resmi dalam pembukaan rekening.</div>',
       }}
     />
   );
@@ -287,12 +293,18 @@ class Beranda extends Component {
                                 
 
                                 <div className="mobile-hide absolute mt-[32rem] bg-white text-black text-center rounded-2xl shadow-lg  py-10 w-3/4 ..." >
+<<<<<<< HEAD
                                     <div className="w-full bg-hijau-forex rounded-xl text-white pt-3 pb-3 pb-20 grid grid-cols-1 place-items-center static">
                                         <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
                                             <span className="font-bold text-black">BUAT AKUN TRADING BARU</span>
                                         </Link>
                                     </div>
 
+=======
+                                    {akun_trading.length > 0 && <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
+                                        <span className="font-bold text-black">BUAT AKUN TRADING BARU</span>
+                                    </Link>}
+>>>>>>> 3b83be5 (update 170422 5jam)
                                         <div className="grid grid-cols-3 gap-4 px-5  mt-2">
 
                                                 {akun_trading ? (
@@ -575,18 +587,18 @@ class Beranda extends Component {
                     handleClose={this.handleClose.bind(this)}
                     isLoading={this.props.isAddLoading ? this.props.isAddLoading : this.state.loadingForm}
                     formSubmit={this.handleSubmit2.bind(this)} />
-				 <AppModal
+				 <AppModall
 					show={myStatusDokumen}
 					size="sm"
 					form={contentDelete}
 					handleClose={this.handleClose.bind(this)}
 					backdrop="static"
-					keyboard={false}
-					noBtnAction={true}					
+					keyboard={false}										
 					title="Status"
-					titleButton="Delete"
-					themeButton="danger"
-				  ></AppModal>
+					formSubmit={this.handleSubmit3.bind(this)}
+					titleButton="Lengkapi"
+					themeButton="warning"
+				  ></AppModall>
             </div>
 
 

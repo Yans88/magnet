@@ -199,6 +199,24 @@ export const ppSlice = createSlice({
         [action_contact_us.pending]: (state) => {
             state.errorMessage = '';
         },
+		[simpanDataPP.fulfilled]: (state, { payload }) => {
+			console.log(payload);
+            state.isFetching = false;      
+            state.isError = false;      
+            state.errorMessage = payload.message;
+			state.showFormSuccess = true;
+            state.contentMsg = "<div style='font-size:20px; text-align:center; line-height:23px;'>Data Anda Akan Kami Verifikasi, Wakil Pialang Kami akan menghubungi anda dengan nomor 0878-3535-5526</div>";
+            state.tipeSWAL = "success";
+            return state;
+        },
+        [simpanDataPP.rejected]: (state, { payload }) => {            
+            state.isFetching = false;
+            state.isError = true;
+            state.errorMessage = payload.message;
+        },
+        [simpanDataPP.pending]: (state) => {
+            state.errorMessage = '';
+        },
     }
 })
 

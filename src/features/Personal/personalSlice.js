@@ -497,9 +497,9 @@ export const getAkunBank = createAsyncThunk(
                     let data = response.data;
                     if (data.error_message === 0) {
                         let payload = {
-                            ...data.payload,
-                            agreement6: data.payload.akun_bank_id ? "Y" : 'N'
-                        }
+							...data.payload,
+							agreement6: data.payload ? "Y" : 'N'
+						}
                         if (data.payload === '') {
                             payload = {
                                 akun_bank_id: '',
