@@ -279,11 +279,7 @@ class Personal extends Component {
       };
       this.props.onUploadKTP(dtKTP);
       await this.sleep(5500);
-<<<<<<< HEAD
 
-=======
-      console.log(this.props.user);
->>>>>>> origin/master
       errors.nama_depan = !this.props.user.nama_depan
         ? "Kolom ini harus diisi"
         : "";
@@ -2110,20 +2106,6 @@ class Personal extends Component {
                                   ""
                                 )}
                               </Form.Group>
-<<<<<<< HEAD
-
-                              <Form.Group
-                                as={Col}
-                                xs={12}
-                                lg={6}
-                                controlId="lokasi"
-                              >
-                                <Form.Control
-                                  value={
-                                    dataKekayaan.lokasi
-                                      ? dataKekayaan.lokasi
-                                      : ""
-=======
 
                               <Form.Group
                                 as={Col}
@@ -2162,23 +2144,11 @@ class Personal extends Component {
                                 <NumberFormat
                                   value={
                                     dataKekayaan.njop ? dataKekayaan.njop : ""
->>>>>>> origin/master
                                   }
                                   autoComplete="off"
                                   onChange={this.handleChangeKekayaan.bind(
                                     this
                                   )}
-<<<<<<< HEAD
-                                  size="lg"
-                                  name="lokasi"
-                                  type="text"
-                                  required
-                                  placeholder="Lokasi"
-                                />
-                                {errMsg3.lokasi ? (
-                                  <span className="text-error badge badge-danger">
-                                    {errMsg3.lokasi}
-=======
                                   className="form-control form-control-lg"
                                   size="lg"
                                   name="njop"
@@ -2190,63 +2160,11 @@ class Personal extends Component {
                                 {errMsg3.njop ? (
                                   <span className="text-error badge badge-danger">
                                     {errMsg3.njop}
->>>>>>> origin/master
                                   </span>
                                 ) : (
                                   ""
                                 )}
                               </Form.Group>
-<<<<<<< HEAD
-                            </Form.Row>
-
-                            <Form.Row>
-                              <Form.Group as={Col} controlId="njop">
-                                <NumberFormat
-                                  value={
-                                    dataKekayaan.njop ? dataKekayaan.njop : ""
-=======
-
-                              <Form.Group as={Col} controlId="deposit_bank">
-                                <NumberFormat
-                                  value={
-                                    dataKekayaan.deposit_bank
-                                      ? dataKekayaan.deposit_bank
-                                      : ""
->>>>>>> origin/master
-                                  }
-                                  autoComplete="off"
-                                  onChange={this.handleChangeKekayaan.bind(
-                                    this
-                                  )}
-                                  className="form-control form-control-lg"
-                                  size="lg"
-<<<<<<< HEAD
-                                  name="njop"
-                                  thousandSeparator={true}
-                                  decimalScale={2}
-                                  inputMode="numeric"
-                                  placeholder="Nilai NJOP Rumah"
-                                />
-                                {errMsg3.njop ? (
-                                  <span className="text-error badge badge-danger">
-                                    {errMsg3.njop}
-=======
-                                  name="deposit_bank"
-                                  thousandSeparator={true}
-                                  decimalScale={2}
-                                  inputMode="numeric"
-                                  placeholder="Deposit Bank"
-                                />
-                                {errMsg3.deposit_bank ? (
-                                  <span className="text-error badge badge-danger">
-                                    {errMsg3.deposit_bank}
->>>>>>> origin/master
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
-                              </Form.Group>
-<<<<<<< HEAD
 
                               <Form.Group as={Col} controlId="deposit_bank">
                                 <NumberFormat
@@ -2277,10 +2195,6 @@ class Personal extends Component {
                               </Form.Group>
                             </Form.Row>
 
-=======
-                            </Form.Row>
-
->>>>>>> origin/master
                             <Form.Row>
                               <Form.Group
                                 as={Col}
