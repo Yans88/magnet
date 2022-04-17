@@ -157,11 +157,11 @@ class Personal extends Component {
     if (name === "agreement1") {
       value = evt.target.checked ? 1 : 0;
     }
-	if(name === "jenis_identitas"){
-		dt["key"] = "no_identitas";
-		dt["value"] = '';
-		this.props.changeProps(dt);
-	}
+    if (name === "jenis_identitas") {
+      dt["key"] = "no_identitas";
+      dt["value"] = "";
+      this.props.changeProps(dt);
+    }
     dt["key"] = name;
     dt["value"] = value;
     this.props.changeProps(dt);
@@ -259,7 +259,7 @@ class Personal extends Component {
   handleChangePhoto = async (evt) => {
     const name = evt.target.name;
     const value = evt.target.files[0];
-	var errors = this.state.errMsg1;
+    var errors = this.state.errMsg1;
     if (name === "KTP") {
       const compress = new Compress();
       const resizedImage = await compress.compress([value], {
@@ -277,56 +277,58 @@ class Personal extends Component {
         file: value,
       };
       this.props.onUploadKTP(dtKTP);
-	  await this.sleep(5500);
-		console.log(this.props.user);
-		errors.nama_depan = !this.props.user.nama_depan
-		  ? "Kolom ini harus diisi"
-		  : "";
-		errors.tempat_lahir = !this.props.user.tempat_lahir
-		  ? "Kolom ini harus diisi"
-		  : "";
-		errors.kota_lahir = !this.props.user.kota_lahir
-		  ? "Kolom ini harus diisi"
-		  : "";
-		errors.tanggal_lahir = !this.props.user.tanggal_lahir
-		  ? "Kolom ini harus diisi"
-		  : "";
-		errors.jenis_identitas = !this.props.user.jenis_identitas
-		  ? "Kolom ini harus diisi"
-		  : "";
-		errors.no_identitas = !this.props.user.no_identitas
-		  ? "Kolom ini harus diisi"
-		  : "";
-		errors.npwp = !this.props.user.npwp ? "Kolom ini harus diisi" : "";
-		errors.jenis_kelamin = !this.props.user.jenis_kelamin
-		  ? "Kolom ini harus diisi"
-		  : "";
-		errors.status_pernikahan = !this.props.user.status_pernikahan
-		  ? "Kolom ini harus diisi"
-		  : "";
-		errors.nama_pasangan =
-		  !this.props.user.nama_pasangan &&
-		  this.props.user.status_pernikahan === "Kawin"
-			? "Kolom ini harus diisi"
-			: "";
-		errors.nama_ibu_kandung = !this.props.user.nama_ibu_kandung
-		  ? "Kolom ini harus diisi"
-		  : "";
-		errors.alamat = !this.props.user.alamat ? "Kolom ini harus diisi" : "";
-		errors.rt = !this.props.user.rt ? "Kolom ini harus diisi" : "";
-		errors.rw = !this.props.user.rw ? "Kolom ini harus diisi" : "";
-		errors.provinsi = !this.props.user.provinsi ? "Kolom ini harus diisi" : "";
-		errors.warga_negara = !this.props.user.warga_negara
-		  ? "Kolom ini harus diisi"
-		  : "";
-		errors.telp = !this.props.user.telp ? "Kolom ini harus diisi" : "";
-		errors.handphone = !this.props.user.handphone
-		  ? "Kolom ini harus diisi"
-		  : "";
-		errors.status_kepemilikan = !this.props.user.status_kepemilikan
-		  ? "Kolom ini harus diisi"
-		  : "";
-		this.setState({ errors });
+      await this.sleep(5500);
+      console.log(this.props.user);
+      errors.nama_depan = !this.props.user.nama_depan
+        ? "Kolom ini harus diisi"
+        : "";
+      errors.tempat_lahir = !this.props.user.tempat_lahir
+        ? "Kolom ini harus diisi"
+        : "";
+      errors.kota_lahir = !this.props.user.kota_lahir
+        ? "Kolom ini harus diisi"
+        : "";
+      errors.tanggal_lahir = !this.props.user.tanggal_lahir
+        ? "Kolom ini harus diisi"
+        : "";
+      errors.jenis_identitas = !this.props.user.jenis_identitas
+        ? "Kolom ini harus diisi"
+        : "";
+      errors.no_identitas = !this.props.user.no_identitas
+        ? "Kolom ini harus diisi"
+        : "";
+      errors.npwp = !this.props.user.npwp ? "Kolom ini harus diisi" : "";
+      errors.jenis_kelamin = !this.props.user.jenis_kelamin
+        ? "Kolom ini harus diisi"
+        : "";
+      errors.status_pernikahan = !this.props.user.status_pernikahan
+        ? "Kolom ini harus diisi"
+        : "";
+      errors.nama_pasangan =
+        !this.props.user.nama_pasangan &&
+        this.props.user.status_pernikahan === "Kawin"
+          ? "Kolom ini harus diisi"
+          : "";
+      errors.nama_ibu_kandung = !this.props.user.nama_ibu_kandung
+        ? "Kolom ini harus diisi"
+        : "";
+      errors.alamat = !this.props.user.alamat ? "Kolom ini harus diisi" : "";
+      errors.rt = !this.props.user.rt ? "Kolom ini harus diisi" : "";
+      errors.rw = !this.props.user.rw ? "Kolom ini harus diisi" : "";
+      errors.provinsi = !this.props.user.provinsi
+        ? "Kolom ini harus diisi"
+        : "";
+      errors.warga_negara = !this.props.user.warga_negara
+        ? "Kolom ini harus diisi"
+        : "";
+      errors.telp = !this.props.user.telp ? "Kolom ini harus diisi" : "";
+      errors.handphone = !this.props.user.handphone
+        ? "Kolom ini harus diisi"
+        : "";
+      errors.status_kepemilikan = !this.props.user.status_kepemilikan
+        ? "Kolom ini harus diisi"
+        : "";
+      this.setState({ errors });
     }
 
     if (value) {
@@ -336,7 +338,7 @@ class Personal extends Component {
       };
       this.props.uploadFile(dt);
       await this.sleep(2000);
-	  this.props.getDPP();
+      this.props.getDPP();
     }
   };
 
@@ -367,7 +369,6 @@ class Personal extends Component {
   }
 
   validateForm(errors) {
-	  
     let valid = true;
     Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
     return valid;
@@ -430,10 +431,10 @@ class Personal extends Component {
 
     this.setState({ errors });
     if (this.validateForm(this.state.errMsg1)) {
-		const saveData = {
+      const saveData = {
         ...this.props.user,
-        data_pribadi_id : this.props.user.data_pribadi_id,
-        agree : 'Y',
+        data_pribadi_id: this.props.user.data_pribadi_id,
+        agree: "Y",
       };
       this.props.onSaveDataPribadi(saveData);
       await this.sleep(150);
@@ -760,7 +761,6 @@ class Personal extends Component {
         }}
       />
     );
-    
 
     return (
       <div className="content-wrapper">
@@ -879,7 +879,11 @@ class Personal extends Component {
                         onSelect={this.handleSelect.bind(this)}
                         active={active_tab === "exp_trading" ? true : false}
                         className="default"
-						disabled={user.data_pribadi_id && user.agree === 'Y' ? false : true}
+                        disabled={
+                          user.data_pribadi_id && user.agree === "Y"
+                            ? false
+                            : true
+                        }
                       >
                         Pengalaman Trading
                       </Nav.Item>
@@ -888,7 +892,9 @@ class Personal extends Component {
                         active={active_tab === "kekayaan" ? true : false}
                         eventKey="kekayaan"
                         className="default"
-						disabled={dataExpTrading.pengalaman_trading_id ? false : true}
+                        disabled={
+                          dataExpTrading.pengalaman_trading_id ? false : true
+                        }
                       >
                         Kekayaan Pribadi
                       </Nav.Item>
@@ -897,7 +903,7 @@ class Personal extends Component {
                         active={active_tab === "kontak_darurat" ? true : false}
                         eventKey="kontak_darurat"
                         className="default"
-						disabled={dataKekayaan.kekayaan_id ? false : true}
+                        disabled={dataKekayaan.kekayaan_id ? false : true}
                       >
                         Kontak Darurat
                       </Nav.Item>
@@ -906,7 +912,7 @@ class Personal extends Component {
                         active={active_tab === "pekerjaan" ? true : false}
                         eventKey="pekerjaan"
                         className="default"
-						disabled={dataKontakDarurat.kontak_id ? false : true}
+                        disabled={dataKontakDarurat.kontak_id ? false : true}
                       >
                         Pekerjaan
                       </Nav.Item>
@@ -915,7 +921,7 @@ class Personal extends Component {
                         active={active_tab === "detil_bank" ? true : false}
                         eventKey="detil_bank"
                         className="default"
-						disabled={dataPekerjaan.pekerjaan_id ? false : true}
+                        disabled={dataPekerjaan.pekerjaan_id ? false : true}
                       >
                         Detil Bank
                       </Nav.Item>
@@ -924,7 +930,7 @@ class Personal extends Component {
                         active={active_tab === "unggah_file" ? true : false}
                         eventKey="unggah_file"
                         className="default"
-						disabled={dataBank.length > 0 ? false : true}
+                        disabled={dataBank.length > 0 ? false : true}
                       >
                         Unggah Dokumen
                       </Nav.Item>
@@ -966,1251 +972,2304 @@ class Personal extends Component {
                             <br />
 
                             <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="nama_depan">
-                                                            
-                                                            <Form.Control
-                                                                value={user.nama_depan ? user.nama_depan : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChange}
-                                                                size="lg"
-                                                                name="nama_depan"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Nama Depan" />
-                                                            {errMsg1.nama_depan ? (<span className="text-error badge badge-danger">{errMsg1.nama_depan}</span>) : ''}
-                                                        </Form.Group>
-                                                        <Form.Group as={Col} controlId="nama_belakang">
-                                                            
-                                                            <Form.Control
-                                                                value={user.nama_belakang ? user.nama_belakang : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChange}
-                                                                size="lg"
-                                                                name="nama_belakang"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Nama Belakang" />
-                                                        </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="tempat_lahir">
-                                                            <Form.Control
-                                                                name="tempat_lahir"
-                                                                size="lg"
-                                                                value={user.tempat_lahir ? user.tempat_lahir : ''}
-                                                                onChange={this.handleChange}
-                                                                as="select">
-                                                                <option value="">Provinsi</option>
-                                                                {dataProvinsi ? (
-                                                                    dataProvinsi.map(function (prov) {
-                                                                        return <option
-                                                                            value={prov.nama_provinsi}
-                                                                            key={prov.provinsi_id}>{prov.nama_provinsi}
-                                                                        </option>
-                                                                    })
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="nama_depan"
+                              >
+                                <Form.Control
+                                  value={user.nama_depan ? user.nama_depan : ""}
+                                  autoComplete="off"
+                                  onChange={this.handleChange}
+                                  size="lg"
+                                  name="nama_depan"
+                                  type="text"
+                                  required
+                                  placeholder="Nama Depan"
+                                />
+                                {errMsg1.nama_depan ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.nama_depan}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                              <Form.Group as={Col} controlId="nama_belakang">
+                                <Form.Control
+                                  value={
+                                    user.nama_belakang ? user.nama_belakang : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChange}
+                                  size="lg"
+                                  name="nama_belakang"
+                                  type="text"
+                                  required
+                                  placeholder="Nama Belakang"
+                                />
+                              </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="tempat_lahir"
+                              >
+                                <Form.Control
+                                  name="tempat_lahir"
+                                  size="lg"
+                                  value={
+                                    user.tempat_lahir ? user.tempat_lahir : ""
+                                  }
+                                  onChange={this.handleChange}
+                                  as="select"
+                                >
+                                  <option value="">Provinsi</option>
+                                  {dataProvinsi
+                                    ? dataProvinsi.map(function (prov) {
+                                        return (
+                                          <option
+                                            value={prov.nama_provinsi}
+                                            key={prov.provinsi_id}
+                                          >
+                                            {prov.nama_provinsi}
+                                          </option>
+                                        );
+                                      })
+                                    : ""}
+                                  <option value="Lainnya(Others)">
+                                    Lainnya(Others)
+                                  </option>
+                                </Form.Control>
+                                {errMsg1.tempat_lahir ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.tempat_lahir}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="kota_lahir"
+                              >
+                                <Form.Control
+                                  value={user.kota_lahir ? user.kota_lahir : ""}
+                                  autoComplete="off"
+                                  onChange={this.handleChange}
+                                  size="lg"
+                                  name="kota_lahir"
+                                  type="text"
+                                  required
+                                  placeholder="Kota Kelahiran Sesuai Dengan Identitas"
+                                />
+                                {errMsg1.kota_lahir ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.kota_lahir}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={3}
+                                controlId="tanggal_lahir"
+                              >
+                                <Datetime
+                                  closeOnSelect={true}
+                                  timeFormat={false}
+                                  setViewDate={
+                                    user.tanggal_lahir
+                                      ? new Date(user.tanggal_lahir)
+                                      : new Date()
+                                  }
+                                  value={
+                                    user.tanggal_lahir
+                                      ? new Date(user.tanggal_lahir)
+                                      : ""
+                                  }
+                                  onChange={this.handleChangeStartDate}
+                                  inputProps={{
+                                    readOnly: true,
+                                    autoComplete: "off",
+                                    placeholder: "Tanggal Lahir",
+                                    name: "tanggal_lahir",
+                                    className: "form-control form-control-lg",
+                                  }}
+                                  renderView={(
+                                    mode,
+                                    renderDefault,
+                                    tanggal_lahir
+                                  ) =>
+                                    this.renderView(
+                                      mode,
+                                      renderDefault,
+                                      "tanggal_lahir"
+                                    )
+                                  }
+                                  locale="id"
+                                  isValidDate={this.state.validSd}
+                                />
+                                {errMsg1.tanggal_lahir ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.tanggal_lahir}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={3}
+                                controlId="jenis_identitas"
+                              >
+                                <Form.Control
+                                  name="jenis_identitas"
+                                  size="lg"
+                                  value={
+                                    user.jenis_identitas
+                                      ? user.jenis_identitas
+                                      : ""
+                                  }
+                                  onChange={this.handleChange}
+                                  as="select"
+                                >
+                                  <option value="">Nomor identifikasi</option>
+                                  <option value="KTP">KTP</option>
+                                  <option value="SIM">SIM</option>
+                                  <option value="Passpor">Passport</option>
+                                </Form.Control>
+                                {errMsg1.jenis_identitas ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.jenis_identitas}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={3}
+                                controlId="no_identitas"
+                              >
+                                <Form.Control
+                                  maxLength={
+                                    user.jenis_identitas === "KTP"
+                                      ? "16"
+                                      : user.jenis_identitas === "SIM"
+                                      ? "15"
+                                      : user.jenis_identitas === "Passpor"
+                                      ? "20"
+                                      : ""
+                                  }
+                                  value={
+                                    user.no_identitas ? user.no_identitas : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChange}
+                                  size="lg"
+                                  name="no_identitas"
+                                  type="text"
+                                  placeholder="No Identitas"
+                                  required
+                                />
+                                {errMsg1.no_identitas ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.no_identitas}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                            </Form.Row>
 
-                                                                ) : ''}
-                                                                <option value="Lainnya(Others)">Lainnya(Others)</option>
-                                                            </Form.Control>
-                                                            {errMsg1.tempat_lahir ? (<span className="text-error badge badge-danger">{errMsg1.tempat_lahir}</span>) : ''}
-                                                        </Form.Group>
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="kota_lahir">
-                                                            
-                                                            <Form.Control
-                                                                value={user.kota_lahir ? user.kota_lahir : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChange}
-                                                                size="lg"
-                                                                name="kota_lahir"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Kota Kelahiran Sesuai Dengan Identitas" />
-                                                            {errMsg1.kota_lahir ? (<span className="text-error badge badge-danger">{errMsg1.kota_lahir}</span>) : ''}
-                                                        </Form.Group>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={2}
+                                controlId="jenis_kelamin"
+                              >
+                                <Form.Label>Jenis Kelamin</Form.Label>
+                                <br />
+                                <Form.Check
+                                  onChange={this.handleChange}
+                                  inline
+                                  checked={
+                                    user.jenis_kelamin === "Laki-Laki"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                  value="Laki-Laki"
+                                  type="radio"
+                                  name="jenis_kelamin"
+                                  label="Laki-laki"
+                                />
+                                <Form.Check
+                                  onChange={this.handleChange}
+                                  inline
+                                  value="Perempuan"
+                                  type="radio"
+                                  checked={
+                                    user.jenis_kelamin === "Perempuan"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                  name="jenis_kelamin"
+                                  label="Perempuan"
+                                />
+                                {errMsg1.jenis_kelamin ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.jenis_kelamin}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
 
-                                                    </Form.Row>
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={3} controlId="tanggal_lahir">
-                                                            
-                                                            <Datetime
-                                                                closeOnSelect={true}
-                                                                timeFormat={false}
-                                                                setViewDate={user.tanggal_lahir ? (new Date(user.tanggal_lahir)) : new Date()}
-                                                                value={user.tanggal_lahir ? (new Date(user.tanggal_lahir)) : ''}
-                                                                onChange={this.handleChangeStartDate}
-                                                                inputProps={{
-                                                                    readOnly: true,
-                                                                    autoComplete: "off",
-                                                                    placeholder: 'Tanggal Lahir',
-                                                                    name: 'tanggal_lahir',
-                                                                    className: 'form-control form-control-lg'
-                                                                }}
-                                                                renderView={(mode, renderDefault, tanggal_lahir) =>
-                                                                    this.renderView(mode, renderDefault, 'tanggal_lahir')
-                                                                }
-                                                                locale="id" isValidDate={this.state.validSd}
-                                                            />
-                                                            {errMsg1.tanggal_lahir ? (<span className="text-error badge badge-danger">{errMsg1.tanggal_lahir}</span>) : ''}
-                                                        </Form.Group>
-                                                        <Form.Group as={Col} xs={12} lg={3}  controlId="jenis_identitas">
-                                                            <Form.Control
-                                                                name="jenis_identitas"
-                                                                size="lg"
-                                                                value={user.jenis_identitas ? user.jenis_identitas : ''}
-                                                                onChange={this.handleChange}
-                                                                as="select">
-                                                                <option value="">Nomor identifikasi</option>
-                                                                <option value="KTP">KTP</option>
-                                                                <option value="SIM">SIM</option>
-                                                                <option value="Passpor">Passport</option>
-                                                            </Form.Control>
-                                                            {errMsg1.jenis_identitas ? (<span className="text-error badge badge-danger">{errMsg1.jenis_identitas}</span>) : ''}
-                                                        </Form.Group>
-                                                        <Form.Group as={Col}  xs={12} lg={3} controlId="no_identitas">
+                              <Form.Group as={Col} lg={4} controlId="handphone">
+                                <NumberFormat
+                                  value={user.handphone ? user.handphone : ""}
+                                  autoComplete="off"
+                                  onChange={this.handleChange}
+                                  className="form-control form-control-lg"
+                                  size="lg"
+                                  name="handphone"
+                                  thousandSeparator={false}
+                                  decimalScale={0}
+                                  inputMode="numeric"
+                                  required
+                                  placeholder="No Handphone"
+                                />
 
-                                                            <Form.Control
-                                                                maxLength={user.jenis_identitas === "KTP" ? "16" : user.jenis_identitas === "SIM" ? "15" : user.jenis_identitas === "Passpor" ? "20" : ''}
-                                                                value={user.no_identitas ? user.no_identitas : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChange}
-                                                                size="lg"
-                                                                name="no_identitas"
-                                                                type="text"
-                                                                placeholder="No Identitas"
-                                                                required
-                                                            />
-                                                            {errMsg1.no_identitas ? (<span className="text-error badge badge-danger">{errMsg1.no_identitas}</span>) : ''}
-                                                        </Form.Group>
-                                                    </Form.Row>
-                                                   
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={2} controlId="jenis_kelamin">
-                                                            <Form.Label>Jenis Kelamin</Form.Label><br />
-                                                            <Form.Check
-                                                                onChange={this.handleChange}
-                                                                inline
-                                                                checked={user.jenis_kelamin === 'Laki-Laki' ? ("checked") : ""}
-                                                                value='Laki-Laki'
-                                                                type='radio'
-                                                                name='jenis_kelamin'
-                                                                label='Laki-laki'
-                                                            />
-                                                            <Form.Check
-                                                                onChange={this.handleChange}
-                                                                inline
-                                                                value='Perempuan'
-                                                                type='radio'
-                                                                checked={user.jenis_kelamin === 'Perempuan' ? ("checked") : ""}
-                                                                name='jenis_kelamin'
-                                                                label='Perempuan'
-                                                            />
-                                                            {errMsg1.jenis_kelamin ? (<span className="text-error badge badge-danger">{errMsg1.jenis_kelamin}</span>) : ''}
-                                                        </Form.Group>
+                                {errMsg1.handphone ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.handphone}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                            </Form.Row>
 
-														
-                                                        <Form.Group as={Col} lg={4} controlId="handphone">
-															<NumberFormat
-                                                                value={user.handphone ? user.handphone : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChange}
-                                                                className="form-control form-control-lg"
-                                                                size="lg"
-                                                                name="handphone"
-                                                                thousandSeparator={false}
-                                                                decimalScale={0}
-                                                                inputMode="numeric"
-																required
-                                                                placeholder="No Handphone" />
-                                                            
-																 {errMsg1.handphone ? (<span className="text-error badge badge-danger">{errMsg1.handphone}</span>) : ''}
-                                                        </Form.Group>
+                            <Form.Row>
+                              <Form.Group as={Col} controlId="alamat">
+                                <Form.Control
+                                  value={user.alamat ? user.alamat : ""}
+                                  autoComplete="off"
+                                  onChange={this.handleChange}
+                                  size="lg"
+                                  name="alamat"
+                                  type="textarea"
+                                  required
+                                  placeholder="Alamat"
+                                />
+                                {errMsg1.alamat ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.alamat}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={2}
+                                controlId="rt"
+                              >
+                                <NumberFormat
+                                  value={user.rt ? user.rt : ""}
+                                  autoComplete="off"
+                                  onChange={this.handleChange}
+                                  className="form-control form-control-lg"
+                                  size="lg"
+                                  name="rt"
+                                  thousandSeparator={false}
+                                  decimalScale={0}
+                                  inputMode="numeric"
+                                  required
+                                  placeholder="RT"
+                                />
 
+                                {errMsg1.rt ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.rt}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={2}
+                                controlId="rw"
+                              >
+                                <NumberFormat
+                                  value={user.rw ? user.rw : ""}
+                                  autoComplete="off"
+                                  onChange={this.handleChange}
+                                  className="form-control form-control-lg"
+                                  size="lg"
+                                  name="rw"
+                                  thousandSeparator={false}
+                                  decimalScale={0}
+                                  inputMode="numeric"
+                                  required
+                                  placeholder="RW"
+                                />
 
-                                                    </Form.Row>
-                                                    
-                                                    
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} controlId="alamat">
-                                                            <Form.Control
-                                                                value={user.alamat ? user.alamat : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChange}
-                                                                size="lg"
-                                                                name="alamat"
-                                                                type="textarea"
-                                                                required
-                                                                placeholder="Alamat" />
-                                                            {errMsg1.alamat ? (<span className="text-error badge badge-danger">{errMsg1.alamat}</span>) : ''}
-                                                        </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={2} controlId="rt">
-															<NumberFormat
-                                                                value={user.rt ? user.rt : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChange}
-                                                                className="form-control form-control-lg"
-                                                                size="lg"
-                                                                name="rt"
-                                                                thousandSeparator={false}
-                                                                decimalScale={0}
-                                                                inputMode="numeric"
-																required
-                                                                placeholder="RT" />															
-                                                            
-                                                            {errMsg1.rt ? (<span className="text-error badge badge-danger">{errMsg1.rt}</span>) : ''}
-                                                        </Form.Group>
-                                                        <Form.Group as={Col} xs={12} lg={2} controlId="rw">
-															<NumberFormat
-                                                                value={user.rw ? user.rw : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChange}
-                                                                className="form-control form-control-lg"
-                                                                size="lg"
-                                                                name="rw"
-                                                                thousandSeparator={false}
-                                                                decimalScale={0}
-                                                                inputMode="numeric"
-																required
-                                                                placeholder="RW" />															
-                                                            
-                                                            {errMsg1.rw ? (<span className="text-error badge badge-danger">{errMsg1.rw}</span>) : ''}
-                                                        </Form.Group>
-                                                        <Form.Group as={Col} xs={12} lg={3} controlId="provinsi">
-                                                            <Form.Control
-                                                                name="provinsi"
-                                                                size="lg"
-                                                                value={user.provinsi ? user.provinsi : ''}
-                                                                onChange={this.handleChange}
-                                                                as="select">
-                                                                <option value="">Kota</option>
-                                                                {dataProvinsi ? (
-                                                                    dataProvinsi.map(function (prov) {
-                                                                        return <option
-                                                                            value={prov.nama_provinsi}
-                                                                            key={prov.provinsi_id}>{prov.nama_provinsi}
-                                                                        </option>
-                                                                    })
+                                {errMsg1.rw ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.rw}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={3}
+                                controlId="provinsi"
+                              >
+                                <Form.Control
+                                  name="provinsi"
+                                  size="lg"
+                                  value={user.provinsi ? user.provinsi : ""}
+                                  onChange={this.handleChange}
+                                  as="select"
+                                >
+                                  <option value="">Kota</option>
+                                  {dataProvinsi
+                                    ? dataProvinsi.map(function (prov) {
+                                        return (
+                                          <option
+                                            value={prov.nama_provinsi}
+                                            key={prov.provinsi_id}
+                                          >
+                                            {prov.nama_provinsi}
+                                          </option>
+                                        );
+                                      })
+                                    : ""}
+                                  <option value="Lainnya(Others)">
+                                    Lainnya(Others)
+                                  </option>
+                                </Form.Control>
+                                {errMsg1.provinsi ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.provinsi}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
 
-                                                                ) : ''}
-                                                                <option value="Lainnya(Others)">Lainnya(Others)</option>
-                                                            </Form.Control>
-                                                            {errMsg1.provinsi ? (<span className="text-error badge badge-danger">{errMsg1.provinsi}</span>) : ''}
-                                                        </Form.Group>
+                              <Form.Group
+                                as={Col}
+                                controlId="status_kepemilikan"
+                              >
+                                <Form.Control
+                                  name="status_kepemilikan"
+                                  size="lg"
+                                  value={
+                                    user.status_kepemilikan
+                                      ? user.status_kepemilikan
+                                      : ""
+                                  }
+                                  onChange={this.handleChange}
+                                  as="select"
+                                >
+                                  <option value="">
+                                    Status Kepemilikan Rumah
+                                  </option>
+                                  <option value="Milik">Pribadi</option>
+                                  <option value="Keluarga">Keluarga</option>
+                                  <option value="Sewa/Kontrak">
+                                    Sewa/Kontrak
+                                  </option>
+                                </Form.Control>
+                                {errMsg1.status_kepemilikan ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.status_kepemilikan}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={3}
+                                controlId="warga_negara"
+                              >
+                                <Form.Control
+                                  name="warga_negara"
+                                  size="lg"
+                                  value={
+                                    user.warga_negara ? user.warga_negara : ""
+                                  }
+                                  onChange={this.handleChange}
+                                  as="select"
+                                >
+                                  <option value="">Kewarganegaraan</option>
+                                  {dataNegara
+                                    ? dataNegara.map(function (neg) {
+                                        return (
+                                          <option
+                                            value={neg.nama_negara}
+                                            key={neg.nama_negara}
+                                          >
+                                            {neg.nama_negara}
+                                          </option>
+                                        );
+                                      })
+                                    : ""}
+                                  <option value="Lainnya(Others)">
+                                    Lainnya(Others)
+                                  </option>
+                                </Form.Control>
+                                {errMsg1.warga_negara ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.warga_negara}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
 
-                                                        <Form.Group as={Col} controlId="status_kepemilikan">
-                                                            <Form.Control
-                                                                name="status_kepemilikan"
-                                                                size="lg"
-                                                                value={user.status_kepemilikan ? user.status_kepemilikan : ''}
-                                                                onChange={this.handleChange}
-                                                                as="select">
-                                                                <option value="">Status Kepemilikan Rumah</option>
-                                                                <option value="Milik">Pribadi</option>
-                                                                <option value="Keluarga">Keluarga</option>
-                                                                <option value="Sewa/Kontrak">Sewa/Kontrak</option>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={3}
+                                controlId="status_pernikahan"
+                              >
+                                <Form.Control
+                                  name="status_pernikahan"
+                                  size="lg"
+                                  value={
+                                    user.status_pernikahan
+                                      ? user.status_pernikahan
+                                      : ""
+                                  }
+                                  onChange={this.handleChange}
+                                  as="select"
+                                >
+                                  <option value="">Status Pernikahan</option>
+                                  <option value="Belum Kawin">
+                                    Belum Kawin
+                                  </option>
+                                  <option value="Kawin">Kawin</option>
+                                  <option value="Cerai">Cerai</option>
+                                  <option value="Janda/Duda">Janda/Duda</option>
+                                </Form.Control>
+                                {errMsg1.status_pernikahan ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.status_pernikahan}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
 
-                                                            </Form.Control>
-															 {errMsg1.status_kepemilikan ? (<span className="text-error badge badge-danger">{errMsg1.status_kepemilikan}</span>) : ''}
-                                                        </Form.Group>
+                              {user.status_pernikahan === "Kawin" && (
+                                <Fragment>
+                                  <Form.Group
+                                    as={Col}
+                                    xs={12}
+                                    lg={3}
+                                    controlId="nama_pasangan"
+                                  >
+                                    <Form.Control
+                                      value={
+                                        user.nama_pasangan
+                                          ? user.nama_pasangan
+                                          : ""
+                                      }
+                                      autoComplete="off"
+                                      onChange={this.handleChange}
+                                      size="lg"
+                                      name="nama_pasangan"
+                                      type="text"
+                                      required
+                                      placeholder="Nama Pasangan"
+                                    />
+                                    {errMsg1.nama_pasangan ? (
+                                      <span className="text-error badge badge-danger">
+                                        {errMsg1.nama_pasangan}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
+                                  </Form.Group>
+                                </Fragment>
+                              )}
 
-                                                    </Form.Row>
-                                                    <Form.Row>
-                                                        
-                                                        <Form.Group as={Col} xs={12} lg={3} controlId="warga_negara">
-                                                            <Form.Control
-                                                                name="warga_negara"
-                                                                size="lg"
-                                                                value={user.warga_negara ? user.warga_negara : ''}
-                                                                onChange={this.handleChange}
-                                                                as="select">
-                                                                <option value="">Kewarganegaraan</option>
-                                                                {dataNegara ? (
-                                                                    dataNegara.map(function (neg) {
-                                                                        return <option
-                                                                            value={neg.nama_negara}
-                                                                            key={neg.nama_negara}>{neg.nama_negara}
-                                                                        </option>
-                                                                    })
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={3}
+                                controlId="nama_ibu_kandung"
+                              >
+                                <Form.Control
+                                  value={
+                                    user.nama_ibu_kandung
+                                      ? user.nama_ibu_kandung
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChange}
+                                  size="lg"
+                                  name="nama_ibu_kandung"
+                                  type="text"
+                                  required
+                                  placeholder="Nama Gadis Ibu Kandung"
+                                />
+                                {errMsg1.nama_ibu_kandung ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.nama_ibu_kandung}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                            </Form.Row>
 
-                                                                ) : ''}
-                                                                <option value="Lainnya(Others)">Lainnya(Others)</option>
-                                                            </Form.Control>
-                                                            {errMsg1.warga_negara ? (<span className="text-error badge badge-danger">{errMsg1.warga_negara}</span>) : ''}
-                                                        </Form.Group>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={4}
+                                controlId="telp"
+                              >
+                                <NumberFormat
+                                  value={user.telp ? user.telp : ""}
+                                  autoComplete="off"
+                                  onChange={this.handleChange}
+                                  className="form-control form-control-lg"
+                                  size="lg"
+                                  name="telp"
+                                  thousandSeparator={false}
+                                  decimalScale={0}
+                                  inputMode="numeric"
+                                  required
+                                  placeholder="Telepon Rumah"
+                                />
 
-                                                        <Form.Group as={Col} xs={12} lg={3} controlId="status_pernikahan">
-                                                            <Form.Control
-                                                                name="status_pernikahan"
-                                                                size="lg"
-                                                                value={user.status_pernikahan ? user.status_pernikahan : ''}
-                                                                onChange={this.handleChange}
-                                                                as="select">
-                                                                <option value="">Status Pernikahan</option>
-                                                                <option value="Belum Kawin">Belum Kawin</option>
-                                                                <option value="Kawin">Kawin</option>
-                                                                <option value="Cerai">Cerai</option>
-                                                                <option value="Janda/Duda">Janda/Duda</option>
-                                                            </Form.Control>
-															{errMsg1.status_pernikahan ? (<span className="text-error badge badge-danger">{errMsg1.status_pernikahan}</span>) : ''}
-                                                        </Form.Group>
+                                {errMsg1.telp ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.telp}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={4}
+                                controlId="fax"
+                              >
+                                <NumberFormat
+                                  value={user.fax ? user.fax : ""}
+                                  autoComplete="off"
+                                  onChange={this.handleChange}
+                                  className="form-control form-control-lg"
+                                  size="lg"
+                                  name="fax"
+                                  thousandSeparator={false}
+                                  decimalScale={0}
+                                  inputMode="numeric"
+                                  required
+                                  placeholder="FAX"
+                                />
+                              </Form.Group>
 
-                                                        {user.status_pernikahan === "Kawin" && (
-                                                            <Fragment>
-                                                                <Form.Group as={Col} xs={12} lg={3} controlId="nama_pasangan">
-                                                                    <Form.Control
-                                                                        value={user.nama_pasangan ? user.nama_pasangan : ''}
-                                                                        autoComplete="off"
-                                                                        onChange={this.handleChange}
-                                                                        size="lg"
-                                                                        name="nama_pasangan"
-                                                                        type="text"
-                                                                        required
-                                                                        placeholder="Nama Pasangan" />
-																		{errMsg1.nama_pasangan ? (<span className="text-error badge badge-danger">{errMsg1.nama_pasangan}</span>) : ''}
-                                                                </Form.Group>
-                                                            </Fragment>
-                                                        )}            
-
-                                                        <Form.Group as={Col} xs={12} lg={3} controlId="nama_ibu_kandung">
-                                                            <Form.Control
-                                                                value={user.nama_ibu_kandung ? user.nama_ibu_kandung : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChange}
-                                                                size="lg"
-                                                                name="nama_ibu_kandung"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Nama Gadis Ibu Kandung" />
-																{errMsg1.nama_ibu_kandung ? (<span className="text-error badge badge-danger">{errMsg1.nama_ibu_kandung}</span>) : ''}
-                                                        </Form.Group>
-
-                                                        
-
-
-
-                                                    </Form.Row>
-                                                    
-
-                                                    <Form.Row>
-                                                        
-                                                        <Form.Group as={Col} xs={12} lg={4} controlId="telp">
-															<NumberFormat
-                                                                value={user.telp ? user.telp : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChange}
-                                                                className="form-control form-control-lg"
-                                                                size="lg"
-                                                                name="telp"
-                                                                thousandSeparator={false}
-                                                                decimalScale={0}
-                                                                inputMode="numeric"
-																required
-                                                                placeholder="Telepon Rumah" />														
-                                                           
-                                                            {errMsg1.telp ? (<span className="text-error badge badge-danger">{errMsg1.telp}</span>) : ''}
-                                                        </Form.Group>
-                                                        <Form.Group as={Col} xs={12} lg={4} controlId="fax">
-															<NumberFormat
-                                                                value={user.fax ? user.fax : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChange}
-                                                                className="form-control form-control-lg"
-                                                                size="lg"
-                                                                name="fax"
-                                                                thousandSeparator={false}
-                                                                decimalScale={0}
-                                                                inputMode="numeric"
-																required
-                                                                placeholder="FAX" />		
-                                                           
-                                                        </Form.Group>
-
-                                                        <Form.Group as={Col} xs={12} lg={4} controlId="npwp">
-															<NumberFormat
-                                                                value={user.npwp ? user.npwp : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChange}
-                                                                className="form-control form-control-lg"
-                                                                size="lg"
-                                                                name="npwp"
-                                                                thousandSeparator={false}
-                                                                decimalScale={0}
-                                                                inputMode="numeric"
-																required
-                                                                placeholder="NPWP" />                                                            
-																{errMsg1.npwp ? (<span className="text-error badge badge-danger">{errMsg1.npwp}</span>) : ''}
-                                                        </Form.Group>
-
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={4}
+                                controlId="npwp"
+                              >
+                                <NumberFormat
+                                  value={user.npwp ? user.npwp : ""}
+                                  autoComplete="off"
+                                  onChange={this.handleChange}
+                                  className="form-control form-control-lg"
+                                  size="lg"
+                                  name="npwp"
+                                  thousandSeparator={false}
+                                  decimalScale={0}
+                                  inputMode="numeric"
+                                  required
+                                  placeholder="NPWP"
+                                />
+                                {errMsg1.npwp ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg1.npwp}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
                             </Form.Row>
                           </div>
-                          <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
-                                <div className="grid grid-cols-1 place-items-center">
-                                    <div className="form-group lg:w-2/3">
-                                        <div className="form-check">
-                                            {errMsg1.agreement1 ? (<span className="text-error badge badge-danger">{errMsg1.agreement1}</span>) : ''}
-                                            <label>
-                                                <input
-                                                    checked={user.agreement1 ? true : false}
-                                                    onChange={this.handleChange} value={1} className="form-check-input" type="checkbox" name="agreement1" />
-                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
-
-                                            </label>
-                                            
-                                        </div>
-                                        
-                                        <div className="grid grid-cols-1 place-items-center">
-
-                                            <div className="form-group lg:w-[50%] text-center mt-4">
-                                            <label>
-                                                <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
-                                            </label>
-                                            </div>
-
-                                            <div className="form-group w-[100%] lg:w-[40%] text-center">
-                                            
-                                            
-
-                                            <AppButton
-                                            onClick={this.handleSubmit1.bind(this, 'detil_pribadi')}
-                                            type="button"
-                                            size="lg"
-                                            theme=""
-                                            style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
-                                            Selanjutnya</AppButton>
-                                            </div>
-                                        </div>
-
+                          <div
+                            className="container__box p-4"
+                            style={{
+                              backgroundColor: "#fbfbfd",
+                              margin: "1em -1.5em -1.5em",
+                            }}
+                          >
+                            <div className="grid grid-cols-1 place-items-center">
+                              <div className="form-group lg:w-2/3">
+                                <div className="form-check">
+                                  {errMsg1.agreement1 ? (
+                                    <span className="text-error badge badge-danger">
+                                      {errMsg1.agreement1}
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
+                                  <label>
+                                    <input
+                                      checked={user.agreement1 ? true : false}
+                                      onChange={this.handleChange}
+                                      value={1}
+                                      className="form-check-input"
+                                      type="checkbox"
+                                      name="agreement1"
+                                    />
+                                    <div className="form-check-text">
+                                      Dengan mencentang kotak ini, saya dengan
+                                      ini mengakui bahwa semua informasi dan
+                                      dokumen yang disediakan dalam aplikasi
+                                      Online untuk pembukaan akun transaksi
+                                      adalah benar dan valid.saya dengan ini
+                                      bertanggung jawab penuh atas setiap
+                                      kerusakan / kerugian di masa depan sebagai
+                                      akibat dari informasi palsu dari dokumen
+                                      yang saya sediakan.
                                     </div>
+                                  </label>
                                 </div>
 
+                                <div className="grid grid-cols-1 place-items-center">
+                                  <div className="form-group lg:w-[50%] text-center mt-4">
+                                    <label>
+                                      <span className="text-gray-700">
+                                        Dengan mendaftar, saya menyetujui
+                                      </span>{" "}
+                                      <br />
+                                      <span className="text-black font-extrabold">
+                                        Syarat dan ketentuan
+                                      </span>{" "}
+                                      <span className="text-gray-700">
+                                        serta
+                                      </span>{" "}
+                                      <span className="label_merah font-bold">
+                                        Kebijakan Privasi
+                                      </span>
+                                    </label>
+                                  </div>
+
+                                  <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                    <AppButton
+                                      onClick={this.handleSubmit1.bind(
+                                        this,
+                                        "detil_pribadi"
+                                      )}
+                                      type="button"
+                                      size="lg"
+                                      theme=""
+                                      style={{
+                                        backgroundColor: "#218838",
+                                        color: "#fff",
+                                        marginRight: "2%",
+                                      }}
+                                    >
+                                      Selanjutnya
+                                    </AppButton>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
+                          </div>
                         </Form>
                       </Fragment>
                     )}
                     {active_tab === "exp_trading" && (
                       <Fragment>
                         <Form>
-                                                <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                                                    <br />
-                                                    <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Pengalaman Trading</span>
-                                                    <br /><br/>
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} controlId="tujuan_pembukaan_rekening">
-                                                            <Form.Control
-                                                                name="tujuan_pembukaan_rekening"
-                                                                size="lg"
-                                                                value={dataExpTrading.tujuan_pembukaan_rekening ? dataExpTrading.tujuan_pembukaan_rekening : ''}
-                                                                onChange={this.handleChangeTrading.bind(this)}
-                                                                as="select">
-                                                                <option value="">Tujuan Pembukaan Rekening</option>
-                                                                <option value="Spekulasi">Spekulasi</option>
-                                                                <option value="Keuntungan">Keuntungan</option>
-                                                                <option value="Lindung Nilai">Lindung Nilai</option>
-                                                                <option value="Lainnya">Lainnya</option>
-                                                            </Form.Control>
-                                                        </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={6} lg={3} controlId="pertanyaan1">
-                                                            <Form.Label>Pengalaman Trading</Form.Label><br />
-                                                           
+                          <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                            <br />
+                            <span
+                              className="text-2xl label_ijo"
+                              style={{ fontSize: "28px", fontWeight: "bold" }}
+                            >
+                              Pengalaman Trading
+                            </span>
+                            <br />
+                            <br />
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                controlId="tujuan_pembukaan_rekening"
+                              >
+                                <Form.Control
+                                  name="tujuan_pembukaan_rekening"
+                                  size="lg"
+                                  value={
+                                    dataExpTrading.tujuan_pembukaan_rekening
+                                      ? dataExpTrading.tujuan_pembukaan_rekening
+                                      : ""
+                                  }
+                                  onChange={this.handleChangeTrading.bind(this)}
+                                  as="select"
+                                >
+                                  <option value="">
+                                    Tujuan Pembukaan Rekening
+                                  </option>
+                                  <option value="Spekulasi">Spekulasi</option>
+                                  <option value="Keuntungan">Keuntungan</option>
+                                  <option value="Lindung Nilai">
+                                    Lindung Nilai
+                                  </option>
+                                  <option value="Lainnya">Lainnya</option>
+                                </Form.Control>
+                              </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={6}
+                                lg={3}
+                                controlId="pertanyaan1"
+                              >
+                                <Form.Label>Pengalaman Trading</Form.Label>
+                                <br />
 
-                                                            <Form.Check
-                                                                onChange={this.handleChangeTrading.bind(this)}
-                                                                inline 
-                                                                type="switch"
-                                                                label="Check this switch"
-                                                                value="Y"
-                                                                id="custom-switch"
-                                                                label={dataExpTrading.pertanyaan1 === 'Y' ? "Ya" : "Tidak"}
-                                                                name='pertanyaan1'
-                                                                checked={dataExpTrading.pertanyaan1 === 'Y' ? ("checked") : ""}
-                                                            />
+                                <Form.Check
+                                  onChange={this.handleChangeTrading.bind(this)}
+                                  inline
+                                  type="switch"
+                                  label="Check this switch"
+                                  value="Y"
+                                  id="custom-switch"
+                                  label={
+                                    dataExpTrading.pertanyaan1 === "Y"
+                                      ? "Ya"
+                                      : "Tidak"
+                                  }
+                                  name="pertanyaan1"
+                                  checked={
+                                    dataExpTrading.pertanyaan1 === "Y"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                />
+                              </Form.Group>
+                              {dataExpTrading.pertanyaan1 === "Y" ? (
+                                <Form.Group
+                                  as={Col}
+                                  xs={6}
+                                  lg={6}
+                                  controlId="pertanyaan2"
+                                >
+                                  <Form.Label>
+                                    Pengalaman Trading anda Sebelumnya di
+                                  </Form.Label>
+                                  <Form.Control
+                                    value={
+                                      dataExpTrading.pertanyaan2
+                                        ? dataExpTrading.pertanyaan2
+                                        : ""
+                                    }
+                                    autoComplete="off"
+                                    onChange={this.handleChangeTrading.bind(
+                                      this
+                                    )}
+                                    size="lg"
+                                    name="pertanyaan2"
+                                    type="text"
+                                    required
+                                    placeholder="Nama Perusahaan/Brand"
+                                  />
+                                </Form.Group>
+                              ) : (
+                                ""
+                              )}
+                            </Form.Row>
 
-                                                            
-                                                            
+                            <Form.Row>
+                              <Form.Group as={Col} controlId="pertanyaan3">
+                                <Form.Label>
+                                  Apakah Anda memiliki keluarga yang bekerja di
+                                  BAPPEBTI / BBJ / KBI / BKDI / ISI Clearing?
+                                </Form.Label>
+                                <br />
 
-                                                            
-                                                            
-                                                        </Form.Group>
-                                                        {dataExpTrading.pertanyaan1 === 'Y' ? (
-                                                        
-                                                        <Form.Group as={Col} xs={6} lg={6} controlId="pertanyaan2">
-                                                            
-                                                            <Form.Label>Pengalaman Trading anda Sebelumnya di</Form.Label>
-                                                            <Form.Control
-                                                                value={dataExpTrading.pertanyaan2 ? dataExpTrading.pertanyaan2 : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangeTrading.bind(this)}
-                                                                size="lg"
-                                                                name="pertanyaan2"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Nama Perusahaan/Brand" />
-                                                        </Form.Group>
-                                                        
-                                                         ) : ''}
+                                <Form.Check
+                                  onChange={this.handleChangeTrading.bind(this)}
+                                  inline
+                                  type="switch"
+                                  label="Check this switch"
+                                  value="Y"
+                                  id="custom-switch4"
+                                  label={
+                                    dataExpTrading.pertanyaan3 === "Y"
+                                      ? "Ya"
+                                      : "Tidak"
+                                  }
+                                  name="pertanyaan3"
+                                  checked={
+                                    dataExpTrading.pertanyaan3 === "Y"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                />
+                              </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                              <Form.Group as={Col} controlId="pertanyaan4">
+                                <Form.Label>
+                                  Apakah Anda telah dinyatakan pailit oleh
+                                  Pengadilan?
+                                </Form.Label>
+                                <br />
+                                <Form.Check
+                                  onChange={this.handleChangeTrading.bind(this)}
+                                  inline
+                                  type="switch"
+                                  label="Check this switch"
+                                  value="Y"
+                                  id="custom-switch3"
+                                  label={
+                                    dataExpTrading.pertanyaan4 === "Y"
+                                      ? "Ya"
+                                      : "Tidak"
+                                  }
+                                  name="pertanyaan4"
+                                  checked={
+                                    dataExpTrading.pertanyaan4 === "Y"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                />
+                              </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={4}
+                                controlId="pertanyaan5"
+                              >
+                                <Form.Label>
+                                  Memiliki pengalaman perdagangan dalam
+                                  Perdagangan Berjangka
+                                </Form.Label>
+                                <br />
 
-                                                    </Form.Row>
-                                                    
+                                <Form.Check
+                                  onChange={this.handleChangeTrading.bind(this)}
+                                  inline
+                                  type="switch"
+                                  label="Check this switch"
+                                  value="Y"
+                                  id="custom-switch2"
+                                  label={
+                                    dataExpTrading.pertanyaan5 === "Y"
+                                      ? "Ya"
+                                      : "Tidak"
+                                  }
+                                  name="pertanyaan5"
+                                  checked={
+                                    dataExpTrading.pertanyaan5 === "Y"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                />
+                              </Form.Group>
+                              {dataExpTrading.pertanyaan5 === "Y" ? (
+                                <Form.Group
+                                  as={Col}
+                                  xs={12}
+                                  lg={6}
+                                  controlId="pertanyaan6"
+                                >
+                                  <Form.Label>
+                                    Pengalaman Trading Berjangka anda Sebelumnya
+                                    di
+                                  </Form.Label>
+                                  <Form.Control
+                                    value={
+                                      dataExpTrading.pertanyaan6
+                                        ? dataExpTrading.pertanyaan6
+                                        : ""
+                                    }
+                                    autoComplete="off"
+                                    onChange={this.handleChangeTrading.bind(
+                                      this
+                                    )}
+                                    size="lg"
+                                    name="pertanyaan6"
+                                    type="text"
+                                    required
+                                    placeholder="Nama Perusahaan/Brand"
+                                  />
+                                </Form.Group>
+                              ) : (
+                                ""
+                              )}
+                            </Form.Row>
+                          </div>
+                          <div
+                            className="container__box p-4"
+                            style={{
+                              backgroundColor: "#fbfbfd",
+                              margin: "1em -1.5em -1.5em",
+                            }}
+                          >
+                            <div className="form-group">
+                              <div className="grid grid-cols-1 place-items-center">
+                                <div className="form-group lg:w-2/3">
+                                  <div className="form-check">
+                                    {errMsg2.agreement2 ? (
+                                      <span className="text-error badge badge-danger">
+                                        {errMsg2.agreement2}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
+                                    <label>
+                                      <input
+                                        checked={
+                                          dataExpTrading.agreement2
+                                            ? true
+                                            : false
+                                        }
+                                        onChange={this.handleChangeTrading.bind(
+                                          this
+                                        )}
+                                        value={1}
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        name="agreement2"
+                                      />
+                                      <div className="form-check-text">
+                                        Dengan mencentang kotak ini, saya dengan
+                                        ini mengakui bahwa semua informasi dan
+                                        dokumen yang disediakan dalam aplikasi
+                                        Online untuk pembukaan akun transaksi
+                                        adalah benar dan valid.saya dengan ini
+                                        bertanggung jawab penuh atas setiap
+                                        kerusakan / kerugian di masa depan
+                                        sebagai akibat dari informasi palsu dari
+                                        dokumen yang saya sediakan.
+                                      </div>
+                                    </label>
+                                  </div>
 
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} controlId="pertanyaan3">
-                                                            <Form.Label>Apakah Anda memiliki keluarga yang bekerja di BAPPEBTI / BBJ / KBI / BKDI / ISI Clearing?</Form.Label><br />
-                                                            
-                                                            <Form.Check
-                                                                onChange={this.handleChangeTrading.bind(this)}
-                                                                inline 
-                                                                type="switch"
-                                                                label="Check this switch"
-                                                                value="Y"
-                                                                id="custom-switch4"
-                                                                label={dataExpTrading.pertanyaan3 === 'Y' ? "Ya" : "Tidak"}
-                                                                name='pertanyaan3'
-                                                                checked={dataExpTrading.pertanyaan3 === 'Y' ? ("checked") : ""}
-                                                            />
+                                  <div className="grid grid-cols-1 place-items-center">
+                                    <div className="form-group lg:w-[50%] text-center mt-4">
+                                      <label>
+                                        <span className="text-gray-700">
+                                          Dengan mendaftar, saya menyetujui
+                                        </span>{" "}
+                                        <br />
+                                        <span className="text-black font-extrabold">
+                                          Syarat dan ketentuan
+                                        </span>{" "}
+                                        <span className="text-gray-700">
+                                          serta
+                                        </span>{" "}
+                                        <span className="label_merah font-extrabold">
+                                          Kebijakan Privasi
+                                        </span>
+                                      </label>
+                                    </div>
 
-                                                            
-                                                        </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} controlId="pertanyaan4">
-                                                            <Form.Label>Apakah Anda telah dinyatakan pailit oleh Pengadilan?</Form.Label><br />
-                                                            <Form.Check
-                                                                onChange={this.handleChangeTrading.bind(this)}
-                                                                inline 
-                                                                type="switch"
-                                                                label="Check this switch"
-                                                                value="Y"
-                                                                id="custom-switch3"
-                                                                label={dataExpTrading.pertanyaan4 === 'Y' ? "Ya" : "Tidak"}
-                                                                name='pertanyaan4'
-                                                                checked={dataExpTrading.pertanyaan4 === 'Y' ? ("checked") : ""}
-                                                            />
+                                    <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                      <AppButton
+                                        style={{
+                                          color: "#ffffff",
+                                          marginRight: 5,
+                                        }}
+                                        onClick={this.handleSubmit2.bind(
+                                          this,
+                                          "detil_pribadi"
+                                        )}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                        style={{
+                                          backgroundColor: "#C3262A",
+                                          color: "#fff",
+                                          marginRight: "2%",
+                                        }}
+                                      >
+                                        Selanjutnya
+                                      </AppButton>
 
-                                                            
-                                                        </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={4} controlId="pertanyaan5">
-                                                            <Form.Label>Memiliki pengalaman perdagangan dalam Perdagangan Berjangka</Form.Label><br />
-                                                            
-                                                            <Form.Check
-                                                                onChange={this.handleChangeTrading.bind(this)}
-                                                                inline 
-                                                                type="switch"
-                                                                label="Check this switch"
-                                                                value="Y"
-                                                                id="custom-switch2"
-                                                                label={dataExpTrading.pertanyaan5 === 'Y' ? "Ya" : "Tidak"}
-                                                                name='pertanyaan5'
-                                                                checked={dataExpTrading.pertanyaan5 === 'Y' ? ("checked") : ""}
-                                                            />
-
-                                                            
-                                                        </Form.Group>
-                                                        {dataExpTrading.pertanyaan5 === 'Y' ? (
-                                                        
-                                                            <Form.Group as={Col} xs={12} lg={6} controlId="pertanyaan6">
-                                                                <Form.Label>Pengalaman Trading Berjangka anda Sebelumnya di</Form.Label>
-                                                                <Form.Control
-                                                                    value={dataExpTrading.pertanyaan6 ? dataExpTrading.pertanyaan6 : ''}
-                                                                    autoComplete="off"
-                                                                    onChange={this.handleChangeTrading.bind(this)}
-                                                                    size="lg"
-                                                                    name="pertanyaan6"
-                                                                    type="text"
-                                                                    required
-                                                                    placeholder="Nama Perusahaan/Brand" />
-                                                            </Form.Group>
-                                                        ) : ''}
-                                                    </Form.Row>
-                                                    
-                                                </div>
-                                                <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
-                                                    <div className="form-group">
-                                                        
-
-                                                    <div className="grid grid-cols-1 place-items-center">
-                                                        <div className="form-group lg:w-2/3">
-                                                            <div className="form-check">
-                                                                {errMsg2.agreement2 ? (<span className="text-error badge badge-danger">{errMsg2.agreement2}</span>) : ''}
-                                                                <label>
-                                                                    <input
-                                                                        checked={dataExpTrading.agreement2 ? true : false}
-                                                                        onChange={this.handleChangeTrading.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement2" />
-                                                                    <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
-
-                                                                </label>
-                                                                
-                                                            </div>
-                                                            
-                                                            <div className="grid grid-cols-1 place-items-center">
-
-                                                               <div className="form-group lg:w-[50%] text-center mt-4">
-                                                                <label>
-                                                                    <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-extrabold">Kebijakan Privasi</span>
-                                                                </label>
-                                                                </div>
-
-                                                                <div className="form-group w-[100%] lg:w-[40%] text-center">
-                                                               
-                                                                <AppButton
-                                                            style={{ color: '#ffffff', marginRight: 5 }}
-                                                            onClick={this.handleSubmit2.bind(this, 'detil_pribadi')}
-                                                            type="button"
-                                                            size="lg"
-                                                            theme=""
-                                                            style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
-
-                                                            >Selanjutnya</AppButton>
-
-                                                        <AppButton
-                                                            onClick={this.handleSubmit2.bind(this)}
-                                                            type="button"
-                                                            size="lg"
-                                                            theme=""
-                                                                style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
-                                                            Simpan</AppButton>
-
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                                                    </div>
-
-                                                </div>
-                                            </Form>
+                                      <AppButton
+                                        onClick={this.handleSubmit2.bind(this)}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                        style={{
+                                          backgroundColor: "#218838",
+                                          color: "#fff",
+                                          marginRight: "2%",
+                                        }}
+                                      >
+                                        Simpan
+                                      </AppButton>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </Form>
                       </Fragment>
                     )}
 
                     {active_tab === "kekayaan" && (
                       <Fragment>
                         <Form>
-                                                <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                                                    
-                                                    <br />
-                                                    <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Kekayaan Pribadi</span>
-                                                    <br /><br/>
-                                                    <Form.Row>
-                                                        
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="pendapatan_pertahun">
-                                                            <Form.Control
-                                                                name="pendapatan_pertahun"
-                                                                size="lg"
-                                                                value={dataKekayaan.pendapatan_pertahun ? dataKekayaan.pendapatan_pertahun : ''}
-                                                                onChange={this.handleChangeKekayaan.bind(this)}
-                                                                as="select">
-                                                                <option value="">Pendapatan perTahun</option>
-                                                                <option value="Antara 100-250 juta">Antara 100-250 juta</option>
-                                                                <option value="Antara 250-500 juta">Antara 250-500 juta</option>
-                                                                <option value="Di atas 500 juta">Di atas 500 juta</option>
-                                                            </Form.Control>
-                                                            {errMsg3.pendapatan_pertahun ? (<span className="text-error badge badge-danger">{errMsg3.pendapatan_pertahun}</span>) : ''}
-                                                        </Form.Group>
+                          <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                            <br />
+                            <span
+                              className="text-2xl label_ijo"
+                              style={{ fontSize: "28px", fontWeight: "bold" }}
+                            >
+                              Kekayaan Pribadi
+                            </span>
+                            <br />
+                            <br />
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="pendapatan_pertahun"
+                              >
+                                <Form.Control
+                                  name="pendapatan_pertahun"
+                                  size="lg"
+                                  value={
+                                    dataKekayaan.pendapatan_pertahun
+                                      ? dataKekayaan.pendapatan_pertahun
+                                      : ""
+                                  }
+                                  onChange={this.handleChangeKekayaan.bind(
+                                    this
+                                  )}
+                                  as="select"
+                                >
+                                  <option value="">Pendapatan perTahun</option>
+                                  <option value="Antara 100-250 juta">
+                                    Antara 100-250 juta
+                                  </option>
+                                  <option value="Antara 250-500 juta">
+                                    Antara 250-500 juta
+                                  </option>
+                                  <option value="Di atas 500 juta">
+                                    Di atas 500 juta
+                                  </option>
+                                </Form.Control>
+                                {errMsg3.pendapatan_pertahun ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg3.pendapatan_pertahun}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
 
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="lokasi">
-                                                            <Form.Control
-                                                                value={dataKekayaan.lokasi ? dataKekayaan.lokasi : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangeKekayaan.bind(this)}
-                                                                size="lg"
-                                                                name="lokasi"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Lokasi" />
-                                                            {errMsg3.lokasi ? (<span className="text-error badge badge-danger">{errMsg3.lokasi}</span>) : ''}
-                                                        </Form.Group>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="lokasi"
+                              >
+                                <Form.Control
+                                  value={
+                                    dataKekayaan.lokasi
+                                      ? dataKekayaan.lokasi
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKekayaan.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="lokasi"
+                                  type="text"
+                                  required
+                                  placeholder="Lokasi"
+                                />
+                                {errMsg3.lokasi ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg3.lokasi}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                            </Form.Row>
 
-                                                    </Form.Row>
-                                                    
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} controlId="njop">
-                                                            
-                                                            <NumberFormat
-                                                                value={dataKekayaan.njop ? dataKekayaan.njop : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangeKekayaan.bind(this)}
-                                                                className="form-control form-control-lg"
-                                                                size="lg"
-                                                                name="njop"
-                                                                thousandSeparator={true}
-                                                                decimalScale={2}
-                                                                inputMode="numeric"
-                                                                placeholder="Nilai NJOP Rumah" />
-                                                            {errMsg3.njop ? (<span className="text-error badge badge-danger">{errMsg3.njop}</span>) : ''}
-                                                        </Form.Group>
+                            <Form.Row>
+                              <Form.Group as={Col} controlId="njop">
+                                <NumberFormat
+                                  value={
+                                    dataKekayaan.njop ? dataKekayaan.njop : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKekayaan.bind(
+                                    this
+                                  )}
+                                  className="form-control form-control-lg"
+                                  size="lg"
+                                  name="njop"
+                                  thousandSeparator={true}
+                                  decimalScale={2}
+                                  inputMode="numeric"
+                                  placeholder="Nilai NJOP Rumah"
+                                />
+                                {errMsg3.njop ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg3.njop}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
 
-                                                        <Form.Group as={Col} controlId="deposit_bank">
-                                                            
-                                                            <NumberFormat
-                                                                value={dataKekayaan.deposit_bank ? dataKekayaan.deposit_bank : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangeKekayaan.bind(this)}
-                                                                className="form-control form-control-lg"
-                                                                size="lg"
-                                                                name="deposit_bank"
-                                                                thousandSeparator={true}
-                                                                decimalScale={2}
-                                                                inputMode="numeric"
-                                                                placeholder="Deposit Bank" />
-                                                            {errMsg3.deposit_bank ? (<span className="text-error badge badge-danger">{errMsg3.deposit_bank}</span>) : ''}
-                                                        </Form.Group>
+                              <Form.Group as={Col} controlId="deposit_bank">
+                                <NumberFormat
+                                  value={
+                                    dataKekayaan.deposit_bank
+                                      ? dataKekayaan.deposit_bank
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKekayaan.bind(
+                                    this
+                                  )}
+                                  className="form-control form-control-lg"
+                                  size="lg"
+                                  name="deposit_bank"
+                                  thousandSeparator={true}
+                                  decimalScale={2}
+                                  inputMode="numeric"
+                                  placeholder="Deposit Bank"
+                                />
+                                {errMsg3.deposit_bank ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg3.deposit_bank}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                            </Form.Row>
 
-                                                    </Form.Row>
-                                                    
-                                                    <Form.Row>
-                                                        
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="jml_total">
-                                                            
-                                                            <NumberFormat
-                                                                value={nilai_njop + deposit_bank}
-                                                                autoComplete="off"
-                                                                size="lg"
-                                                                name="jml_total"
-                                                                className="form-control form-control-lg"
-                                                                thousandSeparator={true}
-                                                                decimalScale={2}
-                                                                inputMode="numeric"
-                                                                readOnly
-                                                                placeholder="Jumlah Total" />
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="jml_total"
+                              >
+                                <NumberFormat
+                                  value={nilai_njop + deposit_bank}
+                                  autoComplete="off"
+                                  size="lg"
+                                  name="jml_total"
+                                  className="form-control form-control-lg"
+                                  thousandSeparator={true}
+                                  decimalScale={2}
+                                  inputMode="numeric"
+                                  readOnly
+                                  placeholder="Jumlah Total"
+                                />
+                              </Form.Group>
 
-                                                        </Form.Group>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="lainnya"
+                              >
+                                <NumberFormat
+                                  value={
+                                    dataKekayaan.lainnya
+                                      ? dataKekayaan.lainnya
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKekayaan.bind(
+                                    this
+                                  )}
+                                  className="form-control form-control-lg"
+                                  size="lg"
+                                  name="lainnya"
+                                  thousandSeparator={true}
+                                  decimalScale={2}
+                                  inputMode="numeric"
+                                  placeholder="Jumlah Kekayaan Lainnya"
+                                />
+                              </Form.Group>
+                            </Form.Row>
+                          </div>
+                          <div
+                            className="container__box p-4"
+                            style={{
+                              backgroundColor: "#fbfbfd",
+                              margin: "1em -1.5em -1.5em",
+                            }}
+                          >
+                            <div className="form-group">
+                              <div className="grid grid-cols-1 place-items-center">
+                                <div className="form-group lg:w-2/3">
+                                  <div className="form-check">
+                                    {errMsg3.agreement3 ? (
+                                      <span className="text-error badge badge-danger">
+                                        {errMsg3.agreement3}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
+                                    <label>
+                                      <input
+                                        checked={
+                                          dataKekayaan.agreement3 ? true : false
+                                        }
+                                        onChange={this.handleChangeKekayaan.bind(
+                                          this
+                                        )}
+                                        value={1}
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        name="agreement3"
+                                      />
+                                      <div className="form-check-text">
+                                        Dengan mencentang kotak ini, saya dengan
+                                        ini mengakui bahwa semua informasi dan
+                                        dokumen yang disediakan dalam aplikasi
+                                        Online untuk pembukaan akun transaksi
+                                        adalah benar dan valid.saya dengan ini
+                                        bertanggung jawab penuh atas setiap
+                                        kerusakan / kerugian di masa depan
+                                        sebagai akibat dari informasi palsu dari
+                                        dokumen yang saya sediakan.
+                                      </div>
+                                    </label>
+                                  </div>
 
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="lainnya">
-                                                            <NumberFormat
-                                                                value={dataKekayaan.lainnya ? dataKekayaan.lainnya : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangeKekayaan.bind(this)}
-                                                                className="form-control form-control-lg"
-                                                                size="lg"
-                                                                name="lainnya"
-                                                                thousandSeparator={true}
-                                                                decimalScale={2}
-                                                                inputMode="numeric"
-                                                                placeholder="Jumlah Kekayaan Lainnya" />
-                                                        </Form.Group>
+                                  <div className="grid grid-cols-1 place-items-center">
+                                    <div className="form-group lg:w-[50%] text-center mt-4">
+                                      <label>
+                                        <span className="text-gray-700">
+                                          Dengan mendaftar, saya menyetujui
+                                        </span>{" "}
+                                        <br />
+                                        <span className="text-black font-extrabold">
+                                          Syarat dan ketentuan
+                                        </span>{" "}
+                                        <span className="text-gray-700">
+                                          serta
+                                        </span>{" "}
+                                        <span className="label_merah font-bold">
+                                          Kebijakan Privasi
+                                        </span>
+                                      </label>
+                                    </div>
 
-                                                    </Form.Row>
-                                                    
-                                                </div>
-                                                <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
-                                                    <div className="form-group">
-                                                     
-                                                     <div className="grid grid-cols-1 place-items-center">
-                                                        <div className="form-group lg:w-2/3">
-                                                            <div className="form-check">
-                                                                {errMsg3.agreement3 ? (<span className="text-error badge badge-danger">{errMsg3.agreement3}</span>) : ''}
-                                                                <label>
-                                                                    <input
-                                                                        checked={dataKekayaan.agreement3 ? true : false}
-                                                                        onChange={this.handleChangeKekayaan.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement3" />
-                                                                    <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+                                    <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                      <AppButton
+                                        style={{
+                                          color: "#ffffff",
+                                          marginRight: 5,
+                                        }}
+                                        onClick={this.handleSubmit3.bind(
+                                          this,
+                                          "detil_pribadi"
+                                        )}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                        style={{
+                                          backgroundColor: "#C3262A",
+                                          color: "#fff",
+                                          marginRight: "2%",
+                                        }}
+                                      >
+                                        Selanjutnya
+                                      </AppButton>
 
-                                                                </label>
-                                                            </div>
-                                                            
-                                                            <div className="grid grid-cols-1 place-items-center">
-
-                                                                <div className="form-group lg:w-[50%] text-center mt-4">
-                                                                <label>
-                                                                    <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
-                                                                </label>
-                                                                </div>
-
-                                                                <div className="form-group w-[100%] lg:w-[40%] text-center">
-                                                               
-                                                                <AppButton
-                                                            style={{ color: '#ffffff', marginRight: 5 }}
-                                                            onClick={this.handleSubmit3.bind(this, 'detil_pribadi')}
-                                                            type="button"
-                                                            size="lg"
-                                                            theme=""
-                                                            style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
-                                                            >Selanjutnya</AppButton>
-
-                                                        <AppButton
-                                                            onClick={this.handleSubmit3.bind(this)}
-                                                            type="button"
-                                                            size="lg"
-                                                            theme=""
-                                                                style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
-                                                            Simpan</AppButton>
-
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                                                    </div>
-                                                </div>
-                                            </Form>
+                                      <AppButton
+                                        onClick={this.handleSubmit3.bind(this)}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                        style={{
+                                          backgroundColor: "#218838",
+                                          color: "#fff",
+                                          marginRight: "2%",
+                                        }}
+                                      >
+                                        Simpan
+                                      </AppButton>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </Form>
                       </Fragment>
                     )}
 
                     {active_tab === "kontak_darurat" && (
                       <Fragment>
                         <Form>
-                                                <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                                                    
-                                                    
-                                                    <br />
-                                                    <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Kontak Darurat</span>
-                                                    <br /><br/>
+                          <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                            <br />
+                            <span
+                              className="text-2xl label_ijo"
+                              style={{ fontSize: "28px", fontWeight: "bold" }}
+                            >
+                              Kontak Darurat
+                            </span>
+                            <br />
+                            <br />
 
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="nama">
-                                                            {' '}
-                                                            {errMsg4.nama ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.nama}</span>) : ''}
-                                                            <Form.Control
-                                                                value={dataKontakDarurat.nama ? dataKontakDarurat.nama : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangeKontakDarurat.bind(this)}
-                                                                size="lg"
-                                                                name="nama"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Nama" />
-                                                        </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={12} controlId="alamatt">
-                                                            
-                                                            {errMsg4.alamat ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.alamat}</span>) : ''}
-                                                            <Form.Control
-                                                                value={dataKontakDarurat.alamat ? dataKontakDarurat.alamat : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangeKontakDarurat.bind(this)}
-                                                                size="lg"
-                                                                name="alamatt"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Alamat" />
-                                                        </Form.Group>
-                                                    </Form.Row>
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="kode_pos">
-                                                            
-                                                            {errMsg4.kode_pos ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.kode_pos}</span>) : ''}
-                                                            <Form.Control
-                                                                value={dataKontakDarurat.kode_pos ? dataKontakDarurat.kode_pos : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangeKontakDarurat.bind(this)}
-                                                                size="lg"
-                                                                name="kode_pos"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Kode Pos" />
-                                                        </Form.Group>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="nama"
+                              >
+                                {" "}
+                                {errMsg4.nama ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg4.nama}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  value={
+                                    dataKontakDarurat.nama
+                                      ? dataKontakDarurat.nama
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKontakDarurat.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="nama"
+                                  type="text"
+                                  required
+                                  placeholder="Nama"
+                                />
+                              </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={12}
+                                controlId="alamatt"
+                              >
+                                {errMsg4.alamat ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg4.alamat}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  value={
+                                    dataKontakDarurat.alamat
+                                      ? dataKontakDarurat.alamat
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKontakDarurat.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="alamatt"
+                                  type="text"
+                                  required
+                                  placeholder="Alamat"
+                                />
+                              </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="kode_pos"
+                              >
+                                {errMsg4.kode_pos ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg4.kode_pos}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  value={
+                                    dataKontakDarurat.kode_pos
+                                      ? dataKontakDarurat.kode_pos
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKontakDarurat.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="kode_pos"
+                                  type="text"
+                                  required
+                                  placeholder="Kode Pos"
+                                />
+                              </Form.Group>
 
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="telpp">
-                                                            {' '}
-                                                            {errMsg4.telp ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.telp}</span>) : ''}
-                                                            <Form.Control
-                                                                value={dataKontakDarurat.telp ? dataKontakDarurat.telp : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangeKontakDarurat.bind(this)}
-                                                                size="lg"
-                                                                name="telpp"
-                                                                type="text"
-                                                                required
-                                                                placeholder="No. Telepon" />
-                                                        </Form.Group>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="telpp"
+                              >
+                                {" "}
+                                {errMsg4.telp ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg4.telp}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  value={
+                                    dataKontakDarurat.telp
+                                      ? dataKontakDarurat.telp
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKontakDarurat.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="telpp"
+                                  type="text"
+                                  required
+                                  placeholder="No. Telepon"
+                                />
+                              </Form.Group>
+                            </Form.Row>
 
-                                                    </Form.Row>
-                                                    
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="handphone">
-                                                            
-                                                            {errMsg4.handphone ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.handphone}</span>) : ''}
-                                                            <Form.Control
-                                                                value={dataKontakDarurat.handphone ? dataKontakDarurat.handphone : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangeKontakDarurat.bind(this)}
-                                                                size="lg"
-                                                                name="handphone"
-                                                                type="text"
-                                                                required
-                                                                placeholder="No. Handphone" />
-                                                        </Form.Group>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="handphone"
+                              >
+                                {errMsg4.handphone ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg4.handphone}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  value={
+                                    dataKontakDarurat.handphone
+                                      ? dataKontakDarurat.handphone
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKontakDarurat.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="handphone"
+                                  type="text"
+                                  required
+                                  placeholder="No. Handphone"
+                                />
+                              </Form.Group>
 
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="hubungan">
-                                                            
-                                                            {errMsg4.hubungan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.hubungan}</span>) : ''}
-                                                            <Form.Control
-                                                                name="hubungan"
-                                                                size="lg"
-                                                                value={dataKontakDarurat.hubungan ? dataKontakDarurat.hubungan : ''}
-                                                                onChange={this.handleChangeKontakDarurat.bind(this)}
-                                                                as="select">
-                                                                <option value="">Hubungan</option>
-                                                                <option value="Keluarga">Keluarga</option>
-                                                                <option value="Teman">Teman</option>
-                                                            </Form.Control>
-                                                        </Form.Group>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="hubungan"
+                              >
+                                {errMsg4.hubungan ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg4.hubungan}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  name="hubungan"
+                                  size="lg"
+                                  value={
+                                    dataKontakDarurat.hubungan
+                                      ? dataKontakDarurat.hubungan
+                                      : ""
+                                  }
+                                  onChange={this.handleChangeKontakDarurat.bind(
+                                    this
+                                  )}
+                                  as="select"
+                                >
+                                  <option value="">Hubungan</option>
+                                  <option value="Keluarga">Keluarga</option>
+                                  <option value="Teman">Teman</option>
+                                </Form.Control>
+                              </Form.Group>
+                            </Form.Row>
+                          </div>
+                          <div
+                            className="container__box p-4"
+                            style={{
+                              backgroundColor: "#fbfbfd",
+                              margin: "1em -1.5em -1.5em",
+                            }}
+                          >
+                            <div className="form-group">
+                              <div className="grid grid-cols-1 place-items-center">
+                                <div className="form-group lg:w-2/3">
+                                  <div className="form-check">
+                                    {errMsg4.agreement4 ? (
+                                      <span className="text-error badge badge-danger">
+                                        {errMsg4.agreement4}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
+                                    <label>
+                                      <input
+                                        checked={
+                                          dataKontakDarurat.agreement4
+                                            ? true
+                                            : false
+                                        }
+                                        onChange={this.handleChangeKontakDarurat.bind(
+                                          this
+                                        )}
+                                        value={1}
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        name="agreement4"
+                                      />
+                                      <div className="form-check-text">
+                                        Dengan mencentang kotak ini, saya dengan
+                                        ini mengakui bahwa semua informasi dan
+                                        dokumen yang disediakan dalam aplikasi
+                                        Online untuk pembukaan akun transaksi
+                                        adalah benar dan valid.saya dengan ini
+                                        bertanggung jawab penuh atas setiap
+                                        kerusakan / kerugian di masa depan
+                                        sebagai akibat dari informasi palsu dari
+                                        dokumen yang saya sediakan.
+                                      </div>
+                                    </label>
+                                  </div>
 
-                                                    </Form.Row>
-                                                    
-                                                </div>
-                                                <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
-                                                    <div className="form-group">
+                                  <div className="grid grid-cols-1 place-items-center">
+                                    <div className="form-group lg:w-[50%] text-center mt-4">
+                                      <label>
+                                        <span className="text-gray-700">
+                                          Dengan mendaftar, saya menyetujui
+                                        </span>{" "}
+                                        <br />
+                                        <span className="text-black font-extrabold">
+                                          Syarat dan ketentuan
+                                        </span>{" "}
+                                        <span className="text-gray-700">
+                                          serta
+                                        </span>{" "}
+                                        <span className="label_merah font-bold">
+                                          Kebijakan Privasi
+                                        </span>
+                                      </label>
+                                    </div>
 
-                                                        <div className="grid grid-cols-1 place-items-center">
-                                                            <div className="form-group lg:w-2/3">
-                                                                
-                                                                <div className="form-check">
-                                                                    {errMsg4.agreement4 ? (<span className="text-error badge badge-danger">{errMsg4.agreement4}</span>) : ''}
-                                                                    <label>
-                                                                        <input
-                                                                            checked={dataKontakDarurat.agreement4 ? true : false}
-                                                                            onChange={this.handleChangeKontakDarurat.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement4" />
-                                                                        <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
-
-                                                                    </label>
-                                                                </div>
-                                                                
-                                                                <div className="grid grid-cols-1 place-items-center">
-
-                                                                    <div className="form-group lg:w-[50%] text-center mt-4">
-                                                                    <label>
-                                                                    <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
-                                                                    </label>
-                                                                    </div>
-
-                                                                    <div className="form-group w-[100%] lg:w-[40%] text-center">
-                                                                
-                                                                    <AppButton
-                                                                        style={{ color: '#ffffff', marginRight: 5 }}
-                                                                        onClick={this.handleSubmit4.bind(this, 'detil_pribadi')}
-                                                                        type="button"
-                                                                        size="lg"
-                                                                        theme=""
-                                                                        style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
-                                                                        >Selanjutnya</AppButton>
-                                                                    <AppButton
-                                                                        onClick={this.handleSubmit4.bind(this)}
-                                                                        type="button"
-                                                                        size="lg"
-                                                                        theme=""
-                                                                style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
-                                                                        Simpan</AppButton>
-
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </Form>
+                                    <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                      <AppButton
+                                        style={{
+                                          color: "#ffffff",
+                                          marginRight: 5,
+                                        }}
+                                        onClick={this.handleSubmit4.bind(
+                                          this,
+                                          "detil_pribadi"
+                                        )}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                        style={{
+                                          backgroundColor: "#C3262A",
+                                          color: "#fff",
+                                          marginRight: "2%",
+                                        }}
+                                      >
+                                        Selanjutnya
+                                      </AppButton>
+                                      <AppButton
+                                        onClick={this.handleSubmit4.bind(this)}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                        style={{
+                                          backgroundColor: "#218838",
+                                          color: "#fff",
+                                          marginRight: "2%",
+                                        }}
+                                      >
+                                        Simpan
+                                      </AppButton>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </Form>
                       </Fragment>
                     )}
 
                     {active_tab === "pekerjaan" && (
                       <Fragment>
                         <Form>
-                                                <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                                                   
-                                                    <br />
-                                                    <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Pekerjaan</span>
-                                                    <br /><br/>
+                          <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                            <br />
+                            <span
+                              className="text-2xl label_ijo"
+                              style={{ fontSize: "28px", fontWeight: "bold" }}
+                            >
+                              Pekerjaan
+                            </span>
+                            <br />
+                            <br />
 
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} controlId="status_pekerjaan">
-                                                            
-                                                            {errMsg5.status_pekerjaan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.status_pekerjaan}</span>) : ''}
-                                                            <Form.Control
-                                                                name="status_pekerjaan"
-                                                                size="lg"
-                                                                value={dataPekerjaan.status_pekerjaan ? dataPekerjaan.status_pekerjaan : ''}
-                                                                onChange={this.handleChangePekerjaan.bind(this)}
-                                                                as="select">
-                                                                <option value="">Status Pekerjaan</option>
-                                                                <option value="Swasta">Swasta</option>
-                                                                <option value="Wiraswasta">Wiraswasta</option>
-                                                                <option value="Profesional">Profesional</option>
-                                                                <option value="Pegawai Negeri">Pegawai Negeri</option>
-                                                                <option value="BUMN">BUMN</option>
-                                                                <option value="Lainnya">Lainnya</option>
-                                                            </Form.Control>
-                                                        </Form.Group>
+                            <Form.Row>
+                              <Form.Group as={Col} controlId="status_pekerjaan">
+                                {errMsg5.status_pekerjaan ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg5.status_pekerjaan}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  name="status_pekerjaan"
+                                  size="lg"
+                                  value={
+                                    dataPekerjaan.status_pekerjaan
+                                      ? dataPekerjaan.status_pekerjaan
+                                      : ""
+                                  }
+                                  onChange={this.handleChangePekerjaan.bind(
+                                    this
+                                  )}
+                                  as="select"
+                                >
+                                  <option value="">Status Pekerjaan</option>
+                                  <option value="Swasta">Swasta</option>
+                                  <option value="Wiraswasta">Wiraswasta</option>
+                                  <option value="Profesional">
+                                    Profesional
+                                  </option>
+                                  <option value="Pegawai Negeri">
+                                    Pegawai Negeri
+                                  </option>
+                                  <option value="BUMN">BUMN</option>
+                                  <option value="Lainnya">Lainnya</option>
+                                </Form.Control>
+                              </Form.Group>
 
-                                                        <Form.Group as={Col} controlId="nama_perusahaan">
-                                                            
-                                                            {errMsg5.nama_perusahaan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.nama_perusahaan}</span>) : ''}
-                                                            <Form.Control
-                                                                value={dataPekerjaan.nama_perusahaan ? dataPekerjaan.nama_perusahaan : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangePekerjaan.bind(this)}
-                                                                size="lg"
-                                                                name="nama_perusahaan"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Nama Perusahaan" />
-                                                        </Form.Group>
+                              <Form.Group as={Col} controlId="nama_perusahaan">
+                                {errMsg5.nama_perusahaan ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg5.nama_perusahaan}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  value={
+                                    dataPekerjaan.nama_perusahaan
+                                      ? dataPekerjaan.nama_perusahaan
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangePekerjaan.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="nama_perusahaan"
+                                  type="text"
+                                  required
+                                  placeholder="Nama Perusahaan"
+                                />
+                              </Form.Group>
+                            </Form.Row>
 
-                                                    </Form.Row>
+                            <Form.Row>
+                              <Form.Group as={Col} controlId="jenis_bisnis">
+                                {errMsg5.jenis_bisnis ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg5.jenis_bisnis}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  value={
+                                    dataPekerjaan.jenis_bisnis
+                                      ? dataPekerjaan.jenis_bisnis
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangePekerjaan.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="jenis_bisnis"
+                                  type="text"
+                                  required
+                                  placeholder="Jenis Bisnis"
+                                />
+                              </Form.Group>
 
-                                                    
+                              <Form.Group as={Col} controlId="jabatan">
+                                {errMsg5.jabatan ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg5.jabatan}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  value={
+                                    dataPekerjaan.jabatan
+                                      ? dataPekerjaan.jabatan
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangePekerjaan.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="jabatan"
+                                  type="text"
+                                  required
+                                  placeholder="Posisi/Jabatan"
+                                />
+                              </Form.Group>
+                            </Form.Row>
 
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} controlId="jenis_bisnis">
-                                                            
-                                                            {errMsg5.jenis_bisnis ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.jenis_bisnis}</span>) : ''}
-                                                            <Form.Control
-                                                                value={dataPekerjaan.jenis_bisnis ? dataPekerjaan.jenis_bisnis : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangePekerjaan.bind(this)}
-                                                                size="lg"
-                                                                name="jenis_bisnis"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Jenis Bisnis" />
-                                                        </Form.Group>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="lama_bekerja"
+                              >
+                                {errMsg5.lama_bekerja ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg5.lama_bekerja}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  name="lama_bekerja"
+                                  size="lg"
+                                  value={
+                                    dataPekerjaan.lama_bekerja
+                                      ? dataPekerjaan.lama_bekerja
+                                      : ""
+                                  }
+                                  onChange={this.handleChangePekerjaan.bind(
+                                    this
+                                  )}
+                                  as="select"
+                                >
+                                  <option value="">Lama Bekerja</option>
+                                  <option value="1 Tahun">1 Tahun</option>
+                                  <option value="1 - 5 Tahun">
+                                    1 - 5 Tahun
+                                  </option>
+                                  <option value="> 5 Tahun">
+                                    {" "}
+                                    {">"} 5 Tahun
+                                  </option>
+                                </Form.Control>
+                              </Form.Group>
 
-                                                        <Form.Group as={Col} controlId="jabatan">
-                                                            
-                                                            {errMsg5.jabatan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.jabatan}</span>) : ''}
-                                                            <Form.Control
-                                                                value={dataPekerjaan.jabatan ? dataPekerjaan.jabatan : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangePekerjaan.bind(this)}
-                                                                size="lg"
-                                                                name="jabatan"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Posisi/Jabatan" />
-                                                        </Form.Group>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="pekerjaan_sebelumnya"
+                              >
+                                <Form.Control
+                                  name="pekerjaan_sebelumnya"
+                                  size="lg"
+                                  value={
+                                    dataPekerjaan.pekerjaan_sebelumnya
+                                      ? dataPekerjaan.pekerjaan_sebelumnya
+                                      : ""
+                                  }
+                                  onChange={this.handleChangePekerjaan.bind(
+                                    this
+                                  )}
+                                  as="select"
+                                >
+                                  <option value="">
+                                    Lama Bekerja Sebelumnya
+                                  </option>
+                                  <option value="1 Tahun">1 Tahun</option>
+                                  <option value="1 - 5 Tahun">
+                                    1 - 5 Tahun
+                                  </option>
+                                  <option value="> 5 Tahun">
+                                    {" "}
+                                    {">"} 5 Tahun
+                                  </option>
+                                </Form.Control>
+                              </Form.Group>
+                            </Form.Row>
 
-                                                    </Form.Row>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={12}
+                                controlId="alamat_kantor"
+                              >
+                                {errMsg5.alamat_kantor ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg5.alamat_kantor}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  value={
+                                    dataPekerjaan.alamat_kantor
+                                      ? dataPekerjaan.alamat_kantor
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangePekerjaan.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="alamat_kantor"
+                                  type="text"
+                                  required
+                                  placeholder="Alamat kantor"
+                                />
+                              </Form.Group>
+                            </Form.Row>
 
-                                                   
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={12}
+                                controlId="telp_kantor"
+                              >
+                                {errMsg5.telp_kantor ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg5.telp_kantor}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  value={
+                                    dataPekerjaan.telp_kantor
+                                      ? dataPekerjaan.telp_kantor
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangePekerjaan.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="telp_kantor"
+                                  type="text"
+                                  required
+                                  placeholder="Nomor Telepon Kantor."
+                                />
+                              </Form.Group>
 
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="lama_bekerja">
-                                                            {errMsg5.lama_bekerja ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.lama_bekerja}</span>) : ''}
-                                                            <Form.Control
-                                                                name="lama_bekerja"
-                                                                size="lg"
-                                                                value={dataPekerjaan.lama_bekerja ? dataPekerjaan.lama_bekerja : ''}
-                                                                onChange={this.handleChangePekerjaan.bind(this)}
-                                                                as="select">
-                                                                <option value="">Lama Bekerja</option>
-                                                                <option value="1 Tahun">1 Tahun</option>
-                                                                <option value="1 - 5 Tahun">1 - 5 Tahun</option>
-                                                                <option value="> 5 Tahun"> {'>'} 5 Tahun</option>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={12}
+                                controlId="fax_kantor"
+                              >
+                                <Form.Control
+                                  value={
+                                    dataPekerjaan.fax_kantor
+                                      ? dataPekerjaan.fax_kantor
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangePekerjaan.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="fax_kantor"
+                                  type="text"
+                                  required
+                                  placeholder="Nomor Fax Kantor"
+                                />
+                              </Form.Group>
+                            </Form.Row>
+                          </div>
+                          <div
+                            className="container__box p-4"
+                            style={{
+                              backgroundColor: "#fbfbfd",
+                              margin: "1em -1.5em -1.5em",
+                            }}
+                          >
+                            <div className="form-group">
+                              <div className="grid grid-cols-1 place-items-center">
+                                <div className="form-group lg:w-2/3">
+                                  <div className="form-check">
+                                    {errMsg5.agreement5 ? (
+                                      <span className="text-error badge badge-danger">
+                                        {errMsg5.agreement5}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
+                                    <label>
+                                      <input
+                                        checked={
+                                          dataPekerjaan.agreement5
+                                            ? true
+                                            : false
+                                        }
+                                        onChange={this.handleChangePekerjaan.bind(
+                                          this
+                                        )}
+                                        value={1}
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        name="agreement5"
+                                      />
+                                      <div className="form-check-text">
+                                        Dengan mencentang kotak ini, saya dengan
+                                        ini mengakui bahwa semua informasi dan
+                                        dokumen yang disediakan dalam aplikasi
+                                        Online untuk pembukaan akun transaksi
+                                        adalah benar dan valid.saya dengan ini
+                                        bertanggung jawab penuh atas setiap
+                                        kerusakan / kerugian di masa depan
+                                        sebagai akibat dari informasi palsu dari
+                                        dokumen yang saya sediakan.
+                                      </div>
+                                    </label>
+                                  </div>
 
-                                                            </Form.Control>
-                                                        </Form.Group>
+                                  <div className="grid grid-cols-1 place-items-center">
+                                    <div className="form-group lg:w-[50%] text-center mt-4">
+                                      <label>
+                                        <span className="text-gray-700">
+                                          Dengan mendaftar, saya menyetujui
+                                        </span>{" "}
+                                        <br />
+                                        <span className="text-black font-extrabold">
+                                          Syarat dan ketentuan
+                                        </span>{" "}
+                                        <span className="text-gray-700">
+                                          serta
+                                        </span>{" "}
+                                        <span className="label_merah font-bold">
+                                          Kebijakan Privasi
+                                        </span>
+                                      </label>
+                                    </div>
 
-
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="pekerjaan_sebelumnya">
-                                                            <Form.Control
-                                                                name="pekerjaan_sebelumnya"
-                                                                size="lg"
-                                                                value={dataPekerjaan.pekerjaan_sebelumnya ? dataPekerjaan.pekerjaan_sebelumnya : ''}
-                                                                onChange={this.handleChangePekerjaan.bind(this)}
-                                                                as="select">
-                                                                <option value="">Lama Bekerja Sebelumnya</option>
-                                                                <option value="1 Tahun">1 Tahun</option>
-                                                                <option value="1 - 5 Tahun">1 - 5 Tahun</option>
-                                                                <option value="> 5 Tahun"> {'>'} 5 Tahun</option>
-
-                                                            </Form.Control>
-                                                        </Form.Group>
-
-                                                    </Form.Row>
-                                                   
-
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={12} controlId="alamat_kantor">
-                                                            {errMsg5.alamat_kantor ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.alamat_kantor}</span>) : ''}
-                                                            <Form.Control
-                                                                value={dataPekerjaan.alamat_kantor ? dataPekerjaan.alamat_kantor : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangePekerjaan.bind(this)}
-                                                                size="lg"
-                                                                name="alamat_kantor"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Alamat kantor" />
-                                                        </Form.Group>
-                                                    </Form.Row>
-
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={12} controlId="telp_kantor">
-                                                            {errMsg5.telp_kantor ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.telp_kantor}</span>) : ''}
-                                                            <Form.Control
-                                                                value={dataPekerjaan.telp_kantor ? dataPekerjaan.telp_kantor : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangePekerjaan.bind(this)}
-                                                                size="lg"
-                                                                name="telp_kantor"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Nomor Telepon Kantor." />
-                                                        </Form.Group>
-
-                                                        <Form.Group as={Col} xs={12} lg={12} controlId="fax_kantor">
-                                                            <Form.Control
-                                                                value={dataPekerjaan.fax_kantor ? dataPekerjaan.fax_kantor : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangePekerjaan.bind(this)}
-                                                                size="lg"
-                                                                name="fax_kantor"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Nomor Fax Kantor" />
-                                                        </Form.Group>
-
-                                                    </Form.Row>
-
-                                                    
-
-                                                </div>
-                                                <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
-                                                    <div className="form-group">
-                                                        
-                                                        
-
-
-                                                        <div className="grid grid-cols-1 place-items-center">
-                                                            <div className="form-group lg:w-2/3">
-                                                                
-                                                                <div className="form-check">
-                                                                    {errMsg5.agreement5 ? (<span className="text-error badge badge-danger">{errMsg5.agreement5}</span>) : ''}
-                                                                    <label>
-                                                                        <input
-                                                                            checked={dataPekerjaan.agreement5 ? true : false}
-                                                                            onChange={this.handleChangePekerjaan.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement5" />
-                                                                        <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
-
-                                                                    </label>
-                                                                </div>
-                                                                
-                                                                <div className="grid grid-cols-1 place-items-center">
-
-                                                                    <div className="form-group lg:w-[50%] text-center mt-4">
-                                                                    <label>
-                                                                        <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
-                                                                    </label>
-                                                                    </div>
-
-                                                                    <div className="form-group w-[100%] lg:w-[40%] text-center">
-                                                                
-                                                                    <AppButton
-                                                                        style={{ color: '#ffffff', marginRight: 5 }}
-                                                                        onClick={this.handleSubmit5.bind(this, 'detil_pribadi')}
-                                                                        type="button"
-                                                                        size="lg"
-                                                                        theme=""
-                                                                        style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
-                                                                        >Selanjutnya</AppButton>
-                                                                    <AppButton
-                                                                        onClick={this.handleSubmit5.bind(this)}
-                                                                        type="button"
-                                                                        size="lg"
-                                                                        theme=""
-                                                                style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
-                                                                        Simpan</AppButton>
-
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </Form>
+                                    <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                      <AppButton
+                                        style={{
+                                          color: "#ffffff",
+                                          marginRight: 5,
+                                        }}
+                                        onClick={this.handleSubmit5.bind(
+                                          this,
+                                          "detil_pribadi"
+                                        )}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                        style={{
+                                          backgroundColor: "#C3262A",
+                                          color: "#fff",
+                                          marginRight: "2%",
+                                        }}
+                                      >
+                                        Selanjutnya
+                                      </AppButton>
+                                      <AppButton
+                                        onClick={this.handleSubmit5.bind(this)}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                        style={{
+                                          backgroundColor: "#218838",
+                                          color: "#fff",
+                                          marginRight: "2%",
+                                        }}
+                                      >
+                                        Simpan
+                                      </AppButton>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </Form>
                       </Fragment>
                     )}
 
                     {active_tab === "detil_bank" && (
                       <Fragment>
                         <Form>
-                                                <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                                                    
-                                                    <br />
-                                                    <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Akun Bank</span>
-                                                    <br /><br/>
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="nama_pemilik">
-                                                            <Form.Control
-                                                                disabled
-                                                                value={user.nama_depan ? user.nama_depan + ' ' + user.nama_belakang : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangeAkunBank.bind(this)}
-                                                                size="lg"
-                                                                name="nama_pemilik"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Nama Pemilik Rekening" />
-                                                            {errMsg6.nama_pemilik ? (<span className="text-error badge badge-danger">{errMsg6.nama_pemilik}</span>) : ''}
-                                                        </Form.Group>
+                          <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                            <br />
+                            <span
+                              className="text-2xl label_ijo"
+                              style={{ fontSize: "28px", fontWeight: "bold" }}
+                            >
+                              Akun Bank
+                            </span>
+                            <br />
+                            <br />
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="nama_pemilik"
+                              >
+                                <Form.Control
+                                  disabled
+                                  value={
+                                    user.nama_depan
+                                      ? user.nama_depan +
+                                        " " +
+                                        user.nama_belakang
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeAkunBank.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="nama_pemilik"
+                                  type="text"
+                                  required
+                                  placeholder="Nama Pemilik Rekening"
+                                />
+                                {errMsg6.nama_pemilik ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg6.nama_pemilik}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
 
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="bank_id">
-                                                            <Form.Control
-                                                                name="bank_id"
-                                                                size="lg"
-                                                                value={dataAkunBank.bank_id ? dataAkunBank.bank_id : ''}
-                                                                onChange={this.handleChangeAkunBank.bind(this)}
-                                                                as="select">
-                                                                <option value="">Nama Bank</option>
-                                                                {dataBank ? (
-                                                                    dataBank.map(function (bnk) {
-                                                                        return <option
-                                                                            value={bnk.bank_id}
-                                                                            key={bnk.bank_id}>{bnk.nama_bank}
-                                                                        </option>
-                                                                    })
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="bank_id"
+                              >
+                                <Form.Control
+                                  name="bank_id"
+                                  size="lg"
+                                  value={
+                                    dataAkunBank.bank_id
+                                      ? dataAkunBank.bank_id
+                                      : ""
+                                  }
+                                  onChange={this.handleChangeAkunBank.bind(
+                                    this
+                                  )}
+                                  as="select"
+                                >
+                                  <option value="">Nama Bank</option>
+                                  {dataBank
+                                    ? dataBank.map(function (bnk) {
+                                        return (
+                                          <option
+                                            value={bnk.bank_id}
+                                            key={bnk.bank_id}
+                                          >
+                                            {bnk.nama_bank}
+                                          </option>
+                                        );
+                                      })
+                                    : ""}
+                                </Form.Control>
+                                {errMsg6.bank ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg6.bank}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                            </Form.Row>
 
-                                                                ) : ''}
-                                                            </Form.Control>
-                                                            {errMsg6.bank ? (<span className="text-error badge badge-danger">{errMsg6.bank}</span>) : ''}
-                                                        </Form.Group>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="no_rek"
+                              >
+                                <NumberFormat
+                                  value={
+                                    dataAkunBank.no_rek
+                                      ? dataAkunBank.no_rek
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeAkunBank.bind(
+                                    this
+                                  )}
+                                  className="form-control form-control-lg"
+                                  size="lg"
+                                  name="no_rek"
+                                  thousandSeparator={false}
+                                  decimalScale={0}
+                                  inputMode="numeric"
+                                  placeholder="Nomor Rekening Bank"
+                                />
+                                {errMsg6.no_rek ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg6.no_rek}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
 
-                                                    </Form.Row>
-                                                    
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="no_rek">
-                                                            <NumberFormat
-                                                                value={dataAkunBank.no_rek ? dataAkunBank.no_rek : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangeAkunBank.bind(this)}
-                                                                className="form-control form-control-lg"
-                                                                size="lg"
-                                                                name="no_rek"
-                                                                thousandSeparator={false}
-                                                                decimalScale={0}
-                                                                inputMode="numeric"
-                                                                placeholder="Nomor Rekening Bank" />
-                                                            {errMsg6.no_rek ? (<span className="text-error badge badge-danger">{errMsg6.no_rek}</span>) : ''}
-                                                        </Form.Group>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="cabang"
+                              >
+                                <Form.Control
+                                  value={
+                                    dataAkunBank.cabang
+                                      ? dataAkunBank.cabang
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeAkunBank.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="cabang"
+                                  type="text"
+                                  required
+                                  placeholder="Cabang"
+                                />
+                                {errMsg6.cabang ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg6.cabang}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                            </Form.Row>
 
-                                                        <Form.Group as={Col} xs={12} lg={6} controlId="cabang">
-                                                            <Form.Control
-                                                                value={dataAkunBank.cabang ? dataAkunBank.cabang : ''}
-                                                                autoComplete="off"
-                                                                onChange={this.handleChangeAkunBank.bind(this)}
-                                                                size="lg"
-                                                                name="cabang"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Cabang" />
-                                                            {errMsg6.cabang ? (<span className="text-error badge badge-danger">{errMsg6.cabang}</span>) : ''}
-                                                        </Form.Group>
-
-                                                    </Form.Row>
-
-                                                    
-
-                                                    {/*  <Form.Row>
+                            {/*  <Form.Row>
                                                         <Form.Group as={Col} controlId="no_telp">
                                                             <Form.Label>Nomor Telepon Bank</Form.Label>
                                                             <Form.Control
@@ -2225,340 +3284,567 @@ class Personal extends Component {
                                                         </Form.Group>
                                                     </Form.Row> */}
 
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} controlId="jenis_akun_bank">
-                                                            <Form.Label>Jenis akun</Form.Label><br />
-                                                            <Form.Check
-                                                                onChange={this.handleChangeAkunBank.bind(this)}
-                                                                inline
-                                                                checked={dataAkunBank.jenis_akun_bank === 'Giro' ? ("checked") : ""}
-                                                                value='Giro'
-                                                                type='radio'
-                                                                name='jenis_akun_bank'
-                                                                label='Giro'
-                                                            />
-                                                            <Form.Check
-                                                                onChange={this.handleChangeAkunBank.bind(this)}
-                                                                inline
-                                                                value='Rekening tabungan'
-                                                                type='radio'
-                                                                checked={dataAkunBank.jenis_akun_bank === 'Rekening tabungan' ? ("checked") : ""}
-                                                                name='jenis_akun_bank'
-                                                                label='Rekening tabungan'
-                                                            />
-                                                            <Form.Check
-                                                                onChange={this.handleChangeAkunBank.bind(this)}
-                                                                inline
-                                                                value='Lainnya'
-                                                                type='radio'
-                                                                checked={dataAkunBank.jenis_akun_bank === 'Lainnya' ? ("checked") : ""}
-                                                                name='jenis_akun_bank'
-                                                                label='Lainnya'
-                                                            />
-                                                            {errMsg6.jenis_akun_bank ? (<span className="text-error badge badge-danger">{errMsg6.jenis_akun_bank}</span>) : ''}
-                                                        </Form.Group>
-                                                    </Form.Row>
+                            <Form.Row>
+                              <Form.Group as={Col} controlId="jenis_akun_bank">
+                                <Form.Label>Jenis akun</Form.Label>
+                                <br />
+                                <Form.Check
+                                  onChange={this.handleChangeAkunBank.bind(
+                                    this
+                                  )}
+                                  inline
+                                  checked={
+                                    dataAkunBank.jenis_akun_bank === "Giro"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                  value="Giro"
+                                  type="radio"
+                                  name="jenis_akun_bank"
+                                  label="Giro"
+                                />
+                                <Form.Check
+                                  onChange={this.handleChangeAkunBank.bind(
+                                    this
+                                  )}
+                                  inline
+                                  value="Rekening tabungan"
+                                  type="radio"
+                                  checked={
+                                    dataAkunBank.jenis_akun_bank ===
+                                    "Rekening tabungan"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                  name="jenis_akun_bank"
+                                  label="Rekening tabungan"
+                                />
+                                <Form.Check
+                                  onChange={this.handleChangeAkunBank.bind(
+                                    this
+                                  )}
+                                  inline
+                                  value="Lainnya"
+                                  type="radio"
+                                  checked={
+                                    dataAkunBank.jenis_akun_bank === "Lainnya"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                  name="jenis_akun_bank"
+                                  label="Lainnya"
+                                />
+                                {errMsg6.jenis_akun_bank ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg6.jenis_akun_bank}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                            </Form.Row>
+                          </div>
+                          <div
+                            className="container__box p-4"
+                            style={{
+                              backgroundColor: "#fbfbfd",
+                              margin: "1em -1.5em -1.5em",
+                            }}
+                          >
+                            <div className="form-group">
+                              <div className="grid grid-cols-1 place-items-center">
+                                <div className="form-group lg:w-2/3">
+                                  <div className="form-check">
+                                    {errMsg6.agreement6 ? (
+                                      <span className="text-error badge badge-danger">
+                                        {errMsg6.agreement6}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
+                                    <label>
+                                      <input
+                                        checked={
+                                          dataAkunBank.agreement6 === "Y"
+                                            ? true
+                                            : false
+                                        }
+                                        onChange={this.handleChangeAkunBank.bind(
+                                          this
+                                        )}
+                                        value={"Y"}
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        name="agreement6"
+                                      />
+                                      <div className="form-check-text">
+                                        Dengan mencentang kotak ini, saya dengan
+                                        ini mengakui bahwa semua informasi dan
+                                        dokumen yang disediakan dalam aplikasi
+                                        Online untuk pembukaan akun transaksi
+                                        adalah benar dan valid.saya dengan ini
+                                        bertanggung jawab penuh atas setiap
+                                        kerusakan / kerugian di masa depan
+                                        sebagai akibat dari informasi palsu dari
+                                        dokumen yang saya sediakan.
+                                      </div>
+                                    </label>
+                                  </div>
 
-                                                </div>
-                                                <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
-                                                    <div className="form-group">
-                                                        
-                                                        
+                                  <div className="grid grid-cols-1 place-items-center">
+                                    <div className="form-group lg:w-[50%] text-center mt-4">
+                                      <label>
+                                        <span className="text-gray-700">
+                                          Dengan mendaftar, saya menyetujui
+                                        </span>{" "}
+                                        <br />
+                                        <span className="text-black font-extrabold">
+                                          Syarat dan ketentuan
+                                        </span>{" "}
+                                        <span className="text-gray-700">
+                                          serta
+                                        </span>{" "}
+                                        <span className="label_merah font-bold">
+                                          Kebijakan Privasi
+                                        </span>
+                                      </label>
+                                    </div>
 
+                                    <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                      <AppButton
+                                        style={{
+                                          color: "#ffffff",
+                                          marginRight: 5,
+                                        }}
+                                        onClick={this.handleSubmit6.bind(
+                                          this,
+                                          "detil_pribadi"
+                                        )}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                        style={{
+                                          backgroundColor: "#C3262A",
+                                          color: "#fff",
+                                          marginRight: "2%",
+                                        }}
+                                      >
+                                        Selanjutnya
+                                      </AppButton>
 
-                                                    <div className="grid grid-cols-1 place-items-center">
-                                                            <div className="form-group lg:w-2/3">
-                                                                
-                                                            <div className="form-check">
-                                                            {errMsg6.agreement6 ? (<span className="text-error badge badge-danger">{errMsg6.agreement6}</span>) : ''}
-                                                            <label>
-                                                                <input
-                                                                    checked={dataAkunBank.agreement6 === 'Y' ? true : false}
-                                                                    onChange={this.handleChangeAkunBank.bind(this)} value={'Y'} className="form-check-input" type="checkbox" name="agreement6" />
-                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
-
-                                                            </label>
-                                                        </div>
-                                                                
-                                                                <div className="grid grid-cols-1 place-items-center">
-
-                                                                    <div className="form-group lg:w-[50%] text-center mt-4">
-                                                                    <label>
-                                                                        <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
-                                                                    </label>
-                                                                    </div>
-
-                                                                    <div className="form-group w-[100%] lg:w-[40%] text-center">
-                                                                
-                                                                    <AppButton
-                                                                        style={{ color: '#ffffff', marginRight: 5 }}
-                                                                        onClick={this.handleSubmit6.bind(this, 'detil_pribadi')}
-                                                                        type="button"
-                                                                        size="lg"
-                                                                        theme=""
-                                                                        style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
-                                                                        >Selanjutnya</AppButton>
-                                                                    
-                                                                    <AppButton
-                                                                        onClick={this.handleSubmit6.bind(this)}
-                                                                        type="button"
-                                                                        size="lg"
-                                                                        theme=""
-                                                                style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
-                                                                        Simpan</AppButton>
-
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </Form>
+                                      <AppButton
+                                        onClick={this.handleSubmit6.bind(this)}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                        style={{
+                                          backgroundColor: "#218838",
+                                          color: "#fff",
+                                          marginRight: "2%",
+                                        }}
+                                      >
+                                        Simpan
+                                      </AppButton>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </Form>
                       </Fragment>
                     )}
 
                     {active_tab === "unggah_file" && (
                       <Fragment>
                         <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                                                
-                                                <br />
-                                                    <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Unggah Dokumen</span>
-                                                    <br /><br/>
-                                                <div className="row">
-                                                    <div className="col-md-4">
-                                                        <div className="alert alert-success alert-sm" style={{ backgroundColor: '#effbf3' }} >
-                                                            <h6 className="text-uppercase text-green mb-4">Catatan Penting</h6>
-                                                            <ul className="list-check">
-                                                                <li>KTP / SIM / Paspor</li>
-                                                                <li>Foto Terkini</li>
-                                                                <li>
-                                                                    Pilih salah satu di bawah ini untuk dokumen lainnya
-                                                                    <ul>
-                                                                        <li>Rekening Koran Bank / Tagihan Kartu Kredit</li>
-                                                                        <li>Rekening Listrik/ Telepon</li>
-                                                                        <li>Tambahan Dokumen Lain 1 (Apabila Diperlukan)</li>
-                                                                        <li>Tambahan Dokumen Lain 2 (Apabila Diperlukan)</li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
+                          <br />
+                          <span
+                            className="text-2xl label_ijo"
+                            style={{ fontSize: "28px", fontWeight: "bold" }}
+                          >
+                            Unggah Dokumen
+                          </span>
+                          <br />
+                          <br />
+                          <div className="row">
+                            <div className="col-md-4">
+                              <div
+                                className="alert alert-success alert-sm"
+                                style={{ backgroundColor: "#effbf3" }}
+                              >
+                                <h6 className="text-uppercase text-green mb-4">
+                                  Catatan Penting
+                                </h6>
+                                <ul className="list-check">
+                                  <li>KTP / SIM / Paspor</li>
+                                  <li>Foto Terkini</li>
+                                  <li>
+                                    Pilih salah satu di bawah ini untuk dokumen
+                                    lainnya
+                                    <ul>
+                                      <li>
+                                        Rekening Koran Bank / Tagihan Kartu
+                                        Kredit
+                                      </li>
+                                      <li>Rekening Listrik/ Telepon</li>
+                                      <li>
+                                        Tambahan Dokumen Lain 1 (Apabila
+                                        Diperlukan)
+                                      </li>
+                                      <li>
+                                        Tambahan Dokumen Lain 2 (Apabila
+                                        Diperlukan)
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div className="col-md-8">
+                              <div
+                                className="alert alert-sm"
+                                style={{
+                                  backgroundColor: "#efefef",
+                                  color: "#505f79",
+                                  fontSize: "1rem",
+                                  lineHeight: 1.5,
+                                  fontWeight: 300,
+                                }}
+                              >
+                                <div className="row">
+                                  <div className="col-md-9">
+                                    <h4
+                                      style={{
+                                        marginBottom: ".8rem",
+                                        marginTop: ".8rem",
+                                      }}
+                                    >
+                                      Unggah Foto Terkini
+                                    </h4>
+                                  </div>
+                                  <div className="col-md-3">
+                                    <Form>
+                                      <Form.Group controlId="PHOTO">
+                                        <Form.File
+                                          className="custom-file-input2"
+                                          size="lg"
+                                          name="PHOTO"
+                                          setfieldvalue=""
+                                          onChange={this.handleChangePhoto.bind(
+                                            this
+                                          )}
+                                        ></Form.File>
+                                      </Form.Group>
+                                    </Form>
+                                  </div>
+                                </div>
 
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-md-8">
-                                                        <div className="alert alert-sm" style={{ backgroundColor: '#efefef', color: '#505f79', fontSize: '1rem', lineHeight: 1.5, fontWeight: 300 }} >
-                                                           
+                                <div className="row">
+                                  <div className="col-md-9">
+                                    <h4
+                                      style={{
+                                        marginBottom: "1.2rem",
+                                        marginTop: ".8rem",
+                                      }}
+                                    >
+                                      Cover Buku Tabungan
+                                    </h4>
+                                  </div>
+                                  <div className="col-md-3">
+                                    <Form>
+                                      <Form.Group controlId="OTHER">
+                                        <Form.File
+                                          className="custom-file-input2"
+                                          size="lg"
+                                          name="OTHER"
+                                          setfieldvalue=""
+                                          onChange={this.handleChangePhoto.bind(
+                                            this
+                                          )}
+                                        ></Form.File>
+                                      </Form.Group>
+                                    </Form>
+                                  </div>
+                                </div>
 
-                                                            <div className="row">
-                                                                <div className="col-md-9">
-                                                                    <h4 style={{ marginBottom: '.8rem', marginTop: '.8rem' }}>Unggah Foto Terkini</h4>
-                                                                </div>
-                                                                <div className="col-md-3">
-                                                                    <Form>
-                                                                        <Form.Group controlId="PHOTO">
-                                                                            <Form.File
-                                                                                className="custom-file-input2"
-                                                                                size="lg"
-                                                                                name="PHOTO" setfieldvalue="" onChange={this.handleChangePhoto.bind(this)} >
+                                {errUplFileMsg ? (
+                                  <div
+                                    className="alert alert-info alert-sm"
+                                    style={{ marginTop: ".3rem" }}
+                                  >
+                                    <button
+                                      onClick={this.hideAlert.bind(this)}
+                                      type="button"
+                                      className="close"
+                                      data-dismiss="alert"
+                                      aria-hidden="true"
+                                    >
+                                      ×
+                                    </button>
+                                    <span className="fw-semi-bold">
+                                      {errUplFileMsg}
+                                    </span>
+                                  </div>
+                                ) : (
+                                  ""
+                                )}
+                              </div>
+                              <br />
 
-                                                                            </Form.File>
+                              <div className="table-responsive">
+                                <table className="table table__document">
+                                  <thead>
+                                    <tr>
+                                      <th style={{ width: "15%" }}>File</th>
+                                      <th style={{ width: "40%" }}>
+                                        Nama File
+                                      </th>
+                                      <th style={{ width: "15%" }}>Tipe</th>
+                                      <th style={{ width: "10%" }}>Ukuran</th>
+                                      <th style={{ width: "20%" }}>Tindakan</th>
+                                    </tr>
+                                  </thead>
 
-                                                                        </Form.Group>
-                                                                    </Form>
-                                                                </div>
-                                                            </div>
+                                  {isFetchingUpl ? (
+                                    <tbody>
+                                      <tr>
+                                        <td colSpan="5">
+                                          <Paragraph
+                                            rowHeight={20}
+                                            rowMargin={7}
+                                            rows={1}
+                                            active
+                                          />
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td colSpan="5">
+                                          <Paragraph
+                                            rowHeight={20}
+                                            rowMargin={7}
+                                            rows={1}
+                                            active
+                                          />
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  ) : (
+                                    <Fragment>
+                                      <tbody>
+                                        {docPribadi
+                                          ? docPribadi.map((dp, index) => {
+                                              return (
+                                                <tr key={dp.dokumen_id}>
+                                                  <td>
+                                                    <Figure>
+                                                      <Figure.Image
+                                                        width={150}
+                                                        height={100}
+                                                        alt=""
+                                                        src={dp.file}
+                                                      />
+                                                    </Figure>
+                                                  </td>
+                                                  <td></td>
+                                                  <td>
+                                                    {dp.tipe === "OTHER"
+                                                      ? "BUKU TABUNGAN"
+                                                      : dp.tipe}
+                                                  </td>
+                                                  <td>{dp.size}kb</td>
+                                                  <td align="center">
+                                                    <IconButton
+                                                      disabled={
+                                                        dp.tipe === "KTP"
+                                                          ? true
+                                                          : false
+                                                      }
+                                                      onClick={
+                                                        dp.tipe !== "KTP"
+                                                          ? this.deleteRecordFile.bind(
+                                                              this,
+                                                              dp.dokumen_id
+                                                            )
+                                                          : this.deleteRecordFile.bind(
+                                                              this
+                                                            )
+                                                      }
+                                                      icon={
+                                                        <Icon icon="close" />
+                                                      }
+                                                    />
+                                                    <br />
+                                                    <a href={dp.file}>
+                                                      <IconButton
+                                                        style={{ marginTop: 5 }}
+                                                        icon={
+                                                          <Icon icon="download2" />
+                                                        }
+                                                      />
+                                                    </a>
+                                                  </td>
+                                                </tr>
+                                              );
+                                            })
+                                          : ""}
+                                      </tbody>
+                                    </Fragment>
+                                  )}
+                                </table>
+                              </div>
+                            </div>
+                            {!unggahFileName ? (
+                              <div className="alert alert-danger alert-sm">
+                                <span className="fw-semi-bold">
+                                  Silahkan upload semua photo dengan lengkap
+                                </span>
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        </div>
+                        <div
+                          className="container__box p-4"
+                          style={{
+                            backgroundColor: "#fbfbfd",
+                            margin: "1em -1.5em -1.5em",
+                          }}
+                        >
+                          <div className="form-group">
+                            <div className="form-check">
+                              <div
+                                style={{
+                                  textAlign: "center",
+                                  fontSize: "1.7rem",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                <h2>PERNYATAAN KEBENARAN DAN TANGGUNG JAWAB</h2>
+                              </div>
 
-                                                            <div className="row">
-                                                                <div className="col-md-9">
-                                                                    <h4 style={{ marginBottom: '1.2rem', marginTop: '.8rem' }}>Cover Buku Tabungan</h4>
-                                                                </div>
-                                                                <div className="col-md-3">
-                                                                    <Form>
-                                                                        <Form.Group controlId="OTHER">
-                                                                            <Form.File
-                                                                                className="custom-file-input2"
-                                                                                size="lg"
-                                                                                name="OTHER" setfieldvalue="" onChange={this.handleChangePhoto.bind(this)} >
+                              <div className="form-check-text">
+                                Dengan mengisi kolom "YA" di bawah ini, saya
+                                menyatakan bahwa semua informasi dan semua
+                                dokumen yang saya lampirkan dalam{" "}
+                                <b style={{ color: "#000" }}>
+                                  APLIKASI PEMBUKAAN REKENING TRANSAKSI SECARA
+                                  ELEKTRONIK ON-LINE
+                                </b>{" "}
+                                adalah benar dan tepat, Saya akan bertanggung
+                                jawab penuh apabila dikemudian hari terjadi
+                                sesuatu hal sehubungan dengan ketidakbenaran
+                                data yang saya berikan.
+                              </div>
 
-                                                                            </Form.File>
+                              <br />
+                              <div className="form-group row align-items-center">
+                                <div className="col">
+                                  Pernyataan Kebenaran Dan Tanggung Jawab
+                                  {errMsg7.agree ? (
+                                    <span className="text-error badge badge-danger">
+                                      {errMsg7.agree}
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
+                                </div>
+                                <div className="col-sm-6 col-md-9">
+                                  <Form.Group controlId="agree">
+                                    <Form.Check
+                                      inline
+                                      onChange={this.handleChangeDPP.bind(this)}
+                                      checked={
+                                        dokumenPribadiPernyataan &&
+                                        dokumenPribadiPernyataan.agree !== "N"
+                                          ? true
+                                          : false
+                                      }
+                                      value="Y"
+                                      type="radio"
+                                      name="agree"
+                                      label="Ya"
+                                    />
+                                    <Form.Check
+                                      inline
+                                      checked={
+                                        dokumenPribadiPernyataan &&
+                                        dokumenPribadiPernyataan.agree === "N"
+                                          ? true
+                                          : false
+                                      }
+                                      onChange={this.handleChangeDPP.bind(this)}
+                                      value="N"
+                                      type="radio"
+                                      name="agree"
+                                      label="Tidak"
+                                    />
+                                  </Form.Group>
+                                </div>
+                              </div>
 
-                                                                        </Form.Group>
-                                                                    </Form>
-                                                                </div>
-                                                            </div>
+                              <div className="form-group row align-items-center">
+                                <div className="col">
+                                  Menyatakan Pada Tanggal
+                                </div>
+                                <div className="col-sm-6 col-md-9">
+                                  {dokumenPribadiPernyataan.tanggal
+                                    ? dokumenPribadiPernyataan.tanggal
+                                    : moment(new Date()).format("YYYY-MM-DD")}
+                                </div>
+                              </div>
 
+                              <div className="grid grid-cols-1 place-items-center">
+                                <div className="form-group lg:w-2/3">
+                                  <div className="grid grid-cols-1 place-items-center">
+                                    <div className="form-group lg:w-[50%] text-center mt-4">
+                                      <label>
+                                        <span className="text-gray-700">
+                                          Dengan mendaftar, saya menyetujui
+                                        </span>{" "}
+                                        <br />
+                                        <span className="text-black font-extrabold">
+                                          Syarat dan ketentuan
+                                        </span>{" "}
+                                        <span className="text-gray-700">
+                                          serta
+                                        </span>{" "}
+                                        <span className="label_merah font-bold">
+                                          Kebijakan Privasi
+                                        </span>
+                                      </label>
+                                    </div>
 
-
-                                                            {errUplFileMsg ? (
-                                                                <div className="alert alert-info alert-sm" style={{ marginTop: '.3rem' }}>
-                                                                    <button onClick={this.hideAlert.bind(this)} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                                    <span className="fw-semi-bold">{errUplFileMsg}</span>
-                                                                </div>
-                                                            ) : ''}
-                                                        </div>
-                                                        <br />
-
-
-                                                        <div className="table-responsive">
-                                                            <table className="table table__document">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th style={{ width: '15%' }}>File</th>
-                                                                        <th style={{ width: '40%' }}>Nama File</th>
-                                                                        <th style={{ width: '15%' }}>Tipe</th>
-                                                                        <th style={{ width: '10%' }}>Ukuran</th>
-                                                                        <th style={{ width: '20%' }}>Tindakan</th>
-                                                                    </tr>
-                                                                </thead>
-
-                                                                {isFetchingUpl ? (
-                                                                    <tbody>
-                                                                        <tr><td colSpan="5"><Paragraph rowHeight={20} rowMargin={7} rows={1} active /></td></tr>
-                                                                        <tr><td colSpan="5"><Paragraph rowHeight={20} rowMargin={7} rows={1} active /></td></tr>
-
-                                                                    </tbody>) : (
-                                                                    <Fragment>
-                                                                        <tbody>
-                                                                            {docPribadi ? (
-                                                                                docPribadi.map((dp, index) => {
-
-                                                                                    return (
-
-                                                                                        <tr key={dp.dokumen_id}>
-                                                                                            <td>
-                                                                                                <Figure>
-                                                                                                    <Figure.Image
-                                                                                                        width={150}
-                                                                                                        height={100}
-                                                                                                        alt=""
-                                                                                                        src={dp.file}
-                                                                                                    />
-                                                                                                </Figure>
-                                                                                            </td>
-                                                                                            <td></td>
-                                                                                            <td>{dp.tipe === "OTHER" ? "BUKU TABUNGAN" : dp.tipe}</td>
-                                                                                            <td>{dp.size}kb</td>
-                                                                                            <td align="center">
-                                                                                                <IconButton 
-																								disabled={dp.tipe === "KTP" ? true : false}
-																								onClick={dp.tipe !== "KTP" ? this.deleteRecordFile.bind(this, dp.dokumen_id) : this.deleteRecordFile.bind(this)} icon={<Icon icon="close" />} />
-                                                                                                <br />
-                                                                                                <a href={dp.file}><IconButton style={{ marginTop: 5 }} icon={<Icon icon="download2" />} /></a>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                    )
-                                                                                })
-                                                                            ) : ''}
-
-                                                                        </tbody>
-
-                                                                    </Fragment>
-                                                                )}
-
-                                                            </table>
-
-                                                        </div>
-
-
-                                                    </div>
-                                                    {!unggahFileName ? (
-                                                        <div className="alert alert-danger alert-sm">
-
-                                                            <span className="fw-semi-bold">Silahkan upload semua photo dengan lengkap</span>
-                                                        </div>
-                                                    ) : ''}
-                                                </div>
-
-                                            </div>
-                                            <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
-                                                <div className="form-group">
-                                                    <div className="form-check">
-
-                                                        <div style={{ textAlign: 'center', fontSize: '1.7rem', fontWeight: 600 }}><h2>PERNYATAAN KEBENARAN DAN TANGGUNG JAWAB</h2></div>
-
-                                                        <div className="form-check-text">
-                                                            Dengan mengisi kolom "YA" di bawah ini, saya menyatakan bahwa semua informasi dan semua dokumen yang saya lampirkan dalam <b style={{ color: '#000' }}>APLIKASI PEMBUKAAN REKENING TRANSAKSI SECARA ELEKTRONIK ON-LINE</b> adalah benar dan tepat, Saya akan bertanggung jawab penuh apabila dikemudian hari terjadi sesuatu hal sehubungan dengan ketidakbenaran data yang saya berikan.
-
-
-                                                        </div>
-
-                                                        <br />
-                                                        <div className="form-group row align-items-center">
-                                                            <div className="col">
-                                                                Pernyataan Kebenaran Dan Tanggung Jawab
-                                                                {errMsg7.agree ? (<span className="text-error badge badge-danger">{errMsg7.agree}</span>) : ''}
-                                                            </div>
-                                                            <div className="col-sm-6 col-md-9">
-                                                                <Form.Group controlId="agree">
-                                                                    <Form.Check
-                                                                        inline
-                                                                        onChange={this.handleChangeDPP.bind(this)}
-                                                                        checked={dokumenPribadiPernyataan && dokumenPribadiPernyataan.agree !== 'N' ? true : false}
-                                                                        value='Y'
-                                                                        type='radio'
-                                                                        name='agree'
-                                                                        label='Ya'
-                                                                    />
-                                                                    <Form.Check
-                                                                        inline
-                                                                        checked={dokumenPribadiPernyataan && dokumenPribadiPernyataan.agree === 'N' ? true : false}
-                                                                        onChange={this.handleChangeDPP.bind(this)}
-                                                                        value='N'
-                                                                        type='radio'
-                                                                        name='agree'
-                                                                        label='Tidak'
-                                                                    />
-                                                                </Form.Group>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="form-group row align-items-center">
-                                                            <div className="col">
-                                                                Menyatakan Pada Tanggal
-                                                            </div>
-                                                            <div className="col-sm-6 col-md-9">
-                                                                {dokumenPribadiPernyataan.tanggal ? dokumenPribadiPernyataan.tanggal : moment(new Date()).format('YYYY-MM-DD')}
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="grid grid-cols-1 place-items-center">
-                                                            <div className="form-group lg:w-2/3">
-                                                                
-                                                            
-                                                                
-                                                                <div className="grid grid-cols-1 place-items-center">
-
-                                                                    <div className="form-group lg:w-[50%] text-center mt-4">
-                                                                    <label>
-                                                                        <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
-                                                                    </label>
-                                                                    </div>
-
-                                                                    <div className="form-group lg:w-[40%] text-center">
-                                                                
-                                                                    <AppButton
-                                                                    disabled={!unggahFileName}
-                                                                        style={{ color: '#ffffff', marginRight: 5 }}
-                                                                        onClick={this.handleSubmit7.bind(this, 'detil_pribadi')}
-                                                                        type="button"
-                                                                        size="lg"
-                                                                        theme=""
-                                                                        style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
-                                                                        >Selanjutnya</AppButton>
-
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-                                                        
-                                                    </div>
-
-                                                </div>
-                                            </div>
+                                    <div className="form-group lg:w-[40%] text-center">
+                                      <AppButton
+                                        disabled={!unggahFileName}
+                                        style={{
+                                          color: "#ffffff",
+                                          marginRight: 5,
+                                        }}
+                                        onClick={this.handleSubmit7.bind(
+                                          this,
+                                          "detil_pribadi"
+                                        )}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                        style={{
+                                          backgroundColor: "#C3262A",
+                                          color: "#fff",
+                                          marginRight: "2%",
+                                        }}
+                                      >
+                                        Selanjutnya
+                                      </AppButton>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </Fragment>
                     )}
                   </div>
@@ -2601,7 +3887,7 @@ const mapStateToProps = (state) => ({
   errorMessage: state.personal.errorMessage,
   errUplFileMsg: state.personal.errUplFileMsg,
   showFormDelete: state.personal.showFormDelete,
-  isLoading: state.personal.isLoading, 
+  isLoading: state.personal.isLoading,
   errFetchUserByToken: state.main.errFetchUserByToken,
   user: state.main.currentUser,
 });
