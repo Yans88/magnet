@@ -251,26 +251,48 @@ class Beranda extends Component {
                 <section className="content">
                     <div className="container-fluid">
                        
-                        <div className="grid grid-cols-1  my-3 mb-20">
+                        <div className="grid grid-cols-1  my-3">
                             
                             
+                            <div className="mobile-hide">
+                                <div className="w-full bg-hijau-forex rounded-xl text-white pt-3 pb-3 xs:pb-3 lg:pb-20 grid grid-cols-1 place-items-center static">
+                                
+                                    <div className="mobile-hide w-[18%]  ">
+                                        <img src={akun_icon} width="25px" className="float-left" />
+                                        <span className="text-lg font-bold">&nbsp;Akun Saya</span>
+                                        
+                                        
 
-                            <div className="w-full bg-hijau-forex rounded-xl text-white pt-3 xs:pb-3 lg:pb-20 grid grid-cols-1 place-items-center static">
-                            
-                                <div className="mobile-hide w-[18%]  ">
-                                    <img src={akun_icon} width="25px" className="float-left" />
-                                    <span className="text-lg font-bold">&nbsp;Akun Saya</span>
+                                    </div>
+
                                     
-                                    
+                                </div>
+                            </div>
+
+                            <div className="mobile-view">
+                                <div className="w-full bg-hijau-forex rounded-xl text-white pt-3 pb-3 pb-20 grid grid-cols-1 place-items-center static">
+                                
+                                   
+                                    <div className="relative w-[50%] text-center  ">
+                                        
+                                        <div class="flex flex-row justify-center">
+                                            <div class="basis-3/4"><span className="text-lg font-bold"><img src={akun_icon} width="25px" className="float-left pl-0" />&nbsp;Akun Saya</span></div>
+                                        </div>
+
+                                    </div>
 
                                 </div>
+                            </div>
 
                                 
 
                                 <div className="mobile-hide absolute mt-[32rem] bg-white text-black text-center rounded-2xl shadow-lg  py-10 w-3/4 ..." >
-                                    <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
-                                        <span className="font-bold text-black">BUAT AKUN TRADING BARU</span>
-                                    </Link>
+                                    <div className="w-full bg-hijau-forex rounded-xl text-white pt-3 pb-3 pb-20 grid grid-cols-1 place-items-center static">
+                                        <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
+                                            <span className="font-bold text-black">BUAT AKUN TRADING BARU</span>
+                                        </Link>
+                                    </div>
+
                                         <div className="grid grid-cols-3 gap-4 px-5  mt-2">
 
                                                 {akun_trading ? (
@@ -340,13 +362,7 @@ class Beranda extends Component {
 
                                 </div>
 
-                                <div className="mobile-view relative w-[50%] text-center  ">
-                                    <img src={akun_icon} width="25px" className="float-left pl-0" />
-                                    <span className="text-lg font-bold">&nbsp;Akun Saya</span>
-                                    
-                                    
-
-                                </div>
+                                
 
                                 
 
@@ -356,7 +372,8 @@ class Beranda extends Component {
 
 
 
-                            </div>
+
+                            
 
                                 <div className="mobile-hide relative mt-[30rem] bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[80%] mb-10 mx-12 ml-[10%] ...">
                                     <a href="account-type" className="btn btn-lgreen btn-sm"><span className="font-bold text-red-700">AKUN DEMO MT5</span></a><br/>
@@ -432,8 +449,16 @@ class Beranda extends Component {
                                 </div>
 
 
-                                <div className="mobile-view  relative mt-[0rem] bg-white text-black text-center rounded-2xl shadow-lg  py-10 w-[100%] ..." >
-                                    <a href="account-type" className="btn btn-lgreen btn-sm"><span className="font-bold text-black">BUAT AKUN TRADING BARU</span></a>
+                                <div className="mobile-view  relative mt-[0rem] bg-white text-black text-center rounded-2xl shadow-lg  py-4 w-[100%] ..." >
+                                    
+                                    <div className="grid grid-col2-1 place-items-center mb-4">
+                                        <div className="w-1/2 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{backgroundColor:"#C2252C"}}>
+                                            <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
+                                                <span className="font-bold text-white">BUAT AKUN TRADING BARU</span>
+                                            </Link>
+                                        </div>
+                                    </div>  
+
                                         <div className="grid grid-cols-1 gap-4 px-5  mt-2">
 
                                                 {akun_trading ? (
@@ -441,7 +466,7 @@ class Beranda extends Component {
                                                     return (
 
                                                         <div className="border border-solid border-gray-300 text-left p-4 rounded-2xl" style={{ backgroundColor:"#F1F1F1"}}>
-                                                            <span className="text-red-500">#{at.login}</span>
+                                                            <span className="text-semi-bold" style={{color:"#C2252C"}}>#{at.login}</span>
                                                             
                                                             
                                                             <div className="grid grid-cols-2">
@@ -484,9 +509,15 @@ class Beranda extends Component {
                                 </div>
 
                                 <div className="mobile-view relative mt-[2rem]  bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[100%] mb-10 mx-1 ...">
-                                    <a href="account-type" className="btn btn-lgreen btn-sm"><span className="font-bold text-red-700">AKUN DEMO MT5</span></a><br/>
-                                    <a href="account-type" className="btn btn-lgreen btn-sm"><span className="font-bold text-black">BUAT AKUN DEMO</span></a>
+                                    <a href="account-type" className="btn btn-lgreen btn-sm"><span className="font-bold text-sm" style={{color:"#C2252C"}}>AKUN DEMO MT5</span></a><br/>
                                     
+                                    
+                                    <div className="grid grid-col2-1 place-items-center mb-4">
+                                        <div className="w-1/2 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{backgroundColor:"#C2252C"}}>
+                                                <a href="account-type" className="btn btn-lgreen btn-sm"><span className="font-bold text-white">BUAT AKUN DEMO</span></a>
+                                        </div>
+                                    </div> 
+
                                     <div className="grid grid-cols-1 gap-4 px-5  mt-2">
 
                                         {akun_trading_demo ? (

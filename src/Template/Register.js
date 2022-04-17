@@ -343,13 +343,17 @@ const Register = () => {
 						block
 						disabled={true}
 						isLoading={isFetching}
-						theme="danger"> Daftar </Button>                                            
+						theme=""
+                        style={{ backgroundColor:"#C1242B",color:"#fff",marginRight:"2%"}}
+                        > Daftar </Button>                                            
 					) : (
 					<Button
 						block
 						onClick={handleSubmit2}
 						isLoading={isFetching}
-						theme="danger"> Daftar </Button>
+						theme=""
+                        style={{ backgroundColor:"#C1242B",color:"#fff",marginRight:"2%"}}
+                        > Daftar </Button>
 					) }
                 </div>
             </div>
