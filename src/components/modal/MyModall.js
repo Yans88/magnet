@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal } from 'rsuite';
 import Button from '../button/Button'
 
-export const AppModal = ({
+const AppModall = ({
     children,
     handleClose,
     titleClose,
@@ -32,10 +32,8 @@ export const AppModal = ({
 
             {!noBtnAction ? (
                 <Modal.Footer>
-                    <Button theme="info" onClick={titleClose ? handleBack : handleClose} style={{ marginRight: 5,backgroundColor:"#17a2b8" }}>
-                        {titleClose ? titleClose : "Close"}
-                    </Button>
-                    <Button style={{ backgroundColor:"#28a745" }}
+                    
+                    <Button
                         disabled={isDisable}
                         isLoading={isLoading}
                         theme={themeButton}
@@ -51,6 +49,4 @@ export const AppModal = ({
     );
 };
 
-
-
-export default AppModal;
+export default AppModall;

@@ -134,6 +134,7 @@ export const fetchUserKTP = createAsyncThunk(
 			var nama = myData.nama.split(" ");
 			var nama_belakang = typeof nama[0] !== 'undefined' && nama[0] ? myData.nama.replace(nama[0]+" ", "") : '';
 			const selectedDate = myData.tanggal_lahir ? tanggal_lahir[2]+'-'+tanggal_lahir[1]+'-'+tanggal_lahir[0] : '';
+			console.log(selectedDate);
 			Object.keys(myData).map((key) => {
 				if(key === 'rt/rw'){
 					rt_rw = myData[key].split('/');
@@ -154,7 +155,7 @@ export const fetchUserKTP = createAsyncThunk(
 				provinsi: myData.provinsi && ucwords(myData.provinsi),
 				warga_negara: myData.kewarganegaraan == "WNI" ? 'Indonesia' : '',
 				rw: rw ? rw : '',
-				rt: rt ? rt : '',				
+				rt: rt ? rt : '',							
 			  };
 			return payload;
         } else {

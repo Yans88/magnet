@@ -157,6 +157,11 @@ class Personal extends Component {
     if (name === "agreement1") {
       value = evt.target.checked ? 1 : 0;
     }
+	if(name === "jenis_identitas"){
+		dt["key"] = "no_identitas";
+		dt["value"] = '';
+		this.props.changeProps(dt);
+	}
     dt["key"] = name;
     dt["value"] = value;
     this.props.changeProps(dt);
@@ -362,6 +367,7 @@ class Personal extends Component {
   }
 
   validateForm(errors) {
+	  
     let valid = true;
     Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
     return valid;
@@ -424,7 +430,12 @@ class Personal extends Component {
 
     this.setState({ errors });
     if (this.validateForm(this.state.errMsg1)) {
-      this.props.onSaveDataPribadi(this.props.user);
+		const saveData = {
+        ...this.props.user,
+        data_pribadi_id : this.props.user.data_pribadi_id,
+        agree : 'Y',
+      };
+      this.props.onSaveDataPribadi(saveData);
       await this.sleep(150);
       this.props.getDataPribadi();
       if (action === "detil_pribadi")
@@ -749,7 +760,7 @@ class Personal extends Component {
         }}
       />
     );
-    //console.log(unggahFileName);
+    
 
     return (
       <div className="content-wrapper">
@@ -868,6 +879,7 @@ class Personal extends Component {
                         onSelect={this.handleSelect.bind(this)}
                         active={active_tab === "exp_trading" ? true : false}
                         className="default"
+						disabled={user.data_pribadi_id && user.agree === 'Y' ? false : true}
                       >
                         Pengalaman Trading
                       </Nav.Item>
@@ -876,6 +888,7 @@ class Personal extends Component {
                         active={active_tab === "kekayaan" ? true : false}
                         eventKey="kekayaan"
                         className="default"
+						disabled={dataExpTrading.pengalaman_trading_id ? false : true}
                       >
                         Kekayaan Pribadi
                       </Nav.Item>
@@ -884,6 +897,7 @@ class Personal extends Component {
                         active={active_tab === "kontak_darurat" ? true : false}
                         eventKey="kontak_darurat"
                         className="default"
+						disabled={dataKekayaan.kekayaan_id ? false : true}
                       >
                         Kontak Darurat
                       </Nav.Item>
@@ -892,6 +906,7 @@ class Personal extends Component {
                         active={active_tab === "pekerjaan" ? true : false}
                         eventKey="pekerjaan"
                         className="default"
+						disabled={dataKontakDarurat.kontak_id ? false : true}
                       >
                         Pekerjaan
                       </Nav.Item>
@@ -900,6 +915,7 @@ class Personal extends Component {
                         active={active_tab === "detil_bank" ? true : false}
                         eventKey="detil_bank"
                         className="default"
+						disabled={dataPekerjaan.pekerjaan_id ? false : true}
                       >
                         Detil Bank
                       </Nav.Item>
@@ -908,6 +924,7 @@ class Personal extends Component {
                         active={active_tab === "unggah_file" ? true : false}
                         eventKey="unggah_file"
                         className="default"
+						disabled={dataBank.length > 0 ? false : true}
                       >
                         Unggah Dokumen
                       </Nav.Item>
@@ -1052,7 +1069,7 @@ class Personal extends Component {
                                                         <Form.Group as={Col}  xs={12} lg={3} controlId="no_identitas">
 
                                                             <Form.Control
-                                                                
+                                                                maxLength={user.jenis_identitas === "KTP" ? "16" : user.jenis_identitas === "SIM" ? "15" : user.jenis_identitas === "Passpor" ? "20" : ''}
                                                                 value={user.no_identitas ? user.no_identitas : ''}
                                                                 autoComplete="off"
                                                                 onChange={this.handleChange}
@@ -1090,16 +1107,21 @@ class Personal extends Component {
                                                             {errMsg1.jenis_kelamin ? (<span className="text-error badge badge-danger">{errMsg1.jenis_kelamin}</span>) : ''}
                                                         </Form.Group>
 
+														
                                                         <Form.Group as={Col} lg={4} controlId="handphone">
-                                                            <Form.Control
+															<NumberFormat
                                                                 value={user.handphone ? user.handphone : ''}
                                                                 autoComplete="off"
                                                                 onChange={this.handleChange}
+                                                                className="form-control form-control-lg"
                                                                 size="lg"
                                                                 name="handphone"
-                                                                type="text"
-                                                                required
+                                                                thousandSeparator={false}
+                                                                decimalScale={0}
+                                                                inputMode="numeric"
+																required
                                                                 placeholder="No Handphone" />
+                                                            
 																 {errMsg1.handphone ? (<span className="text-error badge badge-danger">{errMsg1.handphone}</span>) : ''}
                                                         </Form.Group>
 
@@ -1123,27 +1145,35 @@ class Personal extends Component {
                                                     </Form.Row>
                                                     <Form.Row>
                                                         <Form.Group as={Col} xs={12} lg={2} controlId="rt">
-                                                            <Form.Control
+															<NumberFormat
                                                                 value={user.rt ? user.rt : ''}
                                                                 autoComplete="off"
                                                                 onChange={this.handleChange}
+                                                                className="form-control form-control-lg"
                                                                 size="lg"
                                                                 name="rt"
-                                                                type="text"
-                                                                required
-                                                                placeholder="RT" />
+                                                                thousandSeparator={false}
+                                                                decimalScale={0}
+                                                                inputMode="numeric"
+																required
+                                                                placeholder="RT" />															
+                                                            
                                                             {errMsg1.rt ? (<span className="text-error badge badge-danger">{errMsg1.rt}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} xs={12} lg={2} controlId="rw">
-                                                            <Form.Control
+															<NumberFormat
                                                                 value={user.rw ? user.rw : ''}
                                                                 autoComplete="off"
                                                                 onChange={this.handleChange}
+                                                                className="form-control form-control-lg"
                                                                 size="lg"
                                                                 name="rw"
-                                                                type="text"
-                                                                required
-                                                                placeholder="RW" />
+                                                                thousandSeparator={false}
+                                                                decimalScale={0}
+                                                                inputMode="numeric"
+																required
+                                                                placeholder="RW" />															
+                                                            
                                                             {errMsg1.rw ? (<span className="text-error badge badge-danger">{errMsg1.rw}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} xs={12} lg={3} controlId="provinsi">
@@ -1265,39 +1295,50 @@ class Personal extends Component {
                                                     <Form.Row>
                                                         
                                                         <Form.Group as={Col} xs={12} lg={4} controlId="telp">
-                                                            <Form.Control
+															<NumberFormat
                                                                 value={user.telp ? user.telp : ''}
                                                                 autoComplete="off"
                                                                 onChange={this.handleChange}
+                                                                className="form-control form-control-lg"
                                                                 size="lg"
                                                                 name="telp"
-                                                                type="text"
-                                                                required
-                                                                placeholder="Telepon Rumah" />
+                                                                thousandSeparator={false}
+                                                                decimalScale={0}
+                                                                inputMode="numeric"
+																required
+                                                                placeholder="Telepon Rumah" />														
+                                                           
                                                             {errMsg1.telp ? (<span className="text-error badge badge-danger">{errMsg1.telp}</span>) : ''}
                                                         </Form.Group>
                                                         <Form.Group as={Col} xs={12} lg={4} controlId="fax">
-                                                            <Form.Control
+															<NumberFormat
                                                                 value={user.fax ? user.fax : ''}
                                                                 autoComplete="off"
                                                                 onChange={this.handleChange}
+                                                                className="form-control form-control-lg"
                                                                 size="lg"
                                                                 name="fax"
-                                                                type="text"
-                                                                required
-                                                                placeholder="FAX" />
+                                                                thousandSeparator={false}
+                                                                decimalScale={0}
+                                                                inputMode="numeric"
+																required
+                                                                placeholder="FAX" />		
+                                                           
                                                         </Form.Group>
 
                                                         <Form.Group as={Col} xs={12} lg={4} controlId="npwp">
-                                                            <Form.Control
+															<NumberFormat
                                                                 value={user.npwp ? user.npwp : ''}
                                                                 autoComplete="off"
                                                                 onChange={this.handleChange}
+                                                                className="form-control form-control-lg"
                                                                 size="lg"
                                                                 name="npwp"
-                                                                type="text"
-                                                                required
-                                                                placeholder="NPWP" />
+                                                                thousandSeparator={false}
+                                                                decimalScale={0}
+                                                                inputMode="numeric"
+																required
+                                                                placeholder="NPWP" />                                                            
 																{errMsg1.npwp ? (<span className="text-error badge badge-danger">{errMsg1.npwp}</span>) : ''}
                                                         </Form.Group>
 
@@ -1328,23 +1369,15 @@ class Personal extends Component {
 
                                             <div className="form-group w-[100%] lg:w-[40%] text-center">
                                             
+                                            
+
                                             <AppButton
-                                            style={{ color: '#ffffff', marginRight: 5 }}
                                             onClick={this.handleSubmit1.bind(this, 'detil_pribadi')}
                                             type="button"
                                             size="lg"
                                             theme=""
-                                            style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
-
-                                            >Selanjutnya</AppButton>
-
-                                            <AppButton
-                                            onClick={this.handleSubmit1.bind(this)}
-                                            type="button"
-                                            size="lg"
-                                            theme=""
                                             style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
-                                            Simpan</AppButton>
+                                            Selanjutnya</AppButton>
                                             </div>
                                         </div>
 
@@ -2315,25 +2348,7 @@ class Personal extends Component {
                                                     </div>
                                                     <div className="col-md-8">
                                                         <div className="alert alert-sm" style={{ backgroundColor: '#efefef', color: '#505f79', fontSize: '1rem', lineHeight: 1.5, fontWeight: 300 }} >
-                                                            <div className="row">
-                                                                <div className="col-md-9">
-                                                                    <h4 style={{ marginBottom: '.8rem', marginTop: '.8rem' }}>Unggah KTP/SIM/PASPOR</h4>
-                                                                </div>
-                                                                <div className="col-md-3">
-                                                                    <Form>
-                                                                        <Form.Group controlId="KTP">
-                                                                            <Form.File
-                                                                                className="custom-file-input2"
-                                                                                size="lg"
-                                                                                name="KTP" setfieldvalue="" onChange={this.handleChangePhoto.bind(this)} >
-
-                                                                            </Form.File>
-
-                                                                        </Form.Group>
-                                                                    </Form>
-                                                                </div>
-
-                                                            </div>
+                                                           
 
                                                             <div className="row">
                                                                 <div className="col-md-9">
@@ -2422,10 +2437,12 @@ class Personal extends Component {
                                                                                                 </Figure>
                                                                                             </td>
                                                                                             <td></td>
-                                                                                            <td>{dp.tipe}</td>
+                                                                                            <td>{dp.tipe === "OTHER" ? "BUKU TABUNGAN" : dp.tipe}</td>
                                                                                             <td>{dp.size}kb</td>
                                                                                             <td align="center">
-                                                                                                <IconButton onClick={this.deleteRecordFile.bind(this, dp.dokumen_id)} icon={<Icon icon="close" />} />
+                                                                                                <IconButton 
+																								disabled={dp.tipe === "KTP" ? true : false}
+																								onClick={dp.tipe !== "KTP" ? this.deleteRecordFile.bind(this, dp.dokumen_id) : this.deleteRecordFile.bind(this)} icon={<Icon icon="close" />} />
                                                                                                 <br />
                                                                                                 <a href={dp.file}><IconButton style={{ marginTop: 5 }} icon={<Icon icon="download2" />} /></a>
                                                                                             </td>
