@@ -142,6 +142,14 @@ class Beranda extends Component {
   };
 
   handleSubmit3 = async () => {
+    localStorage.removeItem("myStatusDokumen");
+    this.setState({
+      showFormResPass: false,
+      showFormResPhonePass: false,
+      myStatusDokumen: false,
+      selected: this.initSelected,
+      errMsg: this.initSelected,
+    });
     this.props.history.push("/personal");
   };
 

@@ -25,17 +25,17 @@ export const loginUser = createAsyncThunk(
           let statusDokumen = payload.status;
           let status_Dokumen = payload.status_dokumen;
           let myStatus = false;
-          
+
           if (statusDokumen === "Reject") {
             myStatus = true;
           } else {
             myStatus = false;
             await localStorage.setItem(tokenLogin, payload.accessToken);
           }
-		  if (status_Dokumen === "Belum Lengkap") {
-			  await localStorage.setItem('myStatusDokumen', true);
-		  }
-		  
+          if (status_Dokumen === "Belum Lengkap") {
+            await localStorage.setItem("myStatusDokumen", true);
+          }
+
           data = {
             ...data,
             myStatus: myStatus,
@@ -98,72 +98,87 @@ export const fetchUserBytoken = createAsyncThunk(
 export const fetchUserKTP = createAsyncThunk(
   "users/fetchUserKTP",
   async (param, thunkAPI) => {
-   
-	const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+    const token = localStorage.getItem(tokenLogin)
+      ? "Bearer " + localStorage.getItem(tokenLogin)
+      : "";
     const form = Object.keys(param).reduce((f, k) => {
-        f.append(k, param[k]);
-        return f;
+      f.append(k, param[k]);
+      return f;
     }, new FormData());
     const config = {
-        headers: {
-        'Authorization': `${token}`,
-        'x-app-origin': 'cabinet-app',
-         Accept: 'application/json',
-        'Content-Type': 'application/json',
-        }
+      headers: {
+        Authorization: `${token}`,
+        "x-app-origin": "cabinet-app",
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
     };
     try {
       const response = await axios.post(
-        API_URL + '/general-option/ocr',
+        API_URL + "/general-option/ocr",
         form,
         config
       );
+
       let data = "";
       let _data = await response;
       if (response.status === 200) {
         data = _data.data;
         if (data.error_message === 0) {
-			let myData = data.payload;	
-			let rt_rw = '';
-			let rt = '';
-			let rw = '';
-			let jenis_kelamin = myData.jenis_kelamin === 'LAKILAKI' ? 'Laki-Laki' : '';
-			jenis_kelamin = myData.jenis_kelamin === 'PEREMPUAN' || myData.jenis_kelamin === 'WANITA' ? 'Perempuan' : jenis_kelamin;
-			
-			var tanggal_lahir = myData.tanggal_lahir.split("-");
-			var nama = myData.nama.split(" ");
-			var nama_belakang = typeof nama[0] !== 'undefined' && nama[0] ? myData.nama.replace(nama[0]+" ", "") : '';
-			const selectedDate = myData.tanggal_lahir ? tanggal_lahir[2]+'-'+tanggal_lahir[1]+'-'+tanggal_lahir[0] : '';
-			console.log(selectedDate);
-			Object.keys(myData).map((key) => {
-				if(key === 'rt/rw'){
-					rt_rw = myData[key].split('/');
-					rt = rt_rw[0];
-					rw = rt_rw[1];					
-				}                
-            });
-			const payload = {
-				jenis_identitas: "KTP",
-				no_identitas: myData.nik ? myData.nik : '',
-				nama_depan: typeof nama[0] !== 'undefined' && nama[0] ? nama[0] : myData.nama,
-				nama_belakang : nama_belakang && nama_belakang,
-				tempat_lahir: myData.tempat_lahir && myData.tempat_lahir,
-				tanggal_lahir: selectedDate && selectedDate,
-				status_pernikahan: myData.status_perkawinan && ucwords(myData.status_perkawinan),
-				jenis_kelamin: myData.jenis_kelamin && jenis_kelamin,
-				alamat: myData.alamat && myData.alamat,
-				provinsi: myData.provinsi && ucwords(myData.provinsi),
-				warga_negara: myData.kewarganegaraan == "WNI" ? 'Indonesia' : '',
-				rw: rw ? rw : '',
-				rt: rt ? rt : '',							
-			  };
-			return payload;
+          let myData = data.payload;
+          let rt_rw = "";
+          let rt = "";
+          let rw = "";
+          let jenis_kelamin =
+            myData.jenis_kelamin === "LAKILAKI" ? "Laki-Laki" : "";
+          jenis_kelamin =
+            myData.jenis_kelamin === "PEREMPUAN" ||
+            myData.jenis_kelamin === "WANITA"
+              ? "Perempuan"
+              : jenis_kelamin;
+
+          var tanggal_lahir = myData.tanggal_lahir.split("-");
+          var nama = myData.nama.split(" ");
+          var nama_belakang =
+            typeof nama[0] !== "undefined" && nama[0]
+              ? myData.nama.replace(nama[0] + " ", "")
+              : "";
+          const selectedDate = myData.tanggal_lahir
+            ? tanggal_lahir[2] + "-" + tanggal_lahir[1] + "-" + tanggal_lahir[0]
+            : "";
+          console.log(selectedDate);
+          Object.keys(myData).map((key) => {
+            if (key === "rt/rw") {
+              rt_rw = myData[key].split("/");
+              rt = rt_rw[0];
+              rw = rt_rw[1];
+            }
+          });
+          const payload = {
+            jenis_identitas: "KTP",
+            data_pribadi_id: param.data_pribadi_id,
+            no_identitas: myData.nik ? myData.nik : "",
+            nama_depan:
+              typeof nama[0] !== "undefined" && nama[0] ? nama[0] : myData.nama,
+            nama_belakang: nama_belakang && nama_belakang,
+            tempat_lahir: myData.tempat_lahir && myData.tempat_lahir,
+            tanggal_lahir: selectedDate && selectedDate,
+            status_pernikahan:
+              myData.status_perkawinan && ucwords(myData.status_perkawinan),
+            jenis_kelamin: myData.jenis_kelamin && jenis_kelamin,
+            alamat: myData.alamat && myData.alamat,
+            provinsi: myData.provinsi && ucwords(myData.provinsi),
+            warga_negara: myData.kewarganegaraan == "WNI" ? "Indonesia" : "",
+            rw: rw ? rw : "",
+            rt: rt ? rt : "",
+          };
+          return payload;
         } else {
           return thunkAPI.rejectWithValue(data);
         }
       } else {
         return thunkAPI.rejectWithValue(_data);
-      }      
+      }
     } catch (e) {
       console.log("Error", e.response.data);
       thunkAPI.rejectWithValue(e.response.data);
@@ -171,13 +186,14 @@ export const fetchUserKTP = createAsyncThunk(
   }
 );
 
-const ucwords =(str)=> {
-	var splitStr = str.toLowerCase().split(' ');
-	for (var i = 0; i < splitStr.length; i++) {      
-       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
-	}   
-	return splitStr.join(' '); 
-}
+const ucwords = (str) => {
+  var splitStr = str.toLowerCase().split(" ");
+  for (var i = 0; i < splitStr.length; i++) {
+    splitStr[i] =
+      splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+  }
+  return splitStr.join(" ");
+};
 
 export const profileUser = createAsyncThunk(
   "users/profileUser",
@@ -711,16 +727,16 @@ export const mainSlice = createSlice({
       state.isLoggedIn = false;
       state.token = null;
     },
-	[fetchUserKTP.pending]: (state) => {
+    [fetchUserKTP.pending]: (state) => {
       state.errFetchUserByToken = "";
-	  state.currentUser = {};	  
+      state.currentUser = {};
     },
-	[fetchUserKTP.fulfilled]: (state, { payload }) => {
+    [fetchUserKTP.fulfilled]: (state, { payload }) => {
       state.errFetchUserByToken = "";
-      state.currentUser = payload;	  
+      state.currentUser = payload;
     },
-	[fetchUserKTP.rejected]: (state, { payload }) => {     
-		console.log('payload', payload);		
+    [fetchUserKTP.rejected]: (state, { payload }) => {
+      console.log("payload", payload);
       //state.errFetchUserByToken = payload.message;
     },
     [regUser.fulfilled]: (state, { payload }) => {
