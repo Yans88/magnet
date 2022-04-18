@@ -897,7 +897,6 @@ tbody td {
   }
 
   .list-steps li {
-    display: flex;
     margin-right: 4px;
     margin-left: 1px;
   }

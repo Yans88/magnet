@@ -773,7 +773,7 @@ class Setoran extends Component {
                                             <div className="row mt-3 mb-4">
                                                 <div className="col-md-12">
                                                     <div className="mb-3">
-                                                        <div className="pull-left col-6 col-md-4">
+                                                        <div className="pull-left col-12 col-md-4">
                                                             <label style={{ color:"#2E2E2F" }}>Tanggal: Awal</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
@@ -792,7 +792,7 @@ class Setoran extends Component {
                                                                 locale="id" isValidDate={this.state.validSd}
                                                             />
                                                         </div>
-                                                        <div className="pull-left col-6 col-md-4">
+                                                        <div className="pull-left col-12 col-md-4">
                                                             <label style={{ color:"#2E2E2F" }}>Tanggal: Akhir</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
@@ -811,7 +811,7 @@ class Setoran extends Component {
                                                                 locale="id" isValidDate={this.state.validSd}
                                                             />
                                                         </div>
-                                                        <div className="pull-left col-7">
+                                                        <div className="pull-left col-7 mt-2">
                                                             <label style={{ color:"#2E2E2F" }}>Cari</label>
                                                             
                                                         </div>

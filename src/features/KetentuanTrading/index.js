@@ -74,15 +74,30 @@ class KetentuanTrading extends Component {
                 </div>
                 <section className="content">
                     <div className="container-fluid">
+                        <div className="mobile-hide">
                         <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>Registrasi Akun Online</h1>
+                        </div>
+                        <div className="mobile-view">
+                        <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10,fontSize:"20px" }}>Registrasi Akun Online</h1>
+                        </div>
+                            
                         <div className="row">
                             <div className="col-12">
                                 {/* card start */}
                                 <div className="card card-success shadow-lg" style={{ "minHeight": "800px" }}>
-                                    <div className="card-body">
-                                    <h3 className="label_ijo">Ketentuan Trading</h3>
-                                        <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 20 }}>
-                                            <div className="alert alert-default alert-sm" style={{ backgroundColor: '#fbfbfd', border: '2px solid #DBD7D6' }} >
+                                    <div className="card-body" style={{padding:"0"}}>
+                                    <div className="mobile-hide" style={{padding:"1"}}>
+                                        <h3 className="label_ijo">Ketentuan Trading</h3>
+                                    </div>
+
+                                    
+
+                                        <div >
+                                            <div className="alert alert-default alert-sm" style={{ backgroundColor: '#fbfbfd'}} >
+                                            <div className="mobile-view" style={{fontSize:"20px",paddingLeft:"5%"}}>
+                                                <h3 className="label_ijo">Peraturan Trading</h3>
+                                            </div>
+
                                                 {dataSetting ? (
                                                     dataSetting.map(function (dr) {
                                                         var res = '';

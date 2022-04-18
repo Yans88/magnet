@@ -604,10 +604,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 2.5rem;
 }
 
-.mb-20 {
-  margin-bottom: 5rem;
-}
-
 .mt-\[32rem\] {
   margin-top: 32rem;
 }
@@ -626,6 +622,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mt-\[2rem\] {
   margin-top: 2rem;
+}
+
+.mb-20 {
+  margin-bottom: 5rem;
 }
 
 .mt-\[15rem\] {
@@ -736,16 +736,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 18%;
 }
 
-.w-3\/4 {
-  width: 75%;
-}
-
 .w-\[50\%\] {
   width: 50%;
 }
 
+.w-3\/4 {
+  width: 75%;
+}
+
 .w-\[80\%\] {
   width: 80%;
+}
+
+.w-1\/2 {
+  width: 50%;
 }
 
 .w-10 {
@@ -776,6 +780,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   flex-grow: 1;
 }
 
+.basis-3\/4 {
+  flex-basis: 75%;
+}
+
 .scale-100 {
   --tw-scale-x: 1;
   --tw-scale-y: 1;
@@ -801,6 +809,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.flex-row {
+  flex-direction: row;
 }
 
 .place-items-end {
@@ -985,6 +997,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem;
 }
 
 .pb-20 {

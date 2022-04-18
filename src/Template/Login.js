@@ -193,9 +193,9 @@ const Login = () => {
                                             {formik.touched.email && formik.errors.email ? (
                                                 <span className="float-right text-error badge badge-danger">{formik.errors.email}</span>
                                             ) : null}
-                                            <div className="input-group mb-3 border-black">
-                                                <div className="input-group-append ">
-                                                    <div className="input-group-text bg-white border-white">
+                                            <div className="input-group mb-3 border-black" style={{border:"1px solid #B7B7B7",padding:"5px",borderRadius:"5px"}}>
+                                                <div className="input-group-append " >
+                                                    <div className="input-group-text bg-white border-white" >
                                                         <img src={email_icon} width="22px" />
                                                     </div>
                                                 </div>
@@ -214,9 +214,9 @@ const Login = () => {
                                                 formik.errors.password ? (
                                                 <span className="float-right text-error badge badge-danger">{formik.errors.password}</span>
                                             ) : null}
-                                            <div className="input-group mb-3 border-black">
-                                            <div className="input-group-append">
-                                                    <div className="input-group-text bg-white border-white">
+                                            <div className="input-group mb-3 border-black " style={{border:"1px solid #B7B7B7",padding:"5px",borderRadius:"5px"}}>
+                                            <div className="input-group-append" >
+                                                    <div className="input-group-text bg-white border-white"> 
                                                     <img src={password_icon} width="22px" />
                                                     </div>
                                                 </div>

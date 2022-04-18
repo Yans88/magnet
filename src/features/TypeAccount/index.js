@@ -77,7 +77,14 @@ class TypeAccount extends Component {
                 </div>
                 <section className="content">
                     <div className="container-fluid">
-                        <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>Registrasi Akun Online</h1>
+                        <div className="mobile-hide">
+                            <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>Registrasi Akun Online</h1>
+                        </div>
+
+                        <div className="mobile-view">
+                            <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 10 }}>Registrasi Akun Online</h1>
+                        </div>
+
                         <div className="row">
                             <div className="col-12">
                                 {/* card start */}
@@ -126,10 +133,14 @@ class TypeAccount extends Component {
                                                                     <ListGroup.Item>Spread <span className="pull-right">{dta.spread}</span></ListGroup.Item>
                                                                 </ListGroup>
                                                                 <Card.Body style={{ padding: ".65rem" }}>
+                                                                    <div className="grid grid-cols-1 place-items-center">
+                                                                    <div className="w-[50%]">
                                                                     <Button
                                                                         onClick={this.handleClickBtn.bind(this, dta)}
                                                                         disabled={dataSelect.rate ? false : true}
-                                                                        size="lg" variant="" style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}>Daftar Akun</Button>
+                                                                        size="lg" variant="" style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"0%"}}>Daftar Akun</Button>
+                                                                    </div>
+                                                                    </div>        
                                                                 </Card.Body>
                                                             </Card>
                                                         </Col>
@@ -153,7 +164,7 @@ class TypeAccount extends Component {
                                     backdrop="static"
                                     keyboard={false}
                                     title="Confirm"
-                                    titleButton="Selanjutanya"
+                                    titleButton="Selanjutnya"
                                     themeButton=""
                                     style={{ color:"#fff"}}
                                     isLoading={false}
