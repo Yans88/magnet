@@ -82,8 +82,7 @@ class MyHeader extends Component {
                                         
                                         <div className="font-bold ml-2">
                                             
-                                            {(<h5 style={{ fontWeight: 600, fontSize: 14, marginLeft: 8 }}>STATUS<br /><span style={{ color: '#dc3545' }}>{profile.status_dokumen} </span>{profile.status_dokumen !== 'Approve' || profile.sta
-											!== 'Menunggu Verifikasi' && (<a style={{ color: '#269647' }} href="personal">- Daftar disini</a>)}</h5>)}
+                                            {(<h5 style={{ fontWeight: 600, fontSize: 14, marginLeft: 8 }}>STATUS<br /><span style={{ color: '#dc3545' }}>{profile.status_dokumen} </span>{profile.status_dokumen === 'Belum Lengkap' && (<a style={{ color: '#269647' }} href="personal">- Daftar disini</a>)}</h5>)}
 
                                         </div>
 

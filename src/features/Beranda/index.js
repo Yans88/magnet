@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { getAkunTrading, getAkunTradingDemo } from "../Setoran/setoranSlice";
-import { profileUser, chgPass, chgPhonePass } from "../main/mainSlice";
+import { profileUser,chgPass,chgPhonePass, clearState } from '../main/mainSlice'
 import NumberFormat from "react-number-format";
 import akun_icon from "../../assets/akun_white.svg";
 import { Link } from "react-router-dom";
@@ -9,6 +9,7 @@ import { Dropdown } from "react-bootstrap";
 import AppModal from "../../components/modal/MyModal";
 import AppModall from "../../components/modal/MyModall";
 import { Button, Form } from "react-bootstrap";
+import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
 
 class Beranda extends Component {
   constructor(props) {
@@ -193,9 +194,20 @@ class Beranda extends Component {
       errMsg: this.initSelected,
     });
   }
+  
+  handleCloseSwal() {
+        this.setState({
+			loadingForm: false,
+			showFormResPass : false,
+			showFormResPhonePass : false,
+            selected: this.initSelected,
+            errMsg: this.initSelected,
+        });
+		this.props.closeSwal();
+    }
 
   render() {
-    const { akun_trading, akun_trading_demo } = this.props;
+    const { akun_trading, akun_trading_demo, profile } = this.props;
     const { selected, errMsg, myStatusDokumen } = this.state;
 
     const frmUser = (
@@ -218,7 +230,7 @@ class Beranda extends Component {
             size="sm"
             autoComplete="off"
             name="password"
-            type="text"
+            type="password"
             value={selected.password}
             onChange={this.handleChange.bind(this)}
             placeholder="Password"
@@ -237,7 +249,7 @@ class Beranda extends Component {
             size="sm"
             autoComplete="off"
             name="konf_password"
-            type="text"
+            type="password"
             value={selected.konf_password}
             onChange={this.handleChange.bind(this)}
             placeholder="Konfirmasi Password"
@@ -271,7 +283,7 @@ class Beranda extends Component {
             size="sm"
             autoComplete="off"
             name="phonepwd"
-            type="text"
+            type="password"
             value={selected.phonepwd}
             onChange={this.handleChange.bind(this)}
             placeholder="Password"
@@ -290,7 +302,7 @@ class Beranda extends Component {
             size="sm"
             autoComplete="off"
             name="konf_password"
-            type="text"
+            type="password"
             value={selected.konf_password}
             onChange={this.handleChange.bind(this)}
             placeholder="Konfirmasi Password"
@@ -314,137 +326,124 @@ class Beranda extends Component {
       <div className="content-wrapper">
         <section className="content">
           <div className="container-fluid">
-            <div className="grid grid-cols-1  my-3">
-              <div className="mobile-hide">
-                <div className="w-full bg-hijau-forex rounded-xl text-white pt-3 pb-3 xs:pb-3 lg:pb-20 grid grid-cols-1 place-items-center static">
-                  <div className="mobile-hide w-[18%]  ">
-                    <img src={akun_icon} width="25px" className="float-left" />
-                    <span className="text-lg font-bold">&nbsp;Akun Saya</span>
-                  </div>
+            <div className="grid grid-cols-1  my-3 mb-20">
+              <div className="w-full bg-hijau-forex rounded-xl text-white pt-3 xs:pb-3 lg:pb-20 grid grid-cols-1 place-items-center static">
+                <div className="mobile-hide w-[18%]  ">
+                  <img src={akun_icon} width="25px" className="float-left" />
+                  <span className="text-lg font-bold">&nbsp;Akun Saya</span>
                 </div>
-              </div>
 
-              <div className="mobile-view">
-                <div className="w-full bg-hijau-forex rounded-xl text-white pt-3 pb-3 pb-20 grid grid-cols-1 place-items-center static">
-                  <div className="relative w-[50%] text-center  ">
-                    <div class="flex flex-row justify-center">
-                      <div class="basis-3/4">
-                        <span className="text-lg font-bold">
-                          <img
-                            src={akun_icon}
-                            width="25px"
-                            className="float-left pl-0"
-                          />
-                          &nbsp;Akun Saya
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                <div className="mobile-hide absolute mt-[32rem] bg-white text-black text-center rounded-2xl shadow-lg  py-10 w-3/4 ...">
+                  {akun_trading.length > 0 && (
+                    <Link
+                      to="/account-type"
+                      className="btn btn-lgreen btn-sm"
+                      onClick={() => this.to_at()}
+                    >
+                      <span className="font-bold text-black">
+                        BUAT AKUN TRADING BARU
+                      </span>
+                    </Link>
+                  )}
+                  <div className="grid grid-cols-3 gap-4 px-5  mt-2">
+                    {akun_trading
+                      ? akun_trading.map((at, index) => {
+                          return (
+                            <Fragment key={index}>
+                              <div
+                                className="border border-solid border-gray-300 text-left p-4 rounded-2xl"
+                                style={{ backgroundColor: "#F1F1F1" }}
+                              >
+                                <div className="grid grid-cols-2">
+                                  <div>
+                                    <span className="text-red-500">
+                                      #{at.login}
+                                    </span>
+                                  </div>
+                                  <div className="box-bank__actions place-items-end text-right">
+                                    <Dropdown>
+                                      <Dropdown.Toggle
+                                        size="sm"
+                                        variant="secondary"
+                                        style={{
+                                          backgroundColor: "transparent",
+                                          borderColor: "transparent",
+                                          color: "#000",
+                                        }}
+                                        id="dropdown-basic"
+                                      >
+                                        <i className="fa fa-ellipsis-v"></i>
+                                      </Dropdown.Toggle>
 
-              <div className="mobile-hide absolute mt-[32rem] bg-white text-black text-center rounded-2xl shadow-lg  py-10 w-3/4 ...">
-                {akun_trading.length > 0 && (
-                  <Link
-                    to="/account-type"
-                    className="btn btn-lgreen btn-sm"
-                    onClick={() => this.to_at()}
-                  >
-                    <span className="font-bold text-black">
-                      BUAT AKUN TRADING BARU
-                    </span>
-                  </Link>
-                )}
-
-                <div className="grid grid-cols-3 gap-4 px-5  mt-2">
-                  {akun_trading
-                    ? akun_trading.map((at, index) => {
-                        return (
-                          <Fragment key={index}>
-                            <div
-                              className="border border-solid border-gray-300 text-left p-4 rounded-2xl"
-                              style={{ backgroundColor: "#F1F1F1" }}
-                            >
-                              <div className="grid grid-cols-2">
-                                <div>
-                                  <span className="text-red-500">
-                                    #{at.login}
-                                  </span>
+                                      <Dropdown.Menu className="my-dropdown-menu">
+                                        <Dropdown.Item
+                                          as="button"
+                                          onClick={() => this.chg_pass(at)}
+                                        >
+                                          RESET PASSWORD
+                                        </Dropdown.Item>
+                                        <Dropdown.Item
+                                          as="button"
+                                          onClick={() => this.chg_pass2(at)}
+                                        >
+                                          RESET PHONE PASSWORD
+                                        </Dropdown.Item>
+                                      </Dropdown.Menu>
+                                    </Dropdown>
+                                  </div>
                                 </div>
-                                <div className="box-bank__actions place-items-end text-right">
-                                  <Dropdown>
-                                    <Dropdown.Toggle
-                                      size="sm"
-                                      variant="secondary"
-                                      style={{
-                                        backgroundColor: "transparent",
-                                        borderColor: "transparent",
-                                        color: "#000",
-                                      }}
-                                      id="dropdown-basic"
-                                    >
-                                      <i className="fa fa-ellipsis-v"></i>
-                                    </Dropdown.Toggle>
-
-                                    <Dropdown.Menu className="my-dropdown-menu">
-                                      <Dropdown.Item
-                                        as="button"
-                                        onClick={() => this.chg_pass(at)}
-                                      >
-                                        RESET PASSWORD
-                                      </Dropdown.Item>
-                                      <Dropdown.Item
-                                        as="button"
-                                        onClick={() => this.chg_pass2(at)}
-                                      >
-                                        RESET PHONE PASSWORD
-                                      </Dropdown.Item>
-                                    </Dropdown.Menu>
-                                  </Dropdown>
+                                <div className="grid grid-cols-2">
+                                  <div className="font-bold">NO AKUN</div>
+                                  <div className="font-bold">FREE MARGIN</div>
+                                  <div>{at.login}</div>
+                                  <div>
+                                    <NumberFormat
+                                      value={
+                                        at.margin_free > 0
+                                          ? at.margin_free
+                                          : "0.00"
+                                      }
+                                      thousandSeparator={true}
+                                      decimalScale={2}
+                                      displayType={"text"}
+                                    />
+                                  </div>
+                                  <div className="font-bold">EQUITY</div>
+                                  <div className="font-bold">LEVERAGE</div>
+                                  <div>
+                                    <NumberFormat
+                                      value={at.equity > 0 ? at.equity : "0.00"}
+                                      thousandSeparator={true}
+                                      decimalScale={2}
+                                      displayType={"text"}
+                                    />
+                                  </div>
+                                  <div>
+                                    <NumberFormat
+                                      value={
+                                        at.leverage > 0 ? at.leverage : "0.00"
+                                      }
+                                      thousandSeparator={true}
+                                      decimalScale={2}
+                                      displayType={"text"}
+                                    />
+                                  </div>
                                 </div>
                               </div>
-                              <div className="grid grid-cols-2">
-                                <div className="font-bold">NO AKUN</div>
-                                <div className="font-bold">FREE MARGIN</div>
-                                <div>{at.login}</div>
-                                <div>
-                                  <NumberFormat
-                                    value={
-                                      at.margin_free > 0
-                                        ? at.margin_free
-                                        : "0.00"
-                                    }
-                                    thousandSeparator={true}
-                                    decimalScale={2}
-                                    displayType={"text"}
-                                  />
-                                </div>
-                                <div className="font-bold">EQUITY</div>
-                                <div className="font-bold">LEVERAGE</div>
-                                <div>
-                                  <NumberFormat
-                                    value={at.equity > 0 ? at.equity : "0.00"}
-                                    thousandSeparator={true}
-                                    decimalScale={2}
-                                    displayType={"text"}
-                                  />
-                                </div>
-                                <div>
-                                  <NumberFormat
-                                    value={
-                                      at.leverage > 0 ? at.leverage : "0.00"
-                                    }
-                                    thousandSeparator={true}
-                                    decimalScale={2}
-                                    displayType={"text"}
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          </Fragment>
-                        );
-                      })
-                    : ""}
+                            </Fragment>
+                          );
+                        })
+                      : ""}
+                  </div>
+                </div>
+
+                <div className="mobile-view relative w-[50%] text-center  ">
+                  <img
+                    src={akun_icon}
+                    width="25px"
+                    className="float-left pl-0"
+                  />
+                  <span className="text-lg font-bold">&nbsp;Akun Saya</span>
                 </div>
               </div>
 
@@ -549,24 +548,12 @@ class Beranda extends Component {
                 </div>
               </div>
 
-              <div className="mobile-view  relative mt-[0rem] bg-white text-black text-center rounded-2xl shadow-lg  py-4 w-[100%] ...">
-                <div className="grid grid-col2-1 place-items-center mb-4">
-                  <div
-                    className="w-1/2 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static"
-                    style={{ backgroundColor: "#C2252C" }}
-                  >
-                    <Link
-                      to="/account-type"
-                      className="btn btn-lgreen btn-sm"
-                      onClick={() => this.to_at()}
-                    >
-                      <span className="font-bold text-white">
-                        BUAT AKUN TRADING BARU
-                      </span>
-                    </Link>
-                  </div>
-                </div>
-
+              <div className="mobile-view  relative mt-[0rem] bg-white text-black text-center rounded-2xl shadow-lg  py-10 w-[100%] ...">
+                <a href="account-type" className="btn btn-lgreen btn-sm">
+                  <span className="font-bold text-black">
+                    BUAT AKUN TRADING BARU
+                  </span>
+                </a>
                 <div className="grid grid-cols-1 gap-4 px-5  mt-2">
                   {akun_trading
                     ? akun_trading.map((at, index) => {
@@ -575,12 +562,7 @@ class Beranda extends Component {
                             className="border border-solid border-gray-300 text-left p-4 rounded-2xl"
                             style={{ backgroundColor: "#F1F1F1" }}
                           >
-                            <span
-                              className="text-semi-bold"
-                              style={{ color: "#C2252C" }}
-                            >
-                              #{at.login}
-                            </span>
+                            <span className="text-red-500">#{at.login}</span>
 
                             <div className="grid grid-cols-2">
                               <div className="font-bold">NO AKUN</div>
@@ -626,27 +608,12 @@ class Beranda extends Component {
 
               <div className="mobile-view relative mt-[2rem]  bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[100%] mb-10 mx-1 ...">
                 <a href="account-type" className="btn btn-lgreen btn-sm">
-                  <span
-                    className="font-bold text-sm"
-                    style={{ color: "#C2252C" }}
-                  >
-                    AKUN DEMO MT5
-                  </span>
+                  <span className="font-bold text-red-700">AKUN DEMO MT5</span>
                 </a>
                 <br />
-
-                <div className="grid grid-col2-1 place-items-center mb-4">
-                  <div
-                    className="w-1/2 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static"
-                    style={{ backgroundColor: "#C2252C" }}
-                  >
-                    <a href="account-type" className="btn btn-lgreen btn-sm">
-                      <span className="font-bold text-white">
-                        BUAT AKUN DEMO
-                      </span>
-                    </a>
-                  </div>
-                </div>
+                <a href="account-type" className="btn btn-lgreen btn-sm">
+                  <span className="font-bold text-black">BUAT AKUN DEMO</span>
+                </a>
 
                 <div className="grid grid-cols-1 gap-4 px-5  mt-2">
                   {akun_trading_demo
@@ -718,30 +685,45 @@ class Beranda extends Component {
           titleButton="Lengkapi"
           themeButton="warning"
         ></AppModall>
+		{this.props.showFormSuccess ? (<AppSwalSuccess
+                        show={this.props.showFormSuccess}
+                        title={<div dangerouslySetInnerHTML={{ __html: this.props.contentMsg }} />}
+                        type={this.props.tipeSWAL}
+                        handleClose={this.handleCloseSwal.bind(this)}
+                    >
+                    </AppSwalSuccess>) : ''}
       </div>
+	  
+	  
     );
   }
 }
 const mapStateToProps = (state) => ({
   akun_trading: state.setoran.akunTrading || [],
   akun_trading_demo: state.setoran.akunTradingDemo || [],
-  user: state.main.currentUser,
+  contentMsg: state.main.contentMsg,
+    showFormSuccess: state.main.showFormSuccess,
+    user: state.main.currentUser,
+	tipeSWAL: state.main.tipeSWAL,
   profile: state.main.dtProfileUser,
 });
 
 const mapDispatchToPros = (dispatch) => {
   return {
-    onLoad: () => {
-      dispatch(profileUser());
-      dispatch(getAkunTrading());
-      dispatch(getAkunTradingDemo());
-    },
-    onChangePass: (param) => {
-      dispatch(chgPass(param));
-    },
-    onChangePhonePass: (param) => {
-      dispatch(chgPhonePass(param));
-    },
-  };
+        onLoad: () => {
+            dispatch(profileUser());
+            dispatch(getAkunTrading());
+            dispatch(getAkunTradingDemo());
+        },
+		onChangePass:(param)=>{
+			dispatch(chgPass(param));
+		},
+		onChangePhonePass:(param)=>{
+			dispatch(chgPhonePass(param));
+		},
+		closeSwal: () => {
+            dispatch(clearState());
+        }
+    }
 };
 export default connect(mapStateToProps, mapDispatchToPros)(Beranda);

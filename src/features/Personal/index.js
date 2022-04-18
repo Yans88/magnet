@@ -2087,7 +2087,7 @@ class Personal extends Component {
                                   )}
                                   as="select"
                                 >
-                                  <option value="">Pendapatan perTahun</option>
+                                  <option value="">Pendapatan per Tahun</option>
                                   <option value="Antara 100-250 juta">
                                     Antara 100-250 juta
                                   </option>

@@ -37,11 +37,11 @@ const Register = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        if (isSuccess) {
+        if (succesCompleteProfile) {
             dispatch(clearState());
-            //history.push('/');
+            history.push('/login');
         }
-    }, [isSuccess, dispatch, history]);
+    }, [succesCompleteProfile, dispatch, history]);
 
     const formik = useFormik({
         initialValues: {
@@ -123,7 +123,7 @@ const Register = () => {
             ref_code: selected.ref_code ? selected.ref_code : ''
         }
         //console.log(queryString);
-        if (!error) dispatch(completeData(queryString));;
+        if (!error) dispatch(completeData(queryString));		
     }
 
     function handleChangeCaptcha(value) {
@@ -343,17 +343,13 @@ const Register = () => {
 						block
 						disabled={true}
 						isLoading={isFetching}
-						theme=""
-                        style={{ backgroundColor:"#C1242B",color:"#fff",marginRight:"2%"}}
-                        > Daftar </Button>                                            
+						theme="danger"> Daftar </Button>                                            
 					) : (
 					<Button
 						block
 						onClick={handleSubmit2}
 						isLoading={isFetching}
-						theme=""
-                        style={{ backgroundColor:"#C1242B",color:"#fff",marginRight:"2%"}}
-                        > Daftar </Button>
+						theme="danger"> Daftar </Button>
 					) }
                 </div>
             </div>

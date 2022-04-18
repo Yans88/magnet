@@ -63,7 +63,7 @@ class MySidebar extends Component {
                                     exact='/'
                                     className={lastSegmentUrl === "/" || lastSegmentUrl === "" || lastSegmentUrl === "personal" || lastSegmentUrl === "account-type" || lastSegmentUrl === "decleration" || lastSegmentUrl === "trading_rules" || lastSegmentUrl === "company_profile" || lastSegmentUrl === "cooljek" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
                                     
-                                    icon={<Icon icon="user" style={{left:"14px"}} />}>
+                                    icon={<img src={icon_akun} style={{width:"20px"}}  />}>
 
                                     Akun Saya
                                 </Nav.Item>
