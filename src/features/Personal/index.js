@@ -2127,7 +2127,7 @@ class Personal extends Component {
                                   name="lokasi"
                                   type="text"
                                   required
-                                  placeholder="Lokasi"
+                                  placeholder="Lokasi Rumah"
                                 />
                                 {errMsg3.lokasi ? (
                                   <span className="text-error badge badge-danger">

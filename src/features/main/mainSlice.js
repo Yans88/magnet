@@ -162,6 +162,7 @@ export const fetchUserKTP = createAsyncThunk(
               typeof nama[0] !== "undefined" && nama[0] ? nama[0] : myData.nama,
             nama_belakang: nama_belakang && nama_belakang,
             tempat_lahir: myData.tempat_lahir && myData.tempat_lahir,
+            kota_lahir: myData.kota_lahir && myData.kota_lahir,
             tanggal_lahir: selectedDate && selectedDate,
             status_pernikahan:
               myData.status_perkawinan && ucwords(myData.status_perkawinan),
