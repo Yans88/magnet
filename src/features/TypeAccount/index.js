@@ -61,7 +61,7 @@ class TypeAccount extends Component {
     render() {
         const { lastSegmentUrl } = this.state;
         const { dataRate, dataTypeAccount, dataSelect } = this.props;
-        const contentDelete = <div dangerouslySetInnerHTML={{ __html: '<div id="caption" style=padding-bottom:20px;">Anda yakin memesan tipe akun <strong>' + dataSelect.message + '</strong> ?</div>' }} />;
+        const contentDelete = <div dangerouslySetInnerHTML={{ __html: '<div id="caption" style=padding-bottom:20px;">Anda yakin memilih tipe akun <strong>' + dataSelect.message + '</strong> ?</div>' }} />;
 
         return (
 

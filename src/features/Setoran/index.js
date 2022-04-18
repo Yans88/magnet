@@ -91,7 +91,7 @@ class Setoran extends Component {
         var errors = this.state.errMsg;
         if (this.state.nextStep) {
             errors.setor = !this.state.selected.setor ? "Required" : '';
-            errors.phonepass = !this.state.selected.phonepass ? "Required" : '';
+            //errors.phonepass = !this.state.selected.phonepass ? "Required" : '';
             if (this.state.selected.img) {
                 var fileSize = this.state.selected.img.size;
                 if (fileSize > 2099200) { // satuan bytes 2099200 => 2MB
@@ -494,26 +494,7 @@ class Setoran extends Component {
                         </div>
                     </div>
 
-                    <div className="row" id="divid-phonepassword">
-                        <div className="col-sm-12">
-                            <div className="form-group">
-                                <div className="form-group">
-                                    <label className="frm_lbl">Phone Password</label>
-                                    {errMsg.phonepass ?
-                                        (<span className="float-right text-error badge badge-danger">{errMsg.phonepass}</span>) : null}
-                                    <div>
-                                        <input type="text"
-                                            onChange={this.handleChange.bind(this)}
-                                            value={selected.phonepass}
-                                            name="phonepass"
-                                            className="form-control" maxLength={12} placeholder="Pilih phone password anda" />
-                                        <em>*Phone password digunakan ketika anda menghubungi dealer kami via telepon</em><br />
-                                        <em style={{ color: '#F00' }}>*Simpan baik-baik phone password anda</em>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
             ) : ''}
 
@@ -528,7 +509,7 @@ class Setoran extends Component {
                 <tr>
                     <th>-</th>
                     <th>Login</th>
-                    <th>Nama</th>
+                    
                     <th style={{ textAlign: 'right' }}>Margin Free</th>
                     <th style={{ textAlign: 'right' }}>Equity</th>
                     <th style={{ textAlign: 'right' }}>Rate</th>
@@ -548,7 +529,7 @@ class Setoran extends Component {
                                     </td>
                                     <td>{at.login}
                                     </td>
-                                    <td>{at.name}</td>
+                                   
                                     <td align="right">
                                         <NumberFormat
                                             value={at.margin_free > 0 ? at.margin_free : '0.00'}

@@ -82,7 +82,7 @@ class MyHeader extends Component {
                                         
                                         <div className="font-bold ml-2">
                                             
-                                            {(<h5 style={{ fontWeight: 600, fontSize: 14, marginLeft: 8 }}>STATUS<br /><span style={{ color: '#dc3545' }}>{profile.status_dokumen} </span>{profile.status_dokumen !== 'Approve' && (<a style={{ color: '#269647' }} href="personal">- Daftar disini</a>)}</h5>)}
+                                            {(<h5 style={{ fontWeight: 600, fontSize: 14, marginLeft: 8 }}>STATUS<br /><span style={{ color: '#dc3545' }}>{profile.status_dokumen} </span>{profile.status_dokumen === 'Belum Lengkap' && (<a style={{ color: '#269647' }} href="personal">- Daftar disini</a>)}</h5>)}
 
                                         </div>
 
@@ -94,7 +94,6 @@ class MyHeader extends Component {
                                 <Nav pullRight className="mobile-hide">
 
                                     <Dropdown className="show dr-logout text-black" style={{color:"#000"}} icon={<Icon icon="user-o" size="lg" />} title={this.props.user.nama_depan ? (this.props.user.nama_depan) : ("Account")}>
-                                        
                                         <Dropdown.Item onClick={this.handleLogout.bind(this)} className="dropdown-menuu" icon={<Icon icon="sign-out" />}>Logout</Dropdown.Item>
 
                                     </Dropdown>
@@ -104,10 +103,8 @@ class MyHeader extends Component {
                                     
                                     
                                         <Dropdown className="show dr-logout text-black" style={{color:"#000"}} icon={<Icon icon="user-o" size="lg" />} title={this.props.user.nama_depan ? (this.props.user.nama_depan) : ("Account")}>
-                                        
-                                        <Dropdown.Item  className="dropdown-menuu">{(<h5 style={{ fontWeight: 600, fontSize: 14, marginLeft: 8 }}>STATUS<br /><span style={{ color: '#dc3545' }}>{profile.status_dokumen} </span>{profile.status_dokumen !== 'Approve' && (<a style={{ color: '#269647' }} href="personal"><br/>Daftar disini</a>)}</h5>)}</Dropdown.Item>
-
-                                        <Dropdown.Item onClick={this.handleLogout.bind(this)} className="dropdown-menuu" icon={<Icon icon="sign-out" />}>Logout</Dropdown.Item>
+                                            <Dropdown.Item >{(<h5 style={{ fontWeight: 600, fontSize: 14, marginLeft: 8 }}>STATUS<br /><span style={{ color: '#dc3545' }}>{profile.status_dokumen} </span>{profile.status_dokumen === 'Belum Lengkap' && (<a style={{ color: '#269647' }} href="personal"><br/> Daftar disini</a>)}</h5>)}</Dropdown.Item>
+                                            <Dropdown.Item onClick={this.handleLogout.bind(this)} className="dropdown-menuu" icon={<Icon icon="sign-out" />}>Logout</Dropdown.Item>
 
                                         </Dropdown>
 
