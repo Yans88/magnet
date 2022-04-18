@@ -532,11 +532,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.75rem;
 }
 
-.mx-12 {
-  margin-left: 3rem;
-  margin-right: 3rem;
-}
-
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -604,20 +599,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 2.5rem;
 }
 
-.mb-20 {
-  margin-bottom: 5rem;
-}
-
-.mt-\[32rem\] {
-  margin-top: 32rem;
-}
-
-.mt-\[30rem\] {
-  margin-top: 30rem;
-}
-
-.ml-\[10\%\] {
-  margin-left: 10%;
+.mt-\[5\%\] {
+  margin-top: 5%;
 }
 
 .mt-\[0rem\] {
@@ -626,6 +609,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mt-\[2rem\] {
   margin-top: 2rem;
+}
+
+.mb-20 {
+  margin-bottom: 5rem;
 }
 
 .mt-\[15rem\] {
@@ -732,28 +719,36 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 40%;
 }
 
-.w-\[18\%\] {
-  width: 18%;
-}
-
-.w-3\/4 {
-  width: 75%;
+.w-\[11\%\] {
+  width: 11%;
 }
 
 .w-\[50\%\] {
   width: 50%;
 }
 
-.w-\[80\%\] {
-  width: 80%;
-}
-
-.w-10 {
-  width: 2.5rem;
+.w-3\/4 {
+  width: 75%;
 }
 
 .w-1\/4 {
   width: 25%;
+}
+
+.w-\[80\%\] {
+  width: 80%;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
+.w-\[18\%\] {
+  width: 18%;
+}
+
+.w-10 {
+  width: 2.5rem;
 }
 
 .w-\[75\%\] {
@@ -774,6 +769,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .flex-grow {
   flex-grow: 1;
+}
+
+.basis-3\/4 {
+  flex-basis: 75%;
 }
 
 .scale-100 {
@@ -801,6 +800,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.flex-row {
+  flex-direction: row;
 }
 
 .place-items-end {
@@ -987,6 +990,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 1rem;
 }
 
+.pt-10 {
+  padding-top: 2.5rem;
+}
+
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+
 .pb-20 {
   padding-bottom: 5rem;
 }
@@ -1124,10 +1139,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 475px) {
-  .xs\:pb-3 {
-    padding-bottom: 0.75rem;
-  }
-
   .xs\:pt-2 {
     padding-top: 0.5rem;
   }
