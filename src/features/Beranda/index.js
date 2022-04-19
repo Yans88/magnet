@@ -442,7 +442,19 @@ class Beranda extends Component {
                                 </div>
                             </div>
 
-                            <div className="mobile-hide relative mt-[5%]   bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[80%] mb-10   ...">
+                            
+
+
+                            
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div className="mobile-hide relative  text-black text-center    py-0 w-3/4 mt-5 ..." >
+                    
+                    <div className="mobile-hide relative    bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[100%] mb-10   ...">
                                 <a href="account-type" className="btn btn-lgreen btn-sm"><span className="font-bold text-red-700">AKUN DEMO MT5</span></a><br/>
                                 
                                 
@@ -521,12 +533,9 @@ class Beranda extends Component {
                                 </div>
                           </div>
 
-                            
-                        </div>
-
-                    </div>
-
                 </div>
+
+
 
 
                 <div className="mobile-view  relative mt-[0rem] bg-white text-black text-center rounded-2xl shadow-lg  py-4 w-[100%] ..." >
