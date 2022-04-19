@@ -828,25 +828,12 @@ class Personal extends Component {
               </ul>
             </div>
 
-            <div className="mobile-hide">
             <h1
               style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}
               className="text-gray-500"
             >
               Registrasi Akun Online
             </h1>
-            </div>
-
-            <div className="mobile-view">
-            <h1
-              style={{ marginBottom: 10, fontSize: 20, marginLeft: 10 }}
-              className="text-gray-500"
-            >
-              Registrasi Akun Online
-            </h1>
-            </div>
-
-
             {errFetchUserByToken ? (
               <div
                 className="alert alert-danger alert-sm"
@@ -977,26 +964,12 @@ class Personal extends Component {
                         <Form>
                           <div style={{ paddingLeft: 20, paddingRight: 20 }}>
                             <br />
-                            
-                            <div className="mobile-hide">
                             <span
                               className="text-2xl label_ijo"
                               style={{ fontSize: "28px", fontWeight: "bold" }}
                             >
                               Detil Pribadi
                             </span>
-                            </div>
-
-                            <div className="mobile-view">
-                            <span
-                              className="text-2xl label_ijo"
-                              style={{ fontSize: "18px", fontWeight: "bold" }}
-                            >
-                              Detil Pribadi
-                            </span>
-                            </div>
-
-
                             <br />
                             <br />
 
@@ -1747,288 +1720,434 @@ class Personal extends Component {
                     {active_tab === "exp_trading" && (
                       <Fragment>
                         <Form>
-                              <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                                  <br />
-                                  <div className="mobile-hide">
-                                  <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Pengalaman Trading</span>
+                          <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                            <br />
+                            <span
+                              className="text-2xl label_ijo"
+                              style={{ fontSize: "28px", fontWeight: "bold" }}
+                            >
+                              Pengalaman Trading
+                            </span>
+                            <br />
+                            <br />
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                controlId="tujuan_pembukaan_rekening"
+                              >
+                                <Form.Control
+                                  name="tujuan_pembukaan_rekening"
+                                  size="lg"
+                                  value={
+                                    dataExpTrading.tujuan_pembukaan_rekening
+                                      ? dataExpTrading.tujuan_pembukaan_rekening
+                                      : ""
+                                  }
+                                  onChange={this.handleChangeTrading.bind(this)}
+                                  as="select"
+                                >
+                                  <option value="">
+                                    Tujuan Pembukaan Rekening
+                                  </option>
+                                  <option value="Spekulasi">Spekulasi</option>
+                                  <option value="Keuntungan">Keuntungan</option>
+                                  <option value="Lindung Nilai">
+                                    Lindung Nilai
+                                  </option>
+                                  <option value="Lainnya">Lainnya</option>
+                                </Form.Control>
+                              </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={6}
+                                lg={3}
+                                controlId="pertanyaan1"
+                              >
+                                <Form.Label>Pengalaman Trading</Form.Label>
+                                <br />
+
+                                <Form.Check
+                                  onChange={this.handleChangeTrading.bind(this)}
+                                  inline
+                                  type="switch"
+                                  label="Check this switch"
+                                  value="Y"
+                                  id="custom-switch"
+                                  label={
+                                    dataExpTrading.pertanyaan1 === "Y"
+                                      ? "Ya"
+                                      : "Tidak"
+                                  }
+                                  name="pertanyaan1"
+                                  checked={
+                                    dataExpTrading.pertanyaan1 === "Y"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                />
+                              </Form.Group>
+                              {dataExpTrading.pertanyaan1 === "Y" ? (
+                                <Form.Group
+                                  as={Col}
+                                  xs={6}
+                                  lg={6}
+                                  controlId="pertanyaan2"
+                                >
+                                  <Form.Label>
+                                    Pengalaman Trading anda Sebelumnya di
+                                  </Form.Label>
+                                  <Form.Control
+                                    value={
+                                      dataExpTrading.pertanyaan2
+                                        ? dataExpTrading.pertanyaan2
+                                        : ""
+                                    }
+                                    autoComplete="off"
+                                    onChange={this.handleChangeTrading.bind(
+                                      this
+                                    )}
+                                    size="lg"
+                                    name="pertanyaan2"
+                                    type="text"
+                                    required
+                                    placeholder="Nama Perusahaan/Brand"
+                                  />
+                                </Form.Group>
+                              ) : (
+                                ""
+                              )}
+                            </Form.Row>
+
+                            <Form.Row>
+                              <Form.Group as={Col} controlId="pertanyaan3">
+                                <Form.Label>
+                                  Apakah Anda memiliki keluarga yang bekerja di
+                                  BAPPEBTI / BBJ / KBI / BKDI / ISI Clearing?
+                                </Form.Label>
+                                <br />
+
+                                <Form.Check
+                                  onChange={this.handleChangeTrading.bind(this)}
+                                  inline
+                                  type="switch"
+                                  label="Check this switch"
+                                  value="Y"
+                                  id="custom-switch4"
+                                  label={
+                                    dataExpTrading.pertanyaan3 === "Y"
+                                      ? "Ya"
+                                      : "Tidak"
+                                  }
+                                  name="pertanyaan3"
+                                  checked={
+                                    dataExpTrading.pertanyaan3 === "Y"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                />
+                              </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                              <Form.Group as={Col} controlId="pertanyaan4">
+                                <Form.Label>
+                                  Apakah Anda telah dinyatakan pailit oleh
+                                  Pengadilan?
+                                </Form.Label>
+                                <br />
+                                <Form.Check
+                                  onChange={this.handleChangeTrading.bind(this)}
+                                  inline
+                                  type="switch"
+                                  label="Check this switch"
+                                  value="Y"
+                                  id="custom-switch3"
+                                  label={
+                                    dataExpTrading.pertanyaan4 === "Y"
+                                      ? "Ya"
+                                      : "Tidak"
+                                  }
+                                  name="pertanyaan4"
+                                  checked={
+                                    dataExpTrading.pertanyaan4 === "Y"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                />
+                              </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={4}
+                                controlId="pertanyaan5"
+                              >
+                                <Form.Label>
+                                  Memiliki pengalaman perdagangan dalam
+                                  Perdagangan Berjangka
+                                </Form.Label>
+                                <br />
+
+                                <Form.Check
+                                  onChange={this.handleChangeTrading.bind(this)}
+                                  inline
+                                  type="switch"
+                                  label="Check this switch"
+                                  value="Y"
+                                  id="custom-switch2"
+                                  label={
+                                    dataExpTrading.pertanyaan5 === "Y"
+                                      ? "Ya"
+                                      : "Tidak"
+                                  }
+                                  name="pertanyaan5"
+                                  checked={
+                                    dataExpTrading.pertanyaan5 === "Y"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                />
+                              </Form.Group>
+                              {dataExpTrading.pertanyaan5 === "Y" ? (
+                                <Form.Group
+                                  as={Col}
+                                  xs={12}
+                                  lg={6}
+                                  controlId="pertanyaan6"
+                                >
+                                  <Form.Label>
+                                    Pengalaman Trading Berjangka anda Sebelumnya
+                                    di
+                                  </Form.Label>
+                                  <Form.Control
+                                    value={
+                                      dataExpTrading.pertanyaan6
+                                        ? dataExpTrading.pertanyaan6
+                                        : ""
+                                    }
+                                    autoComplete="off"
+                                    onChange={this.handleChangeTrading.bind(
+                                      this
+                                    )}
+                                    size="lg"
+                                    name="pertanyaan6"
+                                    type="text"
+                                    required
+                                    placeholder="Nama Perusahaan/Brand"
+                                  />
+                                </Form.Group>
+                              ) : (
+                                ""
+                              )}
+                            </Form.Row>
+                          </div>
+                          <div
+                            className="container__box p-4"
+                            style={{
+                              backgroundColor: "#fbfbfd",
+                              margin: "1em -1.5em -1.5em",
+                            }}
+                          >
+                            <div className="form-group">
+                              <div className="grid grid-cols-1 place-items-center">
+                                <div className="form-group lg:w-2/3">
+                                  <div className="form-check">
+                                    {errMsg2.agreement2 ? (
+                                      <span className="text-error badge badge-danger">
+                                        {errMsg2.agreement2}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
+                                    <label>
+                                      <input
+                                        checked={
+                                          dataExpTrading.agreement2
+                                            ? true
+                                            : false
+                                        }
+                                        onChange={this.handleChangeTrading.bind(
+                                          this
+                                        )}
+                                        value={1}
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        name="agreement2"
+                                      />
+                                      <div className="form-check-text">
+                                        Dengan mencentang kotak ini, saya dengan
+                                        ini mengakui bahwa semua informasi dan
+                                        dokumen yang disediakan dalam aplikasi
+                                        Online untuk pembukaan akun transaksi
+                                        adalah benar dan valid.saya dengan ini
+                                        bertanggung jawab penuh atas setiap
+                                        kerusakan / kerugian di masa depan
+                                        sebagai akibat dari informasi palsu dari
+                                        dokumen yang saya sediakan.
+                                      </div>
+                                    </label>
                                   </div>
-
-                                  <div className="mobile-view">
-                                  <span className="text-2xl label_ijo" style={{fontSize:"18px",fontWeight:"bold"}}>Pengalaman Trading</span>
-                                  </div>
-                                  <br /><br/>
-                                  <Form.Row>
-                                      <Form.Group as={Col} controlId="tujuan_pembukaan_rekening">
-                                          <Form.Control
-                                              name="tujuan_pembukaan_rekening"
-                                              size="lg"
-                                              value={dataExpTrading.tujuan_pembukaan_rekening ? dataExpTrading.tujuan_pembukaan_rekening : ''}
-                                              onChange={this.handleChangeTrading.bind(this)}
-                                              as="select">
-                                              <option value="">Tujuan Pembukaan Rekening</option>
-                                              <option value="Spekulasi">Spekulasi</option>
-                                              <option value="Keuntungan">Keuntungan</option>
-                                              <option value="Lindung Nilai">Lindung Nilai</option>
-                                              <option value="Lainnya">Lainnya</option>
-                                          </Form.Control>
-                                      </Form.Group>
-                                  </Form.Row>
-                                  <Form.Row>
-                                      <Form.Group as={Col} xs={12} lg={3} controlId="pertanyaan1">
-                                          <Form.Label>Pengalaman Trading</Form.Label><br />
-                                          
-
-                                          <Form.Check
-                                              onChange={this.handleChangeTrading.bind(this)}
-                                              inline 
-                                              type="switch"
-                                              label="Check this switch"
-                                              value="Y"
-                                              id="custom-switch"
-                                              label={dataExpTrading.pertanyaan1 === 'Y' ? "Ya" : "Tidak"}
-                                              name='pertanyaan1'
-                                              checked={dataExpTrading.pertanyaan1 === 'Y' ? ("checked") : ""}
-                                          />
-
-                                          
-                                          
-
-                                          
-                                          
-                                      </Form.Group>
-                                      {dataExpTrading.pertanyaan1 === 'Y' ? (
-                                      
-                                      <Form.Group as={Col} xs={12} lg={6} controlId="pertanyaan2">
-                                          
-                                          <Form.Label>Pengalaman Trading anda Sebelumnya di</Form.Label>
-                                          <Form.Control
-                                              value={dataExpTrading.pertanyaan2 ? dataExpTrading.pertanyaan2 : ''}
-                                              autoComplete="off"
-                                              onChange={this.handleChangeTrading.bind(this)}
-                                              size="lg"
-                                              name="pertanyaan2"
-                                              type="text"
-                                              required
-                                              placeholder="Nama Perusahaan/Brand" />
-                                      </Form.Group>
-                                      
-                                        ) : ''}
-
-                                  </Form.Row>
-                                  
-
-                                  <Form.Row>
-                                      <Form.Group as={Col} controlId="pertanyaan3">
-                                          <Form.Label>Apakah Anda memiliki keluarga yang bekerja di BAPPEBTI / BBJ / KBI / BKDI / ISI Clearing?</Form.Label><br />
-                                          
-                                          <Form.Check
-                                              onChange={this.handleChangeTrading.bind(this)}
-                                              inline 
-                                              type="switch"
-                                              label="Check this switch"
-                                              value="Y"
-                                              id="custom-switch4"
-                                              label={dataExpTrading.pertanyaan3 === 'Y' ? "Ya" : "Tidak"}
-                                              name='pertanyaan3'
-                                              checked={dataExpTrading.pertanyaan3 === 'Y' ? ("checked") : ""}
-                                          />
-
-                                          
-                                      </Form.Group>
-                                  </Form.Row>
-                                  <Form.Row>
-                                      <Form.Group as={Col} controlId="pertanyaan4">
-                                          <Form.Label>Apakah Anda telah dinyatakan pailit oleh Pengadilan?</Form.Label><br />
-                                          <Form.Check
-                                              onChange={this.handleChangeTrading.bind(this)}
-                                              inline 
-                                              type="switch"
-                                              label="Check this switch"
-                                              value="Y"
-                                              id="custom-switch3"
-                                              label={dataExpTrading.pertanyaan4 === 'Y' ? "Ya" : "Tidak"}
-                                              name='pertanyaan4'
-                                              checked={dataExpTrading.pertanyaan4 === 'Y' ? ("checked") : ""}
-                                          />
-
-                                          
-                                      </Form.Group>
-                                  </Form.Row>
-                                  <Form.Row>
-                                      <Form.Group as={Col} xs={12} lg={4} controlId="pertanyaan5">
-                                          <Form.Label>Memiliki pengalaman perdagangan dalam Perdagangan Berjangka</Form.Label><br />
-                                          
-                                          <Form.Check
-                                              onChange={this.handleChangeTrading.bind(this)}
-                                              inline 
-                                              type="switch"
-                                              label="Check this switch"
-                                              value="Y"
-                                              id="custom-switch2"
-                                              label={dataExpTrading.pertanyaan5 === 'Y' ? "Ya" : "Tidak"}
-                                              name='pertanyaan5'
-                                              checked={dataExpTrading.pertanyaan5 === 'Y' ? ("checked") : ""}
-                                          />
-
-                                          
-                                      </Form.Group>
-                                      {dataExpTrading.pertanyaan5 === 'Y' ? (
-                                      
-                                          <Form.Group as={Col} xs={12} lg={6} controlId="pertanyaan6">
-                                              <Form.Label>Pengalaman Trading Berjangka anda Sebelumnya di</Form.Label>
-                                              <Form.Control
-                                                  value={dataExpTrading.pertanyaan6 ? dataExpTrading.pertanyaan6 : ''}
-                                                  autoComplete="off"
-                                                  onChange={this.handleChangeTrading.bind(this)}
-                                                  size="lg"
-                                                  name="pertanyaan6"
-                                                  type="text"
-                                                  required
-                                                  placeholder="Nama Perusahaan/Brand" />
-                                          </Form.Group>
-                                      ) : ''}
-                                  </Form.Row>
-                                  
-                              </div>
-                              <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
-                                  <div className="form-group">
-                                      
 
                                   <div className="grid grid-cols-1 place-items-center">
-                                      <div className="form-group lg:w-2/3">
-                                          <div className="form-check">
-                                              {errMsg2.agreement2 ? (<span className="text-error badge badge-danger">{errMsg2.agreement2}</span>) : ''}
-                                              <label>
-                                                  <input
-                                                      checked={dataExpTrading.agreement2 ? true : false}
-                                                      onChange={this.handleChangeTrading.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement2" />
-                                                  <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+                                    <div className="form-group lg:w-[50%] text-center mt-4">
+                                      <label>
+                                        <span className="text-gray-700">
+                                          Dengan mendaftar, saya menyetujui
+                                        </span>{" "}
+                                        <br />
+                                        <span className="text-black font-extrabold">
+                                          Syarat dan ketentuan
+                                        </span>{" "}
+                                        <span className="text-gray-700">
+                                          serta
+                                        </span>{" "}
+                                        <span className="label_merah font-extrabold">
+                                          Kebijakan Privasi
+                                        </span>
+                                      </label>
+                                    </div>
 
-                                              </label>
-                                              
-                                          </div>
-                                          
-                                          <div className="grid grid-cols-1 place-items-center">
-
-                                              <div className="form-group lg:w-[50%] text-center mt-4">
-                                              <label>
-                                                  <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-extrabold">Kebijakan Privasi</span>
-                                              </label>
-                                              </div>
-
-                                              <div className="form-group w-[100%] lg:w-[40%] text-center">
-                                              
-                                              <AppButton
-                                          style={{ color: '#ffffff', marginRight: 5 }}
-                                          onClick={this.handleSubmit2.bind(this, 'detil_pribadi')}
-                                          type="button"
-                                          size="lg"
-                                          theme=""
-                                          style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
-
-                                          >Selanjutnya</AppButton>
+                                    <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                      
 
                                       <AppButton
-                                          onClick={this.handleSubmit2.bind(this)}
-                                          type="button"
-                                          size="lg"
-                                          theme=""
-                                              style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
-                                          Simpan</AppButton>
-
-                                              </div>
-                                          </div>
-
-                                      </div>
+                                        onClick={this.handleSubmit2.bind(
+                                          this,
+                                          "detil_pribadi"
+                                        )}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                        style={{
+                                          backgroundColor: "#218838",
+                                          color: "#fff",
+                                          marginRight: "2%",
+                                        }}
+                                      >
+                                        Selanjutnya
+                                      </AppButton>
+                                    </div>
                                   </div>
-
-                                  </div>
-
+                                </div>
                               </div>
-                          </Form>
+                            </div>
+                          </div>
+                        </Form>
                       </Fragment>
                     )}
 
                     {active_tab === "kekayaan" && (
                       <Fragment>
                         <Form>
-                      <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                          <br />
-                          <div className="mobile-hide">
-                            
-                            <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Kekayaan Pribadi</span>
-                            
-                          </div>
-
-                          <div className="mobile-view">
-                            
-                            <span className="text-2xl label_ijo" style={{fontSize:"18px",fontWeight:"bold"}}>Kekayaan Pribadi</span>
-                            
-                          </div>
-                          <br /><br/>
-                          <Form.Row>
-                              
-                              <Form.Group as={Col} xs={12} lg={6} controlId="pendapatan_pertahun">
-                                  <Form.Control
-                                      name="pendapatan_pertahun"
-                                      size="lg"
-                                      value={dataKekayaan.pendapatan_pertahun ? dataKekayaan.pendapatan_pertahun : ''}
-                                      onChange={this.handleChangeKekayaan.bind(this)}
-                                      as="select">
-                                      <option value="">Pendapatan perTahun</option>
-                                      <option value="Antara 100-250 juta">Antara 100-250 juta</option>
-                                      <option value="Antara 250-500 juta">Antara 250-500 juta</option>
-                                      <option value="Di atas 500 juta">Di atas 500 juta</option>
-                                  </Form.Control>
-                                  {errMsg3.pendapatan_pertahun ? (<span className="text-error badge badge-danger">{errMsg3.pendapatan_pertahun}</span>) : ''}
+                          <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                            <br />
+                            <span
+                              className="text-2xl label_ijo"
+                              style={{ fontSize: "28px", fontWeight: "bold" }}
+                            >
+                              Kekayaan Pribadi
+                            </span>
+                            <br />
+                            <br />
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="pendapatan_pertahun"
+                              >
+                                <Form.Control
+                                  name="pendapatan_pertahun"
+                                  size="lg"
+                                  value={
+                                    dataKekayaan.pendapatan_pertahun
+                                      ? dataKekayaan.pendapatan_pertahun
+                                      : ""
+                                  }
+                                  onChange={this.handleChangeKekayaan.bind(
+                                    this
+                                  )}
+                                  as="select"
+                                >
+                                  <option value="">Pendapatan per Tahun</option>
+                                  <option value="Antara 100-250 juta">
+                                    Antara 100-250 juta
+                                  </option>
+                                  <option value="Antara 250-500 juta">
+                                    Antara 250-500 juta
+                                  </option>
+                                  <option value="Di atas 500 juta">
+                                    Di atas 500 juta
+                                  </option>
+                                </Form.Control>
+                                {errMsg3.pendapatan_pertahun ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg3.pendapatan_pertahun}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                               </Form.Group>
 
-                              <Form.Group as={Col} xs={12} lg={6} controlId="lokasi">
-                                  <Form.Control
-                                      value={dataKekayaan.lokasi ? dataKekayaan.lokasi : ''}
-                                      autoComplete="off"
-                                      onChange={this.handleChangeKekayaan.bind(this)}
-                                      size="lg"
-                                      name="lokasi"
-                                      type="text"
-                                      required
-                                      placeholder="Lokasi" />
-                                  {errMsg3.lokasi ? (<span className="text-error badge badge-danger">{errMsg3.lokasi}</span>) : ''}
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="lokasi"
+                              >
+                                <Form.Control
+                                  value={
+                                    dataKekayaan.lokasi
+                                      ? dataKekayaan.lokasi
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKekayaan.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="lokasi"
+                                  type="text"
+                                  required
+                                  placeholder="Lokasi Rumah"
+                                />
+                                {errMsg3.lokasi ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg3.lokasi}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                               </Form.Group>
+                            </Form.Row>
 
-                          </Form.Row>
-                          
-                          <Form.Row>
-                              <Form.Group as={Col} xs={12} lg={6} controlId="njop">
-                                  
-                                  <NumberFormat
-                                      value={dataKekayaan.njop ? dataKekayaan.njop : ''}
-                                      autoComplete="off"
-                                      onChange={this.handleChangeKekayaan.bind(this)}
-                                      className="form-control form-control-lg"
-                                      size="lg"
-                                      name="njop"
-                                      thousandSeparator={true}
-                                      decimalScale={2}
-                                      inputMode="numeric"
-                                      placeholder="Nilai NJOP Rumah" />
-                                  {errMsg3.njop ? (<span className="text-error badge badge-danger">{errMsg3.njop}</span>) : ''}
-                              </Form.Group>
-
-                              <Form.Group as={Col} xs={12} lg={6} controlId="deposit_bank">
-                                  
-                                  <NumberFormat
-                                      value={dataKekayaan.deposit_bank ? dataKekayaan.deposit_bank : ''}
-                                      autoComplete="off"
-                                      onChange={this.handleChangeKekayaan.bind(this)}
-                                      className="form-control form-control-lg"
-                                      size="lg"
-                                      name="deposit_bank"
-                                      thousandSeparator={true}
-                                      decimalScale={2}
-                                      inputMode="numeric"
-                                      placeholder="Deposit Bank" />
-                                  {errMsg3.deposit_bank ? (<span className="text-error badge badge-danger">{errMsg3.deposit_bank}</span>) : ''}
+                            <Form.Row>
+                              <Form.Group as={Col} controlId="njop">
+                                <NumberFormat
+                                  value={
+                                    dataKekayaan.njop ? dataKekayaan.njop : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKekayaan.bind(
+                                    this
+                                  )}
+                                  className="form-control form-control-lg"
+                                  size="lg"
+                                  name="njop"
+                                  thousandSeparator={true}
+                                  decimalScale={2}
+                                  inputMode="numeric"
+                                  placeholder="Nilai NJOP Rumah"
+                                />
+                                {errMsg3.njop ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg3.njop}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                               </Form.Group>
 
                               <Form.Group as={Col} controlId="deposit_bank">
@@ -2173,29 +2292,13 @@ class Personal extends Component {
                                     </div>
 
                                     <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                      
+
                                       <AppButton
-                                        style={{
-                                          color: "#ffffff",
-                                          marginRight: 5,
-                                        }}
                                         onClick={this.handleSubmit3.bind(
                                           this,
                                           "detil_pribadi"
                                         )}
-                                        type="button"
-                                        size="lg"
-                                        theme=""
-                                        style={{
-                                          backgroundColor: "#C3262A",
-                                          color: "#fff",
-                                          marginRight: "2%",
-                                        }}
-                                      >
-                                        Selanjutnya
-                                      </AppButton>
-
-                                      <AppButton
-                                        onClick={this.handleSubmit3.bind(this)}
                                         type="button"
                                         size="lg"
                                         theme=""
@@ -2205,7 +2308,7 @@ class Personal extends Component {
                                           marginRight: "2%",
                                         }}
                                       >
-                                        Simpan
+                                        Selanjutnya
                                       </AppButton>
                                     </div>
                                   </div>
@@ -2220,102 +2323,193 @@ class Personal extends Component {
                     {active_tab === "kontak_darurat" && (
                       <Fragment>
                         <Form>
-                      <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                        
-                        
-                        <br />
-                        <div className="mobile-hide">
-                          
-                          <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Kontak Darurat</span>
-                        
-                        </div>
+                          <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                            <br />
+                            <span
+                              className="text-2xl label_ijo"
+                              style={{ fontSize: "28px", fontWeight: "bold" }}
+                            >
+                              Kontak Darurat
+                            </span>
+                            <br />
+                            <br />
 
-                        <div className="mobile-view">
-                          
-                          <span className="text-2xl label_ijo" style={{fontSize:"18px",fontWeight:"bold"}}>Kontak Darurat</span>
-                        
-                        </div>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="nama"
+                              >
+                                {" "}
+                                {errMsg4.nama ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg4.nama}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  value={
+                                    dataKontakDarurat.nama
+                                      ? dataKontakDarurat.nama
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKontakDarurat.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="nama"
+                                  type="text"
+                                  required
+                                  placeholder="Nama"
+                                />
+                              </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={12}
+                                controlId="alamatt"
+                              >
+                                {errMsg4.alamat ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg4.alamat}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  value={
+                                    dataKontakDarurat.alamat
+                                      ? dataKontakDarurat.alamat
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKontakDarurat.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="alamatt"
+                                  type="text"
+                                  required
+                                  placeholder="Alamat"
+                                />
+                              </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="kode_pos"
+                              >
+                                {errMsg4.kode_pos ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg4.kode_pos}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  value={
+                                    dataKontakDarurat.kode_pos
+                                      ? dataKontakDarurat.kode_pos
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKontakDarurat.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="kode_pos"
+                                  type="text"
+                                  required
+                                  placeholder="Kode Pos"
+                                />
+                              </Form.Group>
 
-                        <br /><br/>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="telpp"
+                              >
+                                {" "}
+                                {errMsg4.telp ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg4.telp}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                                <Form.Control
+                                  value={
+                                    dataKontakDarurat.telp
+                                      ? dataKontakDarurat.telp
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKontakDarurat.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="telpp"
+                                  type="text"
+                                  required
+                                  placeholder="No. Telepon"
+                                />
+                              </Form.Group>
+                            </Form.Row>
 
-                        <Form.Row>
-                            <Form.Group as={Col} xs={12} lg={6} controlId="nama">
-                                {' '}
-                                {errMsg4.nama ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.nama}</span>) : ''}
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="handphone"
+                              >
+                                {errMsg4.handphone ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg4.handphone}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                                 <Form.Control
-                                    value={dataKontakDarurat.nama ? dataKontakDarurat.nama : ''}
-                                    autoComplete="off"
-                                    onChange={this.handleChangeKontakDarurat.bind(this)}
-                                    size="lg"
-                                    name="nama"
-                                    type="text"
-                                    required
-                                    placeholder="Nama" />
-                            </Form.Group>
-                        </Form.Row>
-                        <Form.Row>
-                            <Form.Group as={Col} xs={12} lg={12} controlId="alamatt">
-                                
-                                {errMsg4.alamat ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.alamat}</span>) : ''}
-                                <Form.Control
-                                    value={dataKontakDarurat.alamat ? dataKontakDarurat.alamat : ''}
-                                    autoComplete="off"
-                                    onChange={this.handleChangeKontakDarurat.bind(this)}
-                                    size="lg"
-                                    name="alamatt"
-                                    type="text"
-                                    required
-                                    placeholder="Alamat" />
-                            </Form.Group>
-                        </Form.Row>
-                        <Form.Row>
-                            <Form.Group as={Col} xs={12} lg={6} controlId="kode_pos">
-                                
-                                {errMsg4.kode_pos ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.kode_pos}</span>) : ''}
-                                <Form.Control
-                                    value={dataKontakDarurat.kode_pos ? dataKontakDarurat.kode_pos : ''}
-                                    autoComplete="off"
-                                    onChange={this.handleChangeKontakDarurat.bind(this)}
-                                    size="lg"
-                                    name="kode_pos"
-                                    type="text"
-                                    inputMode="numeric"
-                                    required
-                                    placeholder="Kode Pos" />
-                            </Form.Group>
-
-                            <Form.Group as={Col} xs={12} lg={6} controlId="telpp">
-                                {' '}
-                                {errMsg4.telp ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.telp}</span>) : ''}
-                                <Form.Control
-                                    value={dataKontakDarurat.telp ? dataKontakDarurat.telp : ''}
-                                    autoComplete="off"
-                                    onChange={this.handleChangeKontakDarurat.bind(this)}
-                                    size="lg"
-                                    name="telpp"
-                                    type="text"
-                                    inputMode="numeric"
-                                    required
-                                    placeholder="No. Telepon" />
-                            </Form.Group>
-
-                        </Form.Row>
-                        
-                        <Form.Row>
-                            <Form.Group as={Col} xs={12} lg={6} controlId="handphone">
-                                
-                                {errMsg4.handphone ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg4.handphone}</span>) : ''}
-                                <Form.Control
-                                    value={dataKontakDarurat.handphone ? dataKontakDarurat.handphone : ''}
-                                    autoComplete="off"
-                                    onChange={this.handleChangeKontakDarurat.bind(this)}
-                                    size="lg"
-                                    name="handphone"
-                                    inputMode="numeric"
-                                    type="text"
-                                    required
-                                    placeholder="No. Handphone" />
-                            </Form.Group>
+                                  value={
+                                    dataKontakDarurat.handphone
+                                      ? dataKontakDarurat.handphone
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeKontakDarurat.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="handphone"
+                                  type="text"
+                                  required
+                                  placeholder="No. Handphone"
+                                />
+                              </Form.Group>
 
                               <Form.Group
                                 as={Col}
@@ -2420,28 +2614,12 @@ class Personal extends Component {
                                     </div>
 
                                     <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                     
                                       <AppButton
-                                        style={{
-                                          color: "#ffffff",
-                                          marginRight: 5,
-                                        }}
                                         onClick={this.handleSubmit4.bind(
                                           this,
                                           "detil_pribadi"
                                         )}
-                                        type="button"
-                                        size="lg"
-                                        theme=""
-                                        style={{
-                                          backgroundColor: "#C3262A",
-                                          color: "#fff",
-                                          marginRight: "2%",
-                                        }}
-                                      >
-                                        Selanjutnya
-                                      </AppButton>
-                                      <AppButton
-                                        onClick={this.handleSubmit4.bind(this)}
                                         type="button"
                                         size="lg"
                                         theme=""
@@ -2451,7 +2629,7 @@ class Personal extends Component {
                                           marginRight: "2%",
                                         }}
                                       >
-                                        Simpan
+                                        Selanjutnya
                                       </AppButton>
                                     </div>
                                   </div>
@@ -2466,90 +2644,145 @@ class Personal extends Component {
                     {active_tab === "pekerjaan" && (
                       <Fragment>
                         <Form>
-                    <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                        
-                        <br />
-                        <div className="mobile-hide">
-                          <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Pekerjaan</span>
-                        </div>
+                          <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                            <br />
+                            <span
+                              className="text-2xl label_ijo"
+                              style={{ fontSize: "28px", fontWeight: "bold" }}
+                            >
+                              Pekerjaan
+                            </span>
+                            <br />
+                            <br />
 
-                        <div className="mobile-view">
-                          <span className="text-2xl label_ijo" style={{fontSize:"18px",fontWeight:"bold"}}>Pekerjaan</span>
-                        </div>
-
-                        <br /><br/>
-
-                        <Form.Row>
-                            <Form.Group as={Col} xs={12} lg={6} controlId="status_pekerjaan">
-                                
-                                {errMsg5.status_pekerjaan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.status_pekerjaan}</span>) : ''}
+                            <Form.Row>
+                              <Form.Group as={Col} controlId="status_pekerjaan">
+                                {errMsg5.status_pekerjaan ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg5.status_pekerjaan}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                                 <Form.Control
-                                    name="status_pekerjaan"
-                                    size="lg"
-                                    value={dataPekerjaan.status_pekerjaan ? dataPekerjaan.status_pekerjaan : ''}
-                                    onChange={this.handleChangePekerjaan.bind(this)}
-                                    as="select">
-                                    <option value="">Status Pekerjaan</option>
-                                    <option value="Swasta">Swasta</option>
-                                    <option value="Wiraswasta">Wiraswasta</option>
-                                    <option value="Profesional">Profesional</option>
-                                    <option value="Pegawai Negeri">Pegawai Negeri</option>
-                                    <option value="BUMN">BUMN</option>
-                                    <option value="Lainnya">Lainnya</option>
+                                  name="status_pekerjaan"
+                                  size="lg"
+                                  value={
+                                    dataPekerjaan.status_pekerjaan
+                                      ? dataPekerjaan.status_pekerjaan
+                                      : ""
+                                  }
+                                  onChange={this.handleChangePekerjaan.bind(
+                                    this
+                                  )}
+                                  as="select"
+                                >
+                                  <option value="">Status Pekerjaan</option>
+                                  <option value="Swasta">Swasta</option>
+                                  <option value="Wiraswasta">Wiraswasta</option>
+                                  <option value="Profesional">
+                                    Profesional
+                                  </option>
+                                  <option value="Pegawai Negeri">
+                                    Pegawai Negeri
+                                  </option>
+                                  <option value="BUMN">BUMN</option>
+                                  <option value="Lainnya">Lainnya</option>
                                 </Form.Control>
-                            </Form.Group>
+                              </Form.Group>
 
-                            <Form.Group as={Col} xs={12} lg={6} controlId="nama_perusahaan">
-                                
-                                {errMsg5.nama_perusahaan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.nama_perusahaan}</span>) : ''}
+                              <Form.Group as={Col} controlId="nama_perusahaan">
+                                {errMsg5.nama_perusahaan ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg5.nama_perusahaan}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                                 <Form.Control
-                                    value={dataPekerjaan.nama_perusahaan ? dataPekerjaan.nama_perusahaan : ''}
-                                    autoComplete="off"
-                                    onChange={this.handleChangePekerjaan.bind(this)}
-                                    size="lg"
-                                    name="nama_perusahaan"
-                                    type="text"
-                                    required
-                                    placeholder="Nama Perusahaan" />
-                            </Form.Group>
+                                  value={
+                                    dataPekerjaan.nama_perusahaan
+                                      ? dataPekerjaan.nama_perusahaan
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangePekerjaan.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="nama_perusahaan"
+                                  type="text"
+                                  required
+                                  placeholder="Nama Perusahaan"
+                                />
+                              </Form.Group>
+                            </Form.Row>
 
-                        </Form.Row>
-
-                        
-
-                        <Form.Row>
-                            <Form.Group as={Col} xs={12} lg={6} controlId="jenis_bisnis">
-                                
-                                {errMsg5.jenis_bisnis ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.jenis_bisnis}</span>) : ''}
+                            <Form.Row>
+                              <Form.Group as={Col} controlId="jenis_bisnis">
+                                {errMsg5.jenis_bisnis ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg5.jenis_bisnis}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                                 <Form.Control
-                                    value={dataPekerjaan.jenis_bisnis ? dataPekerjaan.jenis_bisnis : ''}
-                                    autoComplete="off"
-                                    onChange={this.handleChangePekerjaan.bind(this)}
-                                    size="lg"
-                                    name="jenis_bisnis"
-                                    type="text"
-                                    required
-                                    placeholder="Jenis Bisnis" />
-                            </Form.Group>
+                                  value={
+                                    dataPekerjaan.jenis_bisnis
+                                      ? dataPekerjaan.jenis_bisnis
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangePekerjaan.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="jenis_bisnis"
+                                  type="text"
+                                  required
+                                  placeholder="Jenis Bisnis"
+                                />
+                              </Form.Group>
 
-                            <Form.Group as={Col} xs={12} lg={6} controlId="jabatan">
-                                
-                                {errMsg5.jabatan ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.jabatan}</span>) : ''}
+                              <Form.Group as={Col} controlId="jabatan">
+                                {errMsg5.jabatan ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg5.jabatan}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                                 <Form.Control
-                                    value={dataPekerjaan.jabatan ? dataPekerjaan.jabatan : ''}
-                                    autoComplete="off"
-                                    onChange={this.handleChangePekerjaan.bind(this)}
-                                    size="lg"
-                                    name="jabatan"
-                                    type="text"
-                                    required
-                                    placeholder="Posisi/Jabatan" />
-                            </Form.Group>
-                          </Form.Row>
-
-                            
-
-                            
+                                  value={
+                                    dataPekerjaan.jabatan
+                                      ? dataPekerjaan.jabatan
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangePekerjaan.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="jabatan"
+                                  type="text"
+                                  required
+                                  placeholder="Posisi/Jabatan"
+                                />
+                              </Form.Group>
+                            </Form.Row>
 
                             <Form.Row>
                               <Form.Group
@@ -2664,18 +2897,39 @@ class Personal extends Component {
                             </Form.Row>
 
                             <Form.Row>
-                            <Form.Group as={Col} xs={12} lg={12} controlId="telp_kantor">
-                                {errMsg5.telp_kantor ? (<span className="text-error badge badge-danger" style={{ float: 'right' }}>{errMsg5.telp_kantor}</span>) : ''}
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={12}
+                                controlId="telp_kantor"
+                              >
+                                {errMsg5.telp_kantor ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                    style={{ float: "right" }}
+                                  >
+                                    {errMsg5.telp_kantor}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                                 <Form.Control
-                                    value={dataPekerjaan.telp_kantor ? dataPekerjaan.telp_kantor : ''}
-                                    autoComplete="off"
-                                    onChange={this.handleChangePekerjaan.bind(this)}
-                                    size="lg"
-                                    name="telp_kantor"
-                                    type="text"
-                                    required
-                                    placeholder="Nomor Telepon Kantor" />
-                            </Form.Group>
+                                  value={
+                                    dataPekerjaan.telp_kantor
+                                      ? dataPekerjaan.telp_kantor
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangePekerjaan.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="telp_kantor"
+                                  type="text"
+                                  required
+                                  placeholder="Nomor Telepon Kantor."
+                                />
+                              </Form.Group>
 
                               <Form.Group
                                 as={Col}
@@ -2769,28 +3023,12 @@ class Personal extends Component {
                                     </div>
 
                                     <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                     
                                       <AppButton
-                                        style={{
-                                          color: "#ffffff",
-                                          marginRight: 5,
-                                        }}
                                         onClick={this.handleSubmit5.bind(
                                           this,
                                           "detil_pribadi"
                                         )}
-                                        type="button"
-                                        size="lg"
-                                        theme=""
-                                        style={{
-                                          backgroundColor: "#C3262A",
-                                          color: "#fff",
-                                          marginRight: "2%",
-                                        }}
-                                      >
-                                        Selanjutnya
-                                      </AppButton>
-                                      <AppButton
-                                        onClick={this.handleSubmit5.bind(this)}
                                         type="button"
                                         size="lg"
                                         theme=""
@@ -2800,7 +3038,7 @@ class Personal extends Component {
                                           marginRight: "2%",
                                         }}
                                       >
-                                        Simpan
+                                        Selanjutnya
                                       </AppButton>
                                     </div>
                                   </div>
@@ -2815,63 +3053,49 @@ class Personal extends Component {
                     {active_tab === "detil_bank" && (
                       <Fragment>
                         <Form>
-                      <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                          
-                          <br />
-                          <span className="text-2xl label_ijo" style={{fontSize:"28px",fontWeight:"bold"}}>Detil Bank</span>
-                          <br /><br/>
-                          <Form.Row>
-                              <Form.Group as={Col} xs={12} lg={6} controlId="nama_pemilik">
-                                  <Form.Control
-                                      disabled
-                                      value={user.nama_depan ? user.nama_depan + ' ' + user.nama_belakang : ''}
-                                      autoComplete="off"
-                                      onChange={this.handleChangeAkunBank.bind(this)}
-                                      size="lg"
-                                      name="nama_pemilik"
-                                      type="text"
-                                      required
-                                      placeholder="Nama Pemilik Rekening" />
-                                  {errMsg6.nama_pemilik ? (<span className="text-error badge badge-danger">{errMsg6.nama_pemilik}</span>) : ''}
-                              </Form.Group>
-
-                              <Form.Group as={Col} xs={12} lg={6} controlId="bank_id">
-                                  <Form.Control
-                                      name="bank_id"
-                                      size="lg"
-                                      value={dataAkunBank.bank_id ? dataAkunBank.bank_id : ''}
-                                      onChange={this.handleChangeAkunBank.bind(this)}
-                                      as="select">
-                                      <option value="">Nama Bank</option>
-                                      {dataBank ? (
-                                          dataBank.map(function (bnk) {
-                                              return <option
-                                                  value={bnk.bank_id}
-                                                  key={bnk.bank_id}>{bnk.nama_bank}
-                                              </option>
-                                          })
-
-                                      ) : ''}
-                                  </Form.Control>
-                                  {errMsg6.bank ? (<span className="text-error badge badge-danger">{errMsg6.bank}</span>) : ''}
-                              </Form.Group>
-
-                          </Form.Row>
-                          
-                          <Form.Row>
-                              <Form.Group as={Col} xs={12} lg={6} controlId="no_rek">
-                                  <NumberFormat
-                                      value={dataAkunBank.no_rek ? dataAkunBank.no_rek : ''}
-                                      autoComplete="off"
-                                      onChange={this.handleChangeAkunBank.bind(this)}
-                                      className="form-control form-control-lg"
-                                      size="lg"
-                                      name="no_rek"
-                                      thousandSeparator={false}
-                                      decimalScale={0}
-                                      inputMode="numeric"
-                                      placeholder="Nomor Rekening Bank" />
-                                  {errMsg6.no_rek ? (<span className="text-error badge badge-danger">{errMsg6.no_rek}</span>) : ''}
+                          <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                            <br />
+                            <span
+                              className="text-2xl label_ijo"
+                              style={{ fontSize: "28px", fontWeight: "bold" }}
+                            >
+                              Akun Bank
+                            </span>
+                            <br />
+                            <br />
+                            <Form.Row>
+                              <Form.Group
+                                as={Col}
+                                xs={12}
+                                lg={6}
+                                controlId="nama_pemilik"
+                              >
+                                <Form.Control
+                                  disabled
+                                  value={
+                                    user.nama_depan
+                                      ? user.nama_depan +
+                                        " " +
+                                        user.nama_belakang
+                                      : ""
+                                  }
+                                  autoComplete="off"
+                                  onChange={this.handleChangeAkunBank.bind(
+                                    this
+                                  )}
+                                  size="lg"
+                                  name="nama_pemilik"
+                                  type="text"
+                                  required
+                                  placeholder="Nama Pemilik Rekening"
+                                />
+                                {errMsg6.nama_pemilik ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg6.nama_pemilik}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                               </Form.Group>
 
                               <Form.Group
@@ -2998,98 +3222,158 @@ class Personal extends Component {
                                                         </Form.Group>
                                                     </Form.Row> */}
 
-                                                    <Form.Row>
-                                                        <Form.Group as={Col} xs={6} lg={6} controlId="jenis_akun_bank">
-                                                            <Form.Label>Jenis akun</Form.Label><br />
-                                                            <Form.Check
-                                                                onChange={this.handleChangeAkunBank.bind(this)}
-                                                                inline
-                                                                checked={dataAkunBank.jenis_akun_bank === 'Giro' ? ("checked") : ""}
-                                                                value='Giro'
-                                                                type='radio'
-                                                                name='jenis_akun_bank'
-                                                                label='Giro'
-                                                            />
-                                                            <Form.Check
-                                                                onChange={this.handleChangeAkunBank.bind(this)}
-                                                                inline
-                                                                value='Rekening tabungan'
-                                                                type='radio'
-                                                                checked={dataAkunBank.jenis_akun_bank === 'Rekening tabungan' ? ("checked") : ""}
-                                                                name='jenis_akun_bank'
-                                                                label='Rekening tabungan'
-                                                            />
-                                                            <Form.Check
-                                                                onChange={this.handleChangeAkunBank.bind(this)}
-                                                                inline
-                                                                value='Lainnya'
-                                                                type='radio'
-                                                                checked={dataAkunBank.jenis_akun_bank === 'Lainnya' ? ("checked") : ""}
-                                                                name='jenis_akun_bank'
-                                                                label='Lainnya'
-                                                            />
-                                                            {errMsg6.jenis_akun_bank ? (<span className="text-error badge badge-danger">{errMsg6.jenis_akun_bank}</span>) : ''}
-                                                        </Form.Group>
-                                                    </Form.Row>
+                            <Form.Row>
+                              <Form.Group as={Col} controlId="jenis_akun_bank">
+                                <Form.Label>Jenis akun</Form.Label>
+                                <br />
+                                <Form.Check
+                                  onChange={this.handleChangeAkunBank.bind(
+                                    this
+                                  )}
+                                  inline
+                                  checked={
+                                    dataAkunBank.jenis_akun_bank === "Giro"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                  value="Giro"
+                                  type="radio"
+                                  name="jenis_akun_bank"
+                                  label="Giro"
+                                />
+                                <Form.Check
+                                  onChange={this.handleChangeAkunBank.bind(
+                                    this
+                                  )}
+                                  inline
+                                  value="Rekening tabungan"
+                                  type="radio"
+                                  checked={
+                                    dataAkunBank.jenis_akun_bank ===
+                                    "Rekening tabungan"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                  name="jenis_akun_bank"
+                                  label="Rekening tabungan"
+                                />
+                                <Form.Check
+                                  onChange={this.handleChangeAkunBank.bind(
+                                    this
+                                  )}
+                                  inline
+                                  value="Lainnya"
+                                  type="radio"
+                                  checked={
+                                    dataAkunBank.jenis_akun_bank === "Lainnya"
+                                      ? "checked"
+                                      : ""
+                                  }
+                                  name="jenis_akun_bank"
+                                  label="Lainnya"
+                                />
+                                {errMsg6.jenis_akun_bank ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errMsg6.jenis_akun_bank}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </Form.Group>
+                            </Form.Row>
+                          </div>
+                          <div
+                            className="container__box p-4"
+                            style={{
+                              backgroundColor: "#fbfbfd",
+                              margin: "1em -1.5em -1.5em",
+                            }}
+                          >
+                            <div className="form-group">
+                              <div className="grid grid-cols-1 place-items-center">
+                                <div className="form-group lg:w-2/3">
+                                  <div className="form-check">
+                                    {errMsg6.agreement6 ? (
+                                      <span className="text-error badge badge-danger">
+                                        {errMsg6.agreement6}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
+                                    <label>
+                                      <input
+                                        checked={
+                                          dataAkunBank.agreement6 === "Y"
+                                            ? true
+                                            : false
+                                        }
+                                        onChange={this.handleChangeAkunBank.bind(
+                                          this
+                                        )}
+                                        value={"Y"}
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        name="agreement6"
+                                      />
+                                      <div className="form-check-text">
+                                        Dengan mencentang kotak ini, saya dengan
+                                        ini mengakui bahwa semua informasi dan
+                                        dokumen yang disediakan dalam aplikasi
+                                        Online untuk pembukaan akun transaksi
+                                        adalah benar dan valid.saya dengan ini
+                                        bertanggung jawab penuh atas setiap
+                                        kerusakan / kerugian di masa depan
+                                        sebagai akibat dari informasi palsu dari
+                                        dokumen yang saya sediakan.
+                                      </div>
+                                    </label>
+                                  </div>
 
-                                                </div>
-                                                <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
-                                                    <div className="form-group">
-                                                        
-                                                        
+                                  <div className="grid grid-cols-1 place-items-center">
+                                    <div className="form-group lg:w-[50%] text-center mt-4">
+                                      <label>
+                                        <span className="text-gray-700">
+                                          Dengan mendaftar, saya menyetujui
+                                        </span>{" "}
+                                        <br />
+                                        <span className="text-black font-extrabold">
+                                          Syarat dan ketentuan
+                                        </span>{" "}
+                                        <span className="text-gray-700">
+                                          serta
+                                        </span>{" "}
+                                        <span className="label_merah font-bold">
+                                          Kebijakan Privasi
+                                        </span>
+                                      </label>
+                                    </div>
 
+                                    <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                      
 
-                                                    <div className="grid grid-cols-1 place-items-center">
-                                                            <div className="form-group lg:w-2/3">
-                                                                
-                                                            <div className="form-check">
-                                                            {errMsg6.agreement6 ? (<span className="text-error badge badge-danger">{errMsg6.agreement6}</span>) : ''}
-                                                            <label>
-                                                                <input
-                                                                    checked={dataAkunBank.agreement6 === 'Y' ? true : false}
-                                                                    onChange={this.handleChangeAkunBank.bind(this)} value={'Y'} className="form-check-input" type="checkbox" name="agreement6" />
-                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
-
-                                                            </label>
-                                                        </div>
-                                                                
-                                                                <div className="grid grid-cols-1 place-items-center">
-
-                                                                    <div className="form-group lg:w-[50%] text-center mt-4">
-                                                                    <label>
-                                                                        <span className="text-gray-700">Dengan mendaftar, saya menyetujui</span> <br/><span className="text-black font-extrabold">Syarat dan ketentuan</span> <span className="text-gray-700">serta</span> <span className="label_merah font-bold">Kebijakan Privasi</span>
-                                                                    </label>
-                                                                    </div>
-
-                                                                    <div className="form-group w-[100%] lg:w-[40%] text-center">
-                                                                
-                                                                    <AppButton
-                                                                        style={{ color: '#ffffff', marginRight: 5 }}
-                                                                        onClick={this.handleSubmit6.bind(this, 'detil_pribadi')}
-                                                                        type="button"
-                                                                        size="lg"
-                                                                        theme=""
-                                                                        style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}
-                                                                        >Selanjutnya</AppButton>
-                                                                    
-                                                                    <AppButton
-                                                                        onClick={this.handleSubmit6.bind(this)}
-                                                                        type="button"
-                                                                        size="lg"
-                                                                        theme=""
-                                                                style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
-                                                                        Simpan</AppButton>
-
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </Form>
-
+                                      <AppButton
+                                        onClick={this.handleSubmit6.bind(
+                                          this,
+                                          "detil_pribadi"
+                                        )}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                        style={{
+                                          backgroundColor: "#218838",
+                                          color: "#fff",
+                                          marginRight: "2%",
+                                        }}
+                                      >
+                                        Selanjutnya
+                                      </AppButton>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </Form>
                       </Fragment>
                     )}
 

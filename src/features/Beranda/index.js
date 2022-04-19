@@ -365,11 +365,13 @@ class Beranda extends Component {
                   <div className="mobile-hide relative bg-white text-black text-center rounded-2xl shadow-lg  py-10 w-3/4 ..." >
 
                       <div className="grid grid-col2-1 place-items-center mb-4">
+					  {akun_trading.length > 0 &&
                         <div className="w-1/4 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{backgroundColor:"#C2252C"}}>
+							
                             <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
                                 <span className="font-bold text-white">BUAT AKUN TRADING BARU</span>
                             </Link>
-                        </div>
+                        </div>}
 
                         <div className="grid grid-cols-1 place-items-center">
                             

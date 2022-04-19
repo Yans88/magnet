@@ -532,11 +532,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.75rem;
 }
 
-.mx-12 {
-  margin-left: 3rem;
-  margin-right: 3rem;
-}
-
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -604,16 +599,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 2.5rem;
 }
 
-.mt-\[32rem\] {
-  margin-top: 32rem;
-}
-
-.mt-\[30rem\] {
-  margin-top: 30rem;
-}
-
-.ml-\[10\%\] {
-  margin-left: 10%;
+.mt-\[5\%\] {
+  margin-top: 5%;
 }
 
 .mt-\[0rem\] {
@@ -732,8 +719,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 40%;
 }
 
-.w-\[18\%\] {
-  width: 18%;
+.w-\[11\%\] {
+  width: 11%;
 }
 
 .w-\[50\%\] {
@@ -744,6 +731,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 75%;
 }
 
+.w-1\/4 {
+  width: 25%;
+}
+
 .w-\[80\%\] {
   width: 80%;
 }
@@ -752,12 +743,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 50%;
 }
 
-.w-10 {
-  width: 2.5rem;
+.w-\[18\%\] {
+  width: 18%;
 }
 
-.w-1\/4 {
-  width: 25%;
+.w-10 {
+  width: 2.5rem;
 }
 
 .w-\[75\%\] {
@@ -999,6 +990,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 1rem;
 }
 
+.pt-10 {
+  padding-top: 2.5rem;
+}
+
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+
 .pb-3 {
   padding-bottom: 0.75rem;
 }
@@ -1140,10 +1139,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 475px) {
-  .xs\:pb-3 {
-    padding-bottom: 0.75rem;
-  }
-
   .xs\:pt-2 {
     padding-top: 0.5rem;
   }
