@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import { Col, Input, Panel, PanelGroup, Row } from 'rsuite';
 import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
@@ -12,6 +12,7 @@ import { getAkunTradingDemo } from '../Setoran/setoranSlice';
 class Pernyataan extends Component {
     constructor(props) {
         super(props);
+		this.scrollDiv = createRef();
         this.initData = {
             pernyataan1: '',
             pernyataan2: '',
@@ -30,7 +31,7 @@ class Pernyataan extends Component {
             data_tipe_akun_id: ''
         }
     }
-
+	
     componentDidMount = async () => {
         const dt = {};
         const selectedId = sessionStorage.getItem('tipe_akun');
@@ -55,6 +56,18 @@ class Pernyataan extends Component {
         if (name === "agree") {
             value = evt.target.checked ? 'Y' : 'N';
         }
+		if(name === "pernyataan1" && value === "Y"){
+			this.setState({ defaultActiveKey: 2 });
+			this.scrollDiv.current.scrollIntoView({ behavior: "smooth" });			
+		}
+		if(name === "pernyataan2" && value === "Y"){
+			this.setState({ defaultActiveKey: 3 });
+			this.scrollDiv.current.scrollIntoView({ behavior: "smooth", bottom:0,block: "end", inline: "nearest" });		
+		}
+		if(name === "pernyataan3" && value === "Y"){
+			this.setState({ defaultActiveKey: 4 });
+			this.scrollDiv.current.scrollIntoView({ behavior: "smooth" });
+		}
         const dt = {};
         dt['key'] = name;
         dt['value'] = value;
@@ -911,7 +924,7 @@ class Pernyataan extends Component {
                                                     </label>
                                                 </div>
 
-                                                <div className="form-group w-1/4">
+                                                <div ref={this.scrollDiv} className="form-group w-1/4">
                                                 <AppButton
                                                     style={{ color: '#ffffff', marginRight: 5 }}
                                                     onClick={this.handleBack.bind(this)}

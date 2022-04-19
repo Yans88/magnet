@@ -2614,28 +2614,12 @@ class Personal extends Component {
                                     </div>
 
                                     <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                     
                                       <AppButton
-                                        style={{
-                                          color: "#ffffff",
-                                          marginRight: 5,
-                                        }}
                                         onClick={this.handleSubmit4.bind(
                                           this,
                                           "detil_pribadi"
                                         )}
-                                        type="button"
-                                        size="lg"
-                                        theme=""
-                                        style={{
-                                          backgroundColor: "#C3262A",
-                                          color: "#fff",
-                                          marginRight: "2%",
-                                        }}
-                                      >
-                                        Selanjutnya
-                                      </AppButton>
-                                      <AppButton
-                                        onClick={this.handleSubmit4.bind(this)}
                                         type="button"
                                         size="lg"
                                         theme=""
@@ -2645,7 +2629,7 @@ class Personal extends Component {
                                           marginRight: "2%",
                                         }}
                                       >
-                                        Simpan
+                                        Selanjutnya
                                       </AppButton>
                                     </div>
                                   </div>
@@ -3039,28 +3023,12 @@ class Personal extends Component {
                                     </div>
 
                                     <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                     
                                       <AppButton
-                                        style={{
-                                          color: "#ffffff",
-                                          marginRight: 5,
-                                        }}
                                         onClick={this.handleSubmit5.bind(
                                           this,
                                           "detil_pribadi"
                                         )}
-                                        type="button"
-                                        size="lg"
-                                        theme=""
-                                        style={{
-                                          backgroundColor: "#C3262A",
-                                          color: "#fff",
-                                          marginRight: "2%",
-                                        }}
-                                      >
-                                        Selanjutnya
-                                      </AppButton>
-                                      <AppButton
-                                        onClick={this.handleSubmit5.bind(this)}
                                         type="button"
                                         size="lg"
                                         theme=""
@@ -3070,7 +3038,7 @@ class Personal extends Component {
                                           marginRight: "2%",
                                         }}
                                       >
-                                        Simpan
+                                        Selanjutnya
                                       </AppButton>
                                     </div>
                                   </div>
@@ -3381,29 +3349,13 @@ class Personal extends Component {
                                     </div>
 
                                     <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                      
+
                                       <AppButton
-                                        style={{
-                                          color: "#ffffff",
-                                          marginRight: 5,
-                                        }}
                                         onClick={this.handleSubmit6.bind(
                                           this,
                                           "detil_pribadi"
                                         )}
-                                        type="button"
-                                        size="lg"
-                                        theme=""
-                                        style={{
-                                          backgroundColor: "#C3262A",
-                                          color: "#fff",
-                                          marginRight: "2%",
-                                        }}
-                                      >
-                                        Selanjutnya
-                                      </AppButton>
-
-                                      <AppButton
-                                        onClick={this.handleSubmit6.bind(this)}
                                         type="button"
                                         size="lg"
                                         theme=""
@@ -3413,7 +3365,7 @@ class Personal extends Component {
                                           marginRight: "2%",
                                         }}
                                       >
-                                        Simpan
+                                        Selanjutnya
                                       </AppButton>
                                     </div>
                                   </div>
