@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { regUser, verifUser, userSelector, clearState, getCabang, getMarketing, completeData } from '../features/main/mainSlice'
+import { regUser, verifUser, userSelector, clearState, getCabang, getMarketing, completeData, loginUser } from '../features/main/mainSlice'
 import Button from '../components/button/Button';
 import { Col, Form } from 'react-bootstrap';
 import ReCAPTCHA from "react-google-recaptcha";
@@ -23,7 +23,7 @@ const Register = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const initData = { kode_verifikasi: '', nama_depan: '', nama_belakng: '', tgl: '', bln: '', thn: '', cabang: '', marketing: '', tanggal_lahir: '', myCaptcha: '', ref_code: '', email:'' };
+    const initData = { kode_verifikasi: '', nama_depan: '', nama_belakng: '', tgl: '', bln: '', thn: '', cabang: '', marketing: '', tanggal_lahir: '', myCaptcha: '', ref_code: '', email:'', password:'' };
     const errorValidate = { kode_verifikasi: '', nama_depan: '', nama_belakng: '', tgl: '', bln: '', thn: '', cabang: '', marketing: '', myCaptcha: '', ref_code: '' };
     const [selected, setSelected] = useState(initData);
     const [errMsg, setErrMsg] = useState(errorValidate);
@@ -39,9 +39,9 @@ const Register = () => {
     useEffect(() => {
         if (succesCompleteProfile) {
             dispatch(clearState());
-            history.push('/login');
+            dispatch(loginUser(selected));
         }
-    }, [succesCompleteProfile, dispatch, history]);
+    }, [succesCompleteProfile, dispatch, selected]);
 
     const formik = useFormik({
         initialValues: {
@@ -58,10 +58,10 @@ const Register = () => {
                 .oneOf([Yup.ref("password")], "Password's not match")
 
         }),
-        onSubmit: (values) => {
-			
+        onSubmit: (values) => {			
 			setSelected({
 				...selected,
+				password: values.password,
 				email: values.email
 			});
             dispatch(regUser(values));
@@ -100,7 +100,7 @@ const Register = () => {
         if (!error) dispatch(verifUser(queryString));;
     }
 
-    const handleSubmit2 = () => {
+    const handleSubmit2 = async() => {
         var error = '';
         if (selected.nama_depan === null || selected.nama_depan === "") {
             error = { ...error, nama_depan: "Required!" };
@@ -123,15 +123,21 @@ const Register = () => {
             ref_code: selected.ref_code ? selected.ref_code : ''
         }
         //console.log(queryString);
-        if (!error) dispatch(completeData(queryString));		
+        if (!error) dispatch(completeData(queryString));
+		
+		
     }
+	
+	function sleep(ms) {
+		return new Promise((resolve) => setTimeout(resolve, ms));
+	}
 
     function handleChangeCaptcha(value) {
         setSelected({
             ...selected,
             "myCaptcha": value
         });
-        console.log("Captcha value:", value);
+        //console.log("Captcha value:", value);
     }
 
     function handleExpired() {
@@ -140,7 +146,7 @@ const Register = () => {
             ...selected,
             "myCaptcha": recaptchaValue
         });
-        console.log("recaptchaValue:", recaptchaValue);
+        // console.log("recaptchaValue:", recaptchaValue);
 
     }
     const recaptchaRef = React.createRef();

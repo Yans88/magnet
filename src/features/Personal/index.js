@@ -2422,7 +2422,7 @@ class Personal extends Component {
                                 ) : (
                                   ""
                                 )}
-                                <Form.Control
+								 <NumberFormat
                                   value={
                                     dataKontakDarurat.kode_pos
                                       ? dataKontakDarurat.kode_pos
@@ -2432,12 +2432,17 @@ class Personal extends Component {
                                   onChange={this.handleChangeKontakDarurat.bind(
                                     this
                                   )}
+                                  className="form-control form-control-lg"
                                   size="lg"
                                   name="kode_pos"
-                                  type="text"
+                                  thousandSeparator={false}
+                                  decimalScale={0}
+                                  inputMode="numeric"
                                   required
                                   placeholder="Kode Pos"
                                 />
+								
+                               
                               </Form.Group>
 
                               <Form.Group
@@ -2457,7 +2462,7 @@ class Personal extends Component {
                                 ) : (
                                   ""
                                 )}
-                                <Form.Control
+								<NumberFormat
                                   value={
                                     dataKontakDarurat.telp
                                       ? dataKontakDarurat.telp
@@ -2467,12 +2472,17 @@ class Personal extends Component {
                                   onChange={this.handleChangeKontakDarurat.bind(
                                     this
                                   )}
+                                  className="form-control form-control-lg"
                                   size="lg"
-                                  name="telpp"
-                                  type="text"
+                                  name="telp"
+                                  thousandSeparator={false}
+                                  decimalScale={0}
+                                  inputMode="numeric"
                                   required
                                   placeholder="No. Telepon"
                                 />
+								
+                               
                               </Form.Group>
                             </Form.Row>
 
@@ -2493,7 +2503,7 @@ class Personal extends Component {
                                 ) : (
                                   ""
                                 )}
-                                <Form.Control
+								<NumberFormat
                                   value={
                                     dataKontakDarurat.handphone
                                       ? dataKontakDarurat.handphone
@@ -2503,12 +2513,16 @@ class Personal extends Component {
                                   onChange={this.handleChangeKontakDarurat.bind(
                                     this
                                   )}
+                                  className="form-control form-control-lg"
                                   size="lg"
                                   name="handphone"
-                                  type="text"
+                                  thousandSeparator={false}
+                                  decimalScale={0}
+                                  inputMode="numeric"
                                   required
                                   placeholder="No. Handphone"
-                                />
+                                />							
+                                
                               </Form.Group>
 
                               <Form.Group
