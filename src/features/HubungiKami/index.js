@@ -307,7 +307,7 @@ class HubungiKami extends Component {
                                                             
                                                             <div className="w-[50%] pt-2 col-span-2">
                                                                 <AppButton
-                                                                disabled ={this.state.selected.message && this.state.selected.subjek ? false : true}
+                                                                disabled ={selected.message && selected.subject ? false : true}
                                                                 style={{ color: "#fff", marginTop: 10 }}
                                                                 onClick={this.handleSubmit.bind(this)}
                                                                 type="button"
