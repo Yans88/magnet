@@ -2927,7 +2927,7 @@ class Personal extends Component {
                                 ) : (
                                   ""
                                 )}
-                                <Form.Control
+								<NumberFormat
                                   value={
                                     dataPekerjaan.telp_kantor
                                       ? dataPekerjaan.telp_kantor
@@ -2937,12 +2937,17 @@ class Personal extends Component {
                                   onChange={this.handleChangePekerjaan.bind(
                                     this
                                   )}
+                                  className="form-control form-control-lg"
                                   size="lg"
                                   name="telp_kantor"
-                                  type="text"
+                                  thousandSeparator={false}
+                                  decimalScale={0}
+                                  inputMode="numeric"
                                   required
                                   placeholder="Nomor Telepon Kantor."
-                                />
+                                />					
+								
+                               
                               </Form.Group>
 
                               <Form.Group
@@ -2951,7 +2956,8 @@ class Personal extends Component {
                                 lg={12}
                                 controlId="fax_kantor"
                               >
-                                <Form.Control
+							  
+							  <NumberFormat
                                   value={
                                     dataPekerjaan.fax_kantor
                                       ? dataPekerjaan.fax_kantor
@@ -2961,12 +2967,17 @@ class Personal extends Component {
                                   onChange={this.handleChangePekerjaan.bind(
                                     this
                                   )}
+                                  className="form-control form-control-lg"
                                   size="lg"
                                   name="fax_kantor"
-                                  type="text"
+                                  thousandSeparator={false}
+                                  decimalScale={0}
+                                  inputMode="numeric"
                                   required
                                   placeholder="Nomor Fax Kantor"
-                                />
+                                />		
+							  
+                               
                               </Form.Group>
                             </Form.Row>
                           </div>

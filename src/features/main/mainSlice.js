@@ -153,6 +153,7 @@ export const fetchUserKTP = createAsyncThunk(
               rt = rt_rw[0];
               rw = rt_rw[1];
             }
+			return true;
           });
           const payload = {
             jenis_identitas: "KTP",
@@ -169,7 +170,7 @@ export const fetchUserKTP = createAsyncThunk(
             jenis_kelamin: myData.jenis_kelamin && jenis_kelamin,
             alamat: myData.alamat && myData.alamat,
             provinsi: myData.provinsi && ucwords(myData.provinsi),
-            warga_negara: myData.kewarganegaraan == "WNI" ? "Indonesia" : "",
+            warga_negara: myData.kewarganegaraan === "WNI" ? "Indonesia" : "",
             rw: rw ? rw : "",
             rt: rt ? rt : "",
           };

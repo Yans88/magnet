@@ -345,10 +345,10 @@ class ProfilePerusahaan extends Component {
                             </h3>
                             <ol className="mb-0">
                               {wakil_pialang
-                                ? wakil_pialang.map(function (wp) {
+                                ? wakil_pialang.map(function (wp, i) {
                                     return (
                                       <li key={wp.nama_depan}>
-                                        {wp.nama_depan + " " + wp.nama_belakang}
+                                        {i+1+". "+wp.nama_depan + " " + wp.nama_belakang}
                                       </li>
                                     );
                                   })

@@ -49,8 +49,12 @@ class Pernyataan extends Component {
     handleBack() {
         this.props.history.push("/account-type");
     }
+	
+	sleep(ms) {
+		return new Promise((resolve) => setTimeout(resolve, ms));
+	}
 
-    handleChange(evt) {
+    handleChange =async(evt)=> {
         const name = evt.target.name;
         var value = evt.target.value;
         if (name === "agree") {
@@ -58,15 +62,17 @@ class Pernyataan extends Component {
         }
 		if(name === "pernyataan1" && value === "Y"){
 			this.setState({ defaultActiveKey: 2 });
-			this.scrollDiv.current.scrollIntoView({ behavior: "smooth" });			
+			await this.sleep(200);
+			this.scrollDiv.current.scrollIntoView({ behavior: "smooth", bottom:0,block: "end", inline: "nearest" });			
 		}
 		if(name === "pernyataan2" && value === "Y"){
 			this.setState({ defaultActiveKey: 3 });
+			await this.sleep(450);
 			this.scrollDiv.current.scrollIntoView({ behavior: "smooth", bottom:0,block: "end", inline: "nearest" });		
 		}
 		if(name === "pernyataan3" && value === "Y"){
 			this.setState({ defaultActiveKey: 4 });
-			this.scrollDiv.current.scrollIntoView({ behavior: "smooth" });
+			this.scrollDiv.current.scrollIntoView({ behavior: "smooth", bottom:0,block: "end", inline: "nearest" });
 		}
         const dt = {};
         dt['key'] = name;
