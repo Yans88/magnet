@@ -10,7 +10,8 @@ class TypeAccount extends Component {
         super(props);
         this.state = {
             lastSegmentUrl: "",
-            rate: ""
+            rate: "",
+			nama_rate : ""
         }
     }
 
@@ -31,12 +32,15 @@ class TypeAccount extends Component {
     }
 
     handleChange(evt) {
+		var index = evt.target.selectedIndex;
+		
         const name = evt.target.name;
         var value = evt.target.value;
         const dt = {};
-        dt['key'] = name;
-        dt['value'] = value;
-        this.props.changeProps(dt);
+		dt['key'] = name;
+		dt['value'] = value;
+		this.props.changeProps(dt);  
+		this.setState({"nama_rate":evt.target[index].text});
     }
 
     handleClickBtn(record) {
@@ -61,7 +65,7 @@ class TypeAccount extends Component {
     render() {
         const { lastSegmentUrl } = this.state;
         const { dataRate, dataTypeAccount, dataSelect } = this.props;
-        const contentDelete = <div dangerouslySetInnerHTML={{ __html: '<div id="caption" style=padding-bottom:20px;">Anda yakin memilih tipe akun <strong>' + dataSelect.message + '</strong> ?</div>' }} />;
+        const contentDelete = <div dangerouslySetInnerHTML={{ __html: '<div id="caption" style=padding-bottom:20px;">Anda yakin memilih tipe akun <strong>' + dataSelect.message + '</strong> ' +this.state.nama_rate+ ' ?</div>' }} />;
 
         return (
 

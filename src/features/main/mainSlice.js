@@ -153,6 +153,7 @@ export const fetchUserKTP = createAsyncThunk(
               rt = rt_rw[0];
               rw = rt_rw[1];
             }
+			return true;
           });
           const payload = {
             jenis_identitas: "KTP",
@@ -162,14 +163,14 @@ export const fetchUserKTP = createAsyncThunk(
               typeof nama[0] !== "undefined" && nama[0] ? nama[0] : myData.nama,
             nama_belakang: nama_belakang && nama_belakang,
             tempat_lahir: myData.tempat_lahir && myData.tempat_lahir,
-            kota_lahir: myData.kota_lahir && myData.kota_lahir,
+            kota_lahir: myData.tempat_lahir && myData.tempat_lahir,
             tanggal_lahir: selectedDate && selectedDate,
             status_pernikahan:
               myData.status_perkawinan && ucwords(myData.status_perkawinan),
             jenis_kelamin: myData.jenis_kelamin && jenis_kelamin,
             alamat: myData.alamat && myData.alamat,
             provinsi: myData.provinsi && ucwords(myData.provinsi),
-            warga_negara: myData.kewarganegaraan == "WNI" ? "Indonesia" : "",
+            warga_negara: myData.kewarganegaraan === "WNI" ? "Indonesia" : "",
             rw: rw ? rw : "",
             rt: rt ? rt : "",
           };
