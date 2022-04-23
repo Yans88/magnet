@@ -3,7 +3,7 @@ import React from 'react';
 class SelectTgl extends React.Component {
     buildOptions() {
         var arr = [];
-        arr.push(<option key="" value="">Tgl.Lahir</option>)
+        arr.push(<option key="" value="">Tanggal</option>)
         for (let i = 1; i <= 31; i++) {
             arr.push(<option key={i} value={i}>{i}</option>)
         }

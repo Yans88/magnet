@@ -993,7 +993,6 @@ tbody td {
 }
 
 .box-bank__actions {
-    position: absolute;
     top: 20px;
     right:10px;
 }

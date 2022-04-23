@@ -106,7 +106,7 @@ export default class Autochartist extends Component {
                                             <div className="rounded-xl border py-5 w-full mx-3">
                                                 <h2 style={{ color: '#C31F27',textAlign:"center" }} className="font_custom">Mobile App Activation QR Code</h2>
                                                 <div className="grid grid-cols-1 place-items-center mt-10">
-                                                     <div className="w-[40%]">
+                                                     <div className="w-full">
 
                                                      <div className="grid grid-cols-1 place-items-center">
 
@@ -133,7 +133,7 @@ export default class Autochartist extends Component {
                                             
                                                 <h2 style={{ color: '#C31F27',textAlign:"center" }} className="font_custom">Autochartist Trading Opportunities</h2>
                                                 <div className="grid grid-cols-1 place-items-center mt-10">
-                                                     <div className="w-[40%]">
+                                                     <div className="w-full">
 
                                                      <div className="grid grid-cols-1 place-items-center">
 

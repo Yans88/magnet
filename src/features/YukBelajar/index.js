@@ -58,7 +58,7 @@ class YukBelajar extends Component {
                                 {/* card start */}
                                 <div className="card card-success shadow-lg" style={{ "minHeight": "500px" }}>
                                     <div className="card-body">
-                                        <div style={{ paddingLeft: 30, paddingRight: 30, paddingTop: 25 }}>
+                                        <div style={{ paddingLeft: 0, paddingRight: 0, paddingTop: 0 }}>
                                             
                                             <div className="row">
 												{data && (data.map((at, index) => {

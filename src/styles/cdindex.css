@@ -715,8 +715,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 40%;
 }
 
-.w-\[11\%\] {
-  width: 11%;
+.w-\[12\%\] {
+  width: 12%;
 }
 
 .w-\[50\%\] {
@@ -761,6 +761,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .flex-grow {
   flex-grow: 1;
+}
+
+.basis-full {
+  flex-basis: 100%;
 }
 
 .basis-3\/4 {
@@ -923,14 +927,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 1.25rem;
 }
 
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
 .py-0 {
   padding-top: 0px;
   padding-bottom: 0px;
+}
+
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 
 .py-1 {

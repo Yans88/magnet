@@ -200,7 +200,11 @@ const Register = () => {
 
     const frmUser2 = <Form id="myForm2">
         <Form.Row>
-        <Form.Group as={Col} controlId="nama_depan">
+        <Form.Group 
+            as={Col}
+            xs={12}
+            lg={6} 
+            controlId="nama_depan">
             {errMsg.nama_depan ?
                 (<span className="float-right text-error badge badge-danger">{errMsg.nama_depan}</span>) : ''}
             <Form.Control
@@ -213,7 +217,11 @@ const Register = () => {
                 placeholder="Nama Depan" />
 
         </Form.Group>
-        <Form.Group as={Col} controlId="nama_belakng">
+        <Form.Group  
+            as={Col}
+            xs={12}
+            lg={6} 
+            controlId="nama_belakng">
             {errMsg.nama_belakng ?
                 (<span className="float-right text-error badge badge-danger">{errMsg.nama_belakng}</span>) : ''}
             <Form.Control
@@ -229,7 +237,6 @@ const Register = () => {
 
         <Form.Row>
             <Form.Group as={Col} controlId="tgl">
-                <Form.Label><span className="text-merah-button">Tanggal Lahir</span></Form.Label>
                 {errMsg.tgl ?
                     (<span className="float-right text-error badge badge-danger">{errMsg.tgl}
                     </span>) : ''}
@@ -244,7 +251,6 @@ const Register = () => {
                 </Form.Control>
             </Form.Group>
             <Form.Group as={Col} controlId="bln">
-                <Form.Label>&nbsp;</Form.Label>
                 {errMsg.bln ?
                     (<span className="float-right text-error badge badge-danger">{errMsg.bln}
                     </span>) : ''}
@@ -259,7 +265,6 @@ const Register = () => {
                 </Form.Control>
             </Form.Group>
             <Form.Group as={Col} controlId="thn">
-                <Form.Label>&nbsp;</Form.Label>
                 {errMsg.thn ?
                     (<span className="float-right text-error badge badge-danger">{errMsg.thn}
                     </span>) : ''}
@@ -328,7 +333,6 @@ const Register = () => {
 
         </Form.Row>  */}
         <Form.Group controlId="ref_code">
-            <Form.Label><span className="text-merah-button">Referral code</span> </Form.Label>
             {errMsg.ref_code ?
                 (<span className="float-right text-error badge badge-danger">{errMsg.ref_code}</span>) : ''}
             <Form.Control
@@ -338,7 +342,7 @@ const Register = () => {
                 type="text"
                 value={selected.ref_code}
                 onChange={handleChange}
-                placeholder="000" />
+                placeholder="Referral Code" />
         </Form.Group>
         <div className="social-auth-links text-center mt-2 mb-3">
             <div className="grid grid-cols-1 gap-0 place-items-center">
@@ -349,13 +353,16 @@ const Register = () => {
 						block
 						disabled={true}
 						isLoading={isFetching}
-						theme="danger"> Daftar </Button>                                            
+						theme=""
+                        style={{ backgroundColor:"#C1242B",color:"#fff"}
+                    }> Daftar </Button>                                            
 					) : (
 					<Button
 						block
 						onClick={handleSubmit2}
 						isLoading={isFetching}
-						theme="danger"> Daftar </Button>
+						theme=""
+                    style={{ backgroundColor:"#C1242B",color:"#fff"}}> Daftar </Button>
 					) }
                 </div>
             </div>
