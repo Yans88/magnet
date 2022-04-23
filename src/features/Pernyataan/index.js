@@ -939,7 +939,7 @@ class Pernyataan extends Component {
                                                     type="button"
                                                     size="lg"
                                                     theme=""
-                                                    style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}>Selanjutnya</AppButton>
+                                                    style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>Selanjutnya</AppButton>
                                                 </div>
 
                                             
