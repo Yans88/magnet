@@ -828,12 +828,25 @@ class Personal extends Component {
               </ul>
             </div>
 
-            <h1
-              style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}
-              className="text-gray-500"
-            >
-              Registrasi Akun Online
-            </h1>
+            <div class="mobile-hide">
+              <h1
+                style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}
+                className="text-gray-500"
+              >
+                Registrasi Akun Online
+              </h1>
+            </div>
+
+            <div class="mobile-view">
+              <h1
+                style={{ marginBottom: 10, fontSize: 22, marginLeft: 10 }}
+                className="text-gray-500"
+              >
+                Registrasi Akun Online
+              </h1>
+            </div>
+
+
             {errFetchUserByToken ? (
               <div
                 className="alert alert-danger alert-sm"
@@ -963,16 +976,34 @@ class Personal extends Component {
 
                         <Form>
                           <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                            <br />
-                            <span
-                              className="text-2xl label_ijo"
-                              style={{ fontSize: "28px", fontWeight: "bold" }}
-                            >
-                              Detil Pribadi
-                            </span>
-                            <br />
-                            <br />
+                          
+                            <div className="mobile-hide ">
+                              <div className="grid grid-cols-1 py-4">
+                                <div>
+                                <span
+                                  className="text-2xl label_ijo"
+                                  style={{ fontSize: "28px", fontWeight: "bold" }}
+                                >
+                                  Detil Pribadi
+                                </span>
+                                </div>
+                              </div>
+                            </div>
 
+
+                            <div className="mobile-view ">
+                              <div className="grid grid-cols-1 py-4">
+                                <div>
+                                <span
+                                  className="text-2xl label_ijo"
+                                  style={{ fontSize: "20px", fontWeight: "bold" }}
+                                >
+                                  Detil Pribadi
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                            
                             <Form.Row>
                               <Form.Group
                                 as={Col}
@@ -1721,15 +1752,35 @@ class Personal extends Component {
                       <Fragment>
                         <Form>
                           <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                            <br />
-                            <span
-                              className="text-2xl label_ijo"
-                              style={{ fontSize: "28px", fontWeight: "bold" }}
-                            >
-                              Pengalaman Trading
-                            </span>
-                            <br />
-                            <br />
+                            
+
+                            <div className="mobile-hide ">
+                              <div className="grid grid-cols-1 py-4">
+                                <div>
+                                <span
+                                  className="text-2xl label_ijo"
+                                  style={{ fontSize: "28px", fontWeight: "bold" }}
+                                >
+                                  Pengalaman Trading
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+
+
+                            <div className="mobile-view ">
+                              <div className="grid grid-cols-1 py-4">
+                                <div>
+                                <span
+                                  className="text-2xl label_ijo"
+                                  style={{ fontSize: "20px", fontWeight: "bold" }}
+                                >
+                                  Pengalaman Trading
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+
                             <Form.Row>
                               <Form.Group
                                 as={Col}
@@ -1791,7 +1842,7 @@ class Personal extends Component {
                               {dataExpTrading.pertanyaan1 === "Y" ? (
                                 <Form.Group
                                   as={Col}
-                                  xs={6}
+                                  xs={12}
                                   lg={6}
                                   controlId="pertanyaan2"
                                 >
@@ -2042,15 +2093,35 @@ class Personal extends Component {
                       <Fragment>
                         <Form>
                           <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                            <br />
-                            <span
-                              className="text-2xl label_ijo"
-                              style={{ fontSize: "28px", fontWeight: "bold" }}
-                            >
-                              Kekayaan Pribadi
-                            </span>
-                            <br />
-                            <br />
+                            
+
+                            <div className="mobile-hide ">
+                              <div className="grid grid-cols-1 py-4">
+                                <div>
+                                <span
+                                  className="text-2xl label_ijo"
+                                  style={{ fontSize: "28px", fontWeight: "bold" }}
+                                >
+                                  Kekayaan Pribadi
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+
+
+                            <div className="mobile-view ">
+                              <div className="grid grid-cols-1 py-4">
+                                <div>
+                                <span
+                                  className="text-2xl label_ijo"
+                                  style={{ fontSize: "20px", fontWeight: "bold" }}
+                                >
+                                  Kekayaan Pribadi
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+
                             <Form.Row>
                               <Form.Group
                                 as={Col}
@@ -2124,7 +2195,10 @@ class Personal extends Component {
                             </Form.Row>
 
                             <Form.Row>
-                              <Form.Group as={Col} controlId="njop">
+                              <Form.Group 
+                                as={Col}
+                                xs={12}
+                                lg={6} controlId="njop">
                                 <NumberFormat
                                   value={
                                     dataKekayaan.njop ? dataKekayaan.njop : ""
@@ -2150,7 +2224,11 @@ class Personal extends Component {
                                 )}
                               </Form.Group>
 
-                              <Form.Group as={Col} controlId="deposit_bank">
+                              <Form.Group 
+                                as={Col}
+                                xs={12}
+                                lg={6} 
+                                controlId="deposit_bank">
                                 <NumberFormat
                                   value={
                                     dataKekayaan.deposit_bank
@@ -2324,15 +2402,34 @@ class Personal extends Component {
                       <Fragment>
                         <Form>
                           <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                            <br />
-                            <span
-                              className="text-2xl label_ijo"
-                              style={{ fontSize: "28px", fontWeight: "bold" }}
-                            >
-                              Kontak Darurat
-                            </span>
-                            <br />
-                            <br />
+                           
+                            <div className="mobile-hide ">
+                              <div className="grid grid-cols-1 py-4">
+                                <div>
+                                <span
+                                  className="text-2xl label_ijo"
+                                  style={{ fontSize: "28px", fontWeight: "bold" }}
+                                >
+                                  Kontak Darurat
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+
+
+                            <div className="mobile-view ">
+                              <div className="grid grid-cols-1 py-4">
+                                <div>
+                                <span
+                                  className="text-2xl label_ijo"
+                                  style={{ fontSize: "20px", fontWeight: "bold" }}
+                                >
+                                  Kontak Darurat
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+
 
                             <Form.Row>
                               <Form.Group
@@ -2659,18 +2756,41 @@ class Personal extends Component {
                       <Fragment>
                         <Form>
                           <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                            <br />
-                            <span
-                              className="text-2xl label_ijo"
-                              style={{ fontSize: "28px", fontWeight: "bold" }}
-                            >
-                              Pekerjaan
-                            </span>
-                            <br />
-                            <br />
+                            
+                            <div className="mobile-hide ">
+                              <div className="grid grid-cols-1 py-4">
+                                <div>
+                                <span
+                                  className="text-2xl label_ijo"
+                                  style={{ fontSize: "28px", fontWeight: "bold" }}
+                                >
+                                  Pekerjaan
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+
+
+                            <div className="mobile-view ">
+                              <div className="grid grid-cols-1 py-4">
+                                <div>
+                                <span
+                                  className="text-2xl label_ijo"
+                                  style={{ fontSize: "20px", fontWeight: "bold" }}
+                                >
+                                  Pekerjaan
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+
 
                             <Form.Row>
-                              <Form.Group as={Col} controlId="status_pekerjaan">
+                              <Form.Group 
+                                as={Col}
+                                xs={12}
+                                lg={6} 
+                                controlId="status_pekerjaan">
                                 {errMsg5.status_pekerjaan ? (
                                   <span
                                     className="text-error badge badge-danger"
@@ -2708,7 +2828,11 @@ class Personal extends Component {
                                 </Form.Control>
                               </Form.Group>
 
-                              <Form.Group as={Col} controlId="nama_perusahaan">
+                              <Form.Group 
+                                as={Col}
+                                xs={12}
+                                lg={6} 
+                                controlId="nama_perusahaan">
                                 {errMsg5.nama_perusahaan ? (
                                   <span
                                     className="text-error badge badge-danger"
@@ -2739,7 +2863,11 @@ class Personal extends Component {
                             </Form.Row>
 
                             <Form.Row>
-                              <Form.Group as={Col} controlId="jenis_bisnis">
+                              <Form.Group 
+                                as={Col}
+                                xs={12}
+                                lg={6} 
+                                controlId="jenis_bisnis">
                                 {errMsg5.jenis_bisnis ? (
                                   <span
                                     className="text-error badge badge-danger"
@@ -2768,7 +2896,11 @@ class Personal extends Component {
                                 />
                               </Form.Group>
 
-                              <Form.Group as={Col} controlId="jabatan">
+                              <Form.Group 
+                                as={Col}
+                                xs={12}
+                                lg={6} 
+                                controlId="jabatan">
                                 {errMsg5.jabatan ? (
                                   <span
                                     className="text-error badge badge-danger"
@@ -2944,7 +3076,7 @@ class Personal extends Component {
                                   decimalScale={0}
                                   inputMode="numeric"
                                   required
-                                  placeholder="Nomor Telepon Kantor."
+                                  placeholder="Nomor Telepon Kantor"
                                 />					
 								
                                
@@ -3079,15 +3211,34 @@ class Personal extends Component {
                       <Fragment>
                         <Form>
                           <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                            <br />
-                            <span
-                              className="text-2xl label_ijo"
-                              style={{ fontSize: "28px", fontWeight: "bold" }}
-                            >
-                              Akun Bank
-                            </span>
-                            <br />
-                            <br />
+                            
+                            <div className="mobile-hide ">
+                              <div className="grid grid-cols-1 py-4">
+                                <div>
+                                <span
+                                  className="text-2xl label_ijo"
+                                  style={{ fontSize: "28px", fontWeight: "bold" }}
+                                >
+                                  Detil Bank
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+
+
+                            <div className="mobile-view ">
+                              <div className="grid grid-cols-1 py-4">
+                                <div>
+                                <span
+                                  className="text-2xl label_ijo"
+                                  style={{ fontSize: "20px", fontWeight: "bold" }}
+                                >
+                                  Detil Bank
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+
                             <Form.Row>
                               <Form.Group
                                 as={Col}

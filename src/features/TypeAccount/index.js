@@ -138,12 +138,12 @@ class TypeAccount extends Component {
                                                                 </ListGroup>
                                                                 <Card.Body style={{ padding: ".65rem" }}>
                                                                     <div className="grid grid-cols-1 place-items-center">
-                                                                    <div className="w-[50%]">
-                                                                    <Button
-                                                                        onClick={this.handleClickBtn.bind(this, dta)}
-                                                                        disabled={dataSelect.rate ? false : true}
-                                                                        size="lg" variant="" style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"0%"}}>Daftar Akun</Button>
-                                                                    </div>
+                                                                        <div>
+                                                                        <Button
+                                                                            onClick={this.handleClickBtn.bind(this, dta)}
+                                                                            disabled={dataSelect.rate ? false : true}
+                                                                            size="lg" variant="" style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"0%"}}>Daftar Akun</Button>
+                                                                        </div>
                                                                     </div>        
                                                                 </Card.Body>
                                                             </Card>
