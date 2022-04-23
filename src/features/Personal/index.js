@@ -932,7 +932,7 @@ class Personal extends Component {
                         active={active_tab === "unggah_file" ? true : false}
                         eventKey="unggah_file"
                         className="default"
-                        disabled={dataBank.length > 0 ? false : true}
+                        disabled={dataAkunBank.bank_id > 0 ? false : true}
                       >
                         Unggah Dokumen
                       </Nav.Item>
