@@ -746,6 +746,7 @@ class Personal extends Component {
       isFetchingUpl,
       errFetchUserByToken,
       dokumenPribadiPernyataan,
+	  isUploadingKTP,
       unggahFileName,
     } = this.props;
     const nilai_njop = dataKekayaan.njop
