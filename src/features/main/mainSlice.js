@@ -622,6 +622,7 @@ const initialState = {
   isLoggedIn: !!localStorage.getItem(tokenLogin),
   token: localStorage.getItem(tokenLogin),
   isFetching: false,
+  isUploadingKTP: false,
   isSuccess: false,
   isError: false,
   isVerifikasi: false,
@@ -731,13 +732,16 @@ export const mainSlice = createSlice({
     },
     [fetchUserKTP.pending]: (state) => {
       state.errFetchUserByToken = "";
+	  state.isUploadingKTP = true;
       state.currentUser = {};
     },
     [fetchUserKTP.fulfilled]: (state, { payload }) => {
       state.errFetchUserByToken = "";
       state.currentUser = payload;
+	  state.isUploadingKTP = false;
     },
     [fetchUserKTP.rejected]: (state, { payload }) => {
+		state.isUploadingKTP = false;
       console.log("payload", payload);
       //state.errFetchUserByToken = payload.message;
     },

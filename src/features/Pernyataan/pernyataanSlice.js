@@ -79,16 +79,18 @@ export const getSelectAkun = createAsyncThunk(
                     let data = response.data;
                     if (data.error_message === 0) {
                         let payload = data.payload;
-
+						
                         if (payload === '') {
                             payload = {
                                 data_tipe_akun_id: '',                                
                             }
                         }else{
+							sessionStorage.setItem('data_tipe_akun_id', payload.data_tipe_akun_id);
 							payload = {
                                 data_tipe_akun_id: payload.data_tipe_akun_id,                                
                             }
 						}
+						
                         return payload;
                     } else {
                         return thunkAPI.rejectWithValue(data);
@@ -170,8 +172,7 @@ export const pernyataanSlice = createSlice({
             state.errorMessage = null;
             return state;
         },
-        chgProps: (state, { payload }) => {
-            console.log(payload);
+        chgProps: (state, { payload }) => {            
             state.dataPernyataan[payload.key] = payload.value;
         },
     },
@@ -182,8 +183,7 @@ export const pernyataanSlice = createSlice({
             state.dataPernyataan = payload;
             return state;
         },
-        [getDataPernyataan.rejected]: (state, { payload }) => {
-            //console.log('payload', payload);
+        [getDataPernyataan.rejected]: (state, { payload }) => {            
             state.isFetching = false;
             state.isError = true;
             state.errorMessage = payload.message;
@@ -193,11 +193,10 @@ export const pernyataanSlice = createSlice({
         },
 		[getSelectAkun.fulfilled]: (state, { payload }) => {
             state.isFetching = false;
-            state.dataPernyataan.data_tipe_akun_id = payload.data_tipe_akun_id;
+            state.dataPernyataan.data_tipe_akun_id = payload.data_tipe_akun_id;			
             return state;
         },
-        [getSelectAkun.rejected]: (state, { payload }) => {
-            //console.log('payload', payload);
+        [getSelectAkun.rejected]: (state, { payload }) => {            
             state.isFetching = false;
             state.isError = true;
             state.errorMessage = payload.message;

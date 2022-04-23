@@ -121,10 +121,11 @@ class Pernyataan extends Component {
             if (!this.validateForm(this.state.errMsg1)) {
                 console.error('Invalid Form')
             } else {
-                // const saveData = {
-                    // ...this.props.dataPernyataan,                   
-                // }
-                this.props.onSave(this.props.dataPernyataan);
+                const saveData = {
+                    ...this.props.dataPernyataan, 
+					data_tipe_akun_id : this.props.dataPernyataan.data_tipe_akun_id ? this.props.dataPernyataan.data_tipe_akun_id : sessionStorage.getItem("data_tipe_akun_id")
+                }
+                this.props.onSave(saveData);
                 if (action) this.props.history.push("/trading_rules");
             }
 
@@ -931,27 +932,14 @@ class Pernyataan extends Component {
                                                 </div>
 
                                                 <div ref={this.scrollDiv} className="form-group w-1/4">
+                                               
+                                               
                                                 <AppButton
-                                                    style={{ color: '#ffffff', marginRight: 5 }}
-                                                    onClick={this.handleBack.bind(this)}
-                                                    type="button"
-                                                    size="lg"
-                                                    theme=""
-                                                    style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}>Back</AppButton>
-                                                <AppButton
-                                                    style={{ color: '#ffffff', marginRight: 5 }}
                                                     onClick={this.handlesubmit.bind(this, 'act')}
                                                     type="button"
                                                     size="lg"
                                                     theme=""
-                                                                style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}>Selanjutnya</AppButton>
-                                                <AppButton
-                                                    onClick={this.handlesubmit.bind(this)}
-                                                    type="button"
-                                                    size="lg"
-                                                    theme=""
-                                                                style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
-                                                    Simpan</AppButton>
+                                                    style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}>Selanjutnya</AppButton>
                                                 </div>
 
                                             

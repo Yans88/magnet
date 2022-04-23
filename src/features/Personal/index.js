@@ -46,7 +46,7 @@ import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 import AppModal from "../../components/modal/MyModal";
 import AppButton from "../../components/button/Button";
-
+import AppModalLoading from "../../components/modal/MyModalLoading";
 var yesterday = moment().subtract(40, "years");
 var valid_startDate = function (current) {
   return current.isAfter(yesterday);
@@ -261,17 +261,17 @@ class Personal extends Component {
     const value = evt.target.files[0];
     var errors = this.state.errMsg1;
     if (name === "KTP") {
-      const compress = new Compress();
-      const resizedImage = await compress.compress([value], {
-        size: 0.5, // the max size in MB, defaults to 2MB
-        quality: 1, // the quality of the image, max is 1,
-        maxWidth: 400, // the max width of the output image, defaults to 1920px
-        maxHeight: 300, // the max height of the output image, defaults to 1920px
-        resize: true, // defaults to true, set false if you do not want to resize the image width and height
-      });
-      const img = resizedImage[0];
-      const base64str = img.data;
-      const imgExt = img.ext;
+      // const compress = new Compress();
+      // const resizedImage = await compress.compress([value], {
+        // size: 0.5, // the max size in MB, defaults to 2MB
+        // quality: 1, // the quality of the image, max is 1,
+        // maxWidth: 400, // the max width of the output image, defaults to 1920px
+        // maxHeight: 300, // the max height of the output image, defaults to 1920px
+        // resize: true, // defaults to true, set false if you do not want to resize the image width and height
+      // });
+      // const img = resizedImage[0];
+      // const base64str = img.data;
+      // const imgExt = img.ext;
       //const resizedFiile = Compress.convertBase64ToFile(base64str, imgExt);
       const dtKTP = {
         file: value,
@@ -1381,29 +1381,19 @@ class Personal extends Component {
                                 controlId="provinsi"
                               >
                                 <Form.Control
-                                  name="provinsi"
-                                  size="lg"
-                                  value={user.provinsi ? user.provinsi : ""}
+                                  value={
+                                    user.provinsi
+                                      ? user.provinsi
+                                      : ""
+                                  }
+                                  autoComplete="off"
                                   onChange={this.handleChange}
-                                  as="select"
-                                >
-                                  <option value="">Kota</option>
-                                  {dataProvinsi
-                                    ? dataProvinsi.map(function (prov) {
-                                        return (
-                                          <option
-                                            value={prov.nama_provinsi}
-                                            key={prov.provinsi_id}
-                                          >
-                                            {prov.nama_provinsi}
-                                          </option>
-                                        );
-                                      })
-                                    : ""}
-                                  <option value="Lainnya(Others)">
-                                    Lainnya(Others)
-                                  </option>
-                                </Form.Control>
+                                  size="lg"
+                                  name="provinsi"
+                                  type="text"
+                                  required
+                                  placeholder="Kota"
+                                />
                                 {errMsg1.provinsi ? (
                                   <span className="text-error badge badge-danger">
                                     {errMsg1.provinsi}
@@ -3960,6 +3950,13 @@ class Personal extends Component {
                   isLoading={this.props.isLoading}
                   formSubmit={this.handleDelete.bind(this)}
                 ></AppModal>
+		<AppModalLoading
+                  show={isUploadingKTP}
+                  size="sm"                 
+                  backdrop="static"
+                  keyboard={false}
+                  title="Uploading . . ."                
+                ></AppModalLoading>
               </div>
             </div>
           </div>
@@ -3987,6 +3984,7 @@ const mapStateToProps = (state) => ({
   showFormDelete: state.personal.showFormDelete,
   isLoading: state.personal.isLoading,
   errFetchUserByToken: state.main.errFetchUserByToken,
+  isUploadingKTP: state.main.isUploadingKTP,
   user: state.main.currentUser,
 });
 const mapDispatchToPros = (dispatch) => {
