@@ -308,7 +308,7 @@ class Transfer extends Component {
 
       {
         key: "created_at",
-        text: "WAKTU TRANSFER",
+        text: "WAKTU",
         width: 80,
         align: "center",
         sortable: true,
@@ -404,7 +404,7 @@ class Transfer extends Component {
                                     <th>Login</th>
                                     <th>Nama</th>
                                     <th style={{ textAlign: "right" }}>
-                                      Margin Free
+                                      Margin
                                     </th>
                                     <th style={{ textAlign: "right" }}>
                                       Equity
@@ -520,7 +520,7 @@ class Transfer extends Component {
                                         <th>Login</th>
                                         <th>Nama</th>
                                         <th style={{ textAlign: "right" }}>
-                                          Margin Free
+                                          Margin
                                         </th>
                                         <th style={{ textAlign: "right" }}>
                                           Equity
@@ -664,7 +664,7 @@ class Transfer extends Component {
                           <div className="row mt-3 mb-4">
                             <div className="col-md-12 col-12">
                               <div className="mb-3">
-                                <div className="pull-left col-12 col-md-3">
+                                <div className="pull-left col-12 col-md-3 pl-0">
                                   <label style={{ color: "#2E2E2F" }}>
                                     Tanggal: Awal
                                   </label>
@@ -691,7 +691,7 @@ class Transfer extends Component {
                                     isValidDate={this.state.validSd}
                                   />
                                 </div>
-                                <div className="pull-left col-12 col-md-3">
+                                <div className="pull-left col-12 col-md-3 pl-0">
                                   <label style={{ color: "#2E2E2F" }}>
                                     Tanggal: Akhir
                                   </label>

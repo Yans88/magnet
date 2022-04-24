@@ -375,7 +375,7 @@ class Setoran extends Component {
                         <div className="col-sm-6">
                             <div className="form-group">
                                 <div className="form-group">
-                                    <label className="frm_lbl">Margin Free</label>
+                                    <label className="frm_lbl">Margin</label>
                                     <div>
                                         <strong className="font-weight-bold text-black">
                                             <NumberFormat
@@ -510,7 +510,7 @@ class Setoran extends Component {
                     <th>-</th>
                     <th>Login</th>
                     
-                    <th style={{ textAlign: 'right' }}>Margin Free</th>
+                    <th style={{ textAlign: 'right' }}>Margin</th>
                     <th style={{ textAlign: 'right' }}>Equity</th>
                     <th style={{ textAlign: 'right' }}>Rate</th>
                 </tr>
@@ -624,7 +624,7 @@ class Setoran extends Component {
             },
             {
                 key: "-",
-                text: "Waktu Penyetoran",
+                text: "Waktu",
                 width: 150,
                 align: "center",
                 sortable: true,
@@ -749,12 +749,22 @@ class Setoran extends Component {
                                             </div>
 
 
-                                            <h3 style={{ color:"#2E2E2F" }}>Daftar Setoran</h3>
+                                            
+                                            <div className="mobile-hide">
+                                                <h3 style={{ color: "#2E2E2F" }}>
+                                                Daftar Setoran
+                                                </h3>
+                                            </div>
+                                            <div className="mobile-view">
+                                                <h3 style={{ color: "#2E2E2F", fontSize: "20px" }}>
+                                                Daftar Setoran
+                                                </h3>
+                                            </div>
 
                                             <div className="row mt-3 mb-4">
                                                 <div className="col-md-12">
                                                     <div className="mb-3">
-                                                        <div className="pull-left col-12 col-md-4">
+                                                        <div className="pull-left col-12 col-md-4 pl-0">
                                                             <label style={{ color:"#2E2E2F" }}>Tanggal: Awal</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
@@ -773,7 +783,7 @@ class Setoran extends Component {
                                                                 locale="id" isValidDate={this.state.validSd}
                                                             />
                                                         </div>
-                                                        <div className="pull-left col-12 col-md-4">
+                                                        <div className="pull-left col-12 col-md-4 pl-0">
                                                             <label style={{ color:"#2E2E2F" }}>Tanggal: Akhir</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
@@ -792,11 +802,11 @@ class Setoran extends Component {
                                                                 locale="id" isValidDate={this.state.validSd}
                                                             />
                                                         </div>
-                                                        <div className="pull-left col-7 mt-2">
+                                                        <div className="pull-left col-7 mt-2 pl-0">
                                                             <label style={{ color:"#2E2E2F" }}>Cari</label>
                                                             
                                                         </div>
-                                                        <div className="pull-left col-7">
+                                                        <div className="pull-left col-7 pl-0">
                                                             <input name="search" value={this.state.search} onChange={this.handleSearch.bind(this)} type="text" placeholder="cari nomor akun atau jumlah setor" className="form-control form-control-lg" />
 
                                                         </div>
@@ -846,6 +856,8 @@ class Setoran extends Component {
                     </div>
 
                 </section>
+
+                
                 <AppModal
 
                     show={this.state.formMT5}

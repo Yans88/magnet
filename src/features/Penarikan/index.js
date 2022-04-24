@@ -272,7 +272,7 @@ class Penarikan extends Component {
                         <div className="col-sm-6">
                             <div className="form-group">
                                 <div className="form-group">
-                                    <label className="frm_lbl">Margin Free</label>
+                                    <label className="frm_lbl">Margin</label>
                                     <div>
                                         <strong className="font-weight-bold text-black">
                                             <NumberFormat
@@ -363,7 +363,7 @@ class Penarikan extends Component {
                     <th>-</th>
                     <th>Login</th>
                     <th>Nama</th>
-                    <th style={{ textAlign: 'right' }}>Margin Free</th>
+                    <th style={{ textAlign: 'right' }}>Margin</th>
                     <th style={{ textAlign: 'right' }}>Equity</th>
                     <th style={{ textAlign: 'right' }}>Rate</th>
                 </tr>
@@ -625,13 +625,18 @@ class Penarikan extends Component {
                                             </div>
 
 
+                                            <div className="mobile-hide">
+                                                <h3 style={{ color:"#2E2E2F" }}>Daftar Penarikan</h3>
+                                            </div>
 
-                                            <h3 style={{ color:"#2E2E2F" }}>Daftar Penarikan</h3>
-
-                                            <div className="row mt-3 mb-4">
+                                            <div className="mobile-view">
+                                                <h3 style={{ color:"#2E2E2F",fontSize:"18px" }}>Daftar Penarikan</h3>
+                                            </div>        
+                                            
+                                            <div className="row mt-2 mb-4">
                                                 <div className="col-md-12 col-12">
                                                     <div className="mb-3">
-                                                        <div className="pull-left margin-left-0  col-6">
+                                                        <div className="pull-left margin-left-0  col-md-6  col-12 pl-0 pt-2">
                                                             <label style={{ color:"#2E2E2F" }}>Tanggal: Awal</label>
                                                             <Datetime
                                                                 closeOnSelect={true}
@@ -650,7 +655,7 @@ class Penarikan extends Component {
                                                                 locale="id" isValidDate={this.state.validSd}
                                                             />
                                                         </div>
-                                                        <div className="pull-left col-6">
+                                                        <div className="pull-left col-md-6  col-12 pl-0 pt-2">
                                                             <label style={{ color:"#2E2E2F" }}>Tanggal: Akhir</label>
                                                             <Datetime
                                                                 closeOnSelect={true}

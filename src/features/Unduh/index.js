@@ -46,7 +46,7 @@ export default class Unduh extends Component {
 
                                        <div className="grid grid-cols-2 place-items-center mt-0" >
                                                 
-                                                <div className="w-full px-3 py-3">
+                                                <div className="w-full px-0 py-3">
 
                                                     <div className="border px-5 py-4 rounded-2xl shadow-lg">
                                                         <h3 style={{ color:'#2DB147' }} className="text-lg">MT5 For Dekstop</h3>
@@ -106,7 +106,7 @@ export default class Unduh extends Component {
 
                                             <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center mt-0" >
                                                 
-                                                <div className="w-full px-3 py-3">
+                                                <div className="w-full px-0 py-3">
 
                                                     <div className="border px-2 lg:px-5 py-4 rounded-2xl shadow-lg">
                                                         <div className="text-center">
@@ -130,11 +130,11 @@ export default class Unduh extends Component {
                                                             </div>
 
                                                             <div className="w-[60%]">
-                                                                <h1 style={{ fontSize: 20, color:"#2E2E2F" }} className="mt-2">&nbsp;Windows</h1>    
+                                                                <h1 style={{ fontSize: 18, color:"#2E2E2F" }} className="mt-2">&nbsp;Windows</h1>    
                                                             </div>
 
                                                             <div className="w-[60%]">
-                                                                <h1 style={{ fontSize: 20, color:"#2E2E2F"}} className="mt-2">&nbsp;Mac OS</h1>    
+                                                                <h1 style={{ fontSize: 18, color:"#2E2E2F"}} className="mt-2">&nbsp;Mac OS</h1>    
                                                             </div>
 
                                                         </div>
@@ -144,7 +144,7 @@ export default class Unduh extends Component {
                                                 </div>
 
                                                 
-                                                <div className="w-full px-3 py-3">
+                                                <div className="w-full px-0 py-3">
 
                                                     <div className="border px-2 lg:px-5 py-4 rounded-2xl shadow-lg">
                                                         <div className="text-center">
@@ -168,11 +168,11 @@ export default class Unduh extends Component {
                                                             </div>
 
                                                             <div className="w-[60%]">
-                                                                <h1 style={{ fontSize: 20, color:"#2E2E2F" }} className="mt-2">&nbsp;Android</h1>    
+                                                                <h1 style={{ fontSize: 18, color:"#2E2E2F" }} className="mt-2">&nbsp;Android</h1>    
                                                             </div>
 
                                                             <div className="w-[30%]">
-                                                                <h1 style={{ fontSize: 20, color:"#2E2E2F"}} className="mt-2">&nbsp;iOS</h1>    
+                                                                <h1 style={{ fontSize: 18, color:"#2E2E2F"}} className="mt-2">&nbsp;iOS</h1>    
                                                             </div>
 
                                                         </div>

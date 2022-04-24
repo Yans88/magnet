@@ -908,6 +908,13 @@ tbody td {
   
 
 }
+
+@media only screen and (min-width: 400px) and (max-width: 568px){ 
+  .rs-modal-dialog{
+    margin-left: 5%;
+    margin-right: 8%;
+  }
+}
 /*sm*/
 @media only screen and (min-width: 640px){ 
 
