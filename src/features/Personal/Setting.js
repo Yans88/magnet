@@ -99,13 +99,19 @@ class Setting extends Component {
                 <section className="content">
                     <div className="container-fluid">
                         <img src={icon} width="35px" className="float-left mt-3" />
-                        <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Pengaturan</h1>
+                        <div className="mobile-hide">
+                            <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Pengaturan</h1>
+                        </div>
+
+                        <div className="mobile-view">
+                            <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Pengaturan</h1>
+                        </div>
 
                         <div className="row">
                             <div className="col-12">
                                 {/* card start */}
                                 <div className="card card-success shadow-lg rounded-2xl" style={{ "minHeight": "430px",borderRadius:"2rem" }}>
-                                    <div className="card-body" style={{ paddingLeft: 20, paddingRight: 20 }}>
+                                    <div className="card-body" style={{ paddingLeft: 15, paddingRight: 15 }}>
                                         <Nav appearance="subtle" activeKey={active_tab} className="tab_personal">
                                             <Nav.Item
                                                 onSelect={this.handleSelect.bind(this)}
@@ -121,7 +127,7 @@ class Setting extends Component {
                                                 className="default" >Personal Info
                                             </Nav.Item>
                                         </Nav>
-                                        <div style={{ paddingTop: 20 }} className="px-3 lg:px-5">
+                                        <div style={{ paddingTop: 0 }} className="px-0 lg:px-5">
                                             {errorMessage ? <div className={!isError ? "alert alert-info alert-sm" : "alert alert-danger alert-sm"} style={{ marginTop: '.3rem' }}>
                                                 <button onClick={this.hideAlert.bind(this)} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
                                                 <span className="fw-semi-bold">{errorMessage}</span>
@@ -195,7 +201,7 @@ class Setting extends Component {
                                                                 theme=""
                                                                 style={{ backgroundColor:"#C3262A",color:"#fff"}}
                                                                 >
-                                                                CHANGE PASSWORD</AppButton>
+                                                                Change Password</AppButton>
                                                                 
                                                         </div>
                                                     </div>
@@ -210,7 +216,7 @@ class Setting extends Component {
                                                                 theme=""
                                                                 style={{ backgroundColor:"#C3262A",color:"#fff"}}
                                                                 >
-                                                                CHANGE PASSWORD</AppButton>
+                                                                Change Password</AppButton>
                                                                 
                                                         </div>
                                                     </div>
@@ -287,7 +293,7 @@ class Setting extends Component {
                                                                         style={{ backgroundColor:"#C3262A",color:"#fff"}}
                                                                         
                                                                         >
-                                                                        UPDATE PROFILE</AppButton>
+                                                                        Update Profile</AppButton>
                                                             
                                                             </div>
                                                         </div>
@@ -303,7 +309,7 @@ class Setting extends Component {
                                                                         style={{ backgroundColor:"#C3262A",color:"#fff"}}
                                                                         
                                                                         >
-                                                                        UPDATE PROFILE</AppButton>
+                                                                        Update Profile</AppButton>
                                                             
                                                             </div>
                                                         </div>

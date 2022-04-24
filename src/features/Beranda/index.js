@@ -429,6 +429,7 @@ class Beranda extends Component {
                                                     /></div>
 
                                                     <div className="font-bold">EQUITY</div>
+                                                    <div>&nbsp;</div>
                                                     <div><NumberFormat
                                                         value={at.equity > 0 ? at.equity : '0.00'}
                                                         thousandSeparator={true}
@@ -511,6 +512,7 @@ class Beranda extends Component {
                                                     /></div>
 
                                                     <div className="font-bold">EQUITY</div>
+                                                    <div>&nbsp;</div>
                                                     <div><NumberFormat
                                                         value={at.equity > 0 ? at.equity : '0.00'}
                                                         thousandSeparator={true}
@@ -694,6 +696,7 @@ class Beranda extends Component {
                                 /></div>
                                 
                                 <div className="font-bold">EQUITY</div>
+                                
                                 <div><NumberFormat
                                                         value={at.equity > 0 ? at.equity : '0.00'}
                                                         thousandSeparator={true}
