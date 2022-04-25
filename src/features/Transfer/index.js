@@ -390,6 +390,7 @@ class Transfer extends Component {
                                       style={{ color: "#2E2E2F" }}
                                     >
                                       Dari
+                                      
                                     </h3>
                                   </div>
                                   <div className="mobile-view">
@@ -421,7 +422,7 @@ class Transfer extends Component {
                                     <th>Login</th>
                                     <th>Nama</th>
                                     <th style={{ textAlign: "right" }}>
-                                      Margin
+                                      Margin 
                                     </th>
                                     <th style={{ textAlign: "right" }}>
                                       Equity
@@ -451,15 +452,12 @@ class Transfer extends Component {
                                                   onChange={(e) =>
                                                     this.onClickRow(at)
                                                   }
-                                                  checked={
-                                                    this.state.selected
-                                                      .login === at.login
-                                                      ? true
-                                                      : false
-                                                  }
                                                   name="account-selection"
                                                   value={at.login}
                                                 />
+
+                                                
+
                                               </td>
                                               <td>{at.login}</td>
                                               <td>{at.name}</td>
@@ -571,12 +569,7 @@ class Transfer extends Component {
                                                       onChange={(e) =>
                                                         this.onClickRow2(at)
                                                       }
-                                                      checked={
-                                                        this.state.selected
-                                                          .login === at.login
-                                                          ? true
-                                                          : false
-                                                      }
+                                                      
                                                       name="account-selection2"
                                                       value={at.login}
                                                     />
@@ -630,11 +623,11 @@ class Transfer extends Component {
 
                           
 
-                          <div className="col-12 col-md-6 mt-2" style={{borderRadius:"10px",border:"1px solid #ddd",paddingTop:"3%",paddingBottom:"3%"}}>
+                          <div className="col-12 col-md-6 mt-4" style={{paddingTop:"3%",paddingBottom:"3%",paddingLeft:0}}>
                             <div className="grid grid-cols-3 place-items-center">
                                   
                               <div
-                                className="col-span-3 col-12 lg:col-md-6"
+                                className="col-span-2 col-12 lg:col-md-6"
                                 style={{ paddingRight: 0,paddingLeft:0 }}
                               >
                                 <input
@@ -659,10 +652,7 @@ class Transfer extends Component {
                                 )}
                               </div>
 
-                              <div
-                                className="col-span-3 mt-2"
-                                style={{ paddingTop: "2px" }}
-                              >
+                              <div className="col-span-1 col-12">
                                 <AppButton
                                   disabled={
                                     selected.nominal >= 10000 ? false : true

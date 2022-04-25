@@ -98,7 +98,7 @@ class HubungiKami extends Component {
                                 {/* card start */}
                                 <div className="card card-success shadow-lg" style={{ "minHeight": "700px",borderRadius:"20px" }}>
                                     <div className="card-body p-0" >
-                                        <div className="grid sm:grid-cols-1 lg:grid-cols-2 place-items-center lg:mt-10" >
+                                        <div className="grid sm:grid-cols-1 lg:grid-cols-2 place-items-center lg:mt-10 lg:px-5" >
                                             <div>
                                                 
                                                 <div className=" hub_kami alert alert-success alert-sm" style={{ backgroundColor: '#1A9425', paddingTop: 10,color:"#fff",borderRadius:"20px",marginBottom:"0rem" }} >

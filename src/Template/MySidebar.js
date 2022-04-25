@@ -5,7 +5,19 @@ import { Link } from 'react-router-dom';
 import { clickExpand} from '../features/main/mainSlice'
 import { Disclosure } from '@headlessui/react'
 import { BiCaretRight } from 'react-icons/bi'
-import icon_akun from '../assets/akun_white.png';
+import icon_akun from '../assets/icon/akun_white.svg';
+import icon_finance from '../assets/icon/keuangan_white.svg';
+import icon_hubungi from '../assets/icon/hubungi_kami_white.svg';
+import icon_unduh from '../assets/icon/unduh_white.png';
+import icon_belajar from '../assets/icon/yuk_belajar_white.svg';
+import icon_autochartist from '../assets/icon/autochartist_white.svg';
+import icon_pengaturan from '../assets/icon/autochartist_white.svg';
+import icon_reject from '../assets/icon/autochartist_white.svg';
+
+import icon_penarikan from '../assets/icon/penarikan.png';
+import icon_setoran from '../assets/icon/setoran.png';
+import icon_transfer from '../assets/icon/transfer_internal.png';
+import icon_akun_bank from '../assets/icon/akun_bank.png';
 
 class MySidebar extends Component {
 
@@ -63,9 +75,19 @@ class MySidebar extends Component {
                                     exact='/'
                                     className={lastSegmentUrl === "/" || lastSegmentUrl === "" || lastSegmentUrl === "personal" || lastSegmentUrl === "account-type" || lastSegmentUrl === "decleration" || lastSegmentUrl === "trading_rules" || lastSegmentUrl === "company_profile" || lastSegmentUrl === "cooljek" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
                                     
-                                    icon={<Icon icon="user" style={{left:"14px"}} />}>
+                                    >
 
-                                    Akun Saya
+                                    
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_akun} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Akun Saya
+                                        </div>
+                                    </div> 
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -78,10 +100,18 @@ class MySidebar extends Component {
                                     exact='/deposit'
                                     eventKey='/deposit'
                                     className={lastSegmentUrl === "deposit" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="credit-card" style={{left:"9px"}} />}>
+                                    >
                                         
+                                       
+                                        <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_setoran} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
                                         Setoran
-                                   
+                                        </div>
+                                    </div> 
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -94,8 +124,18 @@ class MySidebar extends Component {
                                     exact='/bank-accounts'
                                     eventKey='/bank-accounts'
                                     className={lastSegmentUrl === "bank-accounts" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="credit-card" style={{left:"9px"}} />}>
-                                    Akun Bank
+                                    >
+                                    
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_akun_bank} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Akun Bank
+                                        </div>
+                                    </div> 
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -107,8 +147,18 @@ class MySidebar extends Component {
                                     exact='/withdrawal'
                                     eventKey='/withdrawal'
                                     className={lastSegmentUrl === "withdrawal" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="credit-card" style={{left:"9px"}} />}>
-                                    Penarikan
+                                    >
+                                    
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_penarikan} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Penarikan
+                                        </div>
+                                    </div> 
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -120,8 +170,19 @@ class MySidebar extends Component {
                                     exact='/internal-transfer'
                                     eventKey='/internal-transfer'
                                     className={lastSegmentUrl === "internal-transfer" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="credit-card" style={{left:"9px"}} />}>
-                                    Transfer Internal
+                                    >
+                                    
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_transfer} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Transfer Internal
+                                        </div>
+                                    </div> 
+
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -133,8 +194,18 @@ class MySidebar extends Component {
                                     exact='/downloads'
                                     eventKey='/downloads'
                                     className={lastSegmentUrl === "downloads" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="download2" style={{left:"9px"}} />}>
-                                    Unduh
+                                    >
+                                    
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_unduh} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Unduh
+                                        </div>
+                                    </div> 
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -146,8 +217,18 @@ class MySidebar extends Component {
                                     exact='/contact'
                                     eventKey='/contact'
                                     className={lastSegmentUrl === "contact" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="tty" style={{left:"9px"}} />}>
-                                    Hubungi Kami
+                                    >
+                                   
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_hubungi} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Hubungi Kami
+                                        </div>
+                                    </div> 
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -159,8 +240,18 @@ class MySidebar extends Component {
                                     exact='/autochartist'
                                     eventKey='/autochartist'
                                     className={lastSegmentUrl === "autochartist" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="tty" style={{left:"9px"}} />}>
-                                    Autochartist
+                                    >
+                                    
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_autochartist} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Autochartist
+                                        </div>
+                                    </div> 
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -172,8 +263,18 @@ class MySidebar extends Component {
                                     exact='/education'
                                     eventKey='/education'
                                     className={lastSegmentUrl === "education" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="mortar-board" style={{left:"9px"}} />}>
-                                    Yuk Belajar!
+                                    >
+                                    
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_belajar} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Yuk Belajar!
+                                        </div>
+                                    </div> 
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -186,8 +287,18 @@ class MySidebar extends Component {
                                     exact='/setting'
                                     eventKey='/setting'
                                     className={lastSegmentUrl === "setting" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="gear" style={{left:"9px"}} />}>
-                                    Pengaturan
+                                    >
+                                    
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_pengaturan} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Pengaturan
+                                        </div>
+                                    </div> 
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -199,8 +310,18 @@ class MySidebar extends Component {
                                     exact='/rej-doc'
                                     eventKey='/rej-doc'
                                     className={lastSegmentUrl === "rej-doc" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="gear" style={{left:"9px"}} />}>
-                                    Reject Document
+                                    >
+                                    
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_reject} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Reject Document
+
+                                        </div>
+                                    </div> 
+
                                 </Nav.Item>
                                 </div>
                                 
@@ -234,10 +355,17 @@ class MySidebar extends Component {
                                     eventKey='/'
                                     exact='/'
                                     className={lastSegmentUrl === "/" || lastSegmentUrl === "" || lastSegmentUrl === "personal" || lastSegmentUrl === "account-type" || lastSegmentUrl === "decleration" || lastSegmentUrl === "trading_rules" || lastSegmentUrl === "company_profile" || lastSegmentUrl === "cooljek" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    
-                                    icon={<Icon icon="user" style={{left:"14px"}} />}>
+                                    >
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_akun} width="22px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                            Akun Saya
+                                        </div>
+                                    </div>    
+                                   
 
-                                    Akun Saya
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -249,9 +377,16 @@ class MySidebar extends Component {
                                     exact='/deposit'
                                     eventKey='/deposit'
                                     className={lastSegmentUrl === "deposit" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="credit-card" style={{left:"9px"}} />}>
+                                    >
                                         
-                                        Setoran
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_setoran} width="22px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                            Setoran
+                                        </div>
+                                    </div>   
                                    
                                 </Nav.Item>
                                 </div>
@@ -264,8 +399,18 @@ class MySidebar extends Component {
                                     exact='/bank-accounts'
                                     eventKey='/bank-accounts'
                                     className={lastSegmentUrl === "bank-accounts" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="credit-card" style={{left:"9px"}} />}>
-                                    Akun Bank
+                                    >
+                                    
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_akun_bank} width="22px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Akun Bank
+                                        </div>
+                                    </div>
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -276,8 +421,17 @@ class MySidebar extends Component {
                                     exact='/withdrawal'
                                     eventKey='/withdrawal'
                                     className={lastSegmentUrl === "withdrawal" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="credit-card" style={{left:"9px"}} />}>
-                                    Penarikan
+                                    >
+                                    
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_penarikan} width="22px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Penarikan
+                                        </div>
+                                    </div>
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -288,8 +442,18 @@ class MySidebar extends Component {
                                     exact='/internal-transfer'
                                     eventKey='/internal-transfer'
                                     className={lastSegmentUrl === "internal-transfer" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="credit-card" style={{left:"9px"}} />}>
-                                    Transfer Internal
+                                    >
+                                    
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_transfer} width="22px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Transfer Internal
+                                        </div>
+                                    </div>
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -300,8 +464,17 @@ class MySidebar extends Component {
                                     exact='/downloads'
                                     eventKey='/downloads'
                                     className={lastSegmentUrl === "downloads" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="download2" style={{left:"9px"}} />}>
-                                    Unduh
+                                    >
+                                    
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_unduh} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                            Unduh
+                                        </div>
+                                    </div>   
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -312,8 +485,18 @@ class MySidebar extends Component {
                                     exact='/contact'
                                     eventKey='/contact'
                                     className={lastSegmentUrl === "contact" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="tty" style={{left:"9px"}} />}>
-                                    Hubungi Kami
+                                    >
+                                    
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_hubungi} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Hubungi Kami
+                                        </div>
+                                    </div>   
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -324,8 +507,18 @@ class MySidebar extends Component {
                                     exact='/autochartist'
                                     eventKey='/autochartist'
                                     className={lastSegmentUrl === "autochartist" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="tty" style={{left:"9px"}} />}>
-                                    Autochartist
+                                    >
+                                    
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_autochartist} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Autochartist
+                                        </div>
+                                    </div> 
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -336,8 +529,18 @@ class MySidebar extends Component {
                                     exact='/education'
                                     eventKey='/education'
                                     className={lastSegmentUrl === "education" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="mortar-board" style={{left:"9px"}} />}>
-                                    Yuk Belajar!
+                                    >
+                                    
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_belajar} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Yuk Belajar!
+                                        </div>
+                                    </div>
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -349,8 +552,18 @@ class MySidebar extends Component {
                                     exact='/setting'
                                     eventKey='/setting'
                                     className={lastSegmentUrl === "setting" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="gear" style={{left:"9px"}} />}>
-                                    Pengaturan
+                                    >
+                                    
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_pengaturan} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Pengaturan
+                                        </div>
+                                    </div> 
+
                                 </Nav.Item>
                                 </div>
                                 <div className="menu_side mx-2 my-2 rounded-xl">
@@ -361,8 +574,18 @@ class MySidebar extends Component {
                                     exact='/rej-doc'
                                     eventKey='/rej-doc'
                                     className={lastSegmentUrl === "rej-doc" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                    icon={<Icon icon="gear" style={{left:"9px"}} />}>
-                                    Reject Document
+                                    >
+                                    
+
+                                    <div className="flex">
+                                        <div className="px-2">
+                                            <img src={icon_reject} width="18px" className="float-left" />    
+                                        </div>
+                                        <div>
+                                        Reject Document
+                                        </div>
+                                    </div> 
+
                                 </Nav.Item>
                                 </div>
                                 
