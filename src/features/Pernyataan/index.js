@@ -8,6 +8,9 @@ import { Form } from 'react-bootstrap'
 import { getDataPernyataan, chgProps, simpanDataPernyataan,getSelectAkun } from './pernyataanSlice';
 import { profileUser } from '../main/mainSlice';
 import { getAkunTradingDemo } from '../Setoran/setoranSlice';
+import {
+  getPekerjaan
+} from "../Personal/personalSlice";
 
 class Pernyataan extends Component {
     constructor(props) {
@@ -146,7 +149,7 @@ class Pernyataan extends Component {
 
     render() {
         const { lastSegmentUrl, defaultActiveKey, errMsg1 } = this.state;
-        const { user, dataPernyataan } = this.props;
+        const { user, dataPernyataan, dataPekerjaan } = this.props;
         const { arr_wakil_pialang } = dataPernyataan;
         const tgl_lhir = user && user.tanggal_lahir ? moment(new Date(user.tanggal_lahir)).format('DD/MM/YYYY') : '';
 		
@@ -453,7 +456,7 @@ class Pernyataan extends Component {
                                                     <ol className="list_aja">
                                                         <li tabIndex={1}>
                                                             <p>Nama: <b className="declaration_name_html">{user ? user.nama_depan + ' ' + user.nama_belakang : ''}</b></p>
-                                                            <p>Pekerjaan/Jabatan: <b className="declaration_employment_status_html">Wiraswasta</b>
+                                                            <p>Pekerjaan/Jabatan: <b className="declaration_employment_status_html">{dataPekerjaan.jabatan && dataPekerjaan.jabatan}</b>
                                                             </p>
                                                             <p>Alamat: <b className="declaration_address_html">{user ? user.alamat + ' ' + user.rt + ' ' + user.rw + ' ' + user.provinsi : ''}</b></p>
                                                             <p>Dalam hal ini bertindak untuk dan atas nama  sendiri yang selanjutnya disebut <b>Nasabah</b>.</p>
@@ -964,12 +967,14 @@ class Pernyataan extends Component {
 }
 const mapStateToProps = (state) => ({
     dataPernyataan: state.dtPernyataan.dataPernyataan || {},
+	dataPekerjaan: state.personal.dataPekerjaan || {},
     user: state.main.currentUser
 });
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: (param) => {
-			dispatch(profileUser());			
+			dispatch(profileUser());		
+			dispatch(getPekerjaan());
             dispatch(getDataPernyataan(param));	
 			dispatch(getSelectAkun(param));	
 			dispatch(getAkunTradingDemo());			
