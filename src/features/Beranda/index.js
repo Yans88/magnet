@@ -373,11 +373,19 @@ class Beranda extends Component {
                                     
                                     
 
-                                    {akun_trading.length > 0 &&
+                                    {profile.status_dokumen === 'Approve' &&
                                     <div className="w-1/4 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{backgroundColor:"#C2252C"}}>
                           
                                         <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
                                             <span className="font-bold text-white">BUAT AKUN TRADING BARU</span>
+                                        </Link>
+                                    </div>}
+									
+									{profile.status_dokumen === 'Belum Lengkap' &&
+                                    <div className="w-1/4 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{backgroundColor:"#C2252C"}}>
+                          
+                                        <Link to='/personal' className="btn btn-lgreen btn-sm"}>
+                                            <span className="font-bold text-white">LENGKAPI REGISTRASI</span>
                                         </Link>
                                     </div>}
 
