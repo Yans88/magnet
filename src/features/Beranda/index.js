@@ -383,7 +383,7 @@ class Beranda extends Component {
                                         </Link>
                                     </div>}
 									
-									{profile.status_dokumen === 'Belum Lengkap' &&
+									                  {profile.status_dokumen === 'Belum Lengkap' &&
                                     <div className="w-1/4 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{backgroundColor:"#C2252C"}}>
                           
                                         <Link to='/personal' className="btn btn-lgreen btn-sm">
@@ -554,11 +554,23 @@ class Beranda extends Component {
                 <div className="mobile-view  relative mt-[0rem] bg-white text-black text-center rounded-2xl shadow-lg  py-4 w-[100%] ..." >
                                     
                     <div className="grid grid-col2-1 place-items-center mb-4">
+                        
+                        {profile.status_dokumen === 'Approve' &&
                         <div className="w-1/2 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{backgroundColor:"#C2252C"}}>
+              
                             <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
                                 <span className="font-bold text-white">BUAT AKUN TRADING BARU</span>
                             </Link>
-                        </div>
+                        </div>}
+      
+                        {profile.status_dokumen === 'Belum Lengkap' &&
+                        <div className="w-1/2 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{backgroundColor:"#C2252C"}}>
+              
+                            <Link to='/personal' className="btn btn-lgreen btn-sm">
+                                <span className="font-bold text-white">LENGKAPI REGISTRASI</span>
+                            </Link>
+                        </div>}
+
                     </div>  
 
                     <div className="grid grid-cols-1 gap-4 px-5  mt-2">

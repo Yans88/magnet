@@ -193,7 +193,7 @@ const Reset = () => {
                                     <Form.Label>
                                         
                                         <div className="w-full mb-2 mt-2">
-                                            <div className="text-black  text-xs text-center font-normal">Silahkan masukan email anda untuk me-reset password anda.</div>
+                                            <div className="text-black  text-xs text-center font-normal">Silahkan masukan Password baru anda.</div>
                                         </div>
                                     </Form.Label>
                                     {formik.touched.password &&

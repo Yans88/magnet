@@ -59,7 +59,12 @@ const AppModalStatus = ({
                     <Button
                         disabled={isDisable}
                         isLoading={isLoading}
-                        theme={themeButton}
+                        theme=""
+                        style={{
+                            backgroundColor: "#218838",
+                            color: "#fff",
+                            marginRight: "2%",
+                        }}
                         onClick={formSubmit}
                     >
                         {titleButton ? titleButton : "Yes"}

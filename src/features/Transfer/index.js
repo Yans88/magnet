@@ -378,24 +378,41 @@ class Transfer extends Component {
                     <div style={{ paddingTop: 5 }} className="px-0 lg:px-3">
                       {profile.isMenuTransfer ? (
                         <Fragment>
-                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-0  py-0">
-                            <div className="mobile-hide">
-                              <h3
-                                className="form-section text-capitalize"
-                                style={{ color: "#2E2E2F" }}
-                              >
-                                Dari
-                              </h3>
-                            </div>
-                            <div className="mobile-view">
-                              <h3
-                                className="form-section text-capitalize"
-                                style={{ color: "#2E2E2F", fontSize: "20px" }}
-                              >
-                                Dari
-                              </h3>
-                            </div>
+                          <div className="grid xs:grid-cols-1 lg:grid-cols-2 gap-4 mt-0  py-0">
+  
+                            
+                            <div>
+                              <div className="row">
+                                <div className="col-12 col-sm-12 col-md-12">
+                                  <div className="mobile-hide">
+                                    <h3
+                                      className="form-section text-capitalize"
+                                      style={{ color: "#2E2E2F" }}
+                                    >
+                                      Dari
+                                    </h3>
+                                  </div>
+                                  <div className="mobile-view">
+                                    <h3
+                                      className="form-section text-capitalize"
+                                      style={{
+                                        color: "#2E2E2F",
+                                        fontSize: "20px",
+                                      }}
+                                    >
+                                      Dari
+                                    </h3>
+                                  </div>
+                                </div>
+                              </div>
 
+                            <div
+                              className="p-0 pt-0"
+                              style={{
+                                border: "1px solid #ddd",
+                                borderRadius: "5px",
+                              }}
+                            >          
                             <div class="table-responsive">
                               <table className="table table-hover">
                                 <thead>
@@ -479,10 +496,12 @@ class Transfer extends Component {
                                 </tbody>
                               </table>
                             </div>
+                            </div>
+                            </div>
 
                             <div>
                               <div className="row">
-                                <div className="col-12 col-sm-3 col-md-1">
+                                <div className="col-12 col-sm-12 col-md-12">
                                   <div className="mobile-hide">
                                     <h3
                                       className="form-section text-capitalize"
@@ -508,7 +527,7 @@ class Transfer extends Component {
                               <div
                                 className="p-0 pt-0"
                                 style={{
-                                  border: "1px solid none",
+                                  border: "1px solid #ddd",
                                   borderRadius: "5px",
                                 }}
                               >
@@ -550,7 +569,7 @@ class Transfer extends Component {
                                                     <input
                                                       type="radio"
                                                       onChange={(e) =>
-                                                        this.onClickRow(at)
+                                                        this.onClickRow2(at)
                                                       }
                                                       checked={
                                                         this.state.selected
@@ -601,52 +620,65 @@ class Transfer extends Component {
                                 </div>
                               </div>
 
-                              <div className="grid grid-cols-3 place-items-center">
-                                <div
-                                  className="col-span-3 col-12"
-                                  style={{ paddingRight: 0 }}
+                             
+
+                            </div>
+
+                            
+
+                          </div>
+
+                          
+
+                          <div className="col-12 col-md-6 mt-2" style={{borderRadius:"10px",border:"1px solid #ddd",paddingTop:"3%",paddingBottom:"3%"}}>
+                            <div className="grid grid-cols-3 place-items-center">
+                                  
+                              <div
+                                className="col-span-3 col-12 lg:col-md-6"
+                                style={{ paddingRight: 0,paddingLeft:0 }}
+                              >
+                                <input
+                                  disabled={
+                                    selected.from && selected.to
+                                      ? false
+                                      : true
+                                  }
+                                  value={selected.nominal}
+                                  onChange={this.handleChange.bind(this)}
+                                  name="nominal"
+                                  type="number"
+                                  placeholder="Jumlah"
+                                  className="form-control"
+                                />
+                                {errorMessage ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errorMessage}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </div>
+
+                              <div
+                                className="col-span-3 mt-2"
+                                style={{ paddingTop: "2px" }}
+                              >
+                                <AppButton
+                                  disabled={
+                                    selected.nominal >= 10000 ? false : true
+                                  }
+                                  style={{ minHeight: 32 }}
+                                  type="button"
+                                  size="lg"
+                                  onClick={this.handleSubmit.bind(this)}
+                                  theme="success"
                                 >
-                                  <input
-                                    disabled={
-                                      selected.from && selected.to
-                                        ? false
-                                        : true
-                                    }
-                                    value={selected.nominal}
-                                    onChange={this.handleChange.bind(this)}
-                                    name="nominal"
-                                    type="number"
-                                    placeholder="Jumlah"
-                                    className="form-control"
-                                  />
-                                  {errorMessage ? (
-                                    <span className="text-error badge badge-danger">
-                                      {errorMessage}
-                                    </span>
-                                  ) : (
-                                    ""
-                                  )}
-                                </div>
-                                <div
-                                  className="col-span-3 mt-2"
-                                  style={{ paddingTop: "2px" }}
-                                >
-                                  <AppButton
-                                    disabled={
-                                      selected.nominal >= 10000 ? false : true
-                                    }
-                                    style={{ minHeight: 32 }}
-                                    type="button"
-                                    size="lg"
-                                    onClick={this.handleSubmit.bind(this)}
-                                    theme="success"
-                                  >
-                                    Transfer
-                                  </AppButton>
-                                </div>
+                                  Transfer
+                                </AppButton>
                               </div>
                             </div>
                           </div>
+
 
                           <br />
 
