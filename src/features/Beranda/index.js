@@ -771,7 +771,11 @@ class Beranda extends Component {
           title="Status"
           formSubmit={this.handleSubmit3.bind(this)}
           titleButton="Lengkapi"
-          themeButton="warning"
+          themeButton="success"
+
+         
+          
+
         ></AppModalStatus>
         
         
