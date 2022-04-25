@@ -10,7 +10,7 @@ import { profileUser } from '../main/mainSlice';
 import { getAkunTradingDemo } from '../Setoran/setoranSlice';
 import {
   getPekerjaan
-} from "./personalSlice";
+} from "../Personal/personalSlice";
 
 class Pernyataan extends Component {
     constructor(props) {
