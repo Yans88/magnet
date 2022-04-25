@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'rsuite/dist/styles/rsuite-default.css';
 
-import { Login, Main, PageLoading, Register } from './Template';
+import { Login, Main, PageLoading, Register, Forgot } from './Template';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ProtectedRoute from './router/ProtectedRoute';
@@ -41,6 +41,10 @@ function App({ main }) {
 
           <PublicRoute exact path="/register">
             <Register />
+          </PublicRoute>
+
+          <PublicRoute exact path="/forgot">
+            <Forgot />
           </PublicRoute>
 
 

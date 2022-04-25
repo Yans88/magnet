@@ -120,7 +120,7 @@ const Login = () => {
                                             <div className="social-auth-links text-center mt-2 mb-3">
                                                 <div className="grid grid-cols-4">
                                                     <div className="col-span-2 text-left pt-1">
-                                                        <span className="text-black font-bold">Lupa Password</span>
+                                                        <a href="forgot" className="text-center "><span className="text-black font-bold">Lupa Password</span></a>
                                                     </div>
                                                     <div className="col-span-1 align-middle pt-1">
                                                         <a href="register" className="text-center "><span className="text-hijau-forex font-bold">Daftar</span></a>
@@ -209,7 +209,7 @@ const Login = () => {
                                                 
 
                                             </div>
-
+                                                
                                             {formik.touched.password &&
                                                 formik.errors.password ? (
                                                 <span className="float-right text-error badge badge-danger">{formik.errors.password}</span>
@@ -233,7 +233,7 @@ const Login = () => {
                                                 <div className="grid grid-cols-2">
                                                     
                                                     <div className="col-span-2 text-right pt-1">
-                                                        <span className="text-black font-bold">Lupa Password</span>
+                                                        <a href="forgot" className="text-center "><span className="text-black font-bold">Lupa Password</span></a>
                                                     </div>
 
                                                     <div className="grid col-span-2 grid-cols-1 place-items-center mt-4">

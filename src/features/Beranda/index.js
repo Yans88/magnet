@@ -7,6 +7,8 @@ import akun_icon from "../../assets/akun_white.svg";
 import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import AppModal from "../../components/modal/MyModal";
+import AppModalStatus from "../../components/modal/MyModalStatus";
+
 import AppModall from "../../components/modal/MyModall";
 import { Button, Form } from "react-bootstrap";
 import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
@@ -759,9 +761,9 @@ class Beranda extends Component {
           }
           formSubmit={this.handleSubmit2.bind(this)}
         />
-        <AppModall
+        <AppModalStatus
           show={myStatusDokumen}
-          size="sm"
+          size="xs"
           form={contentDelete}
           handleClose={this.handleClose.bind(this)}
           backdrop="static"
@@ -770,7 +772,9 @@ class Beranda extends Component {
           formSubmit={this.handleSubmit3.bind(this)}
           titleButton="Lengkapi"
           themeButton="warning"
-        ></AppModall>
+        ></AppModalStatus>
+        
+        
 		{this.props.showFormSuccess ? (<AppSwalSuccess
                         show={this.props.showFormSuccess}
                         title={<div dangerouslySetInnerHTML={{ __html: this.props.contentMsg }} />}
