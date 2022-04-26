@@ -969,7 +969,7 @@ class Personal extends Component {
                               <div className="col-span-2">
                                   Unggah KTP
                               </div>
-                              <div className="w-[50%] pl-[5%] lg:pl-[15%] 2xl:pl-[18%] xl:pl-[15%] lg:w-[70%] text-center mt-2 ">
+                              <div className="w-[50%] pl-[5%] lg:pl-[15%] 2xl:pl-[28%] xl:pl-[25%] lg:w-[70%] text-center mt-2 ">
                               <Form>
                                   <Form.Group controlId="KTP">
                                     <Form.File
@@ -1019,7 +1019,7 @@ class Personal extends Component {
                                             <div className="w-7">
                                               <img src={unduh_ijo} width="25px" />
                                             </div>
-                                            <div className="w-7">
+                                            <div className="  w-7">
                                               <img src={see_icon} width="25px" />
                                             </div>
                                           </div>
