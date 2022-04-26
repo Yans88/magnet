@@ -1050,3 +1050,8 @@ tbody td {
 }
 
 }
+
+.card_yb:hover{
+	cursor:pointer;
+	color: #0C93D7 !important;
+}

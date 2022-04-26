@@ -23,7 +23,11 @@ class YukBelajar extends Component {
         await this.setState({ lastSegmentUrl: BaseName })
     }
 
-
+	detail = async (record) => {
+        sessionStorage.removeItem("idArtikelMagnet");        
+        if (record) await sessionStorage.setItem('idArtikelMagnet', record.news_id);
+        this.props.history.push("detail-artikel");
+    }
 
 
     handleSelect(activeKey) {
@@ -65,7 +69,7 @@ class YukBelajar extends Component {
 													return (
 														<Fragment>
 															<div className="col-sm-4">
-																<Card>
+																<Card className="card_yb" onClick={e => this.detail(at)}>
 																  <img src={at.file} height={200} alt=""/>
 																  <Card.Body>
 																	<Card.Title>{at.title}</Card.Title>

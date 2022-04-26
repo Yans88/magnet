@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { regUser, verifUser, userSelector, clearState, getCabang, getMarketing, completeData, loginUser } from '../features/main/mainSlice'
+import { actionPassword, userSelector, clearState } from '../features/main/mainSlice'
 import Button from '../components/button/Button';
 import { Col, Form } from 'react-bootstrap';
 import ReCAPTCHA from "react-google-recaptcha";
@@ -11,22 +11,24 @@ import banner from '../assets/image_1.svg';
 import logoa from '../assets/logo.svg';
 import email_icon from '../assets/email.svg';
 import password_icon from '../assets/password.svg';
+import { useLocation } from 'react-router-dom';
 
 
 import { SelectTgl, SelectBln, SelectThn } from '../components/modal/SelectTgl';
 
 const Reset = () => {
 
-    const { isFetching, isSuccess, errorMessage, isVerifikasi, user_id, isCompleteProfile, succesCompleteProfile } = useSelector(
+    const { isFetching,  errorMessage, isVerifikasi,  isCompleteProfile, succesCompleteProfile } = useSelector(
         userSelector
     );
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const initData = { kode_verifikasi: '', nama_depan: '', nama_belakng: '', tgl: '', bln: '', thn: '', cabang: '', marketing: '', tanggal_lahir: '', myCaptcha: '', ref_code: '', email:'', password:'' };
-    const errorValidate = { kode_verifikasi: '', nama_depan: '', nama_belakng: '', tgl: '', bln: '', thn: '', cabang: '', marketing: '', myCaptcha: '', ref_code: '' };
+    const initData = { password:'', konfirmasi_password:'', token:'' };
+    const errorValidate = { password:'', konfirmasi_password:'', token:'' };
     const [selected, setSelected] = useState(initData);
     const [errMsg, setErrMsg] = useState(errorValidate);
+	const {search} = useLocation();
 
     useEffect(() => {
         //dispatch(getCabang());
@@ -36,122 +38,36 @@ const Reset = () => {
         };
     }, [dispatch]);
 
-    useEffect(() => {
-        if (succesCompleteProfile) {
-            dispatch(clearState());
-            dispatch(loginUser(selected));
-        }
-    }, [succesCompleteProfile, dispatch, selected]);
+    
 
     const formik = useFormik({
-        initialValues: {
-            email: '',
+        initialValues: {           
             password: '',
             konfirmasi_password: ''
         },
-        validationSchema: Yup.object({
-            email: Yup.string()
-                .required('Please enter email').email('Please enter a valid email'),
+        validationSchema: Yup.object({            
             password: Yup.string()
                 .required('Please provide a password').min(8, "Minimum 8 characters"),
             konfirmasi_password: Yup.string().required("Required!")
                 .oneOf([Yup.ref("password")], "Password's not match")
 
         }),
-        onSubmit: (values) => {			
-			setSelected({
-				...selected,
-				password: values.password,
-				email: values.email
-			});
-            dispatch(regUser(values));
+        onSubmit: (values) => {	
+			const val = {
+				...values,
+				token: search.replace("?", "/")	
+			}
+			dispatch(actionPassword(val));
         }
-    });
-
-    const handleChange = event => {
-        const { name, value } = event.target
-        var val = value;
-        setSelected({
-            ...selected,
-            [name]: val
-        });
-
-        if (name === 'cabang') {
-            const queryString = {
-                'kode_cabang': val
-            }
-            dispatch(getMarketing(queryString));
-
-        }
-        dispatch(clearState());
-    }
-
-    const handleSubmit = () => {
-        var error = '';
-        if (selected.kode_verifikasi === null || selected.kode_verifikasi === "") {
-            error = { ...error, kode_verifikasi: "Required!" };
-        }
-        setErrMsg(error);
-        const queryString = {
-            ...selected,
-            user_id: user_id,
-        }
-        //console.log(queryString);
-        if (!error) dispatch(verifUser(queryString));;
-    }
-
-    const handleSubmit2 = async() => {
-        var error = '';
-        if (selected.nama_depan === null || selected.nama_depan === "") {
-            error = { ...error, nama_depan: "Required!" };
-        }
-        if (selected.nama_belakng === null || selected.nama_belakng === "") {
-            error = { ...error, nama_belakng: "Required!" };
-        }
-        // if (selected.cabang === null || selected.cabang === "") {
-        // error = { ...error, cabang: "Required!" };
-        // }
-        // if (selected.marketing === null || selected.marketing === "") {
-        // error = { ...error, marketing: "Required!" };
-        // }
-        setErrMsg(error);
-        const tglLahir = selected.thn + '-' + selected.bln + '-' + selected.tgl;
-        const queryString = {
-            ...selected,
-            user_id: user_id,
-            tanggal_lahir: tglLahir,
-            ref_code: selected.ref_code ? selected.ref_code : ''
-        }
-        //console.log(queryString);
-        if (!error) dispatch(completeData(queryString));
-		
-		
-    }
+    });    
 	
-	function sleep(ms) {
-		return new Promise((resolve) => setTimeout(resolve, ms));
+
+    const hideAlert = () => { 
+		formik.setFieldValue("konfirmasi_password", ""); 
+		formik.setFieldValue("password", ""); 		
+		formik.resetForm({password:'', konfirmasi_password:''}); 		
+		dispatch(clearState()) 
 	}
-
-    function handleChangeCaptcha(value) {
-        setSelected({
-            ...selected,
-            "myCaptcha": value
-        });
-        //console.log("Captcha value:", value);
-    }
-
-    function handleExpired() {
-        const recaptchaValue = recaptchaRef.current.getValue();
-        setSelected({
-            ...selected,
-            "myCaptcha": recaptchaValue
-        });
-        // console.log("recaptchaValue:", recaptchaValue);
-
-    }
-    const recaptchaRef = React.createRef();
-
-    const hideAlert = () => { dispatch(clearState()) }
     document.getElementById('root').classList = 'hold-transition';
 
     
@@ -183,7 +99,7 @@ const Reset = () => {
                                     errorMessage ? (
                                         <div className="alert alert-danger alert-sm" >
                                             <button onClick={hideAlert} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                            <span className="fw-semi-bold text-error-login">Error: {errorMessage}</span>
+                                            <span className="fw-semi-bold text-error-login">Info: {errorMessage}</span>
                                         </div>
                                     ) : (<p className='login-box-msg'></p>)}
 
@@ -247,7 +163,7 @@ const Reset = () => {
                                     <div className="w-2/4 mt-2">
                                         <Button
                                             block
-                                            onClick={handleSubmit}
+                                           type="submit"
                                             isLoading={isFetching}
                                             theme=""
                                             style={{ backgroundColor:"#C1242B",color:"#fff"}}

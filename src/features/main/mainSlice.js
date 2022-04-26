@@ -617,6 +617,78 @@ export const action_contact_us = createAsyncThunk(
   }
 );
 
+export const forgotPassword = createAsyncThunk(
+  "users/forgot_password",
+  async (param, thunkAPI) => {
+	 let API_URL2 = API_URL.replace("/api", "");
+    const config = {
+      headers: {
+        "x-app-origin": "cabinet-app",
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const response = await axios.post(
+        API_URL2 + "/forgot-password",
+        param,
+        config
+      );
+      let data = "";
+      let _data = await response;
+      if (response.status === 200) {
+        data = _data.data;		
+        if (data.error_message === 0) {
+          return data;
+        } else {
+          return thunkAPI.rejectWithValue(data);
+        }
+      } else {
+        return thunkAPI.rejectWithValue(_data);
+      }
+    } catch (e) {
+      console.log("Error", e.response.data);
+      thunkAPI.rejectWithValue(e.response.data);
+    }
+  }
+);
+
+export const actionPassword = createAsyncThunk(
+  "users/action_password",
+  async (param, thunkAPI) => {	  
+	let API_URL2 = API_URL.replace("/api", "");
+    const config = {
+      headers: {
+        "x-app-origin": "cabinet-app",
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const response = await axios.post(
+        API_URL2 + "/verifikasi-update-password"+param.token,
+        param,
+        config
+      );
+      let data = "";
+      let _data = await response;
+      if (response.status === 200) {
+        data = _data.data;		
+        if (data.error_message === 0) {
+          return data;
+        } else {
+          return thunkAPI.rejectWithValue(data);
+        }
+      } else {
+        return thunkAPI.rejectWithValue(_data);
+      }
+    } catch (e) {
+      console.log("Error", e.response.data);
+      thunkAPI.rejectWithValue(e.response.data);
+    }
+  }
+);
+
 const initialState = {
   expandMenu: true,
   isLoggedIn: !!localStorage.getItem(tokenLogin),
@@ -894,6 +966,36 @@ export const mainSlice = createSlice({
       state.errorMessage = payload.message;
     },
     [updProfile.pending]: (state) => {
+      state.errorMessage = "";
+    },
+	[forgotPassword.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isError = false;
+      state.errorMessage = payload.message;
+      return state;
+    },
+    [forgotPassword.rejected]: (state, { payload }) => {
+      //console.log('payload', payload);
+      state.isFetching = false;
+      state.isError = true;
+      state.errorMessage = payload.message;
+    },
+    [forgotPassword.pending]: (state) => {
+      state.errorMessage = "";
+    },
+	[actionPassword.fulfilled]: (state, { payload }) => {
+      state.isFetching = false;
+      state.isError = false;
+      state.errorMessage = payload.message;
+      return state;
+    },
+    [actionPassword.rejected]: (state, { payload }) => {
+      //console.log('payload', payload);
+      state.isFetching = false;
+      state.isError = true;
+      state.errorMessage = payload.message;
+    },
+    [actionPassword.pending]: (state) => {
       state.errorMessage = "";
     },
   },
