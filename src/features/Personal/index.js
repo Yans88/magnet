@@ -3,6 +3,12 @@ import { Icon, IconButton, Nav, Placeholder } from "rsuite";
 import { connect } from "react-redux";
 import { Button, Col, Figure, Form } from "react-bootstrap";
 import NumberFormat from "react-number-format";
+import photo_ktp from "../../assets/ktp-01.png";
+import close1 from "../../assets/close1.svg";
+import unduh_ijo from "../../assets/unduh1.svg";
+import see_icon from "../../assets/see.svg";
+
+
 import Compress from "compress.js";
 import {
   getNegara,
@@ -954,25 +960,97 @@ class Personal extends Component {
                     {active_tab === "detil_pribadi" && (
                       <Fragment>
                         <div
-                          className="grid grid-cols-1 lg:grid-cols-2 place-items-center mt-0  py-2 px-2 rounded-2xl border-gray-700 mt-4 gap-4"
+                          className="grid lg:grid-cols-2 place-items-center mt-0  py-2 px-2 rounded-2xl border-gray-700 mt-4 gap-4"
                           style={{ border: "2px solid #ddd" }}
                         >
                           <div className="w-full h-24 p-4 h-32 text-center justify-center font-bold text-lg text-black">
-                            Unggah KTP
-                            <Form>
-                              <Form.Group controlId="KTP">
-                                <Form.File
-                                  className="custom-file-input3"
-                                  size="lg"
-                                  name="KTP"
-                                  setfieldvalue=""
-                                  onChange={this.handleChangePhoto.bind(this)}
-                                ></Form.File>
-                              </Form.Group>
-                            </Form>
+                            
+                            <div className="grid grid-cols-1 justify-items-center">
+                              <div className="col-span-2">
+                                  Unggah KTP
+                              </div>
+                              <div className="w-[50%] pl-[5%] lg:pl-[15%] 2xl:pl-[18%] xl:pl-[15%] lg:w-[70%] text-center mt-2 ">
+                              <Form>
+                                  <Form.Group controlId="KTP">
+                                    <Form.File
+                                      className="custom-file-input3"
+                                      size="lg"
+                                      name="KTP"
+                                      setfieldvalue=""
+                                      onChange={this.handleChangePhoto.bind(this)}
+                                    ></Form.File>
+                                  </Form.Group>
+                              </Form>
+
+                              </div>
+                            </div>
+                            
+                            
+
                           </div>
 
-                          <div className="bg-zinc-100 p-4 rounded-2xl w-full h-32"></div>
+                          <div className="grid grid-cols-1 bg-zinc-100 p-4 rounded-2xl w-full h-auto justify-items-center">
+                            <div className="w-[100%]">
+                              <div className="grid lg:grid-cols-3 gap-3 lg:gap-10 ">
+                                  <div>
+                                    <div className="grid grid-cols-1">
+                                      <div className="font-bold text-black">FILE</div>
+                                      <div className="pt-2"><img src={photo_ktp} /></div>  
+                                    </div>
+                                  </div>
+
+                                  <div>
+                                    <div className="grid grid-cols-1 lg:justify-items-center">
+                                      <div className="font-bold text-black">TIPE</div>
+                                      <div className="text-bold pt-2">KTP</div>  
+                                    </div>
+                                  </div>
+
+                                  <div>
+                                    <div className="grid grid-cols-1 ">
+                                      <div className="font-bold text-black text-left">TINDAKAN</div>
+                                      <div className="pt-2">
+                                        
+                                        <div className="mobile-hide">
+                                          <div className="grid lg:w-4/5 2xl:w-1/2 grid-cols-3">
+                                            <div className="w-7">
+                                              <img src={close1} width="25px" />
+                                            </div>
+                                            <div className="w-7">
+                                              <img src={unduh_ijo} width="25px" />
+                                            </div>
+                                            <div className="w-7">
+                                              <img src={see_icon} width="25px" />
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div className="mobile-view">
+                                          <div className="grid w-1/2 grid-cols-3">
+                                            <div className="w-10">
+                                              <img src={close1} width="25px" />
+                                            </div>
+                                            <div className="w-10">
+                                              <img src={unduh_ijo} width="25px" />
+                                            </div>
+                                            <div className="w-10">
+                                              <img src={see_icon} width="25px" />
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                  
+                              </div>
+                            </div>
+                             
+
+
+                          </div>
+
                         </div>
 
                         <Form>
