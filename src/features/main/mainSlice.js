@@ -130,7 +130,7 @@ export const fetchUserKTP = createAsyncThunk(
           let rt = "";
           let rw = "";
           let jenis_kelamin =
-            myData.jenis_kelamin === "LAKILAKI" ? "Laki-Laki" : "";
+            myData.jenis_kelamin === "LAKI-LAKI" ? "Laki-Laki" : "";
           jenis_kelamin =
             myData.jenis_kelamin === "PEREMPUAN" ||
             myData.jenis_kelamin === "WANITA"
@@ -146,7 +146,7 @@ export const fetchUserKTP = createAsyncThunk(
           const selectedDate = myData.tanggal_lahir
             ? tanggal_lahir[2] + "-" + tanggal_lahir[1] + "-" + tanggal_lahir[0]
             : "";
-          console.log(selectedDate);
+          
           Object.keys(myData).map((key) => {
             if (key === "rt/rw") {
               rt_rw = myData[key].split("/");
