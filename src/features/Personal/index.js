@@ -270,6 +270,13 @@ class Personal extends Component {
     dt["key"] = name;
     dt["value"] = value;
     this.props.changePropsPekerjaan(dt);
+	this.setState({
+            ...this.state,            
+            errMsg5: {
+                ...this.state.errMsg5,
+                [name]: ''
+            }
+        })
   }
 
   handleChangeAkunBank(evt) {
@@ -282,6 +289,13 @@ class Personal extends Component {
     dt["key"] = name;
     dt["value"] = value;
     this.props.changePropsAkunBank(dt);
+	this.setState({
+            ...this.state,            
+            errMsg6: {
+                ...this.state.errMsg6,
+                [name]: ''
+            }
+        })
   }
 
   handleChangeDPP(evt) {
