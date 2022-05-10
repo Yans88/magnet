@@ -98,6 +98,7 @@ class Personal extends Component {
       errMsg5: this.initPekerjaan,
       errMsg6: this.initAkunBank,
       errMsg7: this.initDPP,
+	  ktpTemp:''
     };
     this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -128,6 +129,13 @@ class Personal extends Component {
       dt["value"] = "";
     }
     this.props.changeProps(dt);
+	this.setState({
+            ...this.state,            
+            errMsg1: {
+                ...this.state.errMsg1,
+                tanggal_lahir: ''
+            }
+        })
   }
 
   renderView(mode, renderDefault, name) {
@@ -171,6 +179,13 @@ class Personal extends Component {
     dt["key"] = name;
     dt["value"] = value;
     this.props.changeProps(dt);
+	this.setState({
+            ...this.state,            
+            errMsg1: {
+                ...this.state.errMsg1,
+                [name]: ''
+            }
+        })
   }
 
   handleChangeTrading(evt) {
@@ -195,8 +210,14 @@ class Personal extends Component {
 
     dt["key"] = name;
     dt["value"] = value;
-
     this.props.changePropsTrading(dt);
+	this.setState({
+            ...this.state,            
+            errMsg2: {
+                ...this.state.errMsg2,
+                [name]: ''
+            }
+        })
   }
 
   handleChangeKekayaan(evt) {
@@ -209,6 +230,13 @@ class Personal extends Component {
     dt["key"] = name;
     dt["value"] = value;
     this.props.changePropsKekayaan(dt);
+	this.setState({
+            ...this.state,            
+            errMsg3: {
+                ...this.state.errMsg3,
+                [name]: ''
+            }
+        })
   }
 
   handleChangeKontakDarurat(evt) {
@@ -223,6 +251,13 @@ class Personal extends Component {
     dt["key"] = name;
     dt["value"] = value;
     this.props.changePropsKontak(dt);
+	this.setState({
+            ...this.state,            
+            errMsg4: {
+                ...this.state.errMsg4,
+                [name]: ''
+            }
+        })
   }
 
   handleChangePekerjaan(evt) {
@@ -235,6 +270,13 @@ class Personal extends Component {
     dt["key"] = name;
     dt["value"] = value;
     this.props.changePropsPekerjaan(dt);
+	this.setState({
+            ...this.state,            
+            errMsg5: {
+                ...this.state.errMsg5,
+                [name]: ''
+            }
+        })
   }
 
   handleChangeAkunBank(evt) {
@@ -247,6 +289,13 @@ class Personal extends Component {
     dt["key"] = name;
     dt["value"] = value;
     this.props.changePropsAkunBank(dt);
+	this.setState({
+            ...this.state,            
+            errMsg6: {
+                ...this.state.errMsg6,
+                [name]: ''
+            }
+        })
   }
 
   handleChangeDPP(evt) {
@@ -284,6 +333,11 @@ class Personal extends Component {
         data_pribadi_id: this.props.user.data_pribadi_id,
       };
       this.props.onUploadKTP(dtKTP);
+	  let reader = new FileReader();
+      reader.readAsDataURL(value);
+      reader.onloadend = () => {
+        this.setState({ ...this.state, ktpTemp: reader.result });
+      };
       await this.sleep(5500);
 
       errors.nama_depan = !this.props.user.nama_depan
@@ -362,6 +416,11 @@ class Personal extends Component {
       dokumen_id: record,
     });
     this.props.showConfirmDel(true);
+  }
+  deleteKtp() {
+    this.setState({
+      ktpTemp: '',
+    });    
   }
   handleDelete = async () => {
     this.props.onDelete(this.state.dokumen_id);
@@ -459,6 +518,8 @@ class Personal extends Component {
     errors.agreement2 = !this.props.dataExpTrading.agreement2
       ? "Kolom ini harus diisi"
       : "";
+	errors.pertanyaan2 =
+      this.props.dataExpTrading.pertanyaan1 === "Y" && this.props.dataExpTrading.pertanyaan2 === "" ? "Kolom ini harus diisi" : "";
     errors.pertanyaan4 =
       this.props.dataExpTrading.pertanyaan4 === "Y" ? "maaf" : "";
     errors.pertanyaan3 =
@@ -468,6 +529,8 @@ class Personal extends Component {
         "Maaf, berdasarkan peraturan anda tidak diperbolehkan membuka rekening pada perusahaan pialang berjangka"
       );
     }
+	errors.pertanyaan6 =
+      this.props.dataExpTrading.pertanyaan5 === "Y" && this.props.dataExpTrading.pertanyaan6 === "" ? "Kolom ini harus diisi" : "";
     this.setState({ errors });
     if (this.validateForm(this.state.errMsg2)) {
       const saveData = {
@@ -735,6 +798,7 @@ class Personal extends Component {
       errMsg5,
       errMsg6,
       errMsg7,
+	  ktpTemp,
     } = this.state;
     const {
       dataNegara,
@@ -988,6 +1052,8 @@ class Personal extends Component {
                             
 
                           </div>
+						  
+						  
 
                           <div className="grid grid-cols-1 bg-zinc-100 p-4 rounded-2xl w-full h-auto justify-items-center">
                             <div className="w-[100%]">
@@ -995,7 +1061,7 @@ class Personal extends Component {
                                   <div>
                                     <div className="grid grid-cols-1">
                                       <div className="font-bold text-black">FILE</div>
-                                      <div className="pt-2"><img src={photo_ktp} /></div>  
+                                      <div className="pt-2"><img src={ktpTemp ? ktpTemp : photo_ktp} /></div>  
                                     </div>
                                   </div>
 
@@ -1005,6 +1071,8 @@ class Personal extends Component {
                                       <div className="text-bold pt-2">KTP</div>  
                                     </div>
                                   </div>
+								  
+								  
 
                                   <div>
                                     <div className="grid grid-cols-1 ">
@@ -1013,11 +1081,15 @@ class Personal extends Component {
                                         
                                         <div className="mobile-hide">
                                           <div className="grid lg:w-4/5 2xl:w-1/2 grid-cols-3">
-                                            <div className="w-7">
-                                              <img src={close1} width="25px" />
+                                            <div className="w-7">                           
+                                               <a href="#">       
+                                              <img src={close1} onClick={this.deleteKtp.bind(this)} width="25px" />
+											  </a>
                                             </div>
                                             <div className="w-7">
+											
                                               <img src={unduh_ijo} width="25px" />
+											
                                             </div>
                                             <div className="  w-7">
                                               <img src={see_icon} width="25px" />
@@ -1319,7 +1391,7 @@ class Personal extends Component {
                                   onChange={this.handleChange}
                                   inline
                                   checked={
-                                    user.jenis_kelamin === "Laki-Laki"
+                                    user.jenis_kelamin === "Laki-Laki" || user.jenis_kelamin === "LAKI-LAKI"
                                       ? "checked"
                                       : ""
                                   }
@@ -1334,7 +1406,7 @@ class Personal extends Component {
                                   value="Perempuan"
                                   type="radio"
                                   checked={
-                                    user.jenis_kelamin === "Perempuan"
+                                    user.jenis_kelamin === "Perempuan" || user.jenis_kelamin === "WANITA" || user.jenis_kelamin === "PEREMPUAN"
                                       ? "checked"
                                       : ""
                                   }
@@ -1915,9 +1987,17 @@ class Personal extends Component {
                                   lg={6}
                                   controlId="pertanyaan2"
                                 >
+								
                                   <Form.Label>
                                     Pengalaman Trading anda Sebelumnya di
                                   </Form.Label>
+								  {errMsg2.pertanyaan2 ? (
+                                  <span className="text-error badge badge-danger" style={{ float: "right" }}>
+                                    {errMsg2.pertanyaan2}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                                   <Form.Control
                                     value={
                                       dataExpTrading.pertanyaan2
@@ -2041,6 +2121,13 @@ class Personal extends Component {
                                     Pengalaman Trading Berjangka anda Sebelumnya
                                     di
                                   </Form.Label>
+								  {errMsg2.pertanyaan6 ? (
+                                  <span className="text-error badge badge-danger" style={{ float: "right" }}>
+                                    {errMsg2.pertanyaan6}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                                   <Form.Control
                                     value={
                                       dataExpTrading.pertanyaan6

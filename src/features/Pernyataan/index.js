@@ -2,6 +2,7 @@ import React, { Component, createRef } from 'react'
 import { Col, Input, Panel, PanelGroup, Row } from 'rsuite';
 import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
+import Pernyataan3 from '../../components/modal/Pernyataan3';
 import moment from 'moment';
 import "moment/locale/id";
 import { Form } from 'react-bootstrap'
@@ -586,21 +587,7 @@ class Pernyataan extends Component {
                                                                         <td><p>: </p></td>
                                                                         <td><p><strong>800.03.7765.800</strong></p></td>
                                                                     </tr>
-                                                                    <tr>
-                                                                        <td><p>Bank</p></td>
-                                                                        <td><p>: </p></td>
-                                                                        <td><p><strong>BCA CAB.VETERAN SURABAYA, A/N.PT.VICTORY INTERNATIONAL FUTURES</strong></p></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><p>No.Rekening Terpisah</p></td>
-                                                                        <td><p>: </p></td>
-                                                                        <td><p><strong>0101.61.6699 (IDR)</strong></p></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><p>No.Rekening Terpisah</p></td>
-                                                                        <td><p>: </p></td>
-                                                                        <td><p><strong>0101.61.2588 (USD)</strong></p></td>
-                                                                    </tr>
+                                                                    <Pernyataan3/>
                                                                     <tr>
                                                                         <td><p>Bank</p></td>
                                                                         <td><p>: </p></td>
