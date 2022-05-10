@@ -11,8 +11,8 @@ import icon_hubungi from '../assets/icon/hubungi_kami_white.svg';
 import icon_unduh from '../assets/icon/unduh_white.png';
 import icon_belajar from '../assets/icon/yuk_belajar_white.svg';
 import icon_autochartist from '../assets/icon/autochartist_white.svg';
-import icon_pengaturan from '../assets/icon/autochartist_white.svg';
-import icon_reject from '../assets/icon/autochartist_white.svg';
+import icon_pengaturan from '../assets/icon/pengaturan_white.png';
+import icon_reject from '../assets/icon/reject_white.png';
 
 import icon_penarikan from '../assets/icon/penarikan.png';
 import icon_setoran from '../assets/icon/setoran.png';

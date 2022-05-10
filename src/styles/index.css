@@ -735,6 +735,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 2.5rem;
 }
 
+.w-7 {
+  width: 1.75rem;
+}
+
 .w-\[75\%\] {
   width: 75%;
 }
@@ -810,6 +814,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   justify-content: center;
 }
 
+.justify-items-center {
+  justify-items: center;
+}
+
 .gap-4 {
   gap: 1rem;
 }
@@ -820,6 +828,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
 }
 
 .overflow-hidden {
@@ -1008,6 +1020,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pb-0 {
   padding-bottom: 0px;
+}
+
+.pl-\[5\%\] {
+  padding-left: 5%;
 }
 
 .pt-5 {
