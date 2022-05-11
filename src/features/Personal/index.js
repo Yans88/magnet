@@ -1031,9 +1031,9 @@ class Personal extends Component {
                             
                             <div className="grid grid-cols-1 justify-items-center">
                               <div className="col-span-2">
-                                  Unggah KTP
+                                  Unggah KTP/KITAS
                               </div>
-                              <div className="w-[50%] pl-[5%] lg:pl-[15%] 2xl:pl-[28%] xl:pl-[25%] lg:w-[70%] text-center mt-2 ">
+                              <div className="w-[50%] xs:pl-[5%] lg:pl-[15%] 2xl:pl-[28%] xl:pl-[15%] lg:w-[70%] text-center mt-2 ">
                               <Form>
                                   <Form.Group controlId="KTP">
                                     <Form.File
@@ -1163,14 +1163,14 @@ class Personal extends Component {
                                 controlId="nama_depan"
                               >
                                 <Form.Control
-                                  value={user.nama_depan ? user.nama_depan+" "+user.nama_belakang: ""}
+                                  value={user.nama_depan ? user.nama_depan : ""}
                                   autoComplete="off"
                                   onChange={this.handleChange}
                                   size="lg"
                                   name="nama_depan"
                                   type="text"
                                   required
-                                  placeholder="Nama Lenkap"
+                                  placeholder="Nama Depan"
                                 />
                                 {errMsg1.nama_depan ? (
                                   <span className="text-error badge badge-danger">
@@ -1180,7 +1180,7 @@ class Personal extends Component {
                                   ""
                                 )}
                               </Form.Group>
-                              
+                  
                             </Form.Row>
                             <Form.Row>
                               <Form.Group
@@ -1845,7 +1845,7 @@ class Personal extends Component {
                                       <span className="text-gray-700">
                                         serta
                                       </span>{" "}
-                                      <span className="label_merah font-bold">
+                                      <span className="label_merah font-extrabold">
                                         Kebijakan Privasi
                                       </span>
                                     </label>
@@ -1861,7 +1861,7 @@ class Personal extends Component {
                                       size="lg"
                                       theme=""
                                       style={{
-                                        backgroundColor: "#218838",
+                                        backgroundColor: "#C3262A",
                                         color: "#fff",
                                         marginRight: "2%",
                                       }}
@@ -1872,6 +1872,7 @@ class Personal extends Component {
                                 </div>
                               </div>
                             </div>
+                            
                           </div>
                         </Form>
                       </Fragment>
@@ -2215,7 +2216,7 @@ class Personal extends Component {
                                         size="lg"
                                         theme=""
                                         style={{
-                                          backgroundColor: "#218838",
+                                          backgroundColor: "#C3262A",
                                           color: "#fff",
                                           marginRight: "2%",
                                         }}
@@ -2506,7 +2507,7 @@ class Personal extends Component {
                                         <span className="text-gray-700">
                                           serta
                                         </span>{" "}
-                                        <span className="label_merah font-bold">
+                                        <span className="label_merah font-extrabold">
                                           Kebijakan Privasi
                                         </span>
                                       </label>
@@ -2524,7 +2525,7 @@ class Personal extends Component {
                                         size="lg"
                                         theme=""
                                         style={{
-                                          backgroundColor: "#218838",
+                                          backgroundColor: "#C3262A",
                                           color: "#fff",
                                           marginRight: "2%",
                                         }}
@@ -2861,7 +2862,7 @@ class Personal extends Component {
                                         <span className="text-gray-700">
                                           serta
                                         </span>{" "}
-                                        <span className="label_merah font-bold">
+                                        <span className="label_merah font-extrabold">
                                           Kebijakan Privasi
                                         </span>
                                       </label>
@@ -2878,7 +2879,7 @@ class Personal extends Component {
                                         size="lg"
                                         theme=""
                                         style={{
-                                          backgroundColor: "#218838",
+                                          backgroundColor: "#C3262A",
                                           color: "#fff",
                                           marginRight: "2%",
                                         }}
@@ -3316,7 +3317,7 @@ class Personal extends Component {
                                         <span className="text-gray-700">
                                           serta
                                         </span>{" "}
-                                        <span className="label_merah font-bold">
+                                        <span className="label_merah font-extrabold">
                                           Kebijakan Privasi
                                         </span>
                                       </label>
@@ -3333,7 +3334,7 @@ class Personal extends Component {
                                         size="lg"
                                         theme=""
                                         style={{
-                                          backgroundColor: "#218838",
+                                          backgroundColor: "#C3262A",
                                           color: "#fff",
                                           marginRight: "2%",
                                         }}
@@ -3661,7 +3662,7 @@ class Personal extends Component {
                                         <span className="text-gray-700">
                                           serta
                                         </span>{" "}
-                                        <span className="label_merah font-bold">
+                                        <span className="label_merah font-extrabold">
                                           Kebijakan Privasi
                                         </span>
                                       </label>
@@ -3679,7 +3680,7 @@ class Personal extends Component {
                                         size="lg"
                                         theme=""
                                         style={{
-                                          backgroundColor: "#218838",
+                                          backgroundColor: "#C3262A",
                                           color: "#fff",
                                           marginRight: "2%",
                                         }}
@@ -4051,7 +4052,7 @@ class Personal extends Component {
                                         <span className="text-gray-700">
                                           serta
                                         </span>{" "}
-                                        <span className="label_merah font-bold">
+                                        <span className="label_merah font-extrabold">
                                           Kebijakan Privasi
                                         </span>
                                       </label>
@@ -4072,7 +4073,7 @@ class Personal extends Component {
                                         size="lg"
                                         theme=""
                                         style={{
-                                          backgroundColor: "#218838",
+                                          backgroundColor: "#C3262A",
                                           color: "#fff",
                                           marginRight: "2%",
                                         }}

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getRate, getTA, chgPropsTA, closeForm, confirmDel, simpanDataTA } from './taSlice';
 import { profileUser } from '../main/mainSlice';
 import { Button, Col, Row, Form, Card, ListGroup } from 'react-bootstrap'
-import AppModal from '../../components/modal/MyModal';
+import AppModal from '../../components/modal/MyModalMuis';
 
 class TypeAccount extends Component {
     constructor(props) {

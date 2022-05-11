@@ -169,7 +169,7 @@ class KetentuanTrading extends Component {
                                                     <span className="text-gray-700">
                                                         serta
                                                     </span>{" "}
-                                                    <span className="label_merah font-bold">
+                                                    <span className="label_merah font-extrabold">
                                                         Kebijakan Privasi
                                                     </span>
                                                     </label>
@@ -182,7 +182,7 @@ class KetentuanTrading extends Component {
                                                     size="lg"
                                                     theme=""
                                                     style={{
-                                                        backgroundColor: "#218838",
+                                                        backgroundColor: "#C3262A",
                                                         color: "#fff",
                                                         marginRight: "2%",
                                                     }}

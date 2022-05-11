@@ -953,7 +953,7 @@ class Pernyataan extends Component {
                                       <span className="text-gray-700">
                                         serta
                                       </span>{" "}
-                                      <span className="label_merah font-bold">
+                                      <span className="label_merah font-extrabold">
                                         Kebijakan Privasi
                                       </span>
                                     </label>
