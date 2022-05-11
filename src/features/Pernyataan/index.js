@@ -2,16 +2,12 @@ import React, { Component, createRef } from 'react'
 import { Col, Input, Panel, PanelGroup, Row } from 'rsuite';
 import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
-import Pernyataan3 from '../../components/modal/Pernyataan3';
 import moment from 'moment';
 import "moment/locale/id";
 import { Form } from 'react-bootstrap'
 import { getDataPernyataan, chgProps, simpanDataPernyataan,getSelectAkun } from './pernyataanSlice';
 import { profileUser } from '../main/mainSlice';
 import { getAkunTradingDemo } from '../Setoran/setoranSlice';
-import {
-  getPekerjaan
-} from "../Personal/personalSlice";
 
 class Pernyataan extends Component {
     constructor(props) {
@@ -53,12 +49,8 @@ class Pernyataan extends Component {
     handleBack() {
         this.props.history.push("/account-type");
     }
-	
-	sleep(ms) {
-		return new Promise((resolve) => setTimeout(resolve, ms));
-	}
 
-    handleChange =async(evt)=> {
+    handleChange(evt) {
         const name = evt.target.name;
         var value = evt.target.value;
         if (name === "agree") {
@@ -66,17 +58,15 @@ class Pernyataan extends Component {
         }
 		if(name === "pernyataan1" && value === "Y"){
 			this.setState({ defaultActiveKey: 2 });
-			await this.sleep(200);
-			this.scrollDiv.current.scrollIntoView({ behavior: "smooth", bottom:0,block: "end", inline: "nearest" });			
+			this.scrollDiv.current.scrollIntoView({ behavior: "smooth" });			
 		}
 		if(name === "pernyataan2" && value === "Y"){
 			this.setState({ defaultActiveKey: 3 });
-			await this.sleep(450);
 			this.scrollDiv.current.scrollIntoView({ behavior: "smooth", bottom:0,block: "end", inline: "nearest" });		
 		}
 		if(name === "pernyataan3" && value === "Y"){
 			this.setState({ defaultActiveKey: 4 });
-			this.scrollDiv.current.scrollIntoView({ behavior: "smooth", bottom:0,block: "end", inline: "nearest" });
+			this.scrollDiv.current.scrollIntoView({ behavior: "smooth" });
 		}
         const dt = {};
         dt['key'] = name;
@@ -125,11 +115,10 @@ class Pernyataan extends Component {
             if (!this.validateForm(this.state.errMsg1)) {
                 console.error('Invalid Form')
             } else {
-                const saveData = {
-                    ...this.props.dataPernyataan, 
-					data_tipe_akun_id : this.props.dataPernyataan.data_tipe_akun_id ? this.props.dataPernyataan.data_tipe_akun_id : sessionStorage.getItem("data_tipe_akun_id")
-                }
-                this.props.onSave(saveData);
+                // const saveData = {
+                    // ...this.props.dataPernyataan,                   
+                // }
+                this.props.onSave(this.props.dataPernyataan);
                 if (action) this.props.history.push("/trading_rules");
             }
 
@@ -150,7 +139,7 @@ class Pernyataan extends Component {
 
     render() {
         const { lastSegmentUrl, defaultActiveKey, errMsg1 } = this.state;
-        const { user, dataPernyataan, dataPekerjaan } = this.props;
+        const { user, dataPernyataan } = this.props;
         const { arr_wakil_pialang } = dataPernyataan;
         const tgl_lhir = user && user.tanggal_lahir ? moment(new Date(user.tanggal_lahir)).format('DD/MM/YYYY') : '';
 		
@@ -457,7 +446,7 @@ class Pernyataan extends Component {
                                                     <ol className="list_aja">
                                                         <li tabIndex={1}>
                                                             <p>Nama: <b className="declaration_name_html">{user ? user.nama_depan + ' ' + user.nama_belakang : ''}</b></p>
-                                                            <p>Pekerjaan/Jabatan: <b className="declaration_employment_status_html">{dataPekerjaan.jabatan && dataPekerjaan.jabatan}</b>
+                                                            <p>Pekerjaan/Jabatan: <b className="declaration_employment_status_html">Wiraswasta</b>
                                                             </p>
                                                             <p>Alamat: <b className="declaration_address_html">{user ? user.alamat + ' ' + user.rt + ' ' + user.rw + ' ' + user.provinsi : ''}</b></p>
                                                             <p>Dalam hal ini bertindak untuk dan atas nama  sendiri yang selanjutnya disebut <b>Nasabah</b>.</p>
@@ -587,7 +576,21 @@ class Pernyataan extends Component {
                                                                         <td><p>: </p></td>
                                                                         <td><p><strong>800.03.7765.800</strong></p></td>
                                                                     </tr>
-                                                                    <Pernyataan3/>
+                                                                    <tr>
+                                                                        <td><p>Bank</p></td>
+                                                                        <td><p>: </p></td>
+                                                                        <td><p><strong>BCA CAB.VETERAN SURABAYA, A/N.PT.VICTORY INTERNATIONAL FUTURES</strong></p></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><p>No.Rekening Terpisah</p></td>
+                                                                        <td><p>: </p></td>
+                                                                        <td><p><strong>0101.61.6699 (IDR)</strong></p></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><p>No.Rekening Terpisah</p></td>
+                                                                        <td><p>: </p></td>
+                                                                        <td><p><strong>0101.61.2588 (USD)</strong></p></td>
+                                                                    </tr>
                                                                     <tr>
                                                                         <td><p>Bank</p></td>
                                                                         <td><p>: </p></td>
@@ -898,88 +901,95 @@ class Pernyataan extends Component {
                                             </PanelGroup>
                                         </div>
 
+                        <div
+                            className="container__box p-4"
+                            style={{
+                              backgroundColor: "#fbfbfd"
+                            }}
+                          >
+                            <div className="grid grid-cols-1 place-items-center">
+                              <div className="form-group lg:w-2/3">
+                                <div className="form-check">
+                                  {errMsg1.agree ? (
+                                    <span className="text-error badge badge-danger">
+                                      {errMsg1.agree}
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
+                                  <label>
+                                    <input
+                                      checked={dataPernyataan.agree ? true : false}
+                                      onChange={this.handleChange.bind(this)}
+                                      value={1}
+                                      className="form-check-input"
+                                      type="checkbox"
+                                      name="agree"
+                                    />
+                                    <div className="form-check-text">
+                                      Dengan mencentang kotak ini, saya dengan
+                                      ini mengakui bahwa semua informasi dan
+                                      dokumen yang disediakan dalam aplikasi
+                                      Online untuk pembukaan akun transaksi
+                                      adalah benar dan valid.saya dengan ini
+                                      bertanggung jawab penuh atas setiap
+                                      kerusakan / kerugian di masa depan sebagai
+                                      akibat dari informasi palsu dari dokumen
+                                      yang saya sediakan.
+                                    </div>
+                                  </label>
+                                </div>
+
+                                <div className="grid grid-cols-1 place-items-center">
+                                  <div className="form-group lg:w-[50%] text-center mt-4">
+                                    <label>
+                                      <span className="text-gray-700">
+                                        Dengan mendaftar, saya menyetujui
+                                      </span>{" "}
+                                      <br />
+                                      <span className="text-black font-extrabold">
+                                        Syarat dan ketentuan
+                                      </span>{" "}
+                                      <span className="text-gray-700">
+                                        serta
+                                      </span>{" "}
+                                      <span className="label_merah font-bold">
+                                        Kebijakan Privasi
+                                      </span>
+                                    </label>
+                                  </div>
+
+                                  <div ref={this.scrollDiv} className="form-group w-[100%] lg:w-[40%] text-center">
+
+                                    <AppButton
+                                        style={{ color: '#ffffff', marginRight: 5 }}
+                                        onClick={this.handleBack.bind(this)}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                        style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}>Back</AppButton>
+                                    <AppButton
+                                        style={{ color: '#ffffff', marginRight: 5 }}
+                                        onClick={this.handlesubmit.bind(this, 'act')}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                                    style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}>Selanjutnya</AppButton>
+                                    <AppButton
+                                        onClick={this.handlesubmit.bind(this)}
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                                    style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
+                                        Simpan</AppButton>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                          </div>
+
                                         
-
-                                        <div
-                                            className="container__box p-4"
-                                            style={{
-                                            backgroundColor: "#fbfbfd",
-                                            margin: "1em -1.5em -1.5em",
-                                            }}
-                                        >
-                                            <div className="grid grid-cols-1 place-items-center">
-                                                <div className="form-group lg:w-[50%]">
-                                                <div className="form-check">
-                                                {errMsg1.agree ? (
-                                                    <span className="text-error badge badge-danger">
-                                                    {errMsg1.agree}
-                                                    </span>
-                                                ) : (
-                                                    ""
-                                                )}
-                                                <label>
-                                                    <input
-                                                    checked={dataPernyataan.agree === 'Y' ? true : false}
-                                                    onChange={this.handleChange.bind(this)}
-                                                    value={1}
-                                                    className="form-check-input"
-                                                    type="checkbox"
-                                                    name="agree"
-                                                    />
-                                                <div className="form-check-text">
-                                                    Dengan mencentang kotak ini, saya dengan
-                                                    ini mengakui bahwa semua informasi dan
-                                                    dokumen yang disediakan dalam aplikasi
-                                                    Online untuk pembukaan akun transaksi
-                                                    adalah benar dan valid.saya dengan ini
-                                                    bertanggung jawab penuh atas setiap
-                                                    kerusakan / kerugian di masa depan sebagai
-                                                    akibat dari informasi palsu dari dokumen
-                                                    yang saya sediakan.
-                                                    </div>
-                                                </label>
-                                                </div>
-
-                                                <div className="grid grid-cols-1 place-items-center">
-                                                <div className="form-group lg:w-[50%] text-center mt-4">
-                                                    <label>
-                                                    <span className="text-gray-700">
-                                                        Dengan mendaftar, saya menyetujui
-                                                    </span>{" "}
-                                                    <br />
-                                                    <span className="text-black font-extrabold">
-                                                        Syarat dan ketentuan
-                                                    </span>{" "}
-                                                    <span className="text-gray-700">
-                                                        serta
-                                                    </span>{" "}
-                                                    <span className="label_merah font-bold">
-                                                        Kebijakan Privasi
-                                                    </span>
-                                                    </label>
-                                                </div>
-
-                                                <div className="form-group w-[100%] lg:w-[40%] text-center">
-                                                    <AppButton
-                                                    onClick={this.handlesubmit.bind(this, 'act')}
-                                                    type="button"
-                                                    size="lg"
-                                                    theme=""
-                                                    style={{
-                                                        backgroundColor: "#218838",
-                                                        color: "#fff",
-                                                        marginRight: "2%",
-                                                    }}
-                                                    >
-                                                    Selanjutnya
-                                                    </AppButton>
-                                                </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            
-                                        </div>
-
 
                                     </div>
 
@@ -997,14 +1007,12 @@ class Pernyataan extends Component {
 }
 const mapStateToProps = (state) => ({
     dataPernyataan: state.dtPernyataan.dataPernyataan || {},
-	dataPekerjaan: state.personal.dataPekerjaan || {},
     user: state.main.currentUser
 });
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: (param) => {
-			dispatch(profileUser());		
-			dispatch(getPekerjaan());
+			dispatch(profileUser());			
             dispatch(getDataPernyataan(param));	
 			dispatch(getSelectAkun(param));	
 			dispatch(getAkunTradingDemo());			

@@ -22,7 +22,7 @@ export const Pernyataan3 = ({
         <td>
           <p>
             <strong>
-              BCA CAB.VETERAN SURABAYA, A/N.PT.VICTORY INTERNATIONAL FUTURES
+			{namaBank} CAB. {cabang}, A/N. {atasNama}
             </strong>
           </p>
         </td>
@@ -36,10 +36,11 @@ export const Pernyataan3 = ({
         </td>
         <td>
           <p>
-            <strong>0101.61.6699 (IDR)</strong>
+            <strong>{noRek} (IDR)</strong>
           </p>
         </td>
       </tr>
+	  {noRekUSD && (
       <tr>
         <td>
           <p>No.Rekening Terpisah</p>
@@ -49,10 +50,10 @@ export const Pernyataan3 = ({
         </td>
         <td>
           <p>
-            <strong>0101.61.2588 (USD)</strong>
+            <strong>{noRekUSD} (USD)</strong>
           </p>
         </td>
-      </tr>
+      </tr>)}
     </Fragment>
   );
 };
