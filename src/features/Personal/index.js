@@ -3732,7 +3732,7 @@ class Personal extends Component {
                                 </h6>
                                 <ul className="list-check">
                                   <li>KTP / SIM / Paspor</li>
-                                  <li>Foto Terkini</li>
+                                  <li>Foto Selfie</li>
                                   <li>
                                     Pilih salah satu di bawah ini untuk dokumen
                                     lainnya
@@ -3774,7 +3774,7 @@ class Personal extends Component {
                                         marginTop: ".8rem",
                                       }}
                                     >
-                                      Unggah Foto Terkini
+                                      Unggah Foto Selfie
                                     </h4>
                                   </div>
                                   <div className="col-md-3">

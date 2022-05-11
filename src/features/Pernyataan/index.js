@@ -898,45 +898,88 @@ class Pernyataan extends Component {
                                             </PanelGroup>
                                         </div>
 
-                                        <div className="container__box p-4" style={{ backgroundColor: '#fbfbfd', margin: '1em -1.5em -1.5em' }}>
-                                        <div className="grid grid-cols-1 place-items-center"> 
-                                          
-                                            <div className="form-group lg:w-3/4">
+                                        
+
+                                        <div
+                                            className="container__box p-4"
+                                            style={{
+                                            backgroundColor: "#fbfbfd",
+                                            margin: "1em -1.5em -1.5em",
+                                            }}
+                                        >
+                                            <div className="grid grid-cols-1 place-items-center">
+                                                <div className="form-group lg:w-[50%]">
                                                 <div className="form-check">
-                                                    {errMsg1.agree ? (<span className="text-error badge badge-danger">{errMsg1.agree}</span>) : ''}
-                                                    <label>
-                                                        <input
-                                                            checked={dataPernyataan.agree === 'Y' ? true : false}
-                                                            onChange={this.handleChange.bind(this)}
-                                                            className="form-check-input" type="checkbox" name="agree" />
-                                                        <div className="form-check-text">Dengan mencentang kotak ini, saya menyatakan telah membaca dan menyetujui semua pernyataan yang tertera pada halaman ini</div>
+                                                {errMsg1.agree ? (
+                                                    <span className="text-error badge badge-danger">
+                                                    {errMsg1.agree}
+                                                    </span>
+                                                ) : (
+                                                    ""
+                                                )}
+                                                <label>
+                                                    <input
+                                                    checked={dataPernyataan.agree === 'Y' ? true : false}
+                                                    onChange={this.handleChange.bind(this)}
+                                                    value={1}
+                                                    className="form-check-input"
+                                                    type="checkbox"
+                                                    name="agree"
+                                                    />
+                                                <div className="form-check-text">
+                                                    Dengan mencentang kotak ini, saya dengan
+                                                    ini mengakui bahwa semua informasi dan
+                                                    dokumen yang disediakan dalam aplikasi
+                                                    Online untuk pembukaan akun transaksi
+                                                    adalah benar dan valid.saya dengan ini
+                                                    bertanggung jawab penuh atas setiap
+                                                    kerusakan / kerugian di masa depan sebagai
+                                                    akibat dari informasi palsu dari dokumen
+                                                    yang saya sediakan.
+                                                    </div>
+                                                </label>
+                                                </div>
 
+                                                <div className="grid grid-cols-1 place-items-center">
+                                                <div className="form-group lg:w-[50%] text-center mt-4">
+                                                    <label>
+                                                    <span className="text-gray-700">
+                                                        Dengan mendaftar, saya menyetujui
+                                                    </span>{" "}
+                                                    <br />
+                                                    <span className="text-black font-extrabold">
+                                                        Syarat dan ketentuan
+                                                    </span>{" "}
+                                                    <span className="text-gray-700">
+                                                        serta
+                                                    </span>{" "}
+                                                    <span className="label_merah font-bold">
+                                                        Kebijakan Privasi
+                                                    </span>
                                                     </label>
                                                 </div>
-                                            </div>
 
-                                                <div className="form-group lg:w-[40%] text-center">
-                                                    <label>
-                                                        Dengan mendaftar, saya menyetujui Syarat dan ketentuan serta <span className="label_merah font-bold">Kebijakan Privasi</span>
-                                                    </label>
-                                                </div>
-
-                                                <div ref={this.scrollDiv} className="form-group w-1/4">
-                                               
-                                               
-                                                <AppButton
+                                                <div className="form-group w-[100%] lg:w-[40%] text-center">
+                                                    <AppButton
                                                     onClick={this.handlesubmit.bind(this, 'act')}
                                                     type="button"
                                                     size="lg"
                                                     theme=""
-                                                    style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>Selanjutnya</AppButton>
+                                                    style={{
+                                                        backgroundColor: "#218838",
+                                                        color: "#fff",
+                                                        marginRight: "2%",
+                                                    }}
+                                                    >
+                                                    Selanjutnya
+                                                    </AppButton>
                                                 </div>
-
+                                                </div>
+                                            </div>
+                                            </div>
                                             
-
-                                           </div> 
-
                                         </div>
+
 
                                     </div>
 
