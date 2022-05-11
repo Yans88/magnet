@@ -1163,14 +1163,14 @@ class Personal extends Component {
                                 controlId="nama_depan"
                               >
                                 <Form.Control
-                                  value={user.nama_depan ? user.nama_depan : ""}
+                                  value={user.nama_depan ? user.nama_depan+" "+user.nama_belakang: ""}
                                   autoComplete="off"
                                   onChange={this.handleChange}
                                   size="lg"
                                   name="nama_depan"
                                   type="text"
                                   required
-                                  placeholder="Nama Depan"
+                                  placeholder="Nama Lenkap"
                                 />
                                 {errMsg1.nama_depan ? (
                                   <span className="text-error badge badge-danger">
@@ -1180,20 +1180,7 @@ class Personal extends Component {
                                   ""
                                 )}
                               </Form.Group>
-                              <Form.Group as={Col} controlId="nama_belakang">
-                                <Form.Control
-                                  value={
-                                    user.nama_belakang ? user.nama_belakang : ""
-                                  }
-                                  autoComplete="off"
-                                  onChange={this.handleChange}
-                                  size="lg"
-                                  name="nama_belakang"
-                                  type="text"
-                                  required
-                                  placeholder="Nama Belakang"
-                                />
-                              </Form.Group>
+                              
                             </Form.Row>
                             <Form.Row>
                               <Form.Group
