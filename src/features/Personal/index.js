@@ -1087,9 +1087,9 @@ class Personal extends Component {
 											  </a>
                                             </div>
                                             <div className="w-7">
-											
+											<a href={user.photo_ktp_download ? user.photo_ktp_download : "#"}> 
                                               <img src={unduh_ijo} width="25px" />
-											
+											</a>
                                             </div>
                                             <div className="  w-7">
                                               <img src={see_icon} width="25px" />
@@ -1163,14 +1163,14 @@ class Personal extends Component {
                                 controlId="nama_depan"
                               >
                                 <Form.Control
-                                  value={user.nama_depan ? user.nama_depan : ""}
+                                  value={user.nama_depan ? user.nama_depan+" "+user.nama_belakang: ""}
                                   autoComplete="off"
                                   onChange={this.handleChange}
                                   size="lg"
                                   name="nama_depan"
                                   type="text"
                                   required
-                                  placeholder="Nama Depan"
+                                  placeholder="Nama Lengkap"
                                 />
                                 {errMsg1.nama_depan ? (
                                   <span className="text-error badge badge-danger">

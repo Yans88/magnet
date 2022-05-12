@@ -173,6 +173,7 @@ export const fetchUserKTP = createAsyncThunk(
             warga_negara: myData.kewarganegaraan === "WNI" ? "Indonesia" : "",
             rw: rw ? rw : "",
             rt: rt ? rt : "",
+			photo_ktp_download: myData.photo_ktp ? myData.photo_ktp : "",
           };
           return payload;
         } else {
