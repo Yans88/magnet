@@ -343,9 +343,7 @@ class Personal extends Component {
       errors.nama_depan = !this.props.user.nama_depan
         ? "Kolom ini harus diisi"
         : "";
-      errors.tempat_lahir = !this.props.user.tempat_lahir
-        ? "Kolom ini harus diisi"
-        : "";
+      
       errors.kota_lahir = !this.props.user.kota_lahir
         ? "Kolom ini harus diisi"
         : "";
@@ -446,9 +444,7 @@ class Personal extends Component {
     errors.nama_depan = !this.props.user.nama_depan
       ? "Kolom ini harus diisi"
       : "";
-    errors.tempat_lahir = !this.props.user.tempat_lahir
-      ? "Kolom ini harus diisi"
-      : "";
+   
     errors.kota_lahir = !this.props.user.kota_lahir
       ? "Kolom ini harus diisi"
       : "";
@@ -1183,46 +1179,7 @@ class Personal extends Component {
                   
                             </Form.Row>
                             <Form.Row>
-                              <Form.Group
-                                as={Col}
-                                xs={12}
-                                lg={6}
-                                controlId="tempat_lahir"
-                              >
-                                <Form.Control
-                                  name="tempat_lahir"
-                                  size="lg"
-                                  value={
-                                    user.tempat_lahir ? user.tempat_lahir : ""
-                                  }
-                                  onChange={this.handleChange}
-                                  as="select"
-                                >
-                                  <option value="">Provinsi</option>
-                                  {dataProvinsi
-                                    ? dataProvinsi.map(function (prov) {
-                                        return (
-                                          <option
-                                            value={prov.nama_provinsi}
-                                            key={prov.provinsi_id}
-                                          >
-                                            {prov.nama_provinsi}
-                                          </option>
-                                        );
-                                      })
-                                    : ""}
-                                  <option value="Lainnya(Others)">
-                                    Lainnya(Others)
-                                  </option>
-                                </Form.Control>
-                                {errMsg1.tempat_lahir ? (
-                                  <span className="text-error badge badge-danger">
-                                    {errMsg1.tempat_lahir}
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
-                              </Form.Group>
+                              
                               <Form.Group
                                 as={Col}
                                 xs={12}
