@@ -185,15 +185,7 @@ class Pernyataan extends Component {
         
 
                                                         <br />
-                                                        <Row>
-                                                            <Col xs={24} lg={6}>
-                                                                <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Tempat Lahir</span></label></Col>
-                                                            
-                                                            <Col xs={24} lg={6}>
-                                                                <Input readOnly size="lg" value={user && user.tempat_lahir ? user.tempat_lahir : ''} />
-                                                            </Col>
-                                                        </Row>
-                                                        <br />
+                                                        
                                                         <Row>    
                                                             <Col xs={24} lg={6}>
                                                                 <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Tanggal Lahir</span></label></Col>

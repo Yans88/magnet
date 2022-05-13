@@ -153,12 +153,25 @@ class ProfilePerusahaan extends Component {
         </div>
         <section className="content">
           <div className="container-fluid">
-            <h1
-              style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}
-              className="text-gray-500"
-            >
-              Registrasi Akun Online
-            </h1>
+            
+            <div class="mobile-hide">
+              <h1
+                style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}
+                className="text-gray-500"
+              >
+                Registrasi Akun Online
+              </h1>
+            </div>
+
+            <div class="mobile-view">
+              <h1
+                style={{ marginBottom: 10, fontSize: 22, marginLeft: 10 }}
+                className="text-gray-500"
+              >
+                Registrasi Akun Online
+              </h1>
+            </div>
+
             <div className="row">
               <div className="col-12">
                 {/* card start */}

@@ -468,7 +468,7 @@ class Beranda extends Component {
                 <div className="mobile-hide relative  text-black text-center    py-0 w-3/4 mt-0 ..." >
                     
                     <div className="mobile-hide relative    bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[100%] mb-10   ...">
-                                <a href="account-type" className="btn btn-lgreen btn-sm"><span className="font-bold text-red-700"><h4>AKUN DEMO MT5</h4></span></a><br/>
+                                <span className="font-bold text-red-700" style={{fontSize:"17px"}}>AKUN DEMO MT5</span><br/><br/>
                                 
                                 
                                 <div className="grid grid-col2-1 place-items-center mb-4">
@@ -582,8 +582,8 @@ class Beranda extends Component {
                                     <div className="border border-solid border-gray-300 text-left p-4 rounded-2xl" style={{ backgroundColor:"#F1F1F1"}}>
                                         
                                         
-                                        <div className="grid grid-cols-2">
-                                            <div className="py-2">
+                                        <div className="grid grid-cols-4">
+                                            <div className="py-2 col-span-3">
                                                 <span className="text-semi-bold" style={{color:"#C2252C"}}>#{at.login}</span>
                                             </div>
 
@@ -592,7 +592,7 @@ class Beranda extends Component {
                                             <div className="box-bank__actions place-items-end text-right">
                                                 <Dropdown>
                                                     <Dropdown.Toggle size="sm" variant="secondary"
-                                                        style={{ backgroundColor: 'transparent', borderColor: 'transparent',color:'#000' }} id="dropdown-basic">
+                                                        style={{ backgroundColor: 'transparent', borderColor: 'transparent',color:'#000',paddingLeft:"80%" }} id="dropdown-basic">
                                                         <i className="fa fa-ellipsis-v"></i>
                                                     </Dropdown.Toggle>
 
@@ -649,10 +649,8 @@ class Beranda extends Component {
               
 
               <div className="mobile-view relative mt-[0rem]  bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[100%] mb-10 mx-1 ...">
-                <a href="account-type" className="btn btn-lgreen btn-sm">
                   <span className="font-bold text-red-700">AKUN DEMO MT5</span>
-                </a>
-
+                
                 
 
                 <br />
