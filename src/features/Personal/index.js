@@ -2286,7 +2286,7 @@ class Personal extends Component {
                                   )}
                                   as="select"
                                 >
-                                  <option value="">Pendapatan per Tahun</option>
+                                  <option value="">Pendapatan Per Tahun</option>
                                   <option value="Antara 100-250 juta">
                                     Antara 100-250 juta
                                   </option>
@@ -2389,7 +2389,7 @@ class Personal extends Component {
                                   thousandSeparator={true}
                                   decimalScale={2}
                                   inputMode="numeric"
-                                  placeholder="Deposit Bank"
+                                  placeholder="Jumlah Simpanan Bank"
                                 />
                                 {errMsg3.deposit_bank ? (
                                   <span className="text-error badge badge-danger">

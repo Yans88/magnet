@@ -86,8 +86,10 @@ class KetentuanTrading extends Component {
                                 {/* card start */}
                                 <div className="card card-success shadow-lg" style={{ "minHeight": "800px" }}>
                                     <div className="card-body" style={{padding:"0"}}>
+                                    <div className="alert alert-default alert-sm" style={{ backgroundColor: '#fbfbfd'}} >    
                                     <div className="mobile-hide" style={{padding:"1"}}>
-                                        <h3 className="label_ijo">Ketentuan Trading</h3>
+                                        <h3 className="label_ijo">Peraturan Trading</h3>
+                                    </div>
                                     </div>
 
                                     
