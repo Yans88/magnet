@@ -608,7 +608,7 @@ class Beranda extends Component {
                                         <div className="grid grid-cols-2">
                                             <div className="font-bold">FREE MARGIN</div>
                                             
-                                            <div><NumberFormat
+                                            <div style={{textAlign:"right",paddingRight:"10%"}}><NumberFormat
                                                                     value={at.margin_free > 0 ? at.margin_free : '0.00'}
                                                                     thousandSeparator={true}
                                                                     decimalScale={2}
@@ -616,7 +616,7 @@ class Beranda extends Component {
                                                                 /></div>
                                             <div className="font-bold">LEVERAGE</div>
                                             
-                                            <div><NumberFormat
+                                            <div style={{textAlign:"right",paddingRight:"10%"}}><NumberFormat
                                                 value={at.leverage > 0 ? at.leverage : '0.00'}
                                                 thousandSeparator={true}
                                                 decimalScale={2}
@@ -624,7 +624,7 @@ class Beranda extends Component {
                                             /></div>
                                             
                                             <div className="font-bold">EQUITY</div>
-                                            <div><NumberFormat
+                                            <div style={{textAlign:"right",paddingRight:"10%"}}><NumberFormat
                                                                     value={at.equity > 0 ? at.equity : '0.00'}
                                                                     thousandSeparator={true}
                                                                     decimalScale={2}
