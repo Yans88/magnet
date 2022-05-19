@@ -262,6 +262,9 @@ class Setoran extends Component {
                             <div>
                                 No. Acc. : <strong className="font-weight-bold text-black"> {selected.no_rek}</strong>
                             </div>
+							<div>
+                                No. Acc. USD : <strong className="font-weight-bold text-black"> {selected.no_rek_usd}</strong>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -72,9 +72,13 @@ class AkunBank extends Component {
                                                                         </div>
                                                                         
                                                                         <div className="px-2 text-left lg:w-1/2">
-                                                                            <h3 className="box-bank__title" style={{ fontSize: 30 }}>{dp.nama_bank}</h3>
-                                                                            <p style={{ fontSize: 25 }}>{dp.nama_pemilik}</p>
+                                                                            <h3 className="box-bank__title" style={{ fontSize: 18 }}>Nama Bank : {dp.nama_bank}</h3>
+                                                                            <p style={{ fontSize: 15 }}>Nama Pemilik : {dp.nama_pemilik}</p>
+                                                                            <p style={{ fontSize: 15 }}>No. Rekening : {dp.no_rek}</p>
+                                                                            <p style={{ fontSize: 15 }}>Cabang : {dp.cabang}</p>
                                                                         </div>
+																		
+																		
 
                                                                         <div style={{ fontSize: 30 }} className="px-2 pt-4 lg:pt-0">
                                                                             <AppButton

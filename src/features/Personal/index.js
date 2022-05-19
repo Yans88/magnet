@@ -387,6 +387,7 @@ class Personal extends Component {
       errors.status_kepemilikan = !this.props.user.status_kepemilikan
         ? "Kolom ini harus diisi"
         : "";
+		
       this.setState({ errors });
     }
 
@@ -490,7 +491,8 @@ class Personal extends Component {
       !this.props.user.agreement1 || !this.props.user.no_identitas
         ? "Kolom ini harus diisi"
         : "";
-
+	
+		errors.npwp = this.props.user.npwp && this.props.user.npwp.length < 15 ? "NPWP harus 15 digit" : errors.npwp;
     this.setState({ errors });
     if (this.validateForm(this.state.errMsg1)) {
       const saveData = {
@@ -1736,6 +1738,7 @@ class Personal extends Component {
                                   thousandSeparator={false}
                                   decimalScale={0}
                                   inputMode="numeric"
+								  maxLength={15}
                                   required
                                   placeholder="NPWP"
                                 />
