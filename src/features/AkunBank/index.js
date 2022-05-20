@@ -76,20 +76,9 @@ class AkunBank extends Component {
                                                                             <p style={{ fontSize: 15 }}>Nama Pemilik : {dp.nama_pemilik}</p>
                                                                             <p style={{ fontSize: 15 }}>No. Rekening : {dp.no_rek}</p>
                                                                             <p style={{ fontSize: 15 }}>Cabang : {dp.cabang}</p>
-                                                                        </div>
-																		
-																		
+                                                                        </div>										
 
-                                                                        <div style={{ fontSize: 30 }} className="px-2 pt-4 lg:pt-0">
-                                                                            <AppButton
-                                                                                className="btn-akun-bank"
-                                                                                style={{ color: '#ffffff' }}
-                                                                                type="button"
-                                                                                size="lg"
-                                                                                theme=""
-                                                                                style={{ backgroundColor:"#C3262A",color:"#fff"}}
-
-                                                                            >{dp.no_rek}</AppButton>
+                                                                        
 
                                                                         </div>
                                                                     </div>
