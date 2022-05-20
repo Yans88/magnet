@@ -235,14 +235,14 @@ class Pernyataan extends Component {
                                                             </Col>
                                                         </Row>
                                                         <br />
-                                                        <strong>
+                                                        <center>
                                                             <span className="label_hitam">
                                                             Dengan mengisi kolom "YA" di bawah ini, saya menyatakan bahwa saya telah melakukan simulasi bertransaksi di bidang Perdagangan Berjangka Komoditi pada PT.Victory International Futures, dan telah memahami tentang tata cara bertransaksi di bidang Perdagangan Berjangka Komoditi.
                                                             <br />
                                                             <br />
                                                             Demikian Pernyataan ini dibuat dengan sebenarnya dalam keadaan sadar, sehat jasmani dan rohani serta tanpa paksaan apapun dari pihak manapun
                                                             </span>
-                                                        </strong>
+                                                        </center>
                                                         <br />
                                                         <br />
                                                         <div className="form-group row align-items-center">
@@ -382,7 +382,7 @@ class Pernyataan extends Component {
                                                     </ol>
 
                                                     <p style={{ textAlign: 'center' }}>PERNYATAAN MENERIMA PEMBERITAHUAN ADANYA RISIKO</p>
-                                                    <p style={{ textAlign: 'center' }}>Dengan mengisi kolom "YA" di bawah, saya menyatakan bahwa saya telah menerima<br /><strong>"DOKUMEN PEMBERITAHUAN ADANYA RISIKO"</strong><br />mengerti dan menyetujui isinya.</p>
+                                                    <p style={{ textAlign: 'center' }}>Dengan mengisi kolom "YA" di bawah, saya menyatakan bahwa saya telah menerima<br />"DOKUMEN PEMBERITAHUAN ADANYA RISIKO"<br />mengerti dan menyetujui isinya.</p>
 
                                                     <div className="form-group row align-items-center">
                                                         <div className="col">
@@ -706,9 +706,8 @@ class Pernyataan extends Component {
                                                                     onChange={this.handleChange.bind(this)}
                                                                     as="select">
                                                                     <option value="">Pilih</option>
-                                                                    <option value="Jakarta Pusat">Jakarta Pusat</option>
-                                                                    <option value="Jakarta Utara">Jakarta Utara</option>
-
+                                                                    <option value="Jakarta Selatan">Jakarta Selatan</option>
+                                                                    
                                                                 </Form.Control>
                                                                 {errMsg1.badan_abritase ? (<span style={{ marginLeft: 40 }} className="text-error badge badge-danger">{errMsg1.badan_abritase}</span>) : ''}
                                                             </Form.Group>
@@ -839,8 +838,9 @@ class Pernyataan extends Component {
                                                         </Col>
                                                     </Row>
                                                     <br />
-                                                    <p>Dengan mengisi kolom "YA" di bawah ini, saya menyatakan bahwa saya bertanggungjawab sepenuhnya terhadap kode akses transaksi Nasabah (Personal Access Password) dan tidak menyerahkan kode akses transaksi Nasabah (Personal Access Password) ke pihak lain, terutama kepada pegawai Pialang Berjangka atau pihak yang memiliki kepentingan dengan Pialang Berjangka.</p>
-
+                                                    <center>
+                                                    Dengan mengisi kolom "YA" di bawah ini, saya menyatakan bahwa saya bertanggungjawab sepenuhnya terhadap kode akses transaksi Nasabah (Personal Access Password) dan tidak menyerahkan kode akses transaksi Nasabah (Personal Access Password) ke pihak lain, terutama kepada pegawai Pialang Berjangka atau pihak yang memiliki kepentingan dengan Pialang Berjangka.
+                                                     </center>       
                                                     <div className="form-group text-center">
                                                         <div className="alert alert-danger kolom_merah" style={{ background: '#C2252C',color:'#fff',borderRadius:'10px'}}>
                                                             <div className="alert-heading">PERHATIAN !!!</div>
@@ -953,27 +953,15 @@ class Pernyataan extends Component {
 
                                   <div ref={this.scrollDiv} className="form-group w-[100%] lg:w-[40%] text-center">
 
-                                    <AppButton
-                                        style={{ color: '#ffffff', marginRight: 5 }}
-                                        onClick={this.handleBack.bind(this)}
-                                        type="button"
-                                        size="lg"
-                                        theme=""
-                                        style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}>Back</AppButton>
+                                    
                                     <AppButton
                                         style={{ color: '#ffffff', marginRight: 5 }}
                                         onClick={this.handlesubmit.bind(this, 'act')}
                                         type="button"
                                         size="lg"
                                         theme=""
-                                                    style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"2%"}}>Selanjutnya</AppButton>
-                                    <AppButton
-                                        onClick={this.handlesubmit.bind(this)}
-                                        type="button"
-                                        size="lg"
-                                        theme=""
-                                                    style={{ backgroundColor:"#218838",color:"#fff",marginRight:"2%"}}>
-                                        Simpan</AppButton>
+                                                    style={{ backgroundColor:"#28A745",color:"#fff",marginRight:"2%"}}>Selanjutnya</AppButton>
+                                    
                                     </div>
                                 </div>
                               </div>

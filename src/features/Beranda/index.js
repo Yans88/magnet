@@ -682,7 +682,7 @@ class Beranda extends Component {
                                 <div className="box-bank__actions place-items-end text-right">
                                     <Dropdown>
                                         <Dropdown.Toggle size="sm" variant="secondary"
-                                            style={{ backgroundColor: 'transparent', borderColor: 'transparent',color:'#000' }} id="dropdown-basic">
+                                            style={{ backgroundColor: 'transparent', borderColor: 'transparent',color:'#000',paddingLeft:"80%"  }} id="dropdown-basic">
                                             <i className="fa fa-ellipsis-v"></i>
                                         </Dropdown.Toggle>
 
@@ -700,7 +700,7 @@ class Beranda extends Component {
                             <div className="grid grid-cols-2">
                                 <div className="font-bold">FREE MARGIN</div>
                                 
-                                <div><NumberFormat
+                                <div style={{textAlign:"right",paddingRight:"10%"}}><NumberFormat
                                                         value={at.margin_free > 0 ? at.margin_free : '0.00'}
                                                         thousandSeparator={true}
                                                         decimalScale={2}
@@ -708,7 +708,7 @@ class Beranda extends Component {
                                                     /></div>
                                 <div className="font-bold">LEVERAGE</div>
                                 
-                                <div><NumberFormat
+                                <div style={{textAlign:"right",paddingRight:"10%"}}><NumberFormat
                                     value={at.leverage > 0 ? at.leverage : '0.00'}
                                     thousandSeparator={true}
                                     decimalScale={2}
@@ -717,7 +717,7 @@ class Beranda extends Component {
                                 
                                 <div className="font-bold">EQUITY</div>
                                 
-                                <div><NumberFormat
+                                <div style={{textAlign:"right",paddingRight:"10%"}}><NumberFormat
                                                         value={at.equity > 0 ? at.equity : '0.00'}
                                                         thousandSeparator={true}
                                                         decimalScale={2}

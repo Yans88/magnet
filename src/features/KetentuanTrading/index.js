@@ -159,7 +159,7 @@ class KetentuanTrading extends Component {
                                                 </div>
 
                                                 <div className="grid grid-cols-1 place-items-center">
-                                                <div className="form-group lg:w-[50%] text-center mt-4">
+                                                <div className="form-group lg:w-[60%] text-center mt-4">
                                                     <label>
                                                     <span className="text-gray-700">
                                                         Dengan mendaftar, saya menyetujui
@@ -184,7 +184,7 @@ class KetentuanTrading extends Component {
                                                     size="lg"
                                                     theme=""
                                                     style={{
-                                                        backgroundColor: "#C3262A",
+                                                        backgroundColor: "#28a745",
                                                         color: "#fff",
                                                         marginRight: "2%",
                                                     }}
