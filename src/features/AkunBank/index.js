@@ -80,7 +80,7 @@ class AkunBank extends Component {
 
                                                                         
 
-                                                                        </div>
+                                                                     
                                                                     </div>
                                                                 </div>
 
