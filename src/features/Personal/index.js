@@ -343,9 +343,7 @@ class Personal extends Component {
       errors.nama_depan = !this.props.user.nama_depan
         ? "Kolom ini harus diisi"
         : "";
-      errors.tempat_lahir = !this.props.user.tempat_lahir
-        ? "Kolom ini harus diisi"
-        : "";
+      
       errors.kota_lahir = !this.props.user.kota_lahir
         ? "Kolom ini harus diisi"
         : "";
@@ -389,6 +387,7 @@ class Personal extends Component {
       errors.status_kepemilikan = !this.props.user.status_kepemilikan
         ? "Kolom ini harus diisi"
         : "";
+		
       this.setState({ errors });
     }
 
@@ -446,9 +445,7 @@ class Personal extends Component {
     errors.nama_depan = !this.props.user.nama_depan
       ? "Kolom ini harus diisi"
       : "";
-    errors.tempat_lahir = !this.props.user.tempat_lahir
-      ? "Kolom ini harus diisi"
-      : "";
+   
     errors.kota_lahir = !this.props.user.kota_lahir
       ? "Kolom ini harus diisi"
       : "";
@@ -494,7 +491,8 @@ class Personal extends Component {
       !this.props.user.agreement1 || !this.props.user.no_identitas
         ? "Kolom ini harus diisi"
         : "";
-
+	
+		errors.npwp = this.props.user.npwp && this.props.user.npwp.length < 15 ? "NPWP harus 15 digit" : errors.npwp;
     this.setState({ errors });
     if (this.validateForm(this.state.errMsg1)) {
       const saveData = {
@@ -1183,46 +1181,7 @@ class Personal extends Component {
                   
                             </Form.Row>
                             <Form.Row>
-                              <Form.Group
-                                as={Col}
-                                xs={12}
-                                lg={6}
-                                controlId="tempat_lahir"
-                              >
-                                <Form.Control
-                                  name="tempat_lahir"
-                                  size="lg"
-                                  value={
-                                    user.tempat_lahir ? user.tempat_lahir : ""
-                                  }
-                                  onChange={this.handleChange}
-                                  as="select"
-                                >
-                                  <option value="">Provinsi</option>
-                                  {dataProvinsi
-                                    ? dataProvinsi.map(function (prov) {
-                                        return (
-                                          <option
-                                            value={prov.nama_provinsi}
-                                            key={prov.provinsi_id}
-                                          >
-                                            {prov.nama_provinsi}
-                                          </option>
-                                        );
-                                      })
-                                    : ""}
-                                  <option value="Lainnya(Others)">
-                                    Lainnya(Others)
-                                  </option>
-                                </Form.Control>
-                                {errMsg1.tempat_lahir ? (
-                                  <span className="text-error badge badge-danger">
-                                    {errMsg1.tempat_lahir}
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
-                              </Form.Group>
+                              
                               <Form.Group
                                 as={Col}
                                 xs={12}
@@ -1779,6 +1738,7 @@ class Personal extends Component {
                                   thousandSeparator={false}
                                   decimalScale={0}
                                   inputMode="numeric"
+								  maxLength={15}
                                   required
                                   placeholder="NPWP"
                                 />
