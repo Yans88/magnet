@@ -315,7 +315,7 @@ class Setoran extends Component {
   render() {
     const { data_bank, akun_trading, data_history } = this.props;
     const { selected, errMsg } = this.state;
-    const myRate = selected.rate === "USD" ? 1 : selected.rate;
+    const myRate = selected.rate === "0" ? 1 : selected.rate;
 
     const contentNext = (
       <Fragment>
@@ -552,7 +552,7 @@ class Setoran extends Component {
               </div>
             </div>
 
-            {selected.rate !== "USD" && (
+            {selected.rate !== "0" && (
               <div className="row">
                 <div className="col-sm-6">
                   <div className="form-group">
