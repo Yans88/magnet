@@ -1161,7 +1161,7 @@ class Personal extends Component {
                                 controlId="nama_depan"
                               >
                                 <Form.Control
-                                  value={user.nama_depan ? user.nama_depan+" "+user.nama_belakang: ""}
+                                  value={user.nama_depan ? user.nama_depan: ""}
                                   autoComplete="off"
                                   onChange={this.handleChange}
                                   size="lg"
