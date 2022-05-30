@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { getAkunTrading, getAkunTradingDemo } from "../Setoran/setoranSlice";
-import { profileUser,chgPass,chgPhonePass, clearState } from '../main/mainSlice'
+import { profileUser,chgPass,chgPhonePass, clearState } from '../main/mainSlice';
+import { getDataPP } from "../ProfilePerusahaan/ppSlice";
 import NumberFormat from "react-number-format";
 import akun_icon from "../../assets/akun_white.svg";
 import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import AppModal from "../../components/modal/MyModal";
 import AppModalStatus from "../../components/modal/MyModalStatus";
-
 import AppModall from "../../components/modal/MyModall";
 import { Button, Form } from "react-bootstrap";
 import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
@@ -209,7 +209,7 @@ class Beranda extends Component {
     }
 
   render() {
-    const { akun_trading, akun_trading_demo, profile } = this.props;
+    const { akun_trading, akun_trading_demo, profile, profile_perusahaan } = this.props;
     const { selected, errMsg, myStatusDokumen } = this.state;
 
     const frmUser = (
@@ -389,6 +389,13 @@ class Beranda extends Component {
                                         <Link to='/personal' className="btn btn-lgreen btn-sm">
                                             <span className="font-bold text-white">LENGKAPI REGISTRASI</span>
                                         </Link>
+                                    </div>}
+									
+									{profile.status_dokumen === 'Menunggu Verifikasi' &&
+                                    <div className="w-1/2 place-items-center static">                
+                                       
+                                          <h4>Akun anda sedang di verifikasi oleh admin dan akan di telpon oleh wakil pialang dengan nomor {profile_perusahaan.wakil_pialang_caller}</h4>
+                                       
                                     </div>}
 
                                 </div> 
@@ -810,14 +817,16 @@ const mapStateToProps = (state) => ({
     user: state.main.currentUser,
 	tipeSWAL: state.main.tipeSWAL,
   profile: state.main.dtProfileUser,
+  profile_perusahaan: state.companyProfile.profile_perusahaan || {},
 });
 
 const mapDispatchToPros = (dispatch) => {
   return {
         onLoad: () => {
+			dispatch(getDataPP());
             dispatch(profileUser());
             dispatch(getAkunTrading());
-            dispatch(getAkunTradingDemo());
+            dispatch(getAkunTradingDemo());			
         },
 		onChangePass:(param)=>{
 			dispatch(chgPass(param));

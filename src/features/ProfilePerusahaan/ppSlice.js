@@ -82,7 +82,11 @@ export const simpanDataPP = createAsyncThunk(
       if (response.status === 200) {
         data = _data.data;
         if (data.error_message === 0) {
-          return data;
+			const dt = {
+				...data,
+				wakil_pialang_caller : param.wakil_pialang_caller,
+			}
+          return dt;
         } else {
           return thunkAPI.rejectWithValue(data);
         }
@@ -220,7 +224,7 @@ export const ppSlice = createSlice({
       state.errorMessage = payload.message;
       state.showFormSuccess = true;
       state.contentMsg =
-        "<div style='font-size:20px; text-align:center; line-height:23px;'>Data Anda Akan Kami Verifikasi, Wakil Pialang Kami akan menghubungi anda dengan nomor 0878-3535-5526</div>";
+        "<div style='font-size:20px; text-align:center; line-height:23px;'>Data Anda Akan Kami Verifikasi, Wakil Pialang Kami akan menghubungi anda dengan nomor "+payload.wakil_pialang_caller+"</div>";
       state.tipeSWAL = "success";
       return state;
     },

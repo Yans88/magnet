@@ -22,12 +22,15 @@ export const loginUser = createAsyncThunk(
         data = _data.data;
         if (data.error_message === 0) {
           let payload = data.payload;
-          let statusDokumen = payload.status;
+          //let statusDokumen = payload.status;
           let status_Dokumen = payload.status_dokumen;
           let myStatus = false;
+          let accessToken = "";
 
-          if (statusDokumen === "Reject") {
+          if (status_Dokumen === "Reject") {
+            accessToken = payload.accessToken;
             myStatus = true;
+            await localStorage.setItem("myStatusDokumen2", true);
           } else {
             myStatus = false;
             await localStorage.setItem(tokenLogin, payload.accessToken);
@@ -38,6 +41,7 @@ export const loginUser = createAsyncThunk(
 
           data = {
             ...data,
+            accessTokenKu: accessToken,
             myStatus: myStatus,
           };
           return data;
@@ -146,14 +150,14 @@ export const fetchUserKTP = createAsyncThunk(
           const selectedDate = myData.tanggal_lahir
             ? tanggal_lahir[2] + "-" + tanggal_lahir[1] + "-" + tanggal_lahir[0]
             : "";
-          
+
           Object.keys(myData).map((key) => {
             if (key === "rt/rw") {
               rt_rw = myData[key].split("/");
               rt = rt_rw[0];
               rw = rt_rw[1];
             }
-			return true;
+            return true;
           });
           const payload = {
             jenis_identitas: "KTP",
@@ -173,7 +177,7 @@ export const fetchUserKTP = createAsyncThunk(
             warga_negara: myData.kewarganegaraan === "WNI" ? "Indonesia" : "",
             rw: rw ? rw : "",
             rt: rt ? rt : "",
-			photo_ktp_download: myData.photo_ktp ? myData.photo_ktp : "",
+            photo_ktp_download: myData.photo_ktp ? myData.photo_ktp : "",
           };
           return payload;
         } else {
@@ -621,7 +625,7 @@ export const action_contact_us = createAsyncThunk(
 export const forgotPassword = createAsyncThunk(
   "users/forgot_password",
   async (param, thunkAPI) => {
-	 let API_URL2 = API_URL.replace("/api", "");
+    let API_URL2 = API_URL.replace("/api", "");
     const config = {
       headers: {
         "x-app-origin": "cabinet-app",
@@ -638,7 +642,7 @@ export const forgotPassword = createAsyncThunk(
       let data = "";
       let _data = await response;
       if (response.status === 200) {
-        data = _data.data;		
+        data = _data.data;
         if (data.error_message === 0) {
           return data;
         } else {
@@ -656,8 +660,8 @@ export const forgotPassword = createAsyncThunk(
 
 export const actionPassword = createAsyncThunk(
   "users/action_password",
-  async (param, thunkAPI) => {	  
-	let API_URL2 = API_URL.replace("/api", "");
+  async (param, thunkAPI) => {
+    let API_URL2 = API_URL.replace("/api", "");
     const config = {
       headers: {
         "x-app-origin": "cabinet-app",
@@ -667,14 +671,50 @@ export const actionPassword = createAsyncThunk(
     };
     try {
       const response = await axios.post(
-        API_URL2 + "/verifikasi-update-password"+param.token,
+        API_URL2 + "/verifikasi-update-password" + param.token,
         param,
         config
       );
       let data = "";
       let _data = await response;
       if (response.status === 200) {
-        data = _data.data;		
+        data = _data.data;
+        if (data.error_message === 0) {
+          return data;
+        } else {
+          return thunkAPI.rejectWithValue(data);
+        }
+      } else {
+        return thunkAPI.rejectWithValue(_data);
+      }
+    } catch (e) {
+      console.log("Error", e.response.data);
+      thunkAPI.rejectWithValue(e.response.data);
+    }
+  }
+);
+
+export const resendOTP = createAsyncThunk(
+  "users/resend_otp",
+  async (param, thunkAPI) => {
+    let API_URL2 = API_URL.replace("/api", "");
+    const config = {
+      headers: {
+        "x-app-origin": "cabinet-app",
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const response = await axios.post(
+        API_URL2 + "/resend-otp",
+        param,
+        config
+      );
+      let data = "";
+      let _data = await response;
+      if (response.status === 200) {
+        data = _data.data;
         if (data.error_message === 0) {
           return data;
         } else {
@@ -712,6 +752,7 @@ const initialState = {
   dataMarketing: [],
   showFormSuccess: false,
   myStatus: false,
+  accessTokenKu: "",
   contentMsg: "",
   tipeSWAL: "success",
 };
@@ -754,13 +795,14 @@ export const mainSlice = createSlice({
   },
   extraReducers: {
     [loginUser.fulfilled]: (state, { payload }) => {
-      console.log(payload);
+      // console.log(payload);
       state.isFetching = false;
       state.isSuccess = true;
       state.isLoggedIn = !!localStorage.getItem(tokenLogin);
       state.token = localStorage.getItem(tokenLogin);
       state.currentUser = payload;
       state.myStatus = payload.myStatus;
+      state.accessTokenKu = payload.accessTokenKu;
       return state;
     },
     [loginUser.rejected]: (state, { payload }) => {
@@ -805,16 +847,16 @@ export const mainSlice = createSlice({
     },
     [fetchUserKTP.pending]: (state) => {
       state.errFetchUserByToken = "";
-	  state.isUploadingKTP = true;
+      state.isUploadingKTP = true;
       state.currentUser = {};
     },
     [fetchUserKTP.fulfilled]: (state, { payload }) => {
       state.errFetchUserByToken = "";
       state.currentUser = payload;
-	  state.isUploadingKTP = false;
+      state.isUploadingKTP = false;
     },
     [fetchUserKTP.rejected]: (state, { payload }) => {
-		state.isUploadingKTP = false;
+      state.isUploadingKTP = false;
       console.log("payload", payload);
       //state.errFetchUserByToken = payload.message;
     },
@@ -969,7 +1011,7 @@ export const mainSlice = createSlice({
     [updProfile.pending]: (state) => {
       state.errorMessage = "";
     },
-	[forgotPassword.fulfilled]: (state, { payload }) => {
+    [forgotPassword.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = false;
       state.errorMessage = payload.message;
@@ -984,7 +1026,7 @@ export const mainSlice = createSlice({
     [forgotPassword.pending]: (state) => {
       state.errorMessage = "";
     },
-	[actionPassword.fulfilled]: (state, { payload }) => {
+    [actionPassword.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = false;
       state.errorMessage = payload.message;

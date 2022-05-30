@@ -61,16 +61,18 @@ class ProfilePerusahaan extends Component {
       this.props.persetujuan.agree1 === "N" || !this.props.persetujuan.agree1
         ? "Kolom ini harus diisi"
         : "";
-    errors.agree2 =
-      this.props.persetujuan.agree2 === "N" || !this.props.persetujuan.agree2
-        ? "Kolom ini harus diisi"
-        : "";
+    // errors.agree2 =
+      // this.props.persetujuan.agree2 === "N" || !this.props.persetujuan.agree2
+        // ? "Kolom ini harus diisi"
+        // : "";
     this.setState({ errors });
     if (this.validateForm(this.state.errMsg1)) {
       const qs = {
         ...this.state,
         ...this.props.persetujuan,
+		wakil_pialang_caller:this.props.profile_perusahaan.wakil_pialang_caller
       };
+	  console.log(qs);
       this.props.onSave(qs);
     } else {
       console.error("Invalid Form");
@@ -499,7 +501,7 @@ class ProfilePerusahaan extends Component {
                                   <label>
                                     <input
                                       checked={
-                                        persetujuan.agree2 === "Y" ? true : false
+                                        persetujuan.agree1 === "Y" ? true : false
                                       }
                                       onChange={this.handleChange.bind(this)}
                                       className="form-check-input"
