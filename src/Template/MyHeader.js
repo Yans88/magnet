@@ -94,6 +94,11 @@ class MyHeader extends Component {
                             - Daftar disini
                           </a>
                         )}
+                        {profile.status_dokumen === "Reject" && (
+                          <a style={{ color: "#269647" }} href="rej-doc">
+                            - Disini
+                          </a>
+                        )}
                       </h5>
                     }
                   </div>

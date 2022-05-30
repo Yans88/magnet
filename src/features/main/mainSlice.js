@@ -22,14 +22,15 @@ export const loginUser = createAsyncThunk(
         data = _data.data;
         if (data.error_message === 0) {
           let payload = data.payload;
-          let statusDokumen = payload.status;
+          //let statusDokumen = payload.status;
           let status_Dokumen = payload.status_dokumen;
           let myStatus = false;
           let accessToken = "";
 
-          if (statusDokumen === "Reject") {
+          if (status_Dokumen === "Reject") {
             accessToken = payload.accessToken;
             myStatus = true;
+            await localStorage.setItem("myStatusDokumen2", true);
           } else {
             myStatus = false;
             await localStorage.setItem(tokenLogin, payload.accessToken);
@@ -693,6 +694,42 @@ export const actionPassword = createAsyncThunk(
   }
 );
 
+export const resendOTP = createAsyncThunk(
+  "users/resend_otp",
+  async (param, thunkAPI) => {
+    let API_URL2 = API_URL.replace("/api", "");
+    const config = {
+      headers: {
+        "x-app-origin": "cabinet-app",
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const response = await axios.post(
+        API_URL2 + "/resend-otp",
+        param,
+        config
+      );
+      let data = "";
+      let _data = await response;
+      if (response.status === 200) {
+        data = _data.data;
+        if (data.error_message === 0) {
+          return data;
+        } else {
+          return thunkAPI.rejectWithValue(data);
+        }
+      } else {
+        return thunkAPI.rejectWithValue(_data);
+      }
+    } catch (e) {
+      console.log("Error", e.response.data);
+      thunkAPI.rejectWithValue(e.response.data);
+    }
+  }
+);
+
 const initialState = {
   expandMenu: true,
   isLoggedIn: !!localStorage.getItem(tokenLogin),
@@ -715,6 +752,7 @@ const initialState = {
   dataMarketing: [],
   showFormSuccess: false,
   myStatus: false,
+  accessTokenKu: "",
   contentMsg: "",
   tipeSWAL: "success",
 };
@@ -757,13 +795,14 @@ export const mainSlice = createSlice({
   },
   extraReducers: {
     [loginUser.fulfilled]: (state, { payload }) => {
-      console.log(payload);
+      // console.log(payload);
       state.isFetching = false;
       state.isSuccess = true;
       state.isLoggedIn = !!localStorage.getItem(tokenLogin);
       state.token = localStorage.getItem(tokenLogin);
       state.currentUser = payload;
       state.myStatus = payload.myStatus;
+      state.accessTokenKu = payload.accessTokenKu;
       return state;
     },
     [loginUser.rejected]: (state, { payload }) => {
