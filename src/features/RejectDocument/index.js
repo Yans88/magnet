@@ -34,9 +34,7 @@ class RejecctDocument extends Component {
       pengalaman_trading: {},
       show: false,
       errMsg: this.initData,
-      myStatusDokumen: localStorage.getItem("myStatusDokumen2")
-        ? localStorage.getItem("myStatusDokumen2")
-        : false,
+      
     };
     this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
   }
@@ -257,27 +255,14 @@ class RejecctDocument extends Component {
     Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
     return valid;
   }
-
-  handleClose() {
-    localStorage.removeItem("myStatusDokumen2");
-    this.setState({
-      myStatusDokumen: false,
-    });
-  }
+  
 
   render() {
     const { dataRejDoc } = this.props;
-    const { errMsg, myStatusDokumen } = this.state;
+    const { errMsg} = this.state;
     // console.log(this.state);
 
-    const contentDelete = (
-      <div
-        dangerouslySetInnerHTML={{
-          __html:
-            '<div id="caption" style="padding-bottom:20px; text-align:left;">Asset dan content nya disesuaikan</div>',
-        }}
-      />
-    );
+    
 
     return (
       <div className="content-wrapper">
@@ -681,18 +666,7 @@ class RejecctDocument extends Component {
                       )}
                     </div>
                   </div>
-                  <AppModalStatus
-                    show={myStatusDokumen}
-                    size="xs"
-                    form={contentDelete}
-                    handleClose={this.handleClose.bind(this)}
-                    backdrop="static"
-                    keyboard={false}
-                    title="Status"
-                    formSubmit={this.handleClose.bind(this)}
-                    titleButton="Lengkapi"
-                    themeButton="danger"
-                  ></AppModalStatus>
+                 
                   {this.props.showFormSuccess ? (
                     <AppSwalSuccess
                       show={this.props.showFormSuccess}

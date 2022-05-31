@@ -36,6 +36,9 @@ class Beranda extends Component {
       myStatusDokumen: localStorage.getItem("myStatusDokumen")
         ? localStorage.getItem("myStatusDokumen")
         : false,
+	  myStatusDokumen2: localStorage.getItem("myStatusDokumen2")
+        ? localStorage.getItem("myStatusDokumen2")
+        : false,
     };
   }
 
@@ -197,6 +200,14 @@ class Beranda extends Component {
     });
   }
   
+  handleClose2() {
+    localStorage.removeItem("myStatusDokumen2");
+    this.setState({
+      myStatusDokumen: false,
+    });
+	this.props.history.push("/rej-doc");
+  }
+  
   handleCloseSwal() {
         this.setState({
 			loadingForm: false,
@@ -210,7 +221,7 @@ class Beranda extends Component {
 
   render() {
     const { akun_trading, akun_trading_demo, profile, profile_perusahaan } = this.props;
-    const { selected, errMsg, myStatusDokumen } = this.state;
+    const { selected, errMsg, myStatusDokumen, myStatusDokumen2 } = this.state;
 
     const frmUser = (
       <Form id="myForm">
@@ -321,6 +332,15 @@ class Beranda extends Component {
         dangerouslySetInnerHTML={{
           __html:
             '<div id="caption" style="padding-bottom:20px; text-align:left;">Nasabah yang terhormat, selamat datang di Magnet, Kami sangat senang anda bergabung bersama kami, agar bisa segera memulai silahkan lengkapi data pribadi anda. Data ini diperlukan sebagai persyaratan resmi dalam pembukaan rekening.</div>',
+        }}
+      />
+    );
+	
+	const contentDelete2 = (
+      <div
+        dangerouslySetInnerHTML={{
+          __html:
+            '<div id="caption" style="padding-bottom:20px; text-align:left;">Nasabah yang terhormat, selamat datang di Magnet. Silahkan perbaiki kembali data pribadi anda karena data ini diperlukan sebagai persyaratan resmi dalam pembukaan rekening.</div>',
         }}
       />
     );
@@ -788,12 +808,19 @@ class Beranda extends Component {
           title="Status"
           formSubmit={this.handleSubmit3.bind(this)}
           titleButton="Lengkapi"
-          themeButton="success"
-
-         
-          
-
-        ></AppModalStatus>
+          themeButton="success" />
+		<AppModalStatus
+                    show={myStatusDokumen2}
+                    size="xs"
+                    form={contentDelete2}
+                    handleClose={this.handleClose2.bind(this)}
+                    backdrop="static"
+                    keyboard={false}
+                    title="Status"
+                    formSubmit={this.handleClose2.bind(this)}
+                    titleButton="Perbaiki Data"
+                    themeButton="danger"
+                  />
         
         
 		{this.props.showFormSuccess ? (<AppSwalSuccess
