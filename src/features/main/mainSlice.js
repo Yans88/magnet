@@ -22,14 +22,14 @@ export const loginUser = createAsyncThunk(
         data = _data.data;
         if (data.error_message === 0) {
           let payload = data.payload;
-          //let statusDokumen = payload.status;
+          let statuss = payload.status;
           let status_Dokumen = payload.status_dokumen;
           let myStatus = false;
           let accessToken = "";
 
-          if (status_Dokumen === "Reject") {
-            accessToken = payload.accessToken;
-            myStatus = true;
+          if (status_Dokumen === "Reject") {            
+            myStatus = false;
+			await localStorage.setItem(tokenLogin, payload.accessToken);
             await localStorage.setItem("myStatusDokumen2", true);
           } else {
             myStatus = false;
@@ -38,6 +38,11 @@ export const loginUser = createAsyncThunk(
           if (status_Dokumen === "Belum Lengkap") {
             await localStorage.setItem("myStatusDokumen", true);
           }
+		  
+		  if(statuss === "Reject"){
+			  accessToken = payload.accessToken;
+			  myStatus = true;
+		  }
 
           data = {
             ...data,
