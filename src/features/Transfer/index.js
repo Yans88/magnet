@@ -655,7 +655,7 @@ class Transfer extends Component {
                               <div className="col-span-1 col-12">
                                 <AppButton
                                   disabled={
-                                    selected.nominal >= 10000 ? false : true
+                                    selected.nominal >= 0.1 ? false : true
                                   }
                                   style={{ minHeight: 32 }}
                                   type="button"
