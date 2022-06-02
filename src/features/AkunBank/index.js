@@ -37,7 +37,7 @@ class AkunBank extends Component {
     render() {
         const { data_bank } = this.props;
         return (
-            <div className="content-wrapper pr-3">
+            <div className="content-wrapper pr-1">
 
                 <section className="content">
                     <div className="container-fluid mt-3">

@@ -337,7 +337,7 @@ class Beranda extends Component {
       />
     );
     return (
-      <div className="content-wrapper pr-3">
+      <div className="content-wrapper pr-1">
         <section className="content">
           <div className="container-fluid">
 
