@@ -191,35 +191,14 @@ class Setting extends Component {
                                                     
                                                 </div>
                                                 <div className="grid grid-cols-1 place-items-center mt-4 mb-2" >
-                                                    <div className="mobile-hide">
-                                                        <div className="w-[75%] lg:w-[20%]">
-                                                        
-                                                            <AppButton
-                                                                onClick={this.handleSubmitPass.bind(this)}
-                                                                type="button"
-                                                                size="lg"
-                                                                theme=""
-                                                                style={{ backgroundColor:"#C3262A",color:"#fff"}}
-                                                                >
-                                                                Change Password</AppButton>
-                                                                
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="mobile-view">            
-                                                        <div className="w-[100%]">
-                                                        
-                                                            <AppButton
-                                                                onClick={this.handleSubmitPass.bind(this)}
-                                                                type="button"
-                                                                size="lg"
-                                                                theme=""
-                                                                style={{ backgroundColor:"#C3262A",color:"#fff"}}
-                                                                >
-                                                                Change Password</AppButton>
-                                                                
-                                                        </div>
-                                                    </div>
+                                                        <AppButton
+                                                            onClick={this.handleSubmitPass.bind(this)}
+                                                            type="button"
+                                                            size="lg"
+                                                            theme=""
+                                                            style={{ backgroundColor: "#C3262A", color: "#fff" }}
+                                                        >
+                                                            Change Password</AppButton>
 
                                                 </div>
 
@@ -282,37 +261,16 @@ class Setting extends Component {
 
                                                     <div className="grid grid-cols-1 place-items-center mt-4 mb-2" >
                                                         
-                                                        <div className="mobile-hide">      
-                                                            <div className="w-[70%] lg:w-[20%]">
-                                                                    <AppButton
-                                                                        onClick={this.handleSubmit.bind(this)}
-                                                                        style={{ marginLeft: 18 }}
-                                                                        type="button"
-                                                                        size="lg"
-                                                                        theme=""
-                                                                        style={{ backgroundColor:"#C3262A",color:"#fff"}}
-                                                                        
-                                                                        >
-                                                                        Update Profile</AppButton>
-                                                            
-                                                            </div>
-                                                        </div>
+                                                        <AppButton
+                                                            onClick={this.handleSubmit.bind(this)}
 
-                                                        <div className="mobile-view">      
-                                                            <div className="w-[100%] ">
-                                                                    <AppButton
-                                                                        onClick={this.handleSubmit.bind(this)}
-                                                                        style={{ marginLeft: 18 }}
-                                                                        type="button"
-                                                                        size="lg"
-                                                                        theme=""
-                                                                        style={{ backgroundColor:"#C3262A",color:"#fff"}}
-                                                                        
-                                                                        >
-                                                                        Update Profile</AppButton>
-                                                            
-                                                            </div>
-                                                        </div>
+                                                            type="button"
+                                                            size="lg"
+                                                            theme=""
+                                                            style={{ backgroundColor: "#C3262A", color: "#fff" }}
+
+                                                        >
+                                                            Update Profile</AppButton>
                                                     </div>
 
                                                 </Fragment>)}

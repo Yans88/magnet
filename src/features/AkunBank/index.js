@@ -37,88 +37,88 @@ class AkunBank extends Component {
     render() {
         const { data_bank } = this.props;
         return (
-            <div className="content-wrapper">
+            <div className="content-wrapper pr-3">
 
                 <section className="content">
                     <div className="container-fluid mt-3">
                         <img src={icon} width="35px" className="float-left mt-3" />
-                        
+
                         <div className="mobile-hide">
-                        <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Akun Bank Saya</h1>
+                            <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20, color: "#2E2E2F", paddingLeft: "20px" }}>&nbsp;Akun Bank Saya</h1>
                         </div>
 
                         <div className="mobile-view">
-                        <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Akun Bank Saya</h1>
+                            <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20, color: "#2E2E2F", paddingLeft: "20px" }}>&nbsp;Akun Bank Saya</h1>
                         </div>
 
                         <div className="row mt-4">
                             <div className="col-12">
                                 {/* card start */}
-                                <div className="card card-success shadow-lg w-[100%] lg:w-[100%]" style={{ "minHeight": "500px",borderRadius:"20px" }}>
+                                <div className="card card-success shadow-lg w-[100%] lg:w-[100%]" style={{ "minHeight": "500px", borderRadius: "20px" }}>
                                     <div className="card-body">
 
                                         <div style={{ paddingTop: 0 }} className="px-0 lg:px-3" >
-                                            
+
                                             <div className="row my-0 mx-0">
                                                 {data_bank ? (
                                                     data_bank.map((dp, index, arr) => {
                                                         return (
                                                             <Fragment key={index}>
-                                                                <div className="mobile-hide">
-                                                                    <div className="grid grid-cols-3 place-items-center mt-0  py-4 px-1  lg:px-4 rounded-2xl mt-4" style={{ border:"2px solid #ddd",color:"#2E2E2F"}}>
-                                                                        
+                                                                <div className="mobile-hide w-full">
+                                                                    <div className="grid grid-cols-3 place-items-center  py-4 px-1 lg:px-4 rounded-2xl mt-4" style={{ border: "2px solid #ddd", color: "#2E2E2F" }}>
+
                                                                         <div className="px-2 lg:w-1/2">
                                                                             <img alt={dp.nama_bank} src={dp.file} />
                                                                         </div>
-                                                                        
-                                                                        <div className="px-2 text-left lg:w-1/2">
-                                                                            <h3 className="box-bank__title" style={{ fontSize: 18 }}>Nama Bank : {dp.nama_bank}</h3>
-                                                                            <p style={{ fontSize: 15 }}>Nama Pemilik : {dp.nama_pemilik}</p>
-                                                                            <p style={{ fontSize: 15 }}>No. Rekening : {dp.no_rek}</p>
-                                                                            <p style={{ fontSize: 15 }}>Cabang : {dp.cabang}</p>
-                                                                        </div>										
 
-                                                                        
+                                                                        <div className="px-2 text-left col-span-2 w-full">
+                                                                            <div className="flex box-bank__title text-bold mb-2" style={{ fontSize: 18 }}><div style={{ width: '120px' }}>Nama Bank</div> <div className="hidden-colon">{dp.nama_bank}</div></div>
+                                                                            <div className="flex mb-1" style={{ fontSize: 15 }}><div style={{ width: '120px' }}>Nama Pemilik</div> <div className="hidden-colon">{dp.nama_pemilik}</div></div>
+                                                                            <div className="flex mb-1" style={{ fontSize: 15 }}><div style={{ width: '120px' }}>No. Rekening</div> <div className="hidden-colon">{dp.no_rek}</div></div>
+                                                                            <div className="flex mb-1" style={{ fontSize: 15 }}><div style={{ width: '120px' }}>Cabang</div> <div className="hidden-colon">{dp.cabang}</div></div>
+                                                                        </div>
 
-                                                                     
+
+
+
                                                                     </div>
                                                                 </div>
 
-                                                                <div className="mobile-view">
-                                                                    <div className="grid grid-cols-2 place-items-center mt-0  py-4 px-1  lg:px-4 rounded-2xl mt-4" style={{ border:"2px solid #ddd",color:"#2E2E2F"}}>
-                                                                        
-                                                                        
+                                                                <div className="mobile-view w-full">
+                                                                    <div className="grid grid-cols-2 place-items-center  py-4 px-1  lg:px-4 rounded-2xl mt-4" style={{ border: "2px solid #ddd", color: "#2E2E2F" }}>
+
+
                                                                         <div className="px-2 w-[60%] col-span-2">
                                                                             <img alt={dp.nama_bank} src={dp.file} />
                                                                         </div>
-                                                                        
+
                                                                         <div className="px-2 text-left w-full col-span-2 mt-4">
-                                                                            
+
                                                                             <div className="grid grid-cols-3">
-                                                                                 <div className="col-span-1">
+                                                                                <div className="col-span-1">
                                                                                     Nama bank
-                                                                                 </div>
-                                                                                 <div className="col-span-2">
+                                                                                </div>
+                                                                                <div className="col-span-2">
                                                                                     : <span className="font-semibold">{dp.nama_bank}</span>
-                                                                                 </div>
+                                                                                </div>
                                                                             </div>
 
                                                                             <div className="grid grid-cols-3">
-                                                                                 <div className="col-span-1">
+                                                                                <div className="col-span-1">
                                                                                     Nama Pemilik
-                                                                                 </div>
-                                                                                 <div className="col-span-2">
+                                                                                </div>
+                                                                                <div className="col-span-2">
                                                                                     : <span className="font-semibold">{dp.nama_pemilik}</span>
-                                                                                 </div>
+                                                                                </div>
                                                                             </div>
 
                                                                             <div className="grid grid-cols-3">
-                                                                                 <div className="col-span-1">
+                                                                                <div className="col-span-1">
                                                                                     No Rekening
-                                                                                 </div>
-                                                                                 <div className="col-span-2">
+                                                                                </div>
+                                                                                <div className="col-span-2">
                                                                                     : <span className="font-semibold">{dp.no_rek}</span>
-                                                                                 </div>
+                                                                                </div>
                                                                             </div>
 
                                                                         </div>
@@ -126,24 +126,28 @@ class AkunBank extends Component {
                                                                         <div style={{ fontSize: 30 }} className="px-2 pt-4 lg:pt-0 col-span-2">
                                                                             <AppButton
                                                                                 className="btn-akun-bank"
-                                                                                style={{ color: '#ffffff' }}
                                                                                 type="button"
                                                                                 size="lg"
                                                                                 theme=""
-                                                                                style={{ backgroundColor:"#C3262A",color:"#fff"}}
+                                                                                style={{ backgroundColor: "#C3262A", color: "#ffffff" }}
 
                                                                             >{dp.no_rek}</AppButton>
 
                                                                         </div>
                                                                     </div>
+
                                                                 </div>
-                                                                
+
                                                             </Fragment>
                                                         )
                                                     })
 
                                                 ) : ''}
-
+                                                <div className="grid grid-col2-1 place-items-center mb-0 mt-4 pl-5 pr-5 w-full">
+                                                    <div className="w-auto bg-hijau-forex rounded-xl text-white pt-2 pb-2 grid grid-cols-1 place-items-center static" style={{ backgroundColor: "#C2252C" }}>
+                                                        <a href="account-type" className="btn btn-lgreen btn-sm"><span className="font-bold text-white">TAMBAH AKUN BANK</span></a>
+                                                    </div>
+                                                </div>
 
 
                                             </div>
@@ -187,13 +191,13 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
-			dispatch(profileUser());
+            dispatch(profileUser());
             dispatch(getBankAkun());
             dispatch(getAkunTrading());
         },
 
         onSetor: (param) => {
-			dispatch(profileUser());
+            dispatch(profileUser());
             dispatch(actionPenarikan(param));
         },
         closeSwalError: () => {

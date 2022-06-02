@@ -77,258 +77,156 @@ class HubungiKami extends Component {
 
         return (
 
-            <div className="content-wrapper">
+            <div className="content-wrapper pr-3">
 
                 <section className="content">
                     <div className="container-fluid mt-3">
-                        
-                        
+
+
                         <div className="mobile-hide">
-                        <img src={icon} width="35px" className="float-left mt-3" />    
-                        <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Hubungi Kami</h1>
+                            <img src={icon} width="35px" className="float-left mt-3" />
+                            <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20, color: "#2E2E2F", paddingLeft: "20px" }}>&nbsp;Hubungi Kami</h1>
                         </div>
 
                         <div className="mobile-view">
-                        <img src={icon} width="25px" className="float-left mt-3" />    
-                        <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Hubungi Kami</h1>
+                            <img src={icon} width="25px" className="float-left mt-3" />
+                            <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20, color: "#2E2E2F", paddingLeft: "20px" }}>&nbsp;Hubungi Kami</h1>
                         </div>
 
                         <div className="row">
                             <div className="col-12 col-xs-12">
                                 {/* card start */}
-                                <div className="card card-success shadow-lg" style={{ "minHeight": "700px",borderRadius:"20px" }}>
+                                <div className="card card-success shadow-lg" style={{ paddingBottom:'35px', borderRadius: "20px" }}>
                                     <div className="card-body p-0" >
-                                        <div className="grid sm:grid-cols-1 lg:grid-cols-2 place-items-center lg:mt-10 lg:px-5" >
+                                        <div className="grid sm:grid-cols-1 lg:grid-cols-2 mt-10 px-5" >
                                             <div>
-                                                
-                                                <div className=" hub_kami alert alert-success alert-sm" style={{ backgroundColor: '#1A9425', paddingTop: 10,color:"#fff",borderRadius:"20px",marginBottom:"0rem" }} >
-                                                        <div className="mobile-hide">
-                                                        <h2 style={{ color:"#fff"}}>Contact Information</h2>
+
+                                                <div className=" hub_kami alert alert-success alert-sm" style={{ backgroundColor: '#1A9425', paddingTop: 10, color: "#fff", borderRadius: "20px", marginBottom: "0rem" }} >
+                                                    <div >
+                                                        <h2 style={{ color: "#fff" }}>Contact Information</h2>
                                                         <p className="text-base font-bold text-white text-left pt-2 pb-2 ...">Fill up the form and our Team will get back to you within 24 hours</p>
-                                                    
-                                                        </div>
-                                                        
-                                                        <div className="mobile-view">
-                                                        <h2 style={{ color:"#fff",fontSize:"15px"}}>Contact Information</h2>
-                                                        <p className="text-base font-bold text-white text-left pt-0 pb-0 ...">Fill up the form and our Team will get back to you within 24 hours</p>
-                                                    
-                                                        </div>
-                                                                                
-                                                        <div className="mobile-hide">
-                                                            <div className="flex lg:pt-5">
 
-                                                                <div className="flex-none w-10  ...">
-                                                                    <img src={wa_red} width="30px" />
-                                                                </div>
-                                                                <div className="flex-grow  ...">
-                                                                    <p className="text-base font-bold text-black text-left ...">
-                                                                    <a href="https://api.whatsapp.com/send?phone=6287835355526&text=Halo" title="">  
-                                                                    <span className="text-white">{profile_perusahaan.telp}</span>
-                                                                    </a>
-                                                                    </p>
-                                                                </div>
-                                                                
+                                                    </div>
+
+
+                                                    <div className="mb-3">
+                                                        <div className="flex mt-3 items-center">
+
+                                                            <div className="w-14">
+                                                                <img src={wa_red} width="30px" />
                                                             </div>
-
-                                                            <div className="flex lg:pt-5">
-
-                                                                <div className="flex-none w-10  ...">
-                                                                <img src={phone_red} width="30px" />
-                                                                </div>
-                                                                <div className="flex-grow  ...">
-                                                                <p className="text-base font-bold text-gray-600 text-left ...">
-                                                                    <a href="tel:+62212506336" title="">
-                                                                    <span className="text-white">{profile_perusahaan.telp_compliance}</span>
+                                                            <p className="text-base font-bold text-black text-left ...">
+                                                                    <a href="https://api.whatsapp.com/send?phone=6287835355526&text=Halo" title="">
+                                                                        <span className="text-white">{profile_perusahaan.telp}</span>
                                                                     </a>
                                                                 </p>
-                                                                </div>
 
+                                                        </div>
+
+                                                        <div className="flex mt-3 items-center">
+
+                                                            <div className="w-14">
+                                                                <img src={phone_red} width="30px" />
                                                             </div>
+                                                            <p className="text-base font-bold text-gray-600 text-left ...">
+                                                                    <a href="tel:+62212506336" title="">
+                                                                        <span className="text-white">{profile_perusahaan.telp_compliance}</span>
+                                                                    </a>
+                                                                </p>
 
-                                                            <div className="flex lg:pt-5">
+                                                        </div>
 
-                                                                <div className="flex-none w-10  ...">
-                                                                    <img src={email_red} width="30px" />
-                                                                </div>
-                                                                <div className="flex-grow  ...">
-                                                                <p className="text-base font-bold text-gray-600 text-left ...">
-                                                                <a href="mailto:info@magnetfx.co.id" title="">
+                                                        <div className="flex mt-3 items-center">
+
+                                                            <div className="w-14">
+                                                                <img src={email_red} width="30px" />
+                                                            </div>
+                                                            <p className="text-base font-bold text-gray-600 text-left ...">
+                                                                    <a href="mailto:info@magnetfx.co.id" title="">
                                                                         <span className="text-white">{profile_perusahaan.email}</span>
                                                                     </a>
                                                                 </p>
-                                                                </div>
 
-                                                            </div>
-
-                                                            <div className="flex lg:pt-5">
-
-                                                                <div className="flex-none w-10  ...">
-                                                                <img src={location_red} width="30px" />
-                                                                </div>
-                                                                <div className="flex-grow  ...">
-                                                                <p className="text-base font-bold text-white text-left ...">
-                                                                Gedung Sona Topas Tower - Lt. 18 Suite 1804
-                                                                Jl. Jend. Sudirman Kav. 26
-                                                                Jakarta Selatan 12920
-                                                                Indonesia
-                                                                </p>
-                                                                </div>
-
-                                                            </div>
-
-                                                            <div className="flex xs:pt-2 lg:pt-5 lg:pb-20">
-
-                                                                <div className="flex-none w-10  ...">
-                                                                    <img src={email_red} width="30px" />
-                                                                </div>
-                                                                <div className="flex-grow  ...">
-                                                                <p className="text-base font-bold text-gray-600 text-left ...">
-                                                                    <a href={profile_perusahaan.website}><span className="text-white">{profile_perusahaan.website}</span></a>
-                                                                </p>
-                                                                </div>
-
-                                                            </div>
                                                         </div>
 
-                                                        <div className="mobile-view">
-                                                            <div className="flex pt-2">
+                                                        <div className="flex mt-3 items-center">
 
-                                                                <div className="flex-none w-10  ...">
-                                                                    <img src={wa_red} width="30px" />
-                                                                </div>
-                                                                <div className="flex-grow  ...">
-                                                                    <p className="text-base font-bold text-black text-left ...">
-                                                                    <a href="https://api.whatsapp.com/send?phone=6287835355526&text=Halo" title="">  
-                                                                    <span className="text-white">{profile_perusahaan.telp}</span>
-                                                                    </a>
-                                                                    </p>
-                                                                </div>
-                                                                
+                                                            <div className="w-14">
+                                                                <img src={location_red} width="25px" />
                                                             </div>
-
-                                                            <div className="flex pt-2">
-
-                                                                <div className="flex-none w-10  ...">
-                                                                <img src={phone_red} width="30px" />
-                                                                </div>
-                                                                <div className="flex-grow  ...">
-                                                                <p className="text-base font-bold text-gray-600 text-left ...">
-                                                                    <a href="tel:+62212506336" title="">
-                                                                    <span className="text-white">{profile_perusahaan.telp_compliance}</span>
-                                                                    </a>
+                                                            <p className="text-base font-bold text-white text-left ...">
+                                                                    Gedung Sona Topas Tower - Lt. 18 Suite 1804
+                                                                    Jl. Jend. Sudirman Kav. 26
+                                                                    Jakarta Selatan 12920
+                                                                    Indonesia
                                                                 </p>
-                                                                </div>
 
-                                                            </div>
-
-                                                            <div className="flex pt-2">
-
-                                                                <div className="flex-none w-10  ...">
-                                                                    <img src={email_red} width="30px" />
-                                                                </div>
-                                                                <div className="flex-grow  ...">
-                                                                <p className="text-base font-bold text-gray-600 text-left ...">
-                                                                <a href="mailto:info@magnetfx.co.id" title="">
-                                                                        <span className="text-white">{profile_perusahaan.email}</span>
-                                                                    </a>
-                                                                </p>
-                                                                </div>
-
-                                                            </div>
-
-                                                            <div className="flex pt-2">
-
-                                                                <div className="flex-none w-10  ...">
-                                                                <img src={location_red} width="30px" />
-                                                                </div>
-                                                                <div className="flex-grow  ...">
-                                                                <p className="text-base font-bold text-white text-left ...">
-                                                                Gedung Sona Topas Tower - Lt. 18 Suite 1804
-                                                                Jl. Jend. Sudirman Kav. 26
-                                                                Jakarta Selatan 12920
-                                                                Indonesia
-                                                                </p>
-                                                                </div>
-
-                                                            </div>
-
-                                                            <div className="flex xs:pt-2 pt-2">
-
-                                                                <div className="flex-none w-10  ...">
-                                                                    <img src={email_red} width="30px" />
-                                                                </div>
-                                                                <div className="flex-grow  ...">
-                                                                <p className="text-base font-bold text-gray-600 text-left ...">
-                                                                    <a href={profile_perusahaan.website}><span className="text-white">{profile_perusahaan.website}</span></a>
-                                                                </p>
-                                                                </div>
-
-                                                            </div>
                                                         </div>
 
+                                                        <div className="flex mt-3 items-center">
 
-                                                        
+                                                            <div className="w-14">
+                                                                <img src={email_red} width="30px" />
+                                                            </div>
+                                                            <p className="text-base font-bold text-gray-600 text-left ...">
+                                                                <a href={profile_perusahaan.website}><span className="text-white">{profile_perusahaan.website}</span></a>
+                                                            </p>
 
+                                                        </div>
+                                                    </div>
                                                 </div>
-
-
-                                                
 
                                             </div>
 
-                                            <div className="w-3/4 h-[80%]">
-                                            <Form>
-                                                        <Form.Group controlId="subjek">
-                                                            <Form.Label><span style={{fontWeight:"bold",color:"#000"}}>Subjek</span></Form.Label>
-                                                            <Form.Control
-                                                                autoComplete="off"
-                                                                size="lg"
-                                                                name="subject"
-                                                                type="text"
-                                                                onChange={this.handleChange.bind(this)}
-                                                                value={selected.subject}
-                                                                required
-                                                                placeholder="Masukkan Subjek" />
-                                                        </Form.Group>
-                                                        <Form.Group controlId="message">
-                                                            <Form.Label>Pesan</Form.Label>
+                                            <div className="flex justify-center lg:mt-0 sm:mt-10 w-full lg:px-10 sm:px-0">
+                                                <Form className="w-full">
+                                                    <Form.Group controlId="subjek">
+                                                        <Form.Label><span style={{ fontWeight: "bold", color: "#000" }}>Subjek</span></Form.Label>
+                                                        <Form.Control
+                                                            autoComplete="off"
+                                                            size="lg"
+                                                            name="subject"
+                                                            type="text"
+                                                            onChange={this.handleChange.bind(this)}
+                                                            value={selected.subject}
+                                                            required
+                                                            placeholder="Masukkan Subjek" />
+                                                    </Form.Group>
+                                                    <Form.Group controlId="message">
+                                                        <Form.Label>Pesan</Form.Label>
 
-                                                            <Form.Control
-                                                                autoComplete="off"
-                                                                value={selected.message}
-                                                                rows={5}
-                                                                name="message"
-                                                                as="textarea"
-                                                                onChange={this.handleChange.bind(this)}
-                                                                required
-                                                                placeholder="Masukkan Pesan" />
-                                                        </Form.Group>
-                                                        <div className="grid grid-cols-2 place-items-center mt-0" >
-                                                            
-                                                            <div className="w-[50%] pt-2 col-span-2">
-                                                                <AppButton
-                                                                disabled ={selected.message && selected.subject ? false : true}
-                                                                style={{ color: "#fff", marginTop: 10 }}
+                                                        <Form.Control
+                                                            autoComplete="off"
+                                                            value={selected.message}
+                                                            rows={5}
+                                                            name="message"
+                                                            as="textarea"
+                                                            onChange={this.handleChange.bind(this)}
+                                                            required
+                                                            placeholder="Masukkan Pesan" />
+                                                    </Form.Group>
+                                                    <div className="mt-2" >
+
+                                                        <div className="w-auto">
+                                                            <AppButton
+                                                                disabled={selected.message && selected.subject ? false : true}
+                                                                style={{ color: "#fff", marginTop: 10, backgroundColor: "#C3262A", color: "#fff" }}
                                                                 onClick={this.handleSubmit.bind(this)}
                                                                 type="button"
                                                                 size="lg"
                                                                 theme=""
-                                                                style={{ backgroundColor:"#C3262A",color:"#fff"}}
-                                                                >
+                                                            >
                                                                 HUBUNGI KAMI</AppButton>
-                                                            </div>
-                                                            <div className="mobile-view" style={{marginBottom:"50px"}}>
-                                                                &nbsp;
-                                                            </div>
-
                                                         </div>
-                                                        
-                                                    </Form>
+
+                                                    </div>
+
+                                                </Form>
 
                                             </div>
 
                                         </div>
-                                       
+
                                     </div>
                                 </div>
                             </div>

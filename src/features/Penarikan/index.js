@@ -30,7 +30,6 @@ class Penarikan extends Component {
         this.state = {
             validSd: valid_startDate,
             validEd: valid_startDate,
-            lastSegmentUrl: "",
             formMT5: false,
             nextStep: false,
             nextStep1: false,
@@ -48,9 +47,6 @@ class Penarikan extends Component {
         const queryString = "?search&limit=" + this.state.limit + "&start=" + (this.state.start - 1) + "&start_date=" + this.state.start_date + "&end_date=" + this.state.end_date;
         this.props.onLoad();
         this.props.onLoadHistory(queryString);
-        const location = window.location.href;
-        const BaseName = location.substring(location.lastIndexOf("/") + 1);
-        await this.setState({ lastSegmentUrl: BaseName })
     }
 
     editRecord = (record) => {
@@ -272,7 +268,7 @@ class Penarikan extends Component {
                         <div className="col-sm-6">
                             <div className="form-group">
                                 <div className="form-group">
-                                    <label className="frm_lbl">Margin</label>
+                                    <label className="frm_lbl">Free Margin</label>
                                     <div>
                                         <strong className="font-weight-bold text-black">
                                             <NumberFormat
@@ -332,7 +328,7 @@ class Penarikan extends Component {
                         <div className="col-sm-6">
                             <div className="form-group">
                                 <div className="form-group">
-                                    <label className="frm_lbl">Jumlah Penarikan</label>
+                                    <label className="frm_lbl">Jumlah Penarikan (USD)</label>
 
                                     <div>
                                         <input name="nominal" value={selected.nominal} onChange={this.handleChange.bind(this)} type="number" className="form-control" />
@@ -344,6 +340,7 @@ class Penarikan extends Component {
                         </div>
 
                     </div>
+                    <p className="text-red-500 mt-2 mb-2 text-justify text-sm text-semi-bold">*Harap perhatikan margin level akun kamu. Saldo kamu akan langsung terpotong dari akun MT5. Permintaan penarikan dana di atas jam 11.00 WIB, akan di-transfer di hari kerja berikutnya</p>
 
 
 
@@ -362,10 +359,9 @@ class Penarikan extends Component {
                 <tr>
                     <th>-</th>
                     <th>Login</th>
-                    <th>Nama</th>
-                    <th style={{ textAlign: 'right' }}>Margin</th>
-                    <th style={{ textAlign: 'right' }}>Equity</th>
-                    <th style={{ textAlign: 'right' }}>Rate</th>
+                    <th>Free Margin</th>
+                    <th>Equity</th>
+                    <th>Rate</th>
                 </tr>
             </thead>
             <tbody>
@@ -382,8 +378,7 @@ class Penarikan extends Component {
                                     </td>
                                     <td>{at.login}
                                     </td>
-                                    <td>{at.name}</td>
-                                    <td align="right">
+                                    <td>
                                         <NumberFormat
                                             value={at.margin_free > 0 ? at.margin_free : '0.00'}
                                             thousandSeparator={true}
@@ -391,7 +386,7 @@ class Penarikan extends Component {
                                             displayType={'text'}
                                         />
                                     </td>
-                                    <td align="right">
+                                    <td>
                                         <NumberFormat
                                             value={at.equity > 0 ? at.equity : '0.00'}
                                             thousandSeparator={true}
@@ -399,7 +394,7 @@ class Penarikan extends Component {
                                             displayType={'text'}
                                         />
                                     </td>
-                                    <td align="right">
+                                    <td>
                                         {at.rate}
                                     </td>
                                 </tr>
@@ -528,7 +523,7 @@ class Penarikan extends Component {
         }
         return (
 
-            <div className="content-wrapper">
+            <div className="content-wrapper pr-3">
 
                 <section className="content">
                     <div className="container-fluid mt-3">
@@ -555,14 +550,13 @@ class Penarikan extends Component {
                                                     data_bank.map((dp, index, arr) => {
                                                         return (
                                                             <Fragment key={index}>
-                                                                <div className="mobile-hide">
-                                                                    <div className="grid grid-cols-2 place-items-center mt-0  py-4 px-1  lg:px-4 rounded-2xl mt-4" style={{ border:"2px solid #ddd",color:"#2E2E2F"}} onClick={e => this.editRecord(dp)} >
+                                                                 <div className="grid grid-cols-1 lg:grid-cols-2 w-full py-4 px-1 lg:px-4 rounded-2xl mt-4" style={{ border:"2px solid #ddd",color:"#2E2E2F"}} onClick={e => this.editRecord(dp)} >
                                                                         
-                                                                        <div className="px-2 lg:w-1/2">
-                                                                            <img alt={dp.nama_bank} src={dp.file} />
+                                                                        <div className="px-2 flex items-center justify-center">
+                                                                            <img className="w-3/12" alt={dp.nama_bank} src={dp.file} width="150px" />
                                                                         </div>
                                                                         
-                                                                        <div className="px-2 text-left lg:w-1/2">
+                                                                        <div className="px-2 text-center lg:text-left">
                                                                             <h3 className="box-bank__title" style={{ fontSize: 30 }}>{dp.nama_bank}</h3>
                                                                             <p style={{ fontSize: 25 }}>{dp.nama_pemilik}</p><br/>
                                                                             <p style={{ fontSize: 25 }}>{dp.no_rek}</p>
@@ -570,49 +564,6 @@ class Penarikan extends Component {
 
                                                                         
                                                                     </div>
-                                                                </div>
-
-                                                                <div className="mobile-view">
-                                                                    <div className="grid grid-cols-2 place-items-center mt-0  py-4 px-1  lg:px-4 rounded-2xl mt-4" style={{ border:"2px solid #ddd",color:"#2E2E2F"}} onClick={e => this.editRecord(dp)} >
-                                                                        
-                                                                    <div className="px-2 w-[60%] col-span-2">
-                                                                            <img alt={dp.nama_bank} src={dp.file} />
-                                                                        </div>
-                                                                        
-                                                                        <div className="px-2 text-left w-full col-span-2 mt-4">
-                                                                            
-                                                                            <div className="grid grid-cols-3">
-                                                                                 <div className="col-span-1">
-                                                                                    Nama bank
-                                                                                 </div>
-                                                                                 <div className="col-span-2">
-                                                                                    : <span className="font-semibold">{dp.nama_bank}</span>
-                                                                                 </div>
-                                                                            </div>
-
-                                                                            <div className="grid grid-cols-3">
-                                                                                 <div className="col-span-1">
-                                                                                    Nama Pemilik
-                                                                                 </div>
-                                                                                 <div className="col-span-2">
-                                                                                    : <span className="font-semibold">{dp.nama_pemilik}</span>
-                                                                                 </div>
-                                                                            </div>
-
-                                                                            <div className="grid grid-cols-3">
-                                                                                 <div className="col-span-1">
-                                                                                    No Rekening
-                                                                                 </div>
-                                                                                 <div className="col-span-2">
-                                                                                    : <span className="font-semibold">{dp.no_rek}</span>
-                                                                                 </div>
-                                                                            </div>
-
-                                                                        </div>
-
-                                                                        
-                                                                    </div>
-                                                                </div>
                                                                 
                                                             </Fragment>
                                                         )

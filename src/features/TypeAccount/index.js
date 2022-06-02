@@ -11,20 +11,20 @@ class TypeAccount extends Component {
         this.state = {
             lastSegmentUrl: "",
             rate: "",
-			nama_rate : ""
+            nama_rate: ""
         }
     }
 
     componentDidMount = async () => {
-		sessionStorage.removeItem("data_tipe_akun_id");
-		sessionStorage.removeItem("tipe_akun");
-		const act = sessionStorage.getItem('act_tipe_akun_id');
-		if(act){
-			const dt = {};
-			dt['key'] = 'act';
-			dt['value'] = act;
-			this.props.changeProps(dt);
-		}
+        sessionStorage.removeItem("data_tipe_akun_id");
+        sessionStorage.removeItem("tipe_akun");
+        const act = sessionStorage.getItem('act_tipe_akun_id');
+        if (act) {
+            const dt = {};
+            dt['key'] = 'act';
+            dt['value'] = act;
+            this.props.changeProps(dt);
+        }
         this.props.onLoad();
         const location = window.location.href;
         const BaseName = location.substring(location.lastIndexOf("/") + 1);
@@ -32,15 +32,15 @@ class TypeAccount extends Component {
     }
 
     handleChange(evt) {
-		var index = evt.target.selectedIndex;
-		
+        var index = evt.target.selectedIndex;
+
         const name = evt.target.name;
         var value = evt.target.value;
         const dt = {};
-		dt['key'] = name;
-		dt['value'] = value;
-		this.props.changeProps(dt);  
-		this.setState({"nama_rate":evt.target[index].text});
+        dt['key'] = name;
+        dt['value'] = value;
+        this.props.changeProps(dt);
+        this.setState({ "nama_rate": evt.target[index].text });
     }
 
     handleClickBtn(record) {
@@ -51,7 +51,7 @@ class TypeAccount extends Component {
         this.props.showConfirm(record.nama_tipe_akun);
     }
 
-    handleNext= async () => {		
+    handleNext = async () => {
         await sessionStorage.setItem('tipe_akun', this.props.dataSelect.tipe_akun);
         this.props.onSave(this.props.dataSelect);
         this.props.history.push("/decleration");
@@ -65,19 +65,67 @@ class TypeAccount extends Component {
     render() {
         const { lastSegmentUrl } = this.state;
         const { dataRate, dataTypeAccount, dataSelect } = this.props;
-        const contentDelete = <div dangerouslySetInnerHTML={{ __html: '<div id="caption" style="padding-bottom:20px;">Anda yakin memilih tipe akun <div class="mobile-hide" style="padding-top:15px;padding-bottom:15px"><strong><span style="font-size:25px">' + dataSelect.message + '</span></strong> <span style="font-size:25px">' +this.state.nama_rate+ ' ?</span></div><div class="mobile-view" style="padding-top:20px;padding-bottom:15px"><strong><span style="font-size:20px">' + dataSelect.message + '</span></strong> <span style="font-size:20px">' +this.state.nama_rate+ ' ?</span></div></div><br/>' }} />;
+        const contentDelete = <div dangerouslySetInnerHTML={{ __html: '<div id="caption" style="padding-bottom:20px;">Anda yakin memilih tipe akun <div class="mobile-hide" style="padding-top:15px;padding-bottom:15px"><strong><span style="font-size:25px">' + dataSelect.message + '</span></strong> <span style="font-size:25px">' + this.state.nama_rate + ' ?</span></div><div class="mobile-view" style="padding-top:20px;padding-bottom:15px"><strong><span style="font-size:20px">' + dataSelect.message + '</span></strong> <span style="font-size:20px">' + this.state.nama_rate + ' ?</span></div></div><br/>' }} />;
 
         return (
 
             <div className="content-wrapper">
                 <div className="content-area__edge">
-                    <ul className="list-unstyled list-steps mb-0">
-                        <li className={lastSegmentUrl === "personal" ? "active default" : "default"}><a href="personal">1. Informasi Pribadi</a></li>
-                        <li className={lastSegmentUrl === "account-type" ? "active default" : "default"}><a href="account-type"><span />2. Tipe Akun</a></li>
-                        <li className={lastSegmentUrl === "decleration" ? "active default" : "default"}><a href="decleration"><span />3. Pernyataan</a></li>
-                        <li className={lastSegmentUrl === "trading_rules" ? "active default" : "default"}><a href="trading_rules"><span />4. Peraturan Trading</a></li>
-                        <li className={lastSegmentUrl === "company_profile" ? "active default" : "default"}><a href="company_profile"><span />5. Profil Perusahaan</a></li>
-                    </ul>
+                    <div className="px-3">
+                        <ul className="list-unstyled list-steps mb-0 flex flex-col lg:flex-row gap-3">
+                            <li
+                                className={
+                                    lastSegmentUrl === "personal" ? "active default flex-1 p-3" : "default flex-1 p-3"
+                                }
+                            >
+                                <a href="personal">1. Informasi Pribadi</a>
+                            </li>
+                            <li
+                                className={
+                                    lastSegmentUrl === "account-type"
+                                        ? "active default flex-1 p-3"
+                                        : "default flex-1 p-3"
+                                }
+                            >
+                                <a href="account-type">
+                                    2. Tipe Akun
+                                </a>
+                            </li>
+                            <li
+                                className={
+                                    lastSegmentUrl === "decleration"
+                                        ? "active default flex-1 p-3"
+                                        : "default flex-1 p-3"
+                                }
+                            >
+                                <a href="decleration">
+                                    3. Pernyataan
+                                </a>
+                            </li>
+                            <li
+                                className={
+                                    lastSegmentUrl === "trading_rules"
+                                        ? "active default flex-1 p-3"
+                                        : "default flex-1 p-3"
+                                }
+                            >
+                                <a href="trading_rules">
+                                    4. Peraturan Trading
+                                </a>
+                            </li>
+                            <li
+                                className={
+                                    lastSegmentUrl === "company_profile"
+                                        ? "active default flex-1 p-3"
+                                        : "default flex-1 p-3"
+                                }
+                            >
+                                <a href="company_profile">
+                                    5. Profil Perusahaan
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <section className="content">
                     <div className="container-fluid">
@@ -92,8 +140,13 @@ class TypeAccount extends Component {
                         <div className="row">
                             <div className="col-12">
                                 {/* card start */}
-                                <div className="card card-success shadow-lg" style={{ "minHeight": "600px",borderRadius:"2rem"  }}>
+                                <div className="card card-success shadow-lg" style={{ "minHeight": "600px", borderRadius: "2rem" }}>
                                     <div className="card-body">
+                                     <div className="alert alert-default alert-sm" style={{ backgroundColor: '#fbfbfd' }} >
+                                            <div className="mobile-hide" style={{ padding: "1" }}>
+                                                <h3 className="label_ijo">Tipe Akun</h3>
+                                            </div>
+                                        </div>
                                         <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 20 }}>
                                             <Form.Group as={Row} controlId="rate">
                                                 <Form.Label column sm={2}><h5>Rate</h5></Form.Label>
@@ -139,12 +192,12 @@ class TypeAccount extends Component {
                                                                 <Card.Body style={{ padding: ".65rem" }}>
                                                                     <div className="grid grid-cols-1 place-items-center">
                                                                         <div>
-                                                                        <Button
-                                                                            onClick={this.handleClickBtn.bind(this, dta)}
-                                                                            disabled={dataSelect.rate ? false : true}
-                                                                            size="lg" variant="" style={{ backgroundColor:"#C3262A",color:"#fff",marginRight:"0%"}}>Daftar Akun</Button>
+                                                                            <Button
+                                                                                onClick={this.handleClickBtn.bind(this, dta)}
+                                                                                disabled={dataSelect.rate ? false : true}
+                                                                                size="lg" variant="" style={{ backgroundColor: "#C3262A", color: "#fff", marginRight: "0%" }}>Daftar Akun</Button>
                                                                         </div>
-                                                                    </div>        
+                                                                    </div>
                                                                 </Card.Body>
                                                             </Card>
                                                         </Col>
@@ -170,7 +223,7 @@ class TypeAccount extends Component {
                                     title="Confirm"
                                     titleButton="Selanjutnya"
                                     themeButton=""
-                                    style={{ color:"#fff"}}
+                                    style={{ color: "#fff" }}
                                     isLoading={false}
                                     formSubmit={this.handleNext.bind(this)}
                                 ></AppModal>
@@ -200,12 +253,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: () => {
-			dispatch(profileUser());
+            dispatch(profileUser());
             dispatch(getRate());
             dispatch(getTA());
         },
         onSave: (param) => {
-			dispatch(profileUser());
+            dispatch(profileUser());
             dispatch(simpanDataTA(param));
         },
         changeProps: (param) => {

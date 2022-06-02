@@ -147,13 +147,61 @@ class Pernyataan extends Component {
 
             <div className="content-wrapper">
                 <div className="content-area__edge">
-                    <ul className="list-unstyled list-steps mb-0">
-                        <li className={lastSegmentUrl === "personal" ? "active default" : "default"}><a href="personal">1. Informasi Pribadi</a></li>
-                        <li className={lastSegmentUrl === "account-type" ? "active default" : "default"}><a href="account-type"><span />2. Tipe Akun</a></li>
-                        <li className={lastSegmentUrl === "decleration" ? "active default" : "default"}><a href="decleration"><span />3. Pernyataan</a></li>
-                        <li className={lastSegmentUrl === "trading_rules" ? "active default" : "default"}><a href="trading_rules"><span />4. Peraturan Trading</a></li>
-                        <li className={lastSegmentUrl === "company_profile" ? "active default" : "default"}><a href="company_profile"><span />5. Profil Perusahaan</a></li>
-                    </ul>
+                <div className="px-3">
+                        <ul className="list-unstyled list-steps mb-0 flex flex-col lg:flex-row gap-3">
+                            <li
+                                className={
+                                    lastSegmentUrl === "personal" ? "active default flex-1 p-3" : "default flex-1 p-3"
+                                }
+                            >
+                                <a href="personal">1. Informasi Pribadi</a>
+                            </li>
+                            <li
+                                className={
+                                    lastSegmentUrl === "account-type"
+                                        ? "active default flex-1 p-3"
+                                        : "default flex-1 p-3"
+                                }
+                            >
+                                <a href="account-type">
+                                    2. Tipe Akun
+                                </a>
+                            </li>
+                            <li
+                                className={
+                                    lastSegmentUrl === "decleration"
+                                        ? "active default flex-1 p-3"
+                                        : "default flex-1 p-3"
+                                }
+                            >
+                                <a href="decleration">
+                                    3. Pernyataan
+                                </a>
+                            </li>
+                            <li
+                                className={
+                                    lastSegmentUrl === "trading_rules"
+                                        ? "active default flex-1 p-3"
+                                        : "default flex-1 p-3"
+                                }
+                            >
+                                <a href="trading_rules">
+                                    4. Peraturan Trading
+                                </a>
+                            </li>
+                            <li
+                                className={
+                                    lastSegmentUrl === "company_profile"
+                                        ? "active default flex-1 p-3"
+                                        : "default flex-1 p-3"
+                                }
+                            >
+                                <a href="company_profile">
+                                    5. Profil Perusahaan
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <section className="content">
                     <div className="container-fluid">
@@ -181,18 +229,6 @@ class Pernyataan extends Component {
                                                         </Row>
                                                         <Row>
                                                             
-                                                        </Row>
-        
-
-                                                        <br />
-                                                        
-                                                        <Row>    
-                                                            <Col xs={24} lg={6}>
-                                                                <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Tanggal Lahir</span></label></Col>
-
-                                                            <Col xs={24} lg={6}>
-                                                                <Input readOnly size="lg" value={user ? tgl_lhir : ''} />
-                                                            </Col>
                                                         </Row>
                                                         <br />
                                                         <Row>    
@@ -771,72 +807,59 @@ class Pernyataan extends Component {
                                                     <br/>
                                                     <strong>Yang mengisi formulir di bawah ini: </strong>
                                                     <br />
-                                                    <Row>
-                                                        <Col xs={6}><label style={{ color: '#D77175', marginTop: 8 }}>Nama Lengkap</label></Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col xs={9}>
-                                                            <Input readOnly size="lg" value={user ? user.nama_depan + ' ' + user.nama_belakang : ''} />
-                                                        </Col>
-                                                    </Row>
+                                                    <div className="grid grid-cols-1 gap-4">
+                                                        <div><label style={{ color: '#D77175', marginTop: 8 }}>Nama Lengkap</label></div>
+                                                        <div>
+                                                            <Input readOnly size="lg" value={user ? user.nama_depan + ' ' + user.nama_belakang : ''} /> 
+                                                        </div>
+                                                    </div>
                                                     
                                                     <br />
-                                                    <Row>
-                                                        <Col xs={6}>
-                                                            <label style={{ color: '#D77175', marginTop: 8 }}>Tempat Lahir</label></Col>
+                                                    <div className="grid grid-cols-2 gap-4">
+                                           
+                                                        <div className="grid grid-cols-1">
+                                                            <div><label style={{ color: '#D77175', marginTop: 8 }}>Tempat Lahir</label></div>
+                                                            <div>
+                                                                <Input readOnly size="lg" value={user && user.tempat_lahir ? user.tempat_lahir : ''} />
+                                                            </div>
+                                                        </div>
+                                                        <div className="grid grid-cols-1">
+                                                            <div><label style={{ color: '#D77175', marginTop: 8 }}>Tanggal Lahir</label></div>
+                                                            <div>
+                                                                <Input readOnly size="lg" value={user ? tgl_lhir : ''} />
+                                                            </div>
+                                                        </div>
                                                         
-                                                        <Col xs={6}>
-                                                            <label style={{ color: '#D77175', marginTop: 8 }}>Tanggal Lahir</label></Col>
-                                                        
-                                                        <Col xs={6}>
-                                                            <label style={{ color: '#D77175', marginTop: 8 }}>Kota Lahir</label></Col>
-
-
-                                                        
-                                                    </Row>
-                                                    
-                                                    <Row>
-                                                        <Col xs={6}>
-                                                            <Input readOnly size="lg" value={user && user.tempat_lahir ? user.tempat_lahir : ''} />
-                                                        </Col>
-                                                        
-                                                        <Col xs={6}>
-                                                            <Input readOnly size="lg" value={user ? tgl_lhir : ''} />
-                                                        </Col>
-                                                        <Col xs={6}>
+                                                    </div>
+                                                    <br />
+                                                    <div className="grid grid-cols-1 gap-4">
+                                                        <div><label style={{ color: '#D77175', marginTop: 8 }}>Kota Lengkap</label></div>
+                                                        <div>
                                                             <Input readOnly size="lg" value={user && user.kota_lahir ? user.kota_lahir : ''} />
-                                                        </Col>
-                
-                                                    </Row>
+                                                        </div>
+                                                    </div>
                                                     <br />
-                                                    <Row>
-                                                        <Col xs={6}>
-                                                            <label style={{ color: '#D77175', marginTop: 8 }}>Alamat Rumah</label></Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col xs={18}>
+                                                    <div className="grid grid-cols-1 gap-4">
+                                                        <div><label style={{ color: '#D77175', marginTop: 8 }}>Alamat Rumah</label></div>
+                                                        <div>
                                                             <Input readOnly size="lg" value={user && user.alamat ? user.alamat : ''} />
-                                                        </Col>
-                                                    </Row>
+                                                        </div>
+                                                    </div>
                                                     <br />
-                                                    <Row>
-                                                        <Col xs={9}>
-                                                            <label style={{ color: '#D77175', marginTop: 8 }}>No.Identitas</label></Col>
-                                                        
-                                                        <Col xs={9}>
-                                                            <label style={{ color: '#D77175', marginTop: 8 }}>No.Demo Acc.</label></Col>
-
-                                                        
-                                                    </Row>
-                                                    <Row>
-                                                    <Col xs={9}>
+                                                    <div className="grid grid-cols-1 gap-4">
+                                                        <div><label style={{ color: '#D77175', marginTop: 8 }}>No.Identitas</label></div>
+                                                        <div>
                                                             <Input readOnly size="lg" value={user && user.no_identitas ? user.no_identitas : ''} />
-                                                        </Col>
-
-                                                        <Col xs={9}>
-                                                           <Input readOnly size="lg" value={localStorage.getItem('loginDemo') ? localStorage.getItem('loginDemo') : ''} />
-                                                        </Col>
-                                                    </Row>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div className="grid grid-cols-1 gap-4">
+                                                        <div><label style={{ color: '#D77175', marginTop: 8 }}>No.Demo Acc</label></div>
+                                                        <div>
+                                                            <Input readOnly size="lg" value={localStorage.getItem('loginDemo') ? localStorage.getItem('loginDemo') : ''} />
+                                                        </div>
+                                                    </div>
+                                                    
                                                     <br />
                                                     <center>
                                                     Dengan mengisi kolom "YA" di bawah ini, saya menyatakan bahwa saya bertanggungjawab sepenuhnya terhadap kode akses transaksi Nasabah (Personal Access Password) dan tidak menyerahkan kode akses transaksi Nasabah (Personal Access Password) ke pihak lain, terutama kepada pegawai Pialang Berjangka atau pihak yang memiliki kepentingan dengan Pialang Berjangka.
@@ -955,12 +978,11 @@ class Pernyataan extends Component {
 
                                     
                                     <AppButton
-                                        style={{ color: '#ffffff', marginRight: 5 }}
                                         onClick={this.handlesubmit.bind(this, 'act')}
                                         type="button"
                                         size="lg"
                                         theme=""
-                                                    style={{ backgroundColor:"#28A745",color:"#fff",marginRight:"2%"}}>Selanjutnya</AppButton>
+                                        style={{ backgroundColor:"#28A745",color:"#fff",marginRight:"2%"}}>Selanjutnya</AppButton>
                                     
                                     </div>
                                 </div>

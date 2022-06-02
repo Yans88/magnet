@@ -280,7 +280,7 @@ class RejecctDocument extends Component {
     );
 
     return (
-      <div className="content-wrapper">
+      <div className="content-wrapper pr-3">
         <section className="content">
           <div className="container-fluid">
             <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>
@@ -663,7 +663,6 @@ class RejecctDocument extends Component {
                           <AppButton
                             onClick={this.handlesubmit.bind(this)}
                             isLoading={this.props.isAddLoading}
-                            style={{ color: "#ffffff", marginRight: 5 }}
                             type="button"
                             size="lg"
                             theme=""

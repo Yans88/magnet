@@ -21,7 +21,7 @@ export default class Unduh extends Component {
 
         return (
 
-            <div className="content-wrapper">
+            <div className="content-wrapper pr-3">
 
                 <section className="content">
                     <div className="container-fluid">

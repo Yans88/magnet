@@ -56,12 +56,12 @@ class MyHeader extends Component {
           <Navbar.Header>
             <div className="mobile-hide">
               <Link to="/" className="navbar-brand logo float-center pt-3 px-5">
-                <img src={logoa} width="130px" />
+                <img src={logoa} width="120px" />
               </Link>
             </div>
             <div className="mobile-view ">
               <Link to="/" className="navbar-brand logo float-center pt-3 px-2">
-                <img src={logoa} width="130px" />
+                <img src={logoa} width="120px" />
               </Link>
             </div>
           </Navbar.Header>
@@ -76,13 +76,12 @@ class MyHeader extends Component {
               ></Nav.Item>
             </Nav>
 
-            <div className="grid grid-cols-2 text-black pt-0 mb-2">
-              <div className="mobile-hide">
-                <div className=" w-2/3 grid grid-cols-1 pt-2">
-                  <div className="font-bold ml-2">
+            <div className="flex justify-end ">
+              <div className="flex flex-col">
+                  <div className="font-bold pl-3 pr-3 bg-white" style={{height: "50px"}}>
                     {
                       <h5
-                        style={{ fontWeight: 600, fontSize: 14, marginLeft: 8 }}
+                        style={{ fontWeight: 600, fontSize: 14 }}
                       >
                         STATUS
                         <br />
@@ -103,6 +102,12 @@ class MyHeader extends Component {
                     }
                   </div>
                 </div>
+
+            </div>
+
+            {/* <div className="grid grid-cols-2 text-black pt-0">
+              <div className="mobile-hide">
+                
               </div>
 
               <div>
@@ -164,7 +169,7 @@ class MyHeader extends Component {
                   </Dropdown>
                 </Nav>
               </div>
-            </div>
+            </div> */}
           </Navbar.Body>
         </Navbar>
       </Header>
