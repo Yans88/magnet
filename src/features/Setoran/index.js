@@ -512,14 +512,17 @@ class Setoran extends Component {
                 <div className="form-group">
                   <div className="form-group">
                     <label className="frm_lbl">Rate</label>
+					
                     <div>
                       <strong className="font-weight-bold text-black">
+						{selected.rate > 0 &&
                         <NumberFormat
                           value={selected.rate > 0 ? selected.rate : "0.00"}
                           thousandSeparator={true}
                           decimalScale={2}
                           displayType={"text"}
-                        />
+                        />}
+						{selected.rate === 0 || selected.rate === '0' ? 'USD' : "0.00"}
                       </strong>
                     </div>
                   </div>
@@ -674,7 +677,7 @@ class Setoran extends Component {
                             displayType={"text"}
                           />
                         </td>
-                        <td align="right">{at.rate}</td>
+                        <td align="right">{at.rate === 0 || at.rate === '0' ? 'USD' : at.rate}</td>
                       </tr>
                     </Fragment>
                   );
