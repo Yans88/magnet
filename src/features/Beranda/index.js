@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { getAkunTrading, getAkunTradingDemo } from "../Setoran/setoranSlice";
-import { profileUser,chgPass,chgPhonePass, clearState } from '../main/mainSlice';
+import { profileUser, chgPass, chgPhonePass, clearState } from '../main/mainSlice';
 import { getDataPP } from "../ProfilePerusahaan/ppSlice";
 import NumberFormat from "react-number-format";
 import akun_icon from "../../assets/akun_white.svg";
@@ -12,6 +12,7 @@ import AppModalStatus from "../../components/modal/MyModalStatus";
 import AppModall from "../../components/modal/MyModall";
 import { Button, Form } from "react-bootstrap";
 import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
+import provider_mt5 from '../../assets/mt5.png';
 
 class Beranda extends Component {
   constructor(props) {
@@ -199,25 +200,16 @@ class Beranda extends Component {
       errMsg: this.initSelected,
     });
   }
-  
-  handleClose2() {
-    localStorage.removeItem("myStatusDokumen2");
-    this.setState({
-      myStatusDokumen: false,
-    });
-	this.props.history.push("/rej-doc");
-  }
-  
   handleCloseSwal() {
-        this.setState({
-			loadingForm: false,
-			showFormResPass : false,
-			showFormResPhonePass : false,
-            selected: this.initSelected,
-            errMsg: this.initSelected,
-        });
-		this.props.closeSwal();
-    }
+    this.setState({
+      loadingForm: false,
+      showFormResPass: false,
+      showFormResPhonePass: false,
+      selected: this.initSelected,
+      errMsg: this.initSelected,
+    });
+    this.props.closeSwal();
+  }
 
   render() {
     const { akun_trading, akun_trading_demo, profile, profile_perusahaan } = this.props;
@@ -345,233 +337,208 @@ class Beranda extends Component {
       />
     );
     return (
-      <div className="content-wrapper">
+      <div className="content-wrapper pr-3">
         <section className="content">
           <div className="container-fluid">
-            
-            <div className="grid grid-cols-1  my-3">
-              
-            <div className="mobile-hide">
-                  <div className="w-full bg-hijau-forex rounded-xl text-white pt-10 pb-10 grid grid-cols-1 place-items-center static">
-                  
-                      <div className="mobile-hide w-[12%]  ">
-                          
-                          <div class="flex flex-row justify-center">
-                              <div class="basis-full"><span className="text-lg font-bold"><img src={akun_icon} width="25px" className="float-left pl-0" />&nbsp;Akun Saya</span></div>
-                          </div>
 
-                          
+            <div className="grid grid-cols-1 py-3">
 
-                      </div>
 
-                      
-                  </div>
+              <div className="w-full bg-hijau-forex rounded-xl text-white pb-6 pt-6 grid grid-cols-1 place-items-center static">
+
+
+                <div class="flex flex-row justify-center"><span className="text-lg font-bold"><img src={akun_icon} width="25px" className="float-left pl-0" />&nbsp;Akun Saya</span></div>
+
+
               </div>
 
-              <div className="mobile-view">
-                  <div className="w-full bg-hijau-forex rounded-xl text-white pt-3 pb-3 pb-20 grid grid-cols-1 place-items-center static">
-                  
-                  
-                      <div className="relative w-[50%] text-center  ">
-                          
-                          <div class="flex flex-row justify-center">
-                              <div class="basis-3/4"><span className="text-lg font-bold"><img src={akun_icon} width="25px" className="float-left pl-0" />&nbsp;Akun Saya</span></div>
-                          </div>
 
-                      </div>
 
-                  </div>
-              </div>
+              <div className="w-full text-white pt-3 pb-3  grid grid-cols-1 place-items-center static">
 
-              <div className="w-full text-white pt-3 pb-3 pb-20 grid grid-cols-1 place-items-center static">
-                  
-                  
-              <div className="mobile-hide relative  text-black text-center    py-0 w-3/4 mt-5 ..." >
-                    
-                    <div className="mobile-hide relative    bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[100%] mb-10   ...">
+
+                <div className="mobile-hide relative  text-black text-center  py-0 w-full ..." >
+
+                  <div className="mobile-hide relative    bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[100%] mb-10   ...">
+
+
+                    <div className="flex justify-center items-center">
+                      <span className="font-bold text-red-700" style={{ fontSize: "17px" }}>AKUN REAL MT5</span>
+                      <img width="45" className="pl-2" src={provider_mt5}/>
+                    </div>  
+
+                    <div className="grid grid-cols-3 gap-4 px-3 mt-4 mb-4">
+
+                      {akun_trading ? (
+                        akun_trading.map((at, index) => {
+                          return (
+
+                            <div className="rounded-2xl border border-solid border-gray-300 text-left p-3" style={{ backgroundColor: "#F1F1F1" }}>
+                              <div className="grid grid-cols-3">
+                                <div className="col-span-2">
+                                  <span className="text-red-500 text-sm font-bold">NO LOGIN: {at.login}</span>
+                                </div>
+                                <div className="box-bank__actions place-items-end text-right">
+                                  <Dropdown>
+                                    <Dropdown.Toggle size="sm" variant="secondary"
+                                      style={{ backgroundColor: 'transparent', borderColor: 'transparent', color: '#000' }} id="dropdown-basic">
+                                      <i className="fa fa-cog"></i>
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu className="my-dropdown-menu">
+                                      <Dropdown.Item as="button" onClick={() => this.chg_pass(at)}>RESET PASSWORD</Dropdown.Item>
+                                      <Dropdown.Item as="button" onClick={() => this.chg_pass2(at)}>RESET PHONE PASSWORD</Dropdown.Item>
+
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+
+                                </div>
+                              </div>
+                              <div className="grid grid-cols-2" style={{fontSize:"12px"}}>
+                                <div className="font-bold">BALANCE</div>
+                                <div className="font-bold">FREE MARGIN</div>
                                 
-                                
-                                <div className="grid grid-col2-1 place-items-center mb-4">
-                                    
-                                    
+                                <div><NumberFormat
+                                  value={at.balance > 0 ? at.balance : '0.00'}
+                                  thousandSeparator={true}
+                                  decimalScale={2}
+                                  displayType={'text'}
+                                /></div>
 
-                                    {profile.status_dokumen === 'Approve' &&
-                                    <div className="w-1/4 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{backgroundColor:"#C2252C"}}>
-                          
-                                        <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
-                                            <span className="font-bold text-white">BUAT AKUN TRADING BARU</span>
-                                        </Link>
-                                    </div>}
-									
-									                  {profile.status_dokumen === 'Belum Lengkap' &&
-                                    <div className="w-1/4 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{backgroundColor:"#C2252C"}}>
-                          
-                                        <Link to='/personal' className="btn btn-lgreen btn-sm">
-                                            <span className="font-bold text-white">LENGKAPI REGISTRASI</span>
-                                        </Link>
-                                    </div>}
-									
-									{profile.status_dokumen === 'Menunggu Verifikasi' &&
-                                    <div className="w-1/2 place-items-center static">                
-                                       
-                                          <h4>Akun anda sedang di verifikasi oleh admin dan akan di telpon oleh wakil pialang dengan nomor {profile_perusahaan.wakil_pialang_caller}</h4>
-                                       
-                                    </div>}
+                                <div><NumberFormat
+                                  value={at.margin_free > 0 ? at.margin_free : '0.00'}
+                                  thousandSeparator={true}
+                                  decimalScale={2}
+                                  displayType={'text'}
+                                /></div>
 
-                                </div> 
-
-                                <div className="grid grid-cols-3 gap-4 px-5  mt-2">
-
-                                    {akun_trading ? (
-                                    akun_trading.map((at, index) => {
-                                        return (
-
-                                            <div className="rounded-2xl border border-solid border-gray-300 text-left p-4" style={{ backgroundColor:"#F1F1F1"}}>
-                                                <div className="grid grid-cols-2">
-                                                            <div>
-                                                                <span className="text-red-500">#{at.login}</span>
-                                                            </div>
-                                                            <div className="box-bank__actions place-items-end text-right">
-                                                                <Dropdown>
-                                                                    <Dropdown.Toggle size="sm" variant="secondary"
-                                                                        style={{ backgroundColor: 'transparent', borderColor: 'transparent',color:'#000' }} id="dropdown-basic">
-                                                                        <i className="fa fa-ellipsis-v"></i>
-                                                                    </Dropdown.Toggle>
-
-                                                                    <Dropdown.Menu className="my-dropdown-menu">
-                                                                        <Dropdown.Item as="button" onClick={() => this.chg_pass(at)}>RESET PASSWORD</Dropdown.Item>
-                                                                        <Dropdown.Item as="button" onClick={() => this.chg_pass2(at)}>RESET PHONE PASSWORD</Dropdown.Item>
-
-                                                                    </Dropdown.Menu>
-                                                                </Dropdown>
-
-                                                            </div>
-                                                </div>
-                                                <div className="grid grid-cols-2">
-                                                    <div className="font-bold">FREE MARGIN</div>
-                                                    <div className="font-bold">LEVERAGE</div>
-                                                    
-                                                    
-                                                    <div><NumberFormat
-                                                        value={at.margin_free > 0 ? at.margin_free : '0.00'}
-                                                        thousandSeparator={true}
-                                                        decimalScale={2}
-                                                        displayType={'text'}
-                                                    /></div>
-                                                    <div><NumberFormat
-                                                        value={at.leverage > 0 ? at.leverage : '0.00'}
-                                                        thousandSeparator={true}
-                                                        decimalScale={2}
-                                                        displayType={'text'}
-                                                    /></div>
-
-                                                    <div className="font-bold">EQUITY</div>
-                                                    <div>&nbsp;</div>
-                                                    <div><NumberFormat
-                                                        value={at.equity > 0 ? at.equity : '0.00'}
-                                                        thousandSeparator={true}
-                                                        decimalScale={2}
-                                                        displayType={'text'}
-                                                    /></div>
-
-                                                    
-                                                
-                                                </div>
-
-                                            </div>
-
-
-                                        );
-                                    })
-                                ) : ''}
-
-
+                                <div className="font-bold">EQUITY</div>
+                                <div>&nbsp;</div>
+                                <div><NumberFormat
+                                  value={at.equity > 0 ? at.equity : '0.00'}
+                                  thousandSeparator={true}
+                                  decimalScale={2}
+                                  displayType={'text'}
+                                /></div>
                               </div>
 
-                          </div>
+                            </div>
+
+
+                          );
+                        })
+                      ) : ''}
+
+                    </div>
+                    <div className="grid grid-col2-1 place-items-center mb-4 pl-5 pr-5">
+                      {profile.status_dokumen === 'Approve' &&
+                        <div className="w-auto bg-hijau-forex rounded-xl text-white pt-2 pb-2 grid grid-cols-1 place-items-center static" style={{ backgroundColor: "#C2252C" }}>
+
+                          <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
+                            <span className="font-bold text-white">BUAT AKUN TRADING BARU</span>
+                          </Link>
+                        </div>}
+
+                      {profile.status_dokumen === 'Belum Lengkap' &&
+                        <div className="w-auto bg-hijau-forex rounded-xl text-white pt-2 pb-2 grid grid-cols-1 place-items-center static" style={{ backgroundColor: "#C2252C" }}>
+
+                          <Link to='/personal' className="btn btn-lgreen btn-sm">
+                            <span className="font-bold text-white">LENGKAPI REGISTRASI</span>
+                          </Link>
+                        </div>}
+
+                      {profile.status_dokumen === 'Menunggu Verifikasi' &&
+                        <div className="w-full place-items-center static">
+                          <h5>Akun anda sedang di verifikasi oleh admin dan akan di telpon oleh wakil pialang dengan nomor {profile_perusahaan.wakil_pialang_caller}</h5>
+
+                        </div>}
+
+                    </div>
+
+                  </div>
 
                 </div>
 
-                <div className="mobile-hide relative  text-black text-center    py-0 w-3/4 mt-0 ..." >
-                    
-                    <div className="mobile-hide relative    bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[100%] mb-10   ...">
-                                <span className="font-bold text-red-700" style={{fontSize:"17px"}}>AKUN DEMO MT5</span><br/><br/>
+                <div className="mobile-hide relative  text-black text-center    py-0 w-full mt-0 ..." >
+
+                  <div className="mobile-hide relative    bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[100%] mb-10   ...">
+                    <div className="flex justify-center items-center">
+                      <span className="font-bold text-red-700" style={{ fontSize: "17px" }}>AKUN DEMO MT5</span>
+                    </div>  
+
+                    <div className="grid grid-cols-3 gap-4 px-3 mt-4 mb-4">
+
+                      {akun_trading_demo ? (
+                        akun_trading_demo.map((at, index) => {
+                          return (
+
+                            <div className="rounded-2xl border border-solid border-gray-300 text-left p-2" style={{ backgroundColor: "#F1F1F1" }}>
+                              <div className="grid grid-cols-3">
+                                <div className="col-span-2">
+                                  <span className="text-red-500 text-sm font-bold">NO LOGIN: {at.login}</span>
+                                </div>
+                                <div className="box-bank__actions place-items-end text-right">
+                                  <Dropdown>
+                                    <Dropdown.Toggle size="sm" variant="secondary"
+                                      style={{ backgroundColor: 'transparent', borderColor: 'transparent', color: '#000', paddingLeft: "80%" }} id="dropdown-basic">
+                                      <i className="fa fa-cog"></i>
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu className="my-dropdown-menu">
+                                      <Dropdown.Item as="button" onClick={() => this.chg_pass(at)}>RESET PASSWORD</Dropdown.Item>
+                                      <Dropdown.Item as="button" onClick={() => this.chg_pass2(at)}>RESET PHONE PASSWORD</Dropdown.Item>
+
+                                    </Dropdown.Menu>
+                                  </Dropdown>
+
+                                </div>
+                              </div>
+                             
+                              <div className="grid grid-cols-2" style={{fontSize:"12px"}}>
+                                <div className="font-bold">BALANCE</div>
+                                <div className="font-bold">FREE MARGIN</div>
                                 
-                                
-                                <div className="grid grid-col2-1 place-items-center mb-4">
-                                    <div className="w-1/4 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{backgroundColor:"#C2252C"}}>
-                                        <a href="account-type" className="btn btn-lgreen btn-sm"><span className="font-bold text-white">BUAT AKUN DEMO</span></a>
-                                    </div>
-                                </div> 
+                                <div><NumberFormat
+                                  value={at.balance > 0 ? at.balance : '0.00'}
+                                  thousandSeparator={true}
+                                  decimalScale={2}
+                                  displayType={'text'}
+                                /></div>
 
-                                <div className="grid grid-cols-3 gap-4 px-5  mt-2">
+                                <div><NumberFormat
+                                  value={at.margin_free > 0 ? at.margin_free : '0.00'}
+                                  thousandSeparator={true}
+                                  decimalScale={2}
+                                  displayType={'text'}
+                                /></div>
 
-                                    {akun_trading_demo ? (
-                                    akun_trading_demo.map((at, index) => {
-                                        return (
-
-                                            <div className="rounded-2xl border border-solid border-gray-300 text-left p-4" style={{ backgroundColor:"#F1F1F1"}}>
-                                                <div className="grid grid-cols-2">
-                                                    <div>
-                                                        <span className="text-red-500">#{at.login}</span>
-                                                    </div>
-                                                    <div className="box-bank__actions place-items-end text-right">
-                                                        <Dropdown>
-                                                            <Dropdown.Toggle size="sm" variant="secondary"
-                                                                style={{ backgroundColor: 'transparent', borderColor: 'transparent',color:'#000' }} id="dropdown-basic">
-                                                                <i className="fa fa-ellipsis-v"></i>
-                                                            </Dropdown.Toggle>
-
-                                                            <Dropdown.Menu className="my-dropdown-menu">
-                                                                <Dropdown.Item as="button" onClick={() => this.chg_pass(at)}>RESET PASSWORD</Dropdown.Item>
-                                                                <Dropdown.Item as="button" onClick={() => this.chg_pass2(at)}>RESET PHONE PASSWORD</Dropdown.Item>
-
-                                                            </Dropdown.Menu>
-                                                        </Dropdown>
-
-                                                    </div>
-                                                </div>
-                                                <div className="grid grid-cols-2">
-                                                    <div className="font-bold">FREE MARGIN</div>
-                                                    <div className="font-bold">LEVERAGE</div>
-                                                    
-                                                    <div><NumberFormat
-                                                        value={at.margin_free > 0 ? at.margin_free : '0.00'}
-                                                        thousandSeparator={true}
-                                                        decimalScale={2}
-                                                        displayType={'text'}
-                                                    /></div>
-                                                    <div><NumberFormat
-                                                        value={at.leverage > 0 ? at.leverage : '0.00'}
-                                                        thousandSeparator={true}
-                                                        decimalScale={2}
-                                                        displayType={'text'}
-                                                    /></div>
-
-                                                    <div className="font-bold">EQUITY</div>
-                                                    <div>&nbsp;</div>
-                                                    <div><NumberFormat
-                                                        value={at.equity > 0 ? at.equity : '0.00'}
-                                                        thousandSeparator={true}
-                                                        decimalScale={2}
-                                                        displayType={'text'}
-                                                    /></div>
-
-                                                    
-                                                
-                                                </div>
-
-                                            </div>
-
-
-                                        );
-                                    })
-                                ) : ''}
-
-
+                                <div className="font-bold">EQUITY</div>
+                                <div>&nbsp;</div>
+                                <div><NumberFormat
+                                  value={at.equity > 0 ? at.equity : '0.00'}
+                                  thousandSeparator={true}
+                                  decimalScale={2}
+                                  displayType={'text'}
+                                /></div>
                               </div>
 
-                          </div>
+                            </div>
+
+
+                          );
+                        })
+                      ) : ''}
+
+
+                    </div>
+
+                    <div className="grid grid-col2-1 place-items-center mb-4 pl-5 pr-5">
+                      <div className="w-auto bg-hijau-forex rounded-xl text-white pt-2 pb-2 grid grid-cols-1 place-items-center static" style={{ backgroundColor: "#C2252C" }}>
+                        <a href="account-type" className="btn btn-lgreen btn-sm"><span className="font-bold text-white">BUAT AKUN DEMO</span></a>
+                      </div>
+                    </div>
+
+                  </div>
 
                 </div>
 
@@ -579,187 +546,183 @@ class Beranda extends Component {
 
 
                 <div className="mobile-view  relative mt-[0rem] bg-white text-black text-center rounded-2xl shadow-lg  py-4 w-[100%] ..." >
-                                    
-                    <div className="grid grid-col2-1 place-items-center mb-4">
-                        
-                        {profile.status_dokumen === 'Approve' &&
-                        <div className="w-1/2 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{backgroundColor:"#C2252C"}}>
-              
-                            <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
-                                <span className="font-bold text-white">BUAT AKUN TRADING BARU</span>
-                            </Link>
-                        </div>}
-      
-                        {profile.status_dokumen === 'Belum Lengkap' &&
-                        <div className="w-1/2 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{backgroundColor:"#C2252C"}}>
-              
-                            <Link to='/personal' className="btn btn-lgreen btn-sm">
-                                <span className="font-bold text-white">LENGKAPI REGISTRASI</span>
-                            </Link>
-                        </div>}
-
+                      
+                  <div className="flex justify-center items-center">
+                      <span className="font-bold text-red-700" style={{ fontSize: "17px" }}>AKUN REAL MT5</span>
+                      <img width="45" className="pl-2" src={provider_mt5}/>
                     </div>  
 
-                    <div className="grid grid-cols-1 gap-4 px-5  mt-2">
+                 
+                  <div className="grid grid-cols-1 gap-4 px-5 mt-4 mb-4">
 
-                            {akun_trading ? (
-                            akun_trading.map((at, index) => {
-                                return (
-
-                                    <div className="border border-solid border-gray-300 text-left p-4 rounded-2xl" style={{ backgroundColor:"#F1F1F1"}}>
-                                        
-                                        
-                                        <div className="grid grid-cols-4">
-                                            <div className="py-2 col-span-3">
-                                                <span className="text-semi-bold" style={{color:"#C2252C"}}>#{at.login}</span>
-                                            </div>
-
-                                                  
-
-                                            <div className="box-bank__actions place-items-end text-right">
-                                                <Dropdown>
-                                                    <Dropdown.Toggle size="sm" variant="secondary"
-                                                        style={{ backgroundColor: 'transparent', borderColor: 'transparent',color:'#000',paddingLeft:"80%" }} id="dropdown-basic">
-                                                        <i className="fa fa-ellipsis-v"></i>
-                                                    </Dropdown.Toggle>
-
-                                                    <Dropdown.Menu className="my-dropdown-menu">
-                                                        <Dropdown.Item as="button" onClick={() => this.chg_pass(at)}>RESET PASSWORD</Dropdown.Item>
-                                                        <Dropdown.Item as="button" onClick={() => this.chg_pass2(at)}>RESET PHONE PASSWORD</Dropdown.Item>
-
-                                                    </Dropdown.Menu>
-                                                </Dropdown>
-                                              
-                                            </div>
-                                        </div>
-                                        <div className="grid grid-cols-2">
-                                            <div className="font-bold">FREE MARGIN</div>
-                                            
-                                            <div style={{textAlign:"right",paddingRight:"10%"}}><NumberFormat
-                                                                    value={at.margin_free > 0 ? at.margin_free : '0.00'}
-                                                                    thousandSeparator={true}
-                                                                    decimalScale={2}
-                                                                    displayType={'text'}
-                                                                /></div>
-                                            <div className="font-bold">LEVERAGE</div>
-                                            
-                                            <div style={{textAlign:"right",paddingRight:"10%"}}><NumberFormat
-                                                value={at.leverage > 0 ? at.leverage : '0.00'}
-                                                thousandSeparator={true}
-                                                decimalScale={2}
-                                                displayType={'text'}
-                                            /></div>
-                                            
-                                            <div className="font-bold">EQUITY</div>
-                                            <div style={{textAlign:"right",paddingRight:"10%"}}><NumberFormat
-                                                                    value={at.equity > 0 ? at.equity : '0.00'}
-                                                                    thousandSeparator={true}
-                                                                    decimalScale={2}
-                                                                    displayType={'text'}
-                                                                /></div>
-                                            
-                                        </div>
-                                    </div>
-
-                                    );
-                            })
-                        ) : ''}
-                        
-                    </div>
-                  </div>
-              </div>
-
-              
-
-            
-
-              
-
-              <div className="mobile-view relative mt-[0rem]  bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[100%] mb-10 mx-1 ...">
-                  <span className="font-bold text-red-700">AKUN DEMO MT5</span>
-                
-                
-
-                <br />
-                
-
-                <div className="grid grid-col2-1 place-items-center mb-4">
-                    <div className="w-1/2 bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{backgroundColor:"#C2252C"}}>
-                      <a href="account-type" className="btn btn-lgreen btn-sm">
-                        <span className="font-bold text-white">BUAT AKUN DEMO</span>
-                      </a>
-                    </div>
-                </div>  
-
-                <div className="grid grid-cols-1 gap-4 px-5  mt-2">
-                  {akun_trading_demo
-                    ? akun_trading_demo.map((at, index) => {
+                    {akun_trading ? (
+                      akun_trading.map((at, index) => {
                         return (
-                          <div
-                            className="rounded-2xl border border-solid border-gray-300 text-left p-4"
-                            style={{ backgroundColor: "#F1F1F1" }}
-                          >
-                            <div className="grid grid-cols-2">
-                                <div className="py-2">
-                                    <span className="text-semi-bold" style={{color:"#C2252C"}}>#{at.login}</span>
-                                </div>
 
-                                      
+                          <div className="border border-solid border-gray-300 text-left p-4 rounded-2xl" style={{ backgroundColor: "#F1F1F1" }}>
 
-                                <div className="box-bank__actions place-items-end text-right">
-                                    <Dropdown>
-                                        <Dropdown.Toggle size="sm" variant="secondary"
-                                            style={{ backgroundColor: 'transparent', borderColor: 'transparent',color:'#000',paddingLeft:"80%"  }} id="dropdown-basic">
-                                            <i className="fa fa-ellipsis-v"></i>
-                                        </Dropdown.Toggle>
 
-                                        <Dropdown.Menu className="my-dropdown-menu">
-                                            <Dropdown.Item as="button" onClick={() => this.chg_pass(at)}>RESET PASSWORD</Dropdown.Item>
-                                            <Dropdown.Item as="button" onClick={() => this.chg_pass2(at)}>RESET PHONE PASSWORD</Dropdown.Item>
+                            <div className="grid grid-cols-4">
+                              <div className="py-2 col-span-3">
+                                <span className="text-bold text-md text-red-500">NO LOGIN: {at.login}</span>
+                              </div>
 
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                  
-                                </div>
+
+
+                              <div className="box-bank__actions place-items-end text-right">
+                                <Dropdown>
+                                  <Dropdown.Toggle size="sm" variant="secondary"
+                                    style={{ backgroundColor: 'transparent', borderColor: 'transparent', color: '#000', paddingLeft: "80%" }} id="dropdown-basic">
+                                    <i className="fa fa-cog"></i>
+                                  </Dropdown.Toggle>
+
+                                  <Dropdown.Menu className="my-dropdown-menu">
+                                    <Dropdown.Item as="button" onClick={() => this.chg_pass(at)}>RESET PASSWORD</Dropdown.Item>
+                                    <Dropdown.Item as="button" onClick={() => this.chg_pass2(at)}>RESET PHONE PASSWORD</Dropdown.Item>
+
+                                  </Dropdown.Menu>
+                                </Dropdown>
+
+                              </div>
                             </div>
+                            <div className="grid grid-cols-2" style={{fontSize:"12px"}}>
+                              <div className="font-bold">BALANCE</div>
 
-                           
-                            <div className="grid grid-cols-2">
-                                <div className="font-bold">FREE MARGIN</div>
-                                
-                                <div style={{textAlign:"right",paddingRight:"10%"}}><NumberFormat
-                                                        value={at.margin_free > 0 ? at.margin_free : '0.00'}
-                                                        thousandSeparator={true}
-                                                        decimalScale={2}
-                                                        displayType={'text'}
-                                                    /></div>
-                                <div className="font-bold">LEVERAGE</div>
-                                
-                                <div style={{textAlign:"right",paddingRight:"10%"}}><NumberFormat
-                                    value={at.leverage > 0 ? at.leverage : '0.00'}
-                                    thousandSeparator={true}
-                                    decimalScale={2}
-                                    displayType={'text'}
-                                /></div>
-                                
-                                <div className="font-bold">EQUITY</div>
-                                
-                                <div style={{textAlign:"right",paddingRight:"10%"}}><NumberFormat
-                                                        value={at.equity > 0 ? at.equity : '0.00'}
-                                                        thousandSeparator={true}
-                                                        decimalScale={2}
-                                                        displayType={'text'}
-                                                    /></div>
-                                
+                              <div style={{ textAlign: "right", paddingRight: "10px" }}><NumberFormat
+                                value={at.balance > 0 ? at.balance : '0.00'}
+                                thousandSeparator={true}
+                                decimalScale={2}
+                                displayType={'text'}
+                              /></div>
+
+                              <div className="font-bold">FREE MARGIN</div>
+
+                              <div style={{ textAlign: "right", paddingRight: "10px" }}><NumberFormat
+                                value={at.margin_free > 0 ? at.margin_free : '0.00'}
+                                thousandSeparator={true}
+                                decimalScale={2}
+                                displayType={'text'}
+                              /></div>
+
+                              <div className="font-bold">EQUITY</div>
+                              <div style={{ textAlign: "right", paddingRight: "10px" }}><NumberFormat
+                                value={at.equity > 0 ? at.equity : '0.00'}
+                                thousandSeparator={true}
+                                decimalScale={2}
+                                displayType={'text'}
+                              /></div>
+
                             </div>
-
                           </div>
+
                         );
                       })
-                    : ""}
+                    ) : ''}
+
+                  </div>
+                  <div className="grid grid-col2-1 place-items-center mb-4 pl-5 pr-5">
+
+                  {profile.status_dokumen === 'Approve' &&
+                    <div className="w-auto bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{ backgroundColor: "#C2252C" }}>
+
+                      <Link to='/account-type' className="btn btn-lgreen btn-sm" onClick={() => this.to_at()}>
+                        <span className="font-bold text-white">BUAT AKUN TRADING BARU</span>
+                      </Link>
+                    </div>}
+
+                  {profile.status_dokumen === 'Belum Lengkap' &&
+                    <div className="w-auto bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{ backgroundColor: "#C2252C" }}>
+
+                      <Link to='/personal' className="btn btn-lgreen btn-sm">
+                        <span className="font-bold text-white">LENGKAPI REGISTRASI</span>
+                      </Link>
+                    </div>}
+
+                  </div>
+
                 </div>
               </div>
-            
+
+              <div className="mobile-view relative mt-[0rem]  bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[100%] mb-10 mx-1 ...">
+                
+                <div className="flex justify-center items-center">
+                  <span className="font-bold text-red-700" style={{ fontSize: "17px" }}>AKUN DEMO MT5</span>
+                </div>  
+
+                <div className="grid grid-cols-1 gap-4 px-5 mt-4 mb-4">
+                  {akun_trading_demo
+                    ? akun_trading_demo.map((at, index) => {
+                      return (
+                        <div
+                          className="rounded-2xl border border-solid border-gray-300 text-left p-4"
+                          style={{ backgroundColor: "#F1F1F1" }}
+                        >
+                          <div className="grid grid-cols-2">
+                            <div className="py-2">
+                              <span className="text-bold text-md text-red-500">NO LOGIN: {at.login}</span>
+                            </div>
+
+                            <div className="box-bank__actions place-items-end text-right">
+                              <Dropdown>
+                                <Dropdown.Toggle size="sm" variant="secondary"
+                                  style={{ backgroundColor: 'transparent', borderColor: 'transparent', color: '#000', paddingLeft: "80%" }} id="dropdown-basic">
+                                  <i className="fa fa-cog"></i>
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu className="my-dropdown-menu">
+                                  <Dropdown.Item as="button" onClick={() => this.chg_pass(at)}>RESET PASSWORD</Dropdown.Item>
+                                  <Dropdown.Item as="button" onClick={() => this.chg_pass2(at)}>RESET PHONE PASSWORD</Dropdown.Item>
+
+                                </Dropdown.Menu>
+                              </Dropdown>
+
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-2" style={{fontSize:"12px"}}>
+                              <div className="font-bold">BALANCE</div>
+
+                              <div style={{ textAlign: "right", paddingRight: "10px" }}><NumberFormat
+                                value={at.balance > 0 ? at.balance : '0.00'}
+                                thousandSeparator={true}
+                                decimalScale={2}
+                                displayType={'text'}
+                              /></div>
+
+                              <div className="font-bold">FREE MARGIN</div>
+
+                              <div style={{ textAlign: "right", paddingRight: "10px" }}><NumberFormat
+                                value={at.margin_free > 0 ? at.margin_free : '0.00'}
+                                thousandSeparator={true}
+                                decimalScale={2}
+                                displayType={'text'}
+                              /></div>
+
+                              <div className="font-bold">EQUITY</div>
+                              <div style={{ textAlign: "right", paddingRight: "10px" }}><NumberFormat
+                                value={at.equity > 0 ? at.equity : '0.00'}
+                                thousandSeparator={true}
+                                decimalScale={2}
+                                displayType={'text'}
+                              /></div>
+
+                            </div>
+
+                        </div>
+                      );
+                    })
+                    : ""}
+                </div>
+
+                <div className="grid grid-col2-1 place-items-center mb-4 pl-5 pr-5">
+                  <div className="w-auto bg-hijau-forex rounded-xl text-white pt-2 pb-2 pb-20 grid grid-cols-1 place-items-center static" style={{ backgroundColor: "#C2252C" }}>
+                    <a href="account-type" className="btn btn-lgreen btn-sm">
+                      <span className="font-bold text-white">BUAT AKUN DEMO</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
           </div>
@@ -808,31 +771,24 @@ class Beranda extends Component {
           title="Status"
           formSubmit={this.handleSubmit3.bind(this)}
           titleButton="Lengkapi"
-          themeButton="success" />
-		<AppModalStatus
-                    show={myStatusDokumen2}
-                    size="xs"
-                    form={contentDelete2}
-                    handleClose={this.handleClose2.bind(this)}
-                    backdrop="static"
-                    keyboard={false}
-                    title="Status"
-                    formSubmit={this.handleClose2.bind(this)}
-                    titleButton="Perbaiki Data"
-                    themeButton="danger"
-                  />
-        
-        
-		{this.props.showFormSuccess ? (<AppSwalSuccess
-                        show={this.props.showFormSuccess}
-                        title={<div dangerouslySetInnerHTML={{ __html: this.props.contentMsg }} />}
-                        type={this.props.tipeSWAL}
-                        handleClose={this.handleCloseSwal.bind(this)}
-                    >
-                    </AppSwalSuccess>) : ''}
+          themeButton="success"
+
+
+
+
+        ></AppModalStatus>
+
+
+        {this.props.showFormSuccess ? (<AppSwalSuccess
+          show={this.props.showFormSuccess}
+          title={<div dangerouslySetInnerHTML={{ __html: this.props.contentMsg }} />}
+          type={this.props.tipeSWAL}
+          handleClose={this.handleCloseSwal.bind(this)}
+        >
+        </AppSwalSuccess>) : ''}
       </div>
-	  
-	  
+
+
     );
   }
 }
@@ -840,30 +796,30 @@ const mapStateToProps = (state) => ({
   akun_trading: state.setoran.akunTrading || [],
   akun_trading_demo: state.setoran.akunTradingDemo || [],
   contentMsg: state.main.contentMsg,
-    showFormSuccess: state.main.showFormSuccess,
-    user: state.main.currentUser,
-	tipeSWAL: state.main.tipeSWAL,
+  showFormSuccess: state.main.showFormSuccess,
+  user: state.main.currentUser,
+  tipeSWAL: state.main.tipeSWAL,
   profile: state.main.dtProfileUser,
   profile_perusahaan: state.companyProfile.profile_perusahaan || {},
 });
 
 const mapDispatchToPros = (dispatch) => {
   return {
-        onLoad: () => {
-			dispatch(getDataPP());
-            dispatch(profileUser());
-            dispatch(getAkunTrading());
-            dispatch(getAkunTradingDemo());			
-        },
-		onChangePass:(param)=>{
-			dispatch(chgPass(param));
-		},
-		onChangePhonePass:(param)=>{
-			dispatch(chgPhonePass(param));
-		},
-		closeSwal: () => {
-            dispatch(clearState());
-        }
+    onLoad: () => {
+      dispatch(getDataPP());
+      dispatch(profileUser());
+      dispatch(getAkunTrading());
+      dispatch(getAkunTradingDemo());
+    },
+    onChangePass: (param) => {
+      dispatch(chgPass(param));
+    },
+    onChangePhonePass: (param) => {
+      dispatch(chgPhonePass(param));
+    },
+    closeSwal: () => {
+      dispatch(clearState());
     }
+  }
 };
 export default connect(mapStateToProps, mapDispatchToPros)(Beranda);

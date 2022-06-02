@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind screens;
 
 .my-sidebar {
     border-right: 1px solid #d2d6de;
@@ -78,7 +79,7 @@ a:hover, a:active, a:focus {
   -moz-animation-timing-function: ease !important;
   -moz-animation-fill-mode: forwards !important;
   
-font-weight: bold !important;
+  font-weight: bold !important;
 }
 @keyframes fadeAnimation {
   from {
@@ -107,7 +108,7 @@ font-weight: bold !important;
 
 .my-dropdown, .my-dropdown > .rs-dropdown-toggle, .my-dropdown a{
   font-weight: 600 !important;
-  color:#adadad !important;
+  color:#adadad !important;  
   font-size: 14px !important;
 }
 

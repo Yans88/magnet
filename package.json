@@ -36,9 +36,9 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "prestart": "tailwind build ./src/index.tailwinds.css -c ./tailwind.config.js -o ./src/styles/index.css",
+    "prestart": "tailwindcss -i ./src/index.tailwinds.css -c ./tailwind.config.js -o ./src/styles/index.css",
     "start": "react-scripts start",
-    "prebuild": "tailwind build ./src/index.tailwinds.css -c ./tailwind.config.js -o ./src/styles/cdindex.css",
+    "prebuild": "tailwindcss -i ./src/index.tailwinds.css -c ./tailwind.config.js -o ./src/styles/cdindex.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

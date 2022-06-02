@@ -99,59 +99,61 @@ class ProfilePerusahaan extends Component {
     return (
       <div className="content-wrapper">
         <div className="content-area__edge">
-          <ul className="list-unstyled list-steps mb-0">
-            <li
-              className={
-                lastSegmentUrl === "personal" ? "active default" : "default"
-              }
-            >
-              <a href="personal">1. Informasi Pribadi</a>
-            </li>
-            <li
-              className={
-                lastSegmentUrl === "account-type" ? "active default" : "default"
-              }
-            >
-              <a href="account-type">
-                <span />
-                2. Tipe Akun
-              </a>
-            </li>
-            <li
-              className={
-                lastSegmentUrl === "decleration" ? "active default" : "default"
-              }
-            >
-              <a href="decleration">
-                <span />
-                3. Pernyataan
-              </a>
-            </li>
-            <li
-              className={
-                lastSegmentUrl === "trading_rules"
-                  ? "active default"
-                  : "default"
-              }
-            >
-              <a href="trading_rules">
-                <span />
-                4. Peraturan Trading
-              </a>
-            </li>
-            <li
-              className={
-                lastSegmentUrl === "company_profile"
-                  ? "active default"
-                  : "default"
-              }
-            >
-              <a href="company_profile">
-                <span />
-                5. Profil Perusahaan
-              </a>
-            </li>
-          </ul>
+        <div className="px-3">
+                        <ul className="list-unstyled list-steps mb-0 flex flex-col lg:flex-row gap-3">
+                            <li
+                                className={
+                                    lastSegmentUrl === "personal" ? "active default flex-1 p-3" : "default flex-1 p-3"
+                                }
+                            >
+                                <a href="personal">1. Informasi Pribadi</a>
+                            </li>
+                            <li
+                                className={
+                                    lastSegmentUrl === "account-type"
+                                        ? "active default flex-1 p-3"
+                                        : "default flex-1 p-3"
+                                }
+                            >
+                                <a href="account-type">
+                                    2. Tipe Akun
+                                </a>
+                            </li>
+                            <li
+                                className={
+                                    lastSegmentUrl === "decleration"
+                                        ? "active default flex-1 p-3"
+                                        : "default flex-1 p-3"
+                                }
+                            >
+                                <a href="decleration">
+                                    3. Pernyataan
+                                </a>
+                            </li>
+                            <li
+                                className={
+                                    lastSegmentUrl === "trading_rules"
+                                        ? "active default flex-1 p-3"
+                                        : "default flex-1 p-3"
+                                }
+                            >
+                                <a href="trading_rules">
+                                    4. Peraturan Trading
+                                </a>
+                            </li>
+                            <li
+                                className={
+                                    lastSegmentUrl === "company_profile"
+                                        ? "active default flex-1 p-3"
+                                        : "default flex-1 p-3"
+                                }
+                            >
+                                <a href="company_profile">
+                                    5. Profil Perusahaan
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
         </div>
         <section className="content">
           <div className="container-fluid">
@@ -289,8 +291,8 @@ class ProfilePerusahaan extends Component {
                             }}
                           >
                             <h3
-                              className="h6 mb-4 "
-                              style={{ color: "#2DB147", fontWeight: "bold" }}
+                              className="h6 mb-4 text-red-500"
+                              style={{ fontWeight: "bold" }}
                             >
                               LEGALITAS
                             </h3>
@@ -352,8 +354,8 @@ class ProfilePerusahaan extends Component {
                             }}
                           >
                             <h3
-                              className="h6 mb-4"
-                              style={{ color: "#2DB147", fontWeight: "bold" }}
+                              className="h6 mb-4 text-red-500"
+                              style={{ fontWeight: "bold" }}
                             >
                               NAMA-NAMA WAKIL PIALANG PERUSAHAAN DITUNJUK KHUSUS
                               UNTUK VERIFIKASI
@@ -384,8 +386,8 @@ class ProfilePerusahaan extends Component {
                             }}
                           >
                             <h3
-                              className="h6 mb-4"
-                              style={{ color: "#2DB147", fontWeight: "bold" }}
+                              className="h6 mb-4 text-red-500"
+                              style={{ fontWeight: "bold" }}
                             >
                               SUSUNAN PEMEGANG SAHAM PERUSAHAAN
                             </h3>
@@ -413,8 +415,8 @@ class ProfilePerusahaan extends Component {
                             }}
                           >
                             <h3
-                              className="h6 mb-4"
-                              style={{ color: "#2DB147", fontWeight: "bold" }}
+                              className="h6 mb-4 text-red-500"
+                              style={{ fontWeight: "bold" }}
                             >
                               SUSUNAN PENGURUS PERUSAHAAN
                             </h3>
@@ -448,8 +450,8 @@ class ProfilePerusahaan extends Component {
                             }}
                           >
                             <h3
-                              className="h6 mb-4"
-                              style={{ color: "#2DB147", fontWeight: "bold" }}
+                              className="h6 mb-4 text-red-500"
+                              style={{fontWeight: "bold" }}
                             >
                               Akun Terpisah
                             </h3>

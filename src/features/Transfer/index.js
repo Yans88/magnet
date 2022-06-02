@@ -334,7 +334,7 @@ class Transfer extends Component {
       },
     };
     return (
-      <div className="content-wrapper table__account">
+      <div className="content-wrapper table__account pr-3">
         <section className="content">
           <div className="container-fluid mt-3">
             <img src={icon} width="35px" className="float-left mt-3" />
@@ -420,14 +420,13 @@ class Transfer extends Component {
                                   <tr>
                                     <th></th>
                                     <th>Login</th>
-                                    <th>Nama</th>
-                                    <th style={{ textAlign: "right" }}>
-                                      Margin 
+                                    <th>
+                                      Free Margin 
                                     </th>
-                                    <th style={{ textAlign: "right" }}>
+                                    <th>
                                       Equity
                                     </th>
-                                    <th style={{ textAlign: "right" }}>Rate</th>
+                                    <th>Rate</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -460,8 +459,7 @@ class Transfer extends Component {
 
                                               </td>
                                               <td>{at.login}</td>
-                                              <td>{at.name}</td>
-                                              <td align="right">
+                                              <td>
                                                 <NumberFormat
                                                   value={
                                                     at.margin_free > 0
@@ -473,7 +471,7 @@ class Transfer extends Component {
                                                   displayType={"text"}
                                                 />
                                               </td>
-                                              <td align="right">
+                                              <td>
                                                 <NumberFormat
                                                   value={
                                                     at.equity > 0
@@ -485,7 +483,7 @@ class Transfer extends Component {
                                                   displayType={"text"}
                                                 />
                                               </td>
-                                              <td align="right">{at.rate}</td>
+                                              <td>{at.rate}</td>
                                             </tr>
                                           </Fragment>
                                         );
@@ -535,14 +533,13 @@ class Transfer extends Component {
                                       <tr>
                                         <th></th>
                                         <th>Login</th>
-                                        <th>Nama</th>
-                                        <th style={{ textAlign: "right" }}>
-                                          Margin
+                                        <th>
+                                          Free Margin
                                         </th>
-                                        <th style={{ textAlign: "right" }}>
+                                        <th>
                                           Equity
                                         </th>
-                                        <th style={{ textAlign: "right" }}>
+                                        <th>
                                           Rate
                                         </th>
                                       </tr>
@@ -575,8 +572,7 @@ class Transfer extends Component {
                                                     />
                                                   </td>
                                                   <td>{at.login}</td>
-                                                  <td>{at.name}</td>
-                                                  <td align="right">
+                                                  <td>
                                                     <NumberFormat
                                                       value={
                                                         at.margin_free > 0
@@ -588,7 +584,7 @@ class Transfer extends Component {
                                                       displayType={"text"}
                                                     />
                                                   </td>
-                                                  <td align="right">
+                                                  <td>
                                                     <NumberFormat
                                                       value={
                                                         at.equity > 0
@@ -600,7 +596,7 @@ class Transfer extends Component {
                                                       displayType={"text"}
                                                     />
                                                   </td>
-                                                  <td align="right">
+                                                  <td>
                                                     {at.rate}
                                                   </td>
                                                 </tr>

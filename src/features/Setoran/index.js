@@ -470,7 +470,7 @@ class Setoran extends Component {
               <div className="col-sm-6">
                 <div className="form-group">
                   <div className="form-group">
-                    <label className="frm_lbl">Margin</label>
+                    <label className="frm_lbl">Free Margin</label>
                     <div>
                       <strong className="font-weight-bold text-black">
                         <NumberFormat
@@ -534,7 +534,7 @@ class Setoran extends Component {
               <div className="col-sm-6">
                 <div className="form-group">
                   <div className="form-group">
-                    <label className="frm_lbl">Jumlah Setor</label>
+                    <label className="frm_lbl">Jumlah Setor (USD)</label>
                     {errMsg.setor ? (
                       <span className="float-right text-error badge badge-danger">
                         {errMsg.setor}
@@ -560,6 +560,7 @@ class Setoran extends Component {
                 <div className="col-sm-6">
                   <div className="form-group">
                     <div className="form-group">
+                      <label className="frm_lbl">Jumlah Setor (IDR)</label>
                       <div>
                         <NumberFormat
                           disabled={true}
@@ -627,7 +628,7 @@ class Setoran extends Component {
               <th>-</th>
               <th>Login</th>
 
-              <th style={{ textAlign: "right" }}>Margin</th>
+              <th style={{ textAlign: "right" }}>Free Margin</th>
               <th style={{ textAlign: "right" }}>Equity</th>
               <th style={{ textAlign: "right" }}>Rate</th>
             </tr>
@@ -813,7 +814,7 @@ class Setoran extends Component {
       },
     };
     return (
-      <div className="content-wrapper">
+      <div className="content-wrapper pr-3">
         <section className="content">
           <div className="container-fluid mt-3">
             <img src={icon} width="35px" className="float-left mt-3" />
@@ -849,7 +850,7 @@ class Setoran extends Component {
               <div className="col-12">
                 {/* card start */}
                 <div
-                  className="card card-success shadow-lg"
+                  className="card card-success"
                   style={{ minHeight: "500px", borderRadius: "20px" }}
                 >
                   <div className="card-body">
@@ -860,62 +861,60 @@ class Setoran extends Component {
                               return (
                                 <Fragment key={dp.data_bank_perusahaan_id}>
                                   <div
-                                    className="grid grid-cols-1 lg:grid-cols-3 place-items-center mt-0  py-4 px-4 rounded-2xl border-gray-700 mt-4"
+                                    className="grid grid-cols-1 lg:grid-cols-3 place-items-center py-4 px-4 rounded-2xl border-gray-700 mt-4"
                                     style={{ border: "2px solid #ddd" }}
                                     onClick={(e) => this.editRecord(dp)}
                                   >
                                     <div className="px-2">
                                       <img
                                         alt={dp.nama_bank}
-                                        style={{
-                                          maxWidth: "100%",
-                                          verticalAlign: "middle",
-                                        }}
+                                        width="150px"
                                         src={dp.file}
                                       />
                                     </div>
 
-                                    <div className="px-2 mt-4 mb-3">
+                                    <div className=" mt-4 mb-3 text-center w-full">
                                       <AppButton
                                         onClick={(e) => this.editRecord(dp)}
                                         style={{
                                           color: "#ffffff",
                                           marginTop: 25,
                                           minHeight: 50,
-                                        }}
-                                        type="button"
-                                        size="lg"
-                                        theme=""
-                                        style={{
                                           backgroundColor: "#C3262A",
                                           color: "#fff",
                                         }}
+                                        className="w-1/2 md:w-3/4 lg:w-3/4"
+                                        type="button"
+                                        size="lg"
+                                        theme=""
                                       >
                                         Setor Melalui Bank {dp.nama_bank}
                                       </AppButton>
                                     </div>
 
                                     <div
-                                      style={{ fontSize: 30 }}
                                       className="px-2"
                                       style={{
                                         textAlign: "left",
                                         fontSize: "1rem",
                                         marginTop: 15,
-                                        color: "#2E2E2F",
+                                        color: "#2E2E2F"
                                       }}
                                     >
                                       <div>
                                         {dp.nama_bank} CAB. {dp.cabang}, A/N.{" "}
                                         {dp.atas_nama}
                                       </div>
-                                      <div>
-                                        No. Acc IDR :{" "}
+                                      <div className="flex flex-col lg:flex-row">
+                                        <span>No. Acc IDR :{" "}</span>
                                         <strong>{dp.no_rek}</strong>
                                       </div>
-                                      <div>
-                                        No. Acc USD :{" "}
+                                      <div className="flex flex-col lg:flex-row">
+                                        <span>No. Acc USD :{" "}</span>
                                         <strong>{dp.no_rek_usd}</strong>
+                                      </div>
+                                      <div className="mt-3">
+                                        <p className="text-red-500">*Cantumkan no login MT5 mu pada kolom berita</p>
                                       </div>
                                     </div>
                                   </div>
@@ -1054,7 +1053,7 @@ class Setoran extends Component {
           titleClose={this.state.nextStep ? "Kembali" : "Tutup"}
           backdrop="static"
           keyboard={false}
-          title={this.state.nextStep ? "Transfer Bank" : "Akun Tading MT5"}
+          title={this.state.nextStep ? "Transfer Bank" : "Akun Trading MT5"}
           titleButton={this.state.nextStep1 ? "Submit" : "Selanjutnya"}
           themeButton="success"
           isDisable={this.state.selected.login ? false : true}
