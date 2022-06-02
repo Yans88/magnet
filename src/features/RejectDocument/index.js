@@ -265,7 +265,7 @@ class RejecctDocument extends Component {
     
 
     return (
-      <div className="content-wrapper pr-3">
+      <div className="content-wrapper pr-1">
         <section className="content">
           <div className="container-fluid">
             <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>

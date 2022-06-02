@@ -814,7 +814,7 @@ class Setoran extends Component {
       },
     };
     return (
-      <div className="content-wrapper pr-3">
+      <div className="content-wrapper pr-1">
         <section className="content">
           <div className="container-fluid mt-3">
             <img src={icon} width="35px" className="float-left mt-3" />
@@ -905,11 +905,11 @@ class Setoran extends Component {
                                         {dp.nama_bank} CAB. {dp.cabang}, A/N.{" "}
                                         {dp.atas_nama}
                                       </div>
-                                      <div className="flex flex-col lg:flex-row">
+                                      <div className="flex flex-row">
                                         <span>No. Acc IDR :{" "}</span>
                                         <strong>{dp.no_rek}</strong>
                                       </div>
-                                      <div className="flex flex-col lg:flex-row">
+                                      <div className="flex flex-row">
                                         <span>No. Acc USD :{" "}</span>
                                         <strong>{dp.no_rek_usd}</strong>
                                       </div>

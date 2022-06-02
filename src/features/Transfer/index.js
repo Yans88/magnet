@@ -334,7 +334,7 @@ class Transfer extends Component {
       },
     };
     return (
-      <div className="content-wrapper table__account pr-3">
+      <div className="content-wrapper table__account pr-1">
         <section className="content">
           <div className="container-fluid mt-3">
             <img src={icon} width="35px" className="float-left mt-3" />

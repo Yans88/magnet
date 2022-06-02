@@ -836,7 +836,7 @@ class Personal extends Component {
     );
 
     return (
-      <div className="content-wrapper mt-3 pr-3  pl-2">
+      <div className="content-wrapper mt-3 pr-1  pl-2">
         <section className="content">
           <div className="max-w-full px-3">
             <div className="content-area__edge">
@@ -1760,13 +1760,7 @@ class Personal extends Component {
                             <div className="grid grid-cols-1 place-items-center">
                               <div className="form-group lg:w-2/3">
                                 <div className="form-check">
-                                  {errMsg1.agreement1 ? (
-                                    <span className="text-error badge badge-danger">
-                                      {errMsg1.agreement1}
-                                    </span>
-                                  ) : (
-                                    ""
-                                  )}
+                                 
                                   <label>
                                     <input
                                       checked={user.agreement1 ? true : false}
@@ -1788,6 +1782,13 @@ class Personal extends Component {
                                       yang saya sediakan.
                                     </div>
                                   </label>
+                                  {errMsg1.agreement1 ? (
+                                    <span className="text-error badge badge-danger">
+                                      {errMsg1.agreement1}
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
                                 </div>
 
                                 <div className="grid grid-cols-1 place-items-center">
@@ -1937,7 +1938,7 @@ class Personal extends Component {
                                     Pengalaman Trading anda Sebelumnya di
                                   </Form.Label>
 								  {errMsg2.pertanyaan2 ? (
-                                  <span className="text-error badge badge-danger" style={{ float: "right" }}>
+                                  <span className="text-error badge badge-danger">
                                     {errMsg2.pertanyaan2}
                                   </span>
                                 ) : (
@@ -2063,13 +2064,7 @@ class Personal extends Component {
                                     Pengalaman Trading Berjangka anda Sebelumnya
                                     di
                                   </Form.Label>
-								  {errMsg2.pertanyaan6 ? (
-                                  <span className="text-error badge badge-danger" style={{ float: "right" }}>
-                                    {errMsg2.pertanyaan6}
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
+								  
                                   <Form.Control
                                     value={
                                       dataExpTrading.pertanyaan6
@@ -2086,6 +2081,13 @@ class Personal extends Component {
                                     required
                                     placeholder="Nama Perusahaan/Brand"
                                   />
+                                  {errMsg2.pertanyaan6 ? (
+                                  <span className="text-error badge badge-danger" >
+                                    {errMsg2.pertanyaan6}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                                 </Form.Group>
                               ) : (
                                 ""
@@ -2103,13 +2105,7 @@ class Personal extends Component {
                               <div className="grid grid-cols-1 place-items-center">
                                 <div className="form-group lg:w-2/3">
                                   <div className="form-check">
-                                    {errMsg2.agreement2 ? (
-                                      <span className="text-error badge badge-danger">
-                                        {errMsg2.agreement2}
-                                      </span>
-                                    ) : (
-                                      ""
-                                    )}
+                                    
                                     <label>
                                       <input
                                         checked={
@@ -2137,6 +2133,13 @@ class Personal extends Component {
                                         dokumen yang saya sediakan.
                                       </div>
                                     </label>
+                                    {errMsg2.agreement2 ? (
+                                      <span className="text-error badge badge-danger">
+                                        {errMsg2.agreement2}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
                                   </div>
 
                                   <div className="grid grid-cols-1 place-items-center">
@@ -2414,13 +2417,7 @@ class Personal extends Component {
                               <div className="grid grid-cols-1 place-items-center">
                                 <div className="form-group lg:w-2/3">
                                   <div className="form-check">
-                                    {errMsg3.agreement3 ? (
-                                      <span className="text-error badge badge-danger">
-                                        {errMsg3.agreement3}
-                                      </span>
-                                    ) : (
-                                      ""
-                                    )}
+                                   
                                     <label>
                                       <input
                                         checked={
@@ -2446,6 +2443,13 @@ class Personal extends Component {
                                         dokumen yang saya sediakan.
                                       </div>
                                     </label>
+                                    {errMsg3.agreement3 ? (
+                                      <span className="text-error badge badge-danger">
+                                        {errMsg3.agreement3}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
                                   </div>
 
                                   <div className="grid grid-cols-1 place-items-center">
@@ -2748,13 +2752,7 @@ class Personal extends Component {
                               <div className="grid grid-cols-1 place-items-center">
                                 <div className="form-group lg:w-2/3">
                                   <div className="form-check">
-                                    {errMsg4.agreement4 ? (
-                                      <span className="text-error badge badge-danger">
-                                        {errMsg4.agreement4}
-                                      </span>
-                                    ) : (
-                                      ""
-                                    )}
+                                  
                                     <label>
                                       <input
                                         checked={
@@ -2782,6 +2780,13 @@ class Personal extends Component {
                                         dokumen yang saya sediakan.
                                       </div>
                                     </label>
+                                    {errMsg4.agreement4 ? (
+                                      <span className="text-error badge badge-danger">
+                                        {errMsg4.agreement4}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
                                   </div>
 
                                   <div className="grid grid-cols-1 place-items-center">
@@ -2873,7 +2878,6 @@ class Personal extends Component {
                                 {errMsg5.status_pekerjaan ? (
                                   <span
                                     className="text-error badge badge-danger"
-                                    style={{ float: "right" }}
                                   >
                                     {errMsg5.status_pekerjaan}
                                   </span>
@@ -2912,16 +2916,7 @@ class Personal extends Component {
                                 xs={12}
                                 lg={6} 
                                 controlId="nama_perusahaan">
-                                {errMsg5.nama_perusahaan ? (
-                                  <span
-                                    className="text-error badge badge-danger"
-                                    style={{ float: "right" }}
-                                  >
-                                    {errMsg5.nama_perusahaan}
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
+                                
                                 <Form.Control
                                   value={
                                     dataPekerjaan.nama_perusahaan
@@ -2938,6 +2933,15 @@ class Personal extends Component {
                                   required
                                   placeholder="Nama Perusahaan"
                                 />
+                                {errMsg5.nama_perusahaan ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                  >
+                                    {errMsg5.nama_perusahaan}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                               </Form.Group>
                             </Form.Row>
 
@@ -2947,16 +2951,7 @@ class Personal extends Component {
                                 xs={12}
                                 lg={6} 
                                 controlId="jenis_bisnis">
-                                {errMsg5.jenis_bisnis ? (
-                                  <span
-                                    className="text-error badge badge-danger"
-                                    style={{ float: "right" }}
-                                  >
-                                    {errMsg5.jenis_bisnis}
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
+                                
                                 <Form.Control
                                   value={
                                     dataPekerjaan.jenis_bisnis
@@ -2973,6 +2968,15 @@ class Personal extends Component {
                                   required
                                   placeholder="Jenis Bisnis"
                                 />
+                                {errMsg5.jenis_bisnis ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                  >
+                                    {errMsg5.jenis_bisnis}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                               </Form.Group>
 
                               <Form.Group 
@@ -2980,16 +2984,7 @@ class Personal extends Component {
                                 xs={12}
                                 lg={6} 
                                 controlId="jabatan">
-                                {errMsg5.jabatan ? (
-                                  <span
-                                    className="text-error badge badge-danger"
-                                    style={{ float: "right" }}
-                                  >
-                                    {errMsg5.jabatan}
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
+                                
                                 <Form.Control
                                   value={
                                     dataPekerjaan.jabatan
@@ -3006,6 +3001,15 @@ class Personal extends Component {
                                   required
                                   placeholder="Posisi/Jabatan"
                                 />
+                                {errMsg5.jabatan ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                  >
+                                    {errMsg5.jabatan}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                               </Form.Group>
                             </Form.Row>
 
@@ -3016,16 +3020,7 @@ class Personal extends Component {
                                 lg={6}
                                 controlId="lama_bekerja"
                               >
-                                {errMsg5.lama_bekerja ? (
-                                  <span
-                                    className="text-error badge badge-danger"
-                                    style={{ float: "right" }}
-                                  >
-                                    {errMsg5.lama_bekerja}
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
+                                
                                 <Form.Control
                                   name="lama_bekerja"
                                   size="lg"
@@ -3049,6 +3044,15 @@ class Personal extends Component {
                                     {">"} 5 Tahun
                                   </option>
                                 </Form.Control>
+                                {errMsg5.lama_bekerja ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                  >
+                                    {errMsg5.lama_bekerja}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                               </Form.Group>
 
                               <Form.Group
@@ -3092,16 +3096,7 @@ class Personal extends Component {
                                 lg={12}
                                 controlId="alamat_kantor"
                               >
-                                {errMsg5.alamat_kantor ? (
-                                  <span
-                                    className="text-error badge badge-danger"
-                                    style={{ float: "right" }}
-                                  >
-                                    {errMsg5.alamat_kantor}
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
+                                
                                 <Form.Control
                                   value={
                                     dataPekerjaan.alamat_kantor
@@ -3118,6 +3113,15 @@ class Personal extends Component {
                                   required
                                   placeholder="Alamat kantor"
                                 />
+                                {errMsg5.alamat_kantor ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                  >
+                                    {errMsg5.alamat_kantor}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                               </Form.Group>
                             </Form.Row>
 
@@ -3128,17 +3132,8 @@ class Personal extends Component {
                                 lg={12}
                                 controlId="telp_kantor"
                               >
-                                {errMsg5.telp_kantor ? (
-                                  <span
-                                    className="text-error badge badge-danger"
-                                    style={{ float: "right" }}
-                                  >
-                                    {errMsg5.telp_kantor}
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
-								<NumberFormat
+                                
+								              <NumberFormat
                                   value={
                                     dataPekerjaan.telp_kantor
                                       ? dataPekerjaan.telp_kantor
@@ -3157,7 +3152,15 @@ class Personal extends Component {
                                   required
                                   placeholder="Nomor Telepon Kantor"
                                 />					
-								
+                                {errMsg5.telp_kantor ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                  >
+                                    {errMsg5.telp_kantor}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                                
                               </Form.Group>
 
@@ -3168,7 +3171,7 @@ class Personal extends Component {
                                 controlId="fax_kantor"
                               >
 							  
-							  <NumberFormat
+							                <NumberFormat
                                   value={
                                     dataPekerjaan.fax_kantor
                                       ? dataPekerjaan.fax_kantor
@@ -3203,13 +3206,7 @@ class Personal extends Component {
                               <div className="grid grid-cols-1 place-items-center">
                                 <div className="form-group lg:w-2/3">
                                   <div className="form-check">
-                                    {errMsg5.agreement5 ? (
-                                      <span className="text-error badge badge-danger">
-                                        {errMsg5.agreement5}
-                                      </span>
-                                    ) : (
-                                      ""
-                                    )}
+                                    
                                     <label>
                                       <input
                                         checked={
@@ -3237,6 +3234,13 @@ class Personal extends Component {
                                         dokumen yang saya sediakan.
                                       </div>
                                     </label>
+                                    {errMsg5.agreement5 ? (
+                                      <span className="text-error badge badge-danger" >
+                                        {errMsg5.agreement5}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
                                   </div>
 
                                   <div className="grid grid-cols-1 place-items-center">
@@ -3548,13 +3552,7 @@ class Personal extends Component {
                               <div className="grid grid-cols-1 place-items-center">
                                 <div className="form-group lg:w-2/3">
                                   <div className="form-check">
-                                    {errMsg6.agreement6 ? (
-                                      <span className="text-error badge badge-danger">
-                                        {errMsg6.agreement6}
-                                      </span>
-                                    ) : (
-                                      ""
-                                    )}
+                                   
                                     <label>
                                       <input
                                         checked={
@@ -3582,6 +3580,13 @@ class Personal extends Component {
                                         dokumen yang saya sediakan.
                                       </div>
                                     </label>
+                                    {errMsg6.agreement6 ? (
+                                      <span className="text-error badge badge-danger">
+                                        {errMsg6.agreement6}
+                                      </span>
+                                    ) : (
+                                      ""
+                                    )}
                                   </div>
 
                                   <div className="grid grid-cols-1 place-items-center">
@@ -3661,6 +3666,7 @@ class Personal extends Component {
                                   <li className="with-no-style"><img src={tabungan_book} /></li>
                                 </ul>
                               </div>
+                              
                             </div>
                             <div className="col-md-8">
                               <div
@@ -3852,8 +3858,7 @@ class Personal extends Component {
                                   )}
                                 </table>
                               </div>
-                            </div>
-                            {!unggahFileName ? (
+                              {!unggahFileName ? (
                               <div className="alert alert-danger alert-sm">
                                 <span className="fw-semi-bold">
                                   Silahkan upload semua photo dengan lengkap
@@ -3862,6 +3867,8 @@ class Personal extends Component {
                             ) : (
                               ""
                             )}
+                            </div>
+                           
                           </div>
                         </div>
                         <div
@@ -3901,13 +3908,6 @@ class Personal extends Component {
                               <div className="form-group row align-items-center">
                                 <div className="col">
                                   Pernyataan Kebenaran Dan Tanggung Jawab
-                                  {errMsg7.agree ? (
-                                    <span className="text-error badge badge-danger">
-                                      {errMsg7.agree}
-                                    </span>
-                                  ) : (
-                                    ""
-                                  )}
                                 </div>
                                 <div className="col-sm-6 col-md-9">
                                   <Form.Group controlId="agree">
@@ -3940,6 +3940,13 @@ class Personal extends Component {
                                       label="Tidak"
                                     />
                                   </Form.Group>
+                                  {errMsg7.agree ? (
+                                    <span className="text-error badge badge-danger">
+                                      {errMsg7.agree}
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
                                 </div>
                               </div>
 

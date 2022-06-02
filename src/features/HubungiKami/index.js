@@ -77,7 +77,7 @@ class HubungiKami extends Component {
 
         return (
 
-            <div className="content-wrapper pr-3">
+            <div className="content-wrapper pr-2">
 
                 <section className="content">
                     <div className="container-fluid mt-3">
@@ -98,7 +98,7 @@ class HubungiKami extends Component {
                                 {/* card start */}
                                 <div className="card card-success shadow-lg" style={{ paddingBottom:'35px', borderRadius: "20px" }}>
                                     <div className="card-body p-0" >
-                                        <div className="grid sm:grid-cols-1 lg:grid-cols-2 mt-10 px-5" >
+                                        <div className="grid sm:grid-cols-1 lg:grid-cols-2 mt-10 px-4" >
                                             <div>
 
                                                 <div className=" hub_kami alert alert-success alert-sm" style={{ backgroundColor: '#1A9425', paddingTop: 10, color: "#fff", borderRadius: "20px", marginBottom: "0rem" }} >
@@ -112,10 +112,10 @@ class HubungiKami extends Component {
                                                     <div className="mb-3">
                                                         <div className="flex mt-3 items-center">
 
-                                                            <div className="w-14">
+                                                            <div className="w-1/12">
                                                                 <img src={wa_red} width="30px" />
                                                             </div>
-                                                            <p className="text-base font-bold text-black text-left ...">
+                                                            <p className="w-11/12 text-base font-bold text-black text-left ...">
                                                                     <a href="https://api.whatsapp.com/send?phone=6287835355526&text=Halo" title="">
                                                                         <span className="text-white">{profile_perusahaan.telp}</span>
                                                                     </a>
@@ -125,10 +125,10 @@ class HubungiKami extends Component {
 
                                                         <div className="flex mt-3 items-center">
 
-                                                            <div className="w-14">
+                                                            <div className="w-1/12">
                                                                 <img src={phone_red} width="30px" />
                                                             </div>
-                                                            <p className="text-base font-bold text-gray-600 text-left ...">
+                                                            <p className="w-11/12 text-base font-bold text-gray-600 text-left ...">
                                                                     <a href="tel:+62212506336" title="">
                                                                         <span className="text-white">{profile_perusahaan.telp_compliance}</span>
                                                                     </a>
@@ -138,10 +138,10 @@ class HubungiKami extends Component {
 
                                                         <div className="flex mt-3 items-center">
 
-                                                            <div className="w-14">
+                                                            <div className="w-1/12">
                                                                 <img src={email_red} width="30px" />
                                                             </div>
-                                                            <p className="text-base font-bold text-gray-600 text-left ...">
+                                                            <p className="w-11/12 text-base font-bold text-gray-600 text-left ...">
                                                                     <a href="mailto:info@magnetfx.co.id" title="">
                                                                         <span className="text-white">{profile_perusahaan.email}</span>
                                                                     </a>
@@ -151,24 +151,26 @@ class HubungiKami extends Component {
 
                                                         <div className="flex mt-3 items-center">
 
-                                                            <div className="w-14">
+                                                            <div className="w-1/12">
                                                                 <img src={location_red} width="25px" />
                                                             </div>
-                                                            <p className="text-base font-bold text-white text-left ...">
+                                                            <p className=" w-11/12 text-base font-bold text-white text-left ...">
+                                                            <a href="#"><span className="text-base font-bold text-white text-left ...">
                                                                     Gedung Sona Topas Tower - Lt. 18 Suite 1804
                                                                     Jl. Jend. Sudirman Kav. 26
                                                                     Jakarta Selatan 12920
                                                                     Indonesia
+                                                                </span></a>
                                                                 </p>
 
                                                         </div>
 
                                                         <div className="flex mt-3 items-center">
 
-                                                            <div className="w-14">
+                                                            <div className="w-1/12">
                                                                 <img src={email_red} width="30px" />
                                                             </div>
-                                                            <p className="text-base font-bold text-gray-600 text-left ...">
+                                                            <p className="w-11/12 text-base font-bold text-gray-600 text-left ...">
                                                                 <a href={profile_perusahaan.website}><span className="text-white">{profile_perusahaan.website}</span></a>
                                                             </p>
 
@@ -178,7 +180,7 @@ class HubungiKami extends Component {
 
                                             </div>
 
-                                            <div className="flex justify-center lg:mt-0 sm:mt-10 w-full lg:px-10 sm:px-0">
+                                            <div className="flex justify-center lg:mt-0 mt-10 w-full px-10">
                                                 <Form className="w-full">
                                                     <Form.Group controlId="subjek">
                                                         <Form.Label><span style={{ fontWeight: "bold", color: "#000" }}>Subjek</span></Form.Label>
