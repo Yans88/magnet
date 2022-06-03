@@ -71,6 +71,8 @@ class Pernyataan extends Component {
         const dt = {};
         dt['key'] = name;
         dt['value'] = value;
+
+        console.log(evt.target.checked)
         this.props.changeProps(dt);
     }
 
@@ -110,7 +112,8 @@ class Pernyataan extends Component {
                 this.setState({ defaultActiveKey: 4 });
 
             }
-            errors.agree = this.props.dataPernyataan.agree === 'N' || this.props.dataPernyataan.agree === '' ? "Semua chekcbox harus dicentang" : '';
+
+            errors.agree = this.props.dataPernyataan.agree !== 'Y' ? "Pilihan ini harus disetujui" : '';
             this.setState({ errors });
             if (!this.validateForm(this.state.errMsg1)) {
                 console.error('Invalid Form')
@@ -934,7 +937,7 @@ class Pernyataan extends Component {
                                   )}
                                   <label>
                                     <input
-                                      checked={dataPernyataan.agree ? true : false}
+                                      checked={dataPernyataan.agree === 'Y' ? true : false}
                                       onChange={this.handleChange.bind(this)}
                                       value={1}
                                       className="form-check-input"

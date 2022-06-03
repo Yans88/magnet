@@ -33,7 +33,7 @@ class KetentuanTrading extends Component {
 
     handleSubmit1() {
         var errors = this.state.errMsg;
-        errors.agree = !this.props.dataKetentuanTrading.agree ? "Kolom ini harus diisi" : '';
+        errors.agree = this.props.dataKetentuanTrading.agree != 'Y' ? "Kolom ini harus diisi" : '';
         this.setState({ errors });
         if (this.validateForm(this.state.errMsg)) {
             this.props.saveDataKT(this.props.dataKetentuanTrading);
@@ -176,9 +176,9 @@ class KetentuanTrading extends Component {
                                             <div className="grid grid-cols-1 place-items-center">
                                                 <div className="form-group lg:w-[50%]">
                                                     <div className="form-check">
-                                                        {dataKetentuanTrading.agree ? (
+                                                        {errMsg.agree ? (
                                                             <span className="text-error badge badge-danger">
-                                                                {dataKetentuanTrading.agree}
+                                                                {errMsg.agree}
                                                             </span>
                                                         ) : (
                                                             ""
