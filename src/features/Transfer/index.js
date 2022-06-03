@@ -639,13 +639,7 @@ class Transfer extends Component {
                                   placeholder="Jumlah"
                                   className="form-control"
                                 />
-                                {errorMessage ? (
-                                  <span className="text-error badge badge-danger">
-                                    {errorMessage}
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
+                               
                               </div>
 
                               <div className="col-span-1 col-12">
@@ -661,6 +655,16 @@ class Transfer extends Component {
                                 >
                                   Transfer
                                 </AppButton>
+                              </div>
+
+                              <div className="col-span-3 col-12 p-0">
+                                {errorMessage ? (
+                                  <span className="text-error badge badge-danger">
+                                    {errorMessage}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                               </div>
                             </div>
                           </div>

@@ -884,6 +884,7 @@ export const mainSlice = createSlice({
       state.isFetching = false;
       state.isVerifikasi = false;
       state.isCompleteProfile = true;
+      state.succesCompleteProfile = true;
       return state;
     },
     [verifUser.rejected]: (state, { payload }) => {

@@ -17,6 +17,9 @@ import Button from "../components/button/Button";
 import { Col, Form } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
 import banner from "../assets/image_1.svg";
+import user_full_name_icon from "../assets/akun_red.svg";
+import user_phone_number_icon from "../assets/phone_red.svg";
+import user_reff_code_icon from "../assets/reff_code_red.svg";
 import logoa from "../assets/logo.svg";
 import email_icon from "../assets/email.svg";
 import password_icon from "../assets/password.svg";
@@ -37,6 +40,8 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const initData = {
+    full_name: "",
+    phone_number: "",
     kode_verifikasi: "",
     nama_depan: "",
     nama_belakng: "",
@@ -52,6 +57,8 @@ const Register = () => {
     password: "",
   };
   const errorValidate = {
+    full_name: "",
+    phone_number: "",
     kode_verifikasi: "",
     nama_depan: "",
     nama_belakng: "",
@@ -82,11 +89,17 @@ const Register = () => {
 
   const formik = useFormik({
     initialValues: {
+      full_name:"",
+      phone_number:"",
       email: "",
       password: "",
-      konfirmasi_password: "",
+      konfirmasi_password: ""
     },
     validationSchema: Yup.object({
+      full_name: Yup.string()
+        .required("Please enter fullname"),
+      phone_number: Yup.number()
+        .required("Please enter phone number"),
       email: Yup.string()
         .required("Please enter email")
         .email("Please enter a valid email"),
@@ -100,6 +113,9 @@ const Register = () => {
     onSubmit: (values) => {
       setSelected({
         ...selected,
+        full_name: values.full_name,
+        phone_number: values.phone_number,
+        reff_code: values.reff_code,
         password: values.password,
         email: values.email,
       });
@@ -153,11 +169,11 @@ const Register = () => {
     // error = { ...error, marketing: "Required!" };
     // }
     setErrMsg(error);
-    const tglLahir = selected.thn + "-" + selected.bln + "-" + selected.tgl;
+    // const tglLahir = selected.thn + "-" + selected.bln + "-" + selected.tgl;
     const queryString = {
       ...selected,
       user_id: user_id,
-      tanggal_lahir: tglLahir,
+      // tanggal_lahir: tglLahir,
       ref_code: selected.ref_code ? selected.ref_code : "",
     };
     //console.log(queryString);
@@ -309,7 +325,7 @@ const Register = () => {
         </Form.Group>
       </Form.Row>
 
-      <Form.Row>
+      {/* <Form.Row>
         <Form.Group as={Col} controlId="tgl">
           {errMsg.tgl ? (
             <span className="float-right text-error badge badge-danger">
@@ -367,7 +383,7 @@ const Register = () => {
             <SelectThn />
           </Form.Control>
         </Form.Group>
-      </Form.Row>
+      </Form.Row> */}
 
       {/* <Form.Row>
             <Form.Group as={Col} controlId="cabang">
@@ -515,10 +531,68 @@ const Register = () => {
                       <p className="login-box-msg"></p>
                     )}
 
-                    {!isCompleteProfile &&
-                    !isVerifikasi &&
+                    {!isVerifikasi &&
                     !succesCompleteProfile ? (
-                      <form onSubmit={formik.handleSubmit}>
+                        <form onSubmit={formik.handleSubmit}>
+
+                          {formik.touched.full_name && formik.errors.full_name ? (
+                            <span className="float-right text-error badge badge-danger">
+                              {formik.errors.full_name}
+                            </span>
+                          ) : null}
+                          <div
+                            className="input-group mb-3"
+                            style={{
+                              border: "1px solid #B7B7B7",
+                              padding: "5px",
+                              borderRadius: "5px",
+                            }}
+                          >
+                            <div className="input-group-append">
+                              <div className="input-group-text bg-white border-white">
+                                <img src={user_full_name_icon} width="22px" />
+                              </div>
+                            </div>
+                            <input
+                              autoFocus
+                              autoComplete="off"
+                              type="text"
+                              className="form-control"
+                              placeholder="Fullname"
+                              style={{ backgroundColor: "#fff", border: "0" }}
+                              {...formik.getFieldProps("full_name")}
+                            />
+                          </div>
+
+                          {formik.touched.phone_number && formik.errors.phone_number ? (
+                            <span className="float-right text-error badge badge-danger">
+                              {formik.errors.phone_number}
+                            </span>
+                          ) : null}
+                          <div
+                            className="input-group mb-3"
+                            style={{
+                              border: "1px solid #B7B7B7",
+                              padding: "5px",
+                              borderRadius: "5px",
+                            }}
+                          >
+                            <div className="input-group-append">
+                              <div className="input-group-text bg-white border-white">
+                                <img src={user_phone_number_icon} width="22px" />
+                              </div>
+                            </div>
+                            <input
+                              autoFocus
+                              autoComplete="off"
+                              type="number"
+                              className="form-control"
+                              placeholder="Phone Number"
+                              style={{ backgroundColor: "#fff", border: "0" }}
+                              {...formik.getFieldProps("phone_number")}
+                            />
+                          </div>
+
                         {formik.touched.email && formik.errors.email ? (
                           <span className="float-right text-error badge badge-danger">
                             {formik.errors.email}
@@ -604,6 +678,31 @@ const Register = () => {
                             {...formik.getFieldProps("konfirmasi_password")}
                           />
                         </div>
+
+                        <div
+                            className="input-group mb-3"
+                            style={{
+                              border: "1px solid #B7B7B7",
+                              padding: "5px",
+                              borderRadius: "5px",
+                            }}
+                          >
+                          <div className="input-group-append">
+                            <div className="input-group-text bg-white border-white">
+                              <img src={user_reff_code_icon} width="22px" />
+                            </div>
+                          </div>
+                          <input
+                            autoFocus
+                            autoComplete="off"
+                            type="text"
+                            className="form-control"
+                            placeholder="Refferal Code"
+                            style={{ backgroundColor: "#fff", border: "0" }}
+                            {...formik.getFieldProps("reff_code")}
+                          />
+                        </div>
+
                         <ReCAPTCHA
                           hl="id"
                           ref={recaptchaRef}
@@ -637,7 +736,6 @@ const Register = () => {
                     )}
                     <div className="text-left">
                       {isVerifikasi ? frmUser : ""}
-                      {isCompleteProfile ? frmUser2 : ""}
                       {succesCompleteProfile ? (
                         <h4>
                           <p className="login-box-msg">
@@ -672,7 +770,7 @@ const Register = () => {
         </div>
 
         <div className="h-auto overflow-hidden mobile-hide">
-          <img src={banner} className="scale-100" />
+          <img src={banner} className="scale-150" />
         </div>
       </div>
     </div>
