@@ -522,7 +522,7 @@ class Setoran extends Component {
                           decimalScale={2}
                           displayType={"text"}
                         />}
-						{selected.rate === 0 || selected.rate === '0' ? 'USD' : "0.00"}
+						{selected.rate === 0 || selected.rate === '0' && 'USD' }
                       </strong>
                     </div>
                   </div>
