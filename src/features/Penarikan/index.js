@@ -735,6 +735,7 @@ const mapDispatchToPros = (dispatch) => {
             dispatch(actionPenarikan(param));
         },
         closeSwalError: () => {
+			dispatch(getAkunTrading());
             dispatch(closeForm());
         }
     }
