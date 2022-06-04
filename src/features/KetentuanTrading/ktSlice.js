@@ -42,9 +42,10 @@ export const getKT = createAsyncThunk(
     'option/getKT',
     async (param, thunkAPI) => {
 		const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+		const data_tipe_akun_id = sessionStorage.getItem('data_tipe_akun_id');
         var config = {
             method: 'get',
-            url: API_URL + '/get-data-ketentuan-trading',
+            url: API_URL + '/get-data-ketentuan-trading?data_tipe_akun_id='+data_tipe_akun_id,
             headers: {
                 'x-app-origin': 'cabinet-app',
                 'Authorization': token,

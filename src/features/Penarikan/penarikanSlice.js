@@ -280,7 +280,9 @@ export const penarikanSlice = createSlice({
             return state;
         },
         [actionPenarikan.rejected]: (state, { payload }) => {
-            //console.log('payload', payload);
+            state.showFormSuccess = true;
+            state.contentMsg = "<div style='font-size:20px; text-align:center; line-height:23px;'><strong>Oops...</strong><br/> "+payload.message+"</div>";
+            state.tipeSWAL = "warning";            
             state.isFetching = false;
             state.isError = true;
             state.errorMessage = payload.message;

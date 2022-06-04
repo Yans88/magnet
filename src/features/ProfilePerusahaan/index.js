@@ -80,6 +80,7 @@ class ProfilePerusahaan extends Component {
   }
 
   handleCloseSwal() {
+	sessionStorage.removeItem("data_tipe_akun_id");
     this.props.history.push("/");
     this.props.closeSwal();
   }

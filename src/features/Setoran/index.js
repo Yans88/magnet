@@ -361,12 +361,15 @@ class Setoran extends Component {
                           data-binder="rate"
                           id="divid-rate"
                         >
+						{(selected.rate > 0 || selected.rate > '0') &&
                           <NumberFormat
                             value={selected.rate > 0 ? selected.rate : "0.00"}
                             thousandSeparator={true}
                             decimalScale={2}
                             displayType={"text"}
                           />
+						}
+						{(selected.rate === 0 || selected.rate === "0") && 'USD'}
                         </strong>
                       </div>
                     </div>
@@ -376,7 +379,7 @@ class Setoran extends Component {
                   <div className="form-group">
                     <div className="form-group">
                       <div>
-                        <label>Jumlah Setor</label>
+                        <label>Jumlah Setor (USD)</label>
                       </div>
                       <div>
                         <strong className="font-weight-bold text-black">
@@ -409,11 +412,13 @@ class Setoran extends Component {
                     </div>
                   </div>
                 </div>
+				
+				{(selected.rate > "0" || selected.rate > 0) && (
                 <div className="col-sm-6">
                   <div className="form-group">
                     <div className="form-group">
                       <div>
-                        <label>Jumlah Setor</label>
+                        <label>Jumlah Setor (IDR)</label>
                       </div>
                       <div>
                         <strong className="font-weight-bold text-black">
@@ -431,7 +436,8 @@ class Setoran extends Component {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div>)}
+				
               </div>
             </Fragment>
           ) : (
@@ -708,6 +714,14 @@ class Setoran extends Component {
         align: "center",
         width: 100,
         sortable: true,
+		 cell: (record) => {
+          return (
+		  
+            <div style={{ textAlign: "right" }}>
+			{record.rate > 0 || record.rate > '0' ? record.rate : 'USD'}
+            </div>
+          );
+        },
       },
       {
         key: "setor",

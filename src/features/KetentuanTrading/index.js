@@ -16,8 +16,7 @@ class KetentuanTrading extends Component {
         }
     }
 
-    componentDidMount = async () => {
-        sessionStorage.removeItem("data_tipe_akun_id");
+    componentDidMount = async () => {        
         this.props.onLoad();
         const location = window.location.href;
         const BaseName = location.substring(location.lastIndexOf("/") + 1);
@@ -147,20 +146,8 @@ class KetentuanTrading extends Component {
                                                 <div className="mobile-view" style={{ fontSize: "20px", paddingLeft: "5%" }}>
                                                     <h3 className="label_ijo">Peraturan Trading</h3>
                                                 </div>
-
-                                                {dataSetting ? (
-                                                    dataSetting.map(function (dr) {
-                                                        var res = '';
-                                                        if (dr.nama_setting === "file-ketentuan-tradding") {
-                                                            return <div key={dr.setting_id} dangerouslySetInnerHTML={{ __html: dr.value }} />
-                                                        } else {
-                                                            return res;
-                                                        }
-                                                        //https://new.vifx.co/assets/cabinet/_ui/pdf/trvifregularforex.pdf
-
-                                                    })
-
-                                                ) : ''}
+<div dangerouslySetInnerHTML={{ __html: dataKetentuanTrading.ketentuan }} />
+                                               
                                             </div>
                                         </div>
 
