@@ -309,12 +309,14 @@ class Penarikan extends Component {
                                     <label className="frm_lbl">Rate</label>
                                     <div>
                                         <strong className="font-weight-bold text-black">
+											{selected.rate > 0 &&
 											<NumberFormat
-                                                value={selected.rate > 0 ? selected.rate : '0.00'}
-                                                thousandSeparator={true}
-                                                decimalScale={2}
-                                                displayType={'text'}
-                                            />
+											  value={selected.rate > 0 ? selected.rate : "0.00"}
+											  thousandSeparator={true}
+											  decimalScale={2}
+											  displayType={"text"}
+											/>}
+											{selected.rate === 0 || selected.rate === '0' && 'USD' }
 										</strong>
                                     </div>
 
@@ -395,7 +397,7 @@ class Penarikan extends Component {
                                         />
                                     </td>
                                     <td>
-                                        {at.rate}
+                                        {at.rate === 0 || at.rate === '0' ? 'USD' : at.rate}
                                     </td>
                                 </tr>
                             </Fragment>

@@ -483,7 +483,7 @@ class Transfer extends Component {
                                                   displayType={"text"}
                                                 />
                                               </td>
-                                              <td>{at.rate}</td>
+                                              <td>{at.rate === 0 || at.rate === '0' ? 'USD' : at.rate}</td>
                                             </tr>
                                           </Fragment>
                                         );
@@ -597,7 +597,7 @@ class Transfer extends Component {
                                                     />
                                                   </td>
                                                   <td>
-                                                    {at.rate}
+                                                    {at.rate === 0 || at.rate === '0' ? 'USD' : at.rate}
                                                   </td>
                                                 </tr>
                                               </Fragment>

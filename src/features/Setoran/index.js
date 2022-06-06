@@ -707,6 +707,9 @@ class Setoran extends Component {
         width: 150,
         align: "center",
         sortable: true,
+		cell: (record) => {
+					return moment(new Date(record.created_at)).format("DD-MM-YYYY HH:mm");	
+				}	
       },
       {
         key: "rate",
@@ -714,7 +717,7 @@ class Setoran extends Component {
         align: "center",
         width: 100,
         sortable: true,
-		 cell: (record) => {
+		cell: (record) => {
           return (
 		  
             <div style={{ textAlign: "right" }}>
