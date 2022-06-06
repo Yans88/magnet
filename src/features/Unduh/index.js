@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Panel } from 'rsuite';
 import icon from '../../assets/unduh_ijo.svg';
+import { connect } from 'react-redux';
+import { getSetting } from '../KetentuanTrading/ktSlice'
 
-
-export default class Unduh extends Component {
+class Unduh extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,13 +13,13 @@ export default class Unduh extends Component {
     }
 
     componentDidMount = async () => {
-
+		this.props.onLoad();
         const location = window.location.href;
         const BaseName = location.substring(location.lastIndexOf("/") + 1);
         await this.setState({ lastSegmentUrl: BaseName })
     }
     render() {
-
+		const { data_setting } = this.props;
         return (
 
             <div className="content-wrapper pr-1">
@@ -194,43 +195,29 @@ export default class Unduh extends Component {
                                             <br />
                                             <h3 style={{color:"#222"}}>Installation Guide for Windows</h3>
                                             <br />
+											
+											 {data_setting
+                          ? data_setting.map((dp, index) => {
+                              return (
+                                <Fragment key={dp.setting_id}>
+									{dp.nama_setting === 'link_youtube_unduh' &&
+									   <iframe
+										  width="700"
+										  height="500"
 
-                                            <ol>
-                                                <li >
-                                                    If you haven't download from the link above, <a href="https://download.mql5.com/cdn/web/pt.victory.international/mt5/victoryinternational5setup.exe">download here</a>.<br />
-                                                    Open the downloaded file, and if you see this screen, click RUN<br />
-                                                    <img alt="" src="https://new.vifx.co/assets/cabinet/_ui/media/winguide1.png" />
-                                                </li>
-                                                <li>
-                                                    Click NEXT, and go to guide number 3<br />
-                                                    <img alt="" src="https://new.vifx.co/assets/cabinet/_ui/media/winguide2.png" /><br />
-                                                    Or if you want to change the installation folder and start menu group you can click SETTINGS<br />
-                                                    <img alt="" src="https://new.vifx.co/assets/cabinet/_ui/media/winguide21.png" /><br />
-                                                    Here you can change the installation folder and start menu group<br />
-                                                    After you're done, click NEXT
-                                                </li>
-                                                <li>
-                                                    Wait for the download and installation to complete<br />
-                                                    <img alt="" src="https://new.vifx.co/assets/cabinet/_ui/media/winguide3.png" /><br />
-                                                </li>
-                                                <li>
-                                                    Once the installation is done, click FINISH<br />
-                                                    <img alt="" src="https://new.vifx.co/assets/cabinet/_ui/media/winguide4.png" /><br />
-                                                </li>
-                                                <li>
-                                                    Click NEXT<br />
-                                                    <img alt="" width="850" src="https://new.vifx.co/assets/cabinet/_ui/media/winguide5.png" /><br />
-                                                </li>
-                                                <li>
-                                                    Login details<br />
-                                                    <img alt="" width="850" src="https://new.vifx.co/assets/cabinet/_ui/media/winguide6.png" /><br />
-                                                    Please choose "Connect with an existing trade account"<br />
-                                                    Input your login and password of the account that's already created<br />
-                                                    And choose your accout type (REAL/DEMO) on the server selection<br />
-                                                    Then click FINISH<br />
-                                                    <em style={{ color: '#900' }}>* You can have a demo login from menu <a href={'/'}>"My Account"</a> on the left panel, as for real trading account you'll have to finish up registration first, and if you want more accounts, you can simply request/create more on the <a href={'/'}>"My Account"</a> menu</em>
-                                                </li>
-                                            </ol>
+										  src={dp.value}
+										  title="Installation Guide for Windows"
+										  frameBorder="0"
+										  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+										  allowFullScreen="1"
+										></iframe>
+								  }
+                                </Fragment>
+                              );
+                            })
+                          : ""}
+
+                                           
 
 
 
@@ -252,3 +239,16 @@ export default class Unduh extends Component {
         )
     }
 }
+const mapStateToProps = (state) => ({
+    data_setting: state.dtSetting.dataSetting || [],
+   
+});
+const mapDispatchToPros = (dispatch) => {
+    return {
+        onLoad: () => {
+            dispatch(getSetting());            
+        },
+        
+    }
+}
+export default connect(mapStateToProps, mapDispatchToPros)(Unduh);
