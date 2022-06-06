@@ -40,11 +40,11 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const initData = {
-    full_name: "",
+    
     phone_number: "",
     kode_verifikasi: "",
     nama_depan: "",
-    nama_belakng: "",
+   
     tgl: "",
     bln: "",
     thn: "",
@@ -57,11 +57,10 @@ const Register = () => {
     password: "",
   };
   const errorValidate = {
-    full_name: "",
+    
     phone_number: "",
     kode_verifikasi: "",
-    nama_depan: "",
-    nama_belakng: "",
+    
     tgl: "",
     bln: "",
     thn: "",
@@ -82,21 +81,25 @@ const Register = () => {
 
   useEffect(() => {
     if (succesCompleteProfile) {
+		const queryString = {
+		  email: selected.email,
+		  password: selected.password,
+		};
       dispatch(clearState());
-      dispatch(loginUser(selected));
+      dispatch(loginUser(queryString));
     }
   }, [succesCompleteProfile, dispatch, selected]);
 
   const formik = useFormik({
     initialValues: {
-      full_name:"",
+      nama_depan:"",
       phone_number:"",
       email: "",
       password: "",
       konfirmasi_password: ""
     },
     validationSchema: Yup.object({
-      full_name: Yup.string()
+      nama_depan: Yup.string()
         .required("Please enter fullname"),
       phone_number: Yup.number()
         .required("Please enter phone number"),
@@ -112,10 +115,7 @@ const Register = () => {
     }),
     onSubmit: (values) => {
       setSelected({
-        ...selected,
-        full_name: values.full_name,
-        phone_number: values.phone_number,
-        reff_code: values.reff_code,
+        ...selected,        
         password: values.password,
         email: values.email,
       });
@@ -154,31 +154,7 @@ const Register = () => {
     if (!error) dispatch(verifUser(queryString));
   };
 
-  const handleSubmit2 = async () => {
-    var error = "";
-    if (selected.nama_depan === null || selected.nama_depan === "") {
-      error = { ...error, nama_depan: "Required!" };
-    }
-    if (selected.nama_belakng === null || selected.nama_belakng === "") {
-      error = { ...error, nama_belakng: "Required!" };
-    }
-    // if (selected.cabang === null || selected.cabang === "") {
-    // error = { ...error, cabang: "Required!" };
-    // }
-    // if (selected.marketing === null || selected.marketing === "") {
-    // error = { ...error, marketing: "Required!" };
-    // }
-    setErrMsg(error);
-    // const tglLahir = selected.thn + "-" + selected.bln + "-" + selected.tgl;
-    const queryString = {
-      ...selected,
-      user_id: user_id,
-      // tanggal_lahir: tglLahir,
-      ref_code: selected.ref_code ? selected.ref_code : "",
-    };
-    //console.log(queryString);
-    if (!error) dispatch(completeData(queryString));
-  };
+ 
 
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -284,208 +260,7 @@ const Register = () => {
     </Form>
   );
 
-  const frmUser2 = (
-    <Form id="myForm2">
-      <Form.Row>
-        <Form.Group as={Col} xs={12} lg={6} controlId="nama_depan">
-          {errMsg.nama_depan ? (
-            <span className="float-right text-error badge badge-danger">
-              {errMsg.nama_depan}
-            </span>
-          ) : (
-            ""
-          )}
-          <Form.Control
-            size="sm"
-            autoComplete="off"
-            name="nama_depan"
-            type="text"
-            value={selected.nama_depan}
-            onChange={handleChange}
-            placeholder="Nama Depan"
-          />
-        </Form.Group>
-        <Form.Group as={Col} xs={12} lg={6} controlId="nama_belakng">
-          {errMsg.nama_belakng ? (
-            <span className="float-right text-error badge badge-danger">
-              {errMsg.nama_belakng}
-            </span>
-          ) : (
-            ""
-          )}
-          <Form.Control
-            size="sm"
-            autoComplete="off"
-            name="nama_belakng"
-            type="text"
-            value={selected.nama_belakng}
-            onChange={handleChange}
-            placeholder="Nama Belakang"
-          />
-        </Form.Group>
-      </Form.Row>
-
-      {/* <Form.Row>
-        <Form.Group as={Col} controlId="tgl">
-          {errMsg.tgl ? (
-            <span className="float-right text-error badge badge-danger">
-              {errMsg.tgl}
-            </span>
-          ) : (
-            ""
-          )}
-          <Form.Control
-            size="sm"
-            autoComplete="off"
-            name="tgl"
-            value={selected.tgl ? selected.tgl : ""}
-            onChange={handleChange}
-            as="select"
-          >
-            <SelectTgl />
-          </Form.Control>
-        </Form.Group>
-        <Form.Group as={Col} controlId="bln">
-          {errMsg.bln ? (
-            <span className="float-right text-error badge badge-danger">
-              {errMsg.bln}
-            </span>
-          ) : (
-            ""
-          )}
-          <Form.Control
-            size="sm"
-            autoComplete="off"
-            name="bln"
-            value={selected.bln ? selected.bln : ""}
-            onChange={handleChange}
-            as="select"
-          >
-            <SelectBln />
-          </Form.Control>
-        </Form.Group>
-        <Form.Group as={Col} controlId="thn">
-          {errMsg.thn ? (
-            <span className="float-right text-error badge badge-danger">
-              {errMsg.thn}
-            </span>
-          ) : (
-            ""
-          )}
-          <Form.Control
-            size="sm"
-            autoComplete="off"
-            name="thn"
-            value={selected.thn ? selected.thn : ""}
-            onChange={handleChange}
-            as="select"
-          >
-            <SelectThn />
-          </Form.Control>
-        </Form.Group>
-      </Form.Row> */}
-
-      {/* <Form.Row>
-            <Form.Group as={Col} controlId="cabang">
-                <Form.Label>Cabang</Form.Label>
-                {errMsg.cabang ?
-                    (<span className="float-right text-error badge badge-danger">{errMsg.cabang}
-                    </span>) : ''}
-                <Form.Control
-                    size="sm"
-                    autoComplete="off"
-                    name="cabang"
-                    value={selected.cabang}
-                    onChange={handleChange}
-                    as="select">
-                    <option value="">Cabang</option>
-                    {dataCabang ? (
-                        dataCabang.map(function (cabang) {
-                            return <option
-                                value={cabang.cabang_id}
-                                key={cabang.cabang_id}>{cabang.nama_cabang}
-                            </option>
-                        })
-
-                    ) : ''}
-                </Form.Control>
-            </Form.Group>
-            <Form.Group as={Col} controlId="marketing">
-                <Form.Label>Marketing</Form.Label>
-                {errMsg.marketing ?
-                    (<span className="float-right text-error badge badge-danger">{errMsg.marketing}
-                    </span>) : ''}
-                <Form.Control
-                    disabled={selected.cabang ? false : true}
-                    size="sm"
-                    autoComplete="off"
-                    name="marketing"
-                    value={selected.marketing ? selected.marketing : ''}
-                    onChange={handleChange}
-                    as="select">
-                    <option value="">Marketing</option>
-                    {dataMarketing ? (
-                        dataMarketing.map(function (marketing) {
-                            return <option
-                                value={marketing.user_id}
-                                key={marketing.user_id}>{marketing.nama_depan + ' ' + marketing.nama_belakang}
-                            </option>
-                        })
-
-                    ) : ''}
-                </Form.Control>
-            </Form.Group>
-
-        </Form.Row>  */}
-      <Form.Group controlId="ref_code">
-        {errMsg.ref_code ? (
-          <span className="float-right text-error badge badge-danger">
-            {errMsg.ref_code}
-          </span>
-        ) : (
-          ""
-        )}
-        <Form.Control
-          size="sm"
-          autoComplete="off"
-          name="ref_code"
-          type="text"
-          value={selected.ref_code}
-          onChange={handleChange}
-          placeholder="Referral Code"
-        />
-      </Form.Group>
-      <div className="social-auth-links text-center mt-2 mb-3">
-        <div className="grid grid-cols-1 gap-0 place-items-center">
-          <div className="w-3/5">
-            {succesCompleteProfile ? (
-              <Button
-                block
-                disabled={true}
-                isLoading={isFetching}
-                theme=""
-                style={{ backgroundColor: "#C1242B", color: "#fff" }}
-              >
-                {" "}
-                Daftar{" "}
-              </Button>
-            ) : (
-              <Button
-                block
-                onClick={handleSubmit2}
-                isLoading={isFetching}
-                theme=""
-                style={{ backgroundColor: "#C1242B", color: "#fff" }}
-              >
-                {" "}
-                Daftar{" "}
-              </Button>
-            )}
-          </div>
-        </div>
-      </div>
-    </Form>
-  );
+  
 
   return (
     <div class="">
@@ -530,14 +305,13 @@ const Register = () => {
                     ) : (
                       <p className="login-box-msg"></p>
                     )}
+					
+					{ (!isVerifikasi && !succesCompleteProfile) &&
+					<form onSubmit={formik.handleSubmit}>
 
-                    {!isVerifikasi &&
-                    !succesCompleteProfile ? (
-                        <form onSubmit={formik.handleSubmit}>
-
-                          {formik.touched.full_name && formik.errors.full_name ? (
+                          {formik.touched.nama_depan && formik.errors.nama_depan ? (
                             <span className="float-right text-error badge badge-danger">
-                              {formik.errors.full_name}
+                              {formik.errors.nama_depan}
                             </span>
                           ) : null}
                           <div
@@ -555,12 +329,12 @@ const Register = () => {
                             </div>
                             <input
                               autoFocus
-                              autoComplete="off"
+                            autoComplete="off"
                               type="text"
                               className="form-control"
                               placeholder="Fullname"
                               style={{ backgroundColor: "#fff", border: "0" }}
-                              {...formik.getFieldProps("full_name")}
+                              {...formik.getFieldProps("nama_depan")}
                             />
                           </div>
 
@@ -583,8 +357,7 @@ const Register = () => {
                               </div>
                             </div>
                             <input
-                              autoFocus
-                              autoComplete="off"
+                              
                               type="number"
                               className="form-control"
                               placeholder="Phone Number"
@@ -612,8 +385,7 @@ const Register = () => {
                             </div>
                           </div>
                           <input
-                            autoFocus
-                            autoComplete="off"
+                           
                             type="text"
                             className="form-control"
                             placeholder="Email"
@@ -670,7 +442,7 @@ const Register = () => {
                             </div>
                           </div>
                           <input
-                            autoComplete="off"
+                           
                             type="password"
                             className="form-control"
                             placeholder="Confirmation Password"
@@ -693,8 +465,7 @@ const Register = () => {
                             </div>
                           </div>
                           <input
-                            autoFocus
-                            autoComplete="off"
+                            
                             type="text"
                             className="form-control"
                             placeholder="Refferal Code"
@@ -730,10 +501,9 @@ const Register = () => {
                             </div>
                           </div>
                         </div>
-                      </form>
-                    ) : (
-                      ""
-                    )}
+					</form>}
+
+                    
                     <div className="text-left">
                       {isVerifikasi ? frmUser : ""}
                       {succesCompleteProfile ? (
