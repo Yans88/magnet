@@ -222,21 +222,7 @@ class Setting extends Component {
 
                                                         </Col>
                                                     </Row>
-                                                    <br />
-                                                    <br />
-                                                    <Row>
-                                                        <Col>
-                                                            <Form.Control
-                                                                value={user.nama_belakang ? user.nama_belakang : ''}
-                                                                autoComplete="off"
-                                                                size="lg"
-                                                                name="nama_belakang"
-                                                                type="text"
-                                                                readOnly
-                                                                placeholder="Last Name" />
-
-                                                        </Col>
-                                                    </Row>
+                                                   
                                                     <br />
                                                     <br />
                                                     <Row>
