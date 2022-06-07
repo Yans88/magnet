@@ -11,7 +11,7 @@ import {
 import { profileUser } from "../main/mainSlice";
 import { Icon, IconButton } from "rsuite";
 import AppModal from "../../components/modal/MyModal";
-import { confirmDel, closeForm } from "../Personal/personalSlice";
+import { confirmDel, closeForm,delAkunBankKu } from "../Personal/personalSlice";
 
 class AkunBank extends Component {
   constructor(props) {
@@ -55,7 +55,7 @@ class AkunBank extends Component {
   handleDelete = async () => {
     this.props.onDelete(this.state.akun_bank_id);
     this.props.closeSwalError();
-    //this.props.onLoad();
+    this.props.onLoad();
   };
 
   render() {
@@ -327,7 +327,7 @@ const mapDispatchToPros = (dispatch) => {
       dispatch(confirmDel(data));
     },
     onDelete: (param) => {
-      //dispatch(delDocPribadi(param));
+      dispatch(delAkunBankKu(param));
     },
     onSetor: (param) => {
       dispatch(profileUser());

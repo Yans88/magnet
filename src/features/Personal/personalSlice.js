@@ -613,6 +613,40 @@ export const delDocPribadi = createAsyncThunk(
     }
 );
 
+export const delAkunBankKu = createAsyncThunk(
+    'personal/delAkunBankKu',
+    async (param, thunkAPI) => {
+        const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+        var config = {
+            method: 'get',
+            url: API_URL + '/general-option/delete-akun-bank/' + param,
+            headers: {
+                'x-app-origin': 'cabinet-app',
+                'Authorization': token,
+            }
+        };
+        
+        return axios(config)
+            .then(function (response) {
+                const _data = JSON.stringify(response);
+                if (response.status === 200) {
+                    let data = response.data;
+                    if (data.error_message === 0) {
+                        return data;
+                    } else {
+                        return thunkAPI.rejectWithValue(data);
+                    }
+                } else {
+                    return thunkAPI.rejectWithValue(_data);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+                return thunkAPI.rejectWithValue(error);
+            });
+    }
+);
+
 
 export const getNegara = createAsyncThunk(
     'option/getNegara',
@@ -943,6 +977,21 @@ export const personalSlice = createSlice({
             state.errorMessage = payload.message;
         },
         [delDocPribadi.pending]: (state) => {
+            state.isLoading = true;
+        },
+		[delAkunBankKu.fulfilled]: (state) => {
+            state.isLoading = false;
+            state.showFormDelete = false;
+            state.errUplFileMsg = 'File sudah dihapus!';
+            return state;
+        },
+        [delAkunBankKu.rejected]: (state, { payload }) => {
+            //console.log('payload', payload);
+            state.isLoading = false;
+            state.isError = true;
+            state.errorMessage = payload.message;
+        },
+        [delAkunBankKu.pending]: (state) => {
             state.isLoading = true;
         },
         [simpanDataPribadi.fulfilled]: (state, { payload }) => {
