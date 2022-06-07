@@ -24,6 +24,7 @@ const RejectDoc = React.lazy(() => import('./features/RejectDocument'));
 const Penarikan = React.lazy(() => import('./features/Penarikan'));
 const Autochartist = React.lazy(() => import('./features/Autochartist'));
 const AkunBank = React.lazy(() => import('./features/AkunBank'));
+const AddBank = React.lazy(() => import('./features/AkunBank/AddBank'));
 const Transfer = React.lazy(() => import('./features/Transfer'));
 const YukBelajar = React.lazy(() => import('./features/YukBelajar'));
 const DetailEduc = React.lazy(() => import('./features/YukBelajar/Detail'));
@@ -70,6 +71,7 @@ function App({ main }) {
                 <Route exact path="/withdrawal" component={Penarikan} />
                 <Route exact path="/autochartist" component={Autochartist} />
                 <Route exact path="/bank-accounts" component={AkunBank} />
+                <Route exact path="/add-bank-accounts" component={AddBank} />
                 <Route exact path="/internal-transfer" component={Transfer} />
                 <Route exact path="/education" component={YukBelajar} />
 				 <Route exact path="/detail-artikel" component={DetailEduc} />

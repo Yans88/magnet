@@ -2,12 +2,14 @@ import React, { Component, createRef } from 'react'
 import { Col, Input, Panel, PanelGroup, Row } from 'rsuite';
 import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
+import Pernyataan3 from "../../components/modal/Pernyataan3";
 import moment from 'moment';
 import "moment/locale/id";
 import { Form } from 'react-bootstrap'
-import { getDataPernyataan, chgProps, simpanDataPernyataan,getSelectAkun } from './pernyataanSlice';
+import { getDataPernyataan, chgProps, simpanDataPernyataan,getSelectAkun,getBankPerusahaan } from './pernyataanSlice';
 import { profileUser } from '../main/mainSlice';
 import { getAkunTradingDemo } from '../Setoran/setoranSlice';
+import { getDataPP } from "../ProfilePerusahaan/ppSlice";
 
 class Pernyataan extends Component {
     constructor(props) {
@@ -142,7 +144,7 @@ class Pernyataan extends Component {
 
     render() {
         const { lastSegmentUrl, defaultActiveKey, errMsg1 } = this.state;
-        const { user, dataPernyataan } = this.props;
+        const { user, dataPernyataan, profile_perusahaan,legalitas_perusahaan,dataBankPerusahaan, } = this.props;
         const { arr_wakil_pialang } = dataPernyataan;
         const tgl_lhir = user && user.tanggal_lahir ? moment(new Date(user.tanggal_lahir)).format('DD/MM/YYYY') : '';
 		
@@ -226,7 +228,7 @@ class Pernyataan extends Component {
                                                             
                                                             <Col xs={12} lg={6}><label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Nama Lengkap</span></label></Col>
                                                             <Col xs={24} lg={6}>
-                                                                <Input readOnly size="lg" value={user ? user.nama_depan + ' ' + user.nama_belakang : ''} />
+                                                                <Input readOnly size="lg" value={user ? user.nama_depan : ''} />
                                                             </Col>
 
                                                         </Row>
@@ -276,7 +278,7 @@ class Pernyataan extends Component {
                                                         <br />
                                                         <center>
                                                             <span className="label_hitam">
-                                                            Dengan mengisi kolom "YA" di bawah ini, saya menyatakan bahwa saya telah melakukan simulasi bertransaksi di bidang Perdagangan Berjangka Komoditi pada PT.Victory International Futures, dan telah memahami tentang tata cara bertransaksi di bidang Perdagangan Berjangka Komoditi.
+                                                            Dengan mengisi kolom "YA" di bawah ini, saya menyatakan bahwa saya telah melakukan simulasi bertransaksi di bidang Perdagangan Berjangka Komoditi pada {profile_perusahaan.perusahaan}, dan telah memahami tentang tata cara bertransaksi di bidang Perdagangan Berjangka Komoditi.
                                                             <br />
                                                             <br />
                                                             Demikian Pernyataan ini dibuat dengan sebenarnya dalam keadaan sadar, sehat jasmani dan rohani serta tanpa paksaan apapun dari pihak manapun
@@ -498,8 +500,16 @@ class Pernyataan extends Component {
 															}))}</b></p>
                                                             <p>Pekerjaan/Jabatan: <b className="declaration_employment_status_html">Wakil Pialang</b>
                                                                 <br clear="all" />
-                                                            </p><p>Alamat: <b>Pakuwon Center - Superblok Tunjungan City, Office Building Lt.15 Unit 5, 6, 7, Jl.Embong Malang 1, 3, 5 Surabaya 60261</b></p>
-                                                            <p>Dalam hal ini bertindak untuk dan atas nama  <b>PT.Victory International Futures</b> yang selanjutnya disebut <b>Pialang Berjangka</b>, </p>
+                                                            </p>
+															<p>
+                                Alamat:{" "}
+                                <div
+                                  dangerouslySetInnerHTML={{
+                                    __html: profile_perusahaan.alamat,
+                                  }}
+                                />
+                              </p>
+                                                            <p>Dalam hal ini bertindak untuk dan atas nama  <b>{profile_perusahaan.perusahaan}</b> yang selanjutnya disebut <b>Pialang Berjangka</b>, </p>
                                                             <p>Nasabah dan Pialang Berjangka secara bersama-sama selanjutnya disebut <b>Para Pihak</b>.</p>
                                                         </li>
                                                     </ol>
@@ -515,7 +525,13 @@ class Pernyataan extends Component {
                                                             <p><b>Pelaksanaan Transaksi</b></p>
                                                             <p>(1) Setiap transaksi Nasabah dilaksanakan secara elektronik on-line oleh Nasabah yang bersangkutan; </p>
                                                             <p>(2) Setiap amanat Nasabah yang diterima dapat langsung dilaksanakan sepanjang nilai Margin yang tersedia pada rekeningnya mencukupi dan eksekusinya dapat menimbulkan perbedaan waktu terhadap proses pelaksanaan transaksi tersebut.Nasabah harus mengetahui posisi Margin dan posisi terbuka sebelum memberikan amanat untuk transaksi berikutnya.</p>
-                                                            <p>(3) Setiap transaksi Nasabah secara bilateral dilawankan dengan Penyelenggara Sistem Perdagangan Alternatif PT.Real Time Forex Indonesia yang bekerjasama dengan Pialang Berjangka.</p>
+                                                            <p>
+                                (3) Setiap transaksi Nasabah secara bilateral
+                                dilawankan dengan Penyelenggara Sistem
+                                Perdagangan Alternatif{" "}
+                                {legalitas_perusahaan.nama_penyelenggara} yang
+                                bekerjasama dengan Pialang Berjangka.
+                              </p>
                                                         </li>
                                                         <li tabIndex={1}>
                                                             <p><b>Kewajiban Memelihara Margin</b></p>
@@ -590,58 +606,32 @@ class Pernyataan extends Component {
                                                                     <tr>
                                                                         <td><p>Nama</p></td>
                                                                         <td style={{ width: 50 }}><p>: </p></td>
-                                                                        <td><p><b>PT.Victory International Futures</b></p></td>
+                                                                        <td><p><b>{profile_perusahaan.perusahaan}</b></p></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td><p>Alamat</p></td>
                                                                         <td><p>: </p></td>
-                                                                        <td><p><strong>Pakuwon Center<br />Superblock Tunjungan City, Office Building Lt.15 Unit 5-7<br />Jl.Embong Malang No.1, 3, 5 Surabaya 60261</strong></p></td>
+                                                                        <td><p><strong>
+                                        <div
+                                          dangerouslySetInnerHTML={{
+                                            __html: profile_perusahaan.alamat,
+                                          }}
+                                        />
+                                      </strong></p></td>
                                                                     </tr>
-                                                                    <tr>
-                                                                        <td><p>Bank</p></td>
-                                                                        <td><p>: </p></td>
-                                                                        <td><p><strong>NIAGA CAB.SUDIRMAN SURABAYA, A/N.PT.VICTORY INTERNATIONAL FUTURES</strong></p></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><p>No.Rekening Terpisah</p></td>
-                                                                        <td><p>: </p></td>
-                                                                        <td><p><strong>800.03.7765.800</strong></p></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><p>Bank</p></td>
-                                                                        <td><p>: </p></td>
-                                                                        <td><p><strong>BCA CAB.VETERAN SURABAYA, A/N.PT.VICTORY INTERNATIONAL FUTURES</strong></p></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><p>No.Rekening Terpisah</p></td>
-                                                                        <td><p>: </p></td>
-                                                                        <td><p><strong>0101.61.6699 (IDR)</strong></p></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><p>No.Rekening Terpisah</p></td>
-                                                                        <td><p>: </p></td>
-                                                                        <td><p><strong>0101.61.2588 (USD)</strong></p></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><p>Bank</p></td>
-                                                                        <td><p>: </p></td>
-                                                                        <td><p><strong>MANDIRI CAB.BASUKI RAHMAT SURABAYA, A/N.PT.VICTORY INTERNATIONAL FUTURES</strong></p></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><p>No.Rekening Terpisah</p></td>
-                                                                        <td><p>: </p></td>
-                                                                        <td><p><strong>142.00.0178787.7</strong></p></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><p>Bank</p></td>
-                                                                        <td><p>: </p></td>
-                                                                        <td><p><strong>Bank Sinarmas KCP Surabaya Diponegoro, A/N.PT.Victory International Futures</strong></p></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><p>No.Rekening Terpisah</p></td>
-                                                                        <td><p>: </p></td>
-                                                                        <td><p><strong>004.756.9079</strong></p></td>
-                                                                    </tr>
+                                                                    {dataBankPerusahaan
+                                    ? dataBankPerusahaan.map(function (bp) {
+                                        return (
+                                          <Pernyataan3
+                                            namaBank={bp.nama_bank}
+                                            atasNama={bp.atas_nama}
+                                            cabang={bp.cabang}
+                                            noRek={bp.no_rek}
+                                            noRekUSD={bp.no_rek_usd}
+                                          />
+                                        );
+                                      })
+                                    : ""}
                                                                 </tbody>
                                                             </table>
                                                             <b>dan dianggap sudah diterima oleh Pialang Berjangka apabila sudah ada tanda terima bukti setor atau transfer dari pegawai Pialang Berjangka.</b><br /><br />
@@ -652,27 +642,33 @@ class Pernyataan extends Component {
                                                                     <tr>
                                                                         <td><p>Nama</p></td>
                                                                         <td><p>: </p></td>
-                                                                        <td style={{ verticalAlign: 'top' }}><strong> PT.Victory International Futures</strong></td>
+                                                                        <td style={{ verticalAlign: 'top' }}><strong>{profile_perusahaan.perusahaan}</strong></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td><p>Alamat</p></td>
                                                                         <td><p>: </p></td>
-                                                                        <td><strong>Pakuwon Center - Superblock Tunjungan City, Office Building Lt.15 Unit 5-7, Jl.Embong Malang No.1, 3, 5 Surabaya 60261</strong></td>
+                                                                        <td><strong>
+                                        <div
+                                          dangerouslySetInnerHTML={{
+                                            __html: profile_perusahaan.alamat,
+                                          }}
+                                        />
+                                      </strong></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td><p>Telepon</p></td>
                                                                         <td><p>: </p></td>
-                                                                        <td><strong>+62 31 9924 8699</strong></td>
+                                                                        <td><strong>{profile_perusahaan.telp}</strong></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td><p>Fax</p></td>
                                                                         <td><p>: </p></td>
-                                                                        <td><strong>+62 31 9925 1506</strong></td>
+                                                                        <td><strong>{profile_perusahaan.fax}</strong></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td><p>Email</p></td>
                                                                         <td><p>: </p></td>
-                                                                        <td><strong>settlement @vifx.co</strong></td>
+                                                                        <td><strong>{profile_perusahaan.email}</strong></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -753,7 +749,13 @@ class Pernyataan extends Component {
                                                             <br />
 
                                                             <p>(4) Kantor atau kantor cabang Pialang Berjangka terdekat dengan domisili Nasabah tempat penyelesaian dalam hal terjadi perselisihan.</p>
-                                                            <p>Alamat: Pakuwon Center - Superblok Tunjungan City, Office Building Lt.15 Unit 5, 6, 7, Jl.Embong Malang 1, 3, 5 Surabaya 60261</p>
+                                                             <p>
+                                Alamat: <div
+                                  dangerouslySetInnerHTML={{
+                                    __html: profile_perusahaan.alamat,
+                                  }}
+                                />
+                              </p>
                                                         </li>
                                                         <li tabIndex={1}>
                                                             <p><b>Bahasa</b></p>
@@ -1012,14 +1014,19 @@ class Pernyataan extends Component {
 }
 const mapStateToProps = (state) => ({
     dataPernyataan: state.dtPernyataan.dataPernyataan || {},
+	profile_perusahaan: state.companyProfile.profile_perusahaan || {},
+	legalitas_perusahaan: state.companyProfile.legalitas_perusahaan || {},
+	dataBankPerusahaan: state.dtPernyataan.dataBankPerusahaan || [],
     user: state.main.currentUser
 });
 const mapDispatchToPros = (dispatch) => {
     return {
         onLoad: (param) => {
-			dispatch(profileUser());			
+			dispatch(profileUser());
+			dispatch(getDataPP());			
             dispatch(getDataPernyataan(param));	
 			dispatch(getSelectAkun(param));	
+			dispatch(getBankPerusahaan());
 			dispatch(getAkunTradingDemo());			
         },
         changeProps: (param) => {

@@ -35,6 +35,9 @@ const Register = () => {
     user_id,
     isCompleteProfile,
     succesCompleteProfile,
+	emailLogin,
+	passLogin,
+	toVerify,
   } = useSelector(userSelector);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -72,12 +75,7 @@ const Register = () => {
   const [selected, setSelected] = useState(initData);
   const [errMsg, setErrMsg] = useState(errorValidate);
 
-  useEffect(() => {
-    //dispatch(getCabang());
-    return () => {
-      dispatch(clearState());
-    };
-  }, [dispatch]);
+  
 
   useEffect(() => {
     if (succesCompleteProfile) {
@@ -85,10 +83,17 @@ const Register = () => {
 		  email: selected.email,
 		  password: selected.password,
 		};
-      dispatch(clearState());
+      
       dispatch(loginUser(queryString));
     }
-  }, [succesCompleteProfile, dispatch, selected]);
+	if(toVerify){
+		setSelected({
+		  user_id:user_id,			
+		  email: emailLogin,
+		  password: passLogin,
+		});
+	}
+  }, [succesCompleteProfile, dispatch, selected, toVerify, emailLogin, passLogin]);
 
   const formik = useFormik({
     initialValues: {

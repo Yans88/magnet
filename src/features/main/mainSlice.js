@@ -51,6 +51,19 @@ export const loginUser = createAsyncThunk(
           };
           return data;
         } else {
+			if (data.error_message === 5){
+				 data = {
+					...data,
+					...param,
+					toVerify : true
+				  };
+			}else{
+				data = {
+					...data,
+					...param,
+					toVerify : true
+				  };
+			}
           return thunkAPI.rejectWithValue(data);
         }
       } else {
@@ -757,8 +770,11 @@ const initialState = {
   dataMarketing: [],
   showFormSuccess: false,
   myStatus: false,
+  toVerify: false,
   accessTokenKu: "",
   contentMsg: "",
+  emailLogin: "",
+  passLogin: "",
   tipeSWAL: "success",
 };
 
@@ -802,6 +818,7 @@ export const mainSlice = createSlice({
     [loginUser.fulfilled]: (state, { payload }) => {
       // console.log(payload);
       state.isFetching = false;
+	  state.toVerify= false;
       state.isSuccess = true;
       state.isLoggedIn = !!localStorage.getItem(tokenLogin);
       state.token = localStorage.getItem(tokenLogin);
@@ -812,6 +829,11 @@ export const mainSlice = createSlice({
     },
     [loginUser.rejected]: (state, { payload }) => {
       //console.log('payload', payload);
+      state.toVerify = payload.toVerify;
+	  state.isVerifikasi = payload.toVerify;
+	  state.emailLogin = payload.email;
+	  state.passLogin = payload.password;
+	  state.user_id = payload.user_id;
       state.isFetching = false;
       state.isError = true;
       state.errorMessage = payload.message;

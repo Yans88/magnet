@@ -192,10 +192,13 @@ export const simpanAkunBank = createAsyncThunk(
                 'Content-Type': 'application/json',
             }
         };
-        console.log('simpanAkunBank');
-        console.log(config);
+		const form = Object.keys(param).reduce((f, k) => {
+            f.append(k, param[k]);
+            return f;
+        }, new FormData());
+        
         try {
-            const response = await axios.post(API_URL + '/action-data-akun-bank', param, config);
+            const response = await axios.post(API_URL + '/action-data-akun-bank', form, config);
             let data = '';
             let _data = await response;
             if (response.status === 200) {
@@ -724,6 +727,9 @@ const initialState = {
     isSuccess: false,
     isError: false,
     showFormDelete: false,
+    showFormSuccess: false,
+    contentMsg: '',
+    tipeSWAL: '',
     errorMessage: '',
     errUplFileMsg: '',
     dataNegara: [],
@@ -774,6 +780,9 @@ export const personalSlice = createSlice({
         },
         closeForm: (state) => {
             state.showFormDelete = false;
+        },
+		closeSwal: (state) => {
+            state.showFormSuccess = false;
         },
 
     },
@@ -906,13 +915,7 @@ export const personalSlice = createSlice({
         },
         [getDocPribadi.pending]: (state) => {
             state.isFetchingUpl = true;
-        },
-        [delDocPribadi.fulfilled]: (state) => {
-            state.isLoading = false;
-            state.showFormDelete = false;
-            state.errUplFileMsg = 'File sudah dihapus!';
-            return state;
-        },
+        },        
         [uplDocPribadi.fulfilled]: (state, { payload }) => {
             state.isFetching = false;
             state.errUplFileMsg = 'File uploaded successfully!';
@@ -926,6 +929,12 @@ export const personalSlice = createSlice({
         },
         [uplDocPribadi.pending]: (state) => {
             state.isFetching = true;
+        },
+		[delDocPribadi.fulfilled]: (state) => {
+            state.isLoading = false;
+            state.showFormDelete = false;
+            state.errUplFileMsg = 'File sudah dihapus!';
+            return state;
         },
         [delDocPribadi.rejected]: (state, { payload }) => {
             //console.log('payload', payload);
@@ -1009,6 +1018,9 @@ export const personalSlice = createSlice({
         [simpanAkunBank.fulfilled]: (state, { payload }) => {
             state.isFetching = false;
             state.errorMessage = payload.message;
+			state.showFormSuccess = true;
+            state.contentMsg = "<div style='font-size:20px; text-align:center; line-height:23px;'><strong>Success</strong><br/> Data Bank telah ditambahkan</div>";
+            state.tipeSWAL = "success";
             return state;
         },
         [simpanAkunBank.rejected]: (state, { payload }) => {
@@ -1039,7 +1051,7 @@ export const personalSlice = createSlice({
 
 export const {
     chgPropsExpTrading, chgPropsKontakDarurat, chgPropsKekayaan, chgPropsPekerjaan, chgPropsAkunBank,
-    clearState, closeForm, chgPropsDPP,
+    clearState, closeForm, chgPropsDPP, closeSwal,
     confirmDel } = personalSlice.actions;
 export const userSelector = (state) => state.personal;
 //export default mainSlice.reducer;

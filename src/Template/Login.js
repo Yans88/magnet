@@ -17,15 +17,11 @@ import AppModal from "../components/modal/MyModal";
 
 const Login = () => {
   const [showModalDialog, setShowModalDialog] = useState(false);
-  const { isFetching, isSuccess, errorMessage, myStatus, accessTokenKu } =
+  const { isFetching, isSuccess, errorMessage, myStatus, accessTokenKu, toVerify } =
     useSelector(userSelector);
   const history = useHistory();
   const dispatch = useDispatch();
-  useEffect(() => {
-    return () => {
-      dispatch(clearState());
-    };
-  }, [dispatch]);
+  
 
   useEffect(() => {
     if (myStatus) {
@@ -35,7 +31,8 @@ const Login = () => {
       dispatch(clearState());
       history.push("/");
     }
-  }, [isSuccess, myStatus, dispatch, history]);
+	if(toVerify) history.push("/register");
+  }, [isSuccess, myStatus, dispatch, history, toVerify]);
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -52,12 +49,7 @@ const Login = () => {
     },
   });
 
-  const handleRedirectReject = async (event) => {
-    const tokenLogin = process.env.REACT_APP_TOKEN_LOGIN;
-    await localStorage.setItem(tokenLogin, accessTokenKu);
-    setShowModalDialog(false);
-    window.location.href = "/magnet/rej-doc";
-  };
+  
 
   const hideAlert = () => {
     dispatch(clearState());
