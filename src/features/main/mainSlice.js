@@ -61,7 +61,7 @@ export const loginUser = createAsyncThunk(
 				data = {
 					...data,
 					...param,
-					toVerify : true
+					toVerify : false
 				  };
 			}
           return thunkAPI.rejectWithValue(data);

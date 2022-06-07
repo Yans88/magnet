@@ -17,7 +17,7 @@ var valid_startDate = function (current) {
   return current.isAfter(yesterday);
 };
 
-class RejecctDocument extends Component {
+class RejectDocument extends Component {
   constructor(props) {
     super(props);
 
@@ -719,4 +719,4 @@ const mapDispatchToPros = (dispatch) => {
     },
   };
 };
-export default connect(mapStateToProps, mapDispatchToPros)(RejecctDocument);
+export default connect(mapStateToProps, mapDispatchToPros)(RejectDocument);

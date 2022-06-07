@@ -86,7 +86,7 @@ class MyHeader extends Component {
                         <span style={{color:"#2b2b2b"}}>STATUS</span>
                         <br />
                         <span style={{ color: "#dc3545" }}>
-                          {profile.status_dokumen}{" "}
+                          {profile.status_dokumen_name }{" "}
                         </span>
                         {profile.status_dokumen === "Belum Lengkap" && (
                           <a style={{ color: "#269647" }} href="personal">
