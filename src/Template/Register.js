@@ -105,18 +105,18 @@ const Register = () => {
     },
     validationSchema: Yup.object({
       nama_depan: Yup.string()
-        .required("Please enter fullname"),
+        .required("Silahkan masukkan nama lengkap"),
       phone_number: Yup.number()
-        .required("Please enter phone number"),
+        .required("Silahkan masukkan nomor telepon"),
       email: Yup.string()
-        .required("Please enter email")
+        .required("Silahkan masukkan email")
         .email("Please enter a valid email"),
       password: Yup.string()
-        .required("Please provide a password")
-        .min(8, "Minimum 8 characters"),
+        .required("Silahkan masukkan kata sandi")
+        .min(8, "Minimal 8 karakter"),
       konfirmasi_password: Yup.string()
-        .required("Required!")
-        .oneOf([Yup.ref("password")], "Password's not match"),
+        .required("Diperlukan!")
+        .oneOf([Yup.ref("password")], "Kata sandi tidak sama"),
     }),
     onSubmit: (values) => {
       setSelected({
