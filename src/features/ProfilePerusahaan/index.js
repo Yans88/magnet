@@ -232,7 +232,7 @@ class ProfilePerusahaan extends Component {
                               </div>
                               <div className="flex-grow  ...">
                                 <p className="text-base font-bold text-gray-600 text-left ...">
-                                  <a href="tel:+62212506336" title="">
+                                  <a href={"tel:"+profile_perusahaan.telp_compliance} title="">
                                     <span className="text-black">
                                       {profile_perusahaan.telp_compliance}
                                     </span>

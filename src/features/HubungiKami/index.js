@@ -129,8 +129,8 @@ class HubungiKami extends Component {
                                                                 <img src={phone_red} width="30px" />
                                                             </div>
                                                             <p className="w-11/12 text-base font-bold text-gray-600 text-left ...">
-                                                                    <a href="tel:+62212506336" title="">
-                                                                        <span className="text-white">{profile_perusahaan.telp_compliance}</span>
+                                                                    <a href={"tel:"+profile_perusahaan.telp_dealing} title="">
+                                                                        <span className="text-white">{profile_perusahaan.telp_dealing}</span>
                                                                     </a>
                                                                 </p>
 

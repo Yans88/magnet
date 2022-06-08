@@ -181,8 +181,7 @@ export const fetchUserKTP = createAsyncThunk(
             jenis_identitas: "KTP",
             data_pribadi_id: param.data_pribadi_id,
             no_identitas: myData.nik ? myData.nik : "",
-            nama_depan:
-              typeof nama[0] !== "undefined" && nama[0] ? nama[0] : myData.nama,
+            nama_depan:myData.nama,
             nama_belakang: nama_belakang && nama_belakang,
             tempat_lahir: myData.tempat_lahir && myData.tempat_lahir,
             kota_lahir: myData.tempat_lahir && myData.tempat_lahir,

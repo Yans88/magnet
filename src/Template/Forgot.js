@@ -93,7 +93,7 @@ const Forgot = () => {
                                 {
 
                                     errorMessage ? (
-                                        <div className="alert alert-danger alert-sm" >
+                                        <div className={errorMessage === "Success." ? "alert alert-success alert-sm" : "alert alert-danger alert-sm"} >
                                             <button onClick={hideAlert} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
                                             <span className="fw-semi-bold text-error-login">{errorMessage}</span>
                                         </div>
