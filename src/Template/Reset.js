@@ -97,7 +97,7 @@ const Reset = () => {
                                 {
 
                                     errorMessage ? (
-                                        <div className={errorMessage === "Password berhasil diubah" ? "alert alert-success alert-sm" : "alert alert-danger alert-sm"} >
+                                        <div className={(new RegExp("\\b"+"berhasil"+"\\b").test(errorMessage ? errorMessage.toLowerCase() : "no match")) ? "alert alert-success alert-sm" : "alert alert-danger alert-sm"} >
                                             <button onClick={hideAlert} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
                                             <span className="fw-semi-bold text-error-login">Info: {errorMessage}</span>
                                         </div>
@@ -168,7 +168,7 @@ const Reset = () => {
                                             theme=""
                                             style={{ backgroundColor:"#C1242B",color:"#fff"}}
                                         >
-                                            Masuk
+                                            Ubah
                                         </Button>
                                     </div>
                                     </div>

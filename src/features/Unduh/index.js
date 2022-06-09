@@ -39,10 +39,10 @@ class Unduh extends Component {
                         </div>
 
                         <div className="row">
-                            <div className="col-12">
+                            <div className="w-full px-3">
                                 {/* card start */}
-                                <div className="card card-success shadow-lg" style={{ "minHeight": "800px" }}>
-                                    <div className="card-body">
+                                <div className="shadow-lg px-3" style={{ "minHeight": "800px" }}>
+                                    
                                        <div className="mobile-hide">
 
                                        <div className="grid grid-cols-2 place-items-center mt-0" >
@@ -114,28 +114,22 @@ class Unduh extends Component {
                                                         <h3 style={{ color:'#2DB147',fontSize:"20px" }} className="text-lg">MT5 For Dekstop</h3>
                                                          </div>
 
-                                                        <div className="grid grid-cols-2 place-items-center mt-3 w-full" >
+                                                         <div className="grid grid-cols-2 place-items-center mt-3 w-full" >
 
-                                                            <div className="w-[60%]">
+                                  
+
+                                                            <div className="w-[100%] flex flex-col justify-center items-center col-span-12 lg:col-span-6">
                                                                 <a href="https://download.mql5.com/cdn/web/pt.victory.international/mt5/victoryinternational5setup.exe">
                                                                     <img alt="Windows" width="80px" src="https://new.vifx.co/assets/cabinet/_ui/media/windows_r.png" className="float-left" />
                                                                 </a>
-                                                                
+                                                                <h1 style={{ fontSize: 18, color:"#2E2E2F" }} className="mt-2">&nbsp;Windows</h1>  
                                                             </div>
 
-                                                            <div className="w-[60%]">
-                                                                <a href="https://www.metatrader5.com/en/terminal/help/start_advanced/install_mac" target="_new">
+                                                            <div className="w-[100%] flex flex-col justify-center items-center col-span-12 lg:col-span-6">
+                                                            <a href="https://www.metatrader5.com/en/terminal/help/start_advanced/install_mac" target="_new">
                                                                         <img alt="MAC" width="80px" src="https://new.vifx.co/assets/cabinet/_ui/media/mac_r.png" className="float-left" />
                                                                 </a>
-                                                                
-                                                            </div>
-
-                                                            <div className="w-[60%]">
-                                                                <h1 style={{ fontSize: 18, color:"#2E2E2F" }} className="mt-2">&nbsp;Windows</h1>    
-                                                            </div>
-
-                                                            <div className="w-[60%]">
-                                                                <h1 style={{ fontSize: 18, color:"#2E2E2F"}} className="mt-2">&nbsp;Mac OS</h1>    
+                                                                <h1 style={{ fontSize: 18, color:"#2E2E2F"}} className="mt-2">&nbsp;Mac OS</h1>
                                                             </div>
 
                                                         </div>
@@ -154,27 +148,21 @@ class Unduh extends Component {
 
                                                         <div className="grid grid-cols-2 place-items-center mt-3 w-full" >
 
-                                                            <div className="w-[60%]">
+                                                            <div className="flex flex-col justify-center items-center col-span-12 lg:col-span-6">
                                                                 <a href="https://download.mql5.com/cdn/mobile/mt5/android?server=VictoryInternational-DEMO,VictoryInternational-REAL&amp;utm_source=vifxpro.com&amp;utm_campaign=VIFXPRO" target="_new">
                                                                     <img alt="Android" width="80px" src="https://new.vifx.co/assets/cabinet/_ui/media/android_r.png" className="float-left" />
                                                                 </a>
-                                                                
+                                                                <h1 style={{ fontSize: 18, color:"#2E2E2F" }} className="mt-2">&nbsp;Android</h1> 
                                                             </div>
 
-                                                            <div className="w-[60%]">
+                                                            <div className="flex flex-col justify-center items-center col-span-12 lg:col-span-6">
                                                                 <a href="https://download.mql5.com/cdn/mobile/mt5/ios?server=VictoryInternational-DEMO,VictoryInternational-REAL&amp;utm_source=vifxpro.com&amp;utm_campaign=VIFXPRO" target="_new">
                                                                         <img alt="IOS" width="80x" src="https://new.vifx.co/assets/cabinet/_ui/media/mac_r.png" className="float-left" />
                                                                 </a>
-                                                                
+                                                                <h1 style={{ fontSize: 18, color:"#2E2E2F"}} className="mt-2">&nbsp;iOS</h1> 
                                                             </div>
 
-                                                            <div className="w-[60%]">
-                                                                <h1 style={{ fontSize: 18, color:"#2E2E2F" }} className="mt-2">&nbsp;Android</h1>    
-                                                            </div>
-
-                                                            <div className="w-[30%]">
-                                                                <h1 style={{ fontSize: 18, color:"#2E2E2F"}} className="mt-2">&nbsp;iOS</h1>    
-                                                            </div>
+                                  
 
                                                         </div>
                                                     </div>
@@ -224,7 +212,7 @@ class Unduh extends Component {
 
                                         </div>
 
-                                    </div>
+                                
 
                                 </div>
 
