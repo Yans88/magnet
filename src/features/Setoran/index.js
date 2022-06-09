@@ -547,8 +547,10 @@ class Setoran extends Component {
                       </span>
                     ) : null}
 
-                    <div>
+                      <div className="flex flex-row">
+                        <div className="flex justify-center items-center" style={{width:'35px',height:'33.5px',border: "1px solid #ced4da",background:"#e9ecef",borderRight:0}}>&#36;</div>
                       <input
+                        style={{borderRadius:0}}
                         name="setor"
                         value={selected.setor}
                         onChange={this.handleChange.bind(this)}
@@ -567,8 +569,10 @@ class Setoran extends Component {
                   <div className="form-group">
                     <div className="form-group">
                       <label className="frm_lbl">Jumlah Setor (IDR)</label>
-                      <div>
+                      <div className="flex flex-row">
+                        <div className="flex justify-center items-center" style={{width:'35px',height:'29.5px',border: "1px solid #ced4da",background:"#e9ecef",borderRight:0}}>Rp</div>
                         <NumberFormat
+                          style={{borderRadius:0}}
                           disabled={true}
                           name="jml_setor"
                           className="form-control form-control-sm"

@@ -100,7 +100,7 @@ class Personal extends Component {
       errMsg5: this.initPekerjaan,
       errMsg6: this.initAkunBank,
       errMsg7: this.initDPP,
-	  ktpTemp:''
+      ktpTemp: ''
     };
     this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -131,13 +131,13 @@ class Personal extends Component {
       dt["value"] = "";
     }
     this.props.changeProps(dt);
-	this.setState({
-            ...this.state,            
-            errMsg1: {
-                ...this.state.errMsg1,
-                tanggal_lahir: ''
-            }
-        })
+    this.setState({
+      ...this.state,
+      errMsg1: {
+        ...this.state.errMsg1,
+        tanggal_lahir: ''
+      }
+    })
   }
 
   renderView(mode, renderDefault, name) {
@@ -181,13 +181,13 @@ class Personal extends Component {
     dt["key"] = name;
     dt["value"] = value;
     this.props.changeProps(dt);
-	this.setState({
-            ...this.state,            
-            errMsg1: {
-                ...this.state.errMsg1,
-                [name]: ''
-            }
-        })
+    this.setState({
+      ...this.state,
+      errMsg1: {
+        ...this.state.errMsg1,
+        [name]: ''
+      }
+    })
   }
 
   handleChangeTrading(evt) {
@@ -213,13 +213,13 @@ class Personal extends Component {
     dt["key"] = name;
     dt["value"] = value;
     this.props.changePropsTrading(dt);
-	this.setState({
-            ...this.state,            
-            errMsg2: {
-                ...this.state.errMsg2,
-                [name]: ''
-            }
-        })
+    this.setState({
+      ...this.state,
+      errMsg2: {
+        ...this.state.errMsg2,
+        [name]: ''
+      }
+    })
   }
 
   handleChangeKekayaan(evt) {
@@ -232,13 +232,13 @@ class Personal extends Component {
     dt["key"] = name;
     dt["value"] = value;
     this.props.changePropsKekayaan(dt);
-	this.setState({
-            ...this.state,            
-            errMsg3: {
-                ...this.state.errMsg3,
-                [name]: ''
-            }
-        })
+    this.setState({
+      ...this.state,
+      errMsg3: {
+        ...this.state.errMsg3,
+        [name]: ''
+      }
+    })
   }
 
   handleChangeKontakDarurat(evt) {
@@ -253,13 +253,13 @@ class Personal extends Component {
     dt["key"] = name;
     dt["value"] = value;
     this.props.changePropsKontak(dt);
-	this.setState({
-            ...this.state,            
-            errMsg4: {
-                ...this.state.errMsg4,
-                [name]: ''
-            }
-        })
+    this.setState({
+      ...this.state,
+      errMsg4: {
+        ...this.state.errMsg4,
+        [name]: ''
+      }
+    })
   }
 
   handleChangePekerjaan(evt) {
@@ -272,13 +272,13 @@ class Personal extends Component {
     dt["key"] = name;
     dt["value"] = value;
     this.props.changePropsPekerjaan(dt);
-	this.setState({
-            ...this.state,            
-            errMsg5: {
-                ...this.state.errMsg5,
-                [name]: ''
-            }
-        })
+    this.setState({
+      ...this.state,
+      errMsg5: {
+        ...this.state.errMsg5,
+        [name]: ''
+      }
+    })
   }
 
   handleChangeAkunBank(evt) {
@@ -291,13 +291,13 @@ class Personal extends Component {
     dt["key"] = name;
     dt["value"] = value;
     this.props.changePropsAkunBank(dt);
-	this.setState({
-            ...this.state,            
-            errMsg6: {
-                ...this.state.errMsg6,
-                [name]: ''
-            }
-        })
+    this.setState({
+      ...this.state,
+      errMsg6: {
+        ...this.state.errMsg6,
+        [name]: ''
+      }
+    })
   }
 
   handleChangeDPP(evt) {
@@ -320,11 +320,11 @@ class Personal extends Component {
     if (name === "KTP") {
       // const compress = new Compress();
       // const resizedImage = await compress.compress([value], {
-        // size: 0.5, // the max size in MB, defaults to 2MB
-        // quality: 1, // the quality of the image, max is 1,
-        // maxWidth: 400, // the max width of the output image, defaults to 1920px
-        // maxHeight: 300, // the max height of the output image, defaults to 1920px
-        // resize: true, // defaults to true, set false if you do not want to resize the image width and height
+      // size: 0.5, // the max size in MB, defaults to 2MB
+      // quality: 1, // the quality of the image, max is 1,
+      // maxWidth: 400, // the max width of the output image, defaults to 1920px
+      // maxHeight: 300, // the max height of the output image, defaults to 1920px
+      // resize: true, // defaults to true, set false if you do not want to resize the image width and height
       // });
       // const img = resizedImage[0];
       // const base64str = img.data;
@@ -335,7 +335,7 @@ class Personal extends Component {
         data_pribadi_id: this.props.user.data_pribadi_id,
       };
       this.props.onUploadKTP(dtKTP);
-	  let reader = new FileReader();
+      let reader = new FileReader();
       reader.readAsDataURL(value);
       reader.onloadend = () => {
         this.setState({ ...this.state, ktpTemp: reader.result });
@@ -345,7 +345,7 @@ class Personal extends Component {
       errors.nama_depan = !this.props.user.nama_depan
         ? "Kolom ini harus diisi"
         : "";
-      
+
       errors.kota_lahir = !this.props.user.kota_lahir
         ? "Kolom ini harus diisi"
         : "";
@@ -367,7 +367,7 @@ class Personal extends Component {
         : "";
       errors.nama_pasangan =
         !this.props.user.nama_pasangan &&
-        this.props.user.status_pernikahan === "Kawin"
+          this.props.user.status_pernikahan === "Kawin"
           ? "Kolom ini harus diisi"
           : "";
       errors.nama_ibu_kandung = !this.props.user.nama_ibu_kandung
@@ -389,7 +389,7 @@ class Personal extends Component {
       errors.status_kepemilikan = !this.props.user.status_kepemilikan
         ? "Kolom ini harus diisi"
         : "";
-		
+
       this.setState({ errors });
     }
 
@@ -421,7 +421,7 @@ class Personal extends Component {
   deleteKtp() {
     this.setState({
       ktpTemp: '',
-    });    
+    });
   }
   handleDelete = async () => {
     this.props.onDelete(this.state.dokumen_id);
@@ -447,7 +447,7 @@ class Personal extends Component {
     errors.nama_depan = !this.props.user.nama_depan
       ? "Kolom ini harus diisi"
       : "";
-   
+
     errors.kota_lahir = !this.props.user.kota_lahir
       ? "Kolom ini harus diisi"
       : "";
@@ -469,7 +469,7 @@ class Personal extends Component {
       : "";
     errors.nama_pasangan =
       !this.props.user.nama_pasangan &&
-      this.props.user.status_pernikahan === "Kawin"
+        this.props.user.status_pernikahan === "Kawin"
         ? "Kolom ini harus diisi"
         : "";
     errors.nama_ibu_kandung = !this.props.user.nama_ibu_kandung
@@ -493,8 +493,8 @@ class Personal extends Component {
       !this.props.user.agreement1 || !this.props.user.no_identitas
         ? "Kolom ini harus diisi"
         : "";
-	
-		errors.npwp = this.props.user.npwp && this.props.user.npwp.length < 15 ? "NPWP harus 15 digit" : errors.npwp;
+
+    errors.npwp = this.props.user.npwp && this.props.user.npwp.length < 15 ? "NPWP harus 15 digit" : errors.npwp;
     this.setState({ errors });
     if (this.validateForm(this.state.errMsg1)) {
       const saveData = {
@@ -518,7 +518,7 @@ class Personal extends Component {
     errors.agreement2 = !this.props.dataExpTrading.agreement2
       ? "Kolom ini harus diisi"
       : "";
-	errors.pertanyaan2 =
+    errors.pertanyaan2 =
       this.props.dataExpTrading.pertanyaan1 === "Y" && this.props.dataExpTrading.pertanyaan2 === "" ? "Kolom ini harus diisi" : "";
     errors.pertanyaan4 =
       this.props.dataExpTrading.pertanyaan4 === "Y" ? "maaf" : "";
@@ -529,7 +529,7 @@ class Personal extends Component {
         "Maaf, berdasarkan peraturan anda tidak diperbolehkan membuka rekening pada perusahaan pialang berjangka"
       );
     }
-	errors.pertanyaan6 =
+    errors.pertanyaan6 =
       this.props.dataExpTrading.pertanyaan5 === "Y" && this.props.dataExpTrading.pertanyaan6 === "" ? "Kolom ini harus diisi" : "";
     this.setState({ errors });
     if (this.validateForm(this.state.errMsg2)) {
@@ -731,7 +731,7 @@ class Personal extends Component {
       : "";
     errors.agreement6 =
       !this.props.dataAkunBank.agreement6 ||
-      this.props.dataAkunBank.agreement6 !== "Y"
+        this.props.dataAkunBank.agreement6 !== "Y"
         ? "Kolom ini harus diisi"
         : "";
     this.setState({ errors });
@@ -798,7 +798,7 @@ class Personal extends Component {
       errMsg5,
       errMsg6,
       errMsg7,
-	  ktpTemp,
+      ktpTemp,
     } = this.state;
     const {
       dataNegara,
@@ -816,7 +816,7 @@ class Personal extends Component {
       isFetchingUpl,
       errFetchUserByToken,
       dokumenPribadiPernyataan,
-	  isUploadingKTP,
+      isUploadingKTP,
       unggahFileName,
     } = this.props;
     const nilai_njop = dataKekayaan.njop
@@ -1024,95 +1024,101 @@ class Personal extends Component {
                           style={{ border: "2px solid #ddd" }}
                         >
                           <div className="w-full p-4 h-32 text-center justify-center font-bold text-lg text-black">
-                            
+
                             <div className="grid grid-cols-1 justify-items-center">
                               <div className="col-span-2">
-                                  Unggah KTP/KITAS
+                                Unggah KTP/KITAS
                               </div>
                               <div className="text-center mt-3 ">
                                 <Form>
-                                    <Form.Group controlId="KTP">
-                                      <Form.File
-                                        style={{width:118}}
-                                        className="custom-file-input3"
-                                        size="lg"
-                                        name="KTP"
-                                        setfieldvalue=""
-                                        onChange={this.handleChangePhoto.bind(this)}
-                                      ></Form.File>
-                                    </Form.Group>
+                                  <Form.Group controlId="KTP">
+                                    <Form.File
+                                      style={{ width: 118 }}
+                                      className="custom-file-input3"
+                                      size="lg"
+                                      name="KTP"
+                                      setfieldvalue=""
+                                      onChange={this.handleChangePhoto.bind(this)}
+                                    ></Form.File>
+                                  </Form.Group>
                                 </Form>
 
                               </div>
                             </div>
                           </div>
-						  
-						  
+
+
 
                           <div className="grid grid-cols-1 bg-zinc-100 p-4 rounded-2xl w-full h-auto justify-items-center">
                             <div className="w-[100%]">
                               <div className="grid lg:grid-cols-3 gap-3 lg:gap-10 ">
-                                  <div>
-                                    <div className="grid grid-cols-1">
-                                      <div className="font-bold text-black">FILE</div>
-                                      <div className="pt-2"><img src={ktpTemp ? ktpTemp : photo_ktp} /></div>  
-                                    </div>
+                                <div>
+                                  <div className="grid grid-cols-1">
+                                    <div className="font-bold text-black">FILE</div>
+                                    <div className="pt-2"><img src={ktpTemp ? ktpTemp : photo_ktp} /></div>
                                   </div>
+                                </div>
 
-                                  <div>
-                                    <div className="grid grid-cols-1 lg:justify-items-center">
-                                      <div className="font-bold text-black">TIPE</div>
-                                      <div className="text-bold pt-2">KTP</div>  
-                                    </div>
+                                <div>
+                                  <div className="grid grid-cols-1 lg:justify-items-center">
+                                    <div className="font-bold text-black">TIPE</div>
+                                    <div className="text-bold pt-2">KTP</div>
                                   </div>
-								  
-								  
+                                </div>
 
-                                  <div>
-                                    <div className="grid grid-cols-1 ">
-                                      <div className="font-bold text-black text-left">TINDAKAN</div>
-                                      <div className="pt-2">
-                                        
-                                        <div className="mobile-hide">
-                                          <div className="grid lg:w-4/5 2xl:w-1/2 grid-cols-3">
-                                            <div className="w-7">                           
-                                               <a href="#">       
+
+
+                                <div>
+                                  <div className="grid grid-cols-1 ">
+                                    <div className="font-bold text-black text-left">TINDAKAN</div>
+                                    <div className="pt-2">
+
+                                      <div className="mobile-hide">
+                                        <div className="flex justify-start">
+                                          <div className="mr-3">
+                                            <a href="#">
                                               <img src={close1} onClick={this.deleteKtp.bind(this)} width="25px" />
-											  </a>
-                                            </div>
-                                            <div className="w-7">
-											<a href={user.photo_ktp_download ? user.photo_ktp_download : "#"}> 
+                                            </a>
+                                          </div>
+                                          <div className="mr-3">
+                                            <a href={ktpTemp ? ktpTemp : photo_ktp}>
                                               <img src={unduh_ijo} width="25px" />
-											</a>
-                                            </div>
-                                            <div className="  w-7">
+                                            </a>
+                                          </div>
+                                          <div className="mr-3">
+                                            <a href={ktpTemp ? ktpTemp : photo_ktp}>
                                               <img src={see_icon} width="25px" />
-                                            </div>
+                                            </a>
                                           </div>
                                         </div>
+                                      </div>
 
-                                        <div className="mobile-view">
-                                          <div className="grid w-1/2 grid-cols-3">
-                                            <div className="w-10">
-                                              <img src={close1} width="25px" />
-                                            </div>
-                                            <div className="w-10">
+                                      <div className="mobile-view">
+                                        <div className="flex justify-start">
+                                          <div className="mr-3">
+                                            <img src={close1} width="25px" onClick={this.deleteKtp.bind(this)} />
+                                          </div>
+                                          <div className="mr-3">
+                                            <a href={ktpTemp ? ktpTemp : photo_ktp}>
                                               <img src={unduh_ijo} width="25px" />
-                                            </div>
-                                            <div className="w-10">
+                                            </a>
+                                          </div>
+                                          <div className="mr-3">
+                                            <a href={ktpTemp ? ktpTemp : photo_ktp}>
                                               <img src={see_icon} width="25px" />
-                                            </div>
+                                            </a>
                                           </div>
                                         </div>
-
                                       </div>
 
                                     </div>
+
                                   </div>
-                                  
+                                </div>
+
                               </div>
                             </div>
-                             
+
 
 
                           </div>
@@ -1121,16 +1127,16 @@ class Personal extends Component {
 
                         <Form>
                           <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                          
+
                             <div className="mobile-hide ">
                               <div className="grid grid-cols-1 py-4">
                                 <div>
-                                <span
-                                  className="text-2xl label_ijo"
-                                  style={{ fontSize: "28px", fontWeight: "bold" }}
-                                >
-                                  Detil Pribadi
-                                </span>
+                                  <span
+                                    className="text-2xl label_ijo"
+                                    style={{ fontSize: "28px", fontWeight: "bold" }}
+                                  >
+                                    Detil Pribadi
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -1139,16 +1145,16 @@ class Personal extends Component {
                             <div className="mobile-view ">
                               <div className="grid grid-cols-1 py-4">
                                 <div>
-                                <span
-                                  className="text-2xl label_ijo"
-                                  style={{ fontSize: "20px", fontWeight: "bold" }}
-                                >
-                                  Detil Pribadi
-                                </span>
+                                  <span
+                                    className="text-2xl label_ijo"
+                                    style={{ fontSize: "20px", fontWeight: "bold" }}
+                                  >
+                                    Detil Pribadi
+                                  </span>
                                 </div>
                               </div>
                             </div>
-                            
+
                             <Form.Row>
                               <Form.Group
                                 as={Col}
@@ -1157,7 +1163,7 @@ class Personal extends Component {
                                 controlId="nama_depan"
                               >
                                 <Form.Control
-                                  value={user.nama_depan ? user.nama_depan: ""}
+                                  value={user.nama_depan ? user.nama_depan : ""}
                                   autoComplete="off"
                                   onChange={this.handleChange}
                                   size="lg"
@@ -1174,10 +1180,10 @@ class Personal extends Component {
                                   ""
                                 )}
                               </Form.Group>
-                  
+
                             </Form.Row>
                             <Form.Row>
-                              
+
                               <Form.Group
                                 as={Col}
                                 xs={12}
@@ -1294,10 +1300,10 @@ class Personal extends Component {
                                     user.jenis_identitas === "KTP"
                                       ? "16"
                                       : user.jenis_identitas === "SIM"
-                                      ? "15"
-                                      : user.jenis_identitas === "Passpor"
-                                      ? "20"
-                                      : ""
+                                        ? "15"
+                                        : user.jenis_identitas === "Passpor"
+                                          ? "20"
+                                          : ""
                                   }
                                   value={
                                     user.no_identitas ? user.no_identitas : ""
@@ -1388,7 +1394,7 @@ class Personal extends Component {
                                 )}
                               </Form.Group>
 
-                              
+
                             </Form.Row>
 
                             <Form.Row>
@@ -1550,15 +1556,15 @@ class Personal extends Component {
                                   <option value="">Kewarganegaraan</option>
                                   {dataNegara
                                     ? dataNegara.map(function (neg) {
-                                        return (
-                                          <option
-                                            value={neg.nama_negara}
-                                            key={neg.nama_negara}
-                                          >
-                                            {neg.nama_negara}
-                                          </option>
-                                        );
-                                      })
+                                      return (
+                                        <option
+                                          value={neg.nama_negara}
+                                          key={neg.nama_negara}
+                                        >
+                                          {neg.nama_negara}
+                                        </option>
+                                      );
+                                    })
                                     : ""}
                                   <option value="Lainnya(Others)">
                                     Lainnya(Others)
@@ -1736,7 +1742,7 @@ class Personal extends Component {
                                   thousandSeparator={false}
                                   decimalScale={0}
                                   inputMode="numeric"
-								  maxLength={15}
+                                  maxLength={15}
                                   required
                                   placeholder="NPWP"
                                 />
@@ -1760,7 +1766,7 @@ class Personal extends Component {
                             <div className="grid grid-cols-1 place-items-center">
                               <div className="form-group lg:w-2/3">
                                 <div className="form-check">
-                                 
+
                                   <label>
                                     <input
                                       checked={user.agreement1 ? true : false}
@@ -1831,7 +1837,7 @@ class Personal extends Component {
                                 </div>
                               </div>
                             </div>
-                            
+
                           </div>
                         </Form>
                       </Fragment>
@@ -1840,17 +1846,17 @@ class Personal extends Component {
                       <Fragment>
                         <Form>
                           <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                            
+
 
                             <div className="mobile-hide ">
                               <div className="grid grid-cols-1 py-4">
                                 <div>
-                                <span
-                                  className="text-2xl label_ijo"
-                                  style={{ fontSize: "28px", fontWeight: "bold" }}
-                                >
-                                  Pengalaman Trading
-                                </span>
+                                  <span
+                                    className="text-2xl label_ijo"
+                                    style={{ fontSize: "28px", fontWeight: "bold" }}
+                                  >
+                                    Pengalaman Trading
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -1859,12 +1865,12 @@ class Personal extends Component {
                             <div className="mobile-view ">
                               <div className="grid grid-cols-1 py-4">
                                 <div>
-                                <span
-                                  className="text-2xl label_ijo"
-                                  style={{ fontSize: "20px", fontWeight: "bold" }}
-                                >
-                                  Pengalaman Trading
-                                </span>
+                                  <span
+                                    className="text-2xl label_ijo"
+                                    style={{ fontSize: "20px", fontWeight: "bold" }}
+                                  >
+                                    Pengalaman Trading
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -1933,17 +1939,17 @@ class Personal extends Component {
                                   lg={6}
                                   controlId="pertanyaan2"
                                 >
-								
+
                                   <Form.Label>
                                     Pengalaman Trading anda Sebelumnya di
                                   </Form.Label>
-								  {errMsg2.pertanyaan2 ? (
-                                  <span className="text-error badge badge-danger">
-                                    {errMsg2.pertanyaan2}
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
+                                  {errMsg2.pertanyaan2 ? (
+                                    <span className="text-error badge badge-danger">
+                                      {errMsg2.pertanyaan2}
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
                                   <Form.Control
                                     value={
                                       dataExpTrading.pertanyaan2
@@ -2064,7 +2070,7 @@ class Personal extends Component {
                                     Pengalaman Trading Berjangka anda Sebelumnya
                                     di
                                   </Form.Label>
-								  
+
                                   <Form.Control
                                     value={
                                       dataExpTrading.pertanyaan6
@@ -2082,12 +2088,12 @@ class Personal extends Component {
                                     placeholder="Nama Perusahaan/Brand"
                                   />
                                   {errMsg2.pertanyaan6 ? (
-                                  <span className="text-error badge badge-danger" >
-                                    {errMsg2.pertanyaan6}
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
+                                    <span className="text-error badge badge-danger" >
+                                      {errMsg2.pertanyaan6}
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
                                 </Form.Group>
                               ) : (
                                 ""
@@ -2105,7 +2111,7 @@ class Personal extends Component {
                               <div className="grid grid-cols-1 place-items-center">
                                 <div className="form-group lg:w-2/3">
                                   <div className="form-check">
-                                    
+
                                     <label>
                                       <input
                                         checked={
@@ -2162,7 +2168,7 @@ class Personal extends Component {
                                     </div>
 
                                     <div className="form-group w-[100%] lg:w-[40%] text-center">
-                                      
+
 
                                       <AppButton
                                         onClick={this.handleSubmit2.bind(
@@ -2194,17 +2200,17 @@ class Personal extends Component {
                       <Fragment>
                         <Form>
                           <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                            
+
 
                             <div className="mobile-hide ">
                               <div className="grid grid-cols-1 py-4">
                                 <div>
-                                <span
-                                  className="text-2xl label_ijo"
-                                  style={{ fontSize: "28px", fontWeight: "bold" }}
-                                >
-                                  Kekayaan Pribadi
-                                </span>
+                                  <span
+                                    className="text-2xl label_ijo"
+                                    style={{ fontSize: "28px", fontWeight: "bold" }}
+                                  >
+                                    Kekayaan Pribadi
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -2213,12 +2219,12 @@ class Personal extends Component {
                             <div className="mobile-view ">
                               <div className="grid grid-cols-1 py-4">
                                 <div>
-                                <span
-                                  className="text-2xl label_ijo"
-                                  style={{ fontSize: "20px", fontWeight: "bold" }}
-                                >
-                                  Kekayaan Pribadi
-                                </span>
+                                  <span
+                                    className="text-2xl label_ijo"
+                                    style={{ fontSize: "20px", fontWeight: "bold" }}
+                                  >
+                                    Kekayaan Pribadi
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -2296,7 +2302,7 @@ class Personal extends Component {
                             </Form.Row>
 
                             <Form.Row>
-                              <Form.Group 
+                              <Form.Group
                                 as={Col}
                                 xs={12}
                                 lg={6} controlId="njop">
@@ -2325,10 +2331,10 @@ class Personal extends Component {
                                 )}
                               </Form.Group>
 
-                              <Form.Group 
+                              <Form.Group
                                 as={Col}
                                 xs={12}
-                                lg={6} 
+                                lg={6}
                                 controlId="deposit_bank">
                                 <NumberFormat
                                   value={
@@ -2417,7 +2423,7 @@ class Personal extends Component {
                               <div className="grid grid-cols-1 place-items-center">
                                 <div className="form-group lg:w-2/3">
                                   <div className="form-check">
-                                   
+
                                     <label>
                                       <input
                                         checked={
@@ -2472,7 +2478,7 @@ class Personal extends Component {
                                     </div>
 
                                     <div className="form-group w-[100%] lg:w-[40%] text-center">
-                                      
+
 
                                       <AppButton
                                         onClick={this.handleSubmit3.bind(
@@ -2504,16 +2510,16 @@ class Personal extends Component {
                       <Fragment>
                         <Form>
                           <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                           
+
                             <div className="mobile-hide ">
                               <div className="grid grid-cols-1 py-4">
                                 <div>
-                                <span
-                                  className="text-2xl label_ijo"
-                                  style={{ fontSize: "28px", fontWeight: "bold" }}
-                                >
-                                  Kontak Darurat
-                                </span>
+                                  <span
+                                    className="text-2xl label_ijo"
+                                    style={{ fontSize: "28px", fontWeight: "bold" }}
+                                  >
+                                    Kontak Darurat
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -2522,12 +2528,12 @@ class Personal extends Component {
                             <div className="mobile-view ">
                               <div className="grid grid-cols-1 py-4">
                                 <div>
-                                <span
-                                  className="text-2xl label_ijo"
-                                  style={{ fontSize: "20px", fontWeight: "bold" }}
-                                >
-                                  Kontak Darurat
-                                </span>
+                                  <span
+                                    className="text-2xl label_ijo"
+                                    style={{ fontSize: "20px", fontWeight: "bold" }}
+                                  >
+                                    Kontak Darurat
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -2540,7 +2546,7 @@ class Personal extends Component {
                                 lg={6}
                                 controlId="nama"
                               >
-                                
+
                                 <Form.Control
                                   value={
                                     dataKontakDarurat.nama
@@ -2605,7 +2611,7 @@ class Personal extends Component {
                                 lg={6}
                                 controlId="kode_pos"
                               >
-								              <NumberFormat
+                                <NumberFormat
                                   value={
                                     dataKontakDarurat.kode_pos
                                       ? dataKontakDarurat.kode_pos
@@ -2631,7 +2637,7 @@ class Personal extends Component {
                                 ) : (
                                   ""
                                 )}
-                               
+
                               </Form.Group>
 
                               <Form.Group
@@ -2640,7 +2646,7 @@ class Personal extends Component {
                                 lg={6}
                                 controlId="telpp"
                               >
-								              <NumberFormat
+                                <NumberFormat
                                   value={
                                     dataKontakDarurat.telp
                                       ? dataKontakDarurat.telp
@@ -2667,8 +2673,8 @@ class Personal extends Component {
                                 ) : (
                                   ""
                                 )}
-								
-                               
+
+
                               </Form.Group>
                             </Form.Row>
 
@@ -2679,7 +2685,7 @@ class Personal extends Component {
                                 lg={6}
                                 controlId="handphone"
                               >
-								              <NumberFormat
+                                <NumberFormat
                                   value={
                                     dataKontakDarurat.handphone
                                       ? dataKontakDarurat.handphone
@@ -2697,15 +2703,15 @@ class Personal extends Component {
                                   inputMode="numeric"
                                   required
                                   placeholder="No. Handphone"
-                                />		
+                                />
                                 {errMsg4.handphone ? (
                                   <span className="text-error badge badge-danger">
                                     {errMsg4.handphone}
                                   </span>
                                 ) : (
                                   ""
-                                )}					
-                                
+                                )}
+
                               </Form.Group>
 
                               <Form.Group
@@ -2752,7 +2758,7 @@ class Personal extends Component {
                               <div className="grid grid-cols-1 place-items-center">
                                 <div className="form-group lg:w-2/3">
                                   <div className="form-check">
-                                  
+
                                     <label>
                                       <input
                                         checked={
@@ -2809,7 +2815,7 @@ class Personal extends Component {
                                     </div>
 
                                     <div className="form-group w-[100%] lg:w-[40%] text-center">
-                                     
+
                                       <AppButton
                                         onClick={this.handleSubmit4.bind(
                                           this,
@@ -2840,16 +2846,16 @@ class Personal extends Component {
                       <Fragment>
                         <Form>
                           <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                            
+
                             <div className="mobile-hide ">
                               <div className="grid grid-cols-1 py-4">
                                 <div>
-                                <span
-                                  className="text-2xl label_ijo"
-                                  style={{ fontSize: "28px", fontWeight: "bold" }}
-                                >
-                                  Pekerjaan
-                                </span>
+                                  <span
+                                    className="text-2xl label_ijo"
+                                    style={{ fontSize: "28px", fontWeight: "bold" }}
+                                  >
+                                    Pekerjaan
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -2858,22 +2864,22 @@ class Personal extends Component {
                             <div className="mobile-view ">
                               <div className="grid grid-cols-1 py-4">
                                 <div>
-                                <span
-                                  className="text-2xl label_ijo"
-                                  style={{ fontSize: "20px", fontWeight: "bold" }}
-                                >
-                                  Pekerjaan
-                                </span>
+                                  <span
+                                    className="text-2xl label_ijo"
+                                    style={{ fontSize: "20px", fontWeight: "bold" }}
+                                  >
+                                    Pekerjaan
+                                  </span>
                                 </div>
                               </div>
                             </div>
 
 
                             <Form.Row>
-                              <Form.Group 
+                              <Form.Group
                                 as={Col}
                                 xs={12}
-                                lg={6} 
+                                lg={6}
                                 controlId="status_pekerjaan">
                                 {errMsg5.status_pekerjaan ? (
                                   <span
@@ -2911,12 +2917,12 @@ class Personal extends Component {
                                 </Form.Control>
                               </Form.Group>
 
-                              <Form.Group 
+                              <Form.Group
                                 as={Col}
                                 xs={12}
-                                lg={6} 
+                                lg={6}
                                 controlId="nama_perusahaan">
-                                
+
                                 <Form.Control
                                   value={
                                     dataPekerjaan.nama_perusahaan
@@ -2946,12 +2952,12 @@ class Personal extends Component {
                             </Form.Row>
 
                             <Form.Row>
-                              <Form.Group 
+                              <Form.Group
                                 as={Col}
                                 xs={12}
-                                lg={6} 
+                                lg={6}
                                 controlId="jenis_bisnis">
-                                
+
                                 <Form.Control
                                   value={
                                     dataPekerjaan.jenis_bisnis
@@ -2979,12 +2985,12 @@ class Personal extends Component {
                                 )}
                               </Form.Group>
 
-                              <Form.Group 
+                              <Form.Group
                                 as={Col}
                                 xs={12}
-                                lg={6} 
+                                lg={6}
                                 controlId="jabatan">
-                                
+
                                 <Form.Control
                                   value={
                                     dataPekerjaan.jabatan
@@ -3020,7 +3026,7 @@ class Personal extends Component {
                                 lg={6}
                                 controlId="lama_bekerja"
                               >
-                                
+
                                 <Form.Control
                                   name="lama_bekerja"
                                   size="lg"
@@ -3096,7 +3102,7 @@ class Personal extends Component {
                                 lg={12}
                                 controlId="alamat_kantor"
                               >
-                                
+
                                 <Form.Control
                                   value={
                                     dataPekerjaan.alamat_kantor
@@ -3132,8 +3138,8 @@ class Personal extends Component {
                                 lg={12}
                                 controlId="telp_kantor"
                               >
-                                
-								              <NumberFormat
+
+                                <NumberFormat
                                   value={
                                     dataPekerjaan.telp_kantor
                                       ? dataPekerjaan.telp_kantor
@@ -3151,7 +3157,7 @@ class Personal extends Component {
                                   inputMode="numeric"
                                   required
                                   placeholder="Nomor Telepon Kantor"
-                                />					
+                                />
                                 {errMsg5.telp_kantor ? (
                                   <span
                                     className="text-error badge badge-danger"
@@ -3161,7 +3167,7 @@ class Personal extends Component {
                                 ) : (
                                   ""
                                 )}
-                               
+
                               </Form.Group>
 
                               <Form.Group
@@ -3170,8 +3176,8 @@ class Personal extends Component {
                                 lg={12}
                                 controlId="fax_kantor"
                               >
-							  
-							                <NumberFormat
+
+                                <NumberFormat
                                   value={
                                     dataPekerjaan.fax_kantor
                                       ? dataPekerjaan.fax_kantor
@@ -3189,9 +3195,9 @@ class Personal extends Component {
                                   inputMode="numeric"
                                   required
                                   placeholder="Nomor Fax Kantor"
-                                />		
-							  
-                               
+                                />
+
+
                               </Form.Group>
                             </Form.Row>
                           </div>
@@ -3206,7 +3212,7 @@ class Personal extends Component {
                               <div className="grid grid-cols-1 place-items-center">
                                 <div className="form-group lg:w-2/3">
                                   <div className="form-check">
-                                    
+
                                     <label>
                                       <input
                                         checked={
@@ -3263,7 +3269,7 @@ class Personal extends Component {
                                     </div>
 
                                     <div className="form-group w-[100%] lg:w-[40%] text-center">
-                                     
+
                                       <AppButton
                                         onClick={this.handleSubmit5.bind(
                                           this,
@@ -3294,16 +3300,16 @@ class Personal extends Component {
                       <Fragment>
                         <Form>
                           <div style={{ paddingLeft: 20, paddingRight: 20 }}>
-                            
+
                             <div className="mobile-hide ">
                               <div className="grid grid-cols-1 py-4">
                                 <div>
-                                <span
-                                  className="text-2xl label_ijo"
-                                  style={{ fontSize: "28px", fontWeight: "bold" }}
-                                >
-                                  Detil Bank
-                                </span>
+                                  <span
+                                    className="text-2xl label_ijo"
+                                    style={{ fontSize: "28px", fontWeight: "bold" }}
+                                  >
+                                    Detil Bank
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -3312,12 +3318,12 @@ class Personal extends Component {
                             <div className="mobile-view ">
                               <div className="grid grid-cols-1 py-4">
                                 <div>
-                                <span
-                                  className="text-2xl label_ijo"
-                                  style={{ fontSize: "20px", fontWeight: "bold" }}
-                                >
-                                  Detil Bank
-                                </span>
+                                  <span
+                                    className="text-2xl label_ijo"
+                                    style={{ fontSize: "20px", fontWeight: "bold" }}
+                                  >
+                                    Detil Bank
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -3334,8 +3340,8 @@ class Personal extends Component {
                                   value={
                                     user.nama_depan
                                       ? user.nama_depan +
-                                        " " +
-                                        user.nama_belakang
+                                      " " +
+                                      user.nama_belakang
                                       : ""
                                   }
                                   autoComplete="off"
@@ -3379,15 +3385,15 @@ class Personal extends Component {
                                   <option value="">Nama Bank</option>
                                   {dataBank
                                     ? dataBank.map(function (bnk) {
-                                        return (
-                                          <option
-                                            value={bnk.bank_id}
-                                            key={bnk.bank_id}
-                                          >
-                                            {bnk.nama_bank}
-                                          </option>
-                                        );
-                                      })
+                                      return (
+                                        <option
+                                          value={bnk.bank_id}
+                                          key={bnk.bank_id}
+                                        >
+                                          {bnk.nama_bank}
+                                        </option>
+                                      );
+                                    })
                                     : ""}
                                 </Form.Control>
                                 {errMsg6.bank ? (
@@ -3509,7 +3515,7 @@ class Personal extends Component {
                                   type="radio"
                                   checked={
                                     dataAkunBank.jenis_akun_bank ===
-                                    "Rekening tabungan"
+                                      "Rekening tabungan"
                                       ? "checked"
                                       : ""
                                   }
@@ -3552,7 +3558,7 @@ class Personal extends Component {
                               <div className="grid grid-cols-1 place-items-center">
                                 <div className="form-group lg:w-2/3">
                                   <div className="form-check">
-                                   
+
                                     <label>
                                       <input
                                         checked={
@@ -3609,7 +3615,7 @@ class Personal extends Component {
                                     </div>
 
                                     <div className="form-group w-[100%] lg:w-[40%] text-center">
-                                      
+
 
                                       <AppButton
                                         onClick={this.handleSubmit6.bind(
@@ -3666,7 +3672,7 @@ class Personal extends Component {
                                   <li className="with-no-style"><img src={tabungan_book} /></li>
                                 </ul>
                               </div>
-                              
+
                             </div>
                             <div className="col-md-8">
                               <div
@@ -3694,7 +3700,7 @@ class Personal extends Component {
                                     <Form>
                                       <Form.Group controlId="PHOTO">
                                         <Form.File
-                                          style={{width:118}}
+                                          style={{ width: 118 }}
                                           className="custom-file-input2"
                                           size="lg"
                                           name="PHOTO"
@@ -3725,7 +3731,7 @@ class Personal extends Component {
                                         <Form.File
                                           className="custom-file-input2"
                                           size="lg"
-                                          style={{width:118}}
+                                          style={{ width: 118 }}
                                           name="OTHER"
                                           setfieldvalue=""
                                           onChange={this.handleChangePhoto.bind(
@@ -3800,58 +3806,58 @@ class Personal extends Component {
                                       <tbody>
                                         {docPribadi
                                           ? docPribadi.map((dp, index) => {
-                                              return (
-                                                <tr key={dp.dokumen_id}>
-                                                  <td>
-                                                    <Figure>
-                                                      <Figure.Image
-                                                        width={150}
-                                                        height={100}
-                                                        alt=""
-                                                        src={dp.file}
-                                                      />
-                                                    </Figure>
-                                                  </td>
-                                                  <td>
-                                                    {dp.tipe === "OTHER"
-                                                      ? "BUKU TABUNGAN"
-                                                      : dp.tipe}
-                                                  </td>
-                                                  <td>{dp.size}kb</td>
-                                                  <td align="center">
+                                            return (
+                                              <tr key={dp.dokumen_id}>
+                                                <td>
+                                                  <Figure>
+                                                    <Figure.Image
+                                                      width={150}
+                                                      height={100}
+                                                      alt=""
+                                                      src={dp.file}
+                                                    />
+                                                  </Figure>
+                                                </td>
+                                                <td>
+                                                  {dp.tipe === "OTHER"
+                                                    ? "BUKU TABUNGAN"
+                                                    : dp.tipe}
+                                                </td>
+                                                <td>{dp.size}kb</td>
+                                                <td align="center">
+                                                  <IconButton
+                                                    disabled={
+                                                      dp.tipe === "KTP"
+                                                        ? true
+                                                        : false
+                                                    }
+                                                    onClick={
+                                                      dp.tipe !== "KTP"
+                                                        ? this.deleteRecordFile.bind(
+                                                          this,
+                                                          dp.dokumen_id
+                                                        )
+                                                        : this.deleteRecordFile.bind(
+                                                          this
+                                                        )
+                                                    }
+                                                    icon={
+                                                      <Icon icon="close" />
+                                                    }
+                                                  />
+                                                  <br />
+                                                  <a href={dp.file}>
                                                     <IconButton
-                                                      disabled={
-                                                        dp.tipe === "KTP"
-                                                          ? true
-                                                          : false
-                                                      }
-                                                      onClick={
-                                                        dp.tipe !== "KTP"
-                                                          ? this.deleteRecordFile.bind(
-                                                              this,
-                                                              dp.dokumen_id
-                                                            )
-                                                          : this.deleteRecordFile.bind(
-                                                              this
-                                                            )
-                                                      }
+                                                      style={{ marginTop: 5 }}
                                                       icon={
-                                                        <Icon icon="close" />
+                                                        <Icon icon="download2" />
                                                       }
                                                     />
-                                                    <br />
-                                                    <a href={dp.file}>
-                                                      <IconButton
-                                                        style={{ marginTop: 5 }}
-                                                        icon={
-                                                          <Icon icon="download2" />
-                                                        }
-                                                      />
-                                                    </a>
-                                                  </td>
-                                                </tr>
-                                              );
-                                            })
+                                                  </a>
+                                                </td>
+                                              </tr>
+                                            );
+                                          })
                                           : ""}
                                       </tbody>
                                     </Fragment>
@@ -3859,16 +3865,16 @@ class Personal extends Component {
                                 </table>
                               </div>
                               {!unggahFileName ? (
-                              <div className="alert alert-danger alert-sm">
-                                <span className="fw-semi-bold">
-                                  Silahkan upload semua photo dengan lengkap
-                                </span>
-                              </div>
-                            ) : (
-                              ""
-                            )}
+                                <div className="alert alert-danger alert-sm">
+                                  <span className="fw-semi-bold">
+                                    Silahkan upload semua photo dengan lengkap
+                                  </span>
+                                </div>
+                              ) : (
+                                ""
+                              )}
                             </div>
-                           
+
                           </div>
                         </div>
                         <div
@@ -3916,7 +3922,7 @@ class Personal extends Component {
                                       onChange={this.handleChangeDPP.bind(this)}
                                       checked={
                                         dokumenPribadiPernyataan &&
-                                        dokumenPribadiPernyataan.agree !== "N"
+                                          dokumenPribadiPernyataan.agree !== "N"
                                           ? true
                                           : false
                                       }
@@ -3929,7 +3935,7 @@ class Personal extends Component {
                                       inline
                                       checked={
                                         dokumenPribadiPernyataan &&
-                                        dokumenPribadiPernyataan.agree === "N"
+                                          dokumenPribadiPernyataan.agree === "N"
                                           ? true
                                           : false
                                       }
@@ -3985,7 +3991,7 @@ class Personal extends Component {
                                     <div className="form-group lg:w-[40%] text-center">
                                       <AppButton
                                         disabled={!unggahFileName}
-                                       
+
                                         onClick={this.handleSubmit7.bind(
                                           this,
                                           "detil_pribadi"
@@ -4025,12 +4031,12 @@ class Personal extends Component {
                   isLoading={this.props.isLoading}
                   formSubmit={this.handleDelete.bind(this)}
                 ></AppModal>
-		<AppModalLoading
+                <AppModalLoading
                   show={isUploadingKTP}
-                  size="sm"                 
+                  size="sm"
                   backdrop="static"
                   keyboard={false}
-                  title="Uploading . . ."                
+                  title="Uploading . . ."
                 ></AppModalLoading>
               </div>
             </div>
