@@ -27,9 +27,9 @@ export const loginUser = createAsyncThunk(
           let myStatus = false;
           let accessToken = "";
 
-          if (status_Dokumen === "Reject") {            
+          if (status_Dokumen === "Reject") {
             myStatus = false;
-			await localStorage.setItem(tokenLogin, payload.accessToken);
+            await localStorage.setItem(tokenLogin, payload.accessToken);
             await localStorage.setItem("myStatusDokumen2", true);
           } else {
             myStatus = false;
@@ -38,11 +38,11 @@ export const loginUser = createAsyncThunk(
           if (status_Dokumen === "Belum Lengkap") {
             await localStorage.setItem("myStatusDokumen", true);
           }
-		  
-		  if(statuss === "Reject"){
-			  accessToken = payload.accessToken;
-			  myStatus = true;
-		  }
+
+          if (statuss === "Reject") {
+            accessToken = payload.accessToken;
+            myStatus = true;
+          }
 
           data = {
             ...data,
@@ -51,19 +51,19 @@ export const loginUser = createAsyncThunk(
           };
           return data;
         } else {
-			if (data.error_message === 5){
-				 data = {
-					...data,
-					...param,
-					toVerify : true
-				  };
-			}else{
-				data = {
-					...data,
-					...param,
-					toVerify : false
-				  };
-			}
+          if (data.error_message === 5) {
+            data = {
+              ...data,
+              ...param,
+              toVerify: true,
+            };
+          } else {
+            data = {
+              ...data,
+              ...param,
+              toVerify: false,
+            };
+          }
           return thunkAPI.rejectWithValue(data);
         }
       } else {
@@ -181,7 +181,7 @@ export const fetchUserKTP = createAsyncThunk(
             jenis_identitas: "KTP",
             data_pribadi_id: param.data_pribadi_id,
             no_identitas: myData.nik ? myData.nik : "",
-            nama_depan:myData.nama,
+            nama_depan: myData.nama,
             nama_belakang: nama_belakang && nama_belakang,
             tempat_lahir: myData.tempat_lahir && myData.tempat_lahir,
             kota_lahir: myData.tempat_lahir && myData.tempat_lahir,
@@ -697,6 +697,8 @@ export const actionPassword = createAsyncThunk(
       if (response.status === 200) {
         data = _data.data;
         if (data.error_message === 0) {
+          let payload = data.payload;
+          await localStorage.setItem(tokenLogin, payload.accessToken);
           return data;
         } else {
           return thunkAPI.rejectWithValue(data);
@@ -817,7 +819,7 @@ export const mainSlice = createSlice({
     [loginUser.fulfilled]: (state, { payload }) => {
       // console.log(payload);
       state.isFetching = false;
-	  state.toVerify= false;
+      state.toVerify = false;
       state.isSuccess = true;
       state.isLoggedIn = !!localStorage.getItem(tokenLogin);
       state.token = localStorage.getItem(tokenLogin);
@@ -829,10 +831,10 @@ export const mainSlice = createSlice({
     [loginUser.rejected]: (state, { payload }) => {
       //console.log('payload', payload);
       state.toVerify = payload.toVerify;
-	  state.isVerifikasi = payload.toVerify;
-	  state.emailLogin = payload.email;
-	  state.passLogin = payload.password;
-	  state.user_id = payload.user_id;
+      state.isVerifikasi = payload.toVerify;
+      state.emailLogin = payload.email;
+      state.passLogin = payload.password;
+      state.user_id = payload.user_id;
       state.isFetching = false;
       state.isError = true;
       state.errorMessage = payload.message;
@@ -1057,7 +1059,9 @@ export const mainSlice = createSlice({
       state.isFetching = false;
       state.isError = false;
       state.errorMessage = payload.message;
-      return state;
+      state.token = localStorage.getItem(tokenLogin);
+      //state.isLoggedIn = !!localStorage.getItem(tokenLogin);
+      //return state;
     },
     [actionPassword.rejected]: (state, { payload }) => {
       //console.log('payload', payload);
