@@ -86,14 +86,8 @@ const Register = () => {
       
       dispatch(loginUser(queryString));
     }
-	if(toVerify){
-		setSelected({
-		  user_id:user_id,			
-		  email: emailLogin,
-		  password: passLogin,
-		});
-	}
-  }, [succesCompleteProfile, dispatch, selected, toVerify, emailLogin, passLogin]);
+	
+  }, [succesCompleteProfile, dispatch, selected, toVerify, emailLogin, passLogin, user_id]);
 
   const formik = useFormik({
     initialValues: {
@@ -151,10 +145,18 @@ const Register = () => {
       error = { ...error, kode_verifikasi: "Required!" };
     }
     setErrMsg(error);
-    const queryString = {
-      ...selected,
-      user_id: user_id,
-    };
+    var queryString = {};
+    if (toVerify) {
+      queryString = {
+        user_id: user_id,
+        kode_verifikasi: selected.kode_verifikasi,
+      };
+    } else {
+      queryString = {
+        ...selected,
+        user_id: user_id,
+      };
+    }
     //console.log(queryString);
     if (!error) dispatch(verifUser(queryString));
   };
