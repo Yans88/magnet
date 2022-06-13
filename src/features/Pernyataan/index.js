@@ -822,12 +822,7 @@ class Pernyataan extends Component {
                                                     <br />
                                                     <div className="grid grid-cols-2 gap-4">
                                            
-                                                        <div className="grid grid-cols-1">
-                                                            <div><label style={{ color: '#D77175', marginTop: 8 }}>Tempat Lahir</label></div>
-                                                            <div>
-                                                                <Input readOnly size="lg" value={user && user.tempat_lahir ? user.tempat_lahir : ''} />
-                                                            </div>
-                                                        </div>
+                                                       
                                                         <div className="grid grid-cols-1">
                                                             <div><label style={{ color: '#D77175', marginTop: 8 }}>Tanggal Lahir</label></div>
                                                             <div>

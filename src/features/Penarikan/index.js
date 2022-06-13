@@ -353,30 +353,32 @@ class Penarikan extends Component {
 
                     </div>
 					
-					 <div className="row">
-                <div className="col-sm-6">
-                  <div className="form-group">
-                    <div className="form-group">
-                      <label className="frm_lbl">Jumlah Setor (IDR)</label>
-                      <div>
-                        <NumberFormat
-                          disabled={true}
-                          name="jml_setor"
-                          className="form-control form-control-sm"
-                          value={
-                            selected.jml_nominal ? selected.jml_nominal : "0,00"
-                          }
-                          thousandSeparator={true}
-                          decimalScale={2}
-                          inputMode="numeric"
-                          autoComplete="off"
-                          placeholder="Jumlah Setor"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+					{selected.rate !== "0" && (
+						<div className="row">
+							<div className="col-sm-6">
+							  <div className="form-group">
+								<div className="form-group">
+								  <label className="frm_lbl">Jumlah Setor (IDR)</label>
+								  <div>
+									<NumberFormat
+									  disabled={true}
+									  name="jml_setor"
+									  className="form-control form-control-sm"
+									  value={
+										selected.jml_nominal ? selected.jml_nominal : "0,00"
+									  }
+									  thousandSeparator={true}
+									  decimalScale={2}
+									  inputMode="numeric"
+									  autoComplete="off"
+									  placeholder="Jumlah Setor"
+									/>
+								  </div>
+								</div>
+							  </div>
+							</div>
+						</div>
+					)}
                     <p className="text-red-500 mt-2 mb-2 text-justify text-sm text-semi-bold">*Harap perhatikan margin level akun kamu. Saldo kamu akan langsung terpotong dari akun MT5. Permintaan penarikan dana di atas jam 11.00 WIB, akan di-transfer di hari kerja berikutnya</p>
 
 

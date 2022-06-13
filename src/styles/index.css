@@ -1198,6 +1198,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 
+@media (min-width: 768px) {
+  .md\:w-3\/4 {
+    width: 75%;
+  }
+}
+
 @media (min-width: 1024px) {
   .lg\:col-span-6 {
     grid-column: span 6 / span 6;
@@ -1241,6 +1247,13 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:w-\[60\%\] {
     width: 60%;
+  }
+
+  .lg\:w-2\/3 {
+    width: 66.666667%;
+  }
+  .lg\:w-4\/5 {
+    width: 80%;
   }
 
   .lg\:w-3\/4 {

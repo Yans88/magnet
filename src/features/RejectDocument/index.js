@@ -310,7 +310,7 @@ class RejectDocument extends Component {
                                           ) : (
                                             ""
                                           )}
-                                          {dr.type_field === "text" && (
+                                          {df.type_field === "text" && (
                                             <Form.Control
                                               autoComplete="off"
                                               onChange={this.handleChange.bind(
@@ -429,7 +429,7 @@ class RejectDocument extends Component {
                                               />
                                             </Fragment>
                                           )}
-                                          {dr.type_field === "number" && (
+                                          {df.type_field === "number" && (
                                             <Form.Control
                                               autoComplete="off"
                                               onChange={this.handleChange.bind(
@@ -500,7 +500,7 @@ class RejectDocument extends Component {
                                               isValidDate={this.state.validSd}
                                             />
                                           )}
-                                          {dr.type_field === "dropdown" && (
+                                          {df.type_field === "dropdown" && (
                                             <Form.Control
                                               as="select"
                                               onChange={this.handleChange.bind(

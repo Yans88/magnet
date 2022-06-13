@@ -210,6 +210,14 @@ class Beranda extends Component {
     });
     this.props.closeSwal();
   }
+  
+  handleClose2() {
+    localStorage.removeItem("myStatusDokumen2");
+    this.setState({
+      myStatusDokumen: false,
+    });
+	this.props.history.push("/rej-doc");
+  }
 
   render() {
     const { akun_trading, akun_trading_demo, profile, profile_perusahaan } = this.props;
@@ -774,13 +782,20 @@ class Beranda extends Component {
           title="Status"
           formSubmit={this.handleSubmit3.bind(this)}
           titleButton="Lengkapi"
-          themeButton="success"
-
-
-
-
-        ></AppModalStatus>
-
+          themeButton="success" />
+		  
+		  <AppModalStatus
+                    show={myStatusDokumen2}
+                    size="xs"
+                    form={contentDelete2}
+                    handleClose={this.handleClose2.bind(this)}
+                    backdrop="static"
+                    keyboard={false}
+                    title="Status"
+                    formSubmit={this.handleClose2.bind(this)}
+                    titleButton="Perbaiki Data"
+                    themeButton="danger"
+                  />
 
         {this.props.showFormSuccess ? (<AppSwalSuccess
           show={this.props.showFormSuccess}
