@@ -22,7 +22,7 @@ class Unduh extends Component {
 		const { data_setting } = this.props;
         return (
 
-            <div className="content-wrapper pr-1">
+            <div className="content-wrapper">
 
                 <section className="content">
                     <div className="container-fluid">
@@ -38,10 +38,10 @@ class Unduh extends Component {
                         <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Unduh</h1>
                         </div>
 
-                        <div className="row">
-                            <div className="w-full px-3">
+                        <div className="row mb-5">
+                            <div className="w-full px-3 pb-5">
                                 {/* card start */}
-                                <div className="shadow-lg px-3" style={{ "minHeight": "800px" }}>
+                                <div className="shadow-lg px-3 pb-5" style={{ "minHeight": "800px" }}>
                                     
                                        <div className="mobile-hide">
 
@@ -50,7 +50,7 @@ class Unduh extends Component {
                                                 <div className="w-full px-0 py-3">
 
                                                     <div className="border px-5 py-4 rounded-2xl shadow-lg">
-                                                        <h3 style={{ color:'#2DB147' }} className="text-lg">MT5 For Dekstop</h3>
+                                                        <h3 style={{ color:'#2DB147' }} className="text-lg">MT5 For Desktop</h3>
                                                         <div className="grid grid-cols-1 place-items-center mt-3 w-full" >
 
                                                             <div className="w-full">
@@ -111,7 +111,7 @@ class Unduh extends Component {
 
                                                     <div className="border px-2 lg:px-5 py-4 rounded-2xl shadow-lg">
                                                         <div className="text-center">
-                                                        <h3 style={{ color:'#2DB147',fontSize:"20px" }} className="text-lg">MT5 For Dekstop</h3>
+                                                        <h3 style={{ color:'#2DB147',fontSize:"20px" }} className="text-lg">MT5 For Desktop</h3>
                                                          </div>
 
                                                          <div className="grid grid-cols-2 place-items-center mt-3 w-full" >
@@ -189,16 +189,16 @@ class Unduh extends Component {
                               return (
                                 <Fragment key={dp.setting_id}>
 									{dp.nama_setting === 'link_youtube_unduh' &&
+                                    <div className="video-yt-container">
 									   <iframe
-										  width="700"
-										  height="500"
+                                           
 
 										  src={dp.value}
 										  title="Installation Guide for Windows"
 										  frameBorder="0"
 										  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 										  allowFullScreen="1"
-										></iframe>
+										></iframe></div>
 								  }
                                 </Fragment>
                               );

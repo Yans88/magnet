@@ -727,7 +727,7 @@ class Penarikan extends Component {
                     titleClose={this.state.nextStep ? "Kembali" : "Tutup"}
                     backdrop="static"
                     keyboard={false}
-                    title={this.state.nextStep ? "Penarikan" : "Akun Tading MT5"}
+                    title={this.state.nextStep ? "Penarikan" : "Akun Trading MT5"}
                     titleButton={this.state.nextStep ? "Submit" : "Selanjutnya"}
                     themeButton="success"
                     isDisable={this.state.selected.login ? false : true}
