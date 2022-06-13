@@ -270,7 +270,7 @@ const Register = () => {
   return (
     <div class="">
       <div class="w-full grid lg:grid-cols-2 gap-4 bg-white">
-        <div className="overflow-hidden mobile-view">
+        <div className="overflow-hidden mobile-view  mb-5">
           <img src={banner} className="scale-100" />
         </div>
 
@@ -337,7 +337,7 @@ const Register = () => {
                             autoComplete="off"
                               type="text"
                               className="form-control"
-                              placeholder="Fullname"
+                              placeholder="Nama Lengkap"
                               style={{ backgroundColor: "#fff", border: "0" }}
                               {...formik.getFieldProps("nama_depan")}
                             />
@@ -365,7 +365,7 @@ const Register = () => {
                               
                               type="number"
                               className="form-control"
-                              placeholder="Phone Number"
+                              placeholder="No. Handphone"
                               style={{ backgroundColor: "#fff", border: "0" }}
                               {...formik.getFieldProps("phone_number")}
                             />
@@ -450,7 +450,7 @@ const Register = () => {
                            
                             type="password"
                             className="form-control"
-                            placeholder="Confirmation Password"
+                            placeholder="Konfirmasi Password"
                             style={{ backgroundColor: "#fff", border: "0" }}
                             {...formik.getFieldProps("konfirmasi_password")}
                           />
@@ -473,7 +473,7 @@ const Register = () => {
                             
                             type="text"
                             className="form-control"
-                            placeholder="Refferal Code"
+                            placeholder="Kode Referal"
                             style={{ backgroundColor: "#fff", border: "0" }}
                             {...formik.getFieldProps("reff_code")}
                           />
@@ -545,7 +545,7 @@ const Register = () => {
         </div>
 
         <div className="h-auto overflow-hidden mobile-hide">
-          <img src={banner} className="scale-150" />
+          <img src={banner} className="scale-100" />
         </div>
       </div>
     </div>

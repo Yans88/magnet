@@ -2,22 +2,23 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import AppButton from "../../components/button/Button";
 import icon from "../../assets/akun_bank_ijo.svg";
+import icon_delete from "../../assets/delete-red.png";
 import {
   getBankAkun,
   getAkunTrading,
   actionPenarikan,
-  
+
 } from "../Penarikan/penarikanSlice";
 import { profileUser } from "../main/mainSlice";
 import { Icon, IconButton } from "rsuite";
 import AppModal from "../../components/modal/MyModal";
-import { confirmDel, closeForm,delAkunBankKu } from "../Personal/personalSlice";
+import { confirmDel, closeForm, delAkunBankKu } from "../Personal/personalSlice";
 
 class AkunBank extends Component {
   constructor(props) {
     super(props);
     this.initSelected = {
-     
+
       akun_bank_id: "",
     };
     this.state = {
@@ -30,7 +31,7 @@ class AkunBank extends Component {
       start: 1,
       limit: 10,
       search: "",
-	  akun_bank_id:""
+      akun_bank_id: ""
     };
   }
 
@@ -42,14 +43,14 @@ class AkunBank extends Component {
   };
 
   deleteRecord(record) {
-	  this.setState({
+    this.setState({
       akun_bank_id: record,
     });
     this.props.showConfirmDel(true);
   }
 
   handleClose() {
-    this.props.closeSwalError();   
+    this.props.closeSwalError();
   }
 
   handleDelete = async () => {
@@ -114,153 +115,172 @@ class AkunBank extends Component {
                       <div className="row my-0 mx-0">
                         {data_bank
                           ? data_bank.map((dp, index, arr) => {
-                              return (
-                                <Fragment key={index}>
-                                  <div className="mobile-hide w-full">
-                                    <div
-                                      className="grid grid-cols-3 place-items-center  py-4 px-1 lg:px-4 rounded-2xl mt-4"
-                                      style={{
-                                        border: "2px solid #ddd",
-                                        color: "#2E2E2F",
-                                      }}
-                                    >
-                                      <div className="px-2 lg:w-1/2">
-                                        <img alt={dp.nama_bank} src={dp.file} />
-                                      </div>
+                            return (
+                              <Fragment key={index}>
+                                <div className="mobile-hide w-full">
+                                  <div
+                                    className="grid grid-cols-3 place-items-center  py-4 px-1 lg:px-4 rounded-2xl mt-4"
+                                    style={{
+                                      border: "2px solid #ddd",
+                                      color: "#2E2E2F",
+                                    }}
+                                  >
+                                    <div className="px-2 lg:w-1/2">
+                                      <img alt={dp.nama_bank} src={dp.file} />
+                                    </div>
 
-                                      <div className="px-2 text-left col-span-2 w-full">
-                                        <div
-                                          className="flex box-bank__title text-bold mb-2"
-                                          style={{ fontSize: 18 }}
-                                        >
-                                          <div style={{ width: "120px" }}>
-                                            Nama Bank
-                                          </div>{" "}
-                                          <div className="hidden-colon">
-                                            {dp.nama_bank}
-                                          </div>
+                                    <div className="px-2 text-left col-span-2 w-full">
+                                      <div
+                                        className="flex box-bank__title text-bold mb-2"
+                                        style={{ fontSize: 18 }}
+                                      >
+                                        <div style={{ width: "120px" }}>
+                                          Nama Bank
+                                        </div>{" "}
+                                        <div className="hidden-colon">
+                                          {dp.nama_bank}
                                         </div>
-                                        <div
-                                          style={{ fontSize: 30 }}
-                                          className="px-2 lg:pt-0 col-span-2 float-right"
-                                        >
-                                          <IconButton
+                                      </div>
+                                      <div
+                                        style={{ cursor: "pointer" }}
+                                        className="col-span-2 float-right mt-2 mr-3"
+                                      >
+                                        {/* <IconButton
                                             onClick={this.deleteRecord.bind(
                                               this,
                                               dp.akun_bank_id
                                             )}
                                             icon={<Icon icon="close" />}
-                                          />
+                                          /> */}
+                                        <img src={icon_delete} width="30" onClick={this.deleteRecord.bind(
+                                          this,
+                                          dp.akun_bank_id
+                                        )} />
+                                      </div>
+                                      <div
+                                        className="flex mb-1"
+                                        style={{ fontSize: 15 }}
+                                      >
+                                        <div style={{ width: "120px" }}>
+                                          Nama Pemilik
+                                        </div>{" "}
+                                        <div className="hidden-colon">
+                                          {dp.nama_pemilik}
                                         </div>
-                                        <div
-                                          className="flex mb-1"
-                                          style={{ fontSize: 15 }}
-                                        >
-                                          <div style={{ width: "120px" }}>
-                                            Nama Pemilik
-                                          </div>{" "}
-                                          <div className="hidden-colon">
-                                            {dp.nama_pemilik}
-                                          </div>
+                                      </div>
+                                      <div
+                                        className="flex mb-1"
+                                        style={{ fontSize: 15 }}
+                                      >
+                                        <div style={{ width: "120px" }}>
+                                          No. Rekening
+                                        </div>{" "}
+                                        <div className="hidden-colon">
+                                          {dp.no_rek}
                                         </div>
-                                        <div
-                                          className="flex mb-1"
-                                          style={{ fontSize: 15 }}
-                                        >
-                                          <div style={{ width: "120px" }}>
-                                            No. Rekening
-                                          </div>{" "}
-                                          <div className="hidden-colon">
-                                            {dp.no_rek}
-                                          </div>
-                                        </div>
-                                        <div
-                                          className="flex mb-1"
-                                          style={{ fontSize: 15 }}
-                                        >
-                                          <div style={{ width: "120px" }}>
-                                            Cabang
-                                          </div>{" "}
-                                          <div className="hidden-colon">
-                                            {dp.cabang}
-                                          </div>
+                                      </div>
+                                      <div
+                                        className="flex mb-1"
+                                        style={{ fontSize: 15 }}
+                                      >
+                                        <div style={{ width: "120px" }}>
+                                          Cabang
+                                        </div>{" "}
+                                        <div className="hidden-colon">
+                                          {dp.cabang}
                                         </div>
                                       </div>
                                     </div>
                                   </div>
+                                </div>
 
-                                  <div className="mobile-view w-full">
+                                <div className="mobile-view w-full">
+                                  
+                                  <div
+                                    className="grid grid-cols-2 place-items-center  py-4 px-1  lg:px-4 rounded-2xl mt-4"
+                                    style={{
+                                      border: "2px solid #ddd",
+                                      color: "#2E2E2F",
+                                    }}
+                                  >
+                                   
+                                    
+                                    <div className="px-2 col-span-2 text-center">
+                                      <img alt={dp.nama_bank} src={dp.file} />
+                                      
+                                    </div>
+
+                                    <div className="px-2 text-left w-full col-span-2 mt-4">
+                                      <div className="grid grid-cols-3">
+                                        <div className="col-span-1">
+                                          Nama bank
+                                        </div>
+                                        <div className="col-span-2">
+                                          :{" "}
+                                          <span className="font-semibold">
+                                            {dp.nama_bank}
+                                          </span>
+                                        </div>
+                                      </div>
+
+                                      <div className="grid grid-cols-3">
+                                        <div className="col-span-1">
+                                          Nama Pemilik
+                                        </div>
+                                        <div className="col-span-2">
+                                          :{" "}
+                                          <span className="font-semibold">
+                                            {dp.nama_pemilik}
+                                          </span>
+                                        </div>
+                                      </div>
+
+                                      <div className="grid grid-cols-3">
+                                        <div className="col-span-1">
+                                          No Rekening
+                                        </div>
+                                        <div className="col-span-2">
+                                          :{" "}
+                                          <span className="font-semibold">
+                                            {dp.no_rek}
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </div>
+
                                     <div
-                                      className="grid grid-cols-2 place-items-center  py-4 px-1  lg:px-4 rounded-2xl mt-4"
-                                      style={{
-                                        border: "2px solid #ddd",
-                                        color: "#2E2E2F",
-                                      }}
+                                      style={{ fontSize: 30 }}
+                                      className="px-2 pt-4 lg:pt-0 col-span-2 flex flex-row items-center"
                                     >
-                                      <div className="px-2 w-[60%] col-span-2">
-                                        <img alt={dp.nama_bank} src={dp.file} />
-                                      </div>
-
-                                      <div className="px-2 text-left w-full col-span-2 mt-4">
-                                        <div className="grid grid-cols-3">
-                                          <div className="col-span-1">
-                                            Nama bank
-                                          </div>
-                                          <div className="col-span-2">
-                                            :{" "}
-                                            <span className="font-semibold">
-                                              {dp.nama_bank}
-                                            </span>
-                                          </div>
-                                        </div>
-
-                                        <div className="grid grid-cols-3">
-                                          <div className="col-span-1">
-                                            Nama Pemilik
-                                          </div>
-                                          <div className="col-span-2">
-                                            :{" "}
-                                            <span className="font-semibold">
-                                              {dp.nama_pemilik}
-                                            </span>
-                                          </div>
-                                        </div>
-
-                                        <div className="grid grid-cols-3">
-                                          <div className="col-span-1">
-                                            No Rekening
-                                          </div>
-                                          <div className="col-span-2">
-                                            :{" "}
-                                            <span className="font-semibold">
-                                              {dp.no_rek}
-                                            </span>
-                                          </div>
-                                        </div>
-                                      </div>
+                                      <AppButton
+                                        className="btn-akun-bank"
+                                        type="button"
+                                        size="lg"
+                                        theme=""
+                                        style={{
+                                          backgroundColor: "#C3262A",
+                                          color: "#ffffff",
+                                        }}
+                                      >
+                                        {dp.no_rek}
+                                      </AppButton>
 
                                       <div
-                                        style={{ fontSize: 30 }}
-                                        className="px-2 pt-4 lg:pt-0 col-span-2"
-                                      >
-                                        <AppButton
-                                          className="btn-akun-bank"
-                                          type="button"
-                                          size="lg"
-                                          theme=""
-                                          style={{
-                                            backgroundColor: "#C3262A",
-                                            color: "#ffffff",
-                                          }}
-                                        >
-                                          {dp.no_rek}
-                                        </AppButton>
-                                      </div>
+                                      style={{ cursor: "pointer"}}
+                                      className="ml-3"
+                                    >
+                                      <img src={icon_delete} width="30" onClick={this.deleteRecord.bind(
+                                        this,
+                                        dp.akun_bank_id
+                                      )} />
+                                    </div>
+                                      
                                     </div>
                                   </div>
-                                </Fragment>
-                              );
-                            })
+                                </div>
+                              </Fragment>
+                            );
+                          })
                           : ""}
                         <div className="grid grid-col2-1 place-items-center mb-0 mt-4 pl-5 pr-5 w-full">
                           <div
@@ -323,7 +343,7 @@ const mapDispatchToPros = (dispatch) => {
       // dispatch(getAkunTrading());
     },
     showConfirmDel: (data) => {
-		
+
       dispatch(confirmDel(data));
     },
     onDelete: (param) => {

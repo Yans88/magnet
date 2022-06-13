@@ -117,7 +117,7 @@ class HubungiKami extends Component {
                                                             </div>
                                                             <p className="w-11/12 text-base font-bold text-black text-left ...">
                                                                     <a href="https://api.whatsapp.com/send?phone=6287835355526&text=Halo" title="">
-                                                                        <span className="text-white">{profile_perusahaan.telp}</span>
+                                                                        <span className="text-white ml-3">{profile_perusahaan.telp}</span>
                                                                     </a>
                                                                 </p>
 
@@ -130,7 +130,7 @@ class HubungiKami extends Component {
                                                             </div>
                                                             <p className="w-11/12 text-base font-bold text-gray-600 text-left ...">
                                                                     <a href={"tel:"+profile_perusahaan.telp_dealing} title="">
-                                                                        <span className="text-white">{profile_perusahaan.telp_dealing}</span>
+                                                                        <span className="text-white ml-3">{profile_perusahaan.telp_dealing}</span>
                                                                     </a>
                                                                 </p>
 
@@ -143,7 +143,7 @@ class HubungiKami extends Component {
                                                             </div>
                                                             <p className="w-11/12 text-base font-bold text-gray-600 text-left ...">
                                                                     <a href="mailto:info@magnetfx.co.id" title="">
-                                                                        <span className="text-white">{profile_perusahaan.email}</span>
+                                                                        <span className="text-white ml-3">{profile_perusahaan.email}</span>
                                                                     </a>
                                                                 </p>
 
@@ -154,8 +154,8 @@ class HubungiKami extends Component {
                                                             <div className="w-1/12">
                                                                 <img src={location_red} width="25px" />
                                                             </div>
-                                                            <p className=" w-11/12 text-base font-bold text-white text-left ...">
-                                                            <a href="#"><span className="text-base font-bold text-white text-left ...">
+                                                            <p className=" w-11/12 text-base font-bold text-white text-left ... ml-3">
+                                                            <a href="#" className=""><span className="text-base font-bold text-white text-left ...">
                                                                     Gedung Sona Topas Tower - Lt. 18 Suite 1804
                                                                     Jl. Jend. Sudirman Kav. 26
                                                                     Jakarta Selatan 12920
@@ -171,7 +171,7 @@ class HubungiKami extends Component {
                                                                 <img src={email_red} width="30px" />
                                                             </div>
                                                             <p className="w-11/12 text-base font-bold text-gray-600 text-left ...">
-                                                                <a href={profile_perusahaan.website}><span className="text-white">{profile_perusahaan.website}</span></a>
+                                                                <a href={profile_perusahaan.website}><span className="text-white ml-3">{profile_perusahaan.website}</span></a>
                                                             </p>
 
                                                         </div>

@@ -11,9 +11,10 @@ export const getDataPernyataan = createAsyncThunk(
     const token = localStorage.getItem(tokenLogin)
       ? "Bearer " + localStorage.getItem(tokenLogin)
       : "";
+	  const selectedId = sessionStorage.getItem('data_tipe_akun_id');
     var config = {
       method: "get",
-      url: API_URL + "/get-data-pernyataan?data_tipe_akun_id=" + param,
+      url: API_URL + "/get-data-pernyataan?data_tipe_akun_id=" + selectedId,
       headers: {
         "x-app-origin": "cabinet-app",
         Authorization: token,
@@ -88,12 +89,9 @@ export const getSelectAkun = createAsyncThunk(
                 data_tipe_akun_id: "",
               };
             } else {
-              sessionStorage.setItem(
-                "data_tipe_akun_id",
-                payload.data_tipe_akun_id
-              );
+              
               payload = {
-                data_tipe_akun_id: payload.data_tipe_akun_id,
+                data_tipe_akun_id: sessionStorage.getItem('data_tipe_akun_id'),
               };
             }
 

@@ -205,7 +205,7 @@ const Login = () => {
         </div>
       </div>
 
-      <div className="mobile-view">
+      <div className="mobile-view mb-5">
         <div class="w-full grid grid-cols-2 gap-4">
           <div className="overflow-hidden col-span-2">
             <img src={banner} className="scale-100 w-[100%]" />

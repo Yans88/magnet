@@ -97,7 +97,11 @@ export const simpanDataTA = createAsyncThunk(
             let _data = await response;
             if (response.status === 200) {
                 data = _data.data;
+				 
                 if (data.error_message === 0) {
+					let payload = data.payload;
+					
+					await sessionStorage.setItem("data_tipe_akun_id", payload.data_tipe_akun_id);
                     return data;
                 } else {
                     return thunkAPI.rejectWithValue(data);

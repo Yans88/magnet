@@ -7,8 +7,8 @@ input[type="checkbox"]:checked+label:before {
 }
 
 .rs-sidenav {
-  -webkit-transition: width 0.2s ease-in;
-  transition: width 0.2s ease-in;
+  /* -webkit-transition: width 0.2s ease-in;
+  transition: width 0.2s ease-in; */
   width: auto !important;
 
 }
@@ -105,6 +105,7 @@ input[type="checkbox"]:checked+label:before {
   color: #9F9F9F;
   background-color: #fff;
   border: 0px solid #fff;
+  transition:none;
 
 }
 
@@ -178,7 +179,7 @@ a:focus {
 
 
 
-.dropdown-menuu {
+.dropdown-menuus {
   animation-name: fadeAnimation !important;
   animation-duration: .7s !important;
   animation-iteration-count: 1 !important;
@@ -260,13 +261,14 @@ a:focus {
   background: #26A639 !important;
   border-top: .02em solid #fff;
   border-radius: 10px;
+  transition: none;
 
 }
 
 .my-dropdown:hover img {
   filter: invert(0%);
-  transition: all 0.25s;
-  transition-delay: 0.7s;
+  /* transition: all 0.25s;
+  transition-delay: 0.7s; */
 }
 
 .my-dropdown-active,
@@ -1024,7 +1026,7 @@ tbody td {
 }
 
 
-@media only screen and (min-width: 360px) and (max-width: 568px) {
+@media only screen and (min-width: 50px) and (max-width: 568px) {
   .sidebar-mobile {
     width: 414px;
   }
