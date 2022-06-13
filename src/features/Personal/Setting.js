@@ -100,11 +100,11 @@ class Setting extends Component {
                     <div className="container-fluid">
                         <img src={icon} width="35px" className="float-left mt-3" />
                         <div className="mobile-hide">
-                            <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Perbaiki Data</h1>
+                            <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Pengaturan</h1>
                         </div>
 
                         <div className="mobile-view">
-                            <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Perbaiki Data</h1>
+                            <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Pengaturan</h1>
                         </div>
 
                         <div className="row">

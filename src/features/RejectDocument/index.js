@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/id";
 import Datetime from "react-datetime";
@@ -8,9 +8,8 @@ import "react-datetime/css/react-datetime.css";
 import { getRejDoc, chgProps, simpanRejDoc, closeSwal } from "./rejectDocSlice";
 import { profileUser } from "../main/mainSlice";
 import AppButton from "../../components/button/Button";
-import { Form } from "react-bootstrap";
+import icon from '../../assets/reject_green.png';
 import { AppSwalSuccess } from "../../components/modal/SwalSuccess";
-import AppModalStatus from "../../components/modal/MyModalStatus";
 
 var yesterday = moment().subtract(40, "years");
 var valid_startDate = function (current) {
@@ -268,9 +267,14 @@ class RejectDocument extends Component {
       <div className="content-wrapper pr-1">
         <section className="content">
           <div className="container-fluid">
-            <h1 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}>
-              Data yang Anda masukkan salah
-            </h1>
+            <img src={icon} width="35px" className="float-left mt-3" />
+            <div className="mobile-hide">
+                <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Perbaiki Data</h1>
+            </div>
+
+            <div className="mobile-view">
+                <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Perbaiki Data</h1>
+            </div>
             <div className="row">
               <div className="col-12">
                 <div

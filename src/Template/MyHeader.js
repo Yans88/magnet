@@ -78,10 +78,10 @@ class MyHeader extends Component {
 
             <div className="flex justify-end ">
               <div className="flex flex-col">
-                  <div className="font-bold pl-3 pr-3 bg-transparant" style={{height: "50px",width:"max-content"}}>
+                  <div className="font-bold pl-3 pr-3 bg-transparant status-header" style={{height: "50px",width:"max-content"}}>
                     {
                       <h5
-                        style={{ fontWeight: 600, fontSize: 14, width:"max-content" }}
+                        style={{ fontWeight: 600, width:"max-content" }}
                       >
                         <span style={{color:"#2b2b2b"}}>STATUS</span>
                         <br />

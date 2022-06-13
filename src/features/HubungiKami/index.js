@@ -180,7 +180,7 @@ class HubungiKami extends Component {
 
                                             </div>
 
-                                            <div className="flex justify-center lg:mt-0 mt-10 w-full px-10">
+                                            <div className="flex justify-center lg:mt-0 mt-5 w-full px-3">
                                                 <Form className="w-full">
                                                     <Form.Group controlId="subjek">
                                                         <Form.Label><span style={{ fontWeight: "bold", color: "#000" }}>Subjek</span></Form.Label>
@@ -209,10 +209,10 @@ class HubungiKami extends Component {
                                                     </Form.Group>
                                                     <div className="mt-2" >
 
-                                                        <div className="w-auto">
+                                                        <div className="w-auto text-center">
                                                             <AppButton
                                                                 disabled={selected.message && selected.subject ? false : true}
-                                                                style={{ color: "#fff", marginTop: 10, backgroundColor: "#C3262A", color: "#fff" }}
+                                                                style={{ color: "#fff", marginTop: 10, backgroundColor: "#C3262A" }}
                                                                 onClick={this.handleSubmit.bind(this)}
                                                                 type="button"
                                                                 size="lg"

@@ -462,9 +462,11 @@ class Beranda extends Component {
                 <div className="mobile-hide relative  text-black text-center    py-0 w-full mt-0 ..." >
 
                   <div className="mobile-hide relative    bg-white text-black text-center  rounded-2xl shadow-lg py-10 w-[100%] mb-10   ...">
+
                     <div className="flex justify-center items-center">
                       <span className="font-bold text-red-700" style={{ fontSize: "17px" }}>AKUN DEMO MT5</span>
-                    </div>  
+                      <img width="45" className="pl-2" src={provider_mt5}/>
+                    </div>
 
                     <div className="grid grid-cols-3 gap-4 px-3 mt-4 mb-4">
 
@@ -647,7 +649,8 @@ class Beranda extends Component {
                 
                 <div className="flex justify-center items-center">
                   <span className="font-bold text-red-700" style={{ fontSize: "17px" }}>AKUN DEMO MT5</span>
-                </div>  
+                  <img width="45" className="pl-2" src={provider_mt5} />
+                </div>
 
                 <div className="grid grid-cols-1 gap-4 px-5 mt-4 mb-4">
                   {akun_trading_demo
