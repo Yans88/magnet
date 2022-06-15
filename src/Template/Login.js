@@ -59,7 +59,7 @@ const Login = () => {
     <div      
       dangerouslySetInnerHTML={{
         __html:
-          '<div id="caption" style=padding-bottom:20px;">Akun Anda sudah tidak dapat digunakan Untuk bantuan lebih lanjut Anda bisa menghubungi kami di <a href="https://www.magnetfx.co.id/contact" style="color: rgb(220, 53, 69);">sini</a></div>',
+          '<div id="caption" style=padding-bottom:20px;">Akun Anda sudah tidak dapat digunakan. Untuk bantuan lebih lanjut Anda bisa menghubungi kami di <a href="https://www.magnetfx.co.id/contact" style="color: rgb(220, 53, 69);">sini</a></div>',
       }}
     />
   );
