@@ -720,7 +720,9 @@ class Personal extends Component {
     errors.bank = !this.props.dataAkunBank.bank_id
       ? "Kolom ini harus diisi"
       : "";
-    
+    // errors.cabang = !this.props.dataAkunBank.cabang
+      // ? "Kolom ini harus diisi"
+      // : "";
     errors.no_rek = !this.props.dataAkunBank.no_rek
       ? "Kolom ini harus diisi"
       : "";

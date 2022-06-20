@@ -56,11 +56,16 @@ class AddBank extends Component {
     errors.bank = !this.props.dataAkunBank.bank_id
       ? "Kolom ini harus diisi"
       : "";
-   
+    // errors.cabang = !this.props.dataAkunBank.cabang
+      // ? "Kolom ini harus diisi"
+      // : "";
     errors.no_rek = !this.props.dataAkunBank.no_rek
       ? "Kolom ini harus diisi"
       : "";
     errors.jenis_akun_bank = !this.props.dataAkunBank.jenis_akun_bank
+      ? "Kolom ini harus diisi"
+      : "";
+	errors.file = !this.props.dataAkunBank.file
       ? "Kolom ini harus diisi"
       : "";
     errors.agreement6 =
@@ -362,7 +367,13 @@ class AddBank extends Component {
                                       this
                                     )}
                                         ></Form.File>
-                                  
+                                  {errMsg6.file ? (
+                                    <span className="text-error badge badge-danger">
+                                      {errMsg6.file}
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
                                 </Form.Group>
 
                                
