@@ -199,6 +199,21 @@ class Setoran extends Component {
         [name]: val,
       },
     });
+	
+	if (name === "jml_setor") {
+      let rate = this.state.selected.rate > 0 ? this.state.selected.rate : 1;
+	  const myArray = val.split(",");		
+		if(myArray.length > 0){
+			val ='';
+			for(var i=0;i<myArray.length;i++){
+			  val +=myArray[i];
+			}
+		}
+      this.setState({
+        loadingForm: false,
+        selected: { ...this.state.selected, setor: val / rate, jml_setor: val },
+      });
+    }
     if (name === "setor") {
       let rate = this.state.selected.rate > 0 ? this.state.selected.rate : 1;
       this.setState({
@@ -227,8 +242,7 @@ class Setoran extends Component {
     this.props.onLoadHistory(queryString);
   }
 
-  validateForm(errors) {
-    console.log(errors);
+  validateForm(errors) {    
     let valid = true;
     Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
     return valid;
@@ -573,12 +587,13 @@ class Setoran extends Component {
                         <div className="flex justify-center items-center" style={{width:'35px',height:'29.5px',border: "1px solid #ced4da",background:"#e9ecef",borderRight:0}}>Rp</div>
                         <NumberFormat
                           style={{borderRadius:0}}
-                          disabled={true}
+                          
                           name="jml_setor"
                           className="form-control form-control-sm"
                           value={
-                            selected.jml_setor ? selected.jml_setor : "0,00"
+                            selected.jml_setor ? selected.jml_setor : ""
                           }
+						  onChange={this.handleChange.bind(this)}
                           thousandSeparator={true}
                           decimalScale={2}
                           inputMode="numeric"

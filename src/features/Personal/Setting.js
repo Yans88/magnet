@@ -48,6 +48,7 @@ class Setting extends Component {
         errors.current_password = !this.props.profile.current_password ? "Kolom ini harus diisi" : '';
         errors.password = !this.props.profile.password ? "Kolom ini harus diisi" : '';
         errors.konfirmasi_password = !this.props.profile.konfirmasi_password ? "Kolom ini harus diisi" : '';
+        errors.password = errors.password === '' && this.props.profile.password.length < 8 ? "Minimal 8 karakter" : '';
         errors.konfirmasi_password = !errors.konfirmasi_password && this.props.profile.konfirmasi_password !== this.props.profile.password ? "Konfirmasi password tidak sesuai" : errors.konfirmasi_password;
         this.setState({ errors });
         if (this.validateForm(this.state.errMsg1)) {
