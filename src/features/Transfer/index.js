@@ -267,7 +267,7 @@ class Transfer extends Component {
       profile,
     } = this.props;
     const { selected } = this.state;
-    console.log(profile);
+    
 
     const columns = [
       {

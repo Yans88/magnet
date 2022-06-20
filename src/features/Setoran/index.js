@@ -101,7 +101,7 @@ class Setoran extends Component {
     var errors = this.state.errMsg;
     if (this.state.nextStep) {
       errors.setor = !this.state.selected.setor ? "Required" : "";
-      //errors.phonepass = !this.state.selected.phonepass ? "Required" : '';
+      errors.img = !this.state.selected.img ? "Required" : '';
       if (this.state.selected.img) {
         var fileSize = this.state.selected.img.size;
         if (fileSize > 2099200) {
