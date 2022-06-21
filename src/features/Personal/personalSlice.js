@@ -1077,6 +1077,9 @@ export const personalSlice = createSlice({
             state.isFetching = false;
             state.isError = true;
             state.errorMessage = payload.message;
+			state.showFormSuccess = true;
+            state.contentMsg = "<div style='font-size:20px; text-align:center; line-height:23px;'><strong>Failed</strong><br/>"+payload.message+"</div>";
+            state.tipeSWAL = "error";
         },
         [simpanAkunBank.pending]: (state) => {
             state.isFetching = true;
