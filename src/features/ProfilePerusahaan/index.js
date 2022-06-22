@@ -185,16 +185,15 @@ class ProfilePerusahaan extends Component {
                   style={{ minHeight: "800px", borderRadius: "2rem" }}
                 >
                   <div className="card-body">
-                    <h1
+                    <h3
                       style={{
                         marginBottom: 10,
-                        fontSize: 35,
                         marginLeft: 10,
                         color: "#2DB147",
                       }}
                     >
-                      Profil Perusahaan
-                    </h1>
+                      5. Profil Perusahaan
+                    </h3>
                     <div
                       style={{
                         paddingLeft: 30,

@@ -16,7 +16,7 @@ import {
 import Button from "../components/button/Button";
 import { Col, Form } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
-import banner from "../assets/image_1.svg";
+import banner from "../assets/image_1.png";
 import user_full_name_icon from "../assets/akun_red.svg";
 import user_phone_number_icon from "../assets/phone_red.svg";
 import user_reff_code_icon from "../assets/reff_code_red.svg";
@@ -273,7 +273,7 @@ const Register = () => {
     <div class="">
       <div class="w-full grid lg:grid-cols-2 gap-4 bg-white">
         <div className="overflow-hidden mobile-view  mb-5">
-          <img src={banner} className="scale-100" />
+          <img src={banner} className="w-[100%] h-[100%]" />
         </div>
 
         <div className="grid grid-cols-1 gap-0 place-items-center">
@@ -547,7 +547,7 @@ const Register = () => {
         </div>
 
         <div className="h-auto overflow-hidden mobile-hide">
-          <img src={banner} className="scale-100" />
+          <img src={banner} className="w-[100%] h-[100%]" />
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ import {
 } from "../features/main/mainSlice";
 import Button from "../components/button/Button";
 import logoa from "../assets/logo.svg";
-import banner from "../assets/image_1.svg";
+import banner from "../assets/image_1.png";
 import email_icon from "../assets/email.svg";
 import password_icon from "../assets/password.svg";
 import AppModal from "../components/modal/MyModal";
@@ -200,7 +200,7 @@ const Login = () => {
           </div>
 
           <div className="show_hide h-auto overflow-hidden">
-            <img src={banner} className="scale-100" />
+            <img src={banner} className="w-[100%] h-[100%]" />
           </div>
         </div>
       </div>
@@ -208,7 +208,7 @@ const Login = () => {
       <div className="mobile-view mb-5">
         <div class="w-full grid grid-cols-2 gap-4">
           <div className="overflow-hidden col-span-2">
-            <img src={banner} className="scale-100 w-[100%]" />
+            <img src={banner} className="w-[100%] h-[100%]" />
           </div>
 
           <div className="col-span-2 lg:col-span-0 grid grid-cols-1 gap-0 place-items-center">
@@ -327,7 +327,7 @@ const Login = () => {
                             </Button>
                           </div>
 
-                          <div className="col-span-2 align-middle pt-1">
+                          <div className="col-span-2 align-middle pt-1 mt-3">
                             <a href="register" className="text-center ">
                               <span className="text-hijau-forex font-bold">
                                 Daftar
@@ -352,7 +352,7 @@ const Login = () => {
         backdrop="static"
         keyboard={false}
         noBtnAction={true}
-        myCloseButton={false}
+        myCloseButton={true}
         title="Info"
         titleButton="Delete"
         themeButton="danger"

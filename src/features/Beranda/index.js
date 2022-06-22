@@ -226,6 +226,7 @@ class Beranda extends Component {
     const frmUser = (
       <Form id="myForm">
         <Form.Group controlId="password">
+          <h5 className="mb-2" style={{fontSize:"12px"}}>NO LOGIN: {this.state.selected.login}</h5>
           <Form.Label>Password Baru</Form.Label>
           {errMsg.password ? (
             <span className="float-right text-error badge badge-danger">
@@ -279,6 +280,7 @@ class Beranda extends Component {
     const frmUser2 = (
       <Form id="myForm">
         <Form.Group controlId="password">
+          <h5 className="mb-2" style={{fontSize:"12px"}}>NO LOGIN: {this.state.selected.login}</h5>
           <Form.Label>Password Baru</Form.Label>
           {errMsg.phonepwd ? (
             <span className="float-right text-error badge badge-danger">
@@ -323,7 +325,7 @@ class Beranda extends Component {
         </Form.Group>
         <br />
         <span style={{ color: "red", fontWeight: "bold", fontStyle: "italic" }}>
-          Password ini akan di gunakan untuk menelpon dealing kamu
+          Password ini akan di gunakan untuk menelepon dealing kamu
         </span>
       </Form>
     );
@@ -744,7 +746,7 @@ class Beranda extends Component {
           form={frmUser}
           backdrop="static"
           keyboard={false}
-          title={"RESET PASSWORD #" + this.state.selected.login}
+          title={"RESET PASSWORD"}
           titleButton="Save change"
           themeButton="success"
           handleClose={this.handleClose.bind(this)}
@@ -761,7 +763,7 @@ class Beranda extends Component {
           form={frmUser2}
           backdrop="static"
           keyboard={false}
-          title={"RESET PHONE PASSWORD #" + this.state.selected.login}
+          title={"RESET PHONE PASSWORD"}
           titleButton="Save change"
           themeButton="success"
           handleClose={this.handleClose.bind(this)}

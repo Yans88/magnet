@@ -72,6 +72,26 @@ class MySidebar extends Component {
                             <Sidenav.Body>
                                 <Nav>
                                     <div className="menu_side mx-2 my-2 rounded-xl">
+                                        {
+                                            expandMenu && (
+                                                <Nav.Item
+                                                    onSelect={e => this.handleMenu("/")}
+                                                    componentClass={Link}
+                                                    to='/personal'
+                                                    eventKey='/'
+                                                    exact='/'
+                                                    className={"my-dropdown"}
+                                                >
+                                                    <div className="flex items-center">
+                                                        <div className="pl-3">
+                                                            <span className="text-black text-lg">Hi, {this.props.user.nama_depan}</span>
+                                                        </div>
+                                                    </div>
+                                                </Nav.Item>
+                                            )
+                                        }
+                                    </div>
+                                    <div className="menu_side mx-2 my-2 rounded-xl">
                                         <Nav.Item
                                             onSelect={e => this.handleMenu("/")}
                                             onClick={this.handleToggle.bind(this)}
@@ -374,6 +394,29 @@ class MySidebar extends Component {
 
                             <Sidenav.Body>
                                 <Nav>
+                                   
+                                    <div className="menu_side mx-2 my-2 rounded-xl">
+                                        {
+                                            expandMenu && (
+                                                <Nav.Item
+                                                    onSelect={e => this.handleMenu("/")}
+                                                    componentClass={Link}
+                                                    to='/personal'
+                                                    eventKey='/'
+                                                    exact='/'
+                                                    className={"my-dropdown"}
+                                                >
+                                                    <div className="flex items-center">
+                                                        <div className="pl-3">
+                                                            <span className="text-black text-lg">Hi, {this.props.user.nama_depan}</span>
+                                                        </div>
+                                                    </div>
+                                                </Nav.Item>
+                                            )
+                                        }
+                                    </div>
+                                 
+                                   
                                     <div className="menu_side mx-2 my-2 rounded-xl">
                                         <Nav.Item
                                             onSelect={e => this.handleMenu("/")}
@@ -720,6 +763,7 @@ const mapDispatchToPros = (dispatch) => {
 const mapStateToProps = (state) => {
 
     return {
+        user: state.main.currentUser,
         main: state.main,
         profile: state.main.dtProfileUser
     }

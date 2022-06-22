@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { forgotPassword, userSelector, clearState } from '../features/main/mainSlice'
 import Button from '../components/button/Button';
 import { Form } from 'react-bootstrap';
-import banner from '../assets/image_1.svg';
+import banner from '../assets/image_1.png';
 import logoa from '../assets/logo.svg';
 import email_icon from '../assets/email.svg';
 
@@ -64,9 +64,8 @@ const Forgot = () => {
    
 
     const hideAlert = () => { dispatch(clearState()) }
-    document.getElementById('root').classList = 'hold-transition';
 
-    
+    document.getElementById('root').classList = 'hold-transition';
 
     return (
 
@@ -74,7 +73,7 @@ const Forgot = () => {
             <div class="w-full grid lg:grid-cols-2 gap-4 bg-white">
 
                 <div className="overflow-hidden mobile-view">
-                                <img src={banner} className="scale-100" />
+                                <img src={banner} className="w-[100%] h-[100%]" />
                 </div>
 
                 <div className="grid grid-cols-1 gap-0 place-items-center">
@@ -95,7 +94,7 @@ const Forgot = () => {
                                     errorMessage ? (
                                         <div className={(new RegExp("\\b"+"success"+"\\b").test(errorMessage ? errorMessage.toLowerCase() : "no match"))  ? "alert alert-success alert-sm" : "alert alert-danger alert-sm"} >
                                             <button onClick={hideAlert} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                            <span className="fw-semi-bold text-error-login">{errorMessage}</span>
+                                            <span className="fw-semi-bold text-white">{errorMessage}</span>
                                         </div>
                                     ) : (<p className='login-box-msg'></p>)}
 
@@ -109,7 +108,7 @@ const Forgot = () => {
                                         </div>
                                     </Form.Label>
                                     {formik.touched.email && formik.errors.email ? (
-                                        <span className="float-right text-error badge badge-danger">{formik.errors.email}</span>
+                                        <span cla   ssName="float-right text-error badge badge-danger">{formik.errors.email}</span>
                                     ) : null}
 									{errMsg && errMsg.email ? (
                                         <span className="float-right text-error badge badge-danger">{errMsg.email}</span>
@@ -166,7 +165,7 @@ const Forgot = () => {
             </div>
 
             <div className="h-auto overflow-hidden mobile-hide">
-                <img src={banner} className="scale-100" />
+                <img src={banner} className="w-[100%] h-[100%]" />
             </div>
 
 

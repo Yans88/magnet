@@ -11,7 +11,7 @@ import {
 import Button from "../components/button/Button";
 import { Form } from "react-bootstrap";
 
-import banner from "../assets/image_1.svg";
+import banner from "../assets/image_1.png";
 import logoa from "../assets/logo.svg";
 
 import password_icon from "../assets/password.svg";
@@ -75,7 +75,7 @@ const Reset = () => {
     <div class="">
       <div class="w-full grid lg:grid-cols-2 gap-4 bg-white">
         <div className="overflow-hidden mobile-view">
-          <img src={banner} className="scale-100" />
+          <img src={banner} className="w-[100%] h-[100%]" />
         </div>
 
         <div className="grid grid-cols-1 gap-0 place-items-center">
@@ -95,7 +95,7 @@ const Reset = () => {
                   </div>
                 </div>
                 <div class="grid grid-cols-1 place-items-center">
-                  <div className="card-body" style={{ paddingTop: "0px" }}>
+                  <div className="card-body" style={{ paddingTop: "0px",width:"100%"}}>
                     {errorMessage ? (
                       <div
                         className={
@@ -117,7 +117,7 @@ const Reset = () => {
                         >
                           ×
                         </button>
-                        <span className="fw-semi-bold text-error-login">
+                        <span className="fw-semi-bold text-white">
                           Info: {errorMessage}
                         </span>
                       </div>
@@ -137,6 +137,7 @@ const Reset = () => {
                           </div>
                         </Form.Label>
                         {formik.touched.password && formik.errors.password ? (
+                          
                           <span className="float-right text-error badge badge-danger">
                             {formik.errors.password}
                           </span>
@@ -223,7 +224,7 @@ const Reset = () => {
         </div>
 
         <div className="h-auto overflow-hidden mobile-hide">
-          <img src={banner} className="scale-100" />
+          <img src={banner} className="w-[100%] h-[100%]" />
         </div>
       </div>
     </div>
