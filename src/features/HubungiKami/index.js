@@ -170,9 +170,19 @@ class HubungiKami extends Component {
                                                             <div className="w-1/12">
                                                                 <img src={email_red} width="30px" />
                                                             </div>
-                                                            <p className="w-11/12 text-base font-bold text-gray-600 text-left ...">
-                                                                <a href={profile_perusahaan.website}><span className="text-white ml-3">{profile_perusahaan.website}</span></a>
-                                                            </p>
+
+                                                            <p className="pl-3 w-11/12 text-base font-bold text-gray-600 text-left ...">
+                                                                    <a href={profile_perusahaan.website} title="">
+                                                                        <span className="text-white">{profile_perusahaan.website}</span>
+                                                                    </a>
+                                                                </p>
+                                                                
+
+                                                            {/* <p className="ml-3 w-11/12 text-base font-bold text-white text-left ...">
+                                                            <a href="#" className=""><span className=" text-base font-bold text-white text-left ...">
+                                                            {profile_perusahaan.website}
+                                                                </span></a>
+                                                                </p> */}
 
                                                         </div>
                                                     </div>
@@ -195,7 +205,7 @@ class HubungiKami extends Component {
                                                             placeholder="Masukkan Subjek" />
                                                     </Form.Group>
                                                     <Form.Group controlId="message">
-                                                        <Form.Label>Pesan</Form.Label>
+                                                        <Form.Label><span style={{ fontWeight: "bold", color: "#000" }}>Pesan</span></Form.Label>
 
                                                         <Form.Control
                                                             autoComplete="off"

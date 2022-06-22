@@ -135,7 +135,7 @@ class KetentuanTrading extends Component {
                                     <div className="card-body" style={{ padding: "0" }}>
                                         <div className="alert alert-default alert-sm" style={{ backgroundColor: '#fbfbfd' }} >
                                             <div className="mobile-hide" style={{ padding: "1" }}>
-                                                <h3 className="label_ijo">Peraturan Trading</h3>
+                                                <h3 className="label_ijo">4. Peraturan Trading</h3>
                                             </div>
                                         </div>
 
@@ -144,7 +144,7 @@ class KetentuanTrading extends Component {
                                         <div >
                                             <div className="alert alert-default alert-sm" style={{ backgroundColor: '#fbfbfd' }} >
                                                 <div className="mobile-view" style={{ fontSize: "20px", paddingLeft: "5%" }}>
-                                                    <h3 className="label_ijo">Peraturan Trading</h3>
+                                                    <h3 className="label_ijo">4. Peraturan Trading</h3>
                                                 </div>
 <div dangerouslySetInnerHTML={{ __html: dataKetentuanTrading.ketentuan }} />
                                                

@@ -1321,3 +1321,7 @@ tbody td {
   content: "";
   display: none !important;
 }
+
+.rs-panel-heading::before{
+  right:5px !important;
+}

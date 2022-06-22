@@ -113,6 +113,7 @@ class Personal extends Component {
     const location = window.location.href;
     const BaseName = location.substring(location.lastIndexOf("/") + 1);
     await this.setState({ lastSegmentUrl: BaseName });
+    console.log('hello user', this.props.user)
   };
 
   handleSelect(activeKey) {
@@ -341,6 +342,8 @@ class Personal extends Component {
         this.setState({ ...this.state, ktpTemp: reader.result });
       };
       await this.sleep(5500);
+
+      console.log('hello',this.props.user)
 
       errors.nama_depan = !this.props.user.nama_depan
         ? "Kolom ini harus diisi"
@@ -1135,7 +1138,7 @@ class Personal extends Component {
                                     className="text-2xl label_ijo"
                                     style={{ fontSize: "28px", fontWeight: "bold" }}
                                   >
-                                    Detil Pribadi
+                                    1. Detil Pribadi
                                   </span>
                                 </div>
                               </div>
@@ -1149,7 +1152,7 @@ class Personal extends Component {
                                     className="text-2xl label_ijo"
                                     style={{ fontSize: "20px", fontWeight: "bold" }}
                                   >
-                                    Detil Pribadi
+                                    1. Detil Pribadi
                                   </span>
                                 </div>
                               </div>

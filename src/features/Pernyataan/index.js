@@ -216,7 +216,7 @@ class Pernyataan extends Component {
                                 <div className="card card-success shadow-lg" style={{ "minHeight": "800px",borderRadius:"2rem" }}>
                                     <div className="card-body ">
                                         <div style={{ paddingLeft: 0, paddingRight: 0, paddingTop: 0 }}>
-                                                    <h3 className="label_ijo">Pernyataan</h3>
+                                                    <h3 className="label_ijo">3. Pernyataan</h3>
                                             <br />
 
                                             <PanelGroup accordion activeKey={defaultActiveKey} defaultActiveKey={1} onSelect={this.handleSelect.bind(this)}>
@@ -251,27 +251,27 @@ class Pernyataan extends Component {
                                                         <Row>
                                                             <Col xs={24} lg={6}>
                                                                 <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Alamat Rumah</span></label></Col>
-                                                        </Row>
-                                                        <Row>
-                                                            <Col xs={24} lg={18}>
+                                                                <Col xs={24} lg={18}>
                                                                 <Input readOnly size="lg" value={user && user.alamat ? user.alamat : ''} />
                                                             </Col>
                                                         </Row>
                                                         
                                                         <br />
                                                         <Row>
-                                                            <Col xs={9}>
+                                                            <Col xs={24} lg={6}>
                                                                 <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">No.Identitas</span></label></Col>
-                                                            <Col xs={9}>
-                                                                <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">No.Demo Acc.</span></label></Col>
-
-                                                            
-                                                        </Row>
-                                                        <Row>
-                                                            <Col xs={9}>
+                                                           
+                                                            <Col xs={24} lg={6}>
                                                                 <Input readOnly size="lg" value={user && user.no_identitas ? user.no_identitas : ''} />
                                                             </Col>
-                                                            <Col xs={9}>
+                                                            
+                                                        </Row>
+                                                        <br />
+                                                        <Row>
+                                                            
+                                                            <Col xs={24} lg={6}>
+                                                                <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">No.Demo Acc.</span></label></Col>
+                                                            <Col xs={24} lg={6}>
                                                                 <Input readOnly size="lg" value={localStorage.getItem('loginDemo') ? localStorage.getItem('loginDemo') : ''} />
                                                             </Col>
                                                         </Row>
