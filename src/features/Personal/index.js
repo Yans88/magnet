@@ -338,10 +338,7 @@ class Personal extends Component {
       this.props.onUploadKTP(dtKTP);
       let reader = new FileReader();
       reader.readAsDataURL(value);
-      reader.onloadend = () => {
-        this.setState({ ...this.state, ktpTemp: reader.result });
-      };
-      await this.sleep(5500);
+      
 
       console.log('hello',this.props.user)
 
@@ -392,8 +389,12 @@ class Personal extends Component {
       errors.status_kepemilikan = !this.props.user.status_kepemilikan
         ? "Kolom ini harus diisi"
         : "";
-
-      this.setState({ errors });
+		reader.onloadend = () => {
+			this.setState({ ...this.state, ktpTemp: reader.result });
+			this.setState({ errors });
+		};
+      await this.sleep(5500);
+      
     }
 
     if (value) {
@@ -476,6 +477,9 @@ class Personal extends Component {
         ? "Kolom ini harus diisi"
         : "";
     errors.nama_ibu_kandung = !this.props.user.nama_ibu_kandung
+      ? "Kolom ini harus diisi"
+      : "";
+	errors.photo_ktp_download = !this.props.user.photo_ktp_download
       ? "Kolom ini harus diisi"
       : "";
     errors.alamat = !this.props.user.alamat ? "Kolom ini harus diisi" : "";
@@ -837,6 +841,8 @@ class Personal extends Component {
         }}
       />
     );
+	
+
 
     return (
       <div className="content-wrapper mt-3 pr-1  pl-2">
@@ -1043,7 +1049,15 @@ class Personal extends Component {
                                       setfieldvalue=""
                                       onChange={this.handleChangePhoto.bind(this)}
                                     ></Form.File>
+									{errMsg1.photo_ktp_download ? (
+										  <span className="text-error badge badge-danger">
+											{errMsg1.photo_ktp_download}
+										  </span>
+										) : (
+										  ""
+										)}
                                   </Form.Group>
+								  
                                 </Form>
 
                               </div>
@@ -1078,13 +1092,14 @@ class Personal extends Component {
 
                                       <div className="mobile-hide">
                                         <div className="flex justify-start">
+										
                                           <div className="mr-3">
                                             <a href="#">
                                               <img src={close1} onClick={this.deleteKtp.bind(this)} width="25px" />
                                             </a>
                                           </div>
                                           <div className="mr-3">
-                                            <a href={ktpTemp ? ktpTemp : photo_ktp}>
+                                            <a href={user && user.photo_ktp_download ? user.photo_ktp_download : photo_ktp}>
                                               <img src={unduh_ijo} width="25px" />
                                             </a>
                                           </div>

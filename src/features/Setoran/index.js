@@ -87,7 +87,7 @@ class Setoran extends Component {
     let val = this.state.selected.setor ? this.state.selected.setor : 0;
     let rate = record.rate > 0 ? record.rate : 1;
     this.setState({
-      errMsg: this.initSelected,
+      errMsg: {},
       selected: {
         ...this.state.selected,
         ...record,
@@ -101,6 +101,7 @@ class Setoran extends Component {
     var errors = this.state.errMsg;
     if (this.state.nextStep) {
       errors.setor = !this.state.selected.setor ? "Required" : "";
+      errors.setor = errors.setor === '' &&  parseInt(this.state.selected.setor) <= 0 ? "Jumlah setor harus besar 0" : errors.setor;
       errors.img = !this.state.selected.img ? "Required" : '';
       if (this.state.selected.img) {
         var fileSize = this.state.selected.img.size;
@@ -122,9 +123,12 @@ class Setoran extends Component {
   };
 
   handleBack = () => {
+	   var errors = this.state.errMsg;
     this.setState({
       nextStep: this.state.nextStep1 ? true : false,
       nextStep1: false,
+	  errMsg: {},
+	  errors: {},
     });
   };
 
@@ -330,7 +334,7 @@ class Setoran extends Component {
     const { data_bank, akun_trading, data_history } = this.props;
     const { selected, errMsg } = this.state;
     const myRate = selected.rate === "0" ? 1 : selected.rate;
-
+console.log(this.state);
     const contentNext = (
       <Fragment>
         <div className="modal-box mb-1">
@@ -555,11 +559,7 @@ class Setoran extends Component {
                 <div className="form-group">
                   <div className="form-group">
                     <label className="frm_lbl">Jumlah Setor (USD)</label>
-                    {errMsg.setor ? (
-                      <span className="float-right text-error badge badge-danger">
-                        {errMsg.setor}
-                      </span>
-                    ) : null}
+                    
 
                       <div className="flex flex-row">
                         <div className="flex justify-center items-center" style={{width:'35px',height:'33.5px',border: "1px solid #ced4da",background:"#e9ecef",borderRight:0}}>&#36;</div>
@@ -571,7 +571,13 @@ class Setoran extends Component {
                         type="number"
                         className="form-control"
                       />
+					  
                     </div>
+					{errMsg.setor ? (
+                      <span className="float-right text-error badge badge-danger">
+                        {errMsg.setor}
+                      </span>
+                    ) : null}
                   </div>
                 </div>
               </div>

@@ -52,6 +52,7 @@ const Login = () => {
   
 
   const hideAlert = () => {
+	  setShowModalDialog(false);
     dispatch(clearState());
   };
   document.getElementById("root").classList = "hold-transition";
@@ -348,7 +349,7 @@ const Login = () => {
         show={showModalDialog}
         size="sm"
         form={contentDelete}
-        // handleClose={}
+        handleClose={hideAlert}
         backdrop="static"
         keyboard={false}
         noBtnAction={true}
