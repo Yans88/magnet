@@ -165,7 +165,7 @@ const Forgot = () => {
                                     <div className="w-2/4 mt-2">
                                         <Button
                                             block
-											disabled={selected.myCaptcha && selected.email ? false : true}
+											disabled={selected.myCaptcha ? false : true}
                                             type="submit"
                                             isLoading={isFetching}
                                             theme=""
