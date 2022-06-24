@@ -215,7 +215,7 @@ class Setoran extends Component {
 		}
       this.setState({
         loadingForm: false,
-        selected: { ...this.state.selected, setor: val / rate, jml_setor: val },
+        selected: { ...this.state.selected, setor: (val / rate).toFixed(2), jml_setor: val },
       });
     }
     if (name === "setor") {
