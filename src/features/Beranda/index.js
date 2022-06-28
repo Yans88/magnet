@@ -216,7 +216,7 @@ class Beranda extends Component {
     this.setState({
       myStatusDokumen: false,
     });
-	this.props.history.push("/rej-doc");
+	//this.props.history.push("/rej-doc");
   }
 
   render() {
