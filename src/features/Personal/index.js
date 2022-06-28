@@ -331,6 +331,10 @@ class Personal extends Component {
       // const base64str = img.data;
       // const imgExt = img.ext;
       //const resizedFiile = Compress.convertBase64ToFile(base64str, imgExt);
+		if (value.size > 20971520) {
+            this.setState({ loadingForm: true, errMsg1: { ...this.state.errMsg1, photo_ktp_download: "File size over 20MB" } });                
+            return;
+        }
       const dtKTP = {
         file: value,
         data_pribadi_id: this.props.user.data_pribadi_id,
@@ -398,6 +402,10 @@ class Personal extends Component {
     }
 
     if (value) {
+		if (value.size > 20971520) {
+            this.setState({ loadingForm: true, errMsg1: { ...this.state.errMsg1, [name]: "File size over 20MB" } });                
+            return;
+        }
       const dt = {
         file: value,
         tipe: name,

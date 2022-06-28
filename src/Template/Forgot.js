@@ -159,9 +159,7 @@ const Forgot = () => {
 
                                     <div className="social-auth-links text-center mt-2 mb-3">
                                     <div className="grid grid-cols-1 gap-0 place-items-center">
-                                    <div className="w-full mb-2">
-                                        <div className="text-black text-sm ">Belum menerima password baru ?<a href="#" onClick={handleSubmit} className="text-center italic text-hijau-forex"><br/> Kirim ulang</a></div>
-                                    </div>    
+                                   
                                     <div className="w-2/4 mt-2">
                                         <Button
                                             block
