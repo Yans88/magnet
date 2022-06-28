@@ -179,17 +179,7 @@ class AkunBank extends Component {
                                           {dp.no_rek}
                                         </div>
                                       </div>
-                                      <div
-                                        className="flex mb-1"
-                                        style={{ fontSize: 15 }}
-                                      >
-                                        <div style={{ width: "120px" }}>
-                                          Cabang
-                                        </div>{" "}
-                                        <div className="hidden-colon">
-                                          {dp.cabang}
-                                        </div>
-                                      </div>
+                                     
                                     </div>
                                   </div>
                                 </div>
