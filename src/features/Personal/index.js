@@ -609,8 +609,8 @@ class Personal extends Component {
         ? this.props.dataKekayaan.deposit_bank.replace(/,/g, "")
         : 0
     );
-    errors.njop = njop < 100000000 ? "Min. 100.000.000" : "";
-    errors.deposit_bank = deposit_bank < 10000000 ? "Min. 10.000.000" : "";
+    errors.njop = errors.njop === "" && njop < 100000000 ? "Min. 100.000.000" : "";
+    errors.deposit_bank = errors.deposit_bank === "" && deposit_bank < 10000000 ? "Min. 10.000.000" : "";
     this.setState({ errors });
     if (this.validateForm(this.state.errMsg3)) {
       const saveData = {
