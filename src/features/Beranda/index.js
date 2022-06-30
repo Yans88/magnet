@@ -215,6 +215,7 @@ class Beranda extends Component {
     localStorage.removeItem("myStatusDokumen2");
     this.setState({
       myStatusDokumen: false,
+      myStatusDokumen2: false,
     });
 	//this.props.history.push("/rej-doc");
   }
