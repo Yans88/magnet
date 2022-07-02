@@ -101,7 +101,7 @@ class Setoran extends Component {
     var errors = this.state.errMsg;
     if (this.state.nextStep) {
       errors.setor = !this.state.selected.setor ? "Required" : "";
-      errors.setor = errors.setor === '' &&  parseInt(this.state.selected.setor) <= 0 ? "Jumlah setor harus besar 0" : errors.setor;
+      errors.setor = errors.setor === '' &&  parseInt(this.state.selected.setor) <= 0 ? "Jumlah setor harus lebih besar dari 0" : errors.setor;
       errors.img = !this.state.selected.img ? "Required" : '';
       if (this.state.selected.img) {
         var fileSize = this.state.selected.img.size;
@@ -334,7 +334,7 @@ class Setoran extends Component {
     const { data_bank, akun_trading, data_history } = this.props;
     const { selected, errMsg } = this.state;
     const myRate = selected.rate === "0" ? 1 : selected.rate;
-console.log(this.state);
+
     const contentNext = (
       <Fragment>
         <div className="modal-box mb-1">
