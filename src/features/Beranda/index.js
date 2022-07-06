@@ -219,6 +219,15 @@ class Beranda extends Component {
     });
 	//this.props.history.push("/rej-doc");
   }
+  
+  handleClose2A() {
+    localStorage.removeItem("myStatusDokumen2");
+    this.setState({
+      myStatusDokumen: false,
+      myStatusDokumen2: false,
+    });
+	this.props.history.push("/rej-doc");
+  }
 
   render() {
     const { akun_trading, akun_trading_demo, profile, profile_perusahaan } = this.props;
@@ -795,7 +804,7 @@ class Beranda extends Component {
                     backdrop="static"
                     keyboard={false}
                     title="Status"
-                    formSubmit={this.handleClose2.bind(this)}
+                    formSubmit={this.handleClose2A.bind(this)}
                     titleButton="Perbaiki Data"
                     themeButton="danger"
                   />
