@@ -1138,7 +1138,7 @@ class Personal extends Component {
                                     className="text-2xl label_ijo"
                                     style={{ fontSize: "28px", fontWeight: "bold" }}
                                   >
-                                    1. Detil Pribadi
+                                    Detil Pribadi
                                   </span>
                                 </div>
                               </div>
@@ -1152,7 +1152,7 @@ class Personal extends Component {
                                     className="text-2xl label_ijo"
                                     style={{ fontSize: "20px", fontWeight: "bold" }}
                                   >
-                                    1. Detil Pribadi
+                                    Detil Pribadi
                                   </span>
                                 </div>
                               </div>
@@ -1946,13 +1946,7 @@ class Personal extends Component {
                                   <Form.Label>
                                     Pengalaman Trading anda Sebelumnya di
                                   </Form.Label>
-                                  {errMsg2.pertanyaan2 ? (
-                                    <span className="text-error badge badge-danger">
-                                      {errMsg2.pertanyaan2}
-                                    </span>
-                                  ) : (
-                                    ""
-                                  )}
+                                  
                                   <Form.Control
                                     value={
                                       dataExpTrading.pertanyaan2
@@ -1969,6 +1963,14 @@ class Personal extends Component {
                                     required
                                     placeholder="Nama Perusahaan/Brand"
                                   />
+
+{errMsg2.pertanyaan2 ? (
+                                    <span className="text-error badge badge-danger">
+                                      {errMsg2.pertanyaan2}
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
                                 </Form.Group>
                               ) : (
                                 ""
@@ -2070,7 +2072,7 @@ class Personal extends Component {
                                   controlId="pertanyaan6"
                                 >
                                   <Form.Label>
-                                    Pengalaman Trading Berjangka anda Sebelumnya
+                                    Pengalaman Trading Berjangka Anda Sebelumnya
                                     di
                                   </Form.Label>
 
@@ -2884,15 +2886,7 @@ class Personal extends Component {
                                 xs={12}
                                 lg={6}
                                 controlId="status_pekerjaan">
-                                {errMsg5.status_pekerjaan ? (
-                                  <span
-                                    className="text-error badge badge-danger"
-                                  >
-                                    {errMsg5.status_pekerjaan}
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
+                                
                                 <Form.Control
                                   name="status_pekerjaan"
                                   size="lg"
@@ -2918,6 +2912,15 @@ class Personal extends Component {
                                   <option value="BUMN">BUMN</option>
                                   <option value="Lainnya">Lainnya</option>
                                 </Form.Control>
+                                {errMsg5.status_pekerjaan ? (
+                                  <span
+                                    className="text-error badge badge-danger"
+                                  >
+                                    {errMsg5.status_pekerjaan}
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                               </Form.Group>
 
                               <Form.Group

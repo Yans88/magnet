@@ -145,7 +145,7 @@ class TypeAccount extends Component {
                                     <div className="card-body">
                                      <div className="alert alert-default alert-sm" style={{ backgroundColor: '#fbfbfd' }} >
                                             <div className="mobile-hide" style={{ padding: "1" }}>
-                                                <h3 className="label_ijo">2. Tipe Akun</h3>
+                                                <h3 className="label_ijo">Tipe Akun</h3>
                                             </div>
                                         </div>
                                         <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 20 }}>
@@ -196,7 +196,7 @@ class TypeAccount extends Component {
                                                                             <Button
                                                                                 onClick={this.handleClickBtn.bind(this, dta)}
                                                                                 disabled={dataSelect.rate ? false : true}
-                                                                                size="lg" variant="" style={{ backgroundColor: "#C3262A", color: "#fff", marginRight: "0%" }}>Daftar Akun</Button>
+                                                                                size="lg" variant="success">Daftar Akun</Button>
                                                                         </div>
                                                                     </div>
                                                                 </Card.Body>

@@ -337,13 +337,15 @@ class Penarikan extends Component {
                     </div>
 
                     <div className="row">
-                        <div className="col-sm-6">
+                        <div className="col-sm-10">
                             <div className="form-group">
                                 <div className="form-group">
                                     <label className="frm_lbl">Jumlah Penarikan (USD)</label>
-
+                                    <div className="flex flex-row">
+                        <div className="flex justify-center items-center" style={{width:'35px',height:'33.5px',border: "1px solid #ced4da",background:"#e9ecef",borderRight:0}}>&#36;</div>
                                     <div>
-                                        <input name="nominal" value={selected.nominal} onChange={this.handleChange.bind(this)} type="number" className="form-control" />
+                                        <input name="nominal" value={selected.nominal} onChange={this.handleChange.bind(this)} type="number" className="form-control" style={{borderRadius:0}} />
+                                    </div>
                                     </div>
                                     {errMsg.nominal ?
                                         (<span className="text-error badge badge-danger">{errMsg.nominal}</span>) : null}
@@ -355,24 +357,27 @@ class Penarikan extends Component {
 					
 					{selected.rate !== "0" && (
 						<div className="row">
-							<div className="col-sm-6">
+							<div className="col-sm-10">
 							  <div className="form-group">
 								<div className="form-group">
 								  <label className="frm_lbl">Jumlah Setor (IDR)</label>
-								  <div>
-									<NumberFormat
-									  disabled={true}
-									  name="jml_setor"
-									  className="form-control form-control-sm"
-									  value={
-										selected.jml_nominal ? selected.jml_nominal : "0,00"
-									  }
-									  thousandSeparator={true}
-									  decimalScale={2}
-									  inputMode="numeric"
-									  autoComplete="off"
-									  placeholder="Jumlah Setor"
-									/>
+                                  <div className="flex flex-row" style={{paddingRight:'5px'}}>
+                                    <div className="flex justify-center items-center" style={{width:'42px',height:'29.5px',border: "1px solid #ced4da",background:"#e9ecef",borderRight:0}}>Rp</div>
+                                   
+                                        <NumberFormat
+                                        disabled={true}
+                                        name="jml_setor"
+                                        className="form-control form-control-sm"
+                                        value={
+                                            selected.jml_nominal ? selected.jml_nominal : "0,00"
+                                        }
+                                        thousandSeparator={true}
+                                        decimalScale={2}
+                                        inputMode="numeric"
+                                        autoComplete="off"
+                                        placeholder="Jumlah Setor"
+                                        style={{borderRadius:0}}
+                                        />
 								  </div>
 								</div>
 							  </div>

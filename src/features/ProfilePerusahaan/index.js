@@ -192,7 +192,7 @@ class ProfilePerusahaan extends Component {
                         color: "#2DB147",
                       }}
                     >
-                      5. Profil Perusahaan
+                      Profil Perusahaan
                     </h3>
                     <div
                       style={{

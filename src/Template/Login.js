@@ -236,7 +236,7 @@ const Login = () => {
                       >
                         ×
                       </button>
-                      <span className="fw-semi-bold text-error-login">
+                      <span className="text-bold text-white">
                         Error: {errorMessage}
                       </span>
                     </div>

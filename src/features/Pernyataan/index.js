@@ -216,7 +216,7 @@ class Pernyataan extends Component {
                                 <div className="card card-success shadow-lg" style={{ "minHeight": "800px",borderRadius:"2rem" }}>
                                     <div className="card-body ">
                                         <div style={{ paddingLeft: 0, paddingRight: 0, paddingTop: 0 }}>
-                                                    <h3 className="label_ijo">3. Pernyataan</h3>
+                                                    <h3 className="label_ijo">Pernyataan</h3>
                                             <br />
 
                                             <PanelGroup accordion activeKey={defaultActiveKey} defaultActiveKey={1} onSelect={this.handleSelect.bind(this)}>
