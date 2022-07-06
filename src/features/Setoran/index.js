@@ -432,7 +432,7 @@ class Setoran extends Component {
                 </div>
 				
 				{(selected.rate > "0" || selected.rate > 0) && (
-                <div className="col-sm-6">
+                <div className="col-sm-10">
                   <div className="form-group">
                     <div className="form-group">
                       <div>
@@ -555,11 +555,11 @@ class Setoran extends Component {
             </div>
 
             <div className="row">
-              <div className="col-sm-6">
+              <div className="col-sm-10">
                 <div className="form-group">
-                  <div className="form-group">
+                  <div className="form-group mb-1">
                     <label className="frm_lbl">Jumlah Setor (USD)</label>
-                    
+                   
 
                       <div className="flex flex-row">
                         <div className="flex justify-center items-center" style={{width:'35px',height:'33.5px',border: "1px solid #ced4da",background:"#e9ecef",borderRight:0}}>&#36;</div>
@@ -579,13 +579,18 @@ class Setoran extends Component {
                       </span>
                     ) : null}
                   </div>
+                  {errMsg.setor ? (
+                    <span className="float-left text-error badge badge-danger">
+                      {errMsg.setor}
+                    </span>
+                  ) : null}
                 </div>
               </div>
             </div>
 
             {selected.rate !== "0" && (
               <div className="row">
-                <div className="col-sm-6">
+                <div className="col-sm-10">
                   <div className="form-group">
                     <div className="form-group">
                       <label className="frm_lbl">Jumlah Setor (IDR)</label>

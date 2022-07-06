@@ -1078,7 +1078,7 @@ class Personal extends Component {
                                                     {dataExpTrading.pertanyaan5 === 'Y' ? (
                                                         <Form.Row>
                                                             <Form.Group as={Col} controlId="pertanyaan6">
-                                                                <Form.Label>Pengalaman Trading Berjangka anda Sebelumnya di</Form.Label>
+                                                                <Form.Label>Pengalaman Trading Berjangka Anda Sebelumnya di</Form.Label>
                                                                 <Form.Control
                                                                     value={dataExpTrading.pertanyaan6 ? dataExpTrading.pertanyaan6 : ''}
                                                                     autoComplete="off"

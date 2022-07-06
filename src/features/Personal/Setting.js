@@ -138,7 +138,7 @@ class Setting extends Component {
                                                
                                                 <Fragment>
                                                 <div className="border py-4 px-4 w-[100%] shadow-lg rounded-2xl ">    
-                                                    <Row>
+                                                    <Row className="mb-3">
                                                         <Col >
                                                             {errMsg1.current_password ?
                                                                 (<span className="float-right text-error badge badge-danger">{errMsg1.current_password}</span>) : ''}
@@ -152,10 +152,22 @@ class Setting extends Component {
                                                                 required
                                                                 placeholder="Current Password" />
                                                         </Col>
+                                                    
+                                                        {
+                                                                    profile.current_password && (
+                                                                        <div className="flex flex-col input-group mt-2">
+                                                                            <p className="text-muted mb-2">Password must contain the following:</p>
+                                                                            <ul>
+                                                                                <li className="text-xs mb-1 text-success"><i class="fa fa-check"></i> Only one or more <b>lowercase</b> letter</li>
+                                                                                <li className="text-xs mb-1 text-success"><i class="fa fa-check"></i> Only one or more <b>number</b></li>
+                                                                                <li className="text-xs mb-1 text-danger"><i class="fa fa-times"></i>&nbsp; Minimum <b>8 Characters</b> letter or number</li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                        
                                                     </Row>
-                                                    <br />
-                                                    <br />
-                                                    <Row>
+                                                    <Row className="mb-3">
                                                         <Col >
                                                             {errMsg1.password ?
                                                                 (<span className="float-right text-error badge badge-danger">{errMsg1.password}</span>) : ''}
@@ -170,9 +182,7 @@ class Setting extends Component {
                                                                 placeholder="New Password" />
                                                         </Col>
                                                     </Row>
-                                                    <br />
-                                                    <br />
-                                                    <Row>
+                                                    <Row className="mb-3">
                                                         <Col >
                                                             {errMsg1.konfirmasi_password ?
                                                                 (<span className="float-right text-error badge badge-danger">{errMsg1.konfirmasi_password}</span>) : ''}
@@ -187,8 +197,6 @@ class Setting extends Component {
                                                                 placeholder="Repeat New Password" />
                                                         </Col>
                                                     </Row>
-                                                    <br />
-                                                    <br />
                                                     
                                                 </div>
                                                 <div className="grid grid-cols-1 place-items-center mt-4 mb-2" >
@@ -208,7 +216,7 @@ class Setting extends Component {
                                             {active_tab === 'profile' && (
                                                 <Fragment>
                                                     <div className="border py-4 px-4 w-[100%] shadow-lg rounded-2xl ">
-                                                    <Row>
+                                                    <Row  className="mb-3">
                                                         <Col>
                                                             <Form.Control
                                                                 value={user.nama_depan ? user.nama_depan : ''}
@@ -224,9 +232,7 @@ class Setting extends Component {
                                                         </Col>
                                                     </Row>
                                                    
-                                                    <br />
-                                                    <br />
-                                                    <Row>
+                                                    <Row  className="mb-3">
                                                         <Col>
                                                             {errMsg1.email ?
                                                                 (<span className="float-right text-error badge badge-danger">{errMsg1.email}</span>) : ''}

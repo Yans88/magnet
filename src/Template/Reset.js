@@ -143,7 +143,7 @@ const Reset = () => {
                           </span>
                         ) : null}
                         <div
-                          className="input-group mb-3"
+                          className={"input-group " + (formik.touched.password  ?  "mb-1" : "mb-3")}
                           style={{
                             border: "1px solid #B7B7B7",
                             padding: "5px",
@@ -164,6 +164,19 @@ const Reset = () => {
                             {...formik.getFieldProps("password")}
                           />
                         </div>
+
+                        {
+                          formik.touched.password && (
+                            <div className="flex flex-col input-group mb-1">
+                            <p className="text-muted mb-2">Password must contain the following:</p>
+                              <ul>
+                                <li className="text-xs mb-1 text-success"><i class="fa fa-check"></i> Only one or more <b>lowercase</b> letter</li>
+                                <li className="text-xs mb-1 text-success"><i class="fa fa-check"></i> Only one or more <b>number</b></li>
+                                <li className="text-xs mb-1 text-danger"><i class="fa fa-times"></i>&nbsp; Minimum <b>8 Characters</b> letter or number</li>
+                              </ul>
+                            </div>
+                          )
+                        }
 
                         {formik.touched.konfirmasi_password &&
                         formik.errors.konfirmasi_password ? (
