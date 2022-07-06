@@ -87,7 +87,7 @@ class Setoran extends Component {
     let val = this.state.selected.setor ? this.state.selected.setor : 0;
     let rate = record.rate > 0 ? record.rate : 1;
     this.setState({
-      errMsg: this.initSelected,
+      errMsg: {},
       selected: {
         ...this.state.selected,
         ...record,
@@ -101,7 +101,8 @@ class Setoran extends Component {
     var errors = this.state.errMsg;
     if (this.state.nextStep) {
       errors.setor = !this.state.selected.setor ? "Required" : "";
-      //errors.phonepass = !this.state.selected.phonepass ? "Required" : '';
+      errors.setor = errors.setor === '' &&  parseInt(this.state.selected.setor) <= 0 ? "Jumlah setor harus lebih besar dari 0" : errors.setor;
+      errors.img = !this.state.selected.img ? "Required" : '';
       if (this.state.selected.img) {
         var fileSize = this.state.selected.img.size;
         if (fileSize > 2099200) {
@@ -122,9 +123,12 @@ class Setoran extends Component {
   };
 
   handleBack = () => {
+	   var errors = this.state.errMsg;
     this.setState({
       nextStep: this.state.nextStep1 ? true : false,
       nextStep1: false,
+	  errMsg: {},
+	  errors: {},
     });
   };
 
@@ -199,6 +203,21 @@ class Setoran extends Component {
         [name]: val,
       },
     });
+	
+	if (name === "jml_setor") {
+      let rate = this.state.selected.rate > 0 ? this.state.selected.rate : 1;
+	  const myArray = val.split(",");		
+		if(myArray.length > 0){
+			val ='';
+			for(var i=0;i<myArray.length;i++){
+			  val +=myArray[i];
+			}
+		}
+      this.setState({
+        loadingForm: false,
+        selected: { ...this.state.selected, setor: (val / rate).toFixed(2), jml_setor: val },
+      });
+    }
     if (name === "setor") {
       let rate = this.state.selected.rate > 0 ? this.state.selected.rate : 1;
       this.setState({
@@ -227,8 +246,7 @@ class Setoran extends Component {
     this.props.onLoadHistory(queryString);
   }
 
-  validateForm(errors) {
-    console.log(errors);
+  validateForm(errors) {    
     let valid = true;
     Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
     return valid;
@@ -553,7 +571,13 @@ class Setoran extends Component {
                         type="number"
                         className="form-control"
                       />
+					  
                     </div>
+					{errMsg.setor ? (
+                      <span className="float-right text-error badge badge-danger">
+                        {errMsg.setor}
+                      </span>
+                    ) : null}
                   </div>
                   {errMsg.setor ? (
                     <span className="float-left text-error badge badge-danger">
@@ -574,12 +598,13 @@ class Setoran extends Component {
                         <div className="flex justify-center items-center" style={{width:'35px',height:'29.5px',border: "1px solid #ced4da",background:"#e9ecef",borderRight:0}}>Rp</div>
                         <NumberFormat
                           style={{borderRadius:0}}
-                          disabled={true}
+                          
                           name="jml_setor"
                           className="form-control form-control-sm"
                           value={
-                            selected.jml_setor ? selected.jml_setor : "0,00"
+                            selected.jml_setor ? selected.jml_setor : ""
                           }
+						  onChange={this.handleChange.bind(this)}
                           thousandSeparator={true}
                           decimalScale={2}
                           inputMode="numeric"

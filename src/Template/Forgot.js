@@ -8,7 +8,7 @@ import { Form } from 'react-bootstrap';
 import banner from '../assets/image_1.png';
 import logoa from '../assets/logo.svg';
 import email_icon from '../assets/email.svg';
-
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Forgot = () => {
 
@@ -18,8 +18,8 @@ const Forgot = () => {
     
     const dispatch = useDispatch();
 
-    const initData = { email:'' };
-    const errorValidate = { email:'' };
+    const initData = { email:'', myCaptcha: "", };
+    const errorValidate = { email:'', myCaptcha: "", };
     const [selected, setSelected] = useState(initData);
     const [errMsg, setErrMsg] = useState(errorValidate);
 
@@ -61,7 +61,24 @@ const Forgot = () => {
         //console.log(queryString);
         if (!error) dispatch(forgotPassword(selected));
     }
-   
+	function handleChangeCaptcha(value) {
+    setSelected({
+      ...selected,
+      myCaptcha: value,
+    });
+    //console.log("Captcha value:", value);
+  }
+
+  function handleExpired() {
+    const recaptchaValue = recaptchaRef.current.getValue();
+    setSelected({
+      ...selected,
+      myCaptcha: recaptchaValue,
+    });
+    // console.log("recaptchaValue:", recaptchaValue);
+  }
+  
+   const recaptchaRef = React.createRef();
 
     const hideAlert = () => { dispatch(clearState()) }
 
@@ -131,17 +148,22 @@ const Forgot = () => {
 
                                     </div>
 
-                                    
+                                    <ReCAPTCHA
+                          hl="id"
+                          ref={recaptchaRef}
+                          sitekey="6LfEKfEcAAAAAGH6QCdvmj3wSSzFSyw0dbIoSmpK"
+                          onChange={handleChangeCaptcha}
+                          onExpired={handleExpired}
+                        />
                                     
 
                                     <div className="social-auth-links text-center mt-2 mb-3">
                                     <div className="grid grid-cols-1 gap-0 place-items-center">
-                                    <div className="w-full mb-2">
-                                        <div className="text-black text-sm ">Belum menerima password baru ?<a href="#" onClick={handleSubmit} className="text-center italic text-hijau-forex"><br/> Kirim ulang</a></div>
-                                    </div>    
+                                   
                                     <div className="w-2/4 mt-2">
                                         <Button
                                             block
+											disabled={selected.myCaptcha ? false : true}
                                             type="submit"
                                             isLoading={isFetching}
                                             theme=""

@@ -61,10 +61,10 @@ class ProfilePerusahaan extends Component {
       this.props.persetujuan.agree1 === "N" || !this.props.persetujuan.agree1
         ? "Kolom ini harus diisi"
         : "";
-    // errors.agree2 =
-      // this.props.persetujuan.agree2 === "N" || !this.props.persetujuan.agree2
-        // ? "Kolom ini harus diisi"
-        // : "";
+    errors.agree2 =
+      this.props.persetujuan.agree2 === "N" || !this.props.persetujuan.agree2
+        ? "Kolom ini harus diisi"
+        : "";
     this.setState({ errors });
     if (this.validateForm(this.state.errMsg1)) {
       const qs = {

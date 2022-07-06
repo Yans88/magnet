@@ -793,6 +793,7 @@ export const mainSlice = createSlice({
       state.isFetching = false;
       state.errorMessage = null;
       state.showFormSuccess = false;
+      state.myStatus = false;
       state.contentMsg = "";
       state.tipeSWAL = "success";
       return state;
