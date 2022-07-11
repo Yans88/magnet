@@ -579,11 +579,7 @@ class Setoran extends Component {
                       </span>
                     ) : null}
                   </div>
-                  {errMsg.setor ? (
-                    <span className="float-left text-error badge badge-danger">
-                      {errMsg.setor}
-                    </span>
-                  ) : null}
+                  
                 </div>
               </div>
             </div>

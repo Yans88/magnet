@@ -79,7 +79,7 @@ class TypeAccount extends Component {
                                     lastSegmentUrl === "personal" ? "active default flex-1 p-3" : "default flex-1 p-3"
                                 }
                             >
-                                {act === 'create_new_akun' ? '1. Informasi Pribadi' : <a href="personal">1. Informasi Pribadi</a>}
+                                {sessionStorage.getItem('act_tipe_akun_id') === 'create_new_akun' ? '1. Informasi Pribadi' : <a href="personal">1. Informasi Pribadi</a>}
                             </li>
                             <li
                                 className={

@@ -60,7 +60,8 @@ class AkunBank extends Component {
   };
 
   render() {
-    const { data_bank } = this.props;
+    const { data_bank, profileUser } = this.props;
+	console.log(profileUser);
     const contentDelete = (
       <div
         dangerouslySetInnerHTML={{
@@ -115,7 +116,9 @@ class AkunBank extends Component {
                       <div className="row my-0 mx-0">
                         {data_bank
                           ? data_bank.map((dp, index, arr) => {
+							var nama_pemilik = dp.nama_pemilik.split(" ");
                             return (
+							
                               <Fragment key={index}>
                                 <div className="mobile-hide w-full">
                                   <div
@@ -165,7 +168,7 @@ class AkunBank extends Component {
                                           Nama Pemilik
                                         </div>{" "}
                                         <div className="hidden-colon">
-                                          {dp.nama_pemilik}
+                                          {nama_pemilik[0]}
                                         </div>
                                       </div>
                                       <div
@@ -277,13 +280,13 @@ class AkunBank extends Component {
                             className="w-auto bg-hijau-forex rounded-xl text-white pt-2 pb-2 grid grid-cols-1 place-items-center static"
                             style={{ backgroundColor: "#C2252C" }}
                           >
-                            <a
-                              href="add-bank-accounts"
+                            <a								
+                              href={profileUser.status_dokumen === "Approve" ? "add-bank-accounts" : "javascript:void(0)"}
                               className="btn btn-lgreen btn-sm"
                             >
-                              <span className="font-bold text-white">
+                              <button className="font-bold text-white" disabled={profileUser.status_dokumen === "Approve" ? false : true}>
                                 TAMBAH AKUN BANK
-                              </span>
+                              </button>
                             </a>
                           </div>
                         </div>
@@ -323,6 +326,7 @@ const mapStateToProps = (state) => ({
   tipeSWAL: state.penarikan.tipeSWAL,
   isLoading: state.penarikan.isFetching,
   showFormDelete: state.personal.showFormDelete,
+  profileUser: state.main.dtProfileUser,
   user: state.main.currentUser,
 });
 const mapDispatchToPros = (dispatch) => {
