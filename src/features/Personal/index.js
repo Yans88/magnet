@@ -1,5 +1,10 @@
 import React, { Component, Fragment } from "react";
-import { Icon, IconButton, Nav, Placeholder } from "rsuite";
+import { Nav, Placeholder } from "rsuite";
+import { Icon } from '@rsuite/icons';
+import IconButton from 'rsuite/IconButton';
+import FileDownloadIcon from '@rsuite/icons/FileDownload';
+import CloseIcon from '@rsuite/icons/Close';
+import { Gear, AddOutline } from '@rsuite/icons';
 import { connect } from "react-redux";
 import { Button, Col, Figure, Form } from "react-bootstrap";
 import NumberFormat from "react-number-format";
@@ -873,7 +878,7 @@ class Personal extends Component {
     );
 
     return (
-      <div className="content-wrapper mt-3 pr-1  pl-2">
+      <div className="content-wrapper pr-2">
         <section className="content">
           <div className="max-w-full px-3">
             <div className="content-area__edge">
@@ -1092,6 +1097,7 @@ class Personal extends Component {
                                     </div>
                                     <div className="pt-2">
                                       <img
+                                        style={{maxWidth:"100%"}}
                                         src={
                                           user.photo_ktp_download
                                             ? user.photo_ktp_download
@@ -3702,11 +3708,11 @@ class Personal extends Component {
                                   <li>KTP / SIM / Paspor</li>
                                   <li>Foto Selfie dengan KTP</li>
                                   <li className="with-no-style">
-                                    <img src={selfie_ktp} />
+                                    <img src={selfie_ktp} style={{maxWidth:"100%"}}/>
                                   </li>
                                   <li>Foto Buku Tabungan</li>
                                   <li className="with-no-style">
-                                    <img src={tabungan_book} />
+                                    <img src={tabungan_book} style={{maxWidth:"100%"}}/>
                                   </li>
                                 </ul>
                               </div>
@@ -3879,7 +3885,7 @@ class Personal extends Component {
                                                             )
                                                       }
                                                       icon={
-                                                        <Icon icon="close" />
+                                                        <CloseIcon />
                                                       }
                                                     />
                                                     <br />
@@ -3887,7 +3893,7 @@ class Personal extends Component {
                                                       <IconButton
                                                         style={{ marginTop: 5 }}
                                                         icon={
-                                                          <Icon icon="download2" />
+                                                          <FileDownloadIcon />
                                                         }
                                                       />
                                                     </a>

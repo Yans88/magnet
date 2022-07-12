@@ -6,6 +6,7 @@ import AppButton from '../../components/button/Button';
 import { chgPropsProfile, changePass, updProfile, clearState, profileUser } from '../main/mainSlice'
 import icon from '../../assets/setting.svg';
 import "../../styles/custom_muis.css";
+import GearIcon from '@rsuite/icons/Gear';
 
 
 class Setting extends Component {
@@ -99,13 +100,12 @@ class Setting extends Component {
 
                 <section className="content">
                     <div className="container-fluid">
-                        <img src={icon} width="35px" className="float-left mt-3" />
                         <div className="mobile-hide">
-                            <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Pengaturan</h1>
+                            <h1 style={{ marginBottom: 10, fontSize: 30, color:"#2E2E2F" }}><GearIcon size="35px" className="label_ijo"/>&nbsp;Pengaturan</h1>
                         </div>
 
                         <div className="mobile-view">
-                            <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Pengaturan</h1>
+                            <h1 style={{ marginBottom: 10, fontSize: 20, color:"#2E2E2F" }}><GearIcon size="35px" className="label_ijo"/>&nbsp;Pengaturan</h1>
                         </div>
 
                         <div className="row">
@@ -139,7 +139,7 @@ class Setting extends Component {
                                                 <Fragment>
                                                 <div className="border py-4 px-4 w-[100%] shadow-lg rounded-2xl ">    
                                                     <Row className="mb-3">
-                                                        <Col >
+                                                        <Col sm="24">
                                                             {errMsg1.current_password ?
                                                                 (<span className="float-right text-error badge badge-danger">{errMsg1.current_password}</span>) : ''}
                                                             <Form.Control
@@ -153,22 +153,11 @@ class Setting extends Component {
                                                                 placeholder="Current Password" />
                                                         </Col>
                                                     
-                                                        {
-                                                                    profile.current_password && (
-                                                                        <div className="flex flex-col input-group mt-2">
-                                                                            <p className="text-muted mb-2">Password must contain the following:</p>
-                                                                            <ul>
-                                                                                <li className="text-xs mb-1 text-success"><i class="fa fa-check"></i> Only one or more <b>lowercase</b> letter</li>
-                                                                                <li className="text-xs mb-1 text-success"><i class="fa fa-check"></i> Only one or more <b>number</b></li>
-                                                                                <li className="text-xs mb-1 text-danger"><i class="fa fa-times"></i>&nbsp; Minimum <b>8 Characters</b> letter or number</li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    )
-                                                                }
+                                                       
                                                         
                                                     </Row>
                                                     <Row className="mb-3">
-                                                        <Col >
+                                                        <Col sm="24">
                                                             {errMsg1.password ?
                                                                 (<span className="float-right text-error badge badge-danger">{errMsg1.password}</span>) : ''}
                                                             <Form.Control
@@ -181,9 +170,21 @@ class Setting extends Component {
                                                                 required
                                                                 placeholder="New Password" />
                                                         </Col>
+                                                            {
+                                                                profile.password && (
+                                                                    <div className="flex flex-col input-group mt-2">
+                                                                        <p className="text-muted mb-2">Password must contain the following:</p>
+                                                                        <ul>
+                                                                            <li className="text-xs mb-1 text-success"><i class="fa fa-check"></i> Only one or more <b>lowercase</b> letter</li>
+                                                                            <li className="text-xs mb-1 text-success"><i class="fa fa-check"></i> Only one or more <b>number</b></li>
+                                                                            <li className="text-xs mb-1 text-danger"><i class="fa fa-times"></i>&nbsp; Minimum <b>8 Characters</b> letter or number</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                )
+                                                            }
                                                     </Row>
                                                     <Row className="mb-3">
-                                                        <Col >
+                                                        <Col sm="24">
                                                             {errMsg1.konfirmasi_password ?
                                                                 (<span className="float-right text-error badge badge-danger">{errMsg1.konfirmasi_password}</span>) : ''}
                                                             <Form.Control
@@ -217,7 +218,7 @@ class Setting extends Component {
                                                 <Fragment>
                                                     <div className="border py-4 px-4 w-[100%] shadow-lg rounded-2xl ">
                                                     <Row  className="mb-3">
-                                                        <Col>
+                                                        <Col sm="24">
                                                             <Form.Control
                                                                 value={user.nama_depan ? user.nama_depan : ''}
                                                                 autoComplete="off"
@@ -233,7 +234,7 @@ class Setting extends Component {
                                                     </Row>
                                                    
                                                     <Row  className="mb-3">
-                                                        <Col>
+                                                        <Col sm="24">
                                                             {errMsg1.email ?
                                                                 (<span className="float-right text-error badge badge-danger">{errMsg1.email}</span>) : ''}
                                                             <Form.Control
@@ -247,8 +248,6 @@ class Setting extends Component {
                                                                 placeholder="Email" />
                                                         </Col>
                                                     </Row>
-                                                    <br />
-                                                    <br />
                                                     
                                                     </div>
 

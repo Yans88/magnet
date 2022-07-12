@@ -833,7 +833,7 @@ class Pernyataan extends Component {
                                                     </div>
                                                     <br />
                                                     <div className="grid grid-cols-1 gap-4">
-                                                        <div><label style={{ color: '#D77175', marginTop: 8 }}>Kota Lengkap</label></div>
+                                                        <div><label style={{ color: '#D77175', marginTop: 8 }}>Kota Lahir</label></div>
                                                         <div>
                                                             <Input readOnly size="lg" value={user && user.kota_lahir ? user.kota_lahir : ''} />
                                                         </div>

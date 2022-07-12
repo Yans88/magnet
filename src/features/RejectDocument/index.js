@@ -10,7 +10,7 @@ import { profileUser } from "../main/mainSlice";
 import AppButton from "../../components/button/Button";
 import icon from '../../assets/reject_green.png';
 import { AppSwalSuccess } from "../../components/modal/SwalSuccess";
-
+import SettingHorizontalIcon from '@rsuite/icons/SettingHorizontal';
 var yesterday = moment().subtract(40, "years");
 var valid_startDate = function (current) {
   return current.isAfter(yesterday);
@@ -267,13 +267,12 @@ class RejectDocument extends Component {
       <div className="content-wrapper pr-1">
         <section className="content">
           <div className="container-fluid">
-            <img src={icon} width="35px" className="float-left mt-3" />
             <div className="mobile-hide">
-                <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Perbaiki Data</h1>
+                <h1 style={{ marginBottom: 10, fontSize: 30,color:"#2E2E2F"}}><SettingHorizontalIcon size="35px" className="label_ijo"/>&nbsp;Perbaiki Data</h1>
             </div>
 
             <div className="mobile-view">
-                <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Perbaiki Data</h1>
+                <h1 style={{ marginBottom: 10, fontSize: 20,color:"#2E2E2F" }}><SettingHorizontalIcon size="35px" className="label_ijo"/>&nbsp;Perbaiki Data</h1>
             </div>
             <div className="row">
               <div className="col-12">
@@ -642,27 +641,40 @@ class RejectDocument extends Component {
                           : ""}
                       </Form>
                       {dataRejDoc.length > 0 ? (
-                        <div style={{ textAlign: "center" }}>
-                          <strong>
-                            Dengan mendaftar saya menyetujui <br /> syarat dan
-                            kebijakan privasi
-                          </strong>
-                          <br />
-                          <br />
-                          <AppButton
-                            onClick={this.handlesubmit.bind(this)}
-                            isLoading={this.props.isAddLoading}
-                            type="button"
-                            size="lg"
-                            theme=""
-                            style={{
-                              backgroundColor: "#C3262A",
-                              color: "#fff",
-                              marginRight: "2%",
-                            }}
-                          >
-                            Selanjutnya
-                          </AppButton>
+                        <div className="grid grid-cols-1 place-items-center">
+                          <div className="form-group lg:w-[50%] text-center mt-4">
+                            <label>
+                              <span className="text-gray-700">
+                                Dengan mendaftar, saya menyetujui
+                              </span>{" "}
+                              <br />
+                              <span className="text-black font-extrabold">
+                                Syarat dan ketentuan
+                              </span>{" "}
+                              <span className="text-gray-700">
+                                serta
+                              </span>{" "}
+                              <span className="label_merah font-extrabold">
+                                Kebijakan Privasi
+                              </span>
+                            </label>
+                          </div>
+                          <div className="form-group w-[100%] lg:w-[40%] text-center">
+                            <AppButton
+                              onClick={this.handlesubmit.bind(this)}
+                              isLoading={this.props.isAddLoading}
+                              type="button"
+                              size="lg"
+                              theme=""
+                              style={{
+                                backgroundColor: "#28a745",
+                                color: "#fff",
+                                marginRight: "2%",
+                              }}
+                            >
+                              Selanjutnya
+                            </AppButton>
+                          </div>
                         </div>
                       ) : (
                         <h3>No Data</h3>

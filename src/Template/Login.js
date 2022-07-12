@@ -15,6 +15,8 @@ import email_icon from "../assets/email.svg";
 import password_icon from "../assets/password.svg";
 import AppModal from "../components/modal/MyModal";
 
+import AppModalLoading from "../components/modal/MyModalLoading";
+
 const Login = () => {
   const [showModalDialog, setShowModalDialog] = useState(false);
   const { isFetching, isSuccess, errorMessage, myStatus, accessTokenKu, toVerify } =
@@ -226,6 +228,7 @@ const Login = () => {
                   </b>
                 </div>
                 <div className="card-body">
+                
                   {errorMessage ? (
                     <div className="alert alert-danger alert-sm">
                       <button

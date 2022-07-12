@@ -16,6 +16,7 @@ export const AppModalMuis = ({
     themeButton,
     noBtnAction,
 	myCloseButton,
+    show,
     ...otherProps
 }) => {
     return (
@@ -23,7 +24,8 @@ export const AppModalMuis = ({
         <Modal
             style={{ overflowY: 'auto' }}
             {...otherProps}
-            onHide={handleClose}
+            open={show}
+            onClose={handleClose}
         >
             <Modal.Header closeButton={myCloseButton && myCloseButton}>
                 <Modal.Title>{title}</Modal.Title>

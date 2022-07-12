@@ -81,13 +81,17 @@ export const simpanDataPP = createAsyncThunk(
       let _data = await response;
       if (response.status === 200) {
         data = _data.data;
+        console.log(data)
         if (data.error_message === 0) {
-			const dt = {
-				...data,
-				wakil_pialang_caller : param.wakil_pialang_caller,
-			}
+          const dt = {
+            ...data,
+            wakil_pialang_caller : param.wakil_pialang_caller,
+          }
           return dt;
-        } else {
+        } else if(data.error_message === 3){
+       
+          return data
+        }else {
           return thunkAPI.rejectWithValue(data);
         }
       } else {
@@ -172,6 +176,7 @@ export const ppSlice = createSlice({
     },
     closeForm: (state) => {
       state.showFormSuccess = false;
+      state.showFormFailed = false;
     },
   },
   extraReducers: {
@@ -218,14 +223,21 @@ export const ppSlice = createSlice({
       state.errorMessage = "";
     },
     [simpanDataPP.fulfilled]: (state, { payload }) => {
-      console.log(payload);
+    
       state.isFetching = false;
       state.isError = false;
       state.errorMessage = payload.message;
-      state.showFormSuccess = true;
+
+      if(payload.error_message === 3){
+        state.showFormFailed = true;
+        state.tipeSWAL = "warning";
+      } else {
+        state.showFormSuccess = true;
+        state.tipeSWAL = "success";
+      }
+      
       state.contentMsg =
         "<div style='font-size:20px; text-align:center; line-height:23px;'>Data Anda Akan Kami Verifikasi, Wakil Pialang Kami akan menghubungi anda dengan nomor "+payload.wakil_pialang_caller+"</div>";
-      state.tipeSWAL = "success";
       return state;
     },
     [simpanDataPP.rejected]: (state, { payload }) => {

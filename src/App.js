@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'rsuite/dist/styles/rsuite-default.css';
 
 import { Login, Main, PageLoading, Register, Forgot,Reset } from './Template';
 

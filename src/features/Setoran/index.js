@@ -19,6 +19,8 @@ import "react-datetime/css/react-datetime.css";
 import ReactDatatable from "@ashvin27/react-datatable";
 import icon from "../../assets/setoran_ijo.svg";
 
+import CreditCardPlusIcon from '@rsuite/icons/CreditCardPlus';
+
 var yesterday = moment();
 var valid_startDate = function (current) {
   return current.isBefore(yesterday);
@@ -863,19 +865,16 @@ class Setoran extends Component {
     return (
       <div className="content-wrapper pr-1">
         <section className="content">
-          <div className="container-fluid mt-3">
-            <img src={icon} width="35px" className="float-left mt-3" />
+          <div className="container-fluid">
             <div className="mobile-hide">
               <h1
                 style={{
                   marginBottom: 10,
                   fontSize: 30,
-                  marginLeft: 20,
                   color: "#2E2E2F",
-                  paddingLeft: "20px",
                 }}
               >
-                &nbsp;Setor Dana
+                <CreditCardPlusIcon size="35px" className="label_ijo"/>&nbsp;Setor Dana
               </h1>
             </div>
 
@@ -889,7 +888,7 @@ class Setoran extends Component {
                   paddingLeft: "20px",
                 }}
               >
-                &nbsp;Setor Dana
+                <CreditCardPlusIcon size="35px" className="label_ijo"/>&nbsp;Setor Dana
               </h1>
             </div>
 
@@ -897,7 +896,7 @@ class Setoran extends Component {
               <div className="col-12">
                 {/* card start */}
                 <div
-                  className="card card-success"
+                  className="card card-success shadow-lg"
                   style={{ minHeight: "500px", borderRadius: "20px" }}
                 >
                   <div className="card-body">

@@ -17,6 +17,10 @@ import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 import ReactDatatable from "@ashvin27/react-datatable";
 import icon from "../../assets/transfer_ijo.svg";
+import { Icon } from '@rsuite/icons';
+import {
+  BiTransferAlt as BiTransferAltIcon
+} from "react-icons/bi";
 
 var yesterday = moment();
 var valid_startDate = function (current) {
@@ -336,20 +340,17 @@ class Transfer extends Component {
     return (
       <div className="content-wrapper table__account pr-1">
         <section className="content">
-          <div className="container-fluid mt-3">
-            <img src={icon} width="35px" className="float-left mt-3" />
+          <div className="container-fluid">
 
             <div className="mobile-hide">
               <h1
                 style={{
                   marginBottom: 10,
                   fontSize: 30,
-                  marginLeft: 20,
                   color: "#2E2E2F",
-                  paddingLeft: "20px",
                 }}
               >
-                &nbsp;Transfer Internal
+                <Icon as={BiTransferAltIcon} size="35px"  className="label_ijo"/>&nbsp;Transfer Internal
               </h1>
             </div>
 
@@ -358,12 +359,10 @@ class Transfer extends Component {
                 style={{
                   marginBottom: 10,
                   fontSize: 20,
-                  marginLeft: 20,
                   color: "#2E2E2F",
-                  paddingLeft: "20px",
                 }}
               >
-                &nbsp;Transfer Internal
+                <Icon as={BiTransferAltIcon} size="35px"  className="label_ijo"/>&nbsp;Transfer Internal
               </h1>
             </div>
 

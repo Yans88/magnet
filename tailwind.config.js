@@ -1,7 +1,5 @@
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ['./src/**/*.js'],
   theme: {
     extend: {
       colors: {
@@ -14,5 +12,9 @@ module.exports = {
     
 
   },
+  // prefix: 'tw-',
   plugins: [],
+  corePlugins: {
+    preflight: false,
+  }
 }

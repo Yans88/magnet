@@ -9,8 +9,11 @@ import {
   actionPenarikan,
 
 } from "../Penarikan/penarikanSlice";
+
+import {
+  AiFillBank as AiFillBankIcon
+} from "react-icons/ai";
 import { profileUser } from "../main/mainSlice";
-import { Icon, IconButton } from "rsuite";
 import AppModal from "../../components/modal/MyModal";
 import { confirmDel, closeForm, delAkunBankKu } from "../Personal/personalSlice";
 
@@ -72,34 +75,32 @@ class AkunBank extends Component {
     return (
       <div className="content-wrapper pr-1">
         <section className="content">
-          <div className="container-fluid mt-3">
-            <img src={icon} width="35px" className="float-left mt-3" />
+          <div className="container-fluid">
+           
 
             <div className="mobile-hide">
+              
               <h1
                 style={{
                   marginBottom: 10,
                   fontSize: 30,
-                  marginLeft: 20,
                   color: "#2E2E2F",
-                  paddingLeft: "20px",
                 }}
               >
-                &nbsp;Akun Bank Saya
+                <AiFillBankIcon size="35px" className="label_ijo" />&nbsp;Akun Bank Saya
               </h1>
             </div>
 
             <div className="mobile-view">
+            
               <h1
                 style={{
                   marginBottom: 10,
                   fontSize: 20,
-                  marginLeft: 20,
                   color: "#2E2E2F",
-                  paddingLeft: "20px",
                 }}
               >
-                &nbsp;Akun Bank Saya
+                  <AiFillBankIcon size="35px" className="label_ijo" />&nbsp;Akun Bank Saya
               </h1>
             </div>
 
@@ -126,7 +127,7 @@ class AkunBank extends Component {
                                     }}
                                   >
                                     <div className="px-2 lg:w-1/2">
-                                      <img alt={dp.nama_bank} src={dp.file} />
+                                      <img alt={dp.nama_bank} src={dp.file} style={{maxWidth:"100%"}}/>
                                     </div>
 
                                     <div className="px-2 text-left col-span-2 w-full">
@@ -297,10 +298,10 @@ class AkunBank extends Component {
         </section>
 
         <AppModal
-          show={this.props.showFormDelete}
+          open={this.props.showFormDelete}
           size="xs"
           form={contentDelete}
-          handleClose={this.handleClose.bind(this)}
+          onClose={this.handleClose.bind(this)}
           backdrop="static"
           keyboard={false}
           title="Delete"

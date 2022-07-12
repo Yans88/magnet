@@ -13,6 +13,7 @@ import AppModall from "../../components/modal/MyModall";
 import { Button, Form } from "react-bootstrap";
 import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
 import provider_mt5 from '../../assets/mt5.png';
+import AdminIcon from '@rsuite/icons/Admin';
 
 class Beranda extends Component {
   constructor(props) {
@@ -367,7 +368,7 @@ class Beranda extends Component {
               <div className="w-full bg-hijau-forex rounded-xl text-white pb-6 pt-6 grid grid-cols-1 place-items-center static">
 
 
-                <div class="flex flex-row justify-center"><span className="text-lg font-bold"><img src={akun_icon} width="25px" className="float-left pl-0" />&nbsp;Akun Saya</span></div>
+                <div class="flex flex-row justify-center"><span className="text-lg font-bold"><AdminIcon size="25px" />&nbsp;Akun Saya</span></div>
 
 
               </div>

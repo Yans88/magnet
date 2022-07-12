@@ -149,12 +149,12 @@ const Forgot = () => {
                                     </div>
 
                                     <ReCAPTCHA
-                          hl="id"
-                          ref={recaptchaRef}
-                          sitekey="6LfEKfEcAAAAAGH6QCdvmj3wSSzFSyw0dbIoSmpK"
-                          onChange={handleChangeCaptcha}
-                          onExpired={handleExpired}
-                        />
+                                        hl="id"
+                                        ref={recaptchaRef}
+                                        sitekey="6LfEKfEcAAAAAGH6QCdvmj3wSSzFSyw0dbIoSmpK"
+                                        onChange={handleChangeCaptcha}
+                                        onExpired={handleExpired}
+                                        />
                                     
 
                                     <div className="social-auth-links text-center mt-2 mb-3">
