@@ -48,11 +48,11 @@ const Reset = () => {
     },
     validationSchema: Yup.object({
       password: Yup.string()
-        .required("Please provide a password")
-        .min(8, "Minimum 8 characters"),
+        .required("Silahkan masukan password")
+        .min(8, "Minimal 8 karakter"),
       konfirmasi_password: Yup.string()
-        .required("Required!")
-        .oneOf([Yup.ref("password")], "Password's not match"),
+        .required("Harus diisi!")
+        .oneOf([Yup.ref("password")], "Konfirmasi password tidak sama"),
     }),
     onSubmit: (values) => {
       const val = {

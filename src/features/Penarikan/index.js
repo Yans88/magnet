@@ -83,6 +83,7 @@ class Penarikan extends Component {
         var errors = this.state.errMsg;
         if (this.state.nextStep) {
             errors.nominal = !this.state.selected.nominal ? "Required" : '';
+			errors.nominal = errors.nominal === '' &&  parseInt(this.state.selected.nominal) <= 0 ? "Jumlah penarikan dana harus lebih besar dari 0" : errors.nominal;
         }
         this.setState({ errors });
         if (this.validateForm(this.state.errMsg)) {
