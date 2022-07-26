@@ -540,6 +540,9 @@ class Personal extends Component {
 
   handleSubmit2 = async (action) => {
     var errors = this.state.errMsg2;
+	errors.tujuan_pembukaan_rekening = !this.props.dataExpTrading.tujuan_pembukaan_rekening
+      ? "Kolom ini harus diisi"
+      : "";
     errors.agreement2 = !this.props.dataExpTrading.agreement2
       ? "Kolom ini harus diisi"
       : "";
@@ -1985,6 +1988,13 @@ class Personal extends Component {
                                   </option>
                                   <option value="Lainnya">Lainnya</option>
                                 </Form.Control>
+								{errMsg2.tujuan_pembukaan_rekening ? (
+                                    <span className="text-error badge badge-danger">
+                                      {errMsg2.tujuan_pembukaan_rekening}
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
                               </Form.Group>
                             </Form.Row>
                             <Form.Row>
@@ -2044,7 +2054,7 @@ class Personal extends Component {
                                     placeholder="Nama Perusahaan/Brand"
                                   />
 
-{errMsg2.pertanyaan2 ? (
+								{errMsg2.pertanyaan2 ? (
                                     <span className="text-error badge badge-danger">
                                       {errMsg2.pertanyaan2}
                                     </span>
