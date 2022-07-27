@@ -109,8 +109,19 @@ const Forgot = () => {
                                 {
 
                                     errorMessage ? (
-                                        <div className={(new RegExp("\\b"+"success"+"\\b").test(errorMessage ? errorMessage.toLowerCase() : "no match"))  ? "alert alert-success alert-sm" : "alert alert-danger alert-sm"} >
-                                            <button onClick={hideAlert} type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <div
+                                            className={"alert alert-danger alert-sm"}
+                                            style={{backgroundColor: (new RegExp("\\b" + "berhasil" + "\\b").test(
+                                            errorMessage
+                                                ? errorMessage.toLowerCase()
+                                                : "no match"
+                                            ) || (new RegExp("\\b" + "success" + "\\b").test(
+                                                errorMessage
+                                                    ? errorMessage.toLowerCase()
+                                                    : "no match"
+                                                )) ? "#30b04A" :"#C2262C")}}
+                                        >
+                                            <button onClick={hideAlert} type="button" className="close text-white" data-dismiss="alert" aria-hidden="true" style={{opacity:1}}>×</button>
                                             <span className="fw-semi-bold text-white">{errorMessage}</span>
                                         </div>
                                     ) : (<p className='login-box-msg'></p>)}
@@ -149,12 +160,12 @@ const Forgot = () => {
                                     </div>
 
                                     <ReCAPTCHA
-                          hl="id"
-                          ref={recaptchaRef}
-                          sitekey="6LfEKfEcAAAAAGH6QCdvmj3wSSzFSyw0dbIoSmpK"
-                          onChange={handleChangeCaptcha}
-                          onExpired={handleExpired}
-                        />
+                                        hl="id"
+                                        ref={recaptchaRef}
+                                        sitekey="6LfEKfEcAAAAAGH6QCdvmj3wSSzFSyw0dbIoSmpK"
+                                        onChange={handleChangeCaptcha}
+                                        onExpired={handleExpired}
+                                        />
                                     
 
                                     <div className="social-auth-links text-center mt-2 mb-3">

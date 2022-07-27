@@ -12,6 +12,7 @@ import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 import ReactDatatable from '@ashvin27/react-datatable';
 import icon from '../../assets/penarikan_ijo.svg';
+import CreditCardMinusIcon from '@rsuite/icons/CreditCardMinus';
 
 var yesterday = moment();
 var valid_startDate = function (current) {
@@ -573,15 +574,14 @@ class Penarikan extends Component {
             <div className="content-wrapper pr-1">
 
                 <section className="content">
-                    <div className="container-fluid mt-3">
-                        <img src={icon} width="35px" className="float-left mt-3" />
+                    <div className="container-fluid">
                         
                         <div className="mobile-hide">
-                        <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Penarikan Dana</h1>
+                        <h1 style={{ marginBottom: 10, fontSize: 30,color:"#2E2E2F"}}><CreditCardMinusIcon size="35px" className="label_ijo"/>&nbsp;Penarikan Dana</h1>
                         </div>
 
                         <div className="mobile-view">
-                        <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Penarikan Dana</h1>
+                        <h1 style={{ marginBottom: 10, fontSize: 20,color:"#2E2E2F"}}><CreditCardMinusIcon size="35px" className="label_ijo"/>&nbsp;Penarikan Dana</h1>
                         </div>
 
                         <div className="row mt-4">

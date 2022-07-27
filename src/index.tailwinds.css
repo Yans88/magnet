@@ -1,3 +1,6 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~rsuite/dist/rsuite.min.css';
+
 @tailwind base;
 
 @tailwind components;

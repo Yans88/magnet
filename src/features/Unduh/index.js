@@ -4,6 +4,11 @@ import icon from '../../assets/unduh_ijo.svg';
 import { connect } from 'react-redux';
 import { getSetting } from '../KetentuanTrading/ktSlice'
 
+import {
+    FaDownload as FaDownloadIcon
+  } from 'react-icons/fa';
+  import { Icon } from '@rsuite/icons';
+
 class Unduh extends Component {
     constructor(props) {
         super(props);
@@ -28,14 +33,12 @@ class Unduh extends Component {
                     <div className="container-fluid">
                         
                         
-                        <div className="mobile-hide">
-                        <img src={icon} width="35px" className="float-left mt-3" />    
-                        <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Unduh</h1>
+                        <div className="mobile-hide">   
+                        <h1 style={{ marginBottom: 10, fontSize: 30,color:"#2E2E2F" }}><Icon as={FaDownloadIcon} size="35px"  className="label_ijo" />&nbsp;Unduh</h1>
                         </div>
 
-                        <div className="mobile-view">
-                        <img src={icon} width="30px" className="float-left mt-3" />    
-                        <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20,color:"#2E2E2F",paddingLeft:"20px" }}>&nbsp;Unduh</h1>
+                        <div className="mobile-view">   
+                        <h1 style={{ marginBottom: 10, fontSize: 20,color:"#2E2E2F"}}><Icon as={FaDownloadIcon} size="35px"  className="label_ijo"/>&nbsp;Unduh</h1>
                         </div>
 
                         <div className="row mb-5">
@@ -74,7 +77,7 @@ class Unduh extends Component {
                                                 </div>
 
                                                 
-                                                <div className="w-full px-3 py-3">
+                                                <div className="w-full pr-0 pl-3 py-3">
 
                                                     <div className="border px-5  py-4 rounded-2xl shadow-lg">
                                                         <h3 style={{ color:'#2DB147' }} className="text-lg">MT5 For Mobile</h3>
@@ -175,11 +178,10 @@ class Unduh extends Component {
 
                                         </div>
                                         
-                                        <div style={{ paddingLeft: 20, paddingRight: 20, paddingTop: 10,color:'#222' }}>
+                                        <div style={{ paddingLeft: 10, paddingRight: 10, paddingTop: 10,color:'#222' }}>
 
                                             
-                                            <br />
-                                            <br />
+                                         
                                             <br />
                                             <h3 style={{color:"#222"}}>Installation Guide for Windows</h3>
                                             <br />

@@ -1,22 +1,14 @@
 body {
   background-color: #f1f1f1 !important;
+  touch-action: pan-y, pan-x;
 }
 
 input[type="checkbox"]:checked+label:before {
   background: green;
 }
 
-.rs-sidenav {
-  /* -webkit-transition: width 0.2s ease-in;
-  transition: width 0.2s ease-in; */
-  width: auto !important;
 
-}
 
-/* 
-.rs-sidenav-collapse-out{
-  width: 0px !important;
-} */
 
 
 #custom-switch[type="checkbox"]:before {
@@ -79,10 +71,27 @@ input[type="checkbox"]:checked+label:before {
   color: #fff;
 }
 
+
+
 .my-sidebar {
   border-right: 1px solid #d2d6de;
   border-top: 1px solid #d2d6de;
   height: 150vh !important;
+}
+
+.tab_personal > .rs-nav-item.rs-nav-item-active:hover, .tab_personal > .rs-nav-item.rs-nav-item-active{
+  color: white !important;
+  text-align: center;
+  font-weight: bold
+}
+
+.magnet-sidenav > .rs-sidenav-item.rs-sidenav-item-active{
+  color: #2FB24A !important;
+}
+
+.tab_personal > .rs-nav-item:hover{
+  color: #8e8e93 !important;
+  font-weight: bold
 }
 
 .rs-header {
@@ -102,15 +111,7 @@ input[type="checkbox"]:checked+label:before {
 }
 
 
-.rs-container-has-sidebar,
-.rs-sidenav-subtle,
-.my-dropdown>.rs-dropdown-menu {
-  color: #9F9F9F;
-  background-color: #fff;
-  border: 0px solid #fff;
-  transition:none;
 
-}
 
 .navbar-brand {
   cursor: pointer;
@@ -170,15 +171,6 @@ a:focus {
 }
 
 
-.rs-sidenav .rs-nav-item .rs-nav-item-content,
-.rs-sidenav .rs-dropdown .rs-dropdown-toggle {
-  font-size: 16px;
-  line-height: 1.25;
-  padding-left: 0px !important;
-  width: 100%;
-  white-space: normal;
-  overflow: hidden;
-}
 
 
 
@@ -365,9 +357,6 @@ a:focus {
   line-height: .7 !important;
 }
 
-.rs-sidenav-body h5 {
-  color: #ffaf24 !important;
-}
 
 #loader {
   position: absolute;
@@ -456,6 +445,7 @@ table td,
   padding: 1rem !important;
   border-top: 1px solid #e9ecef !important;
 }
+
 
 #caption {
   margin: auto;
@@ -1235,6 +1225,24 @@ tbody td {
     margin-right: 8%;
   }
 
+}
+
+
+@media screen and (max-width:900px) {
+  .tab_personal{
+    flex-direction: column !important;
+  }
+  .tab_personal .rs-nav-item{
+    color: #6c757d;
+    text-align: center;
+    background: #d1d1d1;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-top: 10px
+  }
+  .tab_personal .rs-nav-item-active{
+    background:#26A639;
+  }
 }
 
 @media screen and (max-width:780px) {

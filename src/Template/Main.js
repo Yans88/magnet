@@ -38,9 +38,9 @@ class Main extends Component {
                 <div className="show-container">
                     <Container>
                         <MyHeader></MyHeader>
-                        <Container>
+                        <Container style={{marginTop:"5px"}}>
                             <MySidebar />
-                            <Content>
+                            <Content style={{background:"white"}}>
                                 {children}
                             </Content>
                         </Container>

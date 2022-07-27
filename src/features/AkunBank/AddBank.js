@@ -358,7 +358,6 @@ class AddBank extends Component {
                                       Buku Tabungan
                                     </h5>
                                   <Form.File
-                                          style={{width:110}}
                                           className=""
                                           size="lg"
                                           name="file"

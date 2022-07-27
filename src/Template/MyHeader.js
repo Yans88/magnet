@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Divider, Dropdown, Header, Icon, Nav, Navbar } from "rsuite";
+import { Divider, Dropdown, Header, Nav, Navbar } from "rsuite";
+import MenuIcon from '@rsuite/icons/Menu';
+import { Icon } from '@rsuite/icons';
 import { connect } from "react-redux";
 import {
   clickExpand,
@@ -11,12 +13,6 @@ import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import logoa from "../assets/logo.svg";
 import "../styles/custom_muis.css";
-import { useRef } from "react";
-import { Disclosure } from "@headlessui/react";
-
-import icon_akun from "../assets/logo.svg";
-
-import moment from "moment";
 import "moment/locale/id";
 
 const tokenLogin = process.env.REACT_APP_TOKEN_LOGIN;
@@ -52,25 +48,18 @@ class MyHeader extends Component {
 
     return (
       <Header>
-        <Navbar appearance="inverse" className="my-navbar1 text-black">
-          <Navbar.Header>
-            <div className="mobile-hide">
-              <Link to="/" className="navbar-brand logo float-center pt-3 px-5">
+        <Navbar className="my-navbar1 text-black">
+          <Navbar.Brand>
+              <Link to="/" className="px-5">
                 <img src={logoa} width="120px" />
               </Link>
-            </div>
-            <div className="mobile-view ">
-              <Link to="/" className="navbar-brand logo float-center pt-3 px-2">
-                <img src={logoa} width="120px" />
-              </Link>
-            </div>
-          </Navbar.Header>
+          </Navbar.Brand>
 
-          <Navbar.Body>
+          <Navbar style={{background:"#f1f1f1"}}>
             <Nav pullRight>
               <Nav.Item
-                icon={<Icon icon="bars" />}
-                onClick={this.handleToggle.bind(this)}
+                icon={<MenuIcon />}
+                onClick={()=> this.handleToggle()}
                 className="drawwer"
                 style={{ fontSize: "20px" }}
               ></Nav.Item>
@@ -170,7 +159,7 @@ class MyHeader extends Component {
                 </Nav>
               </div>
             </div> */}
-          </Navbar.Body>
+          </Navbar>
         </Navbar>
       </Header>
     );

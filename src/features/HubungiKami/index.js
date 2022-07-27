@@ -4,12 +4,18 @@ import { connect } from 'react-redux';
 import AppButton from '../../components/button/Button';
 import { getDataPP, action_contact_us, closeForm } from '../ProfilePerusahaan/ppSlice'
 import { AppSwalSuccess } from '../../components/modal/SwalSuccess';
-import icon from '../../assets/hubungi_kami_2.svg';
+
 import phone_red from '../../assets/phone.svg';
 import wa_red from '../../assets/wa.svg';
 import email_red from '../../assets/email_white.svg';
 import location_red from '../../assets/location_white.svg';
-import { profileUser } from '../main/mainSlice'
+import { profileUser } from '../main/mainSlice';
+
+import { Icon } from '@rsuite/icons';
+
+import {
+    FaPhoneAlt as FaPhoneAltIcon
+  } from 'react-icons/fa';
 
 class HubungiKami extends Component {
     constructor(props) {
@@ -80,17 +86,15 @@ class HubungiKami extends Component {
             <div className="content-wrapper pr-2">
 
                 <section className="content">
-                    <div className="container-fluid mt-3">
+                    <div className="container-fluid">
 
 
                         <div className="mobile-hide">
-                            <img src={icon} width="35px" className="float-left mt-3" />
-                            <h1 style={{ marginBottom: 10, fontSize: 30, marginLeft: 20, color: "#2E2E2F", paddingLeft: "20px" }}>&nbsp;Hubungi Kami</h1>
+                            <h1 style={{ marginBottom: 10, fontSize: 30, color: "#2E2E2F"}}><Icon as={FaPhoneAltIcon} size="35px" className="label_ijo"/>&nbsp;Hubungi Kami</h1>
                         </div>
 
                         <div className="mobile-view">
-                            <img src={icon} width="25px" className="float-left mt-3" />
-                            <h1 style={{ marginBottom: 10, fontSize: 20, marginLeft: 20, color: "#2E2E2F", paddingLeft: "20px" }}>&nbsp;Hubungi Kami</h1>
+                            <h1 style={{ marginBottom: 10, fontSize: 20, color: "#2E2E2F" }}><Icon as={FaPhoneAltIcon} size="35px" className="label_ijo"/>&nbsp;Hubungi Kami</h1>
                         </div>
 
                         <div className="row">

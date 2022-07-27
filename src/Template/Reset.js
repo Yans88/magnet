@@ -31,7 +31,7 @@ const Reset = () => {
 
   const { search } = useLocation();
 
-  useEffect(async() => {
+  useEffect(async () => {
     if (token) {
       await new Promise((resolve) => setTimeout(resolve, 3000));
       dispatch(clearState());
@@ -80,7 +80,7 @@ const Reset = () => {
 
         <div className="grid grid-cols-1 gap-0 place-items-center">
           <div className="login-box ">
-            <div class="grid grid-cols-1 place-items-center">
+           
               <div className="card border-white">
                 <div className="card-header text-center h1 text-red-500 text-lg bg-white border-white grid grid-cols-1 place-items-center lg:mt-4">
                   <div class="grid grid-cols-1 place-items-center">
@@ -94,145 +94,143 @@ const Reset = () => {
                     </b>
                   </div>
                 </div>
-                <div class="grid grid-cols-1 place-items-center">
-                  <div className="card-body" style={{ paddingTop: "0px",width:"100%"}}>
-                    {errorMessage ? (
-                      <div
-                        className={
-                          new RegExp("\\b" + "berhasil" + "\\b").test(
-                            errorMessage
-                              ? errorMessage.toLowerCase()
-                              : "no match"
-                          )
-                            ? "alert alert-success alert-sm"
-                            : "alert alert-danger alert-sm"
-                        }
-                      >
-                        <button
-                          onClick={hideAlert}
-                          type="button"
-                          className="close"
-                          data-dismiss="alert"
-                          aria-hidden="true"
-                        >
-                          ×
-                        </button>
-                        <span className="fw-semi-bold text-white">
-                          Info: {errorMessage}
-                        </span>
-                      </div>
-                    ) : (
-                      <p className="login-box-msg"></p>
-                    )}
 
-                    {!isCompleteProfile &&
+                <div className="card-body" style={{ paddingTop: "0px" }}>
+                  {errorMessage ? (
+                    <div
+                      className={"alert alert-danger alert-sm"}
+                      style={{backgroundColor: (new RegExp("\\b" + "berhasil" + "\\b").test(
+                        errorMessage
+                          ? errorMessage.toLowerCase()
+                          : "no match"
+                      ) ? "#28a745" :"#C2262C")}}
+                    >
+                      <button
+                        onClick={hideAlert}
+                        type="button"
+                        className="close text-white"
+                        data-dismiss="alert"
+                        aria-hidden="true"
+                        style={{opacity:1}}
+                      >
+                        ×
+                      </button>
+                      <span className="fw-semi-bold text-white">
+                        Info: {errorMessage}
+                      </span>
+                    </div>
+                  ) : (
+                    <p className="login-box-msg"></p>
+                  )}
+
+                  {!isCompleteProfile &&
                     !isVerifikasi &&
                     !succesCompleteProfile ? (
-                      <form onSubmit={formik.handleSubmit}>
-                        <Form.Label>
-                          <div className="w-full mb-2 mt-2">
-                            <div className="text-black  text-xs text-center font-normal">
-                              Silahkan masukan Password baru anda.
-                            </div>
+                    <form onSubmit={formik.handleSubmit}>
+                      <Form.Label>
+                        <div className="w-full mb-2 mt-2">
+                          <div className="text-black  text-xs text-center font-normal">
+                            Silahkan masukan Password baru anda.
                           </div>
-                        </Form.Label>
-                        {formik.touched.password && formik.errors.password ? (
-                          
-                          <span className="float-right text-error badge badge-danger">
-                            {formik.errors.password}
-                          </span>
-                        ) : null}
-                        <div
-                          className={"input-group " + (formik.touched.password  ?  "mb-1" : "mb-3")}
-                          style={{
-                            border: "1px solid #B7B7B7",
-                            padding: "5px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <div className="input-group-append">
-                            <div className="input-group-text bg-white border-white">
-                              <img src={password_icon} width="22px" />
-                            </div>
-                          </div>
-                          <input
-                            autoComplete="off"
-                            type="password"
-                            className="form-control"
-                            placeholder="Password"
-                            style={{ backgroundColor: "#fff", border: "0" }}
-                            {...formik.getFieldProps("password")}
-                          />
                         </div>
+                      </Form.Label>
+                      {formik.touched.password && formik.errors.password ? (
 
-                        {
-                          formik.touched.password && (
-                            <div className="flex flex-col input-group mb-1">
+                        <span className="float-right text-error badge badge-danger">
+                          {formik.errors.password}
+                        </span>
+                      ) : null}
+                      <div
+                        className={"input-group " + (formik.touched.password ? "mb-1" : "mb-3")}
+                        style={{
+                          border: "1px solid #B7B7B7",
+                          padding: "5px",
+                          borderRadius: "5px",
+                        }}
+                      >
+                        <div className="input-group-append">
+                          <div className="input-group-text bg-white border-white">
+                            <img src={password_icon} width="22px" />
+                          </div>
+                        </div>
+                        <input
+                          autoComplete="off"
+                          type="password"
+                          className="form-control"
+                          placeholder="Password"
+                          style={{ backgroundColor: "#fff", border: "0" }}
+                          {...formik.getFieldProps("password")}
+                        />
+                      </div>
+
+                      {
+                        formik.touched.password && (
+                          <div className="flex flex-col input-group mb-1">
                             <p className="text-muted mb-2">Password must contain the following:</p>
-                              <ul>
-                                <li className="text-xs mb-1 text-success"><i class="fa fa-check"></i> Only one or more <b>lowercase</b> letter</li>
-                                <li className="text-xs mb-1 text-success"><i class="fa fa-check"></i> Only one or more <b>number</b></li>
-                                <li className="text-xs mb-1 text-danger"><i class="fa fa-times"></i>&nbsp; Minimum <b>8 Characters</b> letter or number</li>
-                              </ul>
-                            </div>
-                          )
-                        }
+                            <ul>
+                              <li className="text-xs mb-1 text-success ml-3"><i class="fa fa-check"></i> Only one or more <b>lowercase</b> letter</li>
+                              <li className="text-xs mb-1 text-success ml-3"><i class="fa fa-check"></i> Only one or more <b>number</b></li>
+                              <li className="text-xs mb-1 text-danger ml-3"><i class="fa fa-times"></i>&nbsp; Minimum <b>8 Characters</b> letter or number</li>
+                            </ul>
+                          </div>
+                        )
+                      }
 
-                        {formik.touched.konfirmasi_password &&
+                      {formik.touched.konfirmasi_password &&
                         formik.errors.konfirmasi_password ? (
-                          <span className="float-right text-error badge badge-danger">
-                            {formik.errors.konfirmasi_password}
-                          </span>
-                        ) : null}
-                        <div
-                          className="input-group mb-3"
-                          style={{
-                            border: "1px solid #B7B7B7",
-                            padding: "5px",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          <div className="input-group-append">
-                            <div className="input-group-text bg-white border-white">
-                              <img src={password_icon} width="22px" />
-                            </div>
+                        <span className="float-right text-error badge badge-danger">
+                          {formik.errors.konfirmasi_password}
+                        </span>
+                      ) : null}
+                      <div
+                        className="input-group mb-3"
+                        style={{
+                          border: "1px solid #B7B7B7",
+                          padding: "5px",
+                          borderRadius: "5px",
+                        }}
+                      >
+                        <div className="input-group-append">
+                          <div className="input-group-text bg-white border-white">
+                            <img src={password_icon} width="22px" />
                           </div>
-                          <input
-                            autoComplete="off"
-                            type="password"
-                            className="form-control"
-                            placeholder="Confirmation Password"
-                            style={{ backgroundColor: "#fff", border: "0" }}
-                            {...formik.getFieldProps("konfirmasi_password")}
-                          />
                         </div>
+                        <input
+                          autoComplete="off"
+                          type="password"
+                          className="form-control"
+                          placeholder="Confirmation Password"
+                          style={{ backgroundColor: "#fff", border: "0" }}
+                          {...formik.getFieldProps("konfirmasi_password")}
+                        />
+                      </div>
 
-                        <div className="social-auth-links text-center mt-2 mb-3">
-                          <div className="grid grid-cols-1 gap-0 place-items-center">
-                            <div className="w-2/4 mt-2">
-                              <Button
-                                block
-                                type="submit"
-                                isLoading={isFetching}
-                                theme=""
-                                style={{
-                                  backgroundColor: "#C1242B",
-                                  color: "#fff",
-                                }}
-                              >
-                                Ubah
-                              </Button>
-                            </div>
+                      <div className="social-auth-links text-center mt-2 mb-3">
+                        <div className="grid grid-cols-1 gap-0 place-items-center">
+                          <div className="w-2/4 mt-2">
+                            <Button
+                              block
+                              type="submit"
+                              isLoading={isFetching}
+                              theme=""
+                              style={{
+                                backgroundColor: "#C1242B",
+                                color: "#fff",
+                              }}
+                            >
+                              Ubah
+                            </Button>
                           </div>
                         </div>
-                      </form>
-                    ) : (
-                      ""
-                    )}
-                  </div>
+                      </div>
+                    </form>
+                  ) : (
+                    ""
+                  )}
                 </div>
+
               </div>
-            </div>
+            
           </div>
         </div>
 

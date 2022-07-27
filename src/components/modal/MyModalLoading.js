@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from 'rsuite';
+import Modal from 'rsuite/Modal';
 import Button from '../button/Button'
 
 const AppModalLoading = ({
@@ -16,6 +16,7 @@ const AppModalLoading = ({
     themeButton,
     noBtnAction,
 	myCloseButton,
+    show,
     ...otherProps
 }) => {
     return (
@@ -23,7 +24,8 @@ const AppModalLoading = ({
         <Modal
             style={{ overflowY: 'auto' }}
             {...otherProps}
-            onHide={handleClose}
+            open={show}
+            onClose={handleClose}
         >
             <Modal.Header closeButton={false}>
                 <Modal.Title style={{fontSize: '18px'}}>{title}</Modal.Title>

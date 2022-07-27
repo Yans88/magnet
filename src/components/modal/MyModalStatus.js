@@ -19,6 +19,7 @@ const AppModalStatus = ({
     themeButton,
     noBtnAction,
 	myCloseButton,
+    show,
     ...otherProps
 }) => {
     return (
@@ -26,7 +27,8 @@ const AppModalStatus = ({
         <Modal
             style={{ overflowY: 'auto' }}
             {...otherProps}
-            onHide={handleClose}
+            open={show}
+            onClose={handleClose}
         >
             <Modal.Header closeButton={myCloseButton && myCloseButton}>
                 <Modal.Title>

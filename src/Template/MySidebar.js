@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Nav, Sidebar, Sidenav, Icon } from 'rsuite';
+import { Nav, Sidebar, Sidenav } from 'rsuite';
+import { Icon } from '@rsuite/icons';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { clickExpand, onLogout } from '../features/main/mainSlice';
@@ -18,6 +19,29 @@ import icon_penarikan from '../assets/icon/penarikan.svg';
 import icon_setoran from '../assets/icon/setoran.png';
 import icon_transfer from '../assets/icon/transfer_internal.png';
 import icon_akun_bank from '../assets/icon/akun_bank.png';
+
+
+import AdminIcon from '@rsuite/icons/Admin';
+import ExitIcon from '@rsuite/icons/Exit';
+import CreditCardPlusIcon from '@rsuite/icons/CreditCardPlus';
+import CreditCardMinusIcon from '@rsuite/icons/CreditCardMinus';
+
+import GearIcon from '@rsuite/icons/Gear';
+import SettingHorizontalIcon from '@rsuite/icons/SettingHorizontal';
+
+import {
+    FaDownload as FaDownloadIcon,
+    FaPhoneAlt as FaPhoneAltIcon
+  } from 'react-icons/fa';
+
+import {
+    BiTransferAlt as BiTransferAltIcon
+} from "react-icons/bi";
+
+import {
+    AiFillBank as AiFillBankIcon
+} from "react-icons/ai";
+
 
 class MySidebar extends Component {
 
@@ -54,18 +78,26 @@ class MySidebar extends Component {
         const { profile } = this.props;
         const { lastSegmentUrl } = this.state;
 
+
+        const MyLink = React.forwardRef((props, ref) => {
+            const { href, as, ...rest } = props;
+            return (
+                <Link href={href} as={as}>
+                    <div ref={ref} {...rest} />
+                </Link>
+            );
+        });
+
         return (
-            <div onLoad={this.handleToggle.bind(this)} >
-                <div className='absolute mobile-view w-full' style={{ zIndex: '1000', paddingTop: '7px',height:'100%',width:expandMenu ? '100%' : 0}} >
+            <div style={{background: 'white'}}>
+                <div className='absolute mobile-view w-full' style={{ zIndex: '1000', paddingTop: '7px',height:'100%',width:expandMenu ? '100%' : 0,overflow: 'hidden'}} >
                     <Sidebar
                         style={{ flexDirection: 'column', height:'100%', backgroundColor:'#ffffff' }}
                         width={expandMenu ? '100%' : 0}
                         collapsible
                     >
                         <Sidenav
-                            className="my-sidebar"
                             expanded={expandMenu}
-                            width={expandMenu ? '100%' : 0}
                             //defaultOpenKeys={[`${defaultOpenKeys}`]}
                             appearance="subtle">
 
@@ -104,7 +136,7 @@ class MySidebar extends Component {
                                         >
                                             <div className="flex items-center">
                                                 <div className="px-3">
-                                                    <img src={icon_akun} width={18} className="float-left" />
+                                                    <Icon as={AdminIcon}/>
                                                 </div>
                                                 <div>
                                                     Akun Saya
@@ -128,7 +160,7 @@ class MySidebar extends Component {
 
                                             <div className="flex items-center">
                                                 <div className="px-3">
-                                                    <img src={icon_setoran} width={18} className="float-left" />
+                                                    <CreditCardPlusIcon />
                                                 </div>
                                                 <div>
                                                     Setoran
@@ -152,7 +184,7 @@ class MySidebar extends Component {
 
                                             <div className="flex items-center">
                                                 <div className="px-3">
-                                                    <img src={icon_akun_bank} width={18} className="float-left" />
+                                                    <Icon as={AiFillBankIcon} style={{transform: "scale(1.5)"}}/>
                                                 </div>
                                                 <div>
                                                     Akun Bank
@@ -175,7 +207,7 @@ class MySidebar extends Component {
 
                                             <div className="flex items-center">
                                                 <div className="px-3">
-                                                    <img src={icon_penarikan} width={18} className="float-left" />
+                                                    <CreditCardMinusIcon />
                                                 </div>
                                                 <div>
                                                     Penarikan
@@ -198,7 +230,7 @@ class MySidebar extends Component {
 
                                             <div className="flex items-center">
                                                 <div className="px-3">
-                                                    <img src={icon_transfer} width={18} className="float-left" />
+                                                    <Icon as={BiTransferAltIcon} style={{transform: "scale(1.5)"}}/>
                                                 </div>
                                                 <div>
                                                     Transfer Internal
@@ -222,7 +254,7 @@ class MySidebar extends Component {
 
                                             <div className="flex items-center">
                                                 <div className="px-3">
-                                                    <img src={icon_unduh} width={18} className="float-left" />
+                                                    <Icon as={FaDownloadIcon} />
                                                 </div>
                                                 <div>
                                                     Unduh
@@ -245,7 +277,7 @@ class MySidebar extends Component {
 
                                             <div className="flex items-center">
                                                 <div className="px-3">
-                                                    <img src={icon_hubungi} width={18} className="float-left" />
+                                                    <Icon as={FaPhoneAltIcon} />
                                                 </div>
                                                 <div>
                                                     Hubungi Kami
@@ -315,7 +347,7 @@ class MySidebar extends Component {
 
                                             <div className="flex items-center">
                                                 <div className="px-3">
-                                                    <img src={icon_pengaturan} width={18} className="float-left" />
+                                                    <GearIcon />
                                                 </div>
                                                 <div>
                                                     Pengaturan
@@ -337,7 +369,7 @@ class MySidebar extends Component {
 
                                             <div className="flex items-center">
                                                 <div className="px-3">
-                                                    <img src={icon_reject} width={18} className="float-left" />
+                                                    <SettingHorizontalIcon />
                                                 </div>
                                                 <div>
                                                     Perbaiki Data
@@ -356,7 +388,7 @@ class MySidebar extends Component {
                                         >
                                             <div className="flex items-center">
                                                 <div className="px-3">
-                                                    <img src={icon_logout} width={18} className="float-left" />
+                                                    <ExitIcon />
                                                 </div>
                                                 {
                                                     expandMenu &&
@@ -379,367 +411,133 @@ class MySidebar extends Component {
                     </Sidebar>
 
                 </div>
-                <div className="mobile-hide" style={{paddingTop:'7px',width:expandMenu ? 230 : 'auto'}}>
-                    <Sidebar
-                        style={{ display: 'flex', flexDirection: 'column' }}
-                        width={expandMenu ? 230 : 'auto'}
-                        collapsible
-                    >
+                <div className="mobile-hide" style={{paddingTop:'7px',width:expandMenu ? 230 : "auto",overflow: 'hidden'}}>
+                
                         <Sidenav
-                            className="my-sidebar "
                             expanded={expandMenu}
-                            width={expandMenu ? 230 : 'auto'}
+                          
                             //defaultOpenKeys={[`${defaultOpenKeys}`]}
                             appearance="subtle">
 
                             <Sidenav.Body>
-                                <Nav>
+                                <Nav className="magnet-sidenav">
                                    
-                                    <div className="menu_side mx-2 my-2 rounded-xl">
+                                  
                                         {
                                             expandMenu && (
-                                                <Nav.Item
-                                                    onSelect={e => this.handleMenu("/")}
-                                                    componentClass={Link}
-                                                    to='/personal'
-                                                    eventKey='/'
-                                                    exact='/'
-                                                    className={"my-dropdown"}
-                                                >
-                                                    <div className="flex items-center">
-                                                        <div className="pl-3">
-                                                            <span className="text-black text-lg">Hi, {this.props.user.nama_depan}</span>
-                                                        </div>
-                                                    </div>
+                                                <Nav.Item to='/'as={Link} onSelect={e => this.handleMenu('')} active={lastSegmentUrl === ""}>
+                                                    <span className="text-black text-lg">Hi, {this.props.user.nama_depan}</span>
                                                 </Nav.Item>
                                             )
                                         }
-                                    </div>
-                                 
-                                   
-                                    <div className="menu_side mx-2 my-2 rounded-xl">
+                               
                                         <Nav.Item
                                             onSelect={e => this.handleMenu("/")}
-                                            componentClass={Link}
+                                            as={Link}
                                             to='/'
-                                            eventKey='/'
-                                            exact='/'
-                                            className={lastSegmentUrl === "/" || lastSegmentUrl === "" || lastSegmentUrl === "personal" || lastSegmentUrl === "account-type" || lastSegmentUrl === "decleration" || lastSegmentUrl === "trading_rules" || lastSegmentUrl === "company_profile" || lastSegmentUrl === "cooljek" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                        >
-                                            <div className="flex items-center">
-                                                <div className="px-3" style={{width:50}}>
-                                                    <img src={icon_akun} width={18} className="float-left" />
-                                                </div>
-                                                {
-                                                    expandMenu &&
-                                                    (
-                                                        <div className="pl-2">
-                                                            Akun Saya
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
+                                            icon={<Icon as={AdminIcon}/>}
+                                        > 
+                                            Akun Saya
                                         </Nav.Item>
-                                    </div>
-                                    <div className="menu_side mx-2 my-2 rounded-xl">
+                                   
                                         <Nav.Item
-
                                             onSelect={e => this.handleMenu('deposit')}
-                                            componentClass={Link}
                                             to='/deposit'
-                                            exact='/deposit'
-                                            eventKey='/deposit'
-                                            className={lastSegmentUrl === "deposit" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
+                                            as={Link}
+                                            icon={<CreditCardPlusIcon />}
+                                            active={lastSegmentUrl === "deposit"}
                                         >
-
-                                            <div className="flex items-center">
-                                                <div className="px-3" style={{width:50}}>
-                                                    <img src={icon_setoran} width={18} className="float-left" />
-                                                </div>
-                                                {
-                                                    expandMenu &&
-                                                    (
-                                                        <div className="pl-2">
-                                                            Setoran
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
+                                            Setoran
 
                                         </Nav.Item>
-                                    </div>
-                                    <div className="menu_side mx-2 my-2 rounded-xl">
+                                
                                         <Nav.Item
 
                                             onSelect={e => this.handleMenu('bank-accounts')}
-                                            componentClass={Link}
+                                            as={Link}
                                             to='/bank-accounts'
-                                            exact='/bank-accounts'
-                                            eventKey='/bank-accounts'
-                                            className={lastSegmentUrl === "bank-accounts" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
+                                            icon={<Icon as={AiFillBankIcon} style={{transform: "scale(1.5)"}}/>}
+                                            active={lastSegmentUrl === "bank-accounts"}
                                         >
-
-
-                                            <div className="flex items-center">
-                                                <div className="px-3" style={{width:50}}>
-                                                    <img src={icon_akun_bank} width={18} className="float-left" />
-                                                </div>
-                                                {
-                                                    expandMenu &&
-                                                    (
-                                                        <div className="pl-2">
-                                                            Akun Bank
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
+                                            Akun Bank
 
                                         </Nav.Item>
-                                    </div>
-                                    <div className="menu_side mx-2 my-2 rounded-xl">
+                                   
                                         <Nav.Item
                                             onSelect={e => this.handleMenu('withdrawal')}
-                                            componentClass={Link}
+                                            as={Link}
                                             to='/withdrawal'
-                                            exact='/withdrawal'
-                                            eventKey='/withdrawal'
-                                            className={lastSegmentUrl === "withdrawal" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                        >
-
-                                            <div className="flex items-center">
-                                                <div className="px-3" style={{width:50}}>
-                                                    <img src={icon_penarikan} width={18} className="float-left" />
-                                                </div>
-                                                {
-                                                    expandMenu &&
-                                                    (
-                                                        <div className="pl-2">
-                                                            Penarikan
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
+                                            icon={<CreditCardMinusIcon />}
+                                            active={lastSegmentUrl === "withdrawal"}
+                                        > 
+                                            Penarikan
 
                                         </Nav.Item>
-                                    </div>
-                                    <div className="menu_side mx-2 my-2 rounded-xl">
+                             
                                         <Nav.Item
                                             onSelect={e => this.handleMenu('internal-transfer')}
-                                            componentClass={Link}
+                                            as={Link}
                                             to='/internal-transfer'
-                                            exact='/internal-transfer'
-                                            eventKey='/internal-transfer'
-                                            className={lastSegmentUrl === "internal-transfer" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
+                                            icon={<Icon as={BiTransferAltIcon} style={{transform: "scale(1.5)"}}/>}
+                                            active={lastSegmentUrl === "internal-transfer"}
                                         >
-
-
-                                            <div className="flex items-center">
-                                                <div className="px-3" style={{width:50}}>
-                                                    <img src={icon_transfer} width={18} className="float-left" />
-                                                </div>
-                                                {
-                                                    expandMenu &&
-                                                    (
-                                                        <div className="pl-2">
-                                                            Transfer Internal
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
-
+                                            Transfer Internal
                                         </Nav.Item>
-                                    </div>
-                                    <div className="menu_side mx-2 my-2 rounded-xl">
+                               
                                         <Nav.Item
                                             onSelect={e => this.handleMenu('downloads')}
-                                            componentClass={Link}
+                                            as={Link}
                                             to='/downloads'
-                                            exact='/downloads'
-                                            eventKey='/downloads'
-                                            className={lastSegmentUrl === "downloads" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
+                                            icon={<Icon as={FaDownloadIcon} />}
+                                            active={lastSegmentUrl === "downloads"}
                                         >
-
-                                            <div className="flex items-center">
-                                                <div className="px-3"style={{width:50}}>
-                                                    <img src={icon_unduh} width={18} className="float-left" />
-                                                </div>
-                                                {
-                                                    expandMenu &&
-                                                    (
-                                                        <div className="pl-2">
-                                                            Unduh
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
-
+                                            Unduh
                                         </Nav.Item>
-                                    </div>
-                                    <div className="menu_side mx-2 my-2 rounded-xl">
+                                 
                                         <Nav.Item
                                             onSelect={e => this.handleMenu('contact')}
-                                            componentClass={Link}
+                                            as={Link}
                                             to='/contact'
-                                            exact='/contact'
-                                            eventKey='/contact'
-                                            className={lastSegmentUrl === "contact" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
+                                            icon={<Icon as={FaPhoneAltIcon} />}
+                                            active={lastSegmentUrl === "contact"}
                                         >
-
-
-                                            <div className="flex items-center">
-                                                <div className="px-3" style={{width:50}}>
-                                                    <img src={icon_hubungi} width={18} className="float-left" />
-                                                </div>
-                                                {
-                                                    expandMenu &&
-                                                    (
-                                                        <div className="pl-2">
-                                                            Hubungi Kami
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
-
+                                            Hubungi Kami
                                         </Nav.Item>
-                                    </div>
-                                    {/* <div className="menu_side mx-2 my-2 rounded-xl">
-                                        <Nav.Item
-                                            onSelect={e => this.handleMenu('autochartist')}
-                                            componentClass={Link}
-                                            to='/autochartist'
-                                            exact='/autochartist'
-                                            eventKey='/autochartist'
-                                            className={lastSegmentUrl === "autochartist" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                        >
-
-
-                                            <div className="flex items-center">
-                                                <div className="px-3">
-                                                    <img src={icon_autochartist} width={18} className="float-left" />
-                                                </div>
-                                                {
-                                                    expandMenu &&
-                                                    (
-                                                        <div className="pl-2">
-                                                            Autochartist
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
-
-                                        </Nav.Item>
-                                    </div>
-                                    <div className="menu_side mx-2 my-2 rounded-xl">
-                                        <Nav.Item
-                                            onSelect={e => this.handleMenu('education')}
-                                            componentClass={Link}
-                                            to='/education'
-                                            exact='/education'
-                                            eventKey='/education'
-                                            className={lastSegmentUrl === "education" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                        >
-
-
-                                            <div className="flex items-center">
-                                                <div className="px-3">
-                                                    <img src={icon_belajar} width={18} className="float-left" />
-                                                </div>
-                                                {
-                                                    expandMenu &&
-                                                    (
-                                                        <div className="pl-2">
-                                                            Yuk Belajar!
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
-
-                                        </Nav.Item>
-                                    </div> */}
-                                    <div className="menu_side mx-2 my-2 rounded-xl">
-
+                                 
+                                
                                         <Nav.Item
                                             onSelect={e => this.handleMenu('setting')}
-                                            componentClass={Link}
+                                            as={Link}
                                             to='/setting'
-                                            exact='/setting'
-                                            eventKey='/setting'
-                                            className={lastSegmentUrl === "setting" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
+                                            icon={<GearIcon />}
+                                            active={lastSegmentUrl === "setting"}
                                         >
-
-
-                                            <div className="flex items-center">
-                                                <div className="px-3" style={{width:50}}>
-                                                    <img src={icon_pengaturan} width={18} className="float-left" />
-                                                </div>
-                                                {
-                                                    expandMenu &&
-                                                    (
-                                                        <div className="pl-2">
-                                                            Pengaturan
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
-
+                                            Pengaturan
                                         </Nav.Item>
-                                    </div>
-                                    <div className="menu_side mx-2 my-2 rounded-xl">
+                                   
                                         <Nav.Item
                                             onSelect={e => this.handleMenu('rej-doc')}
-                                            componentClass={Link}
+                                            as={Link}
                                             to='/rej-doc'
-                                            exact='/rej-doc'
-                                            eventKey='/rej-doc'
-                                            className={lastSegmentUrl === "rej-doc" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
+                                            icon={<SettingHorizontalIcon />}
+                                            active={lastSegmentUrl === "rej-doc"}
                                         >
-
-
-                                            <div className="flex items-center">
-                                                <div className="px-3" style={{width:50}}>
-                                                    <img src={icon_reject} width={18} className="float-left" />
-                                                </div>
-                                                {
-                                                    expandMenu &&
-                                                    (
-                                                        <div className="pl-2">
-                                                            Perbaiki Data
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
-
+                                            Perbaiki Data
                                         </Nav.Item>
-                                    </div>
-                                    <div className="menu_side mx-2 my-2 rounded-xl">
+                                  
                                         <Nav.Item
-                                            className={"my-dropdown"}
                                             onSelect={e => this.handleLogout()}
-
+                                            icon={<ExitIcon />}
                                         >
-                                            <div className="flex items-center">
-                                                <div className="px-3" style={{width:50}}>
-                                                    <img src={icon_logout} width={18} className="float-left" />
-                                                </div>
-                                                {
-                                                    expandMenu &&
-                                                    (
-                                                        <div className="pl-2">
-                                                            Keluar Akun
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>
-
+                                            Keluar Akun
                                         </Nav.Item>
-                                    </div>
+                                
 
                                 </Nav>
                             </Sidenav.Body>
                         </Sidenav>
 
 
-                    </Sidebar>
                 </div>
             </div>
         )

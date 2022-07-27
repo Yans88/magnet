@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Divider, Dropdown, Header, Icon, Nav, Navbar } from 'rsuite'
+import MenuIcon from '@rsuite/icons/Menu';
 import { connect } from 'react-redux';
 import { clickExpand, onLogout, setDefaultOpenKeys, fetchUserBytoken } from '../features/main/mainSlice'
 import { Redirect } from 'react-router';
@@ -61,7 +62,7 @@ class MyHeader extends Component {
                     
                     <Navbar.Body>
                         <Nav pullRight className="mobile-view">
-                            <Nav.Item icon={<Icon icon="bars" />} onClick={this.handleToggle.bind(this)} className="drawwer"></Nav.Item>
+                            <Nav.Item icon={<MenuIcon />} onClick={this.handleToggle.bind(this)} className="drawwer"></Nav.Item>
                         </Nav>
                         
                             <div className="grid grid-cols-2 text-black pt-0 mb-2">
