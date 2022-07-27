@@ -1,5 +1,6 @@
 body {
   background-color: #f1f1f1 !important;
+  touch-action: pan-y, pan-x;
 }
 
 input[type="checkbox"]:checked+label:before {
@@ -1224,6 +1225,24 @@ tbody td {
     margin-right: 8%;
   }
 
+}
+
+
+@media screen and (max-width:900px) {
+  .tab_personal{
+    flex-direction: column !important;
+  }
+  .tab_personal .rs-nav-item{
+    color: #6c757d;
+    text-align: center;
+    background: #d1d1d1;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-top: 10px
+  }
+  .tab_personal .rs-nav-item-active{
+    background:#26A639;
+  }
 }
 
 @media screen and (max-width:780px) {

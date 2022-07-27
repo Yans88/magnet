@@ -88,17 +88,18 @@ const Login = () => {
                 </div>
                 <div className="card-body">
                   {errorMessage ? (
-                    <div className="alert alert-danger alert-sm">
+                    <div className="alert alert-sm" style={{backgroundColor:"#C2262C"}}>
                       <button
                         onClick={hideAlert}
                         type="button"
-                        className="close"
+                        className="close text-white"
                         data-dismiss="alert"
                         aria-hidden="true"
+                        style={{opacity:1}}
                       >
                         ×
                       </button>
-                      <span className="fw-semi-bold text-error-login">
+                      <span className="fw-semi-bold text-white">
                         Error: {errorMessage}
                       </span>
                     </div>
@@ -230,13 +231,14 @@ const Login = () => {
                 <div className="card-body">
                 
                   {errorMessage ? (
-                    <div className="alert alert-danger alert-sm">
+                    <div className="alert alert-sm" style={{backgroundColor:"#C2262C"}}>
                       <button
                         onClick={hideAlert}
                         type="button"
-                        className="close"
+                        className="close text-white"
                         data-dismiss="alert"
                         aria-hidden="true"
+                        style={{opacity:1}}
                       >
                         ×
                       </button>

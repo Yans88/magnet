@@ -296,13 +296,14 @@ const Register = () => {
                 <div class="grid grid-cols-1 place-items-center">
                   <div className="card-body">
                     {errorMessage ? (
-                      <div className="alert alert-danger alert-sm">
+                      <div className="alert alert-sm" style={{backgroundColor:"#C2262C"}}>
                         <button
                           onClick={hideAlert}
                           type="button"
-                          className="close"
+                          className="close text-white"
                           data-dismiss="alert"
                           aria-hidden="true"
+                          style={{opacity:1}}
                         >
                           ×
                         </button>
@@ -434,9 +435,9 @@ const Register = () => {
                             <div className="flex flex-col input-group mb-1">
                             <p className="text-muted mb-2">Password must contain the following:</p>
                               <ul>
-                                <li className="text-xs mb-1 text-success"><i class="fa fa-check"></i> Only one or more <b>lowercase</b> letter</li>
-                                <li className="text-xs mb-1 text-success"><i class="fa fa-check"></i> Only one or more <b>number</b></li>
-                                <li className="text-xs mb-1 text-danger"><i class="fa fa-times"></i>&nbsp; Minimum <b>8 Characters</b> letter or number</li>
+                                <li className="text-xs mb-1 text-success ml-3"><i class="fa fa-check"></i> Only one or more <b>lowercase</b> letter</li>
+                                <li className="text-xs mb-1 text-success ml-3"><i class="fa fa-check"></i> Only one or more <b>number</b></li>
+                                <li className="text-xs mb-1 text-danger ml-3"><i class="fa fa-times"></i>&nbsp; Minimum <b>8 Characters</b> letter or number</li>
                               </ul>
                             </div>
                           )

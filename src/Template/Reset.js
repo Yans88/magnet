@@ -98,22 +98,20 @@ const Reset = () => {
                 <div className="card-body" style={{ paddingTop: "0px" }}>
                   {errorMessage ? (
                     <div
-                      className={
-                        new RegExp("\\b" + "berhasil" + "\\b").test(
-                          errorMessage
-                            ? errorMessage.toLowerCase()
-                            : "no match"
-                        )
-                          ? "alert alert-success alert-sm"
-                          : "alert alert-danger alert-sm"
-                      }
+                      className={"alert alert-danger alert-sm"}
+                      style={{backgroundColor: (new RegExp("\\b" + "berhasil" + "\\b").test(
+                        errorMessage
+                          ? errorMessage.toLowerCase()
+                          : "no match"
+                      ) ? "#28a745" :"#C2262C")}}
                     >
                       <button
                         onClick={hideAlert}
                         type="button"
-                        className="close"
+                        className="close text-white"
                         data-dismiss="alert"
                         aria-hidden="true"
+                        style={{opacity:1}}
                       >
                         ×
                       </button>
@@ -170,9 +168,9 @@ const Reset = () => {
                           <div className="flex flex-col input-group mb-1">
                             <p className="text-muted mb-2">Password must contain the following:</p>
                             <ul>
-                              <li className="text-xs mb-1 text-success"><i class="fa fa-check"></i> Only one or more <b>lowercase</b> letter</li>
-                              <li className="text-xs mb-1 text-success"><i class="fa fa-check"></i> Only one or more <b>number</b></li>
-                              <li className="text-xs mb-1 text-danger"><i class="fa fa-times"></i>&nbsp; Minimum <b>8 Characters</b> letter or number</li>
+                              <li className="text-xs mb-1 text-success ml-3"><i class="fa fa-check"></i> Only one or more <b>lowercase</b> letter</li>
+                              <li className="text-xs mb-1 text-success ml-3"><i class="fa fa-check"></i> Only one or more <b>number</b></li>
+                              <li className="text-xs mb-1 text-danger ml-3"><i class="fa fa-times"></i>&nbsp; Minimum <b>8 Characters</b> letter or number</li>
                             </ul>
                           </div>
                         )
