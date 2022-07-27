@@ -104,7 +104,7 @@ const Register = () => {
         .required("Silahkan masukkan nomor telepon"),
       email: Yup.string()
         .required("Silahkan masukkan email")
-        .email("Please enter a valid email"),
+        .email("Silahkan masukkan email yang sah"),
       password: Yup.string()
         .required("Silahkan masukkan kata sandi")
         // .matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$", 'Need one special character')
