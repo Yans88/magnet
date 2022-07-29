@@ -277,19 +277,15 @@ class AkunBank extends Component {
                           })
                           : ""}
                         <div className="grid grid-col2-1 place-items-center mb-0 mt-4 pl-5 pr-5 w-full">
-                          <div
-                            className="w-auto bg-hijau-forex rounded-xl text-white pt-2 pb-2 grid grid-cols-1 place-items-center static"
-                            style={{ backgroundColor: "#C2252C" }}
-                          >
-                            <a								
-                              href={profileUser.status_dokumen === "Approve" ? "add-bank-accounts" : "javascript:void(0)"}
-                              className="btn btn-lgreen btn-sm"
-                            >
-                              <button className="font-bold text-white" disabled={profileUser.status_dokumen === "Approve" ? false : true}>
-                                TAMBAH AKUN BANK
-                              </button>
-                            </a>
-                          </div>
+                          
+                            
+                            
+                         
+                              <div className="w-auto rounded-xl text-white pt-2 pb-2 grid grid-cols-1 place-items-center static" style={{ backgroundColor: (profileUser.status_dokumen === "Approve" ? "#C2252C" : "#ff757b") }} onClick={()=> profileUser.status_dokumen === "Approve" && this.props.history.push('/add-bank-accounts')}>
+                                <a className="btn btn-lgreen btn-sm">
+                                  <span className="font-bold text-white">TAMBAH AKUN BANK</span>
+                                </a>
+                              </div>
                         </div>
                       </div>
                     </div>
