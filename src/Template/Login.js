@@ -43,7 +43,7 @@ const Login = () => {
     validationSchema: Yup.object({
       email: Yup.string()
         .required("Silahkan masukan email")
-        .email("Please enter a valid email"),
+        .email("Silahkan masukan password"),
       password: Yup.string().required("Silahkan masukan password"),
     }),
     onSubmit: (values) => {
