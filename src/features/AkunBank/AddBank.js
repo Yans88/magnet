@@ -76,6 +76,7 @@ class AddBank extends Component {
     this.setState({ errors });
     if (this.validateForm(this.state.errMsg6)) {
       const saveData = {
+		flag : 1,
         akun_bank_id: this.props.dataAkunBank.akun_bank_id
           ? this.props.dataAkunBank.akun_bank_id
           : "",

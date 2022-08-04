@@ -120,6 +120,7 @@ class Penarikan extends Component {
     handleSubmit() {
         var errors = this.state.errMsg;
         errors.nominal = !this.state.selected.nominal ? "Required" : '';
+		errors.nominal = errors.nominal === '' &&  parseInt(this.state.selected.nominal) <= 0 ? "Jumlah penarikan dana harus lebih besar dari 0" : errors.nominal;
         this.setState({ errors });
         if (this.validateForm(this.state.errors)) {
             this.setState({

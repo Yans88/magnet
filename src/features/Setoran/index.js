@@ -102,9 +102,9 @@ class Setoran extends Component {
   handleNext = () => {
     var errors = this.state.errMsg;
     if (this.state.nextStep) {
-      errors.setor = !this.state.selected.setor ? "Required" : "";
+      errors.setor = !this.state.selected.setor ? "Harus diisi!" : "";
       errors.setor = errors.setor === '' &&  parseInt(this.state.selected.setor) <= 0 ? "Jumlah setor harus lebih besar dari 0" : errors.setor;
-      errors.img = !this.state.selected.img ? "Required" : '';
+      errors.img = !this.state.selected.img ? "Harus diisi!" : '';
       if (this.state.selected.img) {
         var fileSize = this.state.selected.img.size;
         if (fileSize > 2099200) {
@@ -112,12 +112,18 @@ class Setoran extends Component {
           errors.img = "File size over 2MB";
         }
       }
+	  this.setState({
+        selected: {...this.state.selected,jml_setor: parseFloat(this.state.selected.setor).toFixed(2) * this.state.selected.rate }
+      });
+	  
+	  
     }
     this.setState({ errors });
     if (this.validateForm(this.state.errMsg)) {
+		
       this.setState({
         nextStep: true,
-        nextStep1: this.state.nextStep ? true : this.state.nextStep1,
+        nextStep1: this.state.nextStep ? true : this.state.nextStep1		
       });
     } else {
       console.error("Invalid Form");
