@@ -3796,27 +3796,27 @@ class Personal extends Component {
                                   </div>
                                 </div>
 
-                                {errUplFileMsg ? (
-                                  <div
-                                    className="alert alert-info alert-sm"
-                                    style={{ marginTop: ".3rem" }}
-                                  >
-                                    <button
-                                      onClick={this.hideAlert.bind(this)}
-                                      type="button"
-                                      className="close"
-                                      data-dismiss="alert"
-                                      aria-hidden="true"
-                                    >
-                                      ×
-                                    </button>
-                                    <span className="fw-semi-bold">
-                                      {errUplFileMsg}
-                                    </span>
-                                  </div>
-                                ) : (
-                                  ""
-                                )}
+                                // {errUplFileMsg ? (
+                                  // <div
+                                    // className="alert alert-info alert-sm"
+                                    // style={{ marginTop: ".3rem" }}
+                                  // >
+                                    // <button
+                                      // onClick={this.hideAlert.bind(this)}
+                                      // type="button"
+                                      // className="close"
+                                      // data-dismiss="alert"
+                                      // aria-hidden="true"
+                                    // >
+                                      // ×
+                                    // </button>
+                                    // <span className="fw-semi-bold">
+                                      // {errUplFileMsg}
+                                    // </span>
+                                  // </div>
+                                // ) : (
+                                  // ""
+                                // )}
                               </div>
                               <br />
 
