@@ -608,7 +608,7 @@ class Personal extends Component {
     }
   };
 
-  handleSubmit3(action) {
+  handleSubmit3 = async (action) =>{
     var errors = this.state.errMsg3;
     errors.pendapatan_pertahun = !this.props.dataKekayaan.pendapatan_pertahun
       ? "Kolom ini harus diisi"
@@ -661,7 +661,8 @@ class Personal extends Component {
             : 0
         ),
       };
-      this.props.onSaveDataKekayaan(saveData);
+      await this.props.onSaveDataKekayaan(saveData);
+	  this.props.getDataKekayaan();
       if (action === "detil_pribadi")
         this.setState({ active_tab: "kontak_darurat" });
     } else {
@@ -4191,7 +4192,9 @@ const mapDispatchToPros = (dispatch) => {
     },
     onSaveDataKekayaan: (param) => {
       dispatch(profileUser());
-      dispatch(simpanDataKekayaan(param));
+      dispatch(simpanDataKekayaan(param));      
+    },
+	getDataKekayaan: (param) => {      
       dispatch(getKekayaan());
     },
     onSaveKontakDarurat: (param) => {
