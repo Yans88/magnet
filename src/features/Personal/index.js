@@ -1130,7 +1130,7 @@ class Personal extends Component {
                                       <div className="mobile-hide">
                                         <div className="flex justify-start">
                                           <div className="mr-3">
-                                            <a href="#">
+                                            
                                               <img
                                                 src={close1}
                                                 onClick={this.deleteKtp.bind(
@@ -1138,7 +1138,7 @@ class Personal extends Component {
                                                 )}
                                                 width="25px"
                                               />
-                                            </a>
+                                           
                                           </div>
                                           <div className="mr-3">
                                             <a
@@ -1159,6 +1159,7 @@ class Personal extends Component {
                                               href={
                                                 ktpTemp ? ktpTemp : photo_ktp
                                               }
+											  target="_blank"
                                             >
                                               <img
                                                 src={see_icon}
