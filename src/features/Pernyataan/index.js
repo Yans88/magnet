@@ -106,6 +106,14 @@ class Pernyataan extends Component {
 
             }
         }
+		
+		errors.badan_abritase = this.props.dataPernyataan.badan_abritase === '' ? "Silakan Pilih Pilihan Resolusi Konflik" : '';
+        if (!errors.badan_abritase) errors.badan_abritase = this.props.dataPernyataan.badan_abritase === 'N' && !this.props.dataPernyataan.pengadilan ? "Silakan Pilih Pengadilan Negeri" : '';
+        this.setState({ errors });
+        if (!this.validateForm(this.state.errMsg1)) {
+            console.error('Invalid Form')
+            this.setState({ defaultActiveKey: 3 });
+		}
         if (errors.pernyataan1 === '' && errors.pernyataan2 === '' && errors.pernyataan3 === '' && errors.wakil_pialang === '' && errors.badan_abritase === '') {
             errors.pernyataan4 = this.props.dataPernyataan.pernyataan4 !== 'Y' ? "Pilihan ini harus disetujui" : '';
             this.setState({ errors });
