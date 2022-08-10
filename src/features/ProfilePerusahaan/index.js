@@ -391,7 +391,7 @@ class ProfilePerusahaan extends Component {
                                   ? wakil_pialang.map(function (wp, i) {
                                     return (
                                       <li key={wp.nama_depan +'nama-nama'+ i}>
-                                        {i + 1 + ". " + wp.nama_depan + " " + wp.nama_belakang}
+                                        {wp.nama_depan + " " + wp.nama_belakang}
                                       </li>
                                     );
                                   })
