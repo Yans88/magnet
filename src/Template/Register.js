@@ -107,8 +107,12 @@ const Register = () => {
         .email("Silahkan masukkan email yang sah"),
       password: Yup.string()
         .required("Silahkan masukkan kata sandi")
-        // .matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$", 'Need one special character')
-        .min(8, "Minimal 8 karakter"),
+        // .matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])$", 'Need one special character')
+		//.matches('/^[a-z]+$/', 'One lowercase character')
+        //.matches('/^\d+$/', 'One number')
+        .min(8, "Minimal 8 karakter")
+		.matches(/[a-z]+/, "Only one or more lowercase letter")
+		.matches(/\d+/, "Only one or more number"),
       konfirmasi_password: Yup.string()
         .required("Diperlukan!")
         .oneOf([Yup.ref("password")], "Kata sandi tidak sama"),
@@ -431,16 +435,16 @@ const Register = () => {
                           />
                         </div>
                         {
-                          formik.touched.password && (
+                          formik.touched.password ? (
                             <div className="flex flex-col input-group mb-1">
                             <p className="text-muted mb-2">Password must contain the following:</p>
                               <ul>
-                                <li className="text-xs mb-1 text-success ml-3"><i class="fa fa-check"></i> Only one or more <b>lowercase</b> letter</li>
-                                <li className="text-xs mb-1 text-success ml-3"><i class="fa fa-check"></i> Only one or more <b>number</b></li>
-                                <li className="text-xs mb-1 text-danger ml-3"><i class="fa fa-times"></i>&nbsp; Minimum <b>8 Characters</b> letter or number</li>
+                                <li className={formik.errors.password === "Only one or more lowercase letter" ? "text-xs mb-1 text-danger ml-3": "text-xs mb-1 text-success ml-3"}><i className={formik.errors.password === "Only one or more lowercase letter" ? "fa fa-times": "fa fa-check"}></i> Only one or more <b>lowercase</b> letter</li>
+                                <li className={formik.errors.password === "Only one or more number" ? "text-xs mb-1 text-danger ml-3": "text-xs mb-1 text-success ml-3"}><i className={formik.errors.password === "Only one or more number" ? "fa fa-times": "fa fa-check"}></i> Only one or more <b>number</b></li>
+                                <li className={formik.errors.password === "Minimal 8 karakter" ? "text-xs mb-1 text-danger ml-3": "text-xs mb-1 text-success ml-3"}><i className={formik.errors.password === "Minimal 8 karakter" ? "fa fa-times": "fa fa-check"}></i>&nbsp; Minimum <b>8 Characters</b> letter or number</li>
                               </ul>
                             </div>
-                          )
+                          ) : ''
                         }
                      
 
