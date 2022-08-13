@@ -363,7 +363,7 @@ class Penarikan extends Component {
 							<div className="col-sm-10">
 							  <div className="form-group">
 								<div className="form-group">
-								  <label className="frm_lbl">Jumlah Setor (IDR)</label>
+								  <label className="frm_lbl">Jumlah Penarikan (IDR)</label>
                                   <div className="flex flex-row" style={{paddingRight:'5px'}}>
                                     <div className="flex justify-center items-center" style={{width:'42px',height:'29.5px',border: "1px solid #ced4da",background:"#e9ecef",borderRight:0}}>Rp</div>
                                    
@@ -378,7 +378,7 @@ class Penarikan extends Component {
                                         decimalScale={2}
                                         inputMode="numeric"
                                         autoComplete="off"
-                                        placeholder="Jumlah Setor"
+                                        placeholder="Jumlah Penarikan"
                                         style={{borderRadius:0}}
                                         />
 								  </div>
