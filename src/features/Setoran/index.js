@@ -962,7 +962,7 @@ class Setoran extends Component {
                                         <strong>{dp.no_rek_usd}</strong>
                                       </div>
                                       <div className="mt-3">
-                                        <p className="text-red-500">*Cantumkan no login MT5 mu pada kolom berita</p>
+                                        <p className="text-red-500">*Cantumkan no login MT5 kamu pada kolom berita</p>
                                       </div>
                                     </div>
                                   </div>
