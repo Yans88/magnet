@@ -237,7 +237,7 @@ export const ppSlice = createSlice({
       }
       
       state.contentMsg =
-        "<div style='font-size:20px; text-align:center; line-height:23px;'>Data Anda Akan Kami Verifikasi, Wakil Pialang Kami akan menghubungi anda dengan nomor "+payload.wakil_pialang_caller+"</div>";
+        "<div style='font-size:20px; text-align:center; line-height:23px;'>Data Kamu Akan Kami Verifikasi, Wakil Pialang Kami akan menghubungi kamu dengan nomor "+payload.wakil_pialang_caller+"</div>";
       return state;
     },
     [simpanDataPP.rejected]: (state, { payload }) => {

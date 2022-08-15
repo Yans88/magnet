@@ -608,7 +608,7 @@ class Personal extends Component {
     }
   };
 
-  handleSubmit3(action) {
+  handleSubmit3 = async (action) =>{
     var errors = this.state.errMsg3;
     errors.pendapatan_pertahun = !this.props.dataKekayaan.pendapatan_pertahun
       ? "Kolom ini harus diisi"
@@ -661,7 +661,8 @@ class Personal extends Component {
             : 0
         ),
       };
-      this.props.onSaveDataKekayaan(saveData);
+      await this.props.onSaveDataKekayaan(saveData);
+	  this.props.getDataKekayaan();
       if (action === "detil_pribadi")
         this.setState({ active_tab: "kontak_darurat" });
     } else {
@@ -1129,7 +1130,7 @@ class Personal extends Component {
                                       <div className="mobile-hide">
                                         <div className="flex justify-start">
                                           <div className="mr-3">
-                                            <a href="#">
+                                            
                                               <img
                                                 src={close1}
                                                 onClick={this.deleteKtp.bind(
@@ -1137,7 +1138,7 @@ class Personal extends Component {
                                                 )}
                                                 width="25px"
                                               />
-                                            </a>
+                                           
                                           </div>
                                           <div className="mr-3">
                                             <a
@@ -1158,6 +1159,7 @@ class Personal extends Component {
                                               href={
                                                 ktpTemp ? ktpTemp : photo_ktp
                                               }
+											  target="_blank"
                                             >
                                               <img
                                                 src={see_icon}
@@ -3796,27 +3798,7 @@ class Personal extends Component {
                                   </div>
                                 </div>
 
-                                {errUplFileMsg ? (
-                                  <div
-                                    className="alert alert-info alert-sm"
-                                    style={{ marginTop: ".3rem" }}
-                                  >
-                                    <button
-                                      onClick={this.hideAlert.bind(this)}
-                                      type="button"
-                                      className="close"
-                                      data-dismiss="alert"
-                                      aria-hidden="true"
-                                    >
-                                      ×
-                                    </button>
-                                    <span className="fw-semi-bold">
-                                      {errUplFileMsg}
-                                    </span>
-                                  </div>
-                                ) : (
-                                  ""
-                                )}
+                                
                               </div>
                               <br />
 
@@ -4191,7 +4173,9 @@ const mapDispatchToPros = (dispatch) => {
     },
     onSaveDataKekayaan: (param) => {
       dispatch(profileUser());
-      dispatch(simpanDataKekayaan(param));
+      dispatch(simpanDataKekayaan(param));      
+    },
+	getDataKekayaan: (param) => {      
       dispatch(getKekayaan());
     },
     onSaveKontakDarurat: (param) => {

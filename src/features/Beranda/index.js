@@ -470,7 +470,7 @@ class Beranda extends Component {
 
                       {profile.status_dokumen === 'Menunggu Verifikasi' &&
                         <div className="w-full place-items-center static">
-                          <h5>Akun anda sedang di verifikasi oleh admin dan akan di telpon oleh wakil pialang dengan nomor {profile_perusahaan.wakil_pialang_caller}</h5>
+                          <h5>Akun kamu sedang di verifikasi oleh admin dan akan di telepon oleh wakil pialang dengan nomor {profile_perusahaan.wakil_pialang_caller}</h5>
 
                         </div>}
 

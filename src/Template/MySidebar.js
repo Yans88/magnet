@@ -450,8 +450,8 @@ class MySidebar extends Component {
                                             Setoran
 
                                         </Nav.Item>
-                                
-                                        <Nav.Item
+										{profile.status_dokumen === 'Approve' &&
+                                        (<Nav.Item
 
                                             onSelect={e => this.handleMenu('bank-accounts')}
                                             as={Link}
@@ -461,7 +461,7 @@ class MySidebar extends Component {
                                         >
                                             Akun Bank
 
-                                        </Nav.Item>
+                                        </Nav.Item>)}
                                    
                                         <Nav.Item
                                             onSelect={e => this.handleMenu('withdrawal')}
