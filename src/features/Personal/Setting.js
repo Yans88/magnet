@@ -346,6 +346,7 @@ class Setting extends Component {
                                   placeholder="Email"
                                 />
                               </Col>
+							  
                               {user.is_email_change === "1" && (
                                 <div className="w-full place-items-center static">
                                   <h5>
@@ -354,6 +355,7 @@ class Setting extends Component {
                                   </h5>
                                 </div>
                               )}
+							  
                             </Row>
                           </div>
 

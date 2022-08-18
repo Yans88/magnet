@@ -56,6 +56,7 @@ class Unduh extends Component {
                             MT5 For Desktop
                           </h3>
                           <div className="grid grid-cols-1 place-items-center mt-3 w-full">
+						  
                             <div className="w-full">
                               <a href="https://download.mql5.com/cdn/web/20207/mt5/magnetberjangka5setup.exe">
                                 <img

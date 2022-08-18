@@ -261,6 +261,7 @@ class ProfilePerusahaan extends Component {
                                 </div>
                                 <div className="flex-grow  ...">
                                   <p className="text-base font-bold text-gray-600 text-left ...">
+								  
                                     <a href="https://goo.gl/maps/GEDLiK8FinR6mzdx8">
                                       Gedung Sona Topas Tower - Lt. 18 Suite
                                       1804 Jl. Jend. Sudirman Kav. 26 Jakarta

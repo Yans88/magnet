@@ -135,6 +135,7 @@ class HubungiKami extends Component {
                                 <img src={wa_red} width="30px" />
                               </div>
                               <p className="w-11/12 text-base font-bold text-black text-left ...">
+							  
                                 <a
                                   href="https://api.whatsapp.com/send?phone=6287835355526&text=Halo"
                                   target="_blank"
