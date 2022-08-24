@@ -65,7 +65,8 @@ class ProfilePerusahaan extends Component {
       const qs = {
         ...this.state,
         ...this.props.persetujuan,
-        wakil_pialang_caller: this.props.profile_perusahaan.wakil_pialang_caller
+        wakil_pialang_caller:
+          this.props.profile_perusahaan.wakil_pialang_caller,
       };
       console.log(qs);
       this.props.onSave(qs);
@@ -99,7 +100,9 @@ class ProfilePerusahaan extends Component {
             <ul className="list-unstyled list-steps mb-0 flex flex-col lg:flex-row gap-3">
               <li
                 className={
-                  lastSegmentUrl === "personal" ? "active default flex-1 p-3" : "default flex-1 p-3"
+                  lastSegmentUrl === "personal"
+                    ? "active default flex-1 p-3"
+                    : "default flex-1 p-3"
                 }
               >
                 <a href="personal">1. Informasi Pribadi</a>
@@ -111,9 +114,7 @@ class ProfilePerusahaan extends Component {
                     : "default flex-1 p-3"
                 }
               >
-                <a href="account-type">
-                  2. Tipe Akun
-                </a>
+                <a href="account-type">2. Tipe Akun</a>
               </li>
               <li
                 className={
@@ -122,9 +123,7 @@ class ProfilePerusahaan extends Component {
                     : "default flex-1 p-3"
                 }
               >
-                <a href="decleration">
-                  3. Pernyataan
-                </a>
+                <a href="decleration">3. Pernyataan</a>
               </li>
               <li
                 className={
@@ -133,9 +132,7 @@ class ProfilePerusahaan extends Component {
                     : "default flex-1 p-3"
                 }
               >
-                <a href="trading_rules">
-                  4. Peraturan Trading
-                </a>
+                <a href="trading_rules">4. Peraturan Trading</a>
               </li>
               <li
                 className={
@@ -144,16 +141,13 @@ class ProfilePerusahaan extends Component {
                     : "default flex-1 p-3"
                 }
               >
-                <a href="company_profile">
-                  5. Profil Perusahaan
-                </a>
+                <a href="company_profile">5. Profil Perusahaan</a>
               </li>
             </ul>
           </div>
         </div>
         <section className="content">
           <div className="container-fluid">
-
             <div className="mobile-hide">
               <h1
                 style={{ marginBottom: 10, fontSize: 35, marginLeft: 10 }}
@@ -189,11 +183,12 @@ class ProfilePerusahaan extends Component {
                     >
                       Profil Perusahaan
                     </h3>
-                    <div className="row"
+                    <div
+                      className="row"
                       style={{
                         paddingLeft: 15,
                         paddingTop: 25,
-                        paddingRight: 15
+                        paddingRight: 15,
                       }}
                     >
                       <div className="col-sm-6">
@@ -227,7 +222,13 @@ class ProfilePerusahaan extends Component {
                                 </div>
                                 <div className="flex-grow  ...">
                                   <p className="text-base font-bold text-gray-600 text-left ...">
-                                    <a href={"tel:" + profile_perusahaan.telp_compliance} title="">
+                                    <a
+                                      href={
+                                        "tel:" +
+                                        profile_perusahaan.telp_compliance
+                                      }
+                                      title=""
+                                    >
                                       <span className="text-black">
                                         {profile_perusahaan.telp_compliance}
                                       </span>
@@ -242,7 +243,10 @@ class ProfilePerusahaan extends Component {
                                 </div>
                                 <div className="flex-grow  ...">
                                   <p className="text-base font-bold text-gray-600 text-left ...">
-                                    <a href="mailto:info@magnetfx.co.id" title="">
+                                    <a
+                                      href="mailto:info@magnetfx.co.id"
+                                      title=""
+                                    >
                                       <span className="text-black">
                                         {profile_perusahaan.email}
                                       </span>
@@ -257,9 +261,12 @@ class ProfilePerusahaan extends Component {
                                 </div>
                                 <div className="flex-grow  ...">
                                   <p className="text-base font-bold text-gray-600 text-left ...">
-                                    Gedung Sona Topas Tower - Lt. 18 Suite 1804
-                                    Jl. Jend. Sudirman Kav. 26 Jakarta Selatan
-                                    12920 Indonesia
+								  
+                                    <a href="https://goo.gl/maps/GEDLiK8FinR6mzdx8">
+                                      Gedung Sona Topas Tower - Lt. 18 Suite
+                                      1804 Jl. Jend. Sudirman Kav. 26 Jakarta
+                                      Selatan 12920 Indonesia
+                                    </a>
                                   </p>
                                 </div>
                               </div>
@@ -307,7 +314,9 @@ class ProfilePerusahaan extends Component {
                                     PERDAGANGAN ALTERNATIF
                                   </dt>
                                   <dd>
-                                    {legalitas_perusahaan.perdagangan_alternatif}
+                                    {
+                                      legalitas_perusahaan.perdagangan_alternatif
+                                    }
                                   </dd>
                                 </dl>
                                 <dl className="--style-data --style-horizontal">
@@ -341,23 +350,26 @@ class ProfilePerusahaan extends Component {
                               </h3>
                               <div>
                                 {susunan_pengurus
-                                  ? susunan_pengurus.map(function (sp,i) {
-                                    return (
-                                      <dl
-                                        key={sp.susunan_pengurus_perusahaan_id + 'susunan'+ i}
-                                        className="--style-data --style-horizontal"
-                                      >
-                                        <dt>{sp.jabatan}</dt>
-                                        <dd>{sp.nama}</dd>
-                                      </dl>
-                                    );
-                                  })
+                                  ? susunan_pengurus.map(function (sp, i) {
+                                      return (
+                                        <dl
+                                          key={
+                                            sp.susunan_pengurus_perusahaan_id +
+                                            "susunan" +
+                                            i
+                                          }
+                                          className="--style-data --style-horizontal"
+                                        >
+                                          <dt>{sp.jabatan}</dt>
+                                          <dd>{sp.nama}</dd>
+                                        </dl>
+                                      );
+                                    })
                                   : ""}
                               </div>
                             </div>
                           </div>
                         </div>
-
                       </div>
                       <div className="col-sm-6">
                         <div className="row" style={{ padding: 0 }}>
@@ -383,18 +395,20 @@ class ProfilePerusahaan extends Component {
                                 className="h6 mb-4 text-red-500"
                                 style={{ fontWeight: "bold" }}
                               >
-                                NAMA-NAMA WAKIL PIALANG PERUSAHAAN DITUNJUK KHUSUS
-                                UNTUK VERIFIKASI
+                                NAMA-NAMA WAKIL PIALANG PERUSAHAAN DITUNJUK
+                                KHUSUS UNTUK VERIFIKASI
                               </h3>
-                              <ol className="mb-0" style={{padding:'1rem'}}>
+                              <ol className="mb-0" style={{ padding: "1rem" }}>
                                 {wakil_pialang
                                   ? wakil_pialang.map(function (wp, i) {
-                                    return (
-                                      <li key={wp.nama_depan +'nama-nama'+ i}>
-                                        {wp.nama_depan + " " + wp.nama_belakang}
-                                      </li>
-                                    );
-                                  })
+                                      return (
+                                        <li
+                                          key={wp.nama_depan + "nama-nama" + i}
+                                        >
+                                          {wp.nama_depan}
+                                        </li>
+                                      );
+                                    })
                                   : ""}
                               </ol>
                             </div>
@@ -415,15 +429,21 @@ class ProfilePerusahaan extends Component {
                                 SUSUNAN PEMEGANG SAHAM PERUSAHAAN
                               </h3>
 
-                              <ol className="mb-0" style={{padding:'1rem'}}>
+                              <ol className="mb-0" style={{ padding: "1rem" }}>
                                 {susunan_saham
                                   ? susunan_saham.map(function (ss, i) {
-                                    return (
-                                      <li key={ss.susunan_saham_perusahaan_id + 'susnan' + i}>
-                                        {ss.nama_susunan_saham_perusahaan}
-                                      </li>
-                                    );
-                                  })
+                                      return (
+                                        <li
+                                          key={
+                                            ss.susunan_saham_perusahaan_id +
+                                            "susnan" +
+                                            i
+                                          }
+                                        >
+                                          {ss.nama_susunan_saham_perusahaan}
+                                        </li>
+                                      );
+                                    })
                                   : ""}
                               </ol>
                             </div>
@@ -443,20 +463,26 @@ class ProfilePerusahaan extends Component {
                               >
                                 Akun Terpisah
                               </h3>
-                              <ul style={{padding:'1rem'}}>
+                              <ul style={{ padding: "1rem" }}>
                                 {akun_terpisah
-                                  ? akun_terpisah.map(function (ap,i) {
-                                    return (
-                                      <li key={ap.akun_terpisah_id + 'akun terpisah' + i}>
-                                        <dl className="--style-data">
-                                          <dt>{ap.nama_akun_terpisah}</dt>
-                                          <dd>
-                                            No. Acc. : {ap.no_akun_terpisah}
-                                          </dd>
-                                        </dl>
-                                      </li>
-                                    );
-                                  })
+                                  ? akun_terpisah.map(function (ap, i) {
+                                      return (
+                                        <li
+                                          key={
+                                            ap.akun_terpisah_id +
+                                            "akun terpisah" +
+                                            i
+                                          }
+                                        >
+                                          <dl className="--style-data">
+                                            <dt>{ap.nama_akun_terpisah}</dt>
+                                            <dd>
+                                              No. Acc. : {ap.no_akun_terpisah}
+                                            </dd>
+                                          </dl>
+                                        </li>
+                                      );
+                                    })
                                   : ""}
                               </ul>
                             </div>
@@ -464,29 +490,11 @@ class ProfilePerusahaan extends Component {
                         </div>
                       </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                       <div
                         className="form-group"
                         style={{ marginTop: "3em" }}
                       ></div>
                     </div>
-
-
 
                     <div
                       className="container__box p-4"
@@ -498,9 +506,9 @@ class ProfilePerusahaan extends Component {
                       <div className="grid grid-cols-1 place-items-center">
                         <div className="form-group lg:w-2/3">
                           <div className="form-check">
-                            {errMsg1.agree1  ? (
+                            {errMsg1.agree1 ? (
                               <span className="text-error badge badge-danger">
-                                {errMsg1.agree1 }
+                                {errMsg1.agree1}
                               </span>
                             ) : (
                               ""
@@ -516,15 +524,14 @@ class ProfilePerusahaan extends Component {
                                 name="agree1"
                               />
                               <div className="form-check-text">
-                                Dengan mencentang kotak ini, saya dengan
-                                ini mengakui bahwa semua informasi dan
-                                dokumen yang disediakan dalam aplikasi
-                                Online untuk pembukaan akun transaksi
-                                adalah benar dan valid.saya dengan ini
-                                bertanggung jawab penuh atas setiap
+                                Dengan mencentang kotak ini, saya dengan ini
+                                mengakui bahwa semua informasi dan dokumen yang
+                                disediakan dalam aplikasi Online untuk pembukaan
+                                akun transaksi adalah benar dan valid.saya
+                                dengan ini bertanggung jawab penuh atas setiap
                                 kerusakan / kerugian di masa depan sebagai
-                                akibat dari informasi palsu dari dokumen
-                                yang saya sediakan.
+                                akibat dari informasi palsu dari dokumen yang
+                                saya sediakan.
                               </div>
                             </label>
                           </div>
@@ -539,9 +546,7 @@ class ProfilePerusahaan extends Component {
                                 <span className="text-black font-extrabold">
                                   Syarat dan ketentuan
                                 </span>{" "}
-                                <span className="text-gray-700">
-                                  serta
-                                </span>{" "}
+                                <span className="text-gray-700">serta</span>{" "}
                                 <span className="label_merah font-extrabold">
                                   Kebijakan Privasi
                                 </span>
@@ -566,9 +571,7 @@ class ProfilePerusahaan extends Component {
                           </div>
                         </div>
                       </div>
-
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -593,15 +596,15 @@ class ProfilePerusahaan extends Component {
         {this.props.showFormFailed ? (
           <AppSwalSuccess
             show={this.props.showFormFailed}
-            title={
-              "Anda belum menyetujui peraturan trading"
-            }
+            title={"Anda belum menyetujui peraturan trading"}
             type={this.props.tipeSWAL}
-            handleClose={()=>{this.props.history.push("/trading_rules")}}
+            handleClose={() => {
+              this.props.history.push("/trading_rules");
+            }}
           ></AppSwalSuccess>
         ) : (
           ""
-        )}    
+        )}
       </div>
     );
   }

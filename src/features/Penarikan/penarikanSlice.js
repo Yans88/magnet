@@ -273,7 +273,7 @@ export const penarikanSlice = createSlice({
         },
         [actionPenarikan.fulfilled]: (state, { payload }) => {
             state.showFormSuccess = true;
-            state.contentMsg = "<div style='font-size:20px; text-align:center; line-height:23px;'><strong>Terima kasih</strong><br/> Permintaan Penarikan Dana anda telah terkirim, tim kami akan segera memproses permintaan anda</div>";
+            state.contentMsg = "<div style='font-size:20px; text-align:center; line-height:23px;'><strong>Terima kasih</strong><br/> Permintaan Penarikan Dana kamu telah terkirim, tim kami akan segera memproses permintaan kamu</div>";
             state.tipeSWAL = "success";
             state.isFetching = false;
             state.errorMessage = payload.message;
