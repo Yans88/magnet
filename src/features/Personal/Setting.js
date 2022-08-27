@@ -22,11 +22,17 @@ class Setting extends Component {
       current_password: "",
       password: "",
       konfirmasi_password: "",
+      
     };
     this.state = {
       errMsg1: this.initSelected,
       lastSegmentUrl: "",
       active_tab: "profile",
+      errorValidationPasswordCheck: {
+        isMatchLowerCase: false,
+        isMatchNumber: false,
+        isMatchMinDigit: false 
+      }
     };
   }
 
@@ -46,7 +52,24 @@ class Setting extends Component {
     const dt = {};
     dt["key"] = name;
     dt["value"] = value;
+
+    if(evt.target.name === "password")
+      this.updateErrorValidationPassword(evt.target.value)
+    
     this.props.changeProps(dt);
+  }
+
+  updateErrorValidationPassword(str){
+    const regexMatchLowerCase = str.toUpperCase() != str;
+    const regexMatchNumber = /\d/;
+  
+    this.setState({
+      errorValidationPasswordCheck: {
+        isMatchLowerCase: regexMatchLowerCase ? true : false,
+        isMatchNumber: regexMatchNumber.test(str) ? true : false,
+        isMatchMinDigit: str.length >= 8 ? true : false
+      }
+    })
   }
 
   handleSubmitPass() {
@@ -246,16 +269,16 @@ class Setting extends Component {
                                     Password must contain the following:
                                   </p>
                                   <ul className="mb-0">
-                                    <li className="text-xs mb-1 text-success ml-3">
-                                      <i class="fa fa-check"></i> Only one or
+                                    <li className={`text-xs mb-1 ml-3 ${this.state.errorValidationPasswordCheck.isMatchLowerCase ? 'text-success' : 'text-danger'}`}>
+                                      <i className={`fa ${this.state.errorValidationPasswordCheck.isMatchLowerCase ? 'fa-check' : 'fa-times'}`}></i> Only one or
                                       more <b>lowercase</b> letter
                                     </li>
-                                    <li className="text-xs mb-1 text-success ml-3">
-                                      <i class="fa fa-check"></i> Only one or
+                                    <li className={`text-xs mb-1 ml-3 ${this.state.errorValidationPasswordCheck.isMatchNumber ? 'text-success' : 'text-danger'}`}>
+                                      <i className={`fa ${this.state.errorValidationPasswordCheck.isMatchNumber ? 'fa-check' : 'fa-times'}`}></i> Only one or
                                       more <b>number</b>
                                     </li>
-                                    <li className="text-xs mb-1 text-danger ml-3">
-                                      <i class="fa fa-times"></i>&nbsp; Minimum{" "}
+                                    <li className={`text-xs mb-1 ml-3 ${this.state.errorValidationPasswordCheck.isMatchMinDigit ? 'text-success' : 'text-danger'}`}>
+                                      <i className={`fa ${this.state.errorValidationPasswordCheck.isMatchMinDigit ? 'fa-check' : 'fa-times'}`}></i>&nbsp; Minimum
                                       <b>8 Characters</b> letter or number
                                     </li>
                                   </ul>

@@ -27,6 +27,14 @@ const Reset = () => {
     token,
   } = useSelector(userSelector);
 
+  const [errorValidationPasswordCheck, setErrorValidationPasswordCheck] = useState(
+    {
+      isMatchLowerCase: false,
+      isMatchNumber: false,
+      isMatchMinDigit: false 
+    }
+  )
+
   const dispatch = useDispatch();
 
   const { search } = useLocation();
@@ -61,6 +69,9 @@ const Reset = () => {
       };
       dispatch(actionPassword(val));
     },
+    onChange: (values) => {
+      console.log(values)
+    }
   });
 
   const hideAlert = () => {
@@ -70,6 +81,17 @@ const Reset = () => {
     dispatch(clearState());
   };
   document.getElementById("root").classList = "hold-transition";
+
+  const updateErrorValidationPassword = (str) => {
+    const regexMatchLowerCase = str.toUpperCase() != str;
+    const regexMatchNumber = /\d/;
+  
+    setErrorValidationPasswordCheck({
+      isMatchLowerCase: regexMatchLowerCase ? true : false,
+      isMatchNumber: regexMatchNumber.test(str) ? true : false,
+      isMatchMinDigit: str.length >= 8 ? true : false
+    })
+  }
 
   return (
     <div class="">
@@ -134,12 +156,6 @@ const Reset = () => {
                           </div>
                         </div>
                       </Form.Label>
-                      {formik.touched.password && formik.errors.password ? (
-
-                        <span className="float-right text-error badge badge-danger">
-                          {formik.errors.password}
-                        </span>
-                      ) : null}
                       <div
                         className={"input-group " + (formik.touched.password ? "mb-1" : "mb-3")}
                         style={{
@@ -158,8 +174,13 @@ const Reset = () => {
                           type="password"
                           className="form-control"
                           placeholder="Password"
+                          name="password"
                           style={{ backgroundColor: "#fff", border: "0" }}
-                          {...formik.getFieldProps("password")}
+                          onChange={(event)=>{
+                            const {name,value} = event.target
+                            updateErrorValidationPassword(value)
+                            formik.setFieldValue(name,value)
+                          }}
                         />
                       </div>
 
@@ -168,9 +189,18 @@ const Reset = () => {
                           <div className="flex flex-col input-group mb-1">
                             <p className="text-muted mb-2">Password must contain the following:</p>
                             <ul>
-                              <li className="text-xs mb-1 text-success ml-3"><i class="fa fa-check"></i> Only one or more <b>lowercase</b> letter</li>
-                              <li className="text-xs mb-1 text-success ml-3"><i class="fa fa-check"></i> Only one or more <b>number</b></li>
-                              <li className="text-xs mb-1 text-danger ml-3"><i class="fa fa-times"></i>&nbsp; Minimum <b>8 Characters</b> letter or number</li>
+                              <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchLowerCase ? 'text-success' : 'text-danger'}`}>
+                                <i className={`fa ${errorValidationPasswordCheck.isMatchLowerCase ? 'fa-check' : 'fa-times'}`}></i> Only one or
+                                more <b>lowercase</b> letter
+                              </li>
+                              <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchNumber ? 'text-success' : 'text-danger'}`}>
+                                <i className={`fa ${errorValidationPasswordCheck.isMatchNumber ? 'fa-check' : 'fa-times'}`}></i> Only one or
+                                more <b>number</b>
+                              </li>
+                              <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchMinDigit ? 'text-success' : 'text-danger'}`}>
+                                <i className={`fa ${errorValidationPasswordCheck.isMatchMinDigit ? 'fa-check' : 'fa-times'}`}></i>&nbsp; Minimum
+                                <b>8 Characters</b> letter or number
+                              </li>
                             </ul>
                           </div>
                         )

@@ -35,19 +35,19 @@ const Register = () => {
     user_id,
     isCompleteProfile,
     succesCompleteProfile,
-	emailLogin,
-	passLogin,
-	toVerify,
+    emailLogin,
+    passLogin,
+    toVerify,
   } = useSelector(userSelector);
   const history = useHistory();
   const dispatch = useDispatch();
 
   const initData = {
-    
+
     phone_number: "",
     kode_verifikasi: "",
     nama_depan: "",
-   
+
     tgl: "",
     bln: "",
     thn: "",
@@ -60,10 +60,10 @@ const Register = () => {
     password: "",
   };
   const errorValidate = {
-    
+
     phone_number: "",
     kode_verifikasi: "",
-    
+
     tgl: "",
     bln: "",
     thn: "",
@@ -74,25 +74,30 @@ const Register = () => {
   };
   const [selected, setSelected] = useState(initData);
   const [errMsg, setErrMsg] = useState(errorValidate);
-
-  
+  const [errorValidationPasswordCheck, setErrorValidationPasswordCheck] = useState(
+    {
+      isMatchLowerCase: false,
+      isMatchNumber: false,
+      isMatchMinDigit: false
+    }
+  )
 
   useEffect(() => {
     if (succesCompleteProfile) {
-		const queryString = {
-		  email: selected.email,
-		  password: selected.password,
-		};
-      
+      const queryString = {
+        email: selected.email,
+        password: selected.password,
+      };
+
       dispatch(loginUser(queryString));
     }
-	
+
   }, [succesCompleteProfile, dispatch, selected, toVerify, emailLogin, passLogin, user_id]);
 
   const formik = useFormik({
     initialValues: {
-      nama_depan:"",
-      phone_number:"",
+      nama_depan: "",
+      phone_number: "",
       email: "",
       password: "",
       konfirmasi_password: ""
@@ -108,18 +113,18 @@ const Register = () => {
       password: Yup.string()
         .required("Silahkan masukkan kata sandi")
         // .matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])$", 'Need one special character')
-		//.matches('/^[a-z]+$/', 'One lowercase character')
+        //.matches('/^[a-z]+$/', 'One lowercase character')
         //.matches('/^\d+$/', 'One number')
         .min(8, "Minimal 8 karakter")
-		.matches(/[a-z]+/, "Only one or more letter")
-		.matches(/\d+/, "Only one or more number"),
+        .matches(/[a-z]+/, "Only one or more letter")
+        .matches(/\d+/, "Only one or more number"),
       konfirmasi_password: Yup.string()
         .required("Diperlukan!")
         .oneOf([Yup.ref("password")], "Kata sandi tidak sama"),
     }),
     onSubmit: (values) => {
       setSelected({
-        ...selected,        
+        ...selected,
         password: values.password,
         email: values.email,
       });
@@ -166,7 +171,7 @@ const Register = () => {
     if (!error) dispatch(verifUser(queryString));
   };
 
- 
+
 
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -206,6 +211,19 @@ const Register = () => {
     dispatch(clearState());
   };
   document.getElementById("root").classList = "hold-transition";
+
+  const updateErrorValidationPassword = (str) => {
+    const regexMatchLowerCase = str.toUpperCase() != str;
+    const regexMatchNumber = /\d/;
+
+    setErrorValidationPasswordCheck({
+      isMatchLowerCase: regexMatchLowerCase ? true : false,
+      isMatchNumber: regexMatchNumber.test(str) ? true : false,
+      isMatchMinDigit: str.length >= 8 ? true : false
+    })
+
+    console.log(str)
+  }
 
   const frmUser = (
     <Form id="myForm">
@@ -272,7 +290,7 @@ const Register = () => {
     </Form>
   );
 
-  
+
 
   return (
     <div class="">
@@ -283,7 +301,6 @@ const Register = () => {
 
         <div className="grid grid-cols-1 gap-0 place-items-center">
           <div className="login-box ">
-            <div class="grid grid-cols-1 place-items-center">
               <div className="card border-white">
                 <div className="card-header text-center h1 text-red-500 text-lg bg-white border-white grid grid-cols-1 place-items-center lg:mt-4">
                   <div class="grid grid-cols-1 place-items-center">
@@ -297,17 +314,17 @@ const Register = () => {
                     </b>
                   </div>
                 </div>
-                <div class="grid grid-cols-1 place-items-center">
-                  <div className="card-body">
+               
+                  <div className="card-body" style={{ paddingTop: "0px",paddingRight:'35px' }}>
                     {errorMessage ? (
-                      <div className="alert alert-sm" style={{backgroundColor:"#C2262C"}}>
+                      <div className="alert alert-sm" style={{ backgroundColor: "#C2262C" }}>
                         <button
                           onClick={hideAlert}
                           type="button"
                           className="close text-white"
                           data-dismiss="alert"
                           aria-hidden="true"
-                          style={{opacity:1}}
+                          style={{ opacity: 1 }}
                         >
                           ×
                         </button>
@@ -318,66 +335,66 @@ const Register = () => {
                     ) : (
                       <p className="login-box-msg"></p>
                     )}
-					
-					{ (!isVerifikasi && !succesCompleteProfile) &&
-					<form onSubmit={formik.handleSubmit}>
 
-                          {formik.touched.nama_depan && formik.errors.nama_depan ? (
-                            <span className="float-right text-error badge badge-danger">
-                              {formik.errors.nama_depan}
-                            </span>
-                          ) : null}
-                          <div
-                            className="input-group mb-3"
-                            style={{
-                              border: "1px solid #B7B7B7",
-                              padding: "5px",
-                              borderRadius: "5px",
-                            }}
-                          >
-                            <div className="input-group-append">
-                              <div className="input-group-text bg-white border-white">
-                                <img src={user_full_name_icon} width="22px" />
-                              </div>
+                    {(!isVerifikasi && !succesCompleteProfile) &&
+                      <form onSubmit={formik.handleSubmit}>
+
+                        {formik.touched.nama_depan && formik.errors.nama_depan ? (
+                          <span className="float-right text-error badge badge-danger">
+                            {formik.errors.nama_depan}
+                          </span>
+                        ) : null}
+                        <div
+                          className="input-group mb-3"
+                          style={{
+                            border: "1px solid #B7B7B7",
+                            padding: "5px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <div className="input-group-append">
+                            <div className="input-group-text bg-white border-white">
+                              <img src={user_full_name_icon} width="22px" />
                             </div>
-                            <input
-                              autoFocus
+                          </div>
+                          <input
+                            autoFocus
                             autoComplete="off"
-                              type="text"
-                              className="form-control"
-                              placeholder="Nama Lengkap"
-                              style={{ backgroundColor: "#fff", border: "0" }}
-                              {...formik.getFieldProps("nama_depan")}
-                            />
-                          </div>
+                            type="text"
+                            className="form-control"
+                            placeholder="Nama Lengkap"
+                            style={{ backgroundColor: "#fff", border: "0" }}
+                            {...formik.getFieldProps("nama_depan")}
+                          />
+                        </div>
 
-                          {formik.touched.phone_number && formik.errors.phone_number ? (
-                            <span className="float-right text-error badge badge-danger">
-                              {formik.errors.phone_number}
-                            </span>
-                          ) : null}
-                          <div
-                            className="input-group mb-3"
-                            style={{
-                              border: "1px solid #B7B7B7",
-                              padding: "5px",
-                              borderRadius: "5px",
-                            }}
-                          >
-                            <div className="input-group-append">
-                              <div className="input-group-text bg-white border-white">
-                                <img src={user_phone_number_icon} width="22px" />
-                              </div>
+                        {formik.touched.phone_number && formik.errors.phone_number ? (
+                          <span className="float-right text-error badge badge-danger">
+                            {formik.errors.phone_number}
+                          </span>
+                        ) : null}
+                        <div
+                          className="input-group mb-3"
+                          style={{
+                            border: "1px solid #B7B7B7",
+                            padding: "5px",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          <div className="input-group-append">
+                            <div className="input-group-text bg-white border-white">
+                              <img src={user_phone_number_icon} width="22px" />
                             </div>
-                            <input
-                              
-                              type="number"
-                              className="form-control"
-                              placeholder="No. Handphone"
-                              style={{ backgroundColor: "#fff", border: "0" }}
-                              {...formik.getFieldProps("phone_number")}
-                            />
                           </div>
+                          <input
+
+                            type="number"
+                            className="form-control"
+                            placeholder="No. Handphone"
+                            style={{ backgroundColor: "#fff", border: "0" }}
+                            {...formik.getFieldProps("phone_number")}
+                          />
+                        </div>
 
                         {formik.touched.email && formik.errors.email ? (
                           <span className="float-right text-error badge badge-danger">
@@ -398,7 +415,7 @@ const Register = () => {
                             </div>
                           </div>
                           <input
-                           
+
                             type="text"
                             className="form-control"
                             placeholder="Email"
@@ -406,14 +423,8 @@ const Register = () => {
                             {...formik.getFieldProps("email")}
                           />
                         </div>
-
-                        {formik.touched.password && formik.errors.password ? (
-                          <span className="float-right text-error badge badge-danger">
-                            {formik.errors.password}
-                          </span>
-                        ) : null}
                         <div
-                          className={"input-group " + (formik.touched.password  ?  "mb-1" : "mb-3")}
+                          className={"input-group " + (formik.touched.password ? "mb-1" : "mb-3")}
                           style={{
                             border: "1px solid #B7B7B7",
                             padding: "5px",
@@ -430,28 +441,41 @@ const Register = () => {
                             type="password"
                             className="form-control"
                             placeholder="Password"
+                            name="password"
                             style={{ backgroundColor: "#fff", border: "0" }}
-                            {...formik.getFieldProps("password")}
+                            onChange={(event) => {
+                              const { name, value } = event.target
+                              updateErrorValidationPassword(value)
+                              formik.setFieldValue(name, value)
+                            }}
                           />
                         </div>
                         {
                           formik.touched.password ? (
                             <div className="flex flex-col input-group mb-1">
-                            <p className="text-muted mb-2">Password must contain the following:</p>
+                              <p className="text-muted mb-2">Password must contain the following:</p>
                               <ul>
-							  
-                                <li className={(formik.errors.password === "Only one or more letter" || formik.errors.password === "Silahkan masukkan kata sandi") ? "text-xs mb-1 text-danger ml-3": "text-xs mb-1 text-success ml-3"}><i className={(formik.errors.password === "Only one or more letter" || formik.errors.password === "Silahkan masukkan kata sandi") ? "fa fa-times": "fa fa-check"}></i> Only one or more letter</li>
-                                <li className={(formik.errors.password === "Only one or more number" || formik.errors.password === "Silahkan masukkan kata sandi") ? "text-xs mb-1 text-danger ml-3": "text-xs mb-1 text-success ml-3"}><i className={(formik.errors.password === "Only one or more number" || formik.errors.password === "Silahkan masukkan kata sandi") ? "fa fa-times": "fa fa-check"}></i> Only one or more <b>number</b></li>
-                                <li className={(formik.errors.password === "Minimal 8 karakter" || formik.errors.password === "Silahkan masukkan kata sandi") ? "text-xs mb-1 text-danger ml-3": "text-xs mb-1 text-success ml-3"}><i className={(formik.errors.password === "Minimal 8 karakter" || formik.errors.password === "Silahkan masukkan kata sandi") ? "fa fa-times": "fa fa-check"}></i>&nbsp; Minimum <b>8 Characters</b> letter or number</li>
-								
+
+                                <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchLowerCase ? 'text-success' : 'text-danger'}`}>
+                                  <i className={`fa ${errorValidationPasswordCheck.isMatchLowerCase ? 'fa-check' : 'fa-times'}`}></i> Only one or
+                                  more <b>lowercase</b> letter
+                                </li>
+                                <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchNumber ? 'text-success' : 'text-danger'}`}>
+                                  <i className={`fa ${errorValidationPasswordCheck.isMatchNumber ? 'fa-check' : 'fa-times'}`}></i> Only one or
+                                  more <b>number</b>
+                                </li>
+                                <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchMinDigit ? 'text-success' : 'text-danger'}`}>
+                                  <i className={`fa ${errorValidationPasswordCheck.isMatchMinDigit ? 'fa-check' : 'fa-times'}`}></i>&nbsp; Minimum
+                                  <b>8 Characters</b> letter or number
+                                </li>
                               </ul>
                             </div>
                           ) : ''
                         }
-                     
+
 
                         {formik.touched.konfirmasi_password &&
-                        formik.errors.konfirmasi_password ? (
+                          formik.errors.konfirmasi_password ? (
                           <span className="float-right text-error badge badge-danger">
                             {formik.errors.konfirmasi_password}
                           </span>
@@ -470,31 +494,31 @@ const Register = () => {
                             </div>
                           </div>
                           <input
-                           
+
                             type="password"
                             className="form-control"
                             placeholder="Konfirmasi Password"
                             style={{ backgroundColor: "#fff", border: "0" }}
                             {...formik.getFieldProps("konfirmasi_password")}
                           />
-                          
+
                         </div>
-                        
+
                         <div
-                            className="input-group mb-3"
-                            style={{
-                              border: "1px solid #B7B7B7",
-                              padding: "5px",
-                              borderRadius: "5px",
-                            }}
-                          >
+                          className="input-group mb-3"
+                          style={{
+                            border: "1px solid #B7B7B7",
+                            padding: "5px",
+                            borderRadius: "5px",
+                          }}
+                        >
                           <div className="input-group-append">
                             <div className="input-group-text bg-white border-white">
                               <img src={user_reff_code_icon} width="22px" />
                             </div>
                           </div>
                           <input
-                            
+
                             type="text"
                             className="form-control"
                             placeholder="Kode Referal"
@@ -530,9 +554,9 @@ const Register = () => {
                             </div>
                           </div>
                         </div>
-					</form>}
+                      </form>}
 
-                    
+
                     <div className="text-left">
                       {isVerifikasi ? frmUser : ""}
                       {succesCompleteProfile ? (
@@ -562,11 +586,10 @@ const Register = () => {
                       )}
                     </div>
                   </div>
-                </div>
               </div>
             </div>
           </div>
-        </div>
+
 
         <div className="h-auto overflow-hidden mobile-hide">
           <img src={banner} className="w-[100%] h-[100%]" />
