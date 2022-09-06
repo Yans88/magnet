@@ -210,7 +210,7 @@ export const ppSlice = createSlice({
       state.errorMessage = payload.message;
       state.showFormSuccess = true;
       state.contentMsg =
-        "<div style='font-size:20px; text-align:center; line-height:23px;'><strong>Terima kasih</strong><br/> Pesan anda telah terkirim, tim kami akan segera menjawab pesan anda</div>";
+        "<div style='font-size:20px; text-align:center; line-height:23px;'><strong>Terima kasih</strong><br/> Pesan kamu telah terkirim, tim kami akan segera menjawab pesan kamu</div>";
       state.tipeSWAL = "success";
       return state;
     },
@@ -237,7 +237,7 @@ export const ppSlice = createSlice({
       }
       
       state.contentMsg =
-        "<div style='font-size:20px; text-align:center; line-height:23px;'>Data Kamu Akan Kami Verifikasi, Wakil Pialang Kami akan menghubungi kamu dengan nomor "+payload.wakil_pialang_caller+"</div>";
+        "<div style='font-size:20px; text-align:center; line-height:23px;'>Data kamu akan kami verifikasi, wakil pialang kami akan menghubungi kamu dengan nomor "+payload.wakil_pialang_caller+"</div>";
       return state;
     },
     [simpanDataPP.rejected]: (state, { payload }) => {

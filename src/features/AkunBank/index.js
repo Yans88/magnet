@@ -69,7 +69,7 @@ class AkunBank extends Component {
       <div
         dangerouslySetInnerHTML={{
           __html:
-            '<div id="caption" style=padding-bottom:20px;">Apakah anda yakin <br/>akan menghapus data ini ?</div>',
+            '<div id="caption" style=padding-bottom:20px;">Apakah kamu yakin <br/>akan menghapus data ini ?</div>',
         }}
       />
     );

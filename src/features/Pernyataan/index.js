@@ -54,21 +54,23 @@ class Pernyataan extends Component {
 
     handleChange(evt) {
         const name = evt.target.name;
-        var value = evt.target.value;
+        const value = evt.target.value;
         if (name === "agree") {
             value = evt.target.checked ? 'Y' : 'N';
         }
+        console.log(name,value)
 		if(name === "pernyataan1" && value === "Y"){
-			this.setState({ defaultActiveKey: 2 });
-			this.scrollDiv.current.scrollIntoView({ behavior: "smooth" });			
+            console.log("asdas")
+			this.setState({ defaultActiveKey: 2 },()=>{console.log(this.state.defaultActiveKey)});
+			this.scrollDiv.current.scrollIntoView({ block: "start", behavior: "smooth"  });			
 		}
 		if(name === "pernyataan2" && value === "Y"){
 			this.setState({ defaultActiveKey: 3 });
-			this.scrollDiv.current.scrollIntoView({ behavior: "smooth", bottom:0,block: "end", inline: "nearest" });		
+			this.scrollDiv.current.scrollIntoView({ block: "start", behavior: "smooth"  });		
 		}
 		if(name === "pernyataan3" && value === "Y"){
 			this.setState({ defaultActiveKey: 4 });
-			this.scrollDiv.current.scrollIntoView({ behavior: "smooth" });
+			this.scrollDiv.current.scrollIntoView({ block: "start", behavior: "smooth"  });
 		}
         const dt = {};
         dt['key'] = name;
@@ -139,6 +141,7 @@ class Pernyataan extends Component {
     }
 
     handleSelect(evt) {
+        console.log(evt)
         this.setState({ defaultActiveKey: evt })
     }
 
@@ -228,7 +231,7 @@ class Pernyataan extends Component {
                                             <br />
 
                                             <PanelGroup accordion activeKey={defaultActiveKey} defaultActiveKey={1} onSelect={this.handleSelect.bind(this)}>
-                                                <Panel eventKey={1} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="1. Pernyataan Telah Melakukan Simulasi Perdagangan Berjangka Komoditi">
+                                                <Panel eventKey={1} expanded={true} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="1. Pernyataan Telah Melakukan Simulasi Perdagangan Berjangka Komoditi">
                                                         <br/>
                                                         <strong><span className="label_hitam">Yang mengisi formulir di bawah ini: </span></strong>
                                                         <br /><br/>
@@ -333,7 +336,7 @@ class Pernyataan extends Component {
                                                         </div>
                                                     
                                                 </Panel>
-                                                <Panel eventKey={2} className="w-accordion__header__title label_hitam shadow-lg px-2 py-1 my-2 mx-2" header="2. Dokumen Pemberitahuan Adanya Risiko yang harus disampaikan oleh Pialang Berjangka untuk Transaksi Kontrak Derivatif dalam Sistem Perdagangan Alternatif">
+                                                <Panel eventKey={2} expanded={true} className="w-accordion__header__title label_hitam shadow-lg px-2 py-1 my-2 mx-2" header="2. Dokumen Pemberitahuan Adanya Risiko yang harus disampaikan oleh Pialang Berjangka untuk Transaksi Kontrak Derivatif dalam Sistem Perdagangan Alternatif">
                                                     <br/>
                                                     <p style={{ textAlign: "justify", color: "#000", fontSize: "1rem", fontWeight: 300 }}>Dokumen Pemberitahuan Adanya Risiko ini disampaikan kepada Anda sesuai dengan Pasal 50 ayat (2) Undang-Undang Nomor 32 Tahun 1997 tentang Perdagangan Berjangka Komoditi sebagaimana telah diubah dengan Undang-Undang Nomor 10 Tahun 2011 tentang Perubahan Atas Undang-Undang Nomor 32 Tahun 1997 Tentang Perdagangan Berjangka Komoditi.</p>
                                                     <p style={{ textAlign: "justify", color: "#000", fontSize: "1rem", fontWeight: 300 }}>Maksud dokumen ini adalah memberitahukan bahwa kemungkinan kerugian atau keuntungan dalam perdagangan Kontrak Derivatif dalam Sistem Perdagangan Alternatif bisa mencapai jumlah yang sangat besar.Oleh karena itu, Anda harus berhati-hati dalam memutuskan untuk melakukan transaksi, apakah kondisi keuangan Anda mencukupi.</p>
@@ -473,7 +476,7 @@ class Pernyataan extends Component {
 
                                                 </Panel>
 
-                                                <Panel eventKey={3} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="3. Perjanjian Pemberian Amanat secara Elektronik On-line untuk Transaksi Kontrak Derivatif dalam Sistem Perdagangan Alternatif">
+                                                <Panel eventKey={3} expanded={true} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="3. Perjanjian Pemberian Amanat secara Elektronik On-line untuk Transaksi Kontrak Derivatif dalam Sistem Perdagangan Alternatif">
                                                     <br/>
                                                     <div className="form-group text-center">
                                                         <div className="alert alert-danger kolom_merah" style={{ background: '#C2252C',color:'#fff',borderRadius:'10px'}}>
@@ -509,14 +512,14 @@ class Pernyataan extends Component {
                                                             <p>Pekerjaan/Jabatan: <b className="declaration_employment_status_html">Wakil Pialang</b>
                                                                 <br clear="all" />
                                                             </p>
-															<p>
-                                Alamat:{" "}
-                                <div
-                                  dangerouslySetInnerHTML={{
-                                    __html: profile_perusahaan.alamat,
-                                  }}
-                                />
-                              </p>
+															<p style={{ display: 'flex', flexDirection: "row" }}>
+                                                                <span style={{ marginRight: 5 }}>Alamat:{" "}</span>
+                                                                <div
+                                                                    dangerouslySetInnerHTML={{
+                                                                        __html: profile_perusahaan.alamat,
+                                                                    }}
+                                                                />
+                                                            </p>
                                                             <p>Dalam hal ini bertindak untuk dan atas nama  <b>{profile_perusahaan.perusahaan}</b> yang selanjutnya disebut <b>Pialang Berjangka</b>, </p>
                                                             <p>Nasabah dan Pialang Berjangka secara bersama-sama selanjutnya disebut <b>Para Pihak</b>.</p>
                                                         </li>
@@ -749,7 +752,7 @@ class Pernyataan extends Component {
                                                                     onChange={this.handleChange.bind(this)}
                                                                     as="select">
                                                                     <option value="">Pilih</option>
-                                                                    <option value="Jakarta Selatan">Jakarta Selatan</option>
+                                                                    <option value="Jakarta BahasaPenyelesaian PerselisihanSelatan">Jakarta Selatan</option>
                                                                     
                                                                 </Form.Control>
                                                                 {errMsg1.badan_abritase ? (<span style={{ marginLeft: 40 }} className="text-error badge badge-danger">{errMsg1.badan_abritase}</span>) : ''}
@@ -757,22 +760,23 @@ class Pernyataan extends Component {
                                                             <br />
 
                                                             <p>(4) Kantor atau kantor cabang Pialang Berjangka terdekat dengan domisili Nasabah tempat penyelesaian dalam hal terjadi perselisihan.</p>
-                                                             <p>
-                                Alamat: <div
-                                  dangerouslySetInnerHTML={{
-                                    __html: profile_perusahaan.alamat,
-                                  }}
-                                />
-                              </p>
+                                                            <p style={{ display: 'flex', flexDirection: "row" }}>
+                                                                <span style={{ marginRight: 5 }}>Alamat:{" "}</span>
+                                                                <div
+                                                                    dangerouslySetInnerHTML={{
+                                                                        __html: profile_perusahaan.alamat,
+                                                                    }}
+                                                                />
+                                                            </p>
                                                         </li>
                                                         <li tabIndex={1}>
                                                             <p><b>Bahasa</b></p>
                                                             <p>Perjanjian ini dibuat dan ditanda tangani dalam Bahasa Indonesia.</p>
-                                                        </li>
+                                                        
                                                         <p>Demikian Perjanjian Pemberian Amanat ini dibuat oleh Para Pihak dalam keadaan sadar, sehat jasmani rohani dan tanpa unsur paksaan dari pihak manapun</p>
                                                         <p style={{ textAlign: 'center', fontSize: '.97rem' }}><b>"Saya telah membaca, mengerti dan setuju terhadap semua ketentuan yang tercantum dalam perjanjian ini".</b></p>
                                                         <p style={{ textAlign: 'center' }}>Dengan mengisi kolom <i>"YA"</i> di bawah, saya menyatakan bahwa saya telah menerima<br /><b>"PERJANJIAN PEMBERIAN AMANAT TRANSAKSI KONTRAK DERIVATIF SISTEM PERDAGANGAN ALTERNATIF"</b><br />mengerti dan menyetujui isinya.</p>
-
+                                                        </li>
                                                         <div className="form-group row align-items-center">
                                                             <div className="col">
                                                                 Pernyataan Menerima / Tidak
@@ -816,7 +820,7 @@ class Pernyataan extends Component {
                                                     </ol>
                                                 </Panel>
 
-                                                <Panel eventKey={4} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="4. Pernyataan Bertanggung Jawab atas Kode Akses Transaksi Nasabah (Personal Access Password)">
+                                                <Panel eventKey={4} expanded={true} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="4. Pernyataan Bertanggung Jawab atas Kode Akses Transaksi Nasabah (Personal Access Password)">
                                                     <br/>
                                                     <strong>Yang mengisi formulir di bawah ini: </strong>
                                                     <br />
@@ -982,7 +986,7 @@ class Pernyataan extends Component {
                                     </label>
                                   </div>
 
-                                  <div ref={this.scrollDiv} className="form-group w-[100%] lg:w-[40%] text-center">
+                                  
 
                                     
                                     <AppButton
@@ -996,7 +1000,7 @@ class Pernyataan extends Component {
                                 </div>
                               </div>
                             </div>
-                            
+                            <div ref={this.scrollDiv} className="form-group w-[100%] lg:w-[40%] text-center">
                           </div>
 
                                         

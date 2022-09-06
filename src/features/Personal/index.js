@@ -443,6 +443,7 @@ class Personal extends Component {
     this.props.showConfirmDel(true);
   }
   deleteKtp() {
+    console.log('delete')
     this.setState({
       ktpTemp: "",
     });
@@ -1103,7 +1104,7 @@ class Personal extends Component {
                                       <img
                                         style={{maxWidth:"100%"}}
                                         src={
-                                          user.photo_ktp_download
+                                          ktpTemp
                                             ? user.photo_ktp_download
                                             : photo_ktp
                                         }
@@ -1133,9 +1134,8 @@ class Personal extends Component {
                                             
                                               <img
                                                 src={close1}
-                                                onClick={this.deleteKtp.bind(
-                                                  this
-                                                )}
+                                                onClick={()=> this.deleteKtp()}
+                                                style={{cursor:"pointer"}}
                                                 width="25px"
                                               />
                                            
@@ -1176,9 +1176,8 @@ class Personal extends Component {
                                             <img
                                               src={close1}
                                               width="25px"
-                                              onClick={this.deleteKtp.bind(
-                                                this
-                                              )}
+                                              onClick={()=> this.deleteKtp()}
+                                              style={{cursor:"pointer"}}
                                             />
                                           </div>
                                           <div className="mr-3">
@@ -3946,19 +3945,20 @@ class Personal extends Component {
 
                               <br />
                               <div className="form-group row align-items-center">
-                                <div className="col">
+                                <div className="col-sm-6 col-md-3 ">
                                   Pernyataan Kebenaran Dan Tanggung Jawab
                                 </div>
                                 <div className="col-sm-6 col-md-9">
-                                  <Form.Group controlId="agree">
+                               
+                                  <Form.Group>
                                     <Form.Check
                                       inline
                                       onChange={this.handleChangeDPP.bind(this)}
                                       checked={
-                                        dokumenPribadiPernyataan &&
-                                        dokumenPribadiPernyataan.agree !== "N"
-                                          ? true
-                                          : false
+                                      
+                                        dokumenPribadiPernyataan.agree == "Y"
+                                          ? "checked"
+                                          : ""
                                       }
                                       value="Y"
                                       type="radio"
@@ -3968,10 +3968,10 @@ class Personal extends Component {
                                     <Form.Check
                                       inline
                                       checked={
-                                        dokumenPribadiPernyataan &&
+                                
                                         dokumenPribadiPernyataan.agree === "N"
-                                          ? true
-                                          : false
+                                          ? "checked"
+                                          : ""
                                       }
                                       onChange={this.handleChangeDPP.bind(this)}
                                       value="N"

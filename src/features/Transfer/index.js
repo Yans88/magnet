@@ -419,10 +419,10 @@ class Transfer extends Component {
                                   <tr>
                                     <th></th>
                                     <th>Login</th>
-                                    <th>
+                                    <th className="text-right">
                                       Free Margin 
                                     </th>
-                                    <th>
+                                    <th className="text-right">
                                       Equity
                                     </th>
                                     <th>Rate</th>
@@ -458,7 +458,7 @@ class Transfer extends Component {
 
                                               </td>
                                               <td>{at.login}</td>
-                                              <td>
+                                              <td className="text-right">
                                                 <NumberFormat
                                                   value={
                                                     at.margin_free > 0
@@ -470,7 +470,7 @@ class Transfer extends Component {
                                                   displayType={"text"}
                                                 />
                                               </td>
-                                              <td>
+                                              <td className="text-right">
                                                 <NumberFormat
                                                   value={
                                                     at.equity > 0
@@ -482,7 +482,7 @@ class Transfer extends Component {
                                                   displayType={"text"}
                                                 />
                                               </td>
-                                              <td>{at.rate === 0 || at.rate === '0' ? 'USD' : at.rate}</td>
+                                              <td >{at.rate === 0 || at.rate === '0' ? 'USD' : at.rate}</td>
                                             </tr>
                                           </Fragment>
                                         );
@@ -532,10 +532,10 @@ class Transfer extends Component {
                                       <tr>
                                         <th></th>
                                         <th>Login</th>
-                                        <th>
+                                        <th className="text-right">
                                           Free Margin
                                         </th>
-                                        <th>
+                                        <th className="text-right">
                                           Equity
                                         </th>
                                         <th>
@@ -571,7 +571,7 @@ class Transfer extends Component {
                                                     />
                                                   </td>
                                                   <td>{at.login}</td>
-                                                  <td>
+                                                  <td className="text-right">
                                                     <NumberFormat
                                                       value={
                                                         at.margin_free > 0
@@ -583,7 +583,7 @@ class Transfer extends Component {
                                                       displayType={"text"}
                                                     />
                                                   </td>
-                                                  <td>
+                                                  <td className="text-right">
                                                     <NumberFormat
                                                       value={
                                                         at.equity > 0
@@ -595,7 +595,7 @@ class Transfer extends Component {
                                                       displayType={"text"}
                                                     />
                                                   </td>
-                                                  <td>
+                                                  <td >
                                                     {at.rate === 0 || at.rate === '0' ? 'USD' : at.rate}
                                                   </td>
                                                 </tr>

@@ -198,8 +198,8 @@ const Reset = () => {
                                 more <b>number</b>
                               </li>
                               <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchMinDigit ? 'text-success' : 'text-danger'}`}>
-                                <i className={`fa ${errorValidationPasswordCheck.isMatchMinDigit ? 'fa-check' : 'fa-times'}`}></i>&nbsp; Minimum
-                                <b>8 Characters</b> letter or number
+                                <i className={`fa ${errorValidationPasswordCheck.isMatchMinDigit ? 'fa-check' : 'fa-times'}`}></i> Minimum
+                                <b> 8 Characters</b> letter or number
                               </li>
                             </ul>
                           </div>

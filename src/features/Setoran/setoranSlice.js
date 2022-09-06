@@ -272,7 +272,7 @@ export const setoranSlice = createSlice({
         },
         [actionSetor.fulfilled]: (state, { payload }) => {
             state.showFormSuccess = true;
-            state.contentMsg = "<div style='font-size:20px; text-align:center; line-height:23px;'><strong>Terima kasih</strong><br/> Konfirmasi setor anda sudah terkirim, tim kami akan segera melakukan pengecekan</div>";
+            state.contentMsg = "<div style='font-size:20px; text-align:center; line-height:23px;'><strong>Terima kasih</strong><br/> Konfirmasi setor kamu sudah terkirim, tim kami akan segera melakukan pengecekan</div>";
             state.tipeSWAL = "success";
             state.isFetching = false;
             state.errorMessage = payload.message;

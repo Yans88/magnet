@@ -344,7 +344,7 @@ class Beranda extends Component {
       <div
         dangerouslySetInnerHTML={{
           __html:
-            '<div id="caption" style="padding-bottom:20px; text-align:left;">Nasabah yang terhormat, selamat datang di Magnet, Kami sangat senang anda bergabung bersama kami, agar bisa segera memulai silahkan lengkapi data pribadi anda. Data ini diperlukan sebagai persyaratan resmi dalam pembukaan rekening.</div>',
+            '<div id="caption" style="padding-bottom:20px; text-align:left;">Nasabah yang terhormat, selamat datang di Magnet, kami sangat senang kamu bergabung bersama kami, agar bisa segera memulai silahkan lengkapi data pribadi anda. Data ini diperlukan sebagai persyaratan resmi dalam pembukaan rekening.</div>',
         }}
       />
     );
@@ -353,7 +353,7 @@ class Beranda extends Component {
       <div
         dangerouslySetInnerHTML={{
           __html:
-            '<div id="caption" style="padding-bottom:20px; text-align:left;">Nasabah yang terhormat, selamat datang di Magnet. Silahkan perbaiki kembali data pribadi anda karena data ini diperlukan sebagai persyaratan resmi dalam pembukaan rekening.</div>',
+            '<div id="caption" style="padding-bottom:20px; text-align:left;">Nasabah yang terhormat, selamat datang di Magnet. Silahkan perbaiki kembali data pribadi kamu karena data ini diperlukan sebagai persyaratan resmi dalam pembukaan rekening.</div>',
         }}
       />
     );
@@ -470,7 +470,7 @@ class Beranda extends Component {
 
                       {profile.status_dokumen === 'Menunggu Verifikasi' &&
                         <div className="w-full place-items-center static">
-                          <h5>Akun kamu sedang di verifikasi oleh admin dan akan di telepon oleh wakil pialang dengan nomor {profile_perusahaan.wakil_pialang_caller}</h5>
+                          <h5>Akun kamu sedang di verifikasi oleh admin dan akan di telepon oleh Wakil Pialang dari nomor {profile_perusahaan.wakil_pialang_caller}</h5>
 
                         </div>}
 

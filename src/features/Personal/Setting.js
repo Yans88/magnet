@@ -278,8 +278,8 @@ class Setting extends Component {
                                       more <b>number</b>
                                     </li>
                                     <li className={`text-xs mb-1 ml-3 ${this.state.errorValidationPasswordCheck.isMatchMinDigit ? 'text-success' : 'text-danger'}`}>
-                                      <i className={`fa ${this.state.errorValidationPasswordCheck.isMatchMinDigit ? 'fa-check' : 'fa-times'}`}></i>&nbsp; Minimum
-                                      <b>8 Characters</b> letter or number
+                                      <i className={`fa ${this.state.errorValidationPasswordCheck.isMatchMinDigit ? 'fa-check' : 'fa-times'}`}></i> Minimum
+                                      <b> Characters</b> letter or number
                                     </li>
                                   </ul>
                                 </div>

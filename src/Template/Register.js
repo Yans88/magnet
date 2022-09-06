@@ -130,6 +130,9 @@ const Register = () => {
       });
       dispatch(regUser(values));
     },
+    handleChange: (values)=>{
+      console.log(values)
+    }
   });
 
   const handleChange = (event) => {
@@ -423,6 +426,12 @@ const Register = () => {
                             {...formik.getFieldProps("email")}
                           />
                         </div>
+                        {formik.values.password === "" &&
+                          formik.errors.password ? (
+                          <span className="float-right text-error badge badge-danger">
+                            {formik.errors.password}
+                          </span>
+                        ) : null}
                         <div
                           className={"input-group " + (formik.touched.password ? "mb-1" : "mb-3")}
                           style={{
@@ -448,10 +457,11 @@ const Register = () => {
                               updateErrorValidationPassword(value)
                               formik.setFieldValue(name, value)
                             }}
+                            // onChange={formik.handleChange}
                           />
                         </div>
                         {
-                          formik.touched.password ? (
+                          formik.values.password ? (
                             <div className="flex flex-col input-group mb-1">
                               <p className="text-muted mb-2">Password must contain the following:</p>
                               <ul>
@@ -465,8 +475,8 @@ const Register = () => {
                                   more <b>number</b>
                                 </li>
                                 <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchMinDigit ? 'text-success' : 'text-danger'}`}>
-                                  <i className={`fa ${errorValidationPasswordCheck.isMatchMinDigit ? 'fa-check' : 'fa-times'}`}></i>&nbsp; Minimum
-                                  <b>8 Characters</b> letter or number
+                                  <i className={`fa ${errorValidationPasswordCheck.isMatchMinDigit ? 'fa-check' : 'fa-times'}`}></i> Minimum
+                                  <b> 8 Characters</b> letter or number
                                 </li>
                               </ul>
                             </div>
