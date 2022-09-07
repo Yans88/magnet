@@ -1104,9 +1104,7 @@ class Personal extends Component {
                                       <img
                                         style={{maxWidth:"100%"}}
                                         src={
-                                          ktpTemp
-                                            ? user.photo_ktp_download
-                                            : photo_ktp
+                                          ktpTemp ? ktpTemp : photo_ktp
                                         }
                                       />
                                     </div>

@@ -54,23 +54,23 @@ class Pernyataan extends Component {
 
     handleChange(evt) {
         const name = evt.target.name;
-        const value = evt.target.value;
+        let value = evt.target.value;
         if (name === "agree") {
             value = evt.target.checked ? 'Y' : 'N';
         }
         console.log(name,value)
 		if(name === "pernyataan1" && value === "Y"){
             console.log("asdas")
-			this.setState({ defaultActiveKey: 2 },()=>{console.log(this.state.defaultActiveKey)});
-			this.scrollDiv.current.scrollIntoView({ block: "start", behavior: "smooth"  });			
+			this.setState({ defaultActiveKey: 2 },()=>{setTimeout(()=>{this.scrollDiv.current.scrollIntoView(false);},500)	});
+					
 		}
 		if(name === "pernyataan2" && value === "Y"){
-			this.setState({ defaultActiveKey: 3 });
-			this.scrollDiv.current.scrollIntoView({ block: "start", behavior: "smooth"  });		
+			this.setState({ defaultActiveKey: 3 },()=>{setTimeout(()=>{this.scrollDiv.current.scrollIntoView(false);},500)	});
+		
 		}
 		if(name === "pernyataan3" && value === "Y"){
-			this.setState({ defaultActiveKey: 4 });
-			this.scrollDiv.current.scrollIntoView({ block: "start", behavior: "smooth"  });
+			this.setState({ defaultActiveKey: 4 },()=>{setTimeout(()=>{this.scrollDiv.current.scrollIntoView(false);},500)	});
+
 		}
         const dt = {};
         dt['key'] = name;
@@ -231,6 +231,7 @@ class Pernyataan extends Component {
                                             <br />
 
                                             <PanelGroup accordion activeKey={defaultActiveKey} defaultActiveKey={1} onSelect={this.handleSelect.bind(this)}>
+                                           
                                                 <Panel eventKey={1} expanded={true} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="1. Pernyataan Telah Melakukan Simulasi Perdagangan Berjangka Komoditi">
                                                         <br/>
                                                         <strong><span className="label_hitam">Yang mengisi formulir di bawah ini: </span></strong>
@@ -262,7 +263,7 @@ class Pernyataan extends Component {
                                                         <Row>
                                                             <Col xs={24} lg={6}>
                                                                 <label style={{ color: '#6b798f', marginTop: 8 }}><span className="label_merah">Alamat Rumah</span></label></Col>
-                                                                <Col xs={24} lg={18}>
+                                                                <Col xs={24} lg={6}>
                                                                 <Input readOnly size="lg" value={user && user.alamat ? user.alamat : ''} />
                                                             </Col>
                                                         </Row>
@@ -303,7 +304,6 @@ class Pernyataan extends Component {
                                                                 {errMsg1.pernyataan1 ? (<span className="text-error badge badge-danger">{errMsg1.pernyataan1}</span>) : ''}
                                                             </div>
                                                             <div className="col-sm-6 col-md-9">
-                                                                <Form.Group controlId="pernyataan1">
                                                                     <Form.Check
                                                                         inline
                                                                         onChange={this.handleChange.bind(this)}
@@ -322,7 +322,6 @@ class Pernyataan extends Component {
                                                                         name='pernyataan1'
                                                                         label='Tidak'
                                                                     />
-                                                                </Form.Group>
                                                             </div>
                                                         </div>
 
@@ -442,7 +441,6 @@ class Pernyataan extends Component {
                                                             {errMsg1.pernyataan2 ? (<span className="text-error badge badge-danger">{errMsg1.pernyataan2}</span>) : ''}
                                                         </div>
                                                         <div className="col-sm-6 col-md-9">
-                                                            <Form.Group controlId="pernyataan2">
                                                                 <Form.Check
                                                                     inline
                                                                     onChange={this.handleChange.bind(this)}
@@ -461,7 +459,6 @@ class Pernyataan extends Component {
                                                                     name='pernyataan2'
                                                                     label='Tidak'
                                                                 />
-                                                            </Form.Group>
                                                         </div>
                                                     </div>
 
@@ -723,7 +720,6 @@ class Pernyataan extends Component {
                                                             </p>
                                                             <br />
                                                             <label>Pilihan Resolusi Konflik</label>
-                                                            <Form.Group controlId="badan_abritase" style={{ marginBottom: 0 }}>
                                                                 <Form.Check
                                                                     style={{ color: "#333", fontWeight: "bold", paddingLeft: 35 }}
                                                                     onChange={this.handleChange.bind(this)}
@@ -742,7 +738,6 @@ class Pernyataan extends Component {
                                                                     name='badan_abritase'
                                                                     label='Pengadilan Negeri'
                                                                 />
-                                                            </Form.Group>
                                                             <Form.Group controlId="pengadilan">
                                                                 <Form.Control
                                                                     style={{ marginLeft: 35, width: "30%" }}
@@ -783,26 +778,27 @@ class Pernyataan extends Component {
                                                                 {errMsg1.pernyataan3 ? (<span className="text-error badge badge-danger">{errMsg1.pernyataan3}</span>) : ''}
                                                             </div>
                                                             <div className="col-sm-6 col-md-9">
-                                                                <Form.Group controlId="pernyataan3">
+                                                                
                                                                     <Form.Check
                                                                         inline
-                                                                        onChange={this.handleChange.bind(this)}
+                                                                        onClick={this.handleChange.bind(this)}
                                                                         checked={dataPernyataan.pernyataan3 === 'Y' ? true : false}
                                                                         value='Y'
                                                                         type='radio'
                                                                         name='pernyataan3'
                                                                         label='Ya'
+                                                                        
                                                                     />
                                                                     <Form.Check
                                                                         inline
-                                                                        onChange={this.handleChange.bind(this)}
+                                                                        onClick={this.handleChange.bind(this)}
                                                                         checked={dataPernyataan.pernyataan3 === 'N' ? true : false}
                                                                         value='N'
                                                                         type='radio'
                                                                         name='pernyataan3'
                                                                         label='Tidak'
                                                                     />
-                                                                </Form.Group>
+                                                               
                                                             </div>
                                                         </div>
 
@@ -819,6 +815,7 @@ class Pernyataan extends Component {
 
                                                     </ol>
                                                 </Panel>
+                                            
 
                                                 <Panel eventKey={4} expanded={true} className="w-accordion__header__title shadow-lg px-2 py-1 my-2 mx-2" header="4. Pernyataan Bertanggung Jawab atas Kode Akses Transaksi Nasabah (Personal Access Password)">
                                                     <br/>
@@ -892,7 +889,7 @@ class Pernyataan extends Component {
                                                             {errMsg1.pernyataan4 ? (<span className="text-error badge badge-danger">{errMsg1.pernyataan4}</span>) : ''}
                                                         </div>
                                                         <div className="col-sm-6 col-md-9">
-                                                            <Form.Group controlId="pernyataan4">
+                                                           
                                                                 <Form.Check
                                                                     inline
                                                                     checked={dataPernyataan.pernyataan4 === 'Y' ? true : false}
@@ -900,6 +897,7 @@ class Pernyataan extends Component {
                                                                     value='Y'
                                                                     type='radio'
                                                                     name='pernyataan4'
+                                                                    
                                                                     label='Ya'
                                                                 />
                                                                 <Form.Check
@@ -911,7 +909,6 @@ class Pernyataan extends Component {
                                                                     name='pernyataan4'
                                                                     label='Tidak'
                                                                 />
-                                                            </Form.Group>
                                                         </div>
                                                     </div>
 
@@ -924,7 +921,8 @@ class Pernyataan extends Component {
                                                         </div>
                                                     </div>
                                                 </Panel>
-
+                                                <div ref={this.scrollDiv} className="form-group w-[100%] lg:w-[40%] text-center">
+                          </div>
                                             </PanelGroup>
                                         </div>
 
@@ -948,7 +946,7 @@ class Pernyataan extends Component {
                                     <input
                                       checked={dataPernyataan.agree === 'Y' ? true : false}
                                       onChange={this.handleChange.bind(this)}
-                                      value={1}
+                                      value={'Y'}
                                       className="form-check-input"
                                       type="checkbox"
                                       name="agree"
@@ -997,11 +995,11 @@ class Pernyataan extends Component {
                                         style={{ backgroundColor:"#28A745",color:"#fff",marginRight:"2%"}}>Selanjutnya</AppButton>
                                     
                                     </div>
+                                    
                                 </div>
                               </div>
                             </div>
-                            <div ref={this.scrollDiv} className="form-group w-[100%] lg:w-[40%] text-center">
-                          </div>
+                            
 
                                         
 
@@ -1011,6 +1009,7 @@ class Pernyataan extends Component {
                             </div>
                         </div>
                     </div>
+                   
                 </section >
             </div >
 
