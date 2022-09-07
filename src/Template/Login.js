@@ -26,6 +26,7 @@ const Login = () => {
   
 
   useEffect(() => {
+	  
     if (myStatus) {
       setShowModalDialog(true);
     }

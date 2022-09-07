@@ -189,7 +189,7 @@ class HubungiKami extends Component {
                                 <img src={location_red} width="25px" />
                               </div>
                               <p className=" w-11/12 text-base font-bold text-white text-left ... ml-3">
-                                <a href="#" className="">
+                                <a href="https://goo.gl/maps/GEDLiK8FinR6mzdx8" target="_blank" className="">
                                   <span className="text-base font-bold text-white text-left ...">
                                     Gedung Sona Topas Tower - Lt. 18 Suite 1804
                                     Jl. Jend. Sudirman Kav. 26 Jakarta Selatan
