@@ -82,7 +82,7 @@ class Unduh extends Component {
 
                             <div className="w-full mt-1 mt-5">
                               <a
-                                href="https://www.metatrader5.com/en/terminal/help/start_advanced/install_mac"
+                                href="https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/MetaTrader5.dmg"
                                 target="_new"
                               >
                                 <img
@@ -117,7 +117,7 @@ class Unduh extends Component {
                           <div className="grid grid-cols-1 place-items-center mt-3 w-full">
                             <div className="w-full">
                               <a
-                                href="https://download.mql5.com/cdn/mobile/mt5/android?server=VictoryInternational-DEMO,VictoryInternational-REAL&amp;utm_source=vifxpro.com&amp;utm_campaign=VIFXPRO"
+                                href=" https://download.mql5.com/cdn/mobile/mt5/android?server=MagnetBerjangka-DEMO,MagnetBerjangka-REAL"
                                 target="_new"
                               >
                                 <img
@@ -143,7 +143,7 @@ class Unduh extends Component {
 
                             <div className="w-full mt-5">
                               <a
-                                href="https://download.mql5.com/cdn/mobile/mt5/ios?server=VictoryInternational-DEMO,VictoryInternational-REAL&amp;utm_source=vifxpro.com&amp;utm_campaign=VIFXPRO"
+                                href="https://download.mql5.com/cdn/mobile/mt5/ios?server=MagnetBerjangka-DEMO,MagnetBerjangka-REAL"
                                 target="_new"
                               >
                                 <img

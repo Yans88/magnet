@@ -156,10 +156,7 @@ class AkunBank extends Component {
                                             )}
                                             icon={<Icon icon="close" />}
                                           /> */}
-                                        <img src={icon_delete} width="30" onClick={this.deleteRecord.bind(
-                                          this,
-                                          dp.akun_bank_id
-                                        )} />
+                                        <img src={icon_delete} width="30" onClick={()=> this.deleteRecord(dp.akun_bank_id)} />
                                       </div>
                                       <div
                                         className="flex mb-1"

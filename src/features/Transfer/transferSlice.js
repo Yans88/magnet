@@ -223,7 +223,7 @@ export const transferSlice = createSlice({
         },
        [actionTransfer.fulfilled]: (state, { payload }) => {
             state.showFormSuccess = true;
-            state.contentMsg = "<div style='font-size:20px; text-align:center; line-height:23px;'><strong>Terima kasih</strong><br/> Permintaan kamu telah terkirim, tim kami akan segera memproses permintaan kamu</div>";
+            state.contentMsg = "<div style='font-size:20px; text-align:center; line-height:23px;'><strong>Terima kasih</strong><br/> Transfer dana kamu sudah selesai</div>";
             state.tipeSWAL = "success";
             state.isFetching = false;
             state.errorMessage = payload.message;

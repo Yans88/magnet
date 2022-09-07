@@ -115,7 +115,7 @@ const Forgot = () => {
                                             errorMessage
                                                 ? errorMessage.toLowerCase()
                                                 : "no match"
-                                            ) || (new RegExp("\\b" + "success" + "\\b").test(
+                                            ) || (new RegExp("\\b" + "Mohon periksa email kamu untuk melanjutkan" + "\\b").test(
                                                 errorMessage
                                                     ? errorMessage.toLowerCase()
                                                     : "no match"
@@ -132,7 +132,7 @@ const Forgot = () => {
                                     <Form.Label>
                                         
                                         <div className="w-full mb-2 mt-2">
-                                            <div className="text-black  text-xs text-center font-normal">Silahkan masukan email anda untuk me-reset password anda.</div>
+                                            <div className="text-black  text-xs text-center font-normal">Silahkan masukan email kamu untuk me-reset password kamu.</div>
                                         </div>
                                     </Form.Label>
                                     {formik.touched.email && formik.errors.email ? (
