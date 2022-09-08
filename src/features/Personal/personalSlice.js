@@ -1068,7 +1068,7 @@ export const personalSlice = createSlice({
             state.isFetching = false;
             state.errorMessage = payload.message;
 			state.showFormSuccess = true;
-            state.contentMsg = "<div style='font-size:20px; text-align:center; line-height:23px;'><strong>Success</strong><br/> Data Bank telah ditambahkan</div>";
+            state.contentMsg = "<div style='font-size:20px; text-align:center; line-height:23px;'><strong>Success</strong><br/> Data Bank baru telah dikirim dan akan segera diproses oleh tim Magnet</div>";
             state.tipeSWAL = "success";
             return state;
         },
