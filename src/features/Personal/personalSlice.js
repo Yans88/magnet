@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_URL_API;
 const tokenLogin = process.env.REACT_APP_TOKEN_LOGIN;
-// const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
+//const token = localStorage.getItem(tokenLogin) ? "Bearer " + localStorage.getItem(tokenLogin) : "";
 
 export const simpanDataPribadi = createAsyncThunk(
     'personal/simpanDataPribadi',
