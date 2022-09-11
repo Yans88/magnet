@@ -378,14 +378,20 @@ class AddBank extends Component {
 
                                
                               </Form.Row>
-
-                              <Form.Row>
-                                <Form.Group
-                                  as={Col}
-                                  controlId="jenis_akun_bank"
-                                >
-                                  <Form.Label>Jenis akun</Form.Label>
-                                  <br />
+                                    <Form.Row style={{marginLeft:0}}>
+                                    <h5
+                                      style={{
+                                        marginBottom: ".5rem",
+                                        marginTop: ".8rem",
+                                      }}
+                                    >
+                                      Jenis akun
+                                    </h5>
+                                    </Form.Row>
+                              <Form.Row style={{marginLeft:0}}>
+                               
+                           
+                               
                                   <Form.Check
                                     onChange={this.handleChangeAkunBank.bind(
                                       this
@@ -439,7 +445,6 @@ class AddBank extends Component {
                                   ) : (
                                     ""
                                   )}
-                                </Form.Group>
                               </Form.Row>
                             </div>
                             <div

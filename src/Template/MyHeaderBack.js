@@ -75,7 +75,7 @@ class MyHeader extends Component {
                                             <div className="text-left">0.00</div>
                                         </div>
                                         <div className="font-bold ml-2">STATUS<br/>
-                                            <h5 style={{ fontWeight: 600, fontSize: 14, marginLeft: 0 }}><span style={{ color: '#dc3545' }}>Belum Lengkap -</span> <a style={{ color: '#269647' }} href="personal">Daftar disini</a></h5>
+                                            <h5 style={{ fontWeight: 600, fontSize: 14, marginLeft: 0 }}><span style={{ color: '#dc3545' }}>Belum Lengkap -</span> <a style={{ color: '#269647' }} href="personal">Lengkapi disini</a></h5>
                                         </div>
 
                                         

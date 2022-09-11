@@ -353,7 +353,7 @@ class Beranda extends Component {
       <div
         dangerouslySetInnerHTML={{
           __html:
-            '<div id="caption" style="padding-bottom:20px; text-align:left;">Nasabah yang terhormat, selamat datang di Magnet. Silahkan perbaiki kembali data pribadi kamu karena data ini diperlukan sebagai persyaratan resmi dalam pembukaan rekening.</div>',
+            '<div id="caption" style="padding-bottom:20px; text-align:left;">Nasabah yang terhormat, selamat datang di Magnet. Silahkan perbaiki kembali data pribadi anda. Data ini diperlukan sebagai persyaratan resmi dalam pembukaan rekening.</div>',
         }}
       />
     );

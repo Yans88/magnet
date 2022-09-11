@@ -271,7 +271,7 @@ class Setting extends Component {
                                   <ul className="mb-0">
                                     <li className={`text-xs mb-1 ml-3 ${this.state.errorValidationPasswordCheck.isMatchLowerCase ? 'text-success' : 'text-danger'}`}>
                                       <i className={`fa ${this.state.errorValidationPasswordCheck.isMatchLowerCase ? 'fa-check' : 'fa-times'}`}></i> Only one or
-                                      more <b>lowercase</b> letter
+                                      more <b>letter</b>
                                     </li>
                                     <li className={`text-xs mb-1 ml-3 ${this.state.errorValidationPasswordCheck.isMatchNumber ? 'text-success' : 'text-danger'}`}>
                                       <i className={`fa ${this.state.errorValidationPasswordCheck.isMatchNumber ? 'fa-check' : 'fa-times'}`}></i> Only one or

@@ -298,7 +298,7 @@ class RejectDocument extends Component {
                                   {dr.data_field.map((df, ix) => {
                                     return (
                                       <div key={df.field}>
-                                        <Form.Group controlId={df.field}>
+                                      
                                           <Form.Label>
                                             {df.label_field}
                                           </Form.Label>{" "}
@@ -631,7 +631,6 @@ class RejectDocument extends Component {
                                           <div style={{ color: "red" }}>
                                             {df.note}
                                           </div>
-                                        </Form.Group>
                                       </div>
                                     );
                                   })}

@@ -489,7 +489,7 @@ class Pernyataan extends Component {
                                                     <ol className="list_aja">
                                                         <li tabIndex={1}>
                                                             <p>Nama: <b className="declaration_name_html">{user ? user.nama_depan + ' ' + user.nama_belakang : ''}</b></p>
-                                                            <p>Pekerjaan/Jabatan: <b className="declaration_employment_status_html">Wiraswasta</b>
+                                                            <p>Pekerjaan/Jabatan: <b className="declaration_employment_status_html">{user.status_pekerjaan}</b>
                                                             </p>
                                                             <p>Alamat: <b className="declaration_address_html">{user ? user.alamat + ' ' + user.rt + ' ' + user.rw + ' ' + user.provinsi : ''}</b></p>
                                                             <p>Dalam hal ini bertindak untuk dan atas nama  sendiri yang selanjutnya disebut <b>Nasabah</b>.</p>
@@ -500,11 +500,11 @@ class Pernyataan extends Component {
 															(arr_wakil_pialang.map((awp, index)=>{
 																if(index > 0){
 																	return (
-																		', '+awp.nama_depan + ' ' + awp.nama_belakang						
+																		', '+awp.nama_depan						
 																	)
 																}else{
 																	return (
-																		awp.nama_depan + ' ' + awp.nama_belakang					
+																		awp.nama_depan					
 																	)
 																}
 															}))}</b></p>
@@ -824,7 +824,7 @@ class Pernyataan extends Component {
                                                     <br/>
                                                     <strong>Yang mengisi formulir di bawah ini: </strong>
                                                     <br />
-                                                    <div className="grid grid-cols-1 gap-4">
+                                                    <div className="grid grid-cols-2 gap-4">
                                                         <div><label style={{ color: '#D77175', marginTop: 8 }}>Nama Lengkap</label></div>
                                                         <div>
                                                             <Input readOnly size="lg" value={user ? user.nama_depan + ' ' + user.nama_belakang : ''} /> 
@@ -835,37 +835,37 @@ class Pernyataan extends Component {
                                                     <div className="grid grid-cols-2 gap-4">
                                            
                                                        
-                                                        <div className="grid grid-cols-1">
+                                                       
                                                             <div><label style={{ color: '#D77175', marginTop: 8 }}>Tanggal Lahir</label></div>
                                                             <div>
                                                                 <Input readOnly size="lg" value={user ? tgl_lhir : ''} />
                                                             </div>
-                                                        </div>
+                                                       
                                                         
                                                     </div>
                                                     <br />
-                                                    <div className="grid grid-cols-1 gap-4">
+                                                    <div className="grid grid-cols-2 gap-4">
                                                         <div><label style={{ color: '#D77175', marginTop: 8 }}>Kota Lahir</label></div>
                                                         <div>
                                                             <Input readOnly size="lg" value={user && user.kota_lahir ? user.kota_lahir : ''} />
                                                         </div>
                                                     </div>
                                                     <br />
-                                                    <div className="grid grid-cols-1 gap-4">
+                                                    <div className="grid grid-cols-2 gap-4">
                                                         <div><label style={{ color: '#D77175', marginTop: 8 }}>Alamat Rumah</label></div>
                                                         <div>
                                                             <Input readOnly size="lg" value={user && user.alamat ? user.alamat : ''} />
                                                         </div>
                                                     </div>
                                                     <br />
-                                                    <div className="grid grid-cols-1 gap-4">
+                                                    <div className="grid grid-cols-2 gap-4">
                                                         <div><label style={{ color: '#D77175', marginTop: 8 }}>No.Identitas</label></div>
                                                         <div>
                                                             <Input readOnly size="lg" value={user && user.no_identitas ? user.no_identitas : ''} />
                                                         </div>
                                                     </div>
                                                     <br />
-                                                    <div className="grid grid-cols-1 gap-4">
+                                                    <div className="grid grid-cols-2 gap-4">
                                                         <div><label style={{ color: '#D77175', marginTop: 8 }}>No.Demo Acc</label></div>
                                                         <div>
                                                             <Input readOnly size="lg" value={localStorage.getItem('loginDemo') ? localStorage.getItem('loginDemo') : ''} />

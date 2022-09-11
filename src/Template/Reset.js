@@ -191,7 +191,7 @@ const Reset = () => {
                             <ul>
                               <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchLowerCase ? 'text-success' : 'text-danger'}`}>
                                 <i className={`fa ${errorValidationPasswordCheck.isMatchLowerCase ? 'fa-check' : 'fa-times'}`}></i> Only one or
-                                more <b>lowercase</b> letter
+                                more <b>letter</b>
                               </li>
                               <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchNumber ? 'text-success' : 'text-danger'}`}>
                                 <i className={`fa ${errorValidationPasswordCheck.isMatchNumber ? 'fa-check' : 'fa-times'}`}></i> Only one or

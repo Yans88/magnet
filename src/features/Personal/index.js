@@ -1443,16 +1443,19 @@ class Personal extends Component {
                                 )}
                               </Form.Group>
                             </Form.Row>
-
-                            <Form.Row>
-                              <Form.Group
-                                as={Col}
-                                xs={12}
-                                lg={2}
-                                controlId="jenis_kelamin"
-                              >
-                                <Form.Label>Jenis Kelamin</Form.Label>
-                                <br />
+                            <Form.Row style={{marginLeft:0}}>
+                                    <h5
+                                      style={{
+                                        marginBottom: ".5rem",
+                                        marginTop: ".8rem",
+                                      }}
+                                    >
+                                      Jenis akun
+                                    </h5>
+                                    </Form.Row>
+                            <Form.Row style={{marginLeft:0,marginBottom:'.8rem'}}>
+                            
+                              
                                 <Form.Check
                                   onChange={this.handleChange}
                                   inline
@@ -1489,7 +1492,6 @@ class Personal extends Component {
                                 ) : (
                                   ""
                                 )}
-                              </Form.Group>
                             </Form.Row>
 
                             <Form.Row>
@@ -3538,11 +3540,17 @@ class Personal extends Component {
                                                                 placeholder="Nomor Telepon Bank" />
                                                         </Form.Group>
                                                     </Form.Row> */}
-
-                            <Form.Row>
-                              <Form.Group as={Col} controlId="jenis_akun_bank">
-                                <Form.Label>Jenis akun</Form.Label>
-                                <br />
+<Form.Row style={{marginLeft:0}}>
+                                    <h5
+                                      style={{
+                                        marginBottom: ".5rem",
+                                        marginTop: ".8rem",
+                                      }}
+                                    >
+                                      Jenis akun
+                                    </h5>
+                                    </Form.Row>
+                            <Form.Row  style={{marginLeft:0}}>
                                 <Form.Check
                                   onChange={this.handleChangeAkunBank.bind(
                                     this
@@ -3596,7 +3604,6 @@ class Personal extends Component {
                                 ) : (
                                   ""
                                 )}
-                              </Form.Group>
                             </Form.Row>
                           </div>
                           <div
