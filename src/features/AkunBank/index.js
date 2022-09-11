@@ -64,7 +64,7 @@ class AkunBank extends Component {
 
   render() {
     const { data_bank, profileUser } = this.props;
-	console.log(profileUser);
+	console.log(this.props);
     const contentDelete = (
       <div
         dangerouslySetInnerHTML={{
@@ -260,10 +260,7 @@ class AkunBank extends Component {
                                       style={{ cursor: "pointer"}}
                                       className="ml-3"
                                     >
-                                      <img src={icon_delete} width="30" onClick={this.deleteRecord.bind(
-                                        this,
-                                        dp.akun_bank_id
-                                      )} />
+                                      <img src={icon_delete} width="30" onClick={()=> this.deleteRecord(dp.akun_bank_id)} />
                                     </div>
                                       
                                     </div>

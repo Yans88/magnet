@@ -82,6 +82,7 @@ class Pernyataan extends Component {
 
     handlesubmit(action) {
         var errors = this.state.errMsg1;
+		console.log(this.props.dataPernyataan.pernyataan1);
         errors.pernyataan1 = this.props.dataPernyataan.pernyataan1 !== 'Y' ? "Pilihan ini harus disetujui" : '';
         this.setState({ errors });
         if (!this.validateForm(this.state.errMsg1)) {
@@ -99,8 +100,8 @@ class Pernyataan extends Component {
         if (errors.pernyataan1 === '' && errors.pernyataan2 === '') {
             errors.pernyataan3 = this.props.dataPernyataan.pernyataan3 !== 'Y' ? "Pilihan ini harus disetujui" : '';
             //errors.wakil_pialang = !this.props.dataPernyataan.wakil_pialang ? "Silakan Pilih Wakil Pialang" : '';
-            errors.badan_abritase = this.props.dataPernyataan.badan_abritase === '' ? "Silakan Pilih Pilihan Resolusi Konflik" : '';
-            if (!errors.badan_abritase) errors.badan_abritase = this.props.dataPernyataan.badan_abritase === 'N' && !this.props.dataPernyataan.pengadilan ? "Silakan Pilih Pengadilan Negeri" : '';
+            errors.badan_abritase = this.props.dataPernyataan.badan_abritase === '' || this.props.dataPernyataan.badan_abritase === null ? "Silakan Pilih Pilihan Resolusi Konflik" : '';
+            if (!errors.badan_abritase) errors.badan_abritase = this.props.dataPernyataan.badan_abritase === 'N' && !this.props.dataPernyataan.pengadilan ? "Silakan Pilih Pengadilan Negeri" : errors.badan_abritase;
             this.setState({ errors });
             if (!this.validateForm(this.state.errMsg1)) {
                 console.error('Invalid Form')
@@ -109,8 +110,9 @@ class Pernyataan extends Component {
             }
         }
 		
-		errors.badan_abritase = this.props.dataPernyataan.badan_abritase === '' ? "Silakan Pilih Pilihan Resolusi Konflik" : '';
-        if (!errors.badan_abritase) errors.badan_abritase = this.props.dataPernyataan.badan_abritase === 'N' && !this.props.dataPernyataan.pengadilan ? "Silakan Pilih Pengadilan Negeri" : '';
+		errors.badan_abritase = this.props.dataPernyataan.badan_abritase === '' || this.props.dataPernyataan.badan_abritase === null ? "Kolom ini harus diisi" : '';
+		
+        if (!errors.badan_abritase) errors.badan_abritase = this.props.dataPernyataan.badan_abritase === 'N' && !this.props.dataPernyataan.pengadilan ? "Silakan Pilih Pengadilan Negeri" : errors.badan_abritase;
         this.setState({ errors });
         if (!this.validateForm(this.state.errMsg1)) {
             console.error('Invalid Form')
@@ -750,6 +752,7 @@ class Pernyataan extends Component {
                                                                     <option value="Jakarta BahasaPenyelesaian PerselisihanSelatan">Jakarta Selatan</option>
                                                                     
                                                                 </Form.Control>
+																{errMsg1.pernyataan3 ? (<span className="text-error badge badge-danger">{errMsg1.pernyataan3}</span>) : ''}
                                                                 {errMsg1.badan_abritase ? (<span style={{ marginLeft: 40 }} className="text-error badge badge-danger">{errMsg1.badan_abritase}</span>) : ''}
                                                             </Form.Group>
                                                             <br />

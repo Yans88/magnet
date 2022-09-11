@@ -192,6 +192,7 @@ class Transfer extends Component {
       this.state.start_date +
       "&end_date=" +
       this.state.end_date;
+	this.props.onLoad();
     this.props.onLoadHistory(queryString);
   }
 
