@@ -364,30 +364,33 @@ class MySidebar extends Component {
 
                                         </Nav.Item>
                                     </div>
-                                    <div className="menu_side mx-2 my-2 rounded-xl">
-                                        <Nav.Item
-                                            onSelect={e => this.handleMenu('rej-doc')}
-                                            onClick={this.handleToggle.bind(this)}
-                                            componentClass={Link}
-                                            as={Link}
-                                            to='/rej-doc'
-                                            exact='/rej-doc'
-                                            eventKey='/rej-doc'
-                                            className={lastSegmentUrl === "rej-doc" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
-                                        >
-
-                                            <div className="flex items-center">
-                                                <div className="px-3">
-                                                    <SettingHorizontalIcon />
-                                                </div>
-                                                <div>
-                                                    Perbaiki Data
-
-                                                </div>
+                                    {
+                                        profile.status_dokumen === "Reject" && (
+                                            <div className="menu_side mx-2 my-2 rounded-xl">
+                                                <Nav.Item
+                                                    onSelect={e => this.handleMenu('rej-doc')}
+                                                    onClick={this.handleToggle.bind(this)}
+                                                    componentClass={Link}
+                                                    as={Link}
+                                                    to='/rej-doc'
+                                                    exact='/rej-doc'
+                                                    eventKey='/rej-doc'
+                                                    className={lastSegmentUrl === "rej-doc" ? ("my-dropdown my-dropdown-active") : ("my-dropdown")}
+                                                >
+        
+                                                    <div className="flex items-center">
+                                                        <div className="px-3">
+                                                            <SettingHorizontalIcon />
+                                                        </div>
+                                                        <div>
+                                                            Perbaiki Data
+                                                        </div>
+                                                    </div>
+        
+                                                </Nav.Item>
                                             </div>
-
-                                        </Nav.Item>
-                                    </div>
+                                        )
+                                    }
 
                                     <div className="menu_side mx-2 my-2 rounded-xl">
                                         <Nav.Item
@@ -523,17 +526,19 @@ class MySidebar extends Component {
                                         >
                                             Pengaturan
                                         </Nav.Item>
-                                   
-                                        <Nav.Item
-                                            onSelect={e => this.handleMenu('rej-doc')}
-                                            as={Link}
-                                            to='/rej-doc'
-                                            icon={<SettingHorizontalIcon />}
-                                            active={lastSegmentUrl === "rej-doc"}
-                                        >
-                                            Perbaiki Data
-                                        </Nav.Item>
-                                  
+                                        {
+                                            profile.status_dokumen === "Reject" && (
+                                                <Nav.Item
+                                                    onSelect={e => this.handleMenu('rej-doc')}
+                                                    as={Link}
+                                                    to='/rej-doc'
+                                                    icon={<SettingHorizontalIcon />}
+                                                    active={lastSegmentUrl === "rej-doc"}
+                                                >
+                                                    Perbaiki Data
+                                                </Nav.Item>
+                                            )
+                                        }
                                         <Nav.Item
                                             onSelect={e => this.handleLogout()}
                                             icon={<ExitIcon />}

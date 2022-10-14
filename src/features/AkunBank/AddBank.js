@@ -62,6 +62,10 @@ class AddBank extends Component {
     errors.no_rek = !this.props.dataAkunBank.no_rek
       ? "Kolom ini harus diisi"
       : "";
+
+      errors.cabang = !this.props.dataAkunBank.cabang
+      ? "Kolom ini harus diisi"
+      : "";
     errors.jenis_akun_bank = !this.props.dataAkunBank.jenis_akun_bank
       ? "Kolom ini harus diisi"
       : "";
@@ -304,6 +308,7 @@ class AddBank extends Component {
                                     ""
                                   )}
                                 </Form.Group>
+                                
                               </Form.Row>
 
                               <Form.Row>
@@ -340,8 +345,42 @@ class AddBank extends Component {
                                   )}
                                 </Form.Group>
 
+                                <Form.Group
+                                  as={Col}
+                                  xs={12}
+                                  lg={6}
+                                  controlId="cabang"
+                                >
+                                 
+
+                                  <Form.Control
+                                    value={
+                                      dataAkunBank.cabang
+                                        ? dataAkunBank.cabang
+                                        : ""
+                                    }
+                                    autoComplete="off"
+                                    onChange={this.handleChangeAkunBank.bind(
+                                      this
+                                    )}
+                                    size="lg"
+                                    name="cabang"
+                                    type="text"
+                                    required
+                                    placeholder="Cabang"
+                                  />
+                                  {errMsg6.cabang ? (
+                                    <span className="text-error badge badge-danger">
+                                      {errMsg6.cabang}
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
+                                </Form.Group>
+
                                
                               </Form.Row>
+                              
 							  
 							  <Form.Row>
                                 <Form.Group

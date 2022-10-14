@@ -1000,7 +1000,7 @@ class Pernyataan extends Component {
                                       Dengan mencentang kotak ini, saya dengan
                                       ini mengakui bahwa semua informasi dan
                                       dokumen yang disediakan dalam aplikasi
-                                      Online untuk pembukaan akun transaksi
+                                      online untuk pembukaan akun transaksi
                                       adalah benar dan valid. Saya dengan ini
                                       bertanggung jawab penuh atas setiap
                                       kerusakan / kerugian di masa depan sebagai
