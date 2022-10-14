@@ -919,7 +919,7 @@ class Personal extends Component {
                                                                 <input
                                                                     checked={user.agreement1 ? true : false}
                                                                     onChange={this.handleChange} value={1} className="form-check-input" type="checkbox" name="agreement1" />
-                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid. Saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
 
                                                             </label>
                                                         </div>
@@ -1099,7 +1099,7 @@ class Personal extends Component {
                                                                 <input
                                                                     checked={dataExpTrading.agreement2 ? true : false}
                                                                     onChange={this.handleChangeTrading.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement2" />
-                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid. Saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
 
                                                             </label>
 
@@ -1237,7 +1237,7 @@ class Personal extends Component {
                                                                 <input
                                                                     checked={dataKekayaan.agreement3 ? true : false}
                                                                     onChange={this.handleChangeKekayaan.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement3" />
-                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid. Saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
 
                                                             </label>
                                                         </div>
@@ -1368,7 +1368,7 @@ class Personal extends Component {
                                                                 <input
                                                                     checked={dataKontakDarurat.agreement4 ? true : false}
                                                                     onChange={this.handleChangeKontakDarurat.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement4" />
-                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid. Saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
 
                                                             </label>
                                                         </div>
@@ -1559,7 +1559,7 @@ class Personal extends Component {
                                                                 <input
                                                                     checked={dataPekerjaan.agreement5 ? true : false}
                                                                     onChange={this.handleChangePekerjaan.bind(this)} value={1} className="form-check-input" type="checkbox" name="agreement5" />
-                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid. Saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
 
                                                             </label>
                                                         </div>
@@ -1719,7 +1719,7 @@ class Personal extends Component {
                                                                 <input
                                                                     checked={dataAkunBank.agreement6 === 'Y' ? true : false}
                                                                     onChange={this.handleChangeAkunBank.bind(this)} value={'Y'} className="form-check-input" type="checkbox" name="agreement6" />
-                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid.saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
+                                                                <div className="form-check-text">Dengan mencentang kotak ini, saya dengan ini mengakui bahwa semua informasi dan dokumen yang disediakan dalam aplikasi Online untuk pembukaan akun transaksi adalah benar dan valid. Saya dengan ini bertanggung jawab penuh atas setiap kerusakan / kerugian di masa depan sebagai akibat dari informasi palsu dari dokumen yang saya sediakan.</div>
 
                                                             </label>
                                                         </div>

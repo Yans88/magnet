@@ -69,8 +69,16 @@ class Pernyataan extends Component {
 		
 		}
 		if(name === "pernyataan3" && value === "Y"){
+            let errors = this.state.errMsg1;
+            errors.badan_abritase = this.props.dataPernyataan.badan_abritase === '' || this.props.dataPernyataan.badan_abritase === null ? "Kolom ini harus diisi" : '';
+		
+        if (!errors.badan_abritase) errors.badan_abritase = this.props.dataPernyataan.badan_abritase === 'N' && !this.props.dataPernyataan.pengadilan ? "Silakan Pilih Pengadilan Negeri" : errors.badan_abritase;
+        this.setState({ errors });
+        if (!this.validateForm(this.state.errMsg1)) {
+            this.scrollToError()
+        } else {
 			this.setState({ defaultActiveKey: 4 },()=>{setTimeout(()=>{this.scrollDiv.current.scrollIntoView(false);},500)	});
-
+        }
 		}
         const dt = {};
         dt['key'] = name;
@@ -80,6 +88,21 @@ class Pernyataan extends Component {
         this.props.changeProps(dt);
     }
 
+    scrollToError = () => {
+        const items = document.getElementsByClassName('badge-danger');
+    const visible = [...items].filter((el) => {
+      // jQuery-like :visible selector
+      return !!( el.offsetWidth || el.offsetHeight || el.getClientRects().length );
+    });
+    
+    if (visible.length > 0) {
+      window.scrollTo({
+        top: items[0].offsetTop,
+        behavior: 'smooth'
+      });
+    }
+      }
+
     handlesubmit(action) {
         var errors = this.state.errMsg1;
 		console.log(this.props.dataPernyataan.pernyataan1);
@@ -87,14 +110,14 @@ class Pernyataan extends Component {
         this.setState({ errors });
         if (!this.validateForm(this.state.errMsg1)) {
             console.error('Invalid Form')
-            this.setState({ defaultActiveKey: 1 });
+            this.setState({ defaultActiveKey: 1 },()=>{setTimeout(()=>{this.scrollDiv.current?.scrollIntoView(false);},500)});
         }
         if (errors.pernyataan1 === '') {
             errors.pernyataan2 = this.props.dataPernyataan.pernyataan2 !== 'Y' ? "Pilihan ini harus disetujui" : '';
             this.setState({ errors });
             if (!this.validateForm(this.state.errMsg1)) {
                 console.error('Invalid Form')
-                this.setState({ defaultActiveKey: 2 });
+                this.setState({ defaultActiveKey: 2 },()=>{setTimeout(()=>{this.scrollDiv.current?.scrollIntoView(false);},500)});
             }
         }
         if (errors.pernyataan1 === '' && errors.pernyataan2 === '') {
@@ -105,7 +128,7 @@ class Pernyataan extends Component {
             this.setState({ errors });
             if (!this.validateForm(this.state.errMsg1)) {
                 console.error('Invalid Form')
-                this.setState({ defaultActiveKey: 3 });
+                this.setState({ defaultActiveKey: 3 },()=>{setTimeout(()=>{this.scrollDiv.current?.scrollIntoView(false);},500)});
 
             }
         }
@@ -116,14 +139,14 @@ class Pernyataan extends Component {
         this.setState({ errors });
         if (!this.validateForm(this.state.errMsg1)) {
             console.error('Invalid Form')
-            this.setState({ defaultActiveKey: 3 });
+            this.setState({ defaultActiveKey: 3 },()=>{setTimeout(()=>{this.scrollDiv.current?.scrollIntoView(false);},500)});
 		}
         if (errors.pernyataan1 === '' && errors.pernyataan2 === '' && errors.pernyataan3 === '' && errors.wakil_pialang === '' && errors.badan_abritase === '') {
             errors.pernyataan4 = this.props.dataPernyataan.pernyataan4 !== 'Y' ? "Pilihan ini harus disetujui" : '';
             this.setState({ errors });
             if (!this.validateForm(this.state.errMsg1)) {
                 console.error('Invalid Form')
-                this.setState({ defaultActiveKey: 4 });
+                this.setState({ defaultActiveKey: 4 },()=>{setTimeout(()=>{this.scrollDiv.current?.scrollIntoView(false);},500)});
 
             }
 
@@ -301,7 +324,7 @@ class Pernyataan extends Component {
                                                         <br />
                                                         <br />
                                                         <div className="form-group row align-items-center">
-                                                            <div className="col">
+                                                            <div className="col" style={{fontWeight: "normal"}}>
                                                                 Pernyataan Menerima / Tidak
                                                                 {errMsg1.pernyataan1 ? (<span className="text-error badge badge-danger">{errMsg1.pernyataan1}</span>) : ''}
                                                             </div>
@@ -312,6 +335,7 @@ class Pernyataan extends Component {
                                                                         checked={dataPernyataan.pernyataan1 === 'Y' ? true : false}
                                                                         value='Y'
                                                                         type='radio'
+                                                                        id="check-pernyataan-penerima-ya"
                                                                         name='pernyataan1'
                                                                         label='Ya'
                                                                     />
@@ -321,6 +345,7 @@ class Pernyataan extends Component {
                                                                         checked={dataPernyataan.pernyataan1 === 'N' ? true : false}
                                                                         value='N'
                                                                         type='radio'
+                                                                        id="check-pernyataan-penerima-tidak"
                                                                         name='pernyataan1'
                                                                         label='Tidak'
                                                                     />
@@ -438,7 +463,7 @@ class Pernyataan extends Component {
                                                     <p style={{ textAlign: 'center' }}>Dengan mengisi kolom "YA" di bawah, saya menyatakan bahwa saya telah menerima<br />"DOKUMEN PEMBERITAHUAN ADANYA RISIKO"<br />mengerti dan menyetujui isinya.</p>
 
                                                     <div className="form-group row align-items-center">
-                                                        <div className="col">
+                                                        <div className="col" style={{fontWeight: "normal"}}>
                                                             Pernyataan Menerima / Tidak
                                                             {errMsg1.pernyataan2 ? (<span className="text-error badge badge-danger">{errMsg1.pernyataan2}</span>) : ''}
                                                         </div>
@@ -450,6 +475,7 @@ class Pernyataan extends Component {
                                                                     value='Y'
                                                                     type='radio'
                                                                     name='pernyataan2'
+                                                                    id="check-pernyataan2-penerima-ya"
                                                                     label='Ya'
                                                                 />
                                                                 <Form.Check
@@ -458,6 +484,7 @@ class Pernyataan extends Component {
                                                                     checked={dataPernyataan.pernyataan2 === 'N' ? true : false}
                                                                     value='N'
                                                                     type='radio'
+                                                                    id="check-pernyataan2-penerima-tidak"
                                                                     name='pernyataan2'
                                                                     label='Tidak'
                                                                 />
@@ -729,6 +756,7 @@ class Pernyataan extends Component {
                                                                     value="Y"
                                                                     type='radio'
                                                                     name='badan_abritase'
+                                                                    id="badan_abritase-1"
                                                                     label='Badan Arbitrase Perdagangan Berjangka Komoditi (BAKTI) berdasarkan Peraturan dan Prosedur Badan Arbitrase Perdagangan Berjangka Komoditi (BAKTI)'
                                                                 />
                                                                 <Form.Check
@@ -738,6 +766,7 @@ class Pernyataan extends Component {
                                                                     value='N'
                                                                     type='radio'
                                                                     name='badan_abritase'
+                                                                    id="badan_abritase-2"
                                                                     label='Pengadilan Negeri'
                                                                 />
                                                             <Form.Group controlId="pengadilan">
@@ -776,7 +805,7 @@ class Pernyataan extends Component {
                                                         <p style={{ textAlign: 'center' }}>Dengan mengisi kolom <i>"YA"</i> di bawah, saya menyatakan bahwa saya telah menerima<br /><b>"PERJANJIAN PEMBERIAN AMANAT TRANSAKSI KONTRAK DERIVATIF SISTEM PERDAGANGAN ALTERNATIF"</b><br />mengerti dan menyetujui isinya.</p>
                                                         </li>
                                                         <div className="form-group row align-items-center">
-                                                            <div className="col">
+                                                            <div className="col" style={{fontWeight: "normal"}}>
                                                                 Pernyataan Menerima / Tidak
                                                                 {errMsg1.pernyataan3 ? (<span className="text-error badge badge-danger">{errMsg1.pernyataan3}</span>) : ''}
                                                             </div>
@@ -789,8 +818,9 @@ class Pernyataan extends Component {
                                                                         value='Y'
                                                                         type='radio'
                                                                         name='pernyataan3'
+                                                                        id="check-pernyataan3-penerima-ya"
                                                                         label='Ya'
-                                                                        
+                                                                        style={{fontWeight: "normal"}}
                                                                     />
                                                                     <Form.Check
                                                                         inline
@@ -799,17 +829,19 @@ class Pernyataan extends Component {
                                                                         value='N'
                                                                         type='radio'
                                                                         name='pernyataan3'
+                                                                        id="check-pernyataan3-penerima-tidak"
                                                                         label='Tidak'
+                                                                        style={{fontWeight: "normal"}}
                                                                     />
                                                                
                                                             </div>
                                                         </div>
 
                                                         <div className="form-group row align-items-center">
-                                                            <div className="col">
+                                                            <div className="col" style={{fontWeight: "normal"}}>
                                                                 Pernyataan Pada Tanggal
                                                             </div>
-                                                            <div className="col-sm-6 col-md-9">
+                                                            <div className="col-sm-6 col-md-9" style={{fontWeight: "normal"}}> 
                                                                 {moment(new Date()).format('YYYY-MM-DD')}
                                                             </div>
                                                         </div>
@@ -824,53 +856,61 @@ class Pernyataan extends Component {
                                                     <br/>
                                                     <strong>Yang mengisi formulir di bawah ini: </strong>
                                                     <br />
-                                                    <div className="grid grid-cols-2 gap-4">
-                                                        <div><label style={{ color: '#D77175', marginTop: 8 }}>Nama Lengkap</label></div>
-                                                        <div>
-                                                            <Input readOnly size="lg" value={user ? user.nama_depan + ' ' + user.nama_belakang : ''} /> 
-                                                        </div>
-                                                    </div>
+                                                    <Row>
+                                                        <Col xs={24} lg={6}>
+                                                            <div><label style={{ color: '#D77175', marginTop: 8 }}>Nama Lengkap</label></div>
+                                                        </Col>
+                                                        <Col xs={24} lg={6}>
+
+                                                            <Input readOnly size="lg" value={user ? user.nama_depan + ' ' + user.nama_belakang : ''} />
+                                                        </Col>
+                                                    </Row> 
                                                     
                                                     <br />
-                                                    <div className="grid grid-cols-2 gap-4">
-                                           
-                                                       
-                                                       
-                                                            <div><label style={{ color: '#D77175', marginTop: 8 }}>Tanggal Lahir</label></div>
-                                                            <div>
-                                                                <Input readOnly size="lg" value={user ? tgl_lhir : ''} />
-                                                            </div>
-                                                       
-                                                        
-                                                    </div>
+                                                    <Row>
+                                                        <Col xs={24} lg={6}>
+                                                        <div><label style={{ color: '#D77175', marginTop: 8 }}>Tanggal Lahir</label></div>
+                                                        </Col>
+                                                        <Col xs={24} lg={6}>
+                                                        <Input readOnly size="lg" value={user ? tgl_lhir : ''} />
+                                                        </Col>
+                                                    </Row> 
                                                     <br />
-                                                    <div className="grid grid-cols-2 gap-4">
+                                                    <Row>
+                                                        <Col xs={24} lg={6}>
                                                         <div><label style={{ color: '#D77175', marginTop: 8 }}>Kota Lahir</label></div>
-                                                        <div>
-                                                            <Input readOnly size="lg" value={user && user.kota_lahir ? user.kota_lahir : ''} />
-                                                        </div>
-                                                    </div>
+                                                        </Col>
+                                                        <Col xs={24} lg={6}>
+                                                        <Input readOnly size="lg" value={user && user.kota_lahir ? user.kota_lahir : ''} />
+                                                        </Col>
+                                                    </Row> 
                                                     <br />
-                                                    <div className="grid grid-cols-2 gap-4">
+                                                    <Row>
+                                                        <Col xs={24} lg={6}>
                                                         <div><label style={{ color: '#D77175', marginTop: 8 }}>Alamat Rumah</label></div>
-                                                        <div>
-                                                            <Input readOnly size="lg" value={user && user.alamat ? user.alamat : ''} />
-                                                        </div>
-                                                    </div>
+                                                        </Col>
+                                                        <Col xs={24} lg={6}>
+                                                        <Input readOnly size="lg" value={user && user.alamat ? user.alamat : ''} />
+                                                        </Col>
+                                                    </Row> 
                                                     <br />
-                                                    <div className="grid grid-cols-2 gap-4">
-                                                        <div><label style={{ color: '#D77175', marginTop: 8 }}>No.Identitas</label></div>
-                                                        <div>
-                                                            <Input readOnly size="lg" value={user && user.no_identitas ? user.no_identitas : ''} />
-                                                        </div>
-                                                    </div>
+                                                    <Row>
+                                                        <Col xs={24} lg={6}>
+                                                        <label style={{ color: '#D77175', marginTop: 8 }}>No.Identitas</label>
+                                                        </Col>
+                                                        <Col xs={24} lg={6}>
+                                                        <Input readOnly size="lg" value={user && user.no_identitas ? user.no_identitas : ''} />
+                                                        </Col>
+                                                    </Row> 
                                                     <br />
-                                                    <div className="grid grid-cols-2 gap-4">
-                                                        <div><label style={{ color: '#D77175', marginTop: 8 }}>No.Demo Acc</label></div>
-                                                        <div>
+                                                    <Row>
+                                                        <Col xs={24} lg={6}>
+                                                            <label style={{ color: '#D77175', marginTop: 8 }}>No.Demo Acc</label>
+                                                        </Col>
+                                                        <Col xs={24} lg={6}> 
                                                             <Input readOnly size="lg" value={localStorage.getItem('loginDemo') ? localStorage.getItem('loginDemo') : ''} />
-                                                        </div>
-                                                    </div>
+                                                        </Col>
+                                                    </Row> 
                                                     
                                                     <br />
                                                     <center>
@@ -887,11 +927,11 @@ class Pernyataan extends Component {
                                                     </p>
 
                                                     <div className="form-group row align-items-center">
-                                                        <div className="col">
+                                                        <div className="col" style={{fontWeight: "normal"}}>
                                                             Pernyataan Menerima / Tidak
                                                             {errMsg1.pernyataan4 ? (<span className="text-error badge badge-danger">{errMsg1.pernyataan4}</span>) : ''}
                                                         </div>
-                                                        <div className="col-sm-6 col-md-9">
+                                                        <div className="col-sm-6 col-md-9" style={{fontWeight: "normal"}}>
                                                            
                                                                 <Form.Check
                                                                     inline
@@ -900,8 +940,9 @@ class Pernyataan extends Component {
                                                                     value='Y'
                                                                     type='radio'
                                                                     name='pernyataan4'
-                                                                    
+                                                                    id="check-pernyataan4-penerima-ya"
                                                                     label='Ya'
+                                                                    style={{fontWeight: "normal"}}
                                                                 />
                                                                 <Form.Check
                                                                     inline
@@ -910,7 +951,9 @@ class Pernyataan extends Component {
                                                                     checked={dataPernyataan.pernyataan4 === 'N' ? true : false}
                                                                     type='radio'
                                                                     name='pernyataan4'
+                                                                    id="check-pernyataan4-penerima-tidak"
                                                                     label='Tidak'
+                                                                    style={{fontWeight: "normal"}}
                                                                 />
                                                         </div>
                                                     </div>
@@ -919,13 +962,12 @@ class Pernyataan extends Component {
                                                         <div className="col">
                                                             Pernyataan Pada Tanggal
                                                         </div>
-                                                        <div className="col-sm-6 col-md-9">
+                                                        <div className="col-sm-6 col-md-9" style={{fontWeight: "normal"}}>
                                                             {moment(new Date()).format('YYYY-MM-DD')}
                                                         </div>
                                                     </div>
                                                 </Panel>
-                                                <div ref={this.scrollDiv} className="form-group w-[100%] lg:w-[40%] text-center">
-                          </div>
+                                                
                                             </PanelGroup>
                                         </div>
 
@@ -959,7 +1001,7 @@ class Pernyataan extends Component {
                                       ini mengakui bahwa semua informasi dan
                                       dokumen yang disediakan dalam aplikasi
                                       Online untuk pembukaan akun transaksi
-                                      adalah benar dan valid.saya dengan ini
+                                      adalah benar dan valid. Saya dengan ini
                                       bertanggung jawab penuh atas setiap
                                       kerusakan / kerugian di masa depan sebagai
                                       akibat dari informasi palsu dari dokumen
@@ -998,13 +1040,13 @@ class Pernyataan extends Component {
                                         style={{ backgroundColor:"#28A745",color:"#fff",marginRight:"2%"}}>Selanjutnya</AppButton>
                                     
                                     </div>
-                                    
                                 </div>
                               </div>
                             </div>
                             
 
-                                        
+                            <div ref={this.scrollDiv} className="form-group w-[100%] lg:w-[40%] text-center">
+                          </div>
 
                                     </div>
 

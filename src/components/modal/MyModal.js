@@ -27,7 +27,7 @@ export const AppModal = ({
             open={show}
             onClose={handleClose}
         >
-            <Modal.Header closeButton={myCloseButton && myCloseButton}>
+            <Modal.Header closeButton={myCloseButton}>
                 <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{ maxHeight: 400 }}>{form}</Modal.Body>

@@ -20,7 +20,7 @@ import banner from "../assets/image_1.png";
 import user_full_name_icon from "../assets/akun_red.svg";
 import user_phone_number_icon from "../assets/phone_red.svg";
 import user_reff_code_icon from "../assets/reff_code_red.svg";
-import logoa from "../assets/logo.svg";
+import logoa from "../assets/logo.png";
 import email_icon from "../assets/email.svg";
 import password_icon from "../assets/password.svg";
 
@@ -76,7 +76,7 @@ const Register = () => {
   const [errMsg, setErrMsg] = useState(errorValidate);
   const [errorValidationPasswordCheck, setErrorValidationPasswordCheck] = useState(
     {
-      isMatchLowerCase: false,
+      isMatchOneLetter: false,
       isMatchNumber: false,
       isMatchMinDigit: false
     }
@@ -111,13 +111,7 @@ const Register = () => {
         .required("Silahkan masukkan email")
         .email("Silahkan masukkan email yang sah"),
       password: Yup.string()
-        .required("Silahkan masukkan kata sandi")
-        // .matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])$", 'Need one special character')
-        //.matches('/^[a-z]+$/', 'One lowercase character')
-        //.matches('/^\d+$/', 'One number')
-        .min(8, "Minimal 8 karakter")
-        .matches(/[a-z]+/, "Only one or more letter")
-        .matches(/\d+/, "Only one or more number"),
+        .required("Silahkan masukkan kata sandi"),
       konfirmasi_password: Yup.string()
         .required("Diperlukan!")
         .oneOf([Yup.ref("password")], "Kata sandi tidak sama"),
@@ -137,7 +131,7 @@ const Register = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    var val = value;
+    let val = value;
     setSelected({
       ...selected,
       [name]: val,
@@ -152,13 +146,34 @@ const Register = () => {
     dispatch(clearState());
   };
 
+  const checkStateErrorValidationPasswordCheck = () => {
+    if(errorValidationPasswordCheck.isMatchNumber === true) 
+      return true
+    
+    if(errorValidationPasswordCheck.isMatchMinDigit === true) 
+      return true
+
+    if(errorValidationPasswordCheck.isMatchOneLetter === false) 
+      return true
+
+    return false
+  }
+
   const handleSubmit = () => {
-    var error = "";
+    // console.log('asdasd')
+    let error = "";
     if (selected.kode_verifikasi === null || selected.kode_verifikasi === "") {
       error = { ...error, kode_verifikasi: "Required!" };
     }
+
+    // if(checkStateErrorValidationPasswordCheck()){
+    //   error = { ...error, password: "Password belum sesuai" };
+    // }
+
+    // console.log(error,errorValidationPasswordCheck)
+
     setErrMsg(error);
-    var queryString = {};
+    let queryString = {};
     if (toVerify) {
       queryString = {
         user_id: user_id,
@@ -170,7 +185,6 @@ const Register = () => {
         user_id: user_id,
       };
     }
-    //console.log(queryString);
     if (!error) dispatch(verifUser(queryString));
   };
 
@@ -216,16 +230,14 @@ const Register = () => {
   document.getElementById("root").classList = "hold-transition";
 
   const updateErrorValidationPassword = (str) => {
-    const regexMatchLowerCase = str.toUpperCase() != str;
+    const regexMatchOneLetter = /^-?\d*\.?\d*$/;
     const regexMatchNumber = /\d/;
 
     setErrorValidationPasswordCheck({
-      isMatchLowerCase: regexMatchLowerCase ? true : false,
+      isMatchOneLetter: regexMatchOneLetter.test(str) ? false : true,
       isMatchNumber: regexMatchNumber.test(str) ? true : false,
       isMatchMinDigit: str.length >= 8 ? true : false
     })
-
-    console.log(str)
   }
 
   const frmUser = (
@@ -240,8 +252,7 @@ const Register = () => {
 
           <div className="w-full mb-2 mt-2">
             <div className="text-black  text-xs text-center font-normal">
-              Silakan masukkan kode aktivasi yang dikirim ke email ? Anda{" "}
-              {selected.email}
+              Silahkan masukkan kode aktivasi yang dikirim ke email kamu{" "}{selected.email}
             </div>
           </div>
         </Form.Label>
@@ -280,7 +291,7 @@ const Register = () => {
           <div className="w-2/4 mt-2">
             <Button
               block
-              onClick={handleSubmit}
+              onClick={()=> handleSubmit()}
               isLoading={isFetching}
               theme=""
               style={{ backgroundColor: "#C1242B", color: "#fff" }}
@@ -466,8 +477,8 @@ const Register = () => {
                               <p className="text-muted mb-2">Password must contain the following:</p>
                               <ul>
 
-                                <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchLowerCase ? 'text-success' : 'text-danger'}`}>
-                                  <i className={`fa ${errorValidationPasswordCheck.isMatchLowerCase ? 'fa-check' : 'fa-times'}`}></i> Only one or
+                                <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchOneLetter ? 'text-success' : 'text-danger'}`}>
+                                  <i className={`fa ${errorValidationPasswordCheck.isMatchOneLetter ? 'fa-check' : 'fa-times'}`}></i> Only one or
                                   more <b>letter</b>
                                 </li>
                                 <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchNumber ? 'text-success' : 'text-danger'}`}>
@@ -548,7 +559,11 @@ const Register = () => {
                           <div className="grid grid-cols-1 gap-0 place-items-center">
                             <div className="w-2/4">
                               <Button
-                                disabled={selected.myCaptcha ? false : true}
+                                disabled={selected.myCaptcha ? ( 
+                                  !errorValidationPasswordCheck.isMatchOneLetter
+                                  || !errorValidationPasswordCheck.isMatchNumber
+                                  || !errorValidationPasswordCheck.isMatchMinDigit ? true : false) : true
+                                }
                                 block
                                 type="submit"
                                 isLoading={isFetching}

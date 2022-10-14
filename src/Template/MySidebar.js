@@ -128,6 +128,7 @@ class MySidebar extends Component {
                                             onSelect={e => this.handleMenu("/")}
                                             onClick={this.handleToggle.bind(this)}
                                             componentClass={Link}
+                                            as={Link}
                                             to='/'
                                             eventKey='/'
                                             exact='/'
@@ -151,6 +152,7 @@ class MySidebar extends Component {
                                             onSelect={e => this.handleMenu('deposit')}
                                             onClick={this.handleToggle.bind(this)}
                                             componentClass={Link}
+                                            as={Link}
                                             to='/deposit'
                                             exact='/deposit'
                                             eventKey='/deposit'
@@ -175,6 +177,7 @@ class MySidebar extends Component {
                                             onSelect={e => this.handleMenu('bank-accounts')}
                                             onClick={this.handleToggle.bind(this)}
                                             componentClass={Link}
+                                            as={Link}
                                             to='/bank-accounts'
                                             exact='/bank-accounts'
                                             eventKey='/bank-accounts'
@@ -198,6 +201,7 @@ class MySidebar extends Component {
                                             onSelect={e => this.handleMenu('withdrawal')}
                                             onClick={this.handleToggle.bind(this)}
                                             componentClass={Link}
+                                            as={Link}
                                             to='/withdrawal'
                                             exact='/withdrawal'
                                             eventKey='/withdrawal'
@@ -221,6 +225,7 @@ class MySidebar extends Component {
                                             onSelect={e => this.handleMenu('internal-transfer')}
                                             onClick={this.handleToggle.bind(this)}
                                             componentClass={Link}
+                                            as={Link}
                                             to='/internal-transfer'
                                             exact='/internal-transfer'
                                             eventKey='/internal-transfer'
@@ -245,6 +250,7 @@ class MySidebar extends Component {
                                             onSelect={e => this.handleMenu('downloads')}
                                             onClick={this.handleToggle.bind(this)}
                                             componentClass={Link}
+                                            as={Link}
                                             to='/downloads'
                                             exact='/downloads'
                                             eventKey='/downloads'
@@ -268,6 +274,7 @@ class MySidebar extends Component {
                                             onSelect={e => this.handleMenu('contact')}
                                             onClick={this.handleToggle.bind(this)}
                                             componentClass={Link}
+                                            as={Link}
                                             to='/contact'
                                             exact='/contact'
                                             eventKey='/contact'
@@ -338,6 +345,7 @@ class MySidebar extends Component {
                                             onSelect={e => this.handleMenu('setting')}
                                             onClick={this.handleToggle.bind(this)}
                                             componentClass={Link}
+                                            as={Link}
                                             to='/setting'
                                             exact='/setting'
                                             eventKey='/setting'
@@ -361,6 +369,7 @@ class MySidebar extends Component {
                                             onSelect={e => this.handleMenu('rej-doc')}
                                             onClick={this.handleToggle.bind(this)}
                                             componentClass={Link}
+                                            as={Link}
                                             to='/rej-doc'
                                             exact='/rej-doc'
                                             eventKey='/rej-doc'

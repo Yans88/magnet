@@ -50,8 +50,8 @@ class MyHeader extends Component {
       <Header>
         <Navbar className="my-navbar1 text-black">
           <Navbar.Brand>
-              <Link to="/" className="px-5">
-                <img src={logoa} width="120px" />
+              <Link to="/" className="px-1">
+                <img src={logoa} width="105px" />
               </Link>
           </Navbar.Brand>
 
@@ -79,7 +79,7 @@ class MyHeader extends Component {
                         </span>
                         {profile.status_dokumen === "Belum Lengkap" && (
                           <a style={{ color: "#269647" }} href="personal">
-                            - Daftar disini
+                            - Lengkapi disini
                           </a>
                         )}
                         {profile.status_dokumen === "Reject" && (

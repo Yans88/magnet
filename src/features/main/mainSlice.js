@@ -827,6 +827,7 @@ export const mainSlice = createSlice({
       state.currentUser = payload;
       state.myStatus = payload.myStatus;
       state.accessTokenKu = payload.accessTokenKu;
+      state.errorMessage = "";
       return state;
     },
     [loginUser.rejected]: (state, { payload }) => {
@@ -966,7 +967,11 @@ export const mainSlice = createSlice({
     [changePass.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = false;
-      state.errorMessage = payload.message;
+      if(payload.message === "Success."){
+        state.errorMessage = "Password kamu telah berhasil diperbarui"
+      } else {
+        state.errorMessage = payload.message;
+      }
       return state;
     },
     [changePass.rejected]: (state, { payload }) => {
@@ -1029,7 +1034,11 @@ export const mainSlice = createSlice({
     [updProfile.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = false;
-      state.errorMessage = payload.message;
+      if(payload.message === "Success."){
+        state.errorMessage = "Permintaan pergantian email kamu sudah terkirim, tim kami akan segera memproses, terima kasih";
+      } else
+        state.errorMessage = payload.message;
+        
       return state;
     },
     [updProfile.rejected]: (state, { payload }) => {
@@ -1044,7 +1053,12 @@ export const mainSlice = createSlice({
     [forgotPassword.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
       state.isError = false;
-      state.errorMessage = payload.message;
+      if(payload.message === "Success."){
+        state.errorMessage = "Mohon periksa email kamu untuk melanjutkan"
+      } else {
+        state.errorMessage = payload.message;
+      }
+
       return state;
     },
     [forgotPassword.rejected]: (state, { payload }) => {

@@ -45,6 +45,10 @@ class AkunBank extends Component {
     await this.setState({ lastSegmentUrl: BaseName });
   };
 
+  componentDidUpdate(){
+    console.log(this.props.showFormDelete)
+  }
+
   deleteRecord(record) {
     this.setState({
       akun_bank_id: record,
@@ -53,6 +57,7 @@ class AkunBank extends Component {
   }
 
   handleClose() {
+    console.log('close')
     this.props.closeSwalError();
   }
 
@@ -291,17 +296,17 @@ class AkunBank extends Component {
         </section>
 
         <AppModal
-          open={this.props.showFormDelete}
+          show={this.props.showFormDelete}
           size="xs"
           form={contentDelete}
-          onClose={this.handleClose.bind(this)}
+          handleClose={()=> this.handleClose()}
           backdrop="static"
           keyboard={false}
           title="Delete"
           titleButton="Delete"
           themeButton="danger"
           isLoading={this.props.isLoading}
-          formSubmit={this.handleDelete.bind(this)}
+          formSubmit={()=>this.handleDelete()}
         ></AppModal>
       </div>
     );

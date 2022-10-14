@@ -7,6 +7,9 @@ import { getSetting } from "../KetentuanTrading/ktSlice";
 import { FaDownload as FaDownloadIcon } from "react-icons/fa";
 import { Icon } from "@rsuite/icons";
 
+import Appstorepng from '../../assets/appstore.png';
+import Playstorepng from '../../assets/playstore.png';
+
 class Unduh extends Component {
   constructor(props) {
     super(props);
@@ -115,15 +118,15 @@ class Unduh extends Component {
                             MT5 For Mobile
                           </h3>
                           <div className="grid grid-cols-1 place-items-center mt-3 w-full">
-                            <div className="w-full">
+                            <div className="w-full flex flex-row items-center">
                               <a
                                 href=" https://download.mql5.com/cdn/mobile/mt5/android?server=MagnetBerjangka-DEMO,MagnetBerjangka-REAL"
                                 target="_new"
                               >
                                 <img
                                   alt="Android"
-                                  width="80px"
-                                  src="https://new.vifx.co/assets/cabinet/_ui/media/android_r.png"
+                                  width="150px"
+                                  src={Playstorepng}
                                   className="float-left"
                                 />
                               </a>
@@ -131,7 +134,6 @@ class Unduh extends Component {
                                 style={{
                                   marginBottom: 10,
                                   fontSize: 30,
-                                  marginLeft: 20,
                                   color: "#2E2E2F",
                                   paddingLeft: "20px",
                                 }}
@@ -141,15 +143,15 @@ class Unduh extends Component {
                               </h1>
                             </div>
 
-                            <div className="w-full mt-5">
+                            <div className="w-full mt-5 flex flex-row items-center">
                               <a
                                 href="https://download.mql5.com/cdn/mobile/mt5/ios?server=MagnetBerjangka-DEMO,MagnetBerjangka-REAL"
                                 target="_new"
                               >
                                 <img
                                   alt="IOS"
-                                  width="80x"
-                                  src="https://new.vifx.co/assets/cabinet/_ui/media/mac_r.png"
+                                  width="150px"
+                                  src={Appstorepng}
                                   className="float-left"
                                 />
                               </a>
@@ -157,7 +159,6 @@ class Unduh extends Component {
                                 style={{
                                   marginBottom: 10,
                                   fontSize: 30,
-                                  marginLeft: 20,
                                   color: "#2E2E2F",
                                   paddingLeft: "20px",
                                 }}
@@ -245,8 +246,8 @@ class Unduh extends Component {
                               >
                                 <img
                                   alt="Android"
-                                  width="80px"
-                                  src="https://new.vifx.co/assets/cabinet/_ui/media/android_r.png"
+                                  width="150px"
+                                  src={Playstorepng}
                                   className="float-left"
                                 />
                               </a>
@@ -265,8 +266,8 @@ class Unduh extends Component {
                               >
                                 <img
                                   alt="IOS"
-                                  width="80x"
-                                  src="https://new.vifx.co/assets/cabinet/_ui/media/mac_r.png"
+                                  width="150px"
+                                  src={Appstorepng}
                                   className="float-left"
                                 />
                               </a>

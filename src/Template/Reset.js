@@ -29,7 +29,7 @@ const Reset = () => {
 
   const [errorValidationPasswordCheck, setErrorValidationPasswordCheck] = useState(
     {
-      isMatchLowerCase: false,
+      isMatchOneLetter: false,
       isMatchNumber: false,
       isMatchMinDigit: false 
     }
@@ -83,11 +83,11 @@ const Reset = () => {
   document.getElementById("root").classList = "hold-transition";
 
   const updateErrorValidationPassword = (str) => {
-    const regexMatchLowerCase = str.toUpperCase() != str;
+    const regexMatchOneLetter = /^-?\d*\.?\d*$/;
     const regexMatchNumber = /\d/;
   
     setErrorValidationPasswordCheck({
-      isMatchLowerCase: regexMatchLowerCase ? true : false,
+      isMatchOneLetter: regexMatchOneLetter.test(str) ? false : true,
       isMatchNumber: regexMatchNumber.test(str) ? true : false,
       isMatchMinDigit: str.length >= 8 ? true : false
     })
@@ -123,7 +123,7 @@ const Reset = () => {
                       className={"alert alert-danger alert-sm"}
                       style={{backgroundColor: (new RegExp("\\b" + "berhasil" + "\\b").test(
                         errorMessage
-                          ? errorMessage.toLowerCase()
+                          ? errorMessage.toOneLetter()
                           : "no match"
                       ) ? "#28a745" :"#C2262C")}}
                     >
@@ -152,7 +152,7 @@ const Reset = () => {
                       <Form.Label>
                         <div className="w-full mb-2 mt-2">
                           <div className="text-black  text-xs text-center font-normal">
-                            Silahkan masukan Password baru anda.
+                            Silahkan masukan Password baru kamu.
                           </div>
                         </div>
                       </Form.Label>
@@ -189,8 +189,8 @@ const Reset = () => {
                           <div className="flex flex-col input-group mb-1">
                             <p className="text-muted mb-2">Password must contain the following:</p>
                             <ul>
-                              <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchLowerCase ? 'text-success' : 'text-danger'}`}>
-                                <i className={`fa ${errorValidationPasswordCheck.isMatchLowerCase ? 'fa-check' : 'fa-times'}`}></i> Only one or
+                              <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchOneLetter ? 'text-success' : 'text-danger'}`}>
+                                <i className={`fa ${errorValidationPasswordCheck.isMatchOneLetter ? 'fa-check' : 'fa-times'}`}></i> Only one or
                                 more <b>letter</b>
                               </li>
                               <li className={`text-xs mb-1 ml-3 ${errorValidationPasswordCheck.isMatchNumber ? 'text-success' : 'text-danger'}`}>

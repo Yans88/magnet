@@ -50,7 +50,7 @@ const AppModalStatus = ({
                     <div className="card-body" style={{ paddingLeft: 0, paddingRight: 0 }}>
                         {form}
                     </div>
-                    <img src={status_banner} className="float-left" />
+                    <img src={status_banner} className="float-left" style={{padding:10}} />
 
                 </div>
             </Modal.Body>

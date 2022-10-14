@@ -404,6 +404,7 @@ class AddBank extends Component {
                                     }
                                     value="Giro"
                                     type="radio"
+                                    id="jenis_akun_bank_giro"
                                     name="jenis_akun_bank"
                                     label="Giro"
                                   />
@@ -420,6 +421,7 @@ class AddBank extends Component {
                                         ? "checked"
                                         : ""
                                     }
+                                    id="jenis_akun_bank_tabungan"
                                     name="jenis_akun_bank"
                                     label="Rekening tabungan"
                                   />
@@ -435,6 +437,7 @@ class AddBank extends Component {
                                         ? "checked"
                                         : ""
                                     }
+                                    id="jenis_akun_bank_lainnya"
                                     name="jenis_akun_bank"
                                     label="Lainnya"
                                   />
@@ -477,9 +480,9 @@ class AddBank extends Component {
                                           Dengan mencentang kotak ini, saya
                                           dengan ini mengakui bahwa semua
                                           informasi dan dokumen yang disediakan
-                                          dalam aplikasi Online untuk pembukaan
+                                          dalam aplikasi online untuk pembukaan
                                           akun transaksi adalah benar dan
-                                          valid.saya dengan ini bertanggung
+                                          valid. Saya dengan ini bertanggung
                                           jawab penuh atas setiap kerusakan /
                                           kerugian di masa depan sebagai akibat
                                           dari informasi palsu dari dokumen yang

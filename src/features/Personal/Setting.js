@@ -29,7 +29,7 @@ class Setting extends Component {
       lastSegmentUrl: "",
       active_tab: "profile",
       errorValidationPasswordCheck: {
-        isMatchLowerCase: false,
+        isMatchOneLetter: false,
         isMatchNumber: false,
         isMatchMinDigit: false 
       }
@@ -60,16 +60,27 @@ class Setting extends Component {
   }
 
   updateErrorValidationPassword(str){
-    const regexMatchLowerCase = str.toUpperCase() != str;
+    const regexMatchOneLetter = /^-?\d*\.?\d*$/;
     const regexMatchNumber = /\d/;
   
     this.setState({
       errorValidationPasswordCheck: {
-        isMatchLowerCase: regexMatchLowerCase ? true : false,
+        isMatchOneLetter: regexMatchOneLetter.test(str) ? false : true,
         isMatchNumber: regexMatchNumber.test(str) ? true : false,
         isMatchMinDigit: str.length >= 8 ? true : false
       }
     })
+  }
+
+  checkStateErrorValidationPasswordCheck(){
+    if(
+      this.state.errorValidationPasswordCheck.isMatchNumber === true &&
+      this.state.errorValidationPasswordCheck.isMatchMinDigit === true &&
+      this.state.errorValidationPasswordCheck.isMatchOneLetter === false
+    ) 
+     return true
+
+    return false
   }
 
   handleSubmitPass() {
@@ -80,18 +91,22 @@ class Setting extends Component {
     errors.password = !this.props.profile.password
       ? "Kolom ini harus diisi"
       : "";
+
+    
+    
     errors.konfirmasi_password = !this.props.profile.konfirmasi_password
       ? "Kolom ini harus diisi"
       : "";
-    errors.password =
-      errors.password === "" && this.props.profile.password.length < 8
-        ? "Minimal 8 karakter"
-        : "";
+    
+    errors.password = this.checkStateErrorValidationPasswordCheck() ? "Password belum sesuai" : ""
+    
     errors.konfirmasi_password =
       !errors.konfirmasi_password &&
       this.props.profile.konfirmasi_password !== this.props.profile.password
         ? "Konfirmasi password tidak sesuai"
         : errors.konfirmasi_password;
+
+  
     this.setState({ errors });
     if (this.validateForm(this.state.errMsg1)) {
       this.props.submitPass(this.props.profile);
@@ -269,8 +284,8 @@ class Setting extends Component {
                                     Password must contain the following:
                                   </p>
                                   <ul className="mb-0">
-                                    <li className={`text-xs mb-1 ml-3 ${this.state.errorValidationPasswordCheck.isMatchLowerCase ? 'text-success' : 'text-danger'}`}>
-                                      <i className={`fa ${this.state.errorValidationPasswordCheck.isMatchLowerCase ? 'fa-check' : 'fa-times'}`}></i> Only one or
+                                    <li className={`text-xs mb-1 ml-3 ${this.state.errorValidationPasswordCheck.isMatchOneLetter ? 'text-success' : 'text-danger'}`}>
+                                      <i className={`fa ${this.state.errorValidationPasswordCheck.isMatchOneLetter ? 'fa-check' : 'fa-times'}`}></i> Only one or
                                       more <b>letter</b>
                                     </li>
                                     <li className={`text-xs mb-1 ml-3 ${this.state.errorValidationPasswordCheck.isMatchNumber ? 'text-success' : 'text-danger'}`}>
@@ -279,7 +294,7 @@ class Setting extends Component {
                                     </li>
                                     <li className={`text-xs mb-1 ml-3 ${this.state.errorValidationPasswordCheck.isMatchMinDigit ? 'text-success' : 'text-danger'}`}>
                                       <i className={`fa ${this.state.errorValidationPasswordCheck.isMatchMinDigit ? 'fa-check' : 'fa-times'}`}></i> Minimum
-                                      <b> Characters</b> letter or number
+                                      <b> 8 Characters</b> letter or number
                                     </li>
                                   </ul>
                                 </div>
@@ -364,15 +379,15 @@ class Setting extends Component {
                                   type="text"
                                   required
                                   readOnly={
-                                    user.is_email_change === "1" ? true : false
+                                    profile.is_email_change === "1" || profile.is_email_change === 1 ? true : false
                                   }
                                   placeholder="Email"
                                 />
                               </Col>
 							  
-                              {user.is_email_change === "1" && (
+                              {profile.is_email_change === 1 && (
                                 <div className="w-full place-items-center static">
-                                  <h5>
+                                  <h5 style={{marginTop:5,fontSize:13,marginLeft:5}}>
                                     Permintaan perubahan email kamu sedang di
                                     verifikasi oleh admin
                                   </h5>

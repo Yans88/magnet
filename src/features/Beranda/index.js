@@ -85,7 +85,7 @@ class Beranda extends Component {
       var test = reg.test(this.state.selected.password);
       errors.password = !test ? "password must be 8 characters" : "";
       errors.password2 = !test ? "least one uppercase letter" : "";
-      errors.password3 = !test ? "one lowercase letter and one number" : "";
+      errors.password3 = !test ? "one OneLetter letter and one number" : "";
     }
     errors.konf_password = !this.state.selected.konf_password
       ? "Konfirmasi password required"
@@ -123,7 +123,7 @@ class Beranda extends Component {
       var test = reg.test(this.state.selected.phonepwd);
       errors.phonepwd = !test ? "password must be 8 characters" : "";
       errors.phonepwd2 = !test ? "least one uppercase letter" : "";
-      errors.phonepwd3 = !test ? "one lowercase letter and one number" : "";
+      errors.phonepwd3 = !test ? "one OneLetter letter and one number" : "";
     }
     errors.konf_password = !this.state.selected.konf_password
       ? "Konfirmasi password required"
@@ -344,7 +344,7 @@ class Beranda extends Component {
       <div
         dangerouslySetInnerHTML={{
           __html:
-            '<div id="caption" style="padding-bottom:20px; text-align:left;">Nasabah yang terhormat, selamat datang di Magnet, kami sangat senang kamu bergabung bersama kami, agar bisa segera memulai silahkan lengkapi data pribadi anda. Data ini diperlukan sebagai persyaratan resmi dalam pembukaan rekening.</div>',
+            '<div id="caption" style="padding-bottom:20px; text-align:left;">Nasabah yang terhormat, selamat datang di Magnet, kami sangat senang kamu bergabung bersama kami, agar bisa segera memulai silahkan lengkapi data pribadi kamu. Data ini diperlukan sebagai persyaratan resmi dalam pembukaan rekening.</div>',
         }}
       />
     );
@@ -353,7 +353,7 @@ class Beranda extends Component {
       <div
         dangerouslySetInnerHTML={{
           __html:
-            '<div id="caption" style="padding-bottom:20px; text-align:left;">Nasabah yang terhormat, selamat datang di Magnet. Silahkan perbaiki kembali data pribadi anda. Data ini diperlukan sebagai persyaratan resmi dalam pembukaan rekening.</div>',
+            '<div id="caption" style="padding-bottom:20px; text-align:left;">Nasabah yang terhormat, selamat datang di Magnet. Silahkan perbaiki kembali data pribadi kamu. Data ini diperlukan sebagai persyaratan resmi dalam pembukaan rekening.</div>',
         }}
       />
     );

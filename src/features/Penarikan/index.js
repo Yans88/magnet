@@ -590,15 +590,21 @@ class Penarikan extends Component {
                                 {/* card start */}
                                 <div className="card card-success shadow-lg w-[100%] lg:w-[100%] " style={{ "minHeight": "500px",borderRadius:"20px" }}>
                                     <div className="card-body">
-
+                                  
                                         <div style={{ paddingLeft: 10, paddingRight: 10, paddingTop: 5 }}>
-                                            
+                                        <div className="mobile-hide">
+                                                <h3 style={{ color:"#2E2E2F" }}>Pilih No. Rekening Tujuan:</h3>
+                                            </div>
+
+                                            <div className="mobile-view">
+                                                <h3 style={{ color:"#2E2E2F",fontSize:"18px" }}>Pilih No. Rekening Tujuan:</h3>
+                                            </div>  
                                             <div className="row my-0 mx-0">
                                                 {data_bank ? (
                                                     data_bank.map((dp, index, arr) => {
                                                         return (
                                                             <Fragment key={index}>
-                                                                 <div className="grid grid-cols-1 lg:grid-cols-2 w-full py-4 px-1 lg:px-4 rounded-2xl mt-4" style={{ border:"2px solid #ddd",color:"#2E2E2F"}} onClick={e => this.editRecord(dp)} >
+                                                                 <div className="grid grid-cols-1 lg:grid-cols-2 w-full py-4 px-1 lg:px-4 rounded-2xl mt-4" style={{ border:"2px solid #ddd",color:"#2E2E2F", cursor: "pointer" }}onClick={e => this.editRecord(dp)} >
                                                                         
                                                                         <div className="px-2 flex items-center justify-center">
                                                                             <img className="w-3/12" alt={dp.nama_bank} src={dp.file} width="150px" />

@@ -344,6 +344,7 @@ class RejectDocument extends Component {
                                                     ? true
                                                     : false
                                                 }
+                                                id="jenis_kel_laki"
                                                 value="Laki-Laki"
                                                 type="radio"
                                                 name="jenis_kelamin"
@@ -355,6 +356,7 @@ class RejectDocument extends Component {
                                                   dr.nama_group
                                                 )}
                                                 inline
+                                                id="jenis_kel_perempuan"
                                                 value="Perempuan"
                                                 type="radio"
                                                 checked={
@@ -386,6 +388,7 @@ class RejectDocument extends Component {
                                                     : ""
                                                 }
                                                 value="Giro"
+                                                id="jenis_akun_bank_giro"
                                                 type="radio"
                                                 name="jenis_akun_bank"
                                                 label="Giro"
@@ -397,6 +400,7 @@ class RejectDocument extends Component {
                                                 )}
                                                 inline
                                                 value="Rekening tabungan"
+                                                id="jenis_akun_bank_tabungan"
                                                 type="radio"
                                                 checked={
                                                   this.state[dr.nama_group][
@@ -416,6 +420,7 @@ class RejectDocument extends Component {
                                                 inline
                                                 value="Lainnya"
                                                 type="radio"
+                                                id="jenis_akun_bank_lainnya"
                                                 checked={
                                                   this.state[dr.nama_group][
                                                     dr.field

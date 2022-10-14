@@ -52,6 +52,7 @@ import {
   profileUser,
   fetchUserKTP,
 } from "../main/mainSlice";
+import { getRejDoc } from "../RejectDocument/rejectDocSlice";
 import moment from "moment";
 import "moment/locale/id";
 import Datetime from "react-datetime";
@@ -65,6 +66,7 @@ var valid_startDate = function (current) {
 };
 
 class Personal extends Component {
+  
   constructor(props) {
     super(props);
     this.initDataPribadi = {
@@ -108,6 +110,7 @@ class Personal extends Component {
     };
     this.handleChangeStartDate = this.handleChangeStartDate.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.scrollDivFormDetilPribadi = React.createRef()
   }
 
   componentDidMount = async () => {
@@ -118,7 +121,13 @@ class Personal extends Component {
     const BaseName = location.substring(location.lastIndexOf("/") + 1);
     await this.setState({ lastSegmentUrl: BaseName });
     console.log("hello user", this.props.user);
+    console.log(getRejDoc())
+    console.log(this.props)
   };
+
+  componentDidUpdate(){
+    console.log(this.props)
+  }
 
   handleSelect(activeKey) {
     this.setState({ active_tab: activeKey });
@@ -371,60 +380,62 @@ class Personal extends Component {
       await this.sleep(2000);
       this.props.getDPP();
       await this.sleep(2000);
-      if (name === "KTP") {
-        errors.nama_depan = !this.props.user.nama_depan
-          ? "Kolom ini harus diisi"
-          : "";
+      
+      // if (name === "KTP") {
+      //   errors.nama_depan = !this.props.user.nama_depan
+      //     ? "Kolom ini harus diisi"
+      //     : "";
 
-        errors.kota_lahir = !this.props.user.kota_lahir
-          ? "Kolom ini harus diisi"
-          : "";
-        errors.tanggal_lahir = !this.props.user.tanggal_lahir
-          ? "Kolom ini harus diisi"
-          : "";
-        errors.jenis_identitas = !this.props.user.jenis_identitas
-          ? "Kolom ini harus diisi"
-          : "";
-        errors.no_identitas = !this.props.user.no_identitas
-          ? "Kolom ini harus diisi"
-          : "";
-        errors.npwp = !this.props.user.npwp ? "Kolom ini harus diisi" : "";
-        errors.jenis_kelamin = !this.props.user.jenis_kelamin
-          ? "Kolom ini harus diisi"
-          : "";
-        errors.status_pernikahan = !this.props.user.status_pernikahan
-          ? "Kolom ini harus diisi"
-          : "";
-        errors.nama_pasangan =
-          !this.props.user.nama_pasangan &&
-          this.props.user.status_pernikahan === "Kawin"
-            ? "Kolom ini harus diisi"
-            : "";
-        errors.nama_ibu_kandung = !this.props.user.nama_ibu_kandung
-          ? "Kolom ini harus diisi"
-          : "";
-        errors.alamat = !this.props.user.alamat ? "Kolom ini harus diisi" : "";
-        errors.rt = !this.props.user.rt ? "Kolom ini harus diisi" : "";
-        errors.rw = !this.props.user.rw ? "Kolom ini harus diisi" : "";
-        errors.provinsi = !this.props.user.provinsi
-          ? "Kolom ini harus diisi"
-          : "";
-        errors.warga_negara = !this.props.user.warga_negara
-          ? "Kolom ini harus diisi"
-          : "";
-        errors.telp = !this.props.user.telp ? "Kolom ini harus diisi" : "";
-        errors.handphone = !this.props.user.handphone
-          ? "Kolom ini harus diisi"
-          : "";
-        errors.status_kepemilikan = !this.props.user.status_kepemilikan
-          ? "Kolom ini harus diisi"
-          : "";
-        this.setState({
-          ...this.state,
-          ktpTemp: this.props.user.photo_ktp_download,
-        });
-        this.setState({ errors });
-      }
+      //   errors.kota_lahir = !this.props.user.kota_lahir
+      //     ? "Kolom ini harus diisi"
+      //     : "";
+      //   errors.tanggal_lahir = !this.props.user.tanggal_lahir
+      //     ? "Kolom ini harus diisi"
+      //     : "";
+      //   errors.jenis_identitas = !this.props.user.jenis_identitas
+      //     ? "Kolom ini harus diisi"
+      //     : "";
+      //   errors.no_identitas = !this.props.user.no_identitas
+      //     ? "Kolom ini harus diisi"
+      //     : "";
+      //   errors.npwp = !this.props.user.npwp ? "Kolom ini harus diisi" : "";
+      //   errors.jenis_kelamin = !this.props.user.jenis_kelamin
+      //     ? "Kolom ini harus diisi"
+      //     : "";
+      //   errors.status_pernikahan = !this.props.user.status_pernikahan
+      //     ? "Kolom ini harus diisi"
+      //     : "";
+      //   errors.nama_pasangan =
+      //     !this.props.user.nama_pasangan &&
+      //     this.props.user.status_pernikahan === "Kawin"
+      //       ? "Kolom ini harus diisi"
+      //       : "";
+      //   errors.nama_ibu_kandung = !this.props.user.nama_ibu_kandung
+      //     ? "Kolom ini harus diisi"
+      //     : "";
+      //   errors.alamat = !this.props.user.alamat ? "Kolom ini harus diisi" : "";
+      //   errors.rt = !this.props.user.rt ? "Kolom ini harus diisi" : "";
+      //   errors.rw = !this.props.user.rw ? "Kolom ini harus diisi" : "";
+      //   errors.provinsi = !this.props.user.provinsi
+      //     ? "Kolom ini harus diisi"
+      //     : "";
+      //   errors.warga_negara = !this.props.user.warga_negara
+      //     ? "Kolom ini harus diisi"
+      //     : "";
+      //   errors.telp = !this.props.user.telp ? "Kolom ini harus diisi" : "";
+      //   errors.handphone = !this.props.user.handphone
+      //     ? "Kolom ini harus diisi"
+      //     : "";
+      //   errors.status_kepemilikan = !this.props.user.status_kepemilikan
+      //     ? "Kolom ini harus diisi"
+      //     : "";
+      //   this.setState({
+      //     ...this.state,
+      //     ktpTemp: this.props.user.photo_ktp_download,
+      //   });
+      //   this.setState({ errors });
+      // }
+      // this.props.onLoad();
     }
   };
 
@@ -500,8 +511,8 @@ class Personal extends Component {
     errors.nama_ibu_kandung = !this.props.user.nama_ibu_kandung
       ? "Kolom ini harus diisi"
       : "";
-    errors.photo_ktp_download = !this.props.user.photo_ktp_download
-      ? "Kolom ini harus diisi"
+      errors.photo_ktp_download = !this.props.user.photo_ktp_download
+      ? (!this.props.user.photo_ktp ? "Kolom ini harus diisi" : "" )
       : "";
     errors.alamat = !this.props.user.alamat ? "Kolom ini harus diisi" : "";
     errors.rt = !this.props.user.rt ? "Kolom ini harus diisi" : "";
@@ -540,6 +551,7 @@ class Personal extends Component {
       if (action === "detil_pribadi")
         this.setState({ active_tab: "exp_trading" });
     } else {
+      this.scrollToError()
       console.error("Invalid Form");
     }
   };
@@ -605,9 +617,26 @@ class Personal extends Component {
       this.props.getDataTrading();
       if (action === "detil_pribadi") this.setState({ active_tab: "kekayaan" });
     } else {
+     
+      this.scrollToError()
       console.error("Invalid Form");
     }
   };
+
+  scrollToError = () => {
+    const items = document.getElementsByClassName('badge-danger');
+const visible = [...items].filter((el) => {
+  // jQuery-like :visible selector
+  return !!( el.offsetWidth || el.offsetHeight );
+});
+
+if (visible.length > 0) {
+  window.scrollTo({
+    top: items[0].offsetHeight,
+    behavior: 'smooth'
+  });
+}
+  }
 
   handleSubmit3 = async (action) =>{
     var errors = this.state.errMsg3;
@@ -667,6 +696,7 @@ class Personal extends Component {
       if (action === "detil_pribadi")
         this.setState({ active_tab: "kontak_darurat" });
     } else {
+      this.scrollToError()
       console.error("Invalid Form");
     }
   }
@@ -713,6 +743,7 @@ class Personal extends Component {
       if (action === "detil_pribadi")
         this.setState({ active_tab: "pekerjaan" });
     } else {
+      this.scrollToError()
       console.error("Invalid Form");
     }
   };
@@ -829,6 +860,7 @@ class Personal extends Component {
       this.props.onSaveDPP(saveData);
       this.props.history.push("/account-type");
     } else {
+      this.scrollToError()
       console.error("Invalid Form");
     }
   }
@@ -1104,7 +1136,7 @@ class Personal extends Component {
                                       <img
                                         style={{maxWidth:"100%"}}
                                         src={
-                                          ktpTemp ? ktpTemp : photo_ktp
+                                          this.props.user.photo_ktp_download ? this.props.user.photo_ktp_download : (user.photo_ktp ? user.photo_ktp: photo_ktp)
                                         }
                                       />
                                     </div>
@@ -1128,7 +1160,7 @@ class Personal extends Component {
                                     <div className="pt-2">
                                       <div className="mobile-hide">
                                         <div className="flex justify-start">
-                                          <div className="mr-3">
+                                          {/* <div className="mr-3">
                                             
                                               <img
                                                 src={close1}
@@ -1137,13 +1169,11 @@ class Personal extends Component {
                                                 width="25px"
                                               />
                                            
-                                          </div>
+                                          </div> */}
                                           <div className="mr-3">
                                             <a
                                               href={
-                                                user && user.photo_ktp_download
-                                                  ? user.photo_ktp_download
-                                                  : photo_ktp
+                                                user.photo_ktp || ktpTemp
                                               }
                                             >
                                               <img
@@ -1155,9 +1185,10 @@ class Personal extends Component {
                                           <div className="mr-3">
                                             <a
                                               href={
-                                                ktpTemp ? ktpTemp : photo_ktp
+                                                user.photo_ktp || ktpTemp
                                               }
-											  target="_blank"
+											
+                        onClick={()=> {window.open(user.photo_ktp || ktpTemp,'_blank');return false;}}
                                             >
                                               <img
                                                 src={see_icon}
@@ -1170,18 +1201,18 @@ class Personal extends Component {
 
                                       <div className="mobile-view">
                                         <div className="flex justify-start">
-                                          <div className="mr-3">
+                                          {/* <div className="mr-3">
                                             <img
                                               src={close1}
                                               width="25px"
                                               onClick={()=> this.deleteKtp()}
                                               style={{cursor:"pointer"}}
                                             />
-                                          </div>
+                                          </div> */}
                                           <div className="mr-3">
                                             <a
                                               href={
-                                                ktpTemp ? ktpTemp : photo_ktp
+                                                user.photo_ktp || ktpTemp
                                               }
                                             >
                                               <img
@@ -1193,7 +1224,7 @@ class Personal extends Component {
                                           <div className="mr-3">
                                             <a
                                               href={
-                                                ktpTemp ? ktpTemp : photo_ktp
+                                                user.photo_ktp || ktpTemp
                                               }
                                             >
                                               <img
@@ -1212,8 +1243,8 @@ class Personal extends Component {
                           </div>
                         </div>
 
-                        <Form>
-                          <div style={{ paddingLeft: 20, paddingRight: 20 }}>
+                        <Form >
+                          <div style={{ paddingLeft: 20, paddingRight: 20 }} >
                             <div className="mobile-hide ">
                               <div className="grid grid-cols-1 py-4">
                                 <div>
@@ -1246,7 +1277,7 @@ class Personal extends Component {
                               </div>
                             </div>
 
-                            <Form.Row>
+                            <Form.Row ref={this.scrollDivFormDetilPribadi}>
                               <Form.Group
                                 as={Col}
                                 xs={12}
@@ -1450,7 +1481,7 @@ class Personal extends Component {
                                         marginTop: ".8rem",
                                       }}
                                     >
-                                      Jenis akun
+                                      Jenis Kelamin
                                     </h5>
                                     </Form.Row>
                             <Form.Row style={{marginLeft:0,marginBottom:'.8rem'}}>
@@ -1467,6 +1498,7 @@ class Personal extends Component {
                                   }
                                   value="Laki-Laki"
                                   type="radio"
+                                  id="jenis_kelamin_laki"
                                   name="jenis_kelamin"
                                   label="Laki-laki"
                                 />
@@ -1474,6 +1506,7 @@ class Personal extends Component {
                                   onChange={this.handleChange}
                                   inline
                                   value="Perempuan"
+                                  id="jenis_kelamin_perempuan"
                                   type="radio"
                                   checked={
                                     user.jenis_kelamin === "Perempuan" ||
@@ -1872,8 +1905,8 @@ class Personal extends Component {
                                       Dengan mencentang kotak ini, saya dengan
                                       ini mengakui bahwa semua informasi dan
                                       dokumen yang disediakan dalam aplikasi
-                                      Online untuk pembukaan akun transaksi
-                                      adalah benar dan valid.saya dengan ini
+                                      online untuk pembukaan akun transaksi
+                                      adalah benar dan valid. Saya dengan ini
                                       bertanggung jawab penuh atas setiap
                                       kerusakan / kerugian di masa depan sebagai
                                       akibat dari informasi palsu dari dokumen
@@ -2019,12 +2052,12 @@ class Personal extends Component {
                                   inline
                                   type="switch"
                                   value="Y"
-                                  id="custom-switch"
                                   label={
                                     dataExpTrading.pertanyaan1 === "Y"
                                       ? "Ya"
                                       : "Tidak"
                                   }
+                                  id="pengalaman-trading-pertanyaan1"
                                   name="pertanyaan1"
                                   checked={
                                     dataExpTrading.pertanyaan1 === "Y"
@@ -2087,7 +2120,7 @@ class Personal extends Component {
                                   inline
                                   type="switch"
                                   value="Y"
-                                  id="custom-switch4"
+                                  id="memiliki-keluarga-pertanyaan3"
                                   label={
                                     dataExpTrading.pertanyaan3 === "Y"
                                       ? "Ya"
@@ -2114,7 +2147,7 @@ class Personal extends Component {
                                   inline
                                   type="switch"
                                   value="Y"
-                                  id="custom-switch3"
+                                  id="pailit-pertanyaan4"
                                   label={
                                     dataExpTrading.pertanyaan4 === "Y"
                                       ? "Ya"
@@ -2147,13 +2180,13 @@ class Personal extends Component {
                                   inline
                                   type="switch"
                                   value="Y"
-                                  id="custom-switch2"
                                   label={
                                     dataExpTrading.pertanyaan5 === "Y"
                                       ? "Ya"
                                       : "Tidak"
                                   }
                                   name="pertanyaan5"
+                                  id="pengalaman-pertanyaan5"
                                   checked={
                                     dataExpTrading.pertanyaan5 === "Y"
                                       ? "checked"
@@ -2232,8 +2265,8 @@ class Personal extends Component {
                                         Dengan mencentang kotak ini, saya dengan
                                         ini mengakui bahwa semua informasi dan
                                         dokumen yang disediakan dalam aplikasi
-                                        Online untuk pembukaan akun transaksi
-                                        adalah benar dan valid.saya dengan ini
+                                        online untuk pembukaan akun transaksi
+                                        adalah benar dan valid. Saya dengan ini
                                         bertanggung jawab penuh atas setiap
                                         kerusakan / kerugian di masa depan
                                         sebagai akibat dari informasi palsu dari
@@ -2352,15 +2385,14 @@ class Personal extends Component {
                                   as="select"
                                 >
                                   <option value="">Pendapatan Per Tahun</option>
-                                  <option value="Antara 100-250 juta">
-                                    Antara 100-250 juta
+                                  {
+                                    this.props.dataRejDocument[0]?.data_field[0]?.option.map((el,key)=>(
+                                      <option value={el.value} key={"pendapatan-pertahun-"+key}>
+                                    {el.text}
                                   </option>
-                                  <option value="Antara 250-500 juta">
-                                    Antara 250-500 juta
-                                  </option>
-                                  <option value="Di atas 500 juta">
-                                    Di atas 500 juta
-                                  </option>
+                                    ))
+                                  }
+                                
                                 </Form.Control>
                                 {errMsg3.pendapatan_pertahun ? (
                                   <span className="text-error badge badge-danger">
@@ -2545,8 +2577,8 @@ class Personal extends Component {
                                         Dengan mencentang kotak ini, saya dengan
                                         ini mengakui bahwa semua informasi dan
                                         dokumen yang disediakan dalam aplikasi
-                                        Online untuk pembukaan akun transaksi
-                                        adalah benar dan valid.saya dengan ini
+                                        online untuk pembukaan akun transaksi
+                                        adalah benar dan valid. Saya dengan ini
                                         bertanggung jawab penuh atas setiap
                                         kerusakan / kerugian di masa depan
                                         sebagai akibat dari informasi palsu dari
@@ -2877,8 +2909,8 @@ class Personal extends Component {
                                         Dengan mencentang kotak ini, saya dengan
                                         ini mengakui bahwa semua informasi dan
                                         dokumen yang disediakan dalam aplikasi
-                                        Online untuk pembukaan akun transaksi
-                                        adalah benar dan valid.saya dengan ini
+                                        online untuk pembukaan akun transaksi
+                                        adalah benar dan valid. Saya dengan ini
                                         bertanggung jawab penuh atas setiap
                                         kerusakan / kerugian di masa depan
                                         sebagai akibat dari informasi palsu dari
@@ -3314,8 +3346,8 @@ class Personal extends Component {
                                         Dengan mencentang kotak ini, saya dengan
                                         ini mengakui bahwa semua informasi dan
                                         dokumen yang disediakan dalam aplikasi
-                                        Online untuk pembukaan akun transaksi
-                                        adalah benar dan valid.saya dengan ini
+                                        online untuk pembukaan akun transaksi
+                                        adalah benar dan valid. Saya dengan ini
                                         bertanggung jawab penuh atas setiap
                                         kerusakan / kerugian di masa depan
                                         sebagai akibat dari informasi palsu dari
@@ -3561,6 +3593,7 @@ class Personal extends Component {
                                       ? "checked"
                                       : ""
                                   }
+                                  id="jenis_akun_bank-pertanyaan5-1"
                                   value="Giro"
                                   type="radio"
                                   name="jenis_akun_bank"
@@ -3573,6 +3606,7 @@ class Personal extends Component {
                                   inline
                                   value="Rekening tabungan"
                                   type="radio"
+                                  id="jenis_akun_bank-pertanyaan5-2"
                                   checked={
                                     dataAkunBank.jenis_akun_bank ===
                                     "Rekening tabungan"
@@ -3589,6 +3623,7 @@ class Personal extends Component {
                                   inline
                                   value="Lainnya"
                                   type="radio"
+                                  id="jenis_akun_bank-pertanyaan5-3"
                                   checked={
                                     dataAkunBank.jenis_akun_bank === "Lainnya"
                                       ? "checked"
@@ -3636,8 +3671,8 @@ class Personal extends Component {
                                         Dengan mencentang kotak ini, saya dengan
                                         ini mengakui bahwa semua informasi dan
                                         dokumen yang disediakan dalam aplikasi
-                                        Online untuk pembukaan akun transaksi
-                                        adalah benar dan valid.saya dengan ini
+                                        online untuk pembukaan akun transaksi
+                                        adalah benar dan valid. Saya dengan ini
                                         bertanggung jawab penuh atas setiap
                                         kerusakan / kerugian di masa depan
                                         sebagai akibat dari informasi palsu dari
@@ -3806,14 +3841,16 @@ class Personal extends Component {
                               </div>
                               <br />
 
-                              <div className="table-responsive">
+                              <div className="table-responsive" style={{width:"100%"}}>
+                                <div className="mobile-hide ">
                                 <table className="table table__document">
                                   <thead>
                                     <tr>
-                                      <th style={{ width: "35%" }}>File</th>
-                                      <th style={{ width: "15%" }}>Tipe</th>
-                                      <th style={{ width: "25%" }}>Ukuran</th>
-                                      <th style={{ width: "25%" }}>Tindakan</th>
+                                    <th style={{ width: "35%" }}>File</th>
+                                        <th style={{ width: "15%" }}>Tipe</th>
+                                        <th style={{ width: "25%" }}>Ukuran</th>
+                                        <th style={{ width: "25%" }}>Tindakan</th>
+                                      
                                     </tr>
                                   </thead>
 
@@ -3902,6 +3939,95 @@ class Personal extends Component {
                                     </Fragment>
                                   )}
                                 </table>
+                                  </div>
+                                  <div className="mobile-view ">
+                                  <table className="table table__document">
+                                  <thead>
+                                    <tr>
+                                        <th style={{ width: "45%" }}>Tipe</th>
+                                        <th style={{ width: "25%" }}>Tindakan</th>
+                                      
+                                    </tr>
+                                  </thead>
+
+                                  {isFetchingUpl ? (
+                                    <tbody>
+                                      <tr>
+                                        <td colSpan="5">
+                                          <Paragraph
+                                            rowHeight={20}
+                                            rowMargin={7}
+                                            rows={1}
+                                            active
+                                          />
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td colSpan="5">
+                                          <Paragraph
+                                            rowHeight={20}
+                                            rowMargin={7}
+                                            rows={1}
+                                            active
+                                          />
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  ) : (
+                                    <Fragment>
+                                      <tbody>
+                                        {docPribadi
+                                          ? docPribadi.map((dp, index) => {
+                                              return (
+                                                <tr key={dp.dokumen_id}>
+                                                
+                                                  <td>
+                                                    {dp.tipe === "OTHER"
+                                                      ? "BUKU TABUNGAN"
+                                                      : dp.tipe}
+                                                  </td>
+                                                  
+                                                  <td align="center">
+                                                    <IconButton
+                                                      disabled={
+                                                        dp.tipe === "KTP"
+                                                          ? true
+                                                          : false
+                                                      }
+                                                      onClick={
+                                                        dp.tipe !== "KTP"
+                                                          ? this.deleteRecordFile.bind(
+                                                              this,
+                                                              dp.dokumen_id
+                                                            )
+                                                          : this.deleteRecordFile.bind(
+                                                              this
+                                                            )
+                                                      }
+                                                      icon={
+                                                        <CloseIcon />
+                                                      }
+                                                    />
+                                                    <br />
+                                                    <a href={dp.file}>
+                                                      <IconButton
+                                                        style={{ marginTop: 5 }}
+                                                        icon={
+                                                          <FileDownloadIcon />
+                                                        }
+                                                      />
+                                                    </a>
+                                                  </td>
+                                                </tr>
+                                              );
+                                            })
+                                          : ""}
+                                      </tbody>
+                                    </Fragment>
+                                  )}
+                                </table>
+                                  </div>
+                              
                               </div>
                               {!unggahFileName ? (
                                 <div className="alert alert-danger alert-sm">
@@ -3967,6 +4093,7 @@ class Personal extends Component {
                                       }
                                       value="Y"
                                       type="radio"
+                                      id="agree-ya"
                                       name="agree"
                                       label="Ya"
                                     />
@@ -3981,6 +4108,7 @@ class Personal extends Component {
                                       onChange={this.handleChangeDPP.bind(this)}
                                       value="N"
                                       type="radio"
+                                      id="agree-tidak"
                                       name="agree"
                                       label="Tidak"
                                     />
@@ -4103,6 +4231,7 @@ const mapStateToProps = (state) => ({
   showFormDelete: state.personal.showFormDelete,
   isLoading: state.personal.isLoading,
   errFetchUserByToken: state.main.errFetchUserByToken,
+  dataRejDocument: state.rejDoc.dataRejDoc,
   isUploadingKTP: state.main.isUploadingKTP,
   user: state.main.currentUser,
 });
@@ -4120,6 +4249,7 @@ const mapDispatchToPros = (dispatch) => {
       dispatch(getProvinsi());
       dispatch(getBank());
       dispatch(getDocPribadi());
+      dispatch(getRejDoc());
     },
     changeProps: (data) => {
       dispatch(chgProps(data));

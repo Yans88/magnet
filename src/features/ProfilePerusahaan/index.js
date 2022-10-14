@@ -526,8 +526,8 @@ class ProfilePerusahaan extends Component {
                               <div className="form-check-text">
                                 Dengan mencentang kotak ini, saya dengan ini
                                 mengakui bahwa semua informasi dan dokumen yang
-                                disediakan dalam aplikasi Online untuk pembukaan
-                                akun transaksi adalah benar dan valid.saya
+                                disediakan dalam aplikasi online untuk pembukaan
+                                akun transaksi adalah benar dan valid. Saya
                                 dengan ini bertanggung jawab penuh atas setiap
                                 kerusakan / kerugian di masa depan sebagai
                                 akibat dari informasi palsu dari dokumen yang
