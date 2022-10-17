@@ -798,9 +798,9 @@ if (visible.length > 0) {
     errors.bank = !this.props.dataAkunBank.bank_id
       ? "Kolom ini harus diisi"
       : "";
-    // errors.cabang = !this.props.dataAkunBank.cabang
-    // ? "Kolom ini harus diisi"
-    // : "";
+    errors.cabang = !this.props.dataAkunBank.cabang
+    ? "Kolom ini harus diisi"
+    : "";
     errors.no_rek = !this.props.dataAkunBank.no_rek
       ? "Kolom ini harus diisi"
       : "";
@@ -2386,11 +2386,20 @@ if (visible.length > 0) {
                                 >
                                   <option value="">Pendapatan Per Tahun</option>
                                   {
-                                    this.props.dataRejDocument[0]?.data_field[0]?.option.map((el,key)=>(
-                                      <option value={el.value} key={"pendapatan-pertahun-"+key}>
-                                    {el.text}
-                                  </option>
-                                    ))
+                                    this.props.dataRejDocument[0]?.data_field[0]?.option.length > 0 ? (
+                                      this.props.dataRejDocument[0]?.data_field[0]?.option.map((el,key)=>(
+                                        <option value={el.value} key={"pendapatan-pertahun-"+key}>
+                                      {el.text}
+                                    </option>
+                                      ))
+                                    ) : 
+                                    (
+                                      <>
+                                       <option value="Antara 100-250 juta">Antara 100-250 juta</option>
+                                       <option value="Antara 250-500 juta">Antara 250-500 juta</option>
+                                       <option value="Di atas 500 juta">Di atas 500 juta</option>
+                                      </>
+                                    )
                                   }
                                 
                                 </Form.Control>
@@ -3556,6 +3565,40 @@ if (visible.length > 0) {
                                   ""
                                 )}
                               </Form.Group>
+
+                              
+                              <Form.Group
+                                  as={Col}
+                                  xs={12}
+                                  lg={6}
+                                  controlId="cabang"
+                                >
+                                 
+
+                                  <Form.Control
+                                    value={
+                                      dataAkunBank.cabang
+                                        ? dataAkunBank.cabang
+                                        : ""
+                                    }
+                                    autoComplete="off"
+                                    onChange={this.handleChangeAkunBank.bind(
+                                      this
+                                    )}
+                                    size="lg"
+                                    name="cabang"
+                                    type="text"
+                                    required
+                                    placeholder="Cabang"
+                                  />
+                                  {errMsg6.cabang ? (
+                                    <span className="text-error badge badge-danger">
+                                      {errMsg6.cabang}
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
+                                </Form.Group>
                             </Form.Row>
 
                             {/*  <Form.Row>
